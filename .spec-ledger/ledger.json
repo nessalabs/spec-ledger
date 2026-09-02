@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "name": "nessa-spec-test",
+  "claimsDir": "claims",
+  "bindingsDir": "bindings",
+  "turnsDir": "turns",
+  "graphPath": "graph/codebase-graph.json",
+  "policyPath": "policy/layers.json",
+  "resultsPath": "results/last.json",
+  "reportPath": "results/report.json"
+}

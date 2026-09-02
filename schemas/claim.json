@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nessalabs.ai/spec-ledger/schemas/claim.json",
+  "title": "Claim",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "kind", "statement", "required"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[A-Z][A-Z0-9]*-[0-9]{3,}([.][0-9]+)?$",
+      "description": "Stable id. Never reuse. Deprecate instead of delete."
+    },
+    "kind": {
+      "type": "string",
+      "enum": ["spec", "adr", "invariant", "protocol", "absence"]
+    },
+    "statement": { "type": "string", "minLength": 1 },
+    "area": { "type": "string" },
+    "required": {
+      "type": "boolean",
+      "description": "If true, verify fails when no binding or result is missing."
+    },
+    "deprecated": { "type": "boolean" },
+    "supersededBy": { "type": "string" },
+    "links": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "dependsOn": { "type": "array", "items": { "type": "string" } },
+        "related": { "type": "array", "items": { "type": "string" } },
+        "docs": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  }
+}

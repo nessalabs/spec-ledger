@@ -1,0 +1,6 @@
+{
+  "id": "b-sl-004",
+  "claimId": "SL-004",
+  "kind": "check",
+  "locator": { "type": "path", "path": "packages/ledger/src/verify/verify.ts" }
+}

@@ -1,0 +1,10 @@
+{
+  "layers": ["schemas", "core", "client", "server", "ui"],
+  "allow": {
+    "schemas": ["schemas"],
+    "core": ["core", "schemas"],
+    "client": ["client", "schemas"],
+    "server": ["server", "core", "schemas"],
+    "ui": ["ui", "client"]
+  }
+}

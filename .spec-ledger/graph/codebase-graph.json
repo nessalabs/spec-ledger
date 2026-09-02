@@ -1,0 +1,91 @@
+{
+  "system": {
+    "name": "Spec Ledger",
+    "description": "Generic claim-adherence gate + replaceable lattice viewing layer.",
+    "revision": "0.1.0",
+    "languages": ["typescript"]
+  },
+  "layers": [
+    { "id": "schemas", "name": "Schemas", "blurb": "JSON Schema SSOT" },
+    { "id": "core", "name": "Core", "blurb": "Verify + graph algorithms + CLI" },
+    { "id": "client", "name": "Client", "blurb": "Typed SDK — only gateway for UIs" },
+    { "id": "server", "name": "Server", "blurb": "Read-only HTTP projection" },
+    { "id": "ui", "name": "UI", "blurb": "Reference Lattice — replaceable" }
+  ],
+  "features": [
+    {
+      "id": "verify",
+      "name": "Claim verification",
+      "summary": "Bindings + ingested results → provenance-bearing report.",
+      "claimIds": ["SL-001", "SL-002", "SL-003"],
+      "entryPoints": ["packages/ledger/src/verify/verify.ts"],
+      "keywords": ["verify", "claim", "evidence", "digest"]
+    },
+    {
+      "id": "lattice",
+      "name": "Lattice graph",
+      "summary": "Feature/module graph, blast radius, layer policy.",
+      "claimIds": ["SL-004"],
+      "entryPoints": ["packages/ledger/src/graph/impact.ts"],
+      "keywords": ["graph", "blast radius", "layers"]
+    },
+    {
+      "id": "turns",
+      "name": "Turn change log",
+      "summary": "Intent authored; facts from turn close (git + verify digests).",
+      "claimIds": ["SL-001", "SL-003"],
+      "entryPoints": ["packages/ledger/src/turns/close.ts"],
+      "keywords": ["turn", "change log", "intent", "facts"]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "schemas",
+      "name": "schemas/",
+      "layer": "schemas",
+      "kind": "package",
+      "locator": "schemas",
+      "purpose": "JSON Schema SSOT"
+    },
+    {
+      "id": "ledger-core",
+      "name": "@nessa/spec-ledger",
+      "layer": "core",
+      "kind": "package",
+      "locator": "packages/ledger",
+      "featureIds": ["verify", "lattice", "turns"],
+      "purpose": "Core verify + CLI"
+    },
+    {
+      "id": "ledger-client",
+      "name": "@nessa/spec-ledger-client",
+      "layer": "client",
+      "kind": "package",
+      "locator": "packages/client",
+      "purpose": "Embeddable typed client"
+    },
+    {
+      "id": "ledger-server",
+      "name": "@nessa/spec-ledger-server",
+      "layer": "server",
+      "kind": "package",
+      "locator": "packages/server",
+      "purpose": "Read-only HTTP API"
+    },
+    {
+      "id": "ledger-ui",
+      "name": "@nessa/spec-ledger-ui",
+      "layer": "ui",
+      "kind": "package",
+      "locator": "packages/ui",
+      "purpose": "Reference Lattice UI"
+    }
+  ],
+  "edges": [
+    { "from": "ledger-core", "to": "schemas", "kind": "depends_on" },
+    { "from": "ledger-client", "to": "schemas", "kind": "depends_on" },
+    { "from": "ledger-server", "to": "ledger-core", "kind": "depends_on" },
+    { "from": "ledger-server", "to": "schemas", "kind": "depends_on" },
+    { "from": "ledger-ui", "to": "ledger-client", "kind": "depends_on" }
+  ]
+}

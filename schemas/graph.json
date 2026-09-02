@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nessalabs.ai/spec-ledger/schemas/graph.json",
+  "title": "CodebaseGraph",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["system", "layers", "features", "nodes", "edges"],
+  "properties": {
+    "system": {
+      "type": "object",
+      "required": ["name", "description", "revision"],
+      "properties": {
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "revision": { "type": "string" },
+        "languages": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "layers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name"],
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "blurb": { "type": "string" }
+        }
+      }
+    },
+    "features": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "summary"],
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "summary": { "type": "string" },
+          "claimIds": { "type": "array", "items": { "type": "string" } },
+          "entryPoints": { "type": "array", "items": { "type": "string" } },
+          "keywords": { "type": "array", "items": { "type": "string" } },
+          "flow": { "type": "string" }
+        }
+      }
+    },
+    "nodes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "layer", "kind"],
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "layer": { "type": "string" },
+          "kind": {
+            "type": "string",
+            "enum": ["module", "feature", "adr", "package", "other"]
+          },
+          "locator": {
+            "type": "string",
+            "description": "Path relative to repo root; verify fails if missing."
+          },
+          "featureIds": { "type": "array", "items": { "type": "string" } },
+          "claimIds": { "type": "array", "items": { "type": "string" } },
+          "purpose": { "type": "string" }
+        }
+      }
+    },
+    "edges": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["from", "to", "kind"],
+        "properties": {
+          "from": { "type": "string" },
+          "to": { "type": "string" },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "depends_on",
+              "related",
+              "calls",
+              "implements",
+              "reads",
+              "emits",
+              "supersedes"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

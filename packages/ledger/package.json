@@ -1,0 +1,30 @@
+{
+  "name": "@nessa/spec-ledger",
+  "version": "0.1.0",
+  "description": "Claim-adherence ledger: verify specs/ADRs/invariants against ingested evidence",
+  "type": "module",
+  "bin": {
+    "spec-ledger": "./dist/cli/main.js"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": ["dist", "README.md"],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "pnpm build && node --test 'dist/**/*.test.js'",
+    "spec-ledger": "node ./dist/cli/main.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.10",
+    "typescript": "^5.8.2"
+  }
+}

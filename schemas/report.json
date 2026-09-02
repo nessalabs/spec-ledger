@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nessalabs.ai/spec-ledger/schemas/report.json",
+  "title": "VerifyReport",
+  "description": "Provenance-bearing verify output. UI must treat mismatched digests as unknown, never pass.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "producedAt",
+    "producedBy",
+    "ok",
+    "provenance",
+    "claims"
+  ],
+  "properties": {
+    "schemaVersion": { "type": "integer", "const": 1 },
+    "producedAt": { "type": "string", "format": "date-time" },
+    "producedBy": { "type": "string" },
+    "ok": { "type": "boolean" },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ledgerDigest", "resultsDigest", "treeHint"],
+      "properties": {
+        "commit": { "type": ["string", "null"] },
+        "ledgerDigest": { "type": "string" },
+        "resultsDigest": { "type": "string" },
+        "treeHint": {
+          "type": "string",
+          "description": "Repo root path or other hint for consumers recomputing digests."
+        }
+      }
+    },
+    "claims": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["claimId", "required", "outcome"],
+        "properties": {
+          "claimId": { "type": "string" },
+          "required": { "type": "boolean" },
+          "outcome": {
+            "type": "string",
+            "enum": ["pass", "fail", "missing", "attested", "unbound"]
+          },
+          "bindingIds": { "type": "array", "items": { "type": "string" } },
+          "detail": { "type": "string" }
+        }
+      }
+    },
+    "graph": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "ok": { "type": "boolean" },
+        "danglingNodes": { "type": "array", "items": { "type": "string" } },
+        "missingLocators": { "type": "array", "items": { "type": "string" } },
+        "freshness": {
+          "type": "string",
+          "enum": ["ok", "stale", "unknown"]
+        }
+      }
+    },
+    "problems": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}

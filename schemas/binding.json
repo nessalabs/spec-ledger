@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nessalabs.ai/spec-ledger/schemas/binding.json",
+  "title": "EvidenceBinding",
+  "description": "Committed intent to check a claim. Never carries pass/fail status.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "claimId", "kind", "locator"],
+  "properties": {
+    "id": { "type": "string", "minLength": 1 },
+    "claimId": { "type": "string" },
+    "kind": {
+      "type": "string",
+      "enum": ["test", "check", "contract", "proof", "attestation"]
+    },
+    "locator": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["results-row", "command", "path", "attestation"]
+        },
+        "resultsKey": {
+          "type": "string",
+          "description": "Key matched in an ingested results file (claimId or custom)."
+        },
+        "command": { "type": "string", "description": "Shell command for kind=check (coarse)." },
+        "path": { "type": "string", "description": "Path that must exist (graph honesty)." },
+        "note": { "type": "string" }
+      }
+    }
+  }
+}

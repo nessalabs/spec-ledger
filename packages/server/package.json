@@ -1,0 +1,22 @@
+{
+  "name": "@nessa/spec-ledger-server",
+  "version": "0.1.0",
+  "description": "Read-only HTTP projection of Spec Ledger (no write endpoints)",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "spec-ledger-serve": "./dist/main.js"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/main.js"
+  },
+  "dependencies": {
+    "@nessa/spec-ledger": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.10",
+    "typescript": "^5.8.2"
+  }
+}

@@ -1,0 +1,155 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nessalabs.ai/spec-ledger/schemas/turn.json",
+  "title": "Turn",
+  "description": "One agent (or human) work unit. Intent is authored; facts are written only by `spec-ledger turn close` from git + verify — never trusted from the agent.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "id", "status", "openedAt", "intent"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "id": {
+      "type": "string",
+      "pattern": "^T-[0-9]{3,}([.][0-9]+)?$",
+      "description": "Stable turn id. Never reuse."
+    },
+    "status": { "type": "string", "enum": ["open", "closed"] },
+    "openedAt": { "type": "string", "format": "date-time" },
+    "closedAt": { "type": "string", "format": "date-time" },
+    "intent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["userPrompt", "restatedGoal"],
+      "properties": {
+        "userPrompt": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Verbatim human request. Never paraphrased."
+        },
+        "restatedGoal": { "type": "string", "minLength": 1 },
+        "acceptanceCriteria": { "type": "array", "items": { "type": "string" } },
+        "outOfScope": { "type": "array", "items": { "type": "string" } },
+        "changeType": {
+          "type": "string",
+          "enum": ["feature", "refactor", "fix", "migration", "chore", "docs"]
+        },
+        "riskLevel": {
+          "type": "string",
+          "enum": ["low", "moderate", "elevated", "high"]
+        },
+        "claimedFeatureIds": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "What the agent *thinks* it touched — not authoritative."
+        },
+        "claimedClaimIds": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "What the agent *thinks* it touched — not authoritative."
+        },
+        "decisions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["decision", "rationale"],
+            "properties": {
+              "decision": { "type": "string" },
+              "rationale": { "type": "string" },
+              "alternativesRejected": {
+                "type": "array",
+                "items": { "type": "string" }
+              }
+            }
+          }
+        },
+        "flows": {
+          "type": "array",
+          "description": "Optional before/after Mermaid for Lattice review. Narrative only — not verify truth.",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "title", "after"],
+            "properties": {
+              "id": { "type": "string" },
+              "title": { "type": "string" },
+              "kind": {
+                "type": "string",
+                "enum": ["flowchart", "sequence", "er", "state"]
+              },
+              "narrative": { "type": "string" },
+              "before": { "type": "string" },
+              "after": { "type": "string" }
+            }
+          }
+        },
+        "summaryForSearch": { "type": "string" },
+        "keywords": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "facts": {
+      "type": "object",
+      "description": "Filled exclusively by `spec-ledger turn close`. Agents must not invent these fields.",
+      "additionalProperties": false,
+      "required": [
+        "producedBy",
+        "commit",
+        "files",
+        "touchedNodeIds",
+        "touchedFeatureIds",
+        "touchedClaimIds",
+        "blastRadius",
+        "verify",
+        "schemaSurfaceChanged"
+      ],
+      "properties": {
+        "producedBy": { "type": "string" },
+        "commit": { "type": ["string", "null"] },
+        "files": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["path", "kind"],
+            "properties": {
+              "path": { "type": "string" },
+              "kind": {
+                "type": "string",
+                "enum": ["added", "modified", "deleted", "renamed"]
+              },
+              "additions": { "type": "integer", "minimum": 0 },
+              "deletions": { "type": "integer", "minimum": 0 }
+            }
+          }
+        },
+        "touchedNodeIds": { "type": "array", "items": { "type": "string" } },
+        "touchedFeatureIds": { "type": "array", "items": { "type": "string" } },
+        "touchedClaimIds": { "type": "array", "items": { "type": "string" } },
+        "blastRadius": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["direct", "transitive"],
+          "properties": {
+            "direct": { "type": "array", "items": { "type": "string" } },
+            "transitive": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "verify": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["ok", "ledgerDigest", "resultsDigest"],
+          "properties": {
+            "ok": { "type": "boolean" },
+            "ledgerDigest": { "type": "string" },
+            "resultsDigest": { "type": "string" },
+            "producedAt": { "type": "string", "format": "date-time" }
+          }
+        },
+        "schemaSurfaceChanged": {
+          "type": "boolean",
+          "description": "True when schemas/, claims/, or bindings/ paths changed."
+        }
+      }
+    }
+  }
+}

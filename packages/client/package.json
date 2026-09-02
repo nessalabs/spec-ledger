@@ -1,0 +1,23 @@
+{
+  "name": "@nessa/spec-ledger-client",
+  "version": "0.1.0",
+  "description": "Typed SDK for Spec Ledger — only gateway for UIs and embedders",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "@nessa/spec-ledger": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.2"
+  }
+}

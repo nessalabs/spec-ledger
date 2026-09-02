@@ -1,0 +1,7 @@
+{
+  "id": "SL-005",
+  "kind": "absence",
+  "statement": "Reference UI must not import ledger core filesystem APIs; it talks only through the client SDK.",
+  "area": "ui",
+  "required": true
+}

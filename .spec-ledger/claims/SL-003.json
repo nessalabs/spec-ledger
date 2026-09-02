@@ -1,0 +1,10 @@
+{
+  "id": "SL-003",
+  "kind": "absence",
+  "statement": "The HTTP server has no write endpoints in v1; git is the write path.",
+  "area": "server",
+  "required": true,
+  "links": {
+    "docs": ["DESIGN.md"]
+  }
+}

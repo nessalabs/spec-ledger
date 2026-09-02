@@ -1,0 +1,6 @@
+{
+  "id": "b-sl-005",
+  "claimId": "SL-005",
+  "kind": "check",
+  "locator": { "type": "path", "path": "packages/ui/package.json" }
+}

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nessalabs.ai/spec-ledger/schemas/ledger-root.json",
+  "title": "LedgerRootConfig",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "name"],
+  "properties": {
+    "schemaVersion": { "type": "integer", "const": 1 },
+    "name": { "type": "string" },
+    "claimsDir": { "type": "string", "default": "claims" },
+    "bindingsDir": { "type": "string", "default": "bindings" },
+    "graphPath": { "type": "string", "default": "graph/codebase-graph.json" },
+    "policyPath": { "type": "string", "default": "policy/layers.json" },
+    "resultsPath": { "type": "string", "default": "results/last.json" },
+    "reportPath": { "type": "string", "default": "results/report.json" }
+  }
+}

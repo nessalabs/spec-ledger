@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nessalabs.ai/spec-ledger/schemas/results.json",
+  "title": "EvidenceResultsFile",
+  "description": "Language-agnostic evidence seam. Reporters in any ecosystem emit this; the ledger only ingests.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "producedAt", "producer", "rows"],
+  "properties": {
+    "schemaVersion": { "type": "integer", "const": 1 },
+    "producedAt": { "type": "string", "format": "date-time" },
+    "producer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "version"],
+      "properties": {
+        "name": { "type": "string" },
+        "version": { "type": "string" }
+      }
+    },
+    "commit": { "type": "string" },
+    "rows": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["key", "outcome"],
+        "properties": {
+          "key": {
+            "type": "string",
+            "description": "Usually claimId; must match binding.locator.resultsKey when type=results-row."
+          },
+          "outcome": {
+            "type": "string",
+            "enum": ["pass", "fail", "missing", "attested"]
+          },
+          "detail": { "type": "string" },
+          "durationMs": { "type": "number" }
+        }
+      }
+    }
+  }
+}

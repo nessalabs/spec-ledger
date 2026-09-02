@@ -1,0 +1,10 @@
+{
+  "id": "SL-001",
+  "kind": "invariant",
+  "statement": "A verify verdict is a pure function of ledger files, source tree, and ingested results, and carries digests of those inputs.",
+  "area": "core",
+  "required": true,
+  "links": {
+    "docs": ["DESIGN.md"]
+  }
+}
