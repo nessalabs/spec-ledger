@@ -63,597 +63,159 @@
       "claim"
     ]
   },
-  "closedAt": "2026-09-02T20:37:16.732Z",
+  "closedAt": "2026-09-02T20:37:37.311Z",
   "facts": {
     "producedBy": "@nessa/spec-ledger@0.1.0",
-    "commit": null,
+    "commit": "3b50189a2095d493b13a09c301067c81a79820de",
     "files": [
       {
         "path": ".gitignore",
-        "kind": "added",
-        "additions": 0,
-        "deletions": 0
-      },
-      {
-        "path": ".spec-ledger/bindings/b-sl-001.json",
-        "kind": "added",
-        "additions": 0,
-        "deletions": 0
-      },
-      {
-        "path": ".spec-ledger/bindings/b-sl-002.json",
-        "kind": "added",
-        "additions": 0,
-        "deletions": 0
-      },
-      {
-        "path": ".spec-ledger/bindings/b-sl-003.json",
-        "kind": "added",
-        "additions": 0,
-        "deletions": 0
-      },
-      {
-        "path": ".spec-ledger/bindings/b-sl-004.json",
-        "kind": "added",
-        "additions": 0,
-        "deletions": 0
-      },
-      {
-        "path": ".spec-ledger/bindings/b-sl-005.json",
-        "kind": "added",
-        "additions": 0,
-        "deletions": 0
-      },
-      {
-        "path": ".spec-ledger/claims/SL-001.json",
-        "kind": "added",
-        "additions": 0,
-        "deletions": 0
-      },
-      {
-        "path": ".spec-ledger/claims/SL-002.json",
-        "kind": "added",
-        "additions": 0,
-        "deletions": 0
-      },
-      {
-        "path": ".spec-ledger/claims/SL-003.json",
-        "kind": "added",
-        "additions": 0,
-        "deletions": 0
-      },
-      {
-        "path": ".spec-ledger/claims/SL-004.json",
-        "kind": "added",
-        "additions": 0,
-        "deletions": 0
-      },
-      {
-        "path": ".spec-ledger/claims/SL-005.json",
-        "kind": "added",
-        "additions": 0,
-        "deletions": 0
-      },
-      {
-        "path": ".spec-ledger/graph/codebase-graph.json",
-        "kind": "added",
-        "additions": 0,
-        "deletions": 0
-      },
-      {
-        "path": ".spec-ledger/ledger.json",
-        "kind": "added",
-        "additions": 0,
-        "deletions": 0
-      },
-      {
-        "path": ".spec-ledger/policy/layers.json",
-        "kind": "added",
-        "additions": 0,
+        "kind": "modified",
+        "additions": 2,
         "deletions": 0
       },
       {
         "path": ".spec-ledger/turns/T-001.json",
-        "kind": "added",
-        "additions": 0,
-        "deletions": 0
+        "kind": "modified",
+        "additions": 1,
+        "deletions": 594
       },
       {
-        "path": "AGENTS.md",
-        "kind": "added",
-        "additions": 0,
-        "deletions": 0
-      },
-      {
-        "path": "DESIGN.md",
-        "kind": "added",
-        "additions": 0,
-        "deletions": 0
-      },
-      {
-        "path": "docs/FABLE-REVIEW.md",
-        "kind": "added",
-        "additions": 0,
-        "deletions": 0
-      },
-      {
-        "path": "package.json",
-        "kind": "added",
-        "additions": 0,
-        "deletions": 0
-      },
-      {
-        "path": "packages/client/package.json",
-        "kind": "added",
-        "additions": 0,
-        "deletions": 0
-      },
-      {
-        "path": "packages/client/src/index.ts",
-        "kind": "added",
-        "additions": 0,
-        "deletions": 0
-      },
-      {
-        "path": "packages/client/tsconfig.json",
-        "kind": "added",
-        "additions": 0,
-        "deletions": 0
-      },
-      {
-        "path": "packages/ledger/package.json",
-        "kind": "added",
-        "additions": 0,
-        "deletions": 0
-      },
-      {
-        "path": "packages/ledger/src/cli/init.ts",
-        "kind": "added",
-        "additions": 0,
-        "deletions": 0
-      },
-      {
-        "path": "packages/ledger/src/cli/main.ts",
-        "kind": "added",
-        "additions": 0,
-        "deletions": 0
-      },
-      {
-        "path": "packages/ledger/src/fs/load.ts",
-        "kind": "added",
-        "additions": 0,
-        "deletions": 0
-      },
-      {
-        "path": "packages/ledger/src/fs/snapshot.ts",
-        "kind": "added",
-        "additions": 0,
-        "deletions": 0
-      },
-      {
-        "path": "packages/ledger/src/graph/impact.ts",
-        "kind": "added",
-        "additions": 0,
-        "deletions": 0
-      },
-      {
-        "path": "packages/ledger/src/index.ts",
-        "kind": "added",
-        "additions": 0,
-        "deletions": 0
-      },
-      {
-        "path": "packages/ledger/src/turns/close.test.ts",
-        "kind": "added",
-        "additions": 0,
-        "deletions": 0
-      },
-      {
-        "path": "packages/ledger/src/turns/close.ts",
-        "kind": "added",
-        "additions": 0,
-        "deletions": 0
-      },
-      {
-        "path": "packages/ledger/src/types.ts",
-        "kind": "added",
-        "additions": 0,
-        "deletions": 0
-      },
-      {
-        "path": "packages/ledger/src/verify/verify.test.ts",
-        "kind": "added",
-        "additions": 0,
-        "deletions": 0
-      },
-      {
-        "path": "packages/ledger/src/verify/verify.ts",
-        "kind": "added",
-        "additions": 0,
-        "deletions": 0
-      },
-      {
-        "path": "packages/ledger/tsconfig.json",
-        "kind": "added",
-        "additions": 0,
-        "deletions": 0
-      },
-      {
-        "path": "packages/server/package.json",
-        "kind": "added",
-        "additions": 0,
-        "deletions": 0
-      },
-      {
-        "path": "packages/server/src/index.ts",
-        "kind": "added",
-        "additions": 0,
-        "deletions": 0
-      },
-      {
-        "path": "packages/server/src/main.ts",
-        "kind": "added",
-        "additions": 0,
-        "deletions": 0
-      },
-      {
-        "path": "packages/server/src/routes.ts",
-        "kind": "added",
-        "additions": 0,
-        "deletions": 0
-      },
-      {
-        "path": "packages/server/tsconfig.json",
-        "kind": "added",
+        "path": "gitignore",
+        "kind": "modified",
         "additions": 0,
         "deletions": 0
       },
       {
         "path": "packages/ui/.next/cache/.previewinfo",
-        "kind": "added",
+        "kind": "deleted",
         "additions": 0,
-        "deletions": 0
+        "deletions": 1
       },
       {
         "path": "packages/ui/.next/diagnostics/build-diagnostics.json",
-        "kind": "added",
+        "kind": "deleted",
         "additions": 0,
-        "deletions": 0
+        "deletions": 6
       },
       {
         "path": "packages/ui/.next/diagnostics/framework.json",
-        "kind": "added",
+        "kind": "deleted",
         "additions": 0,
-        "deletions": 0
+        "deletions": 1
       },
       {
         "path": "packages/ui/.next/package.json",
-        "kind": "added",
+        "kind": "deleted",
         "additions": 0,
-        "deletions": 0
+        "deletions": 1
       },
       {
         "path": "packages/ui/.next/server/app-paths-manifest.json",
-        "kind": "added",
+        "kind": "deleted",
         "additions": 0,
-        "deletions": 0
+        "deletions": 7
       },
       {
         "path": "packages/ui/.next/server/pages-manifest.json",
-        "kind": "added",
+        "kind": "deleted",
         "additions": 0,
-        "deletions": 0
+        "deletions": 5
       },
       {
         "path": "packages/ui/.next/server/server-reference-manifest.js",
-        "kind": "added",
+        "kind": "deleted",
         "additions": 0,
-        "deletions": 0
+        "deletions": 1
       },
       {
         "path": "packages/ui/.next/server/server-reference-manifest.json",
-        "kind": "added",
+        "kind": "deleted",
         "additions": 0,
-        "deletions": 0
+        "deletions": 5
       },
       {
         "path": "packages/ui/.next/types/app/claims/page.ts",
-        "kind": "added",
+        "kind": "deleted",
         "additions": 0,
-        "deletions": 0
+        "deletions": 84
       },
       {
         "path": "packages/ui/.next/types/app/contracts/page.ts",
-        "kind": "added",
+        "kind": "deleted",
         "additions": 0,
-        "deletions": 0
+        "deletions": 84
       },
       {
         "path": "packages/ui/.next/types/app/graph/page.ts",
-        "kind": "added",
+        "kind": "deleted",
         "additions": 0,
-        "deletions": 0
+        "deletions": 84
       },
       {
         "path": "packages/ui/.next/types/app/layout.ts",
-        "kind": "added",
+        "kind": "deleted",
         "additions": 0,
-        "deletions": 0
+        "deletions": 84
       },
       {
         "path": "packages/ui/.next/types/app/page.ts",
-        "kind": "added",
+        "kind": "deleted",
         "additions": 0,
-        "deletions": 0
+        "deletions": 84
       },
       {
         "path": "packages/ui/.next/types/app/verify/page.ts",
-        "kind": "added",
+        "kind": "deleted",
         "additions": 0,
-        "deletions": 0
+        "deletions": 84
       },
       {
         "path": "packages/ui/.next/types/cache-life.d.ts",
-        "kind": "added",
+        "kind": "deleted",
         "additions": 0,
-        "deletions": 0
+        "deletions": 141
       },
       {
         "path": "packages/ui/.next/types/package.json",
-        "kind": "added",
+        "kind": "deleted",
         "additions": 0,
-        "deletions": 0
+        "deletions": 1
       },
       {
         "path": "packages/ui/.next/types/routes.d.ts",
-        "kind": "added",
+        "kind": "deleted",
         "additions": 0,
-        "deletions": 0
+        "deletions": 62
       },
       {
         "path": "packages/ui/.next/types/validator.ts",
-        "kind": "added",
+        "kind": "deleted",
         "additions": 0,
-        "deletions": 0
-      },
-      {
-        "path": "packages/ui/app/claims/page.tsx",
-        "kind": "added",
-        "additions": 0,
-        "deletions": 0
-      },
-      {
-        "path": "packages/ui/app/contracts/page.tsx",
-        "kind": "added",
-        "additions": 0,
-        "deletions": 0
-      },
-      {
-        "path": "packages/ui/app/globals.css",
-        "kind": "added",
-        "additions": 0,
-        "deletions": 0
-      },
-      {
-        "path": "packages/ui/app/graph/page.tsx",
-        "kind": "added",
-        "additions": 0,
-        "deletions": 0
-      },
-      {
-        "path": "packages/ui/app/layout.tsx",
-        "kind": "added",
-        "additions": 0,
-        "deletions": 0
-      },
-      {
-        "path": "packages/ui/app/page.tsx",
-        "kind": "added",
-        "additions": 0,
-        "deletions": 0
-      },
-      {
-        "path": "packages/ui/app/turns/page.tsx",
-        "kind": "added",
-        "additions": 0,
-        "deletions": 0
-      },
-      {
-        "path": "packages/ui/app/verify/page.tsx",
-        "kind": "added",
-        "additions": 0,
-        "deletions": 0
-      },
-      {
-        "path": "packages/ui/components/claims-list.tsx",
-        "kind": "added",
-        "additions": 0,
-        "deletions": 0
-      },
-      {
-        "path": "packages/ui/components/contracts-explorer.tsx",
-        "kind": "added",
-        "additions": 0,
-        "deletions": 0
-      },
-      {
-        "path": "packages/ui/components/graph-workspace.tsx",
-        "kind": "added",
-        "additions": 0,
-        "deletions": 0
-      },
-      {
-        "path": "packages/ui/components/lattice-shell.tsx",
-        "kind": "added",
-        "additions": 0,
-        "deletions": 0
-      },
-      {
-        "path": "packages/ui/components/static-mermaid.tsx",
-        "kind": "added",
-        "additions": 0,
-        "deletions": 0
-      },
-      {
-        "path": "packages/ui/lib/cn.ts",
-        "kind": "added",
-        "additions": 0,
-        "deletions": 0
-      },
-      {
-        "path": "packages/ui/lib/ledger.ts",
-        "kind": "added",
-        "additions": 0,
-        "deletions": 0
-      },
-      {
-        "path": "packages/ui/next-env.d.ts",
-        "kind": "added",
-        "additions": 0,
-        "deletions": 0
-      },
-      {
-        "path": "packages/ui/next.config.mjs",
-        "kind": "added",
-        "additions": 0,
-        "deletions": 0
-      },
-      {
-        "path": "packages/ui/package.json",
-        "kind": "added",
-        "additions": 0,
-        "deletions": 0
-      },
-      {
-        "path": "packages/ui/postcss.config.mjs",
-        "kind": "added",
-        "additions": 0,
-        "deletions": 0
-      },
-      {
-        "path": "packages/ui/tsconfig.json",
-        "kind": "added",
-        "additions": 0,
-        "deletions": 0
+        "deletions": 106
       },
       {
         "path": "packages/ui/tsconfig.tsbuildinfo",
-        "kind": "added",
+        "kind": "deleted",
         "additions": 0,
-        "deletions": 0
-      },
-      {
-        "path": "pnpm-lock.yaml",
-        "kind": "added",
-        "additions": 0,
-        "deletions": 0
-      },
-      {
-        "path": "pnpm-workspace.yaml",
-        "kind": "added",
-        "additions": 0,
-        "deletions": 0
-      },
-      {
-        "path": "README.md",
-        "kind": "added",
-        "additions": 0,
-        "deletions": 0
-      },
-      {
-        "path": "schemas/binding.json",
-        "kind": "added",
-        "additions": 0,
-        "deletions": 0
-      },
-      {
-        "path": "schemas/claim.json",
-        "kind": "added",
-        "additions": 0,
-        "deletions": 0
-      },
-      {
-        "path": "schemas/graph.json",
-        "kind": "added",
-        "additions": 0,
-        "deletions": 0
-      },
-      {
-        "path": "schemas/layer-policy.json",
-        "kind": "added",
-        "additions": 0,
-        "deletions": 0
-      },
-      {
-        "path": "schemas/ledger-root.json",
-        "kind": "added",
-        "additions": 0,
-        "deletions": 0
-      },
-      {
-        "path": "schemas/report.json",
-        "kind": "added",
-        "additions": 0,
-        "deletions": 0
-      },
-      {
-        "path": "schemas/results.json",
-        "kind": "added",
-        "additions": 0,
-        "deletions": 0
-      },
-      {
-        "path": "schemas/turn.json",
-        "kind": "added",
-        "additions": 0,
-        "deletions": 0
-      },
-      {
-        "path": "skills/verify-before-done/SKILL.md",
-        "kind": "added",
-        "additions": 0,
-        "deletions": 0
+        "deletions": 1
       }
     ],
     "touchedNodeIds": [
-      "ledger-client",
-      "ledger-core",
-      "ledger-server",
-      "ledger-ui",
-      "schemas"
+      "ledger-ui"
     ],
-    "touchedFeatureIds": [
-      "lattice",
-      "turns",
-      "verify"
-    ],
-    "touchedClaimIds": [
-      "SL-001",
-      "SL-002",
-      "SL-003",
-      "SL-004",
-      "SL-005"
-    ],
+    "touchedFeatureIds": [],
+    "touchedClaimIds": [],
     "blastRadius": {
-      "direct": [
-        "ledger-client",
-        "ledger-core",
-        "ledger-server",
-        "ledger-ui"
-      ],
-      "transitive": [
-        "ledger-client",
-        "ledger-core",
-        "ledger-server",
-        "ledger-ui"
-      ]
+      "direct": [],
+      "transitive": []
     },
     "verify": {
       "ok": true,
       "ledgerDigest": "e9f524c4d090dfc773aded69f69ffb8fe4671efffc17545db5714645ed4b48b3",
       "resultsDigest": "ded3eb2608a70a2e28040c5e1e7c4faa49be0d27b4ffc4d3e2a3ffb91bf72fbb",
-      "producedAt": "2026-09-02T20:37:16.707Z"
+      "producedAt": "2026-09-02T20:37:37.276Z"
     },
-    "schemaSurfaceChanged": true
+    "schemaSurfaceChanged": false
   }
 }
