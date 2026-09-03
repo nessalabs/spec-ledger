@@ -82,7 +82,7 @@ export function sealWorkstream(
   if (ws.status === "draft" || ws.status === "cancelled") {
     throw new Error(`workstream ${id} status ${ws.status} cannot seal`)
   }
-  const revision = ws.seal?.revision ?? 1
+  const revision = (ws.seal?.revision ?? 0) + 1
   const digest = computeSpecDigest(ws)
   const snapshotPath = `workstreams/${id}.seals/${revision}.json`
   const sealedAt = new Date().toISOString()

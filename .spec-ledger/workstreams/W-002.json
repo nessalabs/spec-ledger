@@ -3,7 +3,7 @@
   "id": "W-002",
   "status": "done",
   "createdAt": "2026-09-03T04:35:00.000Z",
-  "updatedAt": "2026-09-03T04:42:43.208Z",
+  "updatedAt": "2026-09-03T04:49:16.472Z",
   "featureIds": [
     "turns",
     "lattice",
@@ -120,10 +120,10 @@
     }
   ],
   "seal": {
-    "sealedAt": "2026-09-03T04:42:25.215Z",
+    "sealedAt": "2026-09-03T04:47:07.856Z",
     "sealedBy": "human",
     "specDigest": "56c03550aa1e92c6de2b20838b3b8dc066a7a9d307ee8c266f6b189cf569cfdd",
-    "snapshotPath": "workstreams/W-002.seals/1.json",
-    "revision": 1
+    "snapshotPath": "workstreams/W-002.seals/2.json",
+    "revision": 2
   }
 }

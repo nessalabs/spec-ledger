@@ -1,5 +1,5 @@
 export type * from "./types.js"
-export { loadLedger, findRepoRoot, ledgerRoot, sha256Stable, LEDGER_DIR } from "./fs/load.js"
+export { loadLedger, findRepoRoot, ledgerRoot, sha256Stable, jcsCanonicalize, LEDGER_DIR } from "./fs/load.js"
 export {
   snapshotLedger,
   listSchemaFiles,
@@ -50,6 +50,14 @@ export {
   listFlowsForTurn,
   episodeDigestsForTurn,
 } from "./episodes/load.js"
+export {
+  writeDecision,
+  writeSource,
+  writeAttachment,
+  writeProbe,
+  writeFlow,
+  assertOpenTurn,
+} from "./episodes/write.js"
 export { auditLedger, loadAuditPolicy } from "./audit/audit.js"
 export { computeTreeDigest, dirtyPaths } from "./git/tree.js"
 export { getCompass } from "./compass/load.js"

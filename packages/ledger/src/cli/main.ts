@@ -21,6 +21,21 @@ import { getRelatedPack } from "../related/pack.js"
 import { listAutomationEvents } from "../automation/load.js"
 import { auditLedger } from "../audit/audit.js"
 import { listProposedClaims, listThemes } from "../proposed/load.js"
+import {
+  assertOpenTurn,
+  writeAttachment,
+  writeDecision,
+  writeFlow,
+  writeProbe,
+  writeSource,
+} from "../episodes/write.js"
+import {
+  listAttachmentsForTurn,
+  listDecisionsForTurn,
+  listFlowsForTurn,
+  listProbesForTurn,
+  listSourcesForTurn,
+} from "../episodes/load.js"
 import type { Review, TurnIntent } from "../types.js"
 
 function usage(): never {
@@ -39,10 +54,11 @@ Usage:
   spec-ledger review add|list …
   spec-ledger automation list [--root <dir>]
   spec-ledger themes list | proposed-claims list [--root <dir>]
+  spec-ledger decision|source|attachment|probe|flow add|list --turn T-…
 
 Truth lives in .spec-ledger/ + source tree + ingested results.
 Turn facts are written only by \`turn close\` / \`turn abandon\` (git + verify).
-Workstreams/vision never enter verify digests. See DESIGN.md.
+Workstreams/vision never enter verify digests. Seal digests use RFC 8785 JCS.
 `)
   process.exit(2)
 }
@@ -395,6 +411,112 @@ async function main(): Promise<void> {
       return
     }
     usage()
+  }
+
+  if (cmd === "decision" || cmd === "source" || cmd === "attachment" || cmd === "probe" || cmd === "flow") {
+    const sub = argv[1]
+    const turnId = argValue(argv, "--turn")
+    if (!turnId) {
+      console.error(`usage: spec-ledger ${cmd} add|list --turn T-001 …`)
+      process.exit(2)
+    }
+    if (sub === "list") {
+      const list =
+        cmd === "decision"
+          ? listDecisionsForTurn(root, turnId)
+          : cmd === "source"
+            ? listSourcesForTurn(root, turnId)
+            : cmd === "attachment"
+              ? listAttachmentsForTurn(root, turnId)
+              : cmd === "probe"
+                ? listProbesForTurn(root, turnId)
+                : listFlowsForTurn(root, turnId)
+      console.log(JSON.stringify(list, null, 2))
+      return
+    }
+    if (sub !== "add") usage()
+    assertOpenTurn(root, turnId)
+    if (cmd === "decision") {
+      const decision = argValue(argv, "--decision")
+      const rationale = argValue(argv, "--rationale")
+      if (!decision || !rationale) {
+        console.error(
+          "usage: spec-ledger decision add --turn T --decision <text> --rationale <text>",
+        )
+        process.exit(2)
+      }
+      const d = writeDecision(root, {
+        turnId,
+        decision,
+        rationale,
+        basis: {
+          at: new Date().toISOString(),
+          contextDigest: undefined,
+          sealRevision: undefined,
+        },
+      })
+      console.log(`wrote ${d.id}`)
+      return
+    }
+    if (cmd === "source") {
+      const kind = argValue(argv, "--kind")
+      const ref = argValue(argv, "--ref")
+      if (!kind || !ref) {
+        console.error("usage: spec-ledger source add --turn T --kind <k> --ref <ref>")
+        process.exit(2)
+      }
+      const s = writeSource(root, { turnId, kind, ref, note: argValue(argv, "--note") })
+      console.log(`wrote ${s.id}`)
+      return
+    }
+    if (cmd === "attachment") {
+      const path = argValue(argv, "--path")
+      if (!path) {
+        console.error("usage: spec-ledger attachment add --turn T --path <path>")
+        process.exit(2)
+      }
+      const a = writeAttachment(root, {
+        turnId,
+        path,
+        note: argValue(argv, "--note"),
+      })
+      console.log(`wrote ${a.id}`)
+      return
+    }
+    if (cmd === "probe") {
+      const question = argValue(argv, "--question")
+      if (!question) {
+        console.error(
+          "usage: spec-ledger probe add --turn T --question <q> [--outcome <o>]",
+        )
+        process.exit(2)
+      }
+      const p = writeProbe(root, {
+        turnId,
+        question,
+        outcome: argValue(argv, "--outcome"),
+        evidence: argValue(argv, "--evidence"),
+      })
+      console.log(`wrote ${p.id}`)
+      return
+    }
+    const title = argValue(argv, "--title")
+    const after = argValue(argv, "--after")
+    if (!title || !after) {
+      console.error(
+        "usage: spec-ledger flow add --turn T --title <t> --after <mermaid> [--before <m>]",
+      )
+      process.exit(2)
+    }
+    const f = writeFlow(root, {
+      turnId,
+      title,
+      after,
+      before: argValue(argv, "--before"),
+      narrative: argValue(argv, "--narrative"),
+    })
+    console.log(`wrote ${f.id}`)
+    return
   }
 
   usage()

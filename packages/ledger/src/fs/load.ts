@@ -1,6 +1,7 @@
 import { createHash } from "node:crypto"
 import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from "node:fs"
 import { dirname, join, resolve } from "node:path"
+import { jcsCanonicalize } from "../jcs.js"
 import type {
   CodebaseGraph,
   EvidenceBinding,
@@ -28,17 +29,12 @@ export function ledgerRoot(repoRoot: string): string {
   return join(repoRoot, LEDGER_DIR)
 }
 
+/** RFC 8785 JCS bytes, then sha256 hex. */
 export function sha256Stable(value: unknown): string {
-  return createHash("sha256").update(stableStringify(value)).digest("hex")
+  return createHash("sha256").update(jcsCanonicalize(value), "utf8").digest("hex")
 }
 
-function stableStringify(value: unknown): string {
-  if (value === null || typeof value !== "object") return JSON.stringify(value)
-  if (Array.isArray(value)) return `[${value.map(stableStringify).join(",")}]`
-  const obj = value as Record<string, unknown>
-  const keys = Object.keys(obj).sort()
-  return `{${keys.map((k) => `${JSON.stringify(k)}:${stableStringify(obj[k])}`).join(",")}}`
-}
+export { jcsCanonicalize }
 
 function readJson<T>(path: string): T {
   return JSON.parse(readFileSync(path, "utf8")) as T

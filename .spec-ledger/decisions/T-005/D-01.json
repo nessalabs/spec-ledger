@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "turnId": "T-005",
+  "decision": "Vendor RFC 8785 JCS in-repo",
+  "rationale": "Avoid npm workspace friction; match work-model seal digest requirement.",
+  "basis": {
+    "at": "2026-09-03T04:49:16.762Z"
+  },
+  "id": "T-005/D-01"
+}

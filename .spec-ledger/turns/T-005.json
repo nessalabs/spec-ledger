@@ -1,0 +1,242 @@
+{
+  "schemaVersion": 1,
+  "id": "T-005",
+  "status": "closed",
+  "openedAt": "2026-09-03T04:49:16.708Z",
+  "opened": {
+    "producedBy": "@nessa/spec-ledger@0.1.0",
+    "baseCommit": "9edc95382a7b9048300217c9202a5c44a121766e",
+    "treeDigest": "462599ae4dfeb30684262ee262b79aad7cee137f653172116018e68a971db8e1",
+    "dirtyAtOpen": [
+      ".github/workflows/ci.yml",
+      ".spec-ledger/workstreams/W-001.json",
+      ".spec-ledger/workstreams/W-001.seals/2.json",
+      ".spec-ledger/workstreams/W-002.json",
+      ".spec-ledger/workstreams/W-002.seals/2.json",
+      "docs/ci/github-actions.yml",
+      "package.json",
+      "packages/ledger/package.json",
+      "packages/ledger/src/cli/main.ts",
+      "packages/ledger/src/episodes.write.test.ts",
+      "packages/ledger/src/episodes/write.ts",
+      "packages/ledger/src/fs/load.ts",
+      "packages/ledger/src/index.ts",
+      "packages/ledger/src/jcs.test.ts",
+      "packages/ledger/src/jcs.ts",
+      "packages/ledger/src/workstream/load.ts",
+      "packages/ui/package.json",
+      "pnpm-lock.yaml",
+      "pnpm-workspace.yaml"
+    ],
+    "contextDigest": "f4bce1dc45e8e4548e0a086a629306b29e6d57958654620811872e3f652c4595",
+    "contextWorkstreamId": "W-002",
+    "contextSliceId": "SLC-03",
+    "contextSealRevision": 2,
+    "contextGeneratedAt": "2026-09-03T04:49:16.707Z"
+  },
+  "intent": {
+    "userPrompt": "Ship RFC 8785 JCS, decision/source/attachment/probe/flow add|list, and .github/workflows/ci.yml with workspace installable without private UI.",
+    "restatedGoal": "Complete residuals e2e: JCS digests, episode write CLIs, live GitHub Actions CI",
+    "changeType": "feature",
+    "riskLevel": "moderate",
+    "workstreamId": "W-002",
+    "sliceId": "SLC-03",
+    "featureIds": [
+      "turns",
+      "verify"
+    ]
+  },
+  "closedAt": "2026-09-03T04:49:17.251Z",
+  "facts": {
+    "producedBy": "@nessa/spec-ledger@0.1.0",
+    "commit": "9edc95382a7b9048300217c9202a5c44a121766e",
+    "files": [
+      {
+        "path": ".github/workflows/ci.yml",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/decisions/T-005/D-01.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/flows/T-005/F-01.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/probes/T-005/P-01.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/turns/T-005/R-01.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/sources/T-005/S-01.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/turns/T-005.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/workstreams/W-001.json",
+        "kind": "modified",
+        "additions": 4,
+        "deletions": 4
+      },
+      {
+        "path": ".spec-ledger/workstreams/W-001.seals/2.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/workstreams/W-002.json",
+        "kind": "modified",
+        "additions": 4,
+        "deletions": 4
+      },
+      {
+        "path": ".spec-ledger/workstreams/W-002.seals/2.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "docs/ci/github-actions.yml",
+        "kind": "modified",
+        "additions": 1,
+        "deletions": 1
+      },
+      {
+        "path": "package.json",
+        "kind": "modified",
+        "additions": 1,
+        "deletions": 1
+      },
+      {
+        "path": "packages/ledger/package.json",
+        "kind": "modified",
+        "additions": 4,
+        "deletions": 1
+      },
+      {
+        "path": "packages/ledger/src/cli/main.ts",
+        "kind": "modified",
+        "additions": 123,
+        "deletions": 1
+      },
+      {
+        "path": "packages/ledger/src/episodes.write.test.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/episodes/write.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/fs/load.ts",
+        "kind": "modified",
+        "additions": 4,
+        "deletions": 8
+      },
+      {
+        "path": "packages/ledger/src/index.ts",
+        "kind": "modified",
+        "additions": 9,
+        "deletions": 1
+      },
+      {
+        "path": "packages/ledger/src/jcs.test.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/jcs.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/workstream/load.ts",
+        "kind": "modified",
+        "additions": 1,
+        "deletions": 1
+      },
+      {
+        "path": "packages/ui/package.json",
+        "kind": "modified",
+        "additions": 1,
+        "deletions": 1
+      },
+      {
+        "path": "pnpm-lock.yaml",
+        "kind": "modified",
+        "additions": 10,
+        "deletions": 4734
+      },
+      {
+        "path": "pnpm-workspace.yaml",
+        "kind": "modified",
+        "additions": 3,
+        "deletions": 1
+      }
+    ],
+    "touchedNodeIds": [
+      "ledger-core",
+      "ledger-ui"
+    ],
+    "touchedFeatureIds": [
+      "lattice",
+      "turns",
+      "verify"
+    ],
+    "touchedClaimIds": [
+      "SL-005"
+    ],
+    "blastRadius": {
+      "direct": [
+        "ledger-server"
+      ],
+      "transitive": [
+        "ledger-server"
+      ]
+    },
+    "verify": {
+      "ok": true,
+      "ledgerDigest": "9731a4d02e58971ec6e340a4385d32d9fc3c09ad55c0a7f2c137cbc356c9052a",
+      "resultsDigest": "ded3eb2608a70a2e28040c5e1e7c4faa49be0d27b4ffc4d3e2a3ffb91bf72fbb",
+      "treeDigest": "e08f1aa9a5d33122bedad47a627b15222072286d01c5feaf64bdbce0c9a85e18",
+      "producedAt": "2026-09-03T04:49:17.165Z"
+    },
+    "schemaSurfaceChanged": false,
+    "decisionIds": [
+      "T-005/D-01"
+    ],
+    "decisionsDigest": "00093c23082602db39d240da5c62e1f5749e716b9332c9a8f433d28cfb4c4484",
+    "sourcesDigest": "c0e4c6da43a6d741bcbcf2d15696fd97c36ffaed81c6ed0b03b3f510c2676d13",
+    "probesDigest": "7bd89ddce5e1f44ccccb5935581f7bf0cea9dee551359b49d5b92b3d4f1afe5b",
+    "reviewsDigest": "0cf41efe3076e63fc6be5ae19818ea40f48b7806dffb8be0318734dfc916866a",
+    "flowsDigest": "03c72914e723b0b093ccbcbd9af9eed0111487086a4eada377c94cf9c00309a0"
+  }
+}

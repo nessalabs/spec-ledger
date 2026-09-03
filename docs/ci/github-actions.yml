@@ -21,4 +21,4 @@ jobs:
       - run: pnpm -r build
       - run: pnpm test
       - run: pnpm verify
-      - run: node packages/ledger/dist/cli/main.js audit --root .
+      - run: pnpm run ledger:audit

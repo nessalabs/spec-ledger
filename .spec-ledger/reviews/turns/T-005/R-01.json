@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "id": "T-005/R-01",
+  "turnId": "T-005",
+  "kind": "adversarial",
+  "target": "code",
+  "reviewer": "agent:sl-dev-break",
+  "verdict": "approve",
+  "summary": "JCS + episode write tests green",
+  "killersCited": [
+    "packages/ledger/src/jcs.test.ts::RFC 8785 JCS key order",
+    "packages/ledger/src/episodes.write.test.ts::episode write CLIs leave digests on close"
+  ]
+}

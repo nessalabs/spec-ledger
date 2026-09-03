@@ -7,7 +7,7 @@
     "build": "pnpm -r run build",
     "test": "pnpm --filter @nessa/spec-ledger test",
     "verify": "node packages/ledger/dist/cli/main.js verify --root .",
-    "audit": "node packages/ledger/dist/cli/main.js audit --root .",
+    "ledger:audit": "node packages/ledger/dist/cli/main.js audit --root .",
     "lattice": "pnpm --filter @nessa/spec-ledger-ui dev",
     "serve": "node packages/server/dist/main.js",
     "hooks:install": "git config core.hooksPath scripts/git-hooks && chmod +x scripts/git-hooks/commit-msg scripts/git-hooks/pre-commit && echo \"hooksPath=$(git config core.hooksPath)\""
