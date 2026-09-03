@@ -70,7 +70,7 @@
   },
   "intent": {
     "userPrompt": "Implement W-004 SLC-01 against sealed pitch docs/workstreams/spec-code-coupling-and-honest-lattice-trail.md: sidebar specLedger brand; turn pages load plan from specPath; Verify statement-first + covered totals; architecture touch shows workstream+features; FileDiffCard; absorb pending UI polish.",
-    "restatedGoal": "Ship Lattice SLC-01: specLedger wordmark, plan from docs Markdown, human Verify, dense lists, architecture touch",
+    "restatedGoal": "Plan-first home, wordmark, and a human verify report",
     "changeType": "feature",
     "riskLevel": "moderate",
     "workstreamId": "W-004",

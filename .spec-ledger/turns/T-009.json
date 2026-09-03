@@ -75,8 +75,8 @@
     "contextGeneratedAt": "2026-09-03T07:05:29.760Z"
   },
   "intent": {
-    "userPrompt": "Rename Lattice nav/copy Bets → Workstreams",
-    "restatedGoal": "Rename Lattice nav/copy Bets → Workstreams",
+    "userPrompt": "Rename Lattice nav/copy Bets \u2192 Workstreams",
+    "restatedGoal": "Call them Workstreams in the nav, not Bets",
     "changeType": "feature",
     "riskLevel": "moderate",
     "workstreamId": "W-004",

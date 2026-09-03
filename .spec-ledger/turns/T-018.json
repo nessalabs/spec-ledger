@@ -18,7 +18,7 @@
   },
   "intent": {
     "userPrompt": "Align check: honor closed-turn approve after commit (CI clean tree)",
-    "restatedGoal": "Align check: honor closed-turn approve after commit (CI clean tree)",
+    "restatedGoal": "Keep coverage honest after the turn is closed and committed",
     "changeType": "feature",
     "riskLevel": "moderate",
     "workstreamId": "W-004",

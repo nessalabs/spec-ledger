@@ -90,7 +90,7 @@
   },
   "intent": {
     "userPrompt": "Turns list: workstream pill on each row",
-    "restatedGoal": "Turns list: workstream pill on each row",
+    "restatedGoal": "Show which workstream each turn belongs to",
     "changeType": "feature",
     "riskLevel": "moderate",
     "workstreamId": "W-004",

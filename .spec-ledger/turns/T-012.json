@@ -84,7 +84,7 @@
   },
   "intent": {
     "userPrompt": "Hide inline Plan when that doc is open in SplitView pane",
-    "restatedGoal": "Hide inline Plan when that doc is open in SplitView pane",
+    "restatedGoal": "Hide the inline plan when that doc is already open beside you",
     "changeType": "feature",
     "riskLevel": "moderate",
     "workstreamId": "W-004",

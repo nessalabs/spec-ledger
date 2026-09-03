@@ -46,7 +46,7 @@
   },
   "intent": {
     "userPrompt": "SLC-04 follow-up: align check OK when approve/waiver covers treeDigest (CI/pre-push)",
-    "restatedGoal": "SLC-04 follow-up: align check OK when approve/waiver covers treeDigest (CI/pre-push)",
+    "restatedGoal": "Let coverage pass when approve or waiver already covers the tree",
     "changeType": "feature",
     "riskLevel": "moderate",
     "workstreamId": "W-004",

@@ -1,8 +1,8 @@
 "use client"
 
-import Link from "next/link"
 import type { Claim, EvidenceBinding } from "@nessa/spec-ledger-client"
 import { cn } from "@/lib/cn"
+import { PeekLink, claimPeekMarkdown } from "@/components/peek-link"
 
 const outcomeClass: Record<string, string> = {
   pass: "text-emerald-400",
@@ -35,10 +35,23 @@ export function ClaimsList({
         const v = verdict.get(claim.id)
         const n = bindingCount.get(claim.id) ?? 0
         const docs = claim.links?.docs?.[0]
+        const peek = claimPeekMarkdown({
+          id: claim.id,
+          statement: claim.statement,
+          kind: claim.kind,
+          required: Boolean(claim.required),
+          outcome: v?.outcome,
+          bindings: n,
+          detail: v?.detail,
+        })
         return (
           <li key={claim.id}>
-            <Link
+            <PeekLink
               href={`/claims/${encodeURIComponent(claim.id)}`}
+              peekPath={`peek:claim/${claim.id}`}
+              peekLabel={claim.id}
+              peekContent={peek}
+              title="⌘/Ctrl-click to peek beside the list"
               className="grid gap-1 px-3 py-2.5 no-underline transition-colors hover:bg-muted/40 sm:grid-cols-[5.5rem_minmax(0,1fr)_auto] sm:items-baseline sm:gap-3"
             >
               <span className="font-mono text-xs font-semibold text-foreground">
@@ -69,7 +82,7 @@ export function ClaimsList({
               >
                 {v?.outcome ?? "—"}
               </span>
-            </Link>
+            </PeekLink>
           </li>
         )
       })}

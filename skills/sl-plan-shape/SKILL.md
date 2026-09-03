@@ -68,7 +68,9 @@ number each question; give your recommended answer; wait.
 
 1. Theme / business outcome (optional standing theme)
 2. Standing **feature(s)** — create in graph only with human confirm
-3. Problem + restated objective
+3. Problem + restated objective — Lattice list uses `title` + short `objective`
+   ([`../references/lattice-plain-titles.md`](../references/lattice-plain-titles.md));
+   keep sharp technical context in `problem` for the detail pitch.
 4. Appetite (time box) / changeType / risk
 5. Acceptance criteria + out of scope / no-gos  
    (testable acceptance; refuse “works well” / platforms nobody asked for)

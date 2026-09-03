@@ -34,7 +34,7 @@
   },
   "intent": {
     "userPrompt": "Replace verify-dashboard home with active bet + open turn; add /workstreams; turn episode side collections; brand as Spec Ledger.",
-    "restatedGoal": "Ship Spec Ledger dogfood UI: workstreams home, episode trail, Spec Ledger chrome",
+    "restatedGoal": "Make Spec Ledger feel like our product in the browser",
     "changeType": "feature",
     "riskLevel": "moderate",
     "workstreamId": "W-003",

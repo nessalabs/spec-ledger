@@ -11,9 +11,9 @@
     "client"
   ],
   "primaryFeatureId": "lattice",
-  "title": "Spec Ledger dogfood UI",
-  "problem": "The UI is a verify dashboard; workstreams, open turns, and episode trails are not the hero — Spec Ledger does not feel like our own tool when opened in the browser.",
-  "objective": "Read-only Spec Ledger UI: home = active bet + open turn + verify badge; /workstreams list+detail; turn pages show reviews/decisions/attachments metadata — dogfood this repo.",
+  "title": "Spec Ledger in the browser",
+  "problem": "The UI is a verify dashboard; workstreams, open turns, and episode trails are not the hero \u2014 Spec Ledger does not feel like our own tool when opened in the browser.",
+  "objective": "Home, workstreams, and turn trails as the product \u2014 not a verify dashboard.",
   "appetite": "1 day",
   "changeType": "feature",
   "riskLevel": "moderate",

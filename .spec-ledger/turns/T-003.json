@@ -15,7 +15,7 @@
   },
   "intent": {
     "userPrompt": "Finish builder loop: turn open stamps contextDigest; close refuses without code-break approve+killersCited; Lattice feature/turn pages show workstreamId and contextDigest.",
-    "restatedGoal": "Ship W-001 SLC-02/03: close gates + Lattice context display",
+    "restatedGoal": "Refuse close without a code review; show context on the turn",
     "changeType": "feature",
     "riskLevel": "moderate",
     "workstreamId": "W-001",

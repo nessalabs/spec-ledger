@@ -18,10 +18,10 @@
     "server"
   ],
   "primaryFeatureId": "lattice",
-  "title": "Spec↔code coupling + honest Lattice trail",
-  "problem": "Agents implement UI and product changes without a sealed bet or open turn (violating TN-002 in spirit). Lattice then shows file lists and bare node ids instead of the plan story; Verify shows cryptic SL-00N badges without statements. Nothing flags product paths that are not covered by sealed spec, and nothing requires an align-approve JSON before push/PR/CI — skip is too easy by silence.",
-  "objective": "Dogfood UI: plan-first turns, denser lists, human Verify report, architecture touch with workstream+features, sidebar wordmark specLedger. Product changes require path coverage against sealed plan+graph (or explicit waiver). A cheap align agent writes approve review JSON bound to treeDigest after user-supplied coverage intent; turn close, pre-push/pre-PR, and CI (pnpm ledger:align) fail without approve or waiver. verify.ok stays claims-only.",
-  "appetite": "1–2 days",
+  "title": "Spec and code stay coupled",
+  "problem": "Agents implement UI and product changes without a sealed bet or open turn (violating TN-002 in spirit). Lattice then shows file lists and bare node ids instead of the plan story; Verify shows cryptic SL-00N badges without statements. Nothing flags product paths that are not covered by sealed spec, and nothing requires an align-approve JSON before push/PR/CI \u2014 skip is too easy by silence.",
+  "objective": "Plan-first Lattice, and product paths need coverage approve before they ship.",
+  "appetite": "1\u20132 days",
   "changeType": "feature",
   "riskLevel": "elevated",
   "trust": {
@@ -55,8 +55,8 @@
   },
   "acceptanceCriteria": [
     "Human-reviewed bet prose lives under docs/workstreams/ as a title-slug Markdown file; .spec-ledger holds JSON metadata only and links via specPath (repo-relative)",
-    "Sidebar wordmark is specLedger (bold 'spec', regular 'Ledger'); no 'Bets → turns → claims' subtitle under the brand",
-    "Turn detail leads with plan loaded from workstream specPath Markdown (before/after + ask), before→after diagram or flows, commit subject/body, related docs; FileDiffCard lists product files; build artifacts (.next, node_modules) excluded from impact lists",
+    "Sidebar wordmark is specLedger (bold 'spec', regular 'Ledger'); no 'Bets \u2192 turns \u2192 claims' subtitle under the brand",
+    "Turn detail leads with plan loaded from workstream specPath Markdown (before/after + ask), before\u2192after diagram or flows, commit subject/body, related docs; FileDiffCard lists product files; build artifacts (.next, node_modules) excluded from impact lists",
     "Architecture touch shows workstream link + named features (+ claim count), not only bare node ids",
     "Verify page: covered totals (e.g. required pass/total) plus each verdict row shows claim statement primary and id secondary",
     "Claims/features/bets/turns index rows stay compact",
@@ -77,11 +77,11 @@
     "Semantic line-by-line 'is this justified by prose' beyond path coverage"
   ],
   "rabbitHoles": [
-    "Perfect semantic justification of every line — out; path→feature/plan coverage only in v1",
+    "Perfect semantic justification of every line \u2014 out; path\u2192feature/plan coverage only in v1",
     "Per-hunk blame theater"
   ],
   "residualRisks": [
-    "Large uncommitted UI polish already exists under done W-003; after seal it must land only under an open W-004 turn (SLC-01) — no further product UI until turn open",
+    "Large uncommitted UI polish already exists under done W-003; after seal it must land only under an open W-004 turn (SLC-01) \u2014 no further product UI until turn open",
     "related worktree scan remains caution-only string; multi-worktree agents still need human judgment",
     "Schema fields treeDigest/uncoveredPaths/expectedPaths are declared for this bet; CLI/runtime enforcement ships in SLC-02..04"
   ],
@@ -103,7 +103,7 @@
       "acceptance": [
         "Wordmark specLedger (bold spec); drop path subtitle under brand",
         "Turn page loads plan from titled Markdown at workstream specPath",
-        "Turn page order: plan → before/after → commit → docs → trail → FileDiffCard → collapsed architecture/ledger",
+        "Turn page order: plan \u2192 before/after \u2192 commit \u2192 docs \u2192 trail \u2192 FileDiffCard \u2192 collapsed architecture/ledger",
         "Architecture touch: workstream + feature names; ignore .next/node_modules in file impact",
         "Verify: covered totals + statement-first verdict rows",
         "Dense list rows on claims/features/bets/turns"

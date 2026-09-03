@@ -81,7 +81,7 @@
   },
   "intent": {
     "userPrompt": "Turn page: SplitView + FilePreview for related docs on the right",
-    "restatedGoal": "Turn page: SplitView + FilePreview for related docs on the right",
+    "restatedGoal": "Open related docs beside the turn",
     "changeType": "feature",
     "riskLevel": "moderate",
     "workstreamId": "W-004",

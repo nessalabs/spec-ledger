@@ -79,7 +79,7 @@
   },
   "intent": {
     "userPrompt": "Turn page: before/after + commit + docs above Plan",
-    "restatedGoal": "Turn page: before/after + commit + docs above Plan",
+    "restatedGoal": "Put the story and commit above the plan on a turn",
     "changeType": "feature",
     "riskLevel": "moderate",
     "workstreamId": "W-004",

@@ -1,14 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { X } from "lucide-react"
-import {
-  MessageMarkdown,
-  SplitView,
-  SplitViewPanel,
-  SplitViewSeparator,
-} from "@nessa-ui/react"
-import { cn } from "@/lib/cn"
+import nextDynamic from "next/dynamic"
 
 export type DocTab = {
   path: string
@@ -66,6 +59,30 @@ async function fetchRepoText(path: string): Promise<string | null> {
   }
 }
 
+function missingDocMarkdown(path: string): string {
+  return [
+    `# Could not open`,
+    "",
+    `\`${path}\` was not found in this checkout (or is outside the repo).`,
+    "",
+    "Use **Read** on a related doc, or fix the link target.",
+    "",
+  ].join("\n")
+}
+
+/** Heavy markdown + SplitView — only load when a reader tab is open. */
+const DocReaderLayout = nextDynamic(
+  () => import("./doc-reader-layout").then((m) => m.DocReaderLayout),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="flex min-h-0 flex-1 items-center justify-center text-sm text-muted-foreground">
+        Opening reader…
+      </div>
+    ),
+  },
+)
+
 export function DocReaderProvider({ children }: { children: React.ReactNode }) {
   const [tabs, setTabs] = React.useState<DocTab[]>([])
   const [activePath, setActivePath] = React.useState<string | null>(null)
@@ -88,14 +105,18 @@ export function DocReaderProvider({ children }: { children: React.ReactNode }) {
   const openDoc = React.useCallback(
     (doc: { path: string; label?: string; content?: string | null }) => {
       const cached = cacheRef.current.get(doc.path)
-      const label = doc.label ?? cached?.label ?? doc.path.split("/").pop() ?? doc.path
+      const label =
+        doc.label ?? cached?.label ?? doc.path.split("/").pop() ?? doc.path
       const known = doc.content ?? cached?.content
 
       const focusOrAdd = (content: string) => {
         cacheRef.current.set(doc.path, { label, content })
         setTabs((prev) => {
-          if (prev.some((t) => t.path === doc.path)) return prev
-          return [...prev, { path: doc.path, label, content }]
+          const i = prev.findIndex((t) => t.path === doc.path)
+          if (i === -1) return [...prev, { path: doc.path, label, content }]
+          const next = [...prev]
+          next[i] = { path: doc.path, label, content }
+          return next
         })
         setActivePath(doc.path)
       }
@@ -105,9 +126,9 @@ export function DocReaderProvider({ children }: { children: React.ReactNode }) {
         return
       }
 
+      focusOrAdd(`_Loading \`${doc.path}\`…_`)
       void fetchRepoText(doc.path).then((text) => {
-        if (!text) return
-        focusOrAdd(text)
+        focusOrAdd(text ?? missingDocMarkdown(doc.path))
       })
     },
     [],
@@ -148,113 +169,21 @@ export function DocReaderProvider({ children }: { children: React.ReactNode }) {
   return (
     <DocReaderContext.Provider value={value}>
       {open ? (
-        <div className="flex min-h-0 flex-1 flex-col">
-          <SplitView
-            className="min-h-0 flex-1"
-            defaultLayout={{ main: 55, doc: 45 }}
-          >
-            <SplitViewPanel id="main" minSize="280px" className="min-h-0">
-              <div className="h-full min-h-0 overflow-y-auto overscroll-contain p-6">
-                {children}
-              </div>
-            </SplitViewPanel>
-            <SplitViewSeparator />
-            <SplitViewPanel id="doc" minSize="260px" className="min-h-0">
-              <DocReaderPane
-                tabs={tabs}
-                activePath={active.path}
-                onSelect={setActivePath}
-                onCloseTab={closeTab}
-                onCloseAll={closeReader}
-              />
-            </SplitViewPanel>
-          </SplitView>
-        </div>
+        <DocReaderLayout
+          tabs={tabs}
+          activePath={active.path}
+          onSelect={setActivePath}
+          onCloseTab={closeTab}
+          onCloseAll={closeReader}
+          onOpenDoc={openDoc}
+        >
+          {children}
+        </DocReaderLayout>
       ) : (
         <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain p-6">
           {children}
         </div>
       )}
     </DocReaderContext.Provider>
-  )
-}
-
-function DocReaderPane({
-  tabs,
-  activePath,
-  onSelect,
-  onCloseTab,
-  onCloseAll,
-}: {
-  tabs: DocTab[]
-  activePath: string
-  onSelect: (path: string) => void
-  onCloseTab: (path: string) => void
-  onCloseAll: () => void
-}) {
-  const active = tabs.find((t) => t.path === activePath) ?? tabs[0]!
-
-  return (
-    <div
-      data-slot="doc-reader"
-      className="flex h-full min-h-0 flex-col border-l border-border bg-card"
-    >
-      <div className="flex shrink-0 items-stretch gap-0 border-b border-border">
-        <div className="flex min-w-0 flex-1 items-stretch overflow-x-auto">
-          {tabs.map((t) => {
-            const selected = t.path === active.path
-            return (
-              <div
-                key={t.path}
-                className={cn(
-                  "group/tab flex max-w-[12rem] shrink-0 items-center gap-1 border-r border-border px-2 py-1.5",
-                  selected ? "bg-background" : "bg-muted/30 hover:bg-muted/50",
-                )}
-              >
-                <button
-                  type="button"
-                  onClick={() => onSelect(t.path)}
-                  title={t.path}
-                  className={cn(
-                    "min-w-0 flex-1 truncate text-left text-xs",
-                    selected
-                      ? "font-medium text-foreground"
-                      : "text-muted-foreground",
-                  )}
-                >
-                  {t.label}
-                </button>
-                <button
-                  type="button"
-                  onClick={() => onCloseTab(t.path)}
-                  aria-label={`Close ${t.label}`}
-                  className="inline-flex size-5 shrink-0 items-center justify-center rounded text-muted-foreground opacity-60 hover:bg-accent hover:opacity-100 group-hover/tab:opacity-100"
-                >
-                  <X className="size-3" aria-hidden />
-                </button>
-              </div>
-            )
-          })}
-        </div>
-        <button
-          type="button"
-          onClick={onCloseAll}
-          aria-label="Close reader"
-          className="inline-flex size-8 shrink-0 items-center justify-center text-muted-foreground hover:bg-accent hover:text-accent-foreground"
-        >
-          <X className="size-4" aria-hidden />
-        </button>
-      </div>
-      <div className="border-b border-border px-3 py-1.5">
-        <p className="truncate font-mono text-[11px] text-muted-foreground">
-          {active.path}
-        </p>
-      </div>
-      <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain p-4">
-        <MessageMarkdown className="text-sm leading-relaxed">
-          {active.content}
-        </MessageMarkdown>
-      </div>
-    </div>
   )
 }

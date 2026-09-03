@@ -2,7 +2,7 @@
 
 1. Read [DESIGN.md](DESIGN.md) and [docs/architecture/work-model.md](docs/architecture/work-model.md) before changing boundaries.
 2. Skills use prefix **`sl-`** — see [skills/README.md](skills/README.md) (`sl-plan-*`, `sl-dev-*`, `sl-learn`). Keep them in this repo; optionally install `nessalabs/skills` (`system-architect`, `coding`, `method`) as companions.
-3. Always honor [skills/references/cheap-to-change.md](skills/references/cheap-to-change.md) (quality bar + structure) and [skills/references/review-lattice-copy.md](skills/references/review-lattice-copy.md) when writing reviews.
+3. Always honor [skills/references/cheap-to-change.md](skills/references/cheap-to-change.md) (quality bar + structure), [skills/references/review-lattice-copy.md](skills/references/review-lattice-copy.md) when writing reviews, and [skills/references/lattice-plain-titles.md](skills/references/lattice-plain-titles.md) for turn `restatedGoal` / workstream list copy.
 4. Missing vision → [skills/sl-plan-vision](skills/sl-plan-vision/SKILL.md) before first shape (sets quality bar).
 5. Ambiguous / multi-slice → [skills/sl-plan-shape](skills/sl-plan-shape/SKILL.md).
 6. After shaped → [skills/sl-plan-break-spec](skills/sl-plan-break-spec/SKILL.md) → human seal.

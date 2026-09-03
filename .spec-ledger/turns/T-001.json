@@ -5,7 +5,7 @@
   "openedAt": "2026-09-02T19:00:00.000Z",
   "intent": {
     "userPrompt": "Build Spec Ledger as a generic claim-adherence gate plus Lattice viewing layer, then add turns information and commit what we've built.",
-    "restatedGoal": "Ship Spec Ledger core (claims/bindings/verify/graph), read-only server + client, Lattice UI, and a turns change-log whose facts come from turn close — not agent self-report.",
+    "restatedGoal": "Ship Spec Ledger core and a turn log of what actually shipped",
     "acceptanceCriteria": [
       "Verify is a pure function of ledger + tree + results with digests",
       "Server is GET-only (SL-003)",

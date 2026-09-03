@@ -15,8 +15,8 @@
     "contextGeneratedAt": "2026-09-03T08:46:58.397Z"
   },
   "intent": {
-    "userPrompt": "Real sl-dev-break (Fable 5.1) on align check/approve/waiver/gates/hooks — not self-approve",
-    "restatedGoal": "Adversarial code-break of Phase II align stack; fix all findings",
+    "userPrompt": "Real sl-dev-break (Fable 5.1) on align check/approve/waiver/gates/hooks \u2014 not self-approve",
+    "restatedGoal": "Break the coverage stack for real, then fix every hole",
     "changeType": "feature",
     "riskLevel": "moderate",
     "workstreamId": "W-004",

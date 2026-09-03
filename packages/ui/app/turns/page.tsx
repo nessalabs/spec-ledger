@@ -31,8 +31,8 @@ export default async function TurnsPage() {
         </p>
         <h1 className="text-2xl font-semibold tracking-tight">What changed</h1>
         <p className="max-w-2xl text-sm leading-relaxed text-muted-foreground">
-          Time feed of turns. Each row shows its workstream when linked — open
-          the pill for the bet, or the goal for the episode.
+          Time feed of what changed. ⌘/Ctrl-click a row to peek beside the list;
+          plain click opens the full turn.
         </p>
       </header>
 
@@ -80,12 +80,7 @@ export default async function TurnsPage() {
       ) : null}
 
       {ordered.length === 0 ? (
-        <p className="text-sm text-muted-foreground">
-          No turns yet.{" "}
-          <code className="font-mono text-xs">
-            spec-ledger turn open --goal &quot;…&quot;
-          </code>
-        </p>
+        <p className="text-sm text-muted-foreground">No turns yet.</p>
       ) : (
         <div className="flex flex-col gap-1.5">
           {ordered.map((turn) => (

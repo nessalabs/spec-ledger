@@ -87,7 +87,7 @@
   },
   "intent": {
     "userPrompt": "Plan shows doc link + Read that opens SplitView; no inline SpecDoc pitch",
-    "restatedGoal": "Plan shows doc link + Read that opens SplitView; no inline SpecDoc pitch",
+    "restatedGoal": "Plan is a link you Read \u2014 not a wall of pitch on the page",
     "changeType": "feature",
     "riskLevel": "moderate",
     "workstreamId": "W-004",

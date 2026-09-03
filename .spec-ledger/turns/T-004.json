@@ -50,7 +50,7 @@
   },
   "intent": {
     "userPrompt": "Finish architecture through P3 and dogfood beyond W-001.",
-    "restatedGoal": "Ship W-002 P0–P3 runtime: turn ops, HTTP context, automation, related, episodes, audit/CI, compass/timeline",
+    "restatedGoal": "Finish the builder runtime \u2014 context, automation, episodes, audit",
     "changeType": "feature",
     "riskLevel": "moderate",
     "workstreamId": "W-002",

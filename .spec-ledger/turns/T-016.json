@@ -16,7 +16,7 @@
   },
   "intent": {
     "userPrompt": "SLC-02: align check path coverage CLI + unit tests",
-    "restatedGoal": "SLC-02: align check path coverage CLI + unit tests",
+    "restatedGoal": "Check product files against the sealed plan before close",
     "changeType": "feature",
     "riskLevel": "moderate",
     "workstreamId": "W-004",

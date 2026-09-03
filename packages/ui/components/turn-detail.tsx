@@ -21,6 +21,7 @@ import {
   RelatedDocsList,
 } from "@/components/turn-doc-split"
 import { TurnPlanSection } from "@/components/turn-plan-section"
+import { CompactTurnRow } from "@/components/compact-turn-row"
 import { FreshnessBadge, TurnVerifyBadge } from "@/components/freshness-badge"
 import {
   fileKindLabel,
@@ -72,39 +73,11 @@ export function TurnSummaryCard({
 
   if (compact) {
     return (
-      <div className="grid gap-0.5 rounded-lg border border-border/80 px-3 py-2 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-baseline sm:gap-3">
-        <div className="min-w-0">
-          <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
-            {wsId ? (
-              <Link
-                href={`/workstreams/${encodeURIComponent(wsId)}`}
-                title={workstreamTitle ?? wsId}
-                className="no-underline"
-              >
-                <Badge
-                  variant="outline"
-                  className="font-mono text-[10px] font-normal"
-                >
-                  {wsId}
-                </Badge>
-              </Link>
-            ) : null}
-            <Link
-              href={`/turns/${turn.id}`}
-              className="min-w-0 flex-1 line-clamp-1 text-sm font-medium text-foreground no-underline hover:underline"
-            >
-              {turn.intent.restatedGoal}
-            </Link>
-          </div>
-          <p className="mt-0.5 truncate text-[11px] text-muted-foreground">
-            {humanStatus(turn.status)}
-            {areas ? ` · ${areas}` : ""}
-            {` · ${fileBit}`}
-            {freshness === "stale" ? " · verify outdated" : ""}
-          </p>
-        </div>
-        <span className="shrink-0 text-[11px] text-muted-foreground">{when}</span>
-      </div>
+      <CompactTurnRow
+        turn={turn}
+        report={report}
+        workstreamTitle={workstreamTitle}
+      />
     )
   }
 
@@ -198,10 +171,6 @@ export function TurnDetail({
       after: f.after,
     })),
   ]
-  const storyChart =
-    !flows.length && workstream
-      ? beforeAfterChart(workstream.problem, workstream.objective)
-      : null
 
   return (
     <div className="flex flex-col gap-8">
@@ -249,16 +218,9 @@ export function TurnDetail({
         ) : null}
       </header>
 
-      {(flows.length > 0 || storyChart) && (
+      {flows.length > 0 ? (
         <section className="space-y-3">
           <h2 className="text-sm font-medium">Before → after</h2>
-          {storyChart ? (
-            <Card>
-              <CardContent className="pt-6">
-                <StaticMermaid chart={storyChart} className="[&_svg]:max-w-full" />
-              </CardContent>
-            </Card>
-          ) : null}
           {flows.map((flow) => (
             <Card key={flow.id}>
               <CardHeader>
@@ -286,7 +248,7 @@ export function TurnDetail({
             </Card>
           ))}
         </section>
-      )}
+      ) : null}
 
       {commit ? (
         <section className="space-y-2">
@@ -507,24 +469,6 @@ export function TurnDetail({
       ) : null}
     </div>
   )
-}
-
-function beforeAfterChart(before: string, after: string): string {
-  return [
-    "flowchart LR",
-    `  B["${escapeMermaid(clip(before, 90))}"]`,
-    `  A["${escapeMermaid(clip(after, 90))}"]`,
-    "  B -->|now| A",
-  ].join("\n")
-}
-
-function clip(s: string, n: number): string {
-  const t = s.replace(/\s+/g, " ").trim()
-  return t.length <= n ? t : `${t.slice(0, n - 1)}…`
-}
-
-function escapeMermaid(s: string): string {
-  return s.replace(/"/g, "#quot;").replace(/[\[\]]/g, "")
 }
 
 function ChipRow({

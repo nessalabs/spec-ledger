@@ -8,6 +8,7 @@ import {
 } from "@nessa-ui/react"
 import Link from "next/link"
 import { ledgerSnapshot, serverClient } from "@/lib/ledger"
+import { CompactTurnRow } from "@/components/compact-turn-row"
 import { FreshnessBadge, TurnVerifyBadge } from "@/components/freshness-badge"
 import { turnFreshness } from "@/lib/turns"
 import type { Turn, Workstream } from "@nessa/spec-ledger-client"
@@ -48,37 +49,10 @@ export default async function OverviewPage() {
           </Badge>
         </div>
         <p className="max-w-2xl text-sm leading-relaxed text-muted-foreground">
-          Read-only view of this checkout. Start with the active workstream, open
-          its turns, then check claims when you care about standing truth.
+          Read-only view of this checkout — active work, recent turns, and live
+          verify.
         </p>
       </header>
-
-      <nav
-        aria-label="How to browse"
-        className="grid gap-2 rounded-lg border border-border bg-muted/20 p-4 text-sm sm:grid-cols-3"
-      >
-        <BrowseStep
-          n="1"
-          title="Open a workstream"
-          body="A workstream is a sealed plan. That is your starting place."
-          href={spotlight ? `/workstreams/${spotlight.id}` : "/workstreams"}
-          cta={spotlight ? `Open ${spotlight.id}` : "All workstreams"}
-        />
-        <BrowseStep
-          n="2"
-          title="Follow turns"
-          body="Each turn is one intent → implementation slice under that workstream."
-          href={openTurn ? `/turns/${openTurn.id}` : "/turns"}
-          cta={openTurn ? `Open ${openTurn.id}` : "All turns"}
-        />
-        <BrowseStep
-          n="3"
-          title="Check truth"
-          body="Claims are what must stay true. Verify is the live report."
-          href="/claims"
-          cta="Claims"
-        />
-      </nav>
 
       <section className="space-y-3">
         <h2 className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
@@ -91,8 +65,9 @@ export default async function OverviewPage() {
             <CardHeader className="gap-2">
               <CardTitle className="text-base">No active workstream</CardTitle>
               <CardDescription>
-                Latest sealed bet is done. Shape the next one, or open a turn
-                under an existing workstream.
+                {latestCompleted
+                  ? "Latest sealed bet is done."
+                  : "No sealed workstreams in this checkout yet."}
               </CardDescription>
             </CardHeader>
             {latestCompleted ? (
@@ -124,12 +99,7 @@ export default async function OverviewPage() {
           <Card>
             <CardHeader>
               <CardTitle className="text-base">No open turn</CardTitle>
-              <CardDescription>
-                Start with{" "}
-                <code className="font-mono text-xs">
-                  spec-ledger turn open --workstream … --slice …
-                </code>
-              </CardDescription>
+              <CardDescription>Nothing in flight in this checkout.</CardDescription>
             </CardHeader>
           </Card>
         )}
@@ -148,32 +118,21 @@ export default async function OverviewPage() {
           </Link>
         </div>
         {recentTurns.length ? (
-          <ul className="grid gap-2">
+          <div className="flex flex-col gap-1.5">
             {recentTurns.map((t) => (
-              <li key={t.id}>
-                <Link
-                  href={`/turns/${t.id}`}
-                  className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1 rounded-md border border-border px-3 py-2 text-sm no-underline hover:bg-muted/40"
-                >
-                  <span className="flex min-w-0 flex-1 flex-wrap items-center gap-2">
-                    <span className="font-mono text-xs font-medium">{t.id}</span>
-                    {t.intent.workstreamId ? (
-                      <Badge variant="outline" className="font-mono text-[10px] font-normal">
-                        {t.intent.workstreamId}
-                      </Badge>
-                    ) : null}
-                    <span className="min-w-0 truncate text-foreground">
-                      {t.intent.restatedGoal}
-                    </span>
-                  </span>
-                  <span className="shrink-0 text-[11px] text-muted-foreground">
-                    {t.status}
-                    {t.closedAt ? ` · ${t.closedAt.slice(0, 10)}` : ""}
-                  </span>
-                </Link>
-              </li>
+              <CompactTurnRow
+                key={t.id}
+                turn={t}
+                report={report}
+                workstreamTitle={
+                  t.intent.workstreamId
+                    ? workstreams.find((w) => w.id === t.intent.workstreamId)
+                        ?.title
+                    : null
+                }
+              />
             ))}
-          </ul>
+          </div>
         ) : (
           <p className="text-sm text-muted-foreground">No turns yet.</p>
         )}
@@ -214,32 +173,6 @@ export default async function OverviewPage() {
         ledgerDigest {report.provenance.ledgerDigest.slice(0, 12)}… · commit{" "}
         {report.provenance.commit?.slice(0, 10) ?? "(none)"}
       </p>
-    </div>
-  )
-}
-
-function BrowseStep({
-  n,
-  title,
-  body,
-  href,
-  cta,
-}: {
-  n: string
-  title: string
-  body: string
-  href: string
-  cta: string
-}) {
-  return (
-    <div className="flex flex-col gap-2">
-      <p className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
-        {n} · {title}
-      </p>
-      <p className="text-muted-foreground">{body}</p>
-      <Link href={href} className="text-primary underline-offset-4 hover:underline">
-        {cta} →
-      </Link>
     </div>
   )
 }

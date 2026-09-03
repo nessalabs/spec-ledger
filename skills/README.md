@@ -25,6 +25,10 @@ When writing any review JSON, also apply
 [`references/review-lattice-copy.md`](./references/review-lattice-copy.md)
 (`plainSummary` / `plainImpact`; schema `schemas/review.json`).
 
+Turn / workstream list titles:
+[`references/lattice-plain-titles.md`](./references/lattice-plain-titles.md)
+(`restatedGoal`, workstream `title` + `objective`).
+
 ## Lanes
 
 | Lane | Meaning |

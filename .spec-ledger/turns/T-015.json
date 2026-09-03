@@ -92,7 +92,7 @@
   },
   "intent": {
     "userPrompt": "Shell-level doc reader with tabs; persist across page navigations",
-    "restatedGoal": "Shell-level doc reader with tabs; persist across page navigations",
+    "restatedGoal": "Keep docs open in tabs while you move around Lattice",
     "changeType": "feature",
     "riskLevel": "moderate",
     "workstreamId": "W-004",

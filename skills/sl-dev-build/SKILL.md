@@ -93,6 +93,17 @@ pnpm exec spec-ledger turn open \
 Until flags exist, set `intent.workstreamId`, `featureIds`, `sliceId`,
 `restatedGoal` on the turn file **before** closing. Never hand-edit `facts`.
 
+`restatedGoal` is the Lattice list title — write it as a short human outcome
+([`../references/lattice-plain-titles.md`](../references/lattice-plain-titles.md)),
+not a slice id or file path.
+
+**Before → after** on a turn is turn-scoped (`flows/` or `intent.flows`), never the
+workstream `problem`/`objective`. When this slice changes a user-visible story,
+add a flow for **this** turn (`spec-ledger flow add` or episode JSON) with a
+before and after that describe only what this turn moved. Skip the chart if
+there is nothing honest to say — Lattice must not invent a shared workstream
+diagram on every turn.
+
 First turn on a workstream: set status → `active` if still `sealed`.
 
 ### Promote a proposed claim (when this slice needs it)

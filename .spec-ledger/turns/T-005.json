@@ -36,7 +36,7 @@
   },
   "intent": {
     "userPrompt": "Ship RFC 8785 JCS, decision/source/attachment/probe/flow add|list, and .github/workflows/ci.yml with workspace installable without private UI.",
-    "restatedGoal": "Complete residuals e2e: JCS digests, episode write CLIs, live GitHub Actions CI",
+    "restatedGoal": "Stable digests, episode write tools, and live CI",
     "changeType": "feature",
     "riskLevel": "moderate",
     "workstreamId": "W-002",

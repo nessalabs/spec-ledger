@@ -13,7 +13,6 @@ import {
   SidebarInset,
   SidebarProvider,
   SidebarTrigger,
-  CodeBlockProvider,
 } from "@nessa-ui/react"
 import {
   Boxes,
@@ -191,11 +190,9 @@ export function SpecLedgerShell({ children }: { children: React.ReactNode }) {
       </Sidebar>
 
       <SidebarInset className="flex min-h-0 flex-col overflow-hidden">
-        <CodeBlockProvider mode="dark">
-          <div className="flex min-h-0 flex-1 flex-col">
-            <DocReaderProvider>{children}</DocReaderProvider>
-          </div>
-        </CodeBlockProvider>
+        <div className="flex min-h-0 flex-1 flex-col">
+          <DocReaderProvider>{children}</DocReaderProvider>
+        </div>
       </SidebarInset>
     </SidebarProvider>
   )

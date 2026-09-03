@@ -19,7 +19,8 @@ export default async function ClaimsPage() {
         </p>
         <h1 className="text-2xl font-semibold tracking-tight">What must stay true</h1>
         <p className="max-w-2xl text-sm text-muted-foreground">
-          Standing truths and their live verify outcome. Open a row for bindings.
+          Standing truths and their live verify outcome. ⌘/Ctrl-click to peek;
+          plain click opens the claim.
         </p>
       </header>
 
