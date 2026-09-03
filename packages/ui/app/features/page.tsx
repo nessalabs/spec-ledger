@@ -29,8 +29,8 @@ export default async function FeaturesPage() {
         </p>
         <h1 className="text-2xl font-semibold tracking-tight">Features</h1>
         <p className="max-w-2xl text-sm text-muted-foreground">
-          Product capabilities in the lattice. Each feature accumulates turn history
-          when <code className="font-mono text-xs">turn close</code> maps files to it.
+          Product capabilities. Each feature accumulates turn history when{" "}
+          <code className="font-mono text-xs">turn close</code> maps files to it.
         </p>
       </header>
 

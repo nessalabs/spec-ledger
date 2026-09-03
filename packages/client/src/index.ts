@@ -19,6 +19,9 @@ import {
   listProposedClaims,
   listAutomationEvents,
   getRelatedPack,
+  listWorkstreams,
+  loadWorkstream,
+  getTurnEpisode,
   HTTP_CONTRACT,
   type LoadedLedger,
   type VerifyReport,
@@ -37,6 +40,8 @@ import {
   type RelatedPack,
   type Vision,
   type Tenet,
+  type Workstream,
+  type TurnEpisode,
 } from "@nessa/spec-ledger"
 
 export type LedgerTransport =
@@ -49,6 +54,7 @@ export interface SpecLedgerClient {
   getBindings(): Promise<EvidenceBinding[]>
   getTurns(): Promise<Turn[]>
   getTurn(id: string): Promise<Turn>
+  getTurnEpisode(id: string): Promise<TurnEpisode>
   getGraph(): Promise<CodebaseGraph | null>
   getPolicy(): Promise<LayerPolicy | null>
   getConfig(): Promise<LedgerRootConfig>
@@ -67,6 +73,8 @@ export interface SpecLedgerClient {
   getProposedClaims(): Promise<ProposedClaim[]>
   getAutomationEvents(): Promise<AutomationEvent[]>
   getRelated(workstreamId: string): Promise<RelatedPack>
+  listWorkstreams(): Promise<Workstream[]>
+  getWorkstream(id: string): Promise<Workstream>
   httpContract(): typeof HTTP_CONTRACT
 }
 
@@ -95,6 +103,9 @@ function inProcess(rootDir: string): SpecLedgerClient {
       const turn = load().turns.find((t) => t.id === id)
       if (!turn) throw new Error(`turn not found: ${id}`)
       return turn
+    },
+    async getTurnEpisode(id) {
+      return getTurnEpisode(rootDir, id)
     },
     async getGraph() {
       return load().graph
@@ -148,6 +159,12 @@ function inProcess(rootDir: string): SpecLedgerClient {
     async getRelated(workstreamId) {
       return getRelatedPack(rootDir, workstreamId)
     },
+    async listWorkstreams() {
+      return listWorkstreams(rootDir)
+    },
+    async getWorkstream(id) {
+      return loadWorkstream(rootDir, id)
+    },
     httpContract() {
       return HTTP_CONTRACT
     },
@@ -162,6 +179,8 @@ function http(baseUrl: string): SpecLedgerClient {
     getBindings: () => httpGet(base, "v1/bindings"),
     getTurns: () => httpGet(base, "v1/turns"),
     getTurn: (id) => httpGet(base, `v1/turns/${encodeURIComponent(id)}`),
+    getTurnEpisode: (id) =>
+      httpGet(base, `v1/turns/${encodeURIComponent(id)}/episode`),
     getGraph: () => httpGet(base, "v1/graph"),
     getPolicy: () => httpGet(base, "v1/policy"),
     getConfig: () => httpGet(base, "v1/config"),
@@ -183,6 +202,9 @@ function http(baseUrl: string): SpecLedgerClient {
     getAutomationEvents: () => httpGet(base, "v1/automation-events"),
     getRelated: (workstreamId) =>
       httpGet(base, `v1/related?workstream=${encodeURIComponent(workstreamId)}`),
+    listWorkstreams: () => httpGet(base, "v1/workstreams"),
+    getWorkstream: (id) =>
+      httpGet(base, `v1/workstreams/${encodeURIComponent(id)}`),
     httpContract() {
       return HTTP_CONTRACT
     },
@@ -211,5 +233,7 @@ export type {
   RelatedPack,
   Vision,
   Tenet,
+  Workstream,
+  TurnEpisode,
 }
 export { HTTP_CONTRACT }

@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "T-006/R-01",
+  "turnId": "T-006",
+  "kind": "adversarial",
+  "target": "code",
+  "reviewer": "agent:sl-dev-break",
+  "verdict": "approve",
+  "summary": "UI routes 200; Spec Ledger chrome; workstreams + episode trail.",
+  "killersCited": [
+    "curl:/",
+    "curl:/workstreams",
+    "curl:/turns/T-005"
+  ]
+}

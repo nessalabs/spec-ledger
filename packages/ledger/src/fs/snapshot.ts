@@ -66,4 +66,7 @@ export const HTTP_CONTRACT = [
   { method: "GET", path: "/v1/themes", description: "Themes" },
   { method: "GET", path: "/v1/proposed-claims", description: "Proposed claims" },
   { method: "GET", path: "/v1/compass", description: "Vision + tenets + themes" },
+  { method: "GET", path: "/v1/workstreams", description: "All workstreams" },
+  { method: "GET", path: "/v1/workstreams/:id", description: "One workstream" },
+  { method: "GET", path: "/v1/turns/:id/episode", description: "Turn + side collections" },
 ] as const

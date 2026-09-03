@@ -7,7 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@nessa-ui/react"
-import type { Turn, VerifyReport } from "@nessa/spec-ledger-client"
+import type { Turn, TurnEpisode, VerifyReport } from "@nessa/spec-ledger-client"
 import { StaticMermaid } from "@/components/static-mermaid"
 import { FreshnessBadge, TurnVerifyBadge } from "@/components/freshness-badge"
 import { turnFreshness } from "@/lib/turns"
@@ -71,9 +71,11 @@ export function TurnSummaryCard({
 export function TurnDetail({
   turn,
   report,
+  episode,
 }: {
   turn: Turn
   report: VerifyReport | null
+  episode?: TurnEpisode | null
 }) {
   const facts = turn.facts
   const freshness = turnFreshness(turn, report)
@@ -109,7 +111,13 @@ export function TurnDetail({
           <p className="font-mono text-xs text-muted-foreground">
             {turn.intent.workstreamId ? (
               <span>
-                workstream {turn.intent.workstreamId}
+                workstream{" "}
+                <Link
+                  href={`/workstreams/${encodeURIComponent(turn.intent.workstreamId)}`}
+                  className="underline-offset-4 hover:underline"
+                >
+                  {turn.intent.workstreamId}
+                </Link>
                 {turn.intent.sliceId ? ` · slice ${turn.intent.sliceId}` : ""}
               </span>
             ) : null}
@@ -148,7 +156,9 @@ export function TurnDetail({
           {(turn.intent.workstreamId || turn.intent.featureIds?.length) && (
             <div className="flex flex-wrap gap-2 font-mono text-xs">
               {turn.intent.workstreamId ? (
-                <Badge variant="outline">{turn.intent.workstreamId}</Badge>
+                <Link href={`/workstreams/${encodeURIComponent(turn.intent.workstreamId)}`}>
+                  <Badge variant="outline">{turn.intent.workstreamId}</Badge>
+                </Link>
               ) : null}
               {turn.intent.sliceId ? (
                 <Badge variant="outline">{turn.intent.sliceId}</Badge>
@@ -281,6 +291,113 @@ export function TurnDetail({
         </p>
       )}
 
+      {episode &&
+      (episode.reviews.length ||
+        episode.decisions.length ||
+        episode.attachments.length ||
+        episode.sources.length ||
+        episode.probes.length ||
+        episode.flows.length) ? (
+        <Card>
+          <CardHeader>
+            <CardTitle>Episode</CardTitle>
+            <CardDescription>
+              Side collections for this turn (history — not verify truth).
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            {episode.reviews.length ? (
+              <EpisodeBlock title="Reviews">
+                {episode.reviews.map((r) => (
+                  <div
+                    key={r.id}
+                    className="rounded-md border border-border px-3 py-2 text-sm"
+                  >
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className="font-mono text-xs">{r.id}</span>
+                      <Badge variant="outline">{r.verdict}</Badge>
+                      {r.blocking ? <Badge variant="destructive">blocking</Badge> : null}
+                    </div>
+                    <p className="mt-1 text-muted-foreground">{r.summary}</p>
+                    {r.killersCited?.length ? (
+                      <p className="mt-1 font-mono text-[11px] text-muted-foreground">
+                        killers: {r.killersCited.join(", ")}
+                      </p>
+                    ) : null}
+                  </div>
+                ))}
+              </EpisodeBlock>
+            ) : null}
+            {episode.decisions.length ? (
+              <EpisodeBlock title="Decisions">
+                {episode.decisions.map((d) => (
+                  <div
+                    key={d.id}
+                    className="rounded-md border border-border px-3 py-2 text-sm"
+                  >
+                    <p className="font-mono text-xs text-muted-foreground">{d.id}</p>
+                    <p className="font-medium">{d.decision}</p>
+                    <p className="text-muted-foreground">{d.rationale}</p>
+                  </div>
+                ))}
+              </EpisodeBlock>
+            ) : null}
+            {episode.attachments.length ? (
+              <EpisodeBlock title="Attachments">
+                {episode.attachments.map((a) => (
+                  <div
+                    key={a.id}
+                    className="rounded-md border border-border px-3 py-2 font-mono text-xs"
+                  >
+                    <span>{a.id}</span>
+                    {a.kind ? (
+                      <Badge variant="outline" className="ml-2">
+                        {a.kind}
+                      </Badge>
+                    ) : null}
+                    <p className="mt-1 break-all text-muted-foreground">{a.path}</p>
+                    {a.mediaType ? (
+                      <p className="text-muted-foreground">{a.mediaType}</p>
+                    ) : null}
+                  </div>
+                ))}
+              </EpisodeBlock>
+            ) : null}
+            {episode.sources.length ? (
+              <EpisodeBlock title="Sources">
+                {episode.sources.map((s) => (
+                  <div key={s.id} className="font-mono text-xs text-muted-foreground">
+                    {s.id} · {s.kind} · {s.ref}
+                  </div>
+                ))}
+              </EpisodeBlock>
+            ) : null}
+            {episode.probes.length ? (
+              <EpisodeBlock title="Probes">
+                {episode.probes.map((p) => (
+                  <div key={p.id} className="text-sm">
+                    <span className="font-mono text-xs">{p.id}</span> {p.question}
+                    {p.outcome ? (
+                      <span className="text-muted-foreground"> → {p.outcome}</span>
+                    ) : null}
+                  </div>
+                ))}
+              </EpisodeBlock>
+            ) : null}
+            {episode.flows.length
+              ? episode.flows.map((flow) => (
+                  <div key={flow.id} className="space-y-2">
+                    <h3 className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
+                      Flow · {flow.title}
+                    </h3>
+                    <StaticMermaid chart={flow.after} className="[&_svg]:max-w-full" />
+                  </div>
+                ))
+              : null}
+          </CardContent>
+        </Card>
+      ) : null}
+
       {turn.intent.flows?.map((flow) => (
         <Card key={flow.id}>
           <CardHeader>
@@ -307,6 +424,23 @@ export function TurnDetail({
           </CardContent>
         </Card>
       ))}
+    </div>
+  )
+}
+
+function EpisodeBlock({
+  title,
+  children,
+}: {
+  title: string
+  children: React.ReactNode
+}) {
+  return (
+    <div className="space-y-2">
+      <h3 className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
+        {title}
+      </h3>
+      <div className="space-y-2">{children}</div>
     </div>
   )
 }

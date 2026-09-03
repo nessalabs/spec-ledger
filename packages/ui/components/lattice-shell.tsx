@@ -25,19 +25,21 @@ import {
   Layers,
   ShieldCheck,
   Timer,
+  Workflow,
 } from "lucide-react"
 import { cn } from "@/lib/cn"
 
 const NAV = [
   { href: "/", label: "Overview", icon: LayoutDashboard },
+  { href: "/workstreams", label: "Workstreams", icon: Workflow },
   { href: "/compass", label: "Compass", icon: Compass },
   { href: "/timeline", label: "Timeline", icon: Timer },
+  { href: "/turns", label: "Turns", icon: History },
   { href: "/claims", label: "Claims", icon: ShieldCheck },
   { href: "/features", label: "Features", icon: Layers },
+  { href: "/verify", label: "Verify", icon: Boxes },
   { href: "/contracts", label: "Contracts", icon: FileJson2 },
   { href: "/graph", label: "Graph", icon: GitBranch },
-  { href: "/turns", label: "Turns", icon: History },
-  { href: "/verify", label: "Verify", icon: Boxes },
 ] as const
 
 function RailNavItem({
@@ -87,7 +89,8 @@ function RailNavItem({
   )
 }
 
-export function LatticeShell({ children }: { children: React.ReactNode }) {
+/** App chrome for Spec Ledger (read-only viewing). */
+export function SpecLedgerShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
 
   return (
@@ -95,7 +98,6 @@ export function LatticeShell({ children }: { children: React.ReactNode }) {
       <Sidebar collapsible="icon" className="h-svh shrink-0">
         <SidebarHeader className="gap-2 border-b border-sidebar-border px-3 py-3">
           <div className="group/brand relative flex items-center gap-2">
-            {/* Small ◼ only — toggles the rail. No full-width button chrome. */}
             <SidebarTrigger
               className="size-7 shrink-0 text-muted-foreground hover:text-foreground"
               aria-label="Toggle sidebar"
@@ -108,7 +110,7 @@ export function LatticeShell({ children }: { children: React.ReactNode }) {
               href="/"
               className="min-w-0 text-sm font-semibold tracking-tight text-sidebar-foreground no-underline group-data-[state=collapsed]/sidebar:hidden"
             >
-              spec<span className="font-normal text-muted-foreground">ledger</span>
+              Spec Ledger
             </Link>
             <PopoverSurface
               role="tooltip"
@@ -162,3 +164,6 @@ export function LatticeShell({ children }: { children: React.ReactNode }) {
     </SidebarProvider>
   )
 }
+
+/** @deprecated Use SpecLedgerShell */
+export const LatticeShell = SpecLedgerShell

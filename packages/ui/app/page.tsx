@@ -9,191 +9,185 @@ import {
 import Link from "next/link"
 import { serverClient } from "@/lib/ledger"
 import { FreshnessBadge, TurnVerifyBadge } from "@/components/freshness-badge"
-import { latestClosedTurn, turnFreshness } from "@/lib/turns"
+import { turnFreshness } from "@/lib/turns"
+import type { Turn } from "@nessa/spec-ledger-client"
 
 export const dynamic = "force-dynamic"
 
 export default async function OverviewPage() {
   const client = serverClient()
-  const snap = await client.getSnapshot()
-  const violations = await client.layerViolations()
-  const schemas = await client.listSchemas()
-  const { report, graph, claims, bindings, turns } = snap
+  const [snap, workstreams] = await Promise.all([
+    client.getSnapshot(),
+    client.listWorkstreams(),
+  ])
+  const { report, turns } = snap
 
-  const pass = report.claims.filter((c) => c.outcome === "pass").length
-  const fail = report.claims.filter((c) => c.outcome === "fail").length
-  const missing = report.claims.filter(
-    (c) => c.outcome === "missing" || c.outcome === "unbound",
-  ).length
-
-  const lastTurn = latestClosedTurn(turns)
-  const lastFreshness = lastTurn ? turnFreshness(lastTurn, report) : "unknown"
+  const openTurn = turns.find((t) => t.status === "open") ?? null
+  const activeBets = workstreams
+    .filter((w) => w.status === "active" || w.status === "sealed" || w.status === "done")
+    .sort((a, b) => b.id.localeCompare(a.id))
+  const spotlight =
+    activeBets.find((w) => w.status === "active" || w.status === "sealed") ??
+    activeBets[0] ??
+    null
+  const openFreshness = openTurn ? turnFreshness(openTurn, report) : "unknown"
 
   return (
     <div className="mx-auto flex max-w-5xl flex-col gap-8">
-      <header className="flex flex-col gap-2">
-        <p className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
-          Overview
-        </p>
-        <h1 className="text-2xl font-semibold tracking-tight">
-          {graph?.system.name ?? "Spec Ledger"}
-        </h1>
+      <header className="flex flex-col gap-3">
+        <div className="flex flex-wrap items-center gap-2">
+          <h1 className="text-2xl font-semibold tracking-tight">Spec Ledger</h1>
+          <Badge variant={report.ok ? "default" : "destructive"}>
+            verify {report.ok ? "OK" : "FAIL"}
+          </Badge>
+        </div>
         <p className="max-w-2xl text-sm leading-relaxed text-muted-foreground">
-          {graph?.system.description ??
-            "Claim adherence gate and Lattice viewing layer."}
+          Bets → turns → verify. Read-only view of this checkout&apos;s ledger. Git
+          and the CLI are the write path.
         </p>
       </header>
 
-      <section className="grid gap-3 sm:grid-cols-2 xl:grid-cols-5">
-        <Stat
-          label="Verify (live)"
-          value={report.ok ? "OK" : "FAIL"}
-          tone={report.ok ? "ok" : "bad"}
-          hint={`${pass} pass · ${fail} fail · ${missing} missing`}
-        />
-        <Stat label="Claims" value={String(claims.length)} hint={`${bindings.length} bindings`} />
-        <Stat
-          label="Modules"
-          value={String(graph?.nodes.length ?? 0)}
-          hint={`${graph?.features.length ?? 0} features`}
-        />
-        <Stat
-          label="Layer violations"
-          value={String(violations.length)}
-          tone={violations.length ? "bad" : "ok"}
-          hint={`${schemas.length} schema contracts`}
-        />
-        <Stat
-          label="Turns"
-          value={String(turns.length)}
-          hint={lastTurn ? `latest ${lastTurn.id}` : "change log"}
-        />
-      </section>
-
-      {lastTurn ? (
-        <Card>
-          <CardHeader className="gap-2">
-            <div className="flex flex-wrap items-center gap-2">
-              <CardTitle>Latest turn</CardTitle>
-              <Link
-                href={`/turns/${lastTurn.id}`}
-                className="font-mono text-sm no-underline hover:underline"
-              >
-                {lastTurn.id}
-              </Link>
-              <TurnVerifyBadge
-                ok={lastTurn.facts?.verify.ok}
-                freshness={lastFreshness}
-              />
-              <FreshnessBadge freshness={lastFreshness} />
-            </div>
-            <CardDescription>{lastTurn.intent.restatedGoal}</CardDescription>
-          </CardHeader>
-          <CardContent className="text-sm text-muted-foreground">
-            Closed turns are history. If digests are stale, that turn&apos;s verify is{" "}
-            <em>unknown</em> — only live verify above is current.
-          </CardContent>
-        </Card>
-      ) : null}
-
-      <section className="grid gap-4 lg:grid-cols-2">
-        <Card>
-          <CardHeader>
-            <CardTitle>Provenance</CardTitle>
-            <CardDescription>
-              Live digests from this tree. Mismatched turn digests → unknown.
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-2 font-mono text-xs">
-            <Row k="ledgerDigest" v={report.provenance.ledgerDigest} />
-            <Row k="resultsDigest" v={report.provenance.resultsDigest} />
-            <Row k="commit" v={report.provenance.commit ?? "(none)"} />
-            <Row k="producedBy" v={report.producedBy} />
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader>
-            <CardTitle>Contracts</CardTitle>
-            <CardDescription>
-              JSON Schema SSOT + read-only HTTP surface. Git is the write path.
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="flex flex-col gap-3">
-            <div className="flex flex-wrap gap-2">
-              {schemas.map((s) => (
-                <Badge key={s} variant="secondary">
-                  {s}
+      <section className="space-y-3">
+        <h2 className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
+          Active bet
+        </h2>
+        {spotlight ? (
+          <Card>
+            <CardHeader className="gap-2">
+              <div className="flex flex-wrap items-center gap-2">
+                <Link
+                  href={`/workstreams/${spotlight.id}`}
+                  className="font-mono text-lg font-semibold no-underline hover:underline"
+                >
+                  {spotlight.id}
+                </Link>
+                <Badge variant="outline">{spotlight.status}</Badge>
+                {spotlight.seal ? (
+                  <Badge variant="secondary" className="font-mono text-[10px]">
+                    seal rev {spotlight.seal.revision}
+                  </Badge>
+                ) : null}
+              </div>
+              <CardTitle className="text-base font-medium">{spotlight.title}</CardTitle>
+              <CardDescription className="text-sm text-foreground/80">
+                {spotlight.objective}
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="flex flex-wrap gap-2 text-xs text-muted-foreground">
+              {(spotlight.suggestedSlices ?? []).slice(0, 4).map((s) => (
+                <Badge key={s.id} variant="outline" className="font-mono">
+                  {s.id}
                 </Badge>
               ))}
-            </div>
-            <Link
-              href="/contracts"
-              className="text-sm text-primary underline-offset-4 hover:underline"
-            >
-              Open contracts →
-            </Link>
-          </CardContent>
-        </Card>
+              <Link
+                href={`/workstreams/${spotlight.id}`}
+                className="text-primary underline-offset-4 hover:underline"
+              >
+                Open workstream →
+              </Link>
+            </CardContent>
+          </Card>
+        ) : (
+          <p className="text-sm text-muted-foreground">
+            No sealed workstreams yet. Shape and seal a bet with the CLI.
+          </p>
+        )}
       </section>
 
-      {report.problems.length > 0 && (
-        <Card>
-          <CardHeader>
-            <CardTitle>Problems</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <ul className="space-y-1 font-mono text-xs text-destructive">
-              {report.problems.map((p) => (
-                <li key={p}>{p}</li>
-              ))}
-            </ul>
-          </CardContent>
-        </Card>
-      )}
+      <section className="space-y-3">
+        <h2 className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
+          Open turn
+        </h2>
+        {openTurn ? (
+          <OpenTurnCard turn={openTurn} freshness={openFreshness} />
+        ) : (
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-base">No open turn</CardTitle>
+              <CardDescription>
+                Start with{" "}
+                <code className="font-mono text-xs">
+                  spec-ledger turn open --workstream … --slice …
+                </code>
+              </CardDescription>
+            </CardHeader>
+          </Card>
+        )}
+      </section>
+
+      <section className="space-y-3">
+        <div className="flex items-center justify-between gap-2">
+          <h2 className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
+            Workstreams
+          </h2>
+          <Link
+            href="/workstreams"
+            className="text-xs text-primary underline-offset-4 hover:underline"
+          >
+            All →
+          </Link>
+        </div>
+        <ul className="grid gap-2 sm:grid-cols-2">
+          {workstreams
+            .slice()
+            .sort((a, b) => b.id.localeCompare(a.id))
+            .map((w) => (
+              <li key={w.id}>
+                <Link
+                  href={`/workstreams/${w.id}`}
+                  className="flex items-center justify-between gap-2 rounded-md border border-border px-3 py-2 text-sm no-underline hover:bg-muted/40"
+                >
+                  <span className="font-mono font-medium">{w.id}</span>
+                  <span className="truncate text-muted-foreground">{w.title}</span>
+                  <Badge variant="outline">{w.status}</Badge>
+                </Link>
+              </li>
+            ))}
+        </ul>
+      </section>
+
+      <p className="font-mono text-[11px] text-muted-foreground">
+        ledgerDigest {report.provenance.ledgerDigest.slice(0, 12)}… · commit{" "}
+        {report.provenance.commit?.slice(0, 10) ?? "(none)"}
+      </p>
     </div>
   )
 }
 
-function Stat({
-  label,
-  value,
-  hint,
-  tone,
+function OpenTurnCard({
+  turn,
+  freshness,
 }: {
-  label: string
-  value: string
-  hint?: string
-  tone?: "ok" | "bad"
+  turn: Turn
+  freshness: ReturnType<typeof turnFreshness>
 }) {
   return (
-    <Card className="gap-2 py-4">
-      <CardHeader className="px-4 pb-0">
-        <CardDescription>{label}</CardDescription>
-        <CardTitle
-          className={
-            tone === "ok"
-              ? "text-emerald-600 dark:text-emerald-400"
-              : tone === "bad"
-                ? "text-destructive"
-                : undefined
-          }
-        >
-          {value}
-        </CardTitle>
+    <Card>
+      <CardHeader className="gap-2">
+        <div className="flex flex-wrap items-center gap-2">
+          <Link
+            href={`/turns/${turn.id}`}
+            className="font-mono text-lg font-semibold no-underline hover:underline"
+          >
+            {turn.id}
+          </Link>
+          <Badge variant="secondary">open</Badge>
+          <TurnVerifyBadge ok={turn.facts?.verify.ok} freshness={freshness} />
+          <FreshnessBadge freshness={freshness} />
+        </div>
+        <CardDescription className="text-sm text-foreground">
+          {turn.intent.restatedGoal}
+        </CardDescription>
+        {(turn.intent.workstreamId || turn.opened?.contextDigest) && (
+          <p className="font-mono text-[11px] text-muted-foreground">
+            {turn.intent.workstreamId}
+            {turn.intent.sliceId ? ` / ${turn.intent.sliceId}` : ""}
+            {turn.opened?.contextDigest
+              ? ` · ctx ${turn.opened.contextDigest.slice(0, 12)}…`
+              : ""}
+          </p>
+        )}
       </CardHeader>
-      {hint ? (
-        <CardContent className="px-4 pt-0 text-xs text-muted-foreground">{hint}</CardContent>
-      ) : null}
     </Card>
-  )
-}
-
-function Row({ k, v }: { k: string; v: string }) {
-  return (
-    <div className="flex flex-col gap-0.5 break-all sm:flex-row sm:gap-3">
-      <span className="shrink-0 text-muted-foreground">{k}</span>
-      <span>{v}</span>
-    </div>
   )
 }

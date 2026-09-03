@@ -11,16 +11,16 @@ export default async function TurnPage({
 }) {
   const { id } = await params
   const client = serverClient()
-  let turn
+  let episode
   try {
-    turn = await client.getTurn(id)
+    episode = await client.getTurnEpisode(id)
   } catch {
     notFound()
   }
   const report = await client.verify()
   return (
     <div className="mx-auto max-w-5xl">
-      <TurnDetail turn={turn} report={report} />
+      <TurnDetail turn={episode.turn} report={report} episode={episode} />
     </div>
   )
 }

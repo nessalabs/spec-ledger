@@ -18,6 +18,9 @@ import {
   listThemes,
   listProposedClaims,
   getCompass,
+  listWorkstreams,
+  loadWorkstream,
+  getTurnEpisode,
   HTTP_CONTRACT,
 } from "@nessa/spec-ledger"
 import { readFileSync, existsSync } from "node:fs"
@@ -91,6 +94,18 @@ export function buildRoutes(rootDir: string): Route[] {
       pattern: /^\/v1\/turns$/,
       paramNames: [],
       handler: (_req, res) => sendJson(res, 200, loadLedger(rootDir).turns),
+    },
+    {
+      method: "GET",
+      pattern: /^\/v1\/turns\/([^/]+)\/episode$/,
+      paramNames: ["id"],
+      handler: (_req, res, params) => {
+        try {
+          sendJson(res, 200, getTurnEpisode(rootDir, params.id))
+        } catch (e) {
+          sendJson(res, 404, { error: e instanceof Error ? e.message : String(e) })
+        }
+      },
     },
     {
       method: "GET",
@@ -262,6 +277,24 @@ export function buildRoutes(rootDir: string): Route[] {
       pattern: /^\/v1\/compass$/,
       paramNames: [],
       handler: (_req, res) => sendJson(res, 200, getCompass(rootDir)),
+    },
+    {
+      method: "GET",
+      pattern: /^\/v1\/workstreams$/,
+      paramNames: [],
+      handler: (_req, res) => sendJson(res, 200, listWorkstreams(rootDir)),
+    },
+    {
+      method: "GET",
+      pattern: /^\/v1\/workstreams\/([^/]+)$/,
+      paramNames: ["id"],
+      handler: (_req, res, params) => {
+        try {
+          sendJson(res, 200, loadWorkstream(rootDir, params.id))
+        } catch (e) {
+          sendJson(res, 404, { error: e instanceof Error ? e.message : String(e) })
+        }
+      },
     },
   ]
 }

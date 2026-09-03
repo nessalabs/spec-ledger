@@ -1,0 +1,206 @@
+{
+  "schemaVersion": 1,
+  "id": "T-006",
+  "status": "closed",
+  "openedAt": "2026-09-03T05:14:17.251Z",
+  "opened": {
+    "producedBy": "@nessa/spec-ledger@0.1.0",
+    "baseCommit": "04f5d3138040e87b562d33d71f659c702325b691",
+    "treeDigest": "c1fb1a6beef1b41664fe6678b846701b5f80022a2c39c997efa006d2b30600a2",
+    "dirtyAtOpen": [
+      ".spec-ledger/workstreams/W-003.json",
+      ".spec-ledger/workstreams/W-003.seals/1.json",
+      "packages/client/src/index.ts",
+      "packages/ledger/src/episodes/bundle.ts",
+      "packages/ledger/src/fs/snapshot.ts",
+      "packages/ledger/src/index.ts",
+      "packages/server/src/routes.ts",
+      "packages/ui/app/features/page.tsx",
+      "packages/ui/app/layout.tsx",
+      "packages/ui/app/page.tsx",
+      "packages/ui/app/turns/[id]/page.tsx",
+      "packages/ui/app/workstreams/[id]/page.tsx",
+      "packages/ui/app/workstreams/page.tsx",
+      "packages/ui/components/lattice-shell.tsx",
+      "packages/ui/components/turn-detail.tsx",
+      "packages/ui/package-lock.json",
+      "packages/ui/package.json"
+    ],
+    "contextDigest": "ca5e6c19140fc41d7f480f3d12cf4ad1101246eae958ab6a9bdd22edfd88360a",
+    "contextWorkstreamId": "W-003",
+    "contextSliceId": "SLC-01",
+    "contextSealRevision": 1,
+    "contextGeneratedAt": "2026-09-03T05:14:17.250Z"
+  },
+  "intent": {
+    "userPrompt": "Replace verify-dashboard home with active bet + open turn; add /workstreams; turn episode side collections; brand as Spec Ledger.",
+    "restatedGoal": "Ship Spec Ledger dogfood UI: workstreams home, episode trail, Spec Ledger chrome",
+    "changeType": "feature",
+    "riskLevel": "moderate",
+    "workstreamId": "W-003",
+    "sliceId": "SLC-01",
+    "featureIds": [
+      "lattice",
+      "turns",
+      "client"
+    ]
+  },
+  "closedAt": "2026-09-03T05:14:17.520Z",
+  "facts": {
+    "producedBy": "@nessa/spec-ledger@0.1.0",
+    "commit": "04f5d3138040e87b562d33d71f659c702325b691",
+    "files": [
+      {
+        "path": ".spec-ledger/reviews/turns/T-006/R-01.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/turns/T-006.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/workstreams/W-003.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/workstreams/W-003.seals/1.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/client/src/index.ts",
+        "kind": "modified",
+        "additions": 24,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/episodes/bundle.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/fs/snapshot.ts",
+        "kind": "modified",
+        "additions": 3,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/index.ts",
+        "kind": "modified",
+        "additions": 1,
+        "deletions": 0
+      },
+      {
+        "path": "packages/server/src/routes.ts",
+        "kind": "modified",
+        "additions": 33,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ui/app/features/page.tsx",
+        "kind": "modified",
+        "additions": 2,
+        "deletions": 2
+      },
+      {
+        "path": "packages/ui/app/layout.tsx",
+        "kind": "modified",
+        "additions": 4,
+        "deletions": 4
+      },
+      {
+        "path": "packages/ui/app/page.tsx",
+        "kind": "modified",
+        "additions": 151,
+        "deletions": 157
+      },
+      {
+        "path": "packages/ui/app/turns/[id]/page.tsx",
+        "kind": "modified",
+        "additions": 3,
+        "deletions": 3
+      },
+      {
+        "path": "packages/ui/app/workstreams/[id]/page.tsx",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ui/app/workstreams/page.tsx",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ui/components/lattice-shell.tsx",
+        "kind": "modified",
+        "additions": 10,
+        "deletions": 5
+      },
+      {
+        "path": "packages/ui/components/turn-detail.tsx",
+        "kind": "modified",
+        "additions": 137,
+        "deletions": 3
+      },
+      {
+        "path": "packages/ui/package-lock.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ui/package.json",
+        "kind": "modified",
+        "additions": 1,
+        "deletions": 1
+      }
+    ],
+    "touchedNodeIds": [
+      "ledger-client",
+      "ledger-core",
+      "ledger-server",
+      "ledger-ui"
+    ],
+    "touchedFeatureIds": [
+      "client",
+      "lattice",
+      "server",
+      "turns",
+      "verify"
+    ],
+    "touchedClaimIds": [
+      "SL-003",
+      "SL-005",
+      "SL-007"
+    ],
+    "blastRadius": {
+      "direct": [
+        "ledger-server",
+        "ledger-ui"
+      ],
+      "transitive": [
+        "ledger-server",
+        "ledger-ui"
+      ]
+    },
+    "verify": {
+      "ok": true,
+      "ledgerDigest": "9731a4d02e58971ec6e340a4385d32d9fc3c09ad55c0a7f2c137cbc356c9052a",
+      "resultsDigest": "ded3eb2608a70a2e28040c5e1e7c4faa49be0d27b4ffc4d3e2a3ffb91bf72fbb",
+      "treeDigest": "fe81bff9faee505698bbdbf728369aeaba09c0696dda892872c3302294fb22e9",
+      "producedAt": "2026-09-03T05:14:17.438Z"
+    },
+    "schemaSurfaceChanged": false,
+    "reviewsDigest": "ce1fcac5cbce2624c652d3ad8adcd3fda92c3e65ba7aa3ac6dd84fa24dc1c379"
+  }
+}

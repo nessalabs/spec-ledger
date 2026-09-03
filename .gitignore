@@ -5,3 +5,4 @@ dist
 *.log
 .spec-ledger/results/
 .DS_Store
+packages/ui/package-lock.json

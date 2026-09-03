@@ -50,6 +50,7 @@ export {
   listFlowsForTurn,
   episodeDigestsForTurn,
 } from "./episodes/load.js"
+export { getTurnEpisode, type TurnEpisode } from "./episodes/bundle.js"
 export {
   writeDecision,
   writeSource,

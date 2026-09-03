@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
-import { LatticeShell } from "@/components/lattice-shell"
+import { SpecLedgerShell } from "@/components/lattice-shell"
 import "./globals.css"
 
 const sans = Geist({
@@ -14,8 +14,8 @@ const mono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: "Spec Ledger Lattice",
-  description: "Claim adherence, contracts, and structure — nessalabs",
+  title: "Spec Ledger",
+  description: "Claim adherence, workstreams, and episode history — nessalabs",
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -24,7 +24,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body
         className={`${sans.variable} ${mono.variable} h-full overflow-hidden antialiased`}
       >
-        <LatticeShell>{children}</LatticeShell>
+        <SpecLedgerShell>{children}</SpecLedgerShell>
       </body>
     </html>
   )
