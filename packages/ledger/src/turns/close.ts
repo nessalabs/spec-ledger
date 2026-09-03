@@ -5,6 +5,7 @@ import { getVerticalContext } from "../context/vertical.js"
 import { blastRadius } from "../graph/impact.js"
 import { loadLedger, writeJson } from "../fs/load.js"
 import { verifyLedger } from "../verify/verify.js"
+import { assertTurnCloseAllowed } from "./gates.js"
 import type {
   LoadedLedger,
   Turn,
@@ -298,6 +299,8 @@ export function closeTurn(repoRootInput: string, id?: string): Turn {
   if (target.status === "closed" && target.facts) {
     throw new Error(`turn ${target.id} is already closed`)
   }
+
+  assertTurnCloseAllowed(ledger.repoRoot, target)
 
   const facts = computeTurnFacts(ledger)
   const closed: Turn = {

@@ -17,6 +17,7 @@ export {
   computeTurnFacts,
   collectGitFiles,
 } from "./turns/close.js"
+export { assertTurnCloseAllowed } from "./turns/gates.js"
 export { getVerticalContext } from "./context/vertical.js"
 export {
   listWorkstreams,
@@ -25,3 +26,9 @@ export {
   checkSeal,
   computeSpecDigest,
 } from "./workstream/load.js"
+export {
+  listReviewsForTurn,
+  writeReview,
+  nextReviewId,
+  codeBreakSatisfied,
+} from "./reviews/load.js"

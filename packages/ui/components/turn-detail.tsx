@@ -42,6 +42,22 @@ export function TurnSummaryCard({
         <CardDescription className="text-sm text-foreground">
           {turn.intent.restatedGoal}
         </CardDescription>
+        {(turn.intent.workstreamId || turn.opened?.contextDigest) && (
+          <p className="font-mono text-[11px] text-muted-foreground">
+            {turn.intent.workstreamId ? (
+              <span>
+                {turn.intent.workstreamId}
+                {turn.intent.sliceId ? ` / ${turn.intent.sliceId}` : ""}
+              </span>
+            ) : null}
+            {turn.opened?.contextDigest ? (
+              <span>
+                {turn.intent.workstreamId ? " · " : ""}
+                ctx {turn.opened.contextDigest.slice(0, 12)}…
+              </span>
+            ) : null}
+          </p>
+        )}
         <p className="text-xs text-muted-foreground">
           opened {turn.openedAt}
           {turn.closedAt ? ` · closed ${turn.closedAt}` : ""}
@@ -89,6 +105,25 @@ export function TurnDetail({
         <p className="max-w-2xl text-sm leading-relaxed text-muted-foreground">
           {turn.intent.restatedGoal}
         </p>
+        {(turn.intent.workstreamId || turn.opened?.contextDigest) && (
+          <p className="font-mono text-xs text-muted-foreground">
+            {turn.intent.workstreamId ? (
+              <span>
+                workstream {turn.intent.workstreamId}
+                {turn.intent.sliceId ? ` · slice ${turn.intent.sliceId}` : ""}
+              </span>
+            ) : null}
+            {turn.opened?.contextDigest ? (
+              <span>
+                {turn.intent.workstreamId ? " · " : ""}
+                contextDigest {turn.opened.contextDigest}
+              </span>
+            ) : null}
+            {turn.opened?.contextSealRevision != null ? (
+              <span> · seal rev {turn.opened.contextSealRevision}</span>
+            ) : null}
+          </p>
+        )}
         <p className="text-xs text-muted-foreground">
           opened {turn.openedAt}
           {turn.closedAt ? ` · closed ${turn.closedAt}` : ""}
@@ -110,6 +145,31 @@ export function TurnDetail({
         </CardHeader>
         <CardContent className="space-y-4">
           <p className="text-sm leading-relaxed">{turn.intent.userPrompt}</p>
+          {(turn.intent.workstreamId || turn.intent.featureIds?.length) && (
+            <div className="flex flex-wrap gap-2 font-mono text-xs">
+              {turn.intent.workstreamId ? (
+                <Badge variant="outline">{turn.intent.workstreamId}</Badge>
+              ) : null}
+              {turn.intent.sliceId ? (
+                <Badge variant="outline">{turn.intent.sliceId}</Badge>
+              ) : null}
+              {turn.intent.featureIds?.map((f) => (
+                <Link key={f} href={`/features/${encodeURIComponent(f)}`}>
+                  <Badge variant="secondary">{f}</Badge>
+                </Link>
+              ))}
+            </div>
+          )}
+          {turn.opened?.contextDigest ? (
+            <div>
+              <h3 className="mb-1 font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
+                Context digest
+              </h3>
+              <p className="break-all font-mono text-xs text-muted-foreground">
+                {turn.opened.contextDigest}
+              </p>
+            </div>
+          ) : null}
           {turn.intent.acceptanceCriteria?.length ? (
             <div>
               <h3 className="mb-1 font-mono text-[10px] uppercase tracking-wider text-muted-foreground">

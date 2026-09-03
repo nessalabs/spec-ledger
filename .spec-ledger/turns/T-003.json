@@ -1,0 +1,147 @@
+{
+  "schemaVersion": 1,
+  "id": "T-003",
+  "status": "closed",
+  "openedAt": "2026-09-03T04:25:57.994Z",
+  "opened": {
+    "producedBy": "@nessa/spec-ledger@0.1.0",
+    "baseCommit": "9416459afac6f5f2e0be1072849e448f42833e16",
+    "dirtyAtOpen": [],
+    "contextDigest": "bc1e07f5a905bc5dc003cef62bd3dd4e68e1ce49a7db4ba7796d4c36e8d1f9d2",
+    "contextWorkstreamId": "W-001",
+    "contextSliceId": "SLC-02",
+    "contextSealRevision": 1,
+    "contextGeneratedAt": "2026-09-03T04:25:57.993Z"
+  },
+  "intent": {
+    "userPrompt": "Finish builder loop: turn open stamps contextDigest; close refuses without code-break approve+killersCited; Lattice feature/turn pages show workstreamId and contextDigest.",
+    "restatedGoal": "Ship W-001 SLC-02/03: close gates + Lattice context display",
+    "changeType": "feature",
+    "riskLevel": "moderate",
+    "workstreamId": "W-001",
+    "sliceId": "SLC-02",
+    "featureIds": [
+      "turns",
+      "lattice"
+    ]
+  },
+  "closedAt": "2026-09-03T04:26:05.953Z",
+  "facts": {
+    "producedBy": "@nessa/spec-ledger@0.1.0",
+    "commit": "9416459afac6f5f2e0be1072849e448f42833e16",
+    "files": [
+      {
+        "path": ".spec-ledger/ledger.json",
+        "kind": "modified",
+        "additions": 2,
+        "deletions": 1
+      },
+      {
+        "path": ".spec-ledger/reviews/turns/T-003/R-01.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/turns/T-003.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/cli/main.ts",
+        "kind": "modified",
+        "additions": 63,
+        "deletions": 1
+      },
+      {
+        "path": "packages/ledger/src/index.ts",
+        "kind": "modified",
+        "additions": 7,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/reviews/load.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/turns/close.test.ts",
+        "kind": "modified",
+        "additions": 122,
+        "deletions": 1
+      },
+      {
+        "path": "packages/ledger/src/turns/close.ts",
+        "kind": "modified",
+        "additions": 3,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/turns/gates.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/types.ts",
+        "kind": "modified",
+        "additions": 46,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ui/components/turn-detail.tsx",
+        "kind": "modified",
+        "additions": 60,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ui/lib/turns.ts",
+        "kind": "modified",
+        "additions": 3,
+        "deletions": 1
+      },
+      {
+        "path": "schemas/review.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      }
+    ],
+    "touchedNodeIds": [
+      "ledger-core",
+      "ledger-ui",
+      "schemas"
+    ],
+    "touchedFeatureIds": [
+      "lattice",
+      "turns",
+      "verify"
+    ],
+    "touchedClaimIds": [
+      "SL-001",
+      "SL-003"
+    ],
+    "blastRadius": {
+      "direct": [
+        "ledger-client",
+        "ledger-core",
+        "ledger-server"
+      ],
+      "transitive": [
+        "ledger-client",
+        "ledger-core",
+        "ledger-server",
+        "ledger-ui"
+      ]
+    },
+    "verify": {
+      "ok": true,
+      "ledgerDigest": "581612571376001d998a59861f0ffbf1b07ddda9cabd3616a5368c65a57e3d34",
+      "resultsDigest": "ded3eb2608a70a2e28040c5e1e7c4faa49be0d27b4ffc4d3e2a3ffb91bf72fbb",
+      "producedAt": "2026-09-03T04:26:05.928Z"
+    },
+    "schemaSurfaceChanged": true
+  }
+}

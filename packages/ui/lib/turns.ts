@@ -26,7 +26,9 @@ export function turnsTouchingFeature(turns: Turn[], featureId: string): Turn[] {
     .filter(
       (t) =>
         t.facts?.touchedFeatureIds.includes(featureId) ||
-        t.intent.claimedFeatureIds?.includes(featureId),
+        t.intent.claimedFeatureIds?.includes(featureId) ||
+        t.intent.featureIds?.includes(featureId) ||
+        t.intent.primaryFeatureId === featureId,
     )
     .sort((a, b) => (b.closedAt ?? b.openedAt).localeCompare(a.closedAt ?? a.openedAt))
 }

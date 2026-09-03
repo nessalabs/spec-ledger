@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "id": "T-003/R-01",
+  "turnId": "T-003",
+  "kind": "adversarial",
+  "target": "code",
+  "reviewer": "agent:sl-dev-break",
+  "verdict": "approve",
+  "summary": "Ran close-gate + open-context unit tests; approve for W-001 SLC-02/03.",
+  "killersCited": [
+    "packages/ledger/src/turns/close.test.ts::workstream open stamps contextDigest",
+    "packages/ledger/src/turns/close.test.ts::close refuses missing code-break"
+  ]
+}

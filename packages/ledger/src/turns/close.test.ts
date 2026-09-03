@@ -1,12 +1,23 @@
 import { describe, it } from "node:test"
 import assert from "node:assert/strict"
-import { mkdtempSync, writeFileSync, mkdirSync } from "node:fs"
+import {
+  cpSync,
+  mkdtempSync,
+  writeFileSync,
+  mkdirSync,
+  readFileSync,
+  rmSync,
+} from "node:fs"
 import { join } from "node:path"
 import { tmpdir } from "node:os"
 import { spawnSync } from "node:child_process"
 import { initLedger } from "../cli/init.js"
 import { openTurn, closeTurn, listTurns, deriveTouched, collectGitFiles } from "./close.js"
 import { loadLedger } from "../fs/load.js"
+import { writeReview } from "../reviews/load.js"
+import type { Workstream } from "../types.js"
+
+const REPO = join(import.meta.dirname, "../../../..")
 
 function gitInit(dir: string) {
   spawnSync("git", ["init"], { cwd: dir })
@@ -51,5 +62,115 @@ describe("turns", () => {
       { path: ".spec-ledger/claims/SL-001.json", kind: "added" },
     ])
     assert.ok(derived.touchedClaimIds.includes("SL-001"))
+  })
+
+  it("workstream open stamps contextDigest; unsealed refused", () => {
+    const dir = mkdtempSync(join(tmpdir(), "sl-open-ctx-"))
+    try {
+      cpSync(join(REPO, ".spec-ledger"), join(dir, ".spec-ledger"), { recursive: true })
+      spawnSync("git", ["init"], { cwd: dir })
+      spawnSync("git", ["config", "user.email", "t@e.com"], { cwd: dir })
+      spawnSync("git", ["config", "user.name", "t"], { cwd: dir })
+      spawnSync("git", ["add", "."], { cwd: dir })
+      spawnSync("git", ["commit", "-m", "init"], { cwd: dir })
+
+      const opened = openTurn(
+        dir,
+        {
+          userPrompt: "stamp context",
+          restatedGoal: "Open with sealed slice",
+          workstreamId: "W-001",
+          sliceId: "SLC-02",
+          featureIds: ["turns"],
+        },
+        { workstreamId: "W-001", sliceId: "SLC-02", featureIds: ["turns"] },
+      )
+      assert.equal(opened.opened?.contextWorkstreamId, "W-001")
+      assert.equal(opened.opened?.contextSliceId, "SLC-02")
+      assert.equal(opened.opened?.contextDigest?.length, 64)
+
+      // close needs code-break; abandon by deleting for next fixture step
+      rmSync(join(dir, ".spec-ledger/turns", `${opened.id}.json`))
+
+      const wsPath = join(dir, ".spec-ledger/workstreams/W-001.json")
+      const ws = JSON.parse(readFileSync(wsPath, "utf8")) as Workstream
+      ws.status = "shaped"
+      delete ws.seal
+      writeFileSync(wsPath, JSON.stringify(ws, null, 2))
+      assert.throws(
+        () =>
+          openTurn(
+            dir,
+            {
+              userPrompt: "unsealed",
+              restatedGoal: "should fail",
+              workstreamId: "W-001",
+              sliceId: "SLC-02",
+            },
+            { workstreamId: "W-001", sliceId: "SLC-02" },
+          ),
+        /sealed/,
+      )
+    } finally {
+      rmSync(dir, { recursive: true, force: true })
+    }
+  })
+
+  it("close refuses missing code-break; approve+killers allows", () => {
+    const dir = mkdtempSync(join(tmpdir(), "sl-close-gate-"))
+    try {
+      cpSync(join(REPO, ".spec-ledger"), join(dir, ".spec-ledger"), { recursive: true })
+      // Avoid colliding with copied open/closed turns
+      rmSync(join(dir, ".spec-ledger/turns"), { recursive: true, force: true })
+      mkdirSync(join(dir, ".spec-ledger/turns"), { recursive: true })
+      spawnSync("git", ["init"], { cwd: dir })
+      spawnSync("git", ["config", "user.email", "t@e.com"], { cwd: dir })
+      spawnSync("git", ["config", "user.name", "t"], { cwd: dir })
+      spawnSync("git", ["add", "."], { cwd: dir })
+      spawnSync("git", ["commit", "-m", "init"], { cwd: dir })
+
+      openTurn(
+        dir,
+        {
+          userPrompt: "gate close",
+          restatedGoal: "Require code break",
+          workstreamId: "W-001",
+          sliceId: "SLC-02",
+          featureIds: ["turns"],
+        },
+        { workstreamId: "W-001", sliceId: "SLC-02", featureIds: ["turns"] },
+      )
+
+      assert.throws(() => closeTurn(dir), /requireCodeBreak/)
+
+      writeReview(dir, {
+        schemaVersion: 1,
+        id: "T-001/R-01",
+        turnId: "T-001",
+        kind: "adversarial",
+        target: "code",
+        reviewer: "agent:test",
+        verdict: "comment",
+        summary: "note only",
+      })
+      assert.throws(() => closeTurn(dir), /requireCodeBreak/)
+
+      writeReview(dir, {
+        schemaVersion: 1,
+        id: "T-001/R-02",
+        turnId: "T-001",
+        kind: "adversarial",
+        target: "code",
+        reviewer: "agent:test",
+        verdict: "approve",
+        summary: "killers ran",
+        killersCited: ["packages/ledger/src/turns/close.test.ts::close refuses"],
+      })
+      const closed = closeTurn(dir)
+      assert.equal(closed.status, "closed")
+      assert.ok(closed.opened?.contextDigest)
+    } finally {
+      rmSync(dir, { recursive: true, force: true })
+    }
   })
 })

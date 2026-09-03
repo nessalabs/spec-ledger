@@ -12,7 +12,12 @@ import {
   loadWorkstream,
   sealWorkstream,
 } from "../workstream/load.js"
-import type { TurnIntent } from "../types.js"
+import {
+  listReviewsForTurn,
+  nextReviewId,
+  writeReview,
+} from "../reviews/load.js"
+import type { Review, TurnIntent } from "../types.js"
 
 function usage(): never {
   console.log(`spec-ledger — claim adherence ledger
@@ -32,6 +37,9 @@ Usage:
       [--no-context --no-context-reason <text>] [--root <dir>]
   spec-ledger turn close [--id T-001] [--root <dir>]
   spec-ledger turn list [--root <dir>]
+  spec-ledger review add --turn T-001 --verdict approve|request-changes|comment
+      --reviewer <who> --summary <text> [--killers id1,id2] [--blocking] [--root <dir>]
+  spec-ledger review list --turn T-001 [--root <dir>]
 
 Truth lives in .spec-ledger/ + source tree + ingested results.
 Turn facts are written only by \`turn close\` (git + verify digests).
@@ -259,6 +267,60 @@ async function main(): Promise<void> {
       process.exit(turn.facts?.verify.ok ? 0 : 1)
     }
 
+    usage()
+  }
+
+  if (cmd === "review") {
+    const sub = argv[1]
+    if (sub === "list") {
+      const turnId = argValue(argv, "--turn")
+      if (!turnId) {
+        console.error("usage: spec-ledger review list --turn T-001")
+        process.exit(2)
+      }
+      console.log(JSON.stringify(listReviewsForTurn(root, turnId), null, 2))
+      return
+    }
+    if (sub === "add") {
+      const turnId = argValue(argv, "--turn")
+      const verdict = argValue(argv, "--verdict") as Review["verdict"] | undefined
+      const reviewer = argValue(argv, "--reviewer")
+      const summary = argValue(argv, "--summary")
+      if (!turnId || !verdict || !reviewer || !summary) {
+        console.error(
+          "usage: spec-ledger review add --turn T --verdict approve|request-changes|comment --reviewer <who> --summary <text> [--killers a,b] [--blocking]",
+        )
+        process.exit(2)
+      }
+      if (!["approve", "request-changes", "comment"].includes(verdict)) {
+        console.error("verdict must be approve|request-changes|comment")
+        process.exit(2)
+      }
+      const killersRaw = argValue(argv, "--killers")
+      const killersCited = killersRaw
+        ? killersRaw.split(",").map((s) => s.trim()).filter(Boolean)
+        : undefined
+      if (verdict === "approve" && (!killersCited || !killersCited.length)) {
+        console.error("approve requires --killers <id1,id2>")
+        process.exit(2)
+      }
+      const id = nextReviewId(root, turnId)
+      const review: Review = {
+        schemaVersion: 1,
+        id,
+        turnId,
+        kind: "adversarial",
+        target: "code",
+        reviewer,
+        verdict,
+        summary,
+        ...(killersCited ? { killersCited } : {}),
+        ...(hasFlag(argv, "--blocking") ? { blocking: true } : {}),
+      }
+      writeReview(root, review)
+      console.log(`wrote ${id}`)
+      return
+    }
     usage()
   }
 

@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "id": "W-001",
-  "status": "sealed",
+  "status": "done",
   "createdAt": "2026-09-03T04:10:00.000Z",
-  "updatedAt": "2026-09-03T04:22:35.518Z",
+  "updatedAt": "2026-09-03T04:27:00.000Z",
   "featureIds": [
     "turns",
     "lattice",

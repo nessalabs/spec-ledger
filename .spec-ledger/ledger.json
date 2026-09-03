@@ -10,5 +10,6 @@
   "reportPath": "results/report.json",
   "visionPath": "vision.json",
   "tenetsDir": "tenets",
-  "workstreamsDir": "workstreams"
+  "workstreamsDir": "workstreams",
+  "reviewsDir": "reviews"
 }

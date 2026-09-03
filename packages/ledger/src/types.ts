@@ -141,6 +141,7 @@ export interface LedgerRootConfig {
   tenetsDir?: string
   workstreamsDir?: string
   proposedClaimsDir?: string
+  reviewsDir?: string
 }
 
 export type TurnStatus = "open" | "closed" | "abandoned"
@@ -328,6 +329,51 @@ export interface VerticalContext {
   contextDigest: string
   generatedAt: string
   truncation?: { decisions: number; turns: number; note: string }
+}
+
+export type ReviewVerdict = "approve" | "request-changes" | "comment"
+
+export type ReviewEvidence =
+  | {
+      kind: "command"
+      command: string
+      observedOutput: string
+      exitCode?: number
+    }
+  | {
+      kind: "test"
+      citedTest: string
+      ran: true
+      command?: string
+      observedOutput?: string
+    }
+
+export interface ReviewFinding {
+  id: string
+  severity: "low" | "moderate" | "high" | "critical"
+  claimId?: string
+  gap: string
+  fixProposal?: string
+  evidence?: ReviewEvidence
+  evidencePath?: string
+}
+
+export interface Review {
+  schemaVersion: 1
+  id: string
+  turnId?: string
+  workstreamId?: string
+  kind?: "human" | "adversarial" | "discussion"
+  target?: "spec" | "code"
+  reviewer: string
+  verdict: ReviewVerdict
+  summary: string
+  blocking?: boolean
+  killersCited?: string[]
+  findings?: ReviewFinding[]
+  resolvesReviewId?: string
+  supersedesReviewId?: string
+  resolvesFindingIds?: string[]
 }
 
 export interface LoadedLedger {
