@@ -110,27 +110,40 @@ export function alignCheck(
   if (turn && policy.requireAlignApprove) {
     const reviews = listReviewsForTurn(repoRoot, turn.id)
     const waivers = listAlignWaiversForTurn(repoRoot, turn.id)
-    const satisfied = alignApproveSatisfied({
-      reviews,
-      waivers,
-      treeDigest,
-      policy,
-      turnHasProductFiles: productCount > 0,
-    })
-    if (satisfied) {
-      const byApprove = reviews.some(
-        (r) =>
-          r.treeDigest === treeDigest &&
-          (Boolean(r.waiverIds?.length) || r.uncoveredPaths?.length === 0),
-      )
-      return {
-        ok: true,
-        treeDigest,
-        turnId: turn.id,
-        workstreamId,
-        coverage,
-        satisfiedBy: byApprove ? "approve" : "waiver",
-        message: `align OK — uncovered waived/approved for treeDigest (${coverage.uncoveredPaths.length} path(s) noted)`,
+    const dirtyProduct = dirtyPaths(repoRoot).filter((p) => !isExemptPath(p))
+    const digests = new Set<string>([treeDigest])
+    // After commit, HEAD moves — approve stamped pre-commit still counts
+    // when there is no fresh dirty product surface.
+    if (turn.status === "closed" && dirtyProduct.length === 0) {
+      if (turn.facts?.verify?.treeDigest) digests.add(turn.facts.verify.treeDigest)
+      for (const r of reviews) {
+        if (r.treeDigest) digests.add(r.treeDigest)
+      }
+      for (const w of waivers) digests.add(w.treeDigest)
+    }
+    for (const d of digests) {
+      const satisfied = alignApproveSatisfied({
+        reviews,
+        waivers,
+        treeDigest: d,
+        policy,
+        turnHasProductFiles: productCount > 0,
+      })
+      if (satisfied) {
+        const byApprove = reviews.some(
+          (r) =>
+            r.treeDigest === d &&
+            (Boolean(r.waiverIds?.length) || r.uncoveredPaths?.length === 0),
+        )
+        return {
+          ok: true,
+          treeDigest,
+          turnId: turn.id,
+          workstreamId,
+          coverage,
+          satisfiedBy: byApprove ? "approve" : "waiver",
+          message: `align OK — uncovered waived/approved for treeDigest (${coverage.uncoveredPaths.length} path(s) noted)`,
+        }
       }
     }
   }

@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "id": "T-018/R-02",
+  "turnId": "T-018",
+  "workstreamId": "W-004",
+  "kind": "adversarial",
+  "target": "code",
+  "reviewer": "agent:sl-dev-break",
+  "verdict": "approve",
+  "summary": "Killer: after commit, clean-tree align check must still honor closed-turn approve/waiver digests.",
+  "killersCited": [
+    "packages/ledger/src/align/check.ts::closed-turn digest fallback",
+    "pnpm ledger:align on clean tree"
+  ],
+  "treeDigest": "f64702b0233d0205a88b027e2d1a0a5470525e7d007907740d21e579610144f1"
+}

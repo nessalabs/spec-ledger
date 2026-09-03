@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "id": "T-018",
+  "status": "closed",
+  "openedAt": "2026-09-03T08:44:49.445Z",
+  "opened": {
+    "producedBy": "@nessa/spec-ledger@0.1.0",
+    "baseCommit": "48961f4799a4dc0f343c1ccf559291eda2e3909c",
+    "treeDigest": "f64702b0233d0205a88b027e2d1a0a5470525e7d007907740d21e579610144f1",
+    "dirtyAtOpen": [
+      "packages/ledger/src/align/check.ts"
+    ],
+    "contextDigest": "cbe3752636451a2131e4930c32c77849cccbbd84d69b04df10ae688692236237",
+    "contextWorkstreamId": "W-004",
+    "contextSliceId": "SLC-04",
+    "contextSealRevision": 1,
+    "contextGeneratedAt": "2026-09-03T08:44:49.444Z"
+  },
+  "intent": {
+    "userPrompt": "Align check: honor closed-turn approve after commit (CI clean tree)",
+    "restatedGoal": "Align check: honor closed-turn approve after commit (CI clean tree)",
+    "changeType": "feature",
+    "riskLevel": "moderate",
+    "workstreamId": "W-004",
+    "sliceId": "SLC-04",
+    "featureIds": [
+      "turns",
+      "verify"
+    ]
+  },
+  "closedAt": "2026-09-03T08:45:28.440Z",
+  "facts": {
+    "producedBy": "@nessa/spec-ledger@0.1.0",
+    "commit": "48961f4799a4dc0f343c1ccf559291eda2e3909c",
+    "files": [
+      {
+        "path": ".spec-ledger/reviews/turns/T-018/R-01.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/turns/T-018/R-02.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/turns/T-018.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/align/check.ts",
+        "kind": "modified",
+        "additions": 34,
+        "deletions": 21
+      }
+    ],
+    "touchedNodeIds": [
+      "ledger-core"
+    ],
+    "touchedFeatureIds": [
+      "lattice",
+      "turns",
+      "verify"
+    ],
+    "touchedClaimIds": [],
+    "blastRadius": {
+      "direct": [
+        "ledger-server"
+      ],
+      "transitive": [
+        "ledger-server"
+      ]
+    },
+    "verify": {
+      "ok": true,
+      "ledgerDigest": "9731a4d02e58971ec6e340a4385d32d9fc3c09ad55c0a7f2c137cbc356c9052a",
+      "resultsDigest": "ded3eb2608a70a2e28040c5e1e7c4faa49be0d27b4ffc4d3e2a3ffb91bf72fbb",
+      "treeDigest": "f64702b0233d0205a88b027e2d1a0a5470525e7d007907740d21e579610144f1",
+      "producedAt": "2026-09-03T08:45:28.378Z"
+    },
+    "schemaSurfaceChanged": false,
+    "reviewsDigest": "9b525b095d653b3839183d1358b2d9b77477bef8c4eebdbe5403f65f39a5a30d"
+  }
+}

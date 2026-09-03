@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "id": "T-018/R-01",
+  "turnId": "T-018",
+  "workstreamId": "W-004",
+  "kind": "human",
+  "target": "code",
+  "reviewer": "agent:align",
+  "verdict": "approve",
+  "summary": "Coverage intent: post-commit align check accepts closed-turn approve digests when worktree has no dirty product paths.",
+  "treeDigest": "f64702b0233d0205a88b027e2d1a0a5470525e7d007907740d21e579610144f1",
+  "uncoveredPaths": [],
+  "coverageSource": "mixed"
+}
