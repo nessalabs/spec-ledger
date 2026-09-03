@@ -554,21 +554,29 @@ Attachment {
   schemaVersion: 1
   id: string                       // "T-002/A-01"
   turnId: TurnId
-  kind: "prompt"|"rationale"|"log-excerpt"|"diff-note"|"image-ref"|"other"
-  title: string
-  mediaType: string
-  path: string                     // under attachments/{turnId}/
+  kind: "prompt"|"rationale"|"log-excerpt"|"diff-note"
+      |"image"|"video"|"image-ref"|"other"
+  title?: string
+  mediaType?: string               // IANA, e.g. image/png, video/mp4
+  path: string                     // under attachments/{turnId}/ OR external ref URL
   byteLength?: number              // tool on add
-  contentDigest?: string           // tool on add
+  contentDigest?: string           // tool on add (of local file bytes when present)
   decisionId?: string
   sourceId?: string
   probeId?: string
-  reviewId?: string
+  reviewId?: string                // CR finding / review this media supports
   flowId?: string
 }
 ```
 
-Default text size cap 256 KiB; warn on secret heuristics; never store credentials.
+**Code-review media:** `kind: "image"|"video"` (and `image-ref`) are first-class so
+reviews can point at screenshots or short clips. Spec Ledger stores **metadata +
+path/URL only** — it does not host or stream binary media. Prefer linking a
+checkout path or an external URL; do not commit large binaries to this repo
+unless the product explicitly needs them dogfooded.
+
+Default text size cap 256 KiB for text bodies; warn on secret heuristics; never
+store credentials.
 
 ### 6.5 Probe — `schemas/probe.json`
 
@@ -880,7 +888,9 @@ spec-ledger decision add --turn T-002 --kind deviate --title "…" --rationale-f
 spec-ledger probe add --turn T-002 --hypothesis "…" --method "…" --result "…" \
   --outcome supports|rejects|inconclusive [--json]
 spec-ledger flow add --turn T-002 --title "…" --after-file after.mmd [--before-file …] [--json]
-spec-ledger attachment add --turn T-002 --kind log-excerpt --title "…" --file path [--json]
+spec-ledger attachment add --turn T-002 --path path-or-url \
+  [--kind log-excerpt|image|video|…] [--title "…"] [--media-type image/png] \
+  [--review T-002/R-01] [--json]
 spec-ledger review add --turn T-002 --reviewer "…" --verdict approve|request-changes|comment \
   --summary "…" [--blocking] [--json]
 

@@ -36,7 +36,7 @@ import {
   listProbesForTurn,
   listSourcesForTurn,
 } from "../episodes/load.js"
-import type { Review, TurnIntent } from "../types.js"
+import type { EpisodeAttachment, Review, TurnIntent } from "../types.js"
 
 function usage(): never {
   console.log(`spec-ledger — claim adherence ledger
@@ -472,12 +472,21 @@ async function main(): Promise<void> {
     if (cmd === "attachment") {
       const path = argValue(argv, "--path")
       if (!path) {
-        console.error("usage: spec-ledger attachment add --turn T --path <path>")
+        console.error(
+          "usage: spec-ledger attachment add --turn T --path <path|url> [--kind image|video|…] [--title t] [--media-type mt] [--review R-id]",
+        )
         process.exit(2)
       }
+      const kind = argValue(argv, "--kind") as
+        | EpisodeAttachment["kind"]
+        | undefined
       const a = writeAttachment(root, {
         turnId,
         path,
+        kind,
+        title: argValue(argv, "--title"),
+        mediaType: argValue(argv, "--media-type"),
+        reviewId: argValue(argv, "--review"),
         note: argValue(argv, "--note"),
       })
       console.log(`wrote ${a.id}`)

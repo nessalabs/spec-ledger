@@ -444,9 +444,29 @@ export interface EpisodeAttachment {
   schemaVersion: 1
   id: string
   turnId: string
+  /** What the artifact is — includes CR media kinds. */
+  kind?:
+    | "prompt"
+    | "rationale"
+    | "log-excerpt"
+    | "diff-note"
+    | "image"
+    | "video"
+    | "image-ref"
+    | "other"
+  title?: string
+  /** IANA media type when known, e.g. image/png, video/mp4. */
+  mediaType?: string
   path: string
+  byteLength?: number
   contentDigest?: string
   note?: string
+  decisionId?: string
+  sourceId?: string
+  probeId?: string
+  /** Link to a code/spec review when this is CR evidence. */
+  reviewId?: string
+  flowId?: string
 }
 
 export interface EpisodeProbe {

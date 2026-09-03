@@ -5,6 +5,9 @@
 Generic **claim adherence** + **lattice viewing** for any codebase. Built so Nessa
 (and later any product) can keep agent velocity high without quality rotting.
 
+Episode attachments may reference **image/video** for code-review evidence
+(`kind: image|video`); this repo stores metadata + path/URL only — no media CDN.
+
 > **Hard invariant:** a verify verdict is a pure function of (ledger files,
 > source tree, ingested results) and carries digests of those inputs. Nothing
 > else may produce `pass`.
