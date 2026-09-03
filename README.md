@@ -1,4 +1,6 @@
-# Spec Ledger (`nessa-spec-test`)
+# Spec Ledger
+
+**Repo:** [nessalabs/spec-ledger](https://github.com/nessalabs/spec-ledger)
 
 Generic **claim adherence** + **lattice viewing** for any codebase. Built so Nessa
 (and later any product) can keep agent velocity high without quality rotting.
@@ -14,7 +16,7 @@ Work model: [docs/architecture/work-model.md](./docs/architecture/work-model.md)
 
 | Package | Role |
 | --- | --- |
-| [`@nessa/spec-ledger`](packages/ledger) | Core + CLI (`init`, `verify`, `impact`, `layers`, `turn`) |
+| [`@nessa/spec-ledger`](packages/ledger) | Core + CLI (`init`, `verify`, `context`, `workstream`, `turn`) |
 | [`@nessa/spec-ledger-client`](packages/client) | **Only** gateway for UIs / embedders |
 | [`@nessa/spec-ledger-server`](packages/server) | Read-only HTTP API (no writes — SL-003) |
 | [`@nessa/spec-ledger-ui`](packages/ui) | Reference Lattice (Next.js + `@nessa-ui/react`, client-only) |
@@ -30,8 +32,21 @@ pnpm install
 pnpm -r build
 pnpm test
 pnpm verify          # dogfoods this repo's .spec-ledger/
-pnpm lattice         # http://127.0.0.1:3737 — Overview / Claims / Contracts / Graph / Turns / Verify
+pnpm hooks:install   # SL-Turn commit-msg + staged JSON checks
+pnpm lattice         # http://127.0.0.1:3737
 pnpm serve           # http://127.0.0.1:8787 — read-only HTTP API
+```
+
+Workstreams + context (P0):
+
+```bash
+pnpm exec spec-ledger workstream seal W-001 --by human
+pnpm exec spec-ledger workstream check-seal W-001
+pnpm exec spec-ledger context --workstream W-001 --slice SLC-01 --json
+pnpm exec spec-ledger turn open \
+  --workstream W-001 --slice SLC-01 --feature turns \
+  --goal "Implement SLC-01 context path" \
+  --prompt "Implement sealed context + contextDigest stamp"
 ```
 
 Turns (intent + tool facts):

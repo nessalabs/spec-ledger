@@ -1,11 +1,14 @@
 {
   "schemaVersion": 1,
-  "name": "nessa-spec-test",
+  "name": "spec-ledger",
   "claimsDir": "claims",
   "bindingsDir": "bindings",
   "turnsDir": "turns",
   "graphPath": "graph/codebase-graph.json",
   "policyPath": "policy/layers.json",
   "resultsPath": "results/last.json",
-  "reportPath": "results/report.json"
+  "reportPath": "results/report.json",
+  "visionPath": "vision.json",
+  "tenetsDir": "tenets",
+  "workstreamsDir": "workstreams"
 }

@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "id": "TN-001",
+  "statement": "When honesty and convenience conflict, prefer honest digests over green theater",
+  "scope": "product",
+  "status": "active",
+  "origin": "user",
+  "weight": "must",
+  "confirmedAt": "2026-09-03T04:00:00.000Z",
+  "confirmedBy": "human",
+  "createdAt": "2026-09-03T04:00:00.000Z"
+}

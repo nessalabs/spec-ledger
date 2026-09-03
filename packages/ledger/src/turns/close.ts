@@ -1,6 +1,7 @@
 import { spawnSync } from "node:child_process"
 import { existsSync, readdirSync, readFileSync } from "node:fs"
 import { join } from "node:path"
+import { getVerticalContext } from "../context/vertical.js"
 import { blastRadius } from "../graph/impact.js"
 import { loadLedger, writeJson } from "../fs/load.js"
 import { verifyLedger } from "../verify/verify.js"
@@ -209,8 +210,19 @@ function readTurnFile(ledger: LoadedLedger, id: string): { path: string; turn: T
 export function openTurn(
   repoRootInput: string,
   intent: Turn["intent"],
-  idHint?: string,
+  idHintOrOpts?: string | {
+    idHint?: string
+    workstreamId?: string
+    sliceId?: string
+    featureIds?: string[]
+    noContext?: boolean
+    noContextReason?: string
+  },
 ): Turn {
+  const opts =
+    typeof idHintOrOpts === "string"
+      ? { idHint: idHintOrOpts }
+      : (idHintOrOpts ?? {})
   const ledger = loadLedger(repoRootInput)
   const dir = turnsDir(ledger)
   const existing = listTurns(ledger)
@@ -223,15 +235,53 @@ export function openTurn(
       const n = Number(t.id.replace(/^T-/, "").split(".")[0])
       return Number.isFinite(n) ? Math.max(max, n) : max
     }, 0) + 1
-  const id = idHint ?? `T-${String(nextNum).padStart(3, "0")}`
+  const id = opts.idHint ?? `T-${String(nextNum).padStart(3, "0")}`
   if (existing.some((t) => t.id === id)) throw new Error(`turn id already exists: ${id}`)
+
+  const workstreamId = opts.workstreamId ?? intent.workstreamId
+  const sliceId = opts.sliceId ?? intent.sliceId
+  const featureIds = opts.featureIds ?? intent.featureIds
+
+  let opened: Turn["opened"] = {
+    producedBy: PRODUCED_BY,
+    baseCommit: gitCommit(ledger.repoRoot),
+    dirtyAtOpen: [],
+  }
+
+  const finalIntent: Turn["intent"] = {
+    ...intent,
+    ...(workstreamId ? { workstreamId } : {}),
+    ...(sliceId ? { sliceId } : {}),
+    ...(featureIds?.length ? { featureIds } : {}),
+  }
+
+  if (workstreamId) {
+    if (opts.noContext) {
+      if (!opts.noContextReason) {
+        throw new Error("--no-context requires --no-context-reason")
+      }
+      opened = { ...opened, noContextReason: opts.noContextReason }
+    } else {
+      if (!sliceId) throw new Error("turn open --workstream requires --slice")
+      const ctx = getVerticalContext(ledger.repoRoot, workstreamId, sliceId)
+      opened = {
+        ...opened,
+        contextDigest: ctx.contextDigest,
+        contextWorkstreamId: workstreamId,
+        contextSliceId: sliceId,
+        contextSealRevision: ctx.seal.revision,
+        contextGeneratedAt: ctx.generatedAt,
+      }
+    }
+  }
 
   const turn: Turn = {
     schemaVersion: 1,
     id,
     status: "open",
     openedAt: new Date().toISOString(),
-    intent,
+    opened,
+    intent: finalIntent,
   }
   writeJson(join(dir, `${id}.json`), turn)
   return turn

@@ -1,0 +1,125 @@
+{
+  "schemaVersion": 1,
+  "id": "W-001",
+  "status": "sealed",
+  "createdAt": "2026-09-03T04:10:00.000Z",
+  "updatedAt": "2026-09-03T04:22:35.518Z",
+  "featureIds": [
+    "turns",
+    "lattice",
+    "verify"
+  ],
+  "primaryFeatureId": "turns",
+  "title": "Builder episode loop",
+  "problem": "turn open does not load a sealed slice or stamp contextDigest; builders start from chat memory; close cannot refuse a missing code-break.",
+  "objective": "Sealed slice → typed VerticalContext (stable digest) → turn open stamps it → close can refuse without code-break → closed episode visible on existing Lattice feature/turn pages.",
+  "appetite": "2–4 days",
+  "changeType": "feature",
+  "riskLevel": "elevated",
+  "trust": {
+    "deployTarget": "library-consumer",
+    "userFacing": true,
+    "performanceCritical": false,
+    "securitySensitive": false,
+    "correctnessCritical": true,
+    "requiredEvidence": [
+      "unit",
+      "integration",
+      "e2e"
+    ]
+  },
+  "policy": {
+    "alertOnSeverity": "high",
+    "onAlert": "wait",
+    "alertWaitMinutes": 10,
+    "onAlertTimeout": "move",
+    "onSealedSpecDeviation": "wait",
+    "sealedDeviationWaitMinutes": 10,
+    "onSealedDeviationTimeout": "move",
+    "requireSpecBreak": true,
+    "requireCodeBreak": true,
+    "onAwaitingSeal": "block"
+  },
+  "acceptanceCriteria": [
+    "workstream seal + check-seal with immutable seals/1.json",
+    "spec-ledger context and getVerticalContext share contextDigest",
+    "turn open --workstream stamps opened.contextDigest; unsealed open refused",
+    "turn close can refuse missing code-break for workstream turns",
+    "closed workstream turn visible on existing Lattice feature/turn pages",
+    "workstream/context files do not change verify ledgerDigest"
+  ],
+  "outOfScope": [
+    "compass UI",
+    "timeline routes",
+    "server /context",
+    "automation wait/resume runtime",
+    "decisions/ side collection",
+    "related --worktrees"
+  ],
+  "proposedClaimIds": [
+    "PC-001",
+    "PC-002",
+    "PC-003",
+    "PC-004",
+    "PC-005"
+  ],
+  "suggestedSlices": [
+    {
+      "id": "SLC-01",
+      "title": "Sealed slice → typed context",
+      "kind": "vertical",
+      "acceptance": [
+        "workstream init/seal/check-seal roundtrip",
+        "CLI context ≡ getVerticalContext contextDigest",
+        "verify ledgerDigest unchanged when workstreams/vision present"
+      ],
+      "evidence": [
+        "unit",
+        "integration"
+      ],
+      "expectedClaimIds": [
+        "SL-001",
+        "SL-003"
+      ]
+    },
+    {
+      "id": "SLC-02",
+      "title": "Open → break-while-open → close refusals",
+      "kind": "vertical",
+      "acceptance": [
+        "unsealed open refused",
+        "open stamps contextDigest",
+        "close without code-break review refused when requireCodeBreak"
+      ],
+      "evidence": [
+        "unit",
+        "integration"
+      ],
+      "expectedClaimIds": [
+        "SL-001"
+      ]
+    },
+    {
+      "id": "SLC-03",
+      "title": "Closed episode on existing Lattice pages",
+      "kind": "vertical",
+      "acceptance": [
+        "/features/turns and /turns/[id] show workstreamId + contextDigest"
+      ],
+      "evidence": [
+        "e2e",
+        "integration"
+      ],
+      "expectedClaimIds": [
+        "SL-005"
+      ]
+    }
+  ],
+  "seal": {
+    "sealedAt": "2026-09-03T04:22:35.518Z",
+    "sealedBy": "human",
+    "specDigest": "e4367c69769779d2eaa334239d33cc591cf9afcb3a291da4532038b06108ac6d",
+    "snapshotPath": "workstreams/W-001.seals/1.json",
+    "revision": 1
+  }
+}

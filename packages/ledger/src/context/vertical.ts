@@ -1,0 +1,157 @@
+import { existsSync, readdirSync, readFileSync } from "node:fs"
+import { join } from "node:path"
+import { blastRadius } from "../graph/impact.js"
+import { findRepoRoot, ledgerRoot, loadLedger, sha256Stable } from "../fs/load.js"
+import {
+  loadSealSnapshot,
+  loadWorkstream,
+} from "../workstream/load.js"
+import type {
+  Claim,
+  EvidenceBinding,
+  GraphNode,
+  Tenet,
+  VerticalContext,
+  Vision,
+  WorkstreamSlice,
+} from "../types.js"
+
+function readJson<T>(path: string): T {
+  return JSON.parse(readFileSync(path, "utf8")) as T
+}
+
+function loadVision(rootDir: string, visionPath?: string): Vision | null {
+  const path = join(rootDir, visionPath ?? "vision.json")
+  if (!existsSync(path)) return null
+  return readJson<Vision>(path)
+}
+
+function loadTenets(rootDir: string, tenetsDir?: string): Tenet[] {
+  const dir = join(rootDir, tenetsDir ?? "tenets")
+  if (!existsSync(dir)) return []
+  return readdirSync(dir)
+    .filter((f) => f.endsWith(".json"))
+    .sort()
+    .map((f) => readJson<Tenet>(join(dir, f)))
+    .filter((t) => t.status === "active")
+}
+
+function stableContextSubset(ctx: Omit<VerticalContext, "contextDigest" | "generatedAt">) {
+  return {
+    sealRevision: ctx.seal.revision,
+    sliceId: ctx.slice.id,
+    visionDigest: ctx.vision ? sha256Stable(ctx.vision) : null,
+    tenetIds: ctx.tenets.map((t) => t.id).sort(),
+    claimIds: ctx.claims.live.map((c) => c.id).sort(),
+    predictedBlastRadius: ctx.graph.predictedBlastRadius,
+    sliceAcceptance: ctx.slice.acceptance,
+    workstreamId: ctx.workstream.id,
+    featureIds: [...ctx.workstream.featureIds].sort(),
+  }
+}
+
+export function getVerticalContext(
+  repoRootInput: string,
+  workstreamId: string,
+  sliceId: string,
+): VerticalContext {
+  const repoRoot = findRepoRoot(repoRootInput)
+  const rootDir = ledgerRoot(repoRoot)
+  const ledger = loadLedger(repoRoot)
+  const ws = loadWorkstream(repoRoot, workstreamId)
+  if (!ws.seal || (ws.status !== "sealed" && ws.status !== "active" && ws.status !== "done")) {
+    throw new Error(
+      `workstream ${workstreamId} must be sealed (or active/done) before context`,
+    )
+  }
+  const slice = (ws.suggestedSlices ?? []).find((s) => s.id === sliceId)
+  if (!slice) throw new Error(`slice ${sliceId} not found on ${workstreamId}`)
+
+  const snapshot = loadSealSnapshot(repoRoot, ws)
+  const featureIds = new Set(ws.featureIds)
+  const expected = new Set(slice.expectedClaimIds ?? [])
+
+  const liveClaims: Claim[] = ledger.claims.filter((c) => {
+    if (expected.has(c.id)) return true
+    const feat = ledger.graph?.features.find((f) => featureIds.has(f.id))
+    return feat?.claimIds?.includes(c.id) ?? false
+  })
+  // Also include claims on feature meta for all featureIds
+  for (const f of ledger.graph?.features ?? []) {
+    if (!featureIds.has(f.id)) continue
+    for (const cid of f.claimIds ?? []) {
+      const claim = ledger.claims.find((c) => c.id === cid)
+      if (claim && !liveClaims.some((x) => x.id === claim.id)) liveClaims.push(claim)
+    }
+  }
+  liveClaims.sort((a, b) => a.id.localeCompare(b.id))
+
+  const claimIdSet = new Set(liveClaims.map((c) => c.id))
+  const bindings: EvidenceBinding[] = ledger.bindings.filter((b) =>
+    claimIdSet.has(b.claimId),
+  )
+
+  const nodes: GraphNode[] = (ledger.graph?.nodes ?? []).filter((n) =>
+    (n.featureIds ?? []).some((f) => featureIds.has(f)),
+  )
+  const direct = new Set<string>()
+  const transitive = new Set<string>()
+  if (ledger.graph) {
+    for (const n of nodes) {
+      direct.add(n.id)
+      const r = blastRadius(ledger.graph, n.id)
+      for (const id of r.direct) direct.add(id)
+      for (const id of r.transitive) transitive.add(id)
+    }
+  }
+
+  const priorTurns = ledger.turns
+    .filter(
+      (t) =>
+        t.intent.workstreamId === workstreamId ||
+        t.intent.featureIds?.some((f) => featureIds.has(f)) ||
+        t.intent.claimedFeatureIds?.some((f) => featureIds.has(f)) ||
+        t.facts?.touchedFeatureIds.some((f) => featureIds.has(f)),
+    )
+    .sort((a, b) => b.id.localeCompare(a.id))
+    .slice(0, 10)
+
+  const vision = loadVision(rootDir, ledger.config.visionPath)
+  const tenets = loadTenets(rootDir, ledger.config.tenetsDir)
+
+  const seal = {
+    ...ws.seal,
+    snapshot,
+  }
+
+  const draft = {
+    vision,
+    tenets,
+    workstream: ws,
+    seal,
+    slice: slice as WorkstreamSlice,
+    claims: { live: liveClaims, proposed: [], bindings },
+    prior: { turns: priorTurns, decisions: [] as unknown[] },
+    graph: {
+      nodes,
+      predictedBlastRadius: {
+        direct: [...direct].sort(),
+        transitive: [...transitive].sort(),
+      },
+    },
+    policy: ws.policy,
+    trust: ws.trust,
+    truncation: {
+      decisions: 0,
+      turns: priorTurns.length,
+      note: "decisions side-collection not loaded in P0",
+    },
+  }
+
+  const contextDigest = sha256Stable(stableContextSubset(draft))
+  return {
+    ...draft,
+    contextDigest,
+    generatedAt: new Date().toISOString(),
+  }
+}

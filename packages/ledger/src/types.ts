@@ -137,9 +137,13 @@ export interface LedgerRootConfig {
   policyPath?: string
   resultsPath?: string
   reportPath?: string
+  visionPath?: string
+  tenetsDir?: string
+  workstreamsDir?: string
+  proposedClaimsDir?: string
 }
 
-export type TurnStatus = "open" | "closed"
+export type TurnStatus = "open" | "closed" | "abandoned"
 export type TurnFileKind = "added" | "modified" | "deleted" | "renamed"
 
 export interface TurnFileChange {
@@ -149,10 +153,28 @@ export interface TurnFileChange {
   deletions?: number
 }
 
+export interface TurnOpened {
+  producedBy: string
+  baseCommit: string | null
+  treeDigest?: string
+  dirtyAtOpen: string[]
+  contextDigest?: string
+  contextWorkstreamId?: string
+  contextSliceId?: string
+  contextSealRevision?: number
+  contextGeneratedAt?: string
+  noContextReason?: string
+}
+
 export interface TurnIntent {
   /** Ledger-facing ask after hygiene — not raw chat. See episodes.md. */
   userPrompt: string
   restatedGoal: string
+  workstreamId?: string
+  featureIds?: string[]
+  primaryFeatureId?: string
+  expectedClaimIds?: string[]
+  sliceId?: string
   acceptanceCriteria?: string[]
   outOfScope?: string[]
   changeType?: "feature" | "refactor" | "fix" | "migration" | "chore" | "docs"
@@ -200,8 +222,112 @@ export interface Turn {
   status: TurnStatus
   openedAt: string
   closedAt?: string
+  opened?: TurnOpened
   intent: TurnIntent
   facts?: TurnFacts
+}
+
+export interface WorkstreamSlice {
+  id: string
+  title: string
+  kind: "vertical"
+  acceptance: string[]
+  evidence?: string[]
+  expectedClaimIds?: string[]
+  doneTurnId?: string
+  codeBreakReviewId?: string
+  specBreakReviewId?: string
+}
+
+export interface WorkstreamSeal {
+  sealedAt: string
+  sealedBy: string
+  specDigest: string
+  snapshotPath: string
+  revision: number
+  specBreakReviewId?: string
+}
+
+export interface Workstream {
+  schemaVersion: 1
+  id: string
+  status:
+    | "draft"
+    | "shaped"
+    | "spec_review"
+    | "sealed"
+    | "active"
+    | "done"
+    | "cancelled"
+  createdAt: string
+  updatedAt?: string
+  themeId?: string
+  featureIds: string[]
+  primaryFeatureId?: string
+  title: string
+  problem: string
+  objective: string
+  appetite?: string
+  changeType?: "feature" | "refactor" | "fix" | "migration" | "chore" | "docs"
+  riskLevel?: "low" | "moderate" | "elevated" | "high"
+  trust?: Record<string, unknown>
+  policy?: Record<string, unknown>
+  acceptanceCriteria?: string[]
+  outOfScope?: string[]
+  proposedClaimIds?: string[]
+  suggestedSlices?: WorkstreamSlice[]
+  seal?: WorkstreamSeal
+  postSealAmends?: unknown[]
+}
+
+export interface Vision {
+  schemaVersion: 1
+  summary: string
+  northStar?: string
+  nonGoals?: string[]
+  users?: string[]
+  updatedAt?: string
+  updatedBy?: string
+}
+
+export interface Tenet {
+  schemaVersion: 1
+  id: string
+  statement: string
+  scope?: string
+  status: "active" | "deprecated"
+  origin: "user" | "agent-confirmed" | "agent-inferred"
+  weight?: "must" | "should" | "may"
+  confirmedAt?: string
+  confirmedBy?: string
+  createdAt?: string
+}
+
+export interface VerticalContext {
+  vision: Vision | null
+  tenets: Tenet[]
+  workstream: Workstream
+  seal: WorkstreamSeal & { snapshot: Record<string, unknown> }
+  slice: WorkstreamSlice
+  claims: {
+    live: Claim[]
+    proposed: unknown[]
+    bindings: EvidenceBinding[]
+  }
+  prior: {
+    turns: Turn[]
+    decisions: unknown[]
+  }
+  graph: {
+    nodes: GraphNode[]
+    predictedBlastRadius: { direct: string[]; transitive: string[] }
+    missingLocators?: string[]
+  }
+  policy: Workstream["policy"]
+  trust: Workstream["trust"]
+  contextDigest: string
+  generatedAt: string
+  truncation?: { decisions: number; turns: number; note: string }
 }
 
 export interface LoadedLedger {

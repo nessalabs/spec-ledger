@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nessalabs.ai/spec-ledger/schemas/workstream.json",
+  "title": "Workstream",
+  "description": "Shaped bet under feature(s). Verify ignores workstreams.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "schemaVersion",
+    "id",
+    "status",
+    "createdAt",
+    "featureIds",
+    "title",
+    "problem",
+    "objective"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "id": { "type": "string", "pattern": "^W-[0-9]{3,}$" },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "shaped",
+        "spec_review",
+        "sealed",
+        "active",
+        "done",
+        "cancelled"
+      ]
+    },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "updatedAt": { "type": "string", "format": "date-time" },
+    "themeId": { "type": "string" },
+    "featureIds": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1
+    },
+    "primaryFeatureId": { "type": "string" },
+    "title": { "type": "string", "minLength": 1 },
+    "problem": { "type": "string", "minLength": 1 },
+    "objective": { "type": "string", "minLength": 1 },
+    "appetite": { "type": "string" },
+    "changeType": {
+      "type": "string",
+      "enum": ["feature", "refactor", "fix", "migration", "chore", "docs"]
+    },
+    "riskLevel": {
+      "type": "string",
+      "enum": ["low", "moderate", "elevated", "high"]
+    },
+    "trust": { "type": "object" },
+    "policy": { "type": "object" },
+    "acceptanceCriteria": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "outOfScope": { "type": "array", "items": { "type": "string" } },
+    "proposedClaimIds": { "type": "array", "items": { "type": "string" } },
+    "suggestedSlices": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "kind", "acceptance"],
+        "properties": {
+          "id": { "type": "string" },
+          "title": { "type": "string" },
+          "kind": { "const": "vertical" },
+          "acceptance": {
+            "type": "array",
+            "items": { "type": "string" },
+            "minItems": 1
+          },
+          "evidence": { "type": "array", "items": { "type": "string" } },
+          "expectedClaimIds": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "doneTurnId": { "type": "string" },
+          "codeBreakReviewId": { "type": "string" },
+          "specBreakReviewId": { "type": "string" }
+        }
+      }
+    },
+    "seal": {
+      "type": "object",
+      "required": ["sealedAt", "sealedBy", "specDigest", "snapshotPath", "revision"],
+      "properties": {
+        "sealedAt": { "type": "string" },
+        "sealedBy": { "type": "string" },
+        "specDigest": { "type": "string" },
+        "snapshotPath": { "type": "string" },
+        "revision": { "type": "integer", "minimum": 1 },
+        "specBreakReviewId": { "type": "string" }
+      }
+    }
+  }
+}

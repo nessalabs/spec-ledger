@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "id": "TN-002",
+  "statement": "When agent speed and a sealed spec conflict, do not implement unsealed work; never silently rewrite a seal",
+  "scope": "product",
+  "status": "active",
+  "origin": "user",
+  "weight": "must",
+  "confirmedAt": "2026-09-03T04:00:00.000Z",
+  "confirmedBy": "human",
+  "createdAt": "2026-09-03T04:00:00.000Z"
+}

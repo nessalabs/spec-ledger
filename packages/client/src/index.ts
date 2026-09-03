@@ -12,6 +12,7 @@ import {
   snapshotLedger,
   listSchemaFiles,
   readSchemaFile,
+  getVerticalContext,
   HTTP_CONTRACT,
   type LoadedLedger,
   type VerifyReport,
@@ -22,6 +23,7 @@ import {
   type LedgerSnapshot,
   type LedgerRootConfig,
   type Turn,
+  type VerticalContext,
 } from "@nessa/spec-ledger"
 
 export type LedgerTransport =
@@ -45,6 +47,7 @@ export interface SpecLedgerClient {
   >
   listSchemas(): Promise<string[]>
   getSchema(name: string): Promise<unknown>
+  getVerticalContext(workstreamId: string, sliceId: string): Promise<VerticalContext>
   httpContract(): typeof HTTP_CONTRACT
 }
 
@@ -105,6 +108,9 @@ function inProcess(rootDir: string): SpecLedgerClient {
     async getSchema(name) {
       return readSchemaFile(rootDir, name)
     },
+    async getVerticalContext(workstreamId, sliceId) {
+      return getVerticalContext(rootDir, workstreamId, sliceId)
+    },
     httpContract() {
       return HTTP_CONTRACT
     },
@@ -128,6 +134,11 @@ function http(baseUrl: string): SpecLedgerClient {
     layerViolations: () => httpGet(base, "v1/layers/violations"),
     listSchemas: () => httpGet(base, "v1/schemas"),
     getSchema: (name) => httpGet(base, `v1/schemas/${encodeURIComponent(name)}`),
+    getVerticalContext: (workstreamId, sliceId) =>
+      httpGet(
+        base,
+        `v1/context?workstream=${encodeURIComponent(workstreamId)}&slice=${encodeURIComponent(sliceId)}`,
+      ),
     httpContract() {
       return HTTP_CONTRACT
     },
@@ -148,5 +159,6 @@ export type {
   LedgerSnapshot,
   LedgerRootConfig,
   Turn,
+  VerticalContext,
 }
 export { HTTP_CONTRACT }

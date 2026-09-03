@@ -17,3 +17,11 @@ export {
   computeTurnFacts,
   collectGitFiles,
 } from "./turns/close.js"
+export { getVerticalContext } from "./context/vertical.js"
+export {
+  listWorkstreams,
+  loadWorkstream,
+  sealWorkstream,
+  checkSeal,
+  computeSpecDigest,
+} from "./workstream/load.js"
