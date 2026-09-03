@@ -21,6 +21,7 @@ import {
 } from "@nessa-ui/react"
 import type { Claim, CodebaseGraph } from "@nessa/spec-ledger-client"
 import { X } from "lucide-react"
+import Link from "next/link"
 import { StaticMermaid } from "@/components/static-mermaid"
 
 type LayerViolation = {
@@ -198,7 +199,12 @@ function GraphMain({
             {graph.features.map((f) => (
               <div key={f.id} className="rounded-lg border border-border p-3">
                 <div className="flex flex-wrap items-center gap-2">
-                  <span className="font-medium">{f.name}</span>
+                  <Link
+                    href={`/features/${encodeURIComponent(f.id)}`}
+                    className="font-medium text-foreground no-underline hover:underline"
+                  >
+                    {f.name}
+                  </Link>
                   <Badge variant="outline" className="font-mono text-[10px]">
                     {f.id}
                   </Badge>
@@ -258,7 +264,12 @@ function GraphMain({
           <ul className="divide-y divide-border">
             {graph.nodes.map((n) => (
               <li key={n.id} className="flex flex-wrap items-center gap-2 py-2 text-sm">
-                <span className="font-mono text-xs">{n.id}</span>
+                <Link
+                  href={`/nodes/${encodeURIComponent(n.id)}`}
+                  className="font-mono text-xs text-foreground no-underline hover:underline"
+                >
+                  {n.id}
+                </Link>
                 <Badge variant="outline">{n.layer}</Badge>
                 <Badge variant="secondary">{n.kind}</Badge>
                 {n.locator ? (

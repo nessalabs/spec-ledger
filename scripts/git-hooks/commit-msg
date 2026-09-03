@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+# commit-msg — require SL-Turn trailer when a turn is open.
+# Install: git config core.hooksPath scripts/git-hooks
+set -euo pipefail
+
+MSG_FILE="${1:?commit-msg hook requires message file}"
+
+ROOT="$(git rev-parse --show-toplevel 2>/dev/null)" || exit 0
+TURNS_DIR="$ROOT/.spec-ledger/turns"
+
+if [[ ! -d "$TURNS_DIR" ]]; then
+  exit 0
+fi
+
+OPEN_ID=""
+for f in "$TURNS_DIR"/T-*.json; do
+  [[ -f "$f" ]] || continue
+  # Cheap check: "status": "open" without requiring jq
+  if grep -q '"status"[[:space:]]*:[[:space:]]*"open"' "$f"; then
+    base="$(basename "$f" .json)"
+    if [[ -n "$OPEN_ID" ]]; then
+      echo "spec-ledger commit-msg: multiple open turns ($OPEN_ID, $base) — close or abandon extras" >&2
+      exit 1
+    fi
+    OPEN_ID="$base"
+  fi
+done
+
+if [[ -z "$OPEN_ID" ]]; then
+  exit 0
+fi
+
+if grep -qE "^SL-Turn:[[:space:]]*${OPEN_ID}([[:space:]]|$)" "$MSG_FILE"; then
+  exit 0
+fi
+
+cat >&2 <<EOF
+spec-ledger commit-msg: open turn ${OPEN_ID} requires a trailer:
+
+  SL-Turn: ${OPEN_ID}
+
+Add it to the commit message body (subject can stay normal prose).
+Optional: SL-Workstream / SL-Slice / SL-Features / SL-Claims
+See docs/architecture/episodes.md (Provenance chain).
+EOF
+exit 1

@@ -16,7 +16,8 @@ const PRODUCED_BY = "@nessa/spec-ledger@0.1.0"
 
 function git(repoRoot: string, args: string[]): { ok: boolean; out: string } {
   const r = spawnSync("git", args, { cwd: repoRoot, encoding: "utf8" })
-  return { ok: r.status === 0, out: (r.stdout || "").trim() }
+  // Do not trim the whole stdout — porcelain lines use a leading space in the XY field.
+  return { ok: r.status === 0, out: (r.stdout || "").replace(/\n$/, "") }
 }
 
 function gitCommit(repoRoot: string): string | null {
@@ -40,8 +41,9 @@ export function collectGitFiles(repoRoot: string): TurnFileChange[] {
     const names = git(repoRoot, ["diff", "--name-status", "HEAD"])
     if (names.ok) {
       for (const line of names.out.split("\n").filter(Boolean)) {
-        const [code, ...rest] = line.split("\t")
-        const path = rest[rest.length - 1]
+        const parts = line.split("\t")
+        const code = parts[0] ?? ""
+        const path = parts.length >= 3 ? parts[parts.length - 1] : parts[1]
         if (!code || !path) continue
         byPath.set(path, { path, kind: mapStatus(code), additions: 0, deletions: 0 })
       }
@@ -49,9 +51,11 @@ export function collectGitFiles(repoRoot: string): TurnFileChange[] {
     const nums = git(repoRoot, ["diff", "--numstat", "HEAD"])
     if (nums.ok) {
       for (const line of nums.out.split("\n").filter(Boolean)) {
-        const [a, d, ...pathParts] = line.split("\t")
-        const path = pathParts.join("\t")
-        if (!path) continue
+        const parts = line.split("\t")
+        if (parts.length < 3) continue
+        const [a, d] = parts
+        const path = parts.slice(2).join("\t")
+        if (!path || path.includes(" -> ")) continue
         const cur = byPath.get(path) ?? {
           path,
           kind: "modified" as const,
@@ -69,7 +73,8 @@ export function collectGitFiles(repoRoot: string): TurnFileChange[] {
   if (status.ok) {
     for (const line of status.out.split("\n").filter(Boolean)) {
       const code = line.slice(0, 2).trim() || "??"
-      const path = line.slice(3).trim().replace(/^"+|"+$/g, "")
+      let path = line.slice(3).trim().replace(/^"+|"+$/g, "")
+      if (path.includes(" -> ")) path = path.split(" -> ").at(-1)!.trim()
       if (!path) continue
       if (!byPath.has(path)) {
         byPath.set(path, { path, kind: mapStatus(code), additions: 0, deletions: 0 })

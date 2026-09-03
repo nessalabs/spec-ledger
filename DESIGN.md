@@ -3,156 +3,129 @@
 Working product name: **Spec Ledger** (repo: `nessa-spec-test`).
 CLI: `spec-ledger`. On-disk root: `.spec-ledger/`.
 
-Adversarial review (Fable 5.1) shaped this document. The goal is a **generic**
-claim-adherence gate plus a **replaceable** viewing layer, so any codebase can
-enforce quality under agent development, and any product can embed the data
-plane without taking our UI.
+| Doc | Role |
+| --- | --- |
+| [`docs/README.md`](docs/README.md) | Docs index |
+| [`docs/architecture/work-model.md`](docs/architecture/work-model.md) | How work is shaped, sealed, built, broken |
+| [`docs/architecture/episodes.md`](docs/architecture/episodes.md) | Turn spine + side collections |
+| This file | Verify invariant, packages, truth ownership |
 
 ## Problem
 
 Agents write code faster than humans can review it. Prompting alone does not
-hold quality on long runs (see complexity-governor findings). Specs and ADRs
-rot unless something machine-checks them. Architecture UIs lie when the graph
-is stale or “pass” means “passed once, somewhere.”
+hold quality on long runs. Specs and ADRs rot unless something machine-checks
+them. Architecture UIs lie when the graph is stale or “pass” means “passed once,
+somewhere.”
 
 ## Solution in one sentence
 
 **A verify verdict is a pure function of (ledger files, source tree, ingested
 results) and carries digests of those inputs; nothing else may produce `pass`.**
 
-## Two bounded contexts (one package for now)
+## Design decisions (ours)
+
+| Decision | Why |
+| --- | --- |
+| Verify is pure + digest-bearing | UI/CI/agents cannot invent `pass` |
+| Binding ≠ result | Agents must not hand-edit “status: pass” onto bindings |
+| `attested` never collapses to `pass` | Honest when evidence is human judgment |
+| Results-file evidence seam | Any language can prove claims without a TS plugin API |
+| Server is GET-only | Git is the write path; no “mark verified” button |
+| Client is the only UI/embed gateway | Lattice stays replaceable; no FS imports from UI |
+| Core in `@nessa/spec-ledger`; thin client/server/ui | One implementable core; satellites stay small |
+| Schemas as files under `schemas/` | SSOT without a schema package |
+| Name `@nessa/spec-ledger*` / `.spec-ledger/` | Avoid npm/`@ledger` collisions |
+| Workstreams + verticals, not `tasks/` | Shape Up: no fake WBS; one turn = one e2e-checkable slice |
+| `opened.contextDigest` stamped at turn open | Context use is auditable, not honor-system |
+| Automation event state machine + resume | Wait/timeout survives process death |
+| Immutable review resolution + close gates | Blocking findings cannot be greenwashed |
+| Revisioned seal snapshots (JCS) | Seal history is reproducible |
+| Spec break → seal → build → code break | Trust the bet before code; falsify after |
+| Breaker owns killers; builder owns prod | Adversarial review is not oracle negotiation |
+| Code-break evidence is a run (schema) | No test run → no representable finding / pass |
+| `sl-*` stay in-repo; nessalabs engineering optional | Cheap-to-change gems shared via skills/references |
+| Spec break is ledger-grounded via `related` pack | Tool finds neighborhood; agent doesn’t DIY worktrees |
+| Sibling worktree scan is caution-only inside `related` | Authority is this checkout; parallel edits aren’t merged |
+| Default alert: high / wait 10m / then move | Interrupt on serious gaps; don’t hang forever |
+| Episodes + compass never affect `verify.ok` | Only claims/bindings/results/graph gate adherence |
+| Turn id joins docs ↔ commits; SHAs are best-effort | Rebases rewrite SHAs; trailers + path history stay navigable |
+| Finding → decision trail (+ review messages) | Lattice can answer why X vs Y |
+| Schema paths + child FKs are the query model | Efficient Lattice joins without untyped bags |
+| `commit-msg` hook when a turn is open | SL-Turn trailer is enforced, not optional |
+
+## Two bounded contexts
 
 | Context | Owns | Does not own |
 | --- | --- | --- |
 | **Claims / Evidence** | Claim IDs, bindings, results ingestion, verify report | UI, module call graphs |
 | **Lattice / Graph** | Features, modules, edges, layer policy, blast radius | Whether a claim is true |
 
-They join **only by claim ID** (and optional `featureIds` on nodes). Import
-direction: graph may reference claim IDs; claims/evidence must not import
-lattice algorithms.
+They join **only by claim ID** (and optional `featureIds` on nodes). Graph may
+reference claim IDs; claims/evidence must not import lattice algorithms.
 
-## Truth ownership (critical)
+## Truth ownership
 
 | Role | Truth? |
 | --- | --- |
 | Git + `.spec-ledger/` + source tree | **Yes** — write path |
-| Ingested results files (from vitest/pytest/cargo reporters) | **Yes** — produced by verify run |
+| Ingested results files | **Yes** — produced by verify run |
 | `spec-ledger` CLI | Computes report; does not invent pass |
-| HTTP server | **Read-only projection** of ledger + last report |
-| Client SDK | Transport to server or in-process core |
-| Reference UI | Presentation only |
-
-**v1 absence:** the server has **no write endpoints**. No “mark verified”
-button. CI and UI must agree because both read the same files / report digest.
+| HTTP server | **Read-only** projection |
+| Client SDK | Transport (in-process \| HTTP) |
+| Reference UI (`packages/ui`) | Presentation only |
 
 ## Binding ≠ result
 
-- **Binding** (committed): `{ id, claimId, kind, locator }` — how we *intend*
-  to check a claim.
-- **Result** (produced by verify): `{ bindingId, outcome, ranAt, inputsDigest }` —
-  what happened this run.
+- **Binding** (committed): how we *intend* to check a claim — no `status: pass`.
+- **Result** (from verify): what happened this run (`pass` \| `fail` \| `missing` \| `attested`).
 
-Never put `status: pass` on a binding. Agents will hand-edit it.
-
-Outcomes:
-
-| Outcome | Meaning |
-| --- | --- |
-| `pass` | Evidence succeeded |
-| `fail` | Evidence ran and failed |
-| `missing` | No result / skipped test / unbound required claim |
-| `attested` | Human/agent attestation — **never collapses to pass**; policy decides if it counts |
-
-## Evidence seam (language-agnostic)
-
-Adapters are **not** a TypeScript plugin API. The contract is a **results file**
-schema. Reporters in any ecosystem emit that file; the ledger only ingests.
+## Evidence seam
 
 ```
 vitest/pytest/cargo/shell  →  results.json  →  spec-ledger verify
 ```
 
-Shell exit codes alone are too coarse for per-claim truth (a green suite can
-hide a `.skip`). Prefer per-claim rows in the results file. Coarse `check`
-bindings (one script → one claim) are allowed and honest when the script
-guards exactly one rule.
-
-## Package cut
-
-Week-1 reality (Fable): one implementable package, schemas as files.
+## Repo layout
 
 ```
 nessa-spec-test/
   DESIGN.md
-  schemas/                 # JSON Schema SSOT (not a package)
-  packages/
-    ledger/                # core + CLI (init, verify, impact)
-    client/                # thin typed SDK (in-process | HTTP) — embeddable
-    server/                # read-only HTTP over ledger core
-    ui/                    # reference Lattice UI — client only, replaceable
-  skills/
-    verify-before-done/
-  .spec-ledger/            # dogfood: this product’s own claims
+  docs/architecture|research/
+  schemas/
+  packages/{ledger,client,server,ui}
+  skills/   # sl-plan-* | sl-dev-* | sl-learn — see skills/README.md
+  .spec-ledger/          # dogfood claims, turns, graph, …
 ```
-
-`client` / `server` / `ui` exist so the **Nessa pattern** is visible from day
-one: UI never imports core FS; third parties depend on `@nessa/spec-ledger-client`
-(or OpenAPI), not the UI package. Server stays thin.
 
 ## Consumer layout (any repo)
 
 ```
 .your-repo/
   .spec-ledger/
-    ledger.json            # root config + layer policy path
-    claims/*.json
-    bindings/*.json
-    graph/codebase-graph.json
-    policy/layers.json
-  # reporters write e.g. .spec-ledger/results/last.json during CI
+    ledger.json
+    claims/ bindings/ graph/ policy/ turns/
+    # planned: vision.json tenets/ learnings/ themes/ workstreams/ …
 ```
 
-Zero product vocabulary inside the tool. Nessa terms live only in Nessa’s
-`.spec-ledger/` data.
+## Enforcement
 
-## Enforcement loop
+1. Claims + bindings in git.
+2. `spec-ledger verify` → digests.
+3. Fail on bad/missing evidence, dangling bindings, broken graph locators.
+4. UI: matching digest or **unknown**.
+5. Skills lower friction; **CI enforces**.
 
-1. Author claims + bindings in git.
-2. CI / agent runs `spec-ledger verify` → report with digests.
-3. Gate fails on: failing evidence, missing required evidence, dangling
-   bindings, orphan required claims, graph locators that don’t resolve.
-4. UI shows report only if digest matches current tree; else **unknown**.
-5. Skills lower friction; **CI + hooks enforce**. Skills alone are prompting.
+Pipeline: **sl-plan-vision → sl-plan-shape → sl-plan-break-spec → seal →
+context → sl-dev-build → sl-dev-break (open turn) → close/verify**  
+(+ `sl-learn` on corrections)
 
-## Deferred (intentionally)
+## Deferred
 
 - AST / automatic graph extraction
-- Embedding search
-- Multi-tenant SaaS
-- Z3 / formal proofs
+- Embedding search / multi-tenant SaaS / Z3
 - Server write APIs
-- PR gate requiring a closed turn on every merge (policy later)
-
-## Turns (change history)
-
-Claims answer “is the system still allowed to look like this?”
-Turns answer “what did this run change, and why?”
-
-| Field | Who writes | Notes |
-| --- | --- | --- |
-| `intent` | Human / agent | Prompt, goal, acceptance, decisions, optional flows |
-| `facts` | **`spec-ledger turn close` only** | Git file list, touched claims/features, blast radius, verify digests |
-
-```bash
-spec-ledger turn open --goal "…" [--prompt "…"] [--id T-001]
-# … implement …
-spec-ledger turn close [--id T-001]   # computes facts; exits non-zero if verify fails
-```
-
-On disk: `.spec-ledger/turns/<id>.json`. Lattice `/turns` is the change log.
-Never trust agent-authored digests or blast radius.
+- PR gate requiring a closed turn on every merge
 
 ## Naming
 
-Avoid bare `@ledger` (npm collision with hardware wallets / accounting).
-Packages use `@nessa/spec-ledger*`. On-disk directory is `.spec-ledger/`.
+`@nessa/spec-ledger*`. On-disk `.spec-ledger/`. Avoid bare `@ledger`.

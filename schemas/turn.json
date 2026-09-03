@@ -24,7 +24,7 @@
         "userPrompt": {
           "type": "string",
           "minLength": 1,
-          "description": "Verbatim human request. Never paraphrased."
+          "description": "Ledger-facing human ask after hygiene (spelling/cohesion, redact secrets/PII, strip abuse) — preserve meaning; not a raw chat dump. See docs/architecture/episodes.md Intent.userPrompt hygiene."
         },
         "restatedGoal": { "type": "string", "minLength": 1 },
         "acceptanceCriteria": { "type": "array", "items": { "type": "string" } },

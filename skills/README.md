@@ -1,0 +1,49 @@
+# Spec Ledger skills
+
+Prefix: **`sl-`** (Spec Ledger — short, easy to find).
+
+These skills stay **in this repo** for now (ledger pipeline). Do **not** move
+them into [`nessalabs/skills`](https://github.com/nessalabs/skills) yet —
+consolidation later if other Nessa products adopt the ledger.
+
+## Companion engineering skills (optional install)
+
+Install separately when available (plugin / `npx skills add nessalabs/skills`):
+
+| Skill | Use with |
+| --- | --- |
+| `system-architect` | Shape, spec-break, build — boundaries, core vs product, failure-first |
+| `coding` | `sl-dev-build` — how to make a change |
+| `method` | `sl-dev-break` / debugging |
+| `pull-requests` | Commit/PR shape (with our `SL-Turn:` trailers) |
+
+**Always** apply the inline subset:
+[`references/cheap-to-change.md`](./references/cheap-to-change.md) — even if the
+companion pack is not installed.
+
+## Lanes
+
+| Lane | Meaning |
+| --- | --- |
+| `sl-plan-*` | Before code: vision, shape, seal-side adversary |
+| `sl-dev-*` | Implementation: build, code adversary, verify/close |
+| `sl-learn` | Capture high-signal corrections → learnings/tenets |
+
+| Skill | Job |
+| --- | --- |
+| [`sl-plan-vision`](./sl-plan-vision/SKILL.md) | Vision + tenets + **quality bar** |
+| [`sl-plan-shape`](./sl-plan-shape/SKILL.md) | Grill → workstream |
+| [`sl-plan-decompose`](./sl-plan-decompose/SKILL.md) | Carve bet → e2e verticals |
+| [`sl-plan-break-spec`](./sl-plan-break-spec/SKILL.md) | Spec adversary → seal |
+| [`sl-dev-build`](./sl-dev-build/SKILL.md) | Build sealed verticals |
+| [`sl-dev-break`](./sl-dev-break/SKILL.md) | Code adversary |
+| [`sl-dev-verify`](./sl-dev-verify/SKILL.md) | Turn close + digests |
+| [`sl-learn`](./sl-learn/SKILL.md) | Learnings / tenet promote |
+
+Pipeline: `sl-plan-vision` → `sl-plan-shape` (verticals via `sl-plan-decompose`)
+→ `sl-plan-break-spec` → seal →
+`sl-dev-build` (`context` → open → code → **`sl-dev-break`** → close) →
+(`sl-learn`) → `sl-dev-verify`
+
+Trust / quality bar set at vision+shape turns the **same** gates harder or
+softer (hobby vs prod) — no parallel skill trees.

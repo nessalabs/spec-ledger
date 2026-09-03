@@ -1,0 +1,170 @@
+{
+  "schemaVersion": 1,
+  "id": "T-002",
+  "status": "closed",
+  "openedAt": "2026-09-02T21:14:42.233Z",
+  "intent": {
+    "userPrompt": "can we close that gap and introduce the concept of turns?",
+    "restatedGoal": "Close Lattice gaps: turn/feature/node/claim detail + digest freshness",
+    "changeType": "feature",
+    "riskLevel": "moderate",
+    "claimedFeatureIds": [
+      "turns",
+      "lattice"
+    ],
+    "decisions": [
+      {
+        "decision": "Stale turn digests render as unknown",
+        "rationale": "DESIGN: never show pass from mismatched digests"
+      }
+    ],
+    "acceptanceCriteria": [
+      "Turn detail page",
+      "Feature/module/claim history",
+      "Freshness badges"
+    ]
+  },
+  "closedAt": "2026-09-02T21:16:40.736Z",
+  "facts": {
+    "producedBy": "@nessa/spec-ledger@0.1.0",
+    "commit": "fa3dab41356fb2c9d8318a99b2457f3c1287808c",
+    "files": [
+      {
+        "path": ".spec-ledger/turns/T-002.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "AGENTS.md",
+        "kind": "modified",
+        "additions": 3,
+        "deletions": 2
+      },
+      {
+        "path": "packages/ledger/src/turns/close.ts",
+        "kind": "modified",
+        "additions": 12,
+        "deletions": 7
+      },
+      {
+        "path": "packages/ui/app/claims/[id]/page.tsx",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ui/app/features/[id]/page.tsx",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ui/app/features/page.tsx",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ui/app/nodes/[id]/page.tsx",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ui/app/page.tsx",
+        "kind": "modified",
+        "additions": 36,
+        "deletions": 5
+      },
+      {
+        "path": "packages/ui/app/turns/[id]/page.tsx",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ui/app/turns/page.tsx",
+        "kind": "modified",
+        "additions": 17,
+        "deletions": 146
+      },
+      {
+        "path": "packages/ui/components/claims-list.tsx",
+        "kind": "modified",
+        "additions": 7,
+        "deletions": 1
+      },
+      {
+        "path": "packages/ui/components/freshness-badge.tsx",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ui/components/graph-workspace.tsx",
+        "kind": "modified",
+        "additions": 13,
+        "deletions": 2
+      },
+      {
+        "path": "packages/ui/components/lattice-shell.tsx",
+        "kind": "modified",
+        "additions": 2,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ui/components/turn-detail.tsx",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ui/lib/turns.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "README.md",
+        "kind": "modified",
+        "additions": 5,
+        "deletions": 3
+      },
+      {
+        "path": "skills/verify-before-done/SKILL.md",
+        "kind": "modified",
+        "additions": 30,
+        "deletions": 10
+      }
+    ],
+    "touchedNodeIds": [
+      "ledger-core",
+      "ledger-ui"
+    ],
+    "touchedFeatureIds": [
+      "lattice",
+      "turns",
+      "verify"
+    ],
+    "touchedClaimIds": [
+      "SL-001",
+      "SL-003"
+    ],
+    "blastRadius": {
+      "direct": [
+        "ledger-server"
+      ],
+      "transitive": [
+        "ledger-server"
+      ]
+    },
+    "verify": {
+      "ok": true,
+      "ledgerDigest": "e9f524c4d090dfc773aded69f69ffb8fe4671efffc17545db5714645ed4b48b3",
+      "resultsDigest": "ded3eb2608a70a2e28040c5e1e7c4faa49be0d27b4ffc4d3e2a3ffb91bf72fbb",
+      "producedAt": "2026-09-02T21:17:02.687Z"
+    },
+    "schemaSurfaceChanged": false
+  }
+}

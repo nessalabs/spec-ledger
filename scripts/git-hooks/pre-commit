@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# pre-commit — validate staged Spec Ledger / schema JSON when present.
+set -euo pipefail
+
+ROOT="$(git rev-parse --show-toplevel 2>/dev/null)" || exit 0
+cd "$ROOT"
+
+STAGED="$(git diff --cached --name-only --diff-filter=ACMR | grep -E '^(\.spec-ledger/|schemas/).+\.json$' || true)"
+if [[ -z "$STAGED" ]]; then
+  exit 0
+fi
+
+if ! command -v node >/dev/null 2>&1; then
+  echo "spec-ledger pre-commit: node missing — skip JSON schema check" >&2
+  exit 0
+fi
+
+# shellcheck disable=SC2086
+node "$ROOT/scripts/git-hooks/validate-staged-json.mjs" $STAGED || exit 1

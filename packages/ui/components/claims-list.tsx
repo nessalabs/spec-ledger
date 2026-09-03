@@ -1,5 +1,6 @@
 "use client"
 
+import Link from "next/link"
 import { Badge, Card, CardContent } from "@nessa-ui/react"
 import type { Claim, EvidenceBinding } from "@nessa/spec-ledger-client"
 
@@ -37,7 +38,12 @@ export function ClaimsList({
           <Card key={claim.id} className="gap-0 py-0">
             <CardContent className="space-y-2 px-5 py-4">
               <div className="flex flex-wrap items-center gap-2">
-                <span className="font-mono text-sm font-semibold">{claim.id}</span>
+                <Link
+                  href={`/claims/${encodeURIComponent(claim.id)}`}
+                  className="font-mono text-sm font-semibold text-foreground no-underline hover:underline"
+                >
+                  {claim.id}
+                </Link>
                 <Badge variant="outline">{claim.kind}</Badge>
                 {claim.required ? <Badge>required</Badge> : null}
                 {v ? (

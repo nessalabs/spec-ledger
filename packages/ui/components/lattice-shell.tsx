@@ -21,6 +21,7 @@ import {
   GitBranch,
   History,
   LayoutDashboard,
+  Layers,
   ShieldCheck,
 } from "lucide-react"
 import { cn } from "@/lib/cn"
@@ -28,6 +29,7 @@ import { cn } from "@/lib/cn"
 const NAV = [
   { href: "/", label: "Overview", icon: LayoutDashboard },
   { href: "/claims", label: "Claims", icon: ShieldCheck },
+  { href: "/features", label: "Features", icon: Layers },
   { href: "/contracts", label: "Contracts", icon: FileJson2 },
   { href: "/graph", label: "Graph", icon: GitBranch },
   { href: "/turns", label: "Turns", icon: History },

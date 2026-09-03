@@ -7,7 +7,8 @@ Generic **claim adherence** + **lattice viewing** for any codebase. Built so Nes
 > source tree, ingested results) and carries digests of those inputs. Nothing
 > else may produce `pass`.
 
-Design rationale (incl. Fable 5.1 review): [DESIGN.md](./DESIGN.md)
+Design: [DESIGN.md](./DESIGN.md) · Docs: [docs/README.md](./docs/README.md) ·
+Work model: [docs/architecture/work-model.md](./docs/architecture/work-model.md)
 
 ## Packages
 
@@ -62,11 +63,13 @@ Lattice web UI (nessa-ui): **http://127.0.0.1:3737** via `pnpm lattice`
 
 | Route | Shows |
 | --- | --- |
-| `/` | Verify status, digests, schema badges |
-| `/claims` | SL-* claims + bindings + outcomes |
+| `/` | Live verify, digests, latest turn freshness |
+| `/claims` · `/claims/[id]` | Claims + bindings; claim turn history |
+| `/features` · `/features/[id]` | Features + modules + turn history |
+| `/nodes/[id]` | Module edges, blast radius, turn history |
 | `/contracts` | HTTP route table, embed snippet, JSON Schema browser |
 | `/graph` | Mermaid layer map, features, policy |
-| `/turns` | Change log — intent + `turn close` facts |
+| `/turns` · `/turns/[id]` | Change log — intent + `turn close` facts |
 | `/verify` | Full provenance-bearing report |
 
 ## Embed in your product
@@ -85,10 +88,25 @@ const graph = await client.getGraph()
 
 Build any UI you want. The reference UI is optional.
 
-## Agent skill
+## Agent skills
 
-[`skills/verify-before-done`](skills/verify-before-done/SKILL.md) — run verify,
-paste digests. Enforcement is CI + this CLI, not prompting alone.
+Prefix **`sl-`** = Spec Ledger. Lanes: `sl-plan-*` (before code), `sl-dev-*`
+(implement), `sl-learn`. See [`skills/README.md`](skills/README.md).
+
+Pipeline: `sl-plan-vision` → `sl-plan-shape` → `sl-plan-break-spec` → seal →
+`sl-dev-build` → (`sl-learn`) → `sl-dev-break` → `sl-dev-verify`.
+
+| Skill | Role |
+| --- | --- |
+| [`sl-plan-vision`](skills/sl-plan-vision/SKILL.md) | Vision + tenets at project start |
+| [`sl-plan-shape`](skills/sl-plan-shape/SKILL.md) | Grill → workstream + trust + policy |
+| [`sl-plan-break-spec`](skills/sl-plan-break-spec/SKILL.md) | Spec adversary → human seal |
+| [`sl-dev-build`](skills/sl-dev-build/SKILL.md) | One vertical at a time |
+| [`sl-learn`](skills/sl-learn/SKILL.md) | High-signal corrections → learning/tenet |
+| [`sl-dev-break`](skills/sl-dev-break/SKILL.md) | Code adversary |
+| [`sl-dev-verify`](skills/sl-dev-verify/SKILL.md) | Close turn + digests |
+
+Enforcement is CI + CLI, not prompting alone.
 
 ## Nessa next
 

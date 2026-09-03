@@ -8,6 +8,8 @@ import {
 } from "@nessa-ui/react"
 import Link from "next/link"
 import { serverClient } from "@/lib/ledger"
+import { FreshnessBadge, TurnVerifyBadge } from "@/components/freshness-badge"
+import { latestClosedTurn, turnFreshness } from "@/lib/turns"
 
 export const dynamic = "force-dynamic"
 
@@ -16,13 +18,16 @@ export default async function OverviewPage() {
   const snap = await client.getSnapshot()
   const violations = await client.layerViolations()
   const schemas = await client.listSchemas()
-  const { report, graph, claims, bindings } = snap
+  const { report, graph, claims, bindings, turns } = snap
 
   const pass = report.claims.filter((c) => c.outcome === "pass").length
   const fail = report.claims.filter((c) => c.outcome === "fail").length
   const missing = report.claims.filter(
     (c) => c.outcome === "missing" || c.outcome === "unbound",
   ).length
+
+  const lastTurn = latestClosedTurn(turns)
+  const lastFreshness = lastTurn ? turnFreshness(lastTurn, report) : "unknown"
 
   return (
     <div className="mx-auto flex max-w-5xl flex-col gap-8">
@@ -41,7 +46,7 @@ export default async function OverviewPage() {
 
       <section className="grid gap-3 sm:grid-cols-2 xl:grid-cols-5">
         <Stat
-          label="Verify"
+          label="Verify (live)"
           value={report.ok ? "OK" : "FAIL"}
           tone={report.ok ? "ok" : "bad"}
           hint={`${pass} pass · ${fail} fail · ${missing} missing`}
@@ -60,17 +65,43 @@ export default async function OverviewPage() {
         />
         <Stat
           label="Turns"
-          value={String(snap.turns.length)}
-          hint="change log"
+          value={String(turns.length)}
+          hint={lastTurn ? `latest ${lastTurn.id}` : "change log"}
         />
       </section>
+
+      {lastTurn ? (
+        <Card>
+          <CardHeader className="gap-2">
+            <div className="flex flex-wrap items-center gap-2">
+              <CardTitle>Latest turn</CardTitle>
+              <Link
+                href={`/turns/${lastTurn.id}`}
+                className="font-mono text-sm no-underline hover:underline"
+              >
+                {lastTurn.id}
+              </Link>
+              <TurnVerifyBadge
+                ok={lastTurn.facts?.verify.ok}
+                freshness={lastFreshness}
+              />
+              <FreshnessBadge freshness={lastFreshness} />
+            </div>
+            <CardDescription>{lastTurn.intent.restatedGoal}</CardDescription>
+          </CardHeader>
+          <CardContent className="text-sm text-muted-foreground">
+            Closed turns are history. If digests are stale, that turn&apos;s verify is{" "}
+            <em>unknown</em> — only live verify above is current.
+          </CardContent>
+        </Card>
+      ) : null}
 
       <section className="grid gap-4 lg:grid-cols-2">
         <Card>
           <CardHeader>
             <CardTitle>Provenance</CardTitle>
             <CardDescription>
-              UI must treat mismatched digests as unknown — never pass.
+              Live digests from this tree. Mismatched turn digests → unknown.
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-2 font-mono text-xs">

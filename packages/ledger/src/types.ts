@@ -150,6 +150,7 @@ export interface TurnFileChange {
 }
 
 export interface TurnIntent {
+  /** Ledger-facing ask after hygiene — not raw chat. See episodes.md. */
   userPrompt: string
   restatedGoal: string
   acceptanceCriteria?: string[]
