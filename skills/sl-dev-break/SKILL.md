@@ -14,7 +14,8 @@ review. Spec gaps → [`sl-plan-break-spec`](../sl-plan-break-spec/SKILL.md)
 before seal.
 
 Contract: [`docs/architecture/work-model.md`](../../docs/architecture/work-model.md) §3.4;
-review shape: [`episodes.md`](../../docs/architecture/episodes.md) §6.6.
+review shape: [`episodes.md`](../../docs/architecture/episodes.md) §6.6;
+Lattice copy: [`../references/review-lattice-copy.md`](../references/review-lattice-copy.md).
 Structure / failure-first:
 [`../references/cheap-to-change.md`](../references/cheap-to-change.md)
 (+ `method` from nessalabs/skills when installed).
@@ -45,6 +46,20 @@ grading its own slice without that split **contaminates the hunt** — forbidden
 a path/scenario the builder did **not** name in `intent` (acceptance,
 outOfScope, restatedGoal, keywords, summaryForSearch). Prefer a separate
 breaker agent when policy/runtime can split.
+
+### Host: launch breaker as a subagent
+
+In Cursor, the **builder must not** author the adversarial review JSON itself.
+Launch a Task subagent for `sl-dev-break` (and similarly for
+`sl-plan-break-spec`):
+
+| Preference | Task `model` |
+| --- | --- |
+| Same class as builder (default here) | `inherit` |
+| User named a model (e.g. Fable) | that slug only |
+
+Ask once per session/setup if unset. Standing rule:
+[`.cursor/rules/review-subagent-models.mdc`](../../.cursor/rules/review-subagent-models.mdc).
 
 ### Evidence is structural — no run, no review
 
@@ -126,6 +141,15 @@ If the killer proves behavior the sealed workstream did not allow:
 3. Add killer tests under breaker ownership; **run** them; capture evidence.
 4. Enforce hunt budget (one out-of-intent killer unless trust expands).
 5. Write review (`request-changes` or `approve` with `killersCited`).
+   Lattice-facing copy is required — follow
+   [`../references/review-lattice-copy.md`](../references/review-lattice-copy.md):
+   - review `plainSummary`: **one sentence** of what a human should take away
+     (end behavior, not internals).
+   - each finding `plainImpact`: **one sentence** of what would happen if this
+     shipped (who/what would go green wrongly, what a user could sneak through).
+   Keep `summary` / `gap` / `fixProposal` for the technical trail. Do not dump
+   function names into `plainImpact`.
+   If using CLI: always pass `--plain-summary` (required).
 6. Findings ≥ `alertOnSeverity` → `policy.onAlert`; `blocking` per block/wait.
 7. Hand back: builder may change **prod only** until killers fail-then-pass for
    the intended reason. Breaker re-runs killers; does not edit them soft.
@@ -144,12 +168,14 @@ If the killer proves behavior the sealed workstream did not allow:
   "verdict": "request-changes",
   "blocking": true,
   "summary": "Partial failure leaves digest stamped without rows",
+  "plainSummary": "A failed ingest could still look like a passing verify.",
   "findings": [
     {
       "id": "F-01",
       "severity": "high",
       "claimId": "SL-00N",
       "gap": "When bindings ingest throws mid-batch, report still ok:true",
+      "plainImpact": "Verify would say pass even though some required evidence never landed.",
       "fixProposal": "Fail closed; do not write ok:true on partial ingest",
       "evidence": {
         "kind": "test",
@@ -178,6 +204,7 @@ If the killer proves behavior the sealed workstream did not allow:
   "verdict": "approve",
   "blocking": false,
   "summary": "Killers red then green for intended reasons",
+  "plainSummary": "The attack tests failed for the right bugs, then passed after the fix.",
   "killersCited": [
     "packages/…/foo.test.ts::wrong principal denied",
     "packages/…/foo.test.ts::poison input rejected"

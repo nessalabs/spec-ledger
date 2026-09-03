@@ -8,6 +8,7 @@
   "reviewer": "agent:align",
   "verdict": "approve",
   "summary": "Coverage intent: ship W-004 Phase II (align check+approve+gates/hooks/CI) under T-016; waiver covers SLC-03/04 path set outside SLC-02 expectedPaths.",
+  "plainSummary": "These files are treated as in-plan for this bet, including an explicit skip for extra paths.",
   "treeDigest": "51bf73938c3f02c58d3ef935b7759d8c26c26934f445363079181eee3c6dd034",
   "uncoveredPaths": [
     ".github/workflows/ci.yml",

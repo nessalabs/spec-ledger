@@ -10,7 +10,7 @@ import Link from "next/link"
 import { ledgerSnapshot, serverClient } from "@/lib/ledger"
 import { FreshnessBadge, TurnVerifyBadge } from "@/components/freshness-badge"
 import { turnFreshness } from "@/lib/turns"
-import type { Turn } from "@nessa/spec-ledger-client"
+import type { Turn, Workstream } from "@nessa/spec-ledger-client"
 
 export const dynamic = "force-dynamic"
 
@@ -23,13 +23,19 @@ export default async function OverviewPage() {
   const { report, turns } = snap
 
   const openTurn = turns.find((t) => t.status === "open") ?? null
-  const activeWorkstreams = workstreams
-    .filter((w) => w.status === "active" || w.status === "sealed" || w.status === "done")
+  const liveWorkstreams = workstreams
+    .filter((w) => w.status === "active" || w.status === "sealed")
     .sort((a, b) => b.id.localeCompare(a.id))
-  const spotlight =
-    activeWorkstreams.find((w) => w.status === "active" || w.status === "sealed") ??
-    activeWorkstreams[0] ??
-    null
+  const spotlight = liveWorkstreams[0] ?? null
+  const latestCompleted = workstreams
+    .filter((w) => w.status === "done")
+    .sort((a, b) => b.id.localeCompare(a.id))[0] ?? null
+  const recentTurns = turns
+    .slice()
+    .sort((a, b) =>
+      (b.closedAt ?? b.openedAt).localeCompare(a.closedAt ?? a.openedAt),
+    )
+    .slice(0, 6)
   const openFreshness = openTurn ? turnFreshness(openTurn, report) : "unknown"
 
   return (
@@ -79,45 +85,32 @@ export default async function OverviewPage() {
           Active workstream
         </h2>
         {spotlight ? (
+          <WorkstreamCard workstream={spotlight} />
+        ) : (
           <Card>
             <CardHeader className="gap-2">
-              <div className="flex flex-wrap items-center gap-2">
-                <Link
-                  href={`/workstreams/${spotlight.id}`}
-                  className="font-mono text-lg font-semibold no-underline hover:underline"
-                >
-                  {spotlight.id}
-                </Link>
-                <Badge variant="outline">{spotlight.status}</Badge>
-                {spotlight.seal ? (
-                  <Badge variant="secondary" className="font-mono text-[10px]">
-                    seal rev {spotlight.seal.revision}
-                  </Badge>
-                ) : null}
-              </div>
-              <CardTitle className="text-base font-medium">{spotlight.title}</CardTitle>
-              <CardDescription className="text-sm text-foreground/80">
-                {spotlight.objective}
+              <CardTitle className="text-base">No active workstream</CardTitle>
+              <CardDescription>
+                Latest sealed bet is done. Shape the next one, or open a turn
+                under an existing workstream.
               </CardDescription>
             </CardHeader>
-            <CardContent className="flex flex-wrap gap-2 text-xs text-muted-foreground">
-              {(spotlight.suggestedSlices ?? []).slice(0, 4).map((s) => (
-                <Badge key={s.id} variant="outline" className="font-mono">
-                  {s.id}
-                </Badge>
-              ))}
-              <Link
-                href={`/workstreams/${spotlight.id}`}
-                className="text-primary underline-offset-4 hover:underline"
-              >
-                Open workstream →
-              </Link>
-            </CardContent>
+            {latestCompleted ? (
+              <CardContent className="space-y-2 text-sm">
+                <p className="text-xs text-muted-foreground">Last completed</p>
+                <Link
+                  href={`/workstreams/${latestCompleted.id}`}
+                  className="flex items-center justify-between gap-2 rounded-md border border-border px-3 py-2 no-underline hover:bg-muted/40"
+                >
+                  <span className="font-mono font-medium">{latestCompleted.id}</span>
+                  <span className="min-w-0 flex-1 truncate text-muted-foreground">
+                    {latestCompleted.title}
+                  </span>
+                  <Badge variant="outline">done</Badge>
+                </Link>
+              </CardContent>
+            ) : null}
           </Card>
-        ) : (
-          <p className="text-sm text-muted-foreground">
-            No sealed workstreams yet. Shape and seal one with the CLI.
-          </p>
         )}
       </section>
 
@@ -139,6 +132,50 @@ export default async function OverviewPage() {
               </CardDescription>
             </CardHeader>
           </Card>
+        )}
+      </section>
+
+      <section className="space-y-3">
+        <div className="flex items-center justify-between gap-2">
+          <h2 className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
+            Recent turns
+          </h2>
+          <Link
+            href="/turns"
+            className="text-xs text-primary underline-offset-4 hover:underline"
+          >
+            All →
+          </Link>
+        </div>
+        {recentTurns.length ? (
+          <ul className="grid gap-2">
+            {recentTurns.map((t) => (
+              <li key={t.id}>
+                <Link
+                  href={`/turns/${t.id}`}
+                  className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1 rounded-md border border-border px-3 py-2 text-sm no-underline hover:bg-muted/40"
+                >
+                  <span className="flex min-w-0 flex-1 flex-wrap items-center gap-2">
+                    <span className="font-mono text-xs font-medium">{t.id}</span>
+                    {t.intent.workstreamId ? (
+                      <Badge variant="outline" className="font-mono text-[10px] font-normal">
+                        {t.intent.workstreamId}
+                      </Badge>
+                    ) : null}
+                    <span className="min-w-0 truncate text-foreground">
+                      {t.intent.restatedGoal}
+                    </span>
+                  </span>
+                  <span className="shrink-0 text-[11px] text-muted-foreground">
+                    {t.status}
+                    {t.closedAt ? ` · ${t.closedAt.slice(0, 10)}` : ""}
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p className="text-sm text-muted-foreground">No turns yet.</p>
         )}
       </section>
 
@@ -204,6 +241,46 @@ function BrowseStep({
         {cta} →
       </Link>
     </div>
+  )
+}
+
+function WorkstreamCard({ workstream }: { workstream: Workstream }) {
+  return (
+    <Card>
+      <CardHeader className="gap-2">
+        <div className="flex flex-wrap items-center gap-2">
+          <Link
+            href={`/workstreams/${workstream.id}`}
+            className="font-mono text-lg font-semibold no-underline hover:underline"
+          >
+            {workstream.id}
+          </Link>
+          <Badge variant="outline">{workstream.status}</Badge>
+          {workstream.seal ? (
+            <Badge variant="secondary" className="font-mono text-[10px]">
+              seal rev {workstream.seal.revision}
+            </Badge>
+          ) : null}
+        </div>
+        <CardTitle className="text-base font-medium">{workstream.title}</CardTitle>
+        <CardDescription className="text-sm text-foreground/80">
+          {workstream.objective}
+        </CardDescription>
+      </CardHeader>
+      <CardContent className="flex flex-wrap gap-2 text-xs text-muted-foreground">
+        {(workstream.suggestedSlices ?? []).slice(0, 4).map((s) => (
+          <Badge key={s.id} variant="outline" className="font-mono">
+            {s.id}
+          </Badge>
+        ))}
+        <Link
+          href={`/workstreams/${workstream.id}`}
+          className="text-primary underline-offset-4 hover:underline"
+        >
+          Open workstream →
+        </Link>
+      </CardContent>
+    </Card>
   )
 }
 

@@ -56,6 +56,7 @@ function approve(over: Partial<Review> = {}): Review {
     reviewer: "agent:align",
     verdict: "approve",
     summary: "align",
+    plainSummary: "Sealed plan covers the product files in this turn.",
     treeDigest: DIGEST,
     uncoveredPaths: [],
     coverageSource: "graph",

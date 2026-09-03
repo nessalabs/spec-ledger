@@ -53,6 +53,42 @@ function checkBinding(file, data) {
   return ok
 }
 
+function checkReview(file, data) {
+  let ok = true
+  if (data.schemaVersion !== 1) ok = fail(file, "schemaVersion must be 1") || ok
+  if (typeof data.id !== "string" || !data.id) ok = fail(file, "id required") || ok
+  if (typeof data.reviewer !== "string" || !data.reviewer.trim())
+    ok = fail(file, "reviewer required") || ok
+  if (!["approve", "request-changes", "comment"].includes(data.verdict))
+    ok = fail(file, "verdict must be approve|request-changes|comment") || ok
+  if (typeof data.summary !== "string" || !data.summary.trim())
+    ok = fail(file, "summary required") || ok
+  if (typeof data.plainSummary !== "string" || !data.plainSummary.trim())
+    ok = fail(file, "plainSummary required (one Lattice sentence)") || ok
+  else if (data.plainSummary.length > 280)
+    ok = fail(file, "plainSummary must be <= 280 characters") || ok
+  const findings = Array.isArray(data.findings) ? data.findings : []
+  for (const f of findings) {
+    const fid = f?.id ?? "?"
+    if (typeof f.gap !== "string" || !f.gap.trim())
+      ok = fail(file, `finding ${fid}: gap required`) || ok
+    if (typeof f.plainImpact !== "string" || !f.plainImpact.trim())
+      ok = fail(file, `finding ${fid}: plainImpact required (one Lattice sentence)`) || ok
+    else if (f.plainImpact.length > 280)
+      ok = fail(file, `finding ${fid}: plainImpact must be <= 280 characters`) || ok
+    if (data.kind === "adversarial" && data.target === "code" && !f.evidence)
+      ok = fail(file, `finding ${fid}: code-adversarial evidence required`) || ok
+  }
+  if (
+    data.kind === "adversarial" &&
+    data.target === "code" &&
+    data.verdict === "approve" &&
+    !(Array.isArray(data.killersCited) && data.killersCited.length)
+  )
+    ok = fail(file, "code-adversarial approve requires killersCited") || ok
+  return ok
+}
+
 function checkSchemaFile(file, data) {
   if (typeof data !== "object" || data === null) return fail(file, "must be object")
   if (!data.$schema && !data.$id && data.type === undefined)
@@ -62,6 +98,7 @@ function checkSchemaFile(file, data) {
 
 const rules = [
   [/^\.spec-ledger\/turns\/T-.+\.json$/, checkTurn],
+  [/^\.spec-ledger\/reviews\/.+\.json$/, checkReview],
   [/^\.spec-ledger\/claims\/.+\.json$/, checkClaim],
   [/^\.spec-ledger\/bindings\/.+\.json$/, checkBinding],
   [/^schemas\/.+\.json$/, checkSchemaFile],

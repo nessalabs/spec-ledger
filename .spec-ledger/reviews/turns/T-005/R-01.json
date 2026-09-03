@@ -7,6 +7,7 @@
   "reviewer": "agent:sl-dev-break",
   "verdict": "approve",
   "summary": "JCS + episode write tests green",
+  "plainSummary": "Digest and episode write tests passed; this slice may ship.",
   "killersCited": [
     "packages/ledger/src/jcs.test.ts::RFC 8785 JCS key order",
     "packages/ledger/src/episodes.write.test.ts::episode write CLIs leave digests on close"

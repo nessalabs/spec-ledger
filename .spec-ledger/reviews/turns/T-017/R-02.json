@@ -8,6 +8,7 @@
   "reviewer": "agent:sl-dev-break",
   "verdict": "approve",
   "summary": "Killer: align check must exit 0 when waive/approve covers treeDigest; unit suite still green.",
+  "plainSummary": "The coverage-check tests passed; this slice may ship.",
   "killersCited": [
     "packages/ledger/src/align/check.test.ts::align coverage",
     "pnpm ledger:align exits 0 with waiver"

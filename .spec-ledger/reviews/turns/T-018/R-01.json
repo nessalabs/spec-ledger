@@ -8,6 +8,7 @@
   "reviewer": "agent:align",
   "verdict": "approve",
   "summary": "Coverage intent: post-commit align check accepts closed-turn approve digests when worktree has no dirty product paths.",
+  "plainSummary": "After a commit, a clean tree still honors the earlier coverage approve.",
   "treeDigest": "f64702b0233d0205a88b027e2d1a0a5470525e7d007907740d21e579610144f1",
   "uncoveredPaths": [],
   "coverageSource": "mixed"

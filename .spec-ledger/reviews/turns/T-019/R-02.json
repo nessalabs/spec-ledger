@@ -10,7 +10,8 @@
   "blocking": false,
   "resolvesReviewId": "T-019/R-01",
   "treeDigest": "257ef1ad1c5c9c953f133a88e1b08bdc8ebba3ff0189d4998aa3f9a0a5a48f9e",
-  "summary": "Re-run after builder prod-only fix: all 10 killer tests red→green for the intended reasons (32/32 suite green); killers byte-identical to R-01. Command killers re-run: pre-push without dist now exits 1 ('silence is not skip'); align waiver refuses closed turn (exit 1) and nonexistent turn (exit 1), no orphan waiver written. Fixes verified at root cause: post-close fallback no longer harvests review/waiver digests (only current + facts.verify.treeDigest); treeDigest is content-addressed via hash-object per dirty path; changedPathsSince fails closed on unresolvable base; closed-turn align paths = facts ∪ since-close ∪ dirty; waiverIds resolved; producer passed to gate; '..' normalized; CI fetch-depth set.",
+  "summary": "Re-run after builder prod-only fix: all 10 killer tests red\u2192green for the intended reasons (32/32 suite green); killers byte-identical to R-01. Command killers re-run: pre-push without dist now exits 1 ('silence is not skip'); align waiver refuses closed turn (exit 1) and nonexistent turn (exit 1), no orphan waiver written. Fixes verified at root cause: post-close fallback no longer harvests review/waiver digests (only current + facts.verify.treeDigest); treeDigest is content-addressed via hash-object per dirty path; changedPathsSince fails closed on unresolvable base; closed-turn align paths = facts \u222a since-close \u222a dirty; waiverIds resolved; producer passed to gate; '..' normalized; CI fetch-depth set.",
+  "plainSummary": "The attack tests failed for those holes, then passed after the fix \u2014 this review may ship.",
   "killersCited": [
     "packages/ledger/src/align/break.test.ts::dot-dot segments must not smuggle paths into exempt or covered sets",
     "packages/ledger/src/align/break.test.ts::approve with uncoveredPaths + waiverIds pointing at NO existing waiver must not satisfy",
@@ -22,8 +23,8 @@
     "packages/ledger/src/align/check.break.test.ts::COMMITTED uncovered product path after turn close (clean tree, CI) must fail align check",
     "packages/ledger/src/align/check.break.test.ts::post-close digest fallback must not accept a waiver whose treeDigest never matched any tree",
     "packages/ledger/src/align/check.break.test.ts::close must refuse when baseCommit is unresolvable and committed product paths are uncovered",
-    "cmd: pre-push hook without dist → exit 1 (was 0)",
-    "cmd: align waiver --turn <closed> / --turn T-999 → exit 1, no waiver written (was exit 0, orphan AW written)"
+    "cmd: pre-push hook without dist \u2192 exit 1 (was 0)",
+    "cmd: align waiver --turn <closed> / --turn T-999 \u2192 exit 1, no waiver written (was exit 0, orphan AW written)"
   ],
   "findings": [],
   "resolvesFindingIds": [

@@ -13,6 +13,8 @@ import type {
   VerifyReport,
   Workstream,
 } from "@nessa/spec-ledger-client"
+
+type EpisodeReview = TurnEpisode["reviews"][number]
 import { StaticMermaid } from "@/components/static-mermaid"
 import { TurnFilesCard } from "@/components/turn-files"
 import {
@@ -330,18 +332,10 @@ export function TurnDetail({
         <section className="space-y-3">
           <h2 className="text-sm font-medium">Trail</h2>
           {episode.reviews.length ? (
-            <div className="space-y-2">
+            <div className="space-y-3">
+              <h3 className="text-xs font-medium text-muted-foreground">Reviews</h3>
               {episode.reviews.map((r) => (
-                <div
-                  key={r.id}
-                  className="rounded-lg border border-border px-3 py-2 text-sm"
-                >
-                  <div className="flex flex-wrap items-center gap-2">
-                    <Badge variant="outline">{r.verdict}</Badge>
-                    {r.blocking ? <Badge variant="destructive">blocking</Badge> : null}
-                  </div>
-                  <p className="mt-1 text-muted-foreground">{r.summary}</p>
-                </div>
+                <ReviewCard key={r.id} review={r} />
               ))}
             </div>
           ) : null}
@@ -553,6 +547,101 @@ function ChipRow({
           </Link>
         ))}
       </div>
+    </div>
+  )
+}
+
+function ReviewCard({ review }: { review: EpisodeReview }) {
+  const findings = review.findings ?? []
+  const killers = review.killersCited ?? []
+  const headline = review.plainSummary?.trim()
+  return (
+    <div className="rounded-lg border border-border px-3 py-3 text-sm">
+      <div className="flex flex-wrap items-center gap-2">
+        <span className="font-mono text-[11px] text-muted-foreground">{review.id}</span>
+        <Badge variant="outline">{review.verdict}</Badge>
+        {review.target ? (
+          <Badge variant="secondary">{review.target}</Badge>
+        ) : null}
+        {review.kind ? (
+          <Badge variant="outline" className="font-normal">
+            {review.kind}
+          </Badge>
+        ) : null}
+        {review.blocking ? <Badge variant="destructive">blocking</Badge> : null}
+      </div>
+      <p className="mt-1 text-xs text-muted-foreground">{review.reviewer}</p>
+      {headline ? (
+        <p className="mt-2 text-foreground">{headline}</p>
+      ) : (
+        <p className="mt-2 text-muted-foreground">{review.summary}</p>
+      )}
+      {review.resolvesReviewId ? (
+        <p className="mt-1 text-[11px] text-muted-foreground">
+          Resolves {review.resolvesReviewId}
+        </p>
+      ) : null}
+      {findings.length ? (
+        <ul className="mt-3 space-y-3 border-t border-border/60 pt-3">
+          {findings.map((f) => {
+            const impact = f.plainImpact?.trim()
+            const hasTech = Boolean(f.gap || f.fixProposal)
+            return (
+              <li key={f.id} className="space-y-1">
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="font-mono text-[11px]">{f.id}</span>
+                  <Badge variant="outline">{f.severity}</Badge>
+                </div>
+                {impact ? (
+                  <p className="text-foreground/90">{impact}</p>
+                ) : (
+                  <p className="text-foreground/90">{f.gap}</p>
+                )}
+                {hasTech && impact ? (
+                  <details className="text-xs text-muted-foreground">
+                    <summary className="cursor-pointer">Technical</summary>
+                    <p className="mt-1">{f.gap}</p>
+                    {f.fixProposal ? (
+                      <p className="mt-1">Fix: {f.fixProposal}</p>
+                    ) : null}
+                  </details>
+                ) : f.fixProposal && !impact ? (
+                  <p className="text-xs text-muted-foreground">Fix: {f.fixProposal}</p>
+                ) : null}
+              </li>
+            )
+          })}
+        </ul>
+      ) : null}
+      {(headline || killers.length) && review.summary ? (
+        <details className="mt-3">
+          <summary className="cursor-pointer text-xs text-muted-foreground">
+            Technical notes
+            {killers.length ? ` · ${killers.length} killers` : ""}
+          </summary>
+          {headline ? (
+            <p className="mt-2 text-xs text-muted-foreground">{review.summary}</p>
+          ) : null}
+          {killers.length ? (
+            <ul className="mt-1 list-disc space-y-0.5 pl-5 font-mono text-[11px] text-muted-foreground">
+              {killers.map((k) => (
+                <li key={k}>{k}</li>
+              ))}
+            </ul>
+          ) : null}
+        </details>
+      ) : killers.length ? (
+        <details className="mt-3">
+          <summary className="cursor-pointer text-xs text-muted-foreground">
+            Killers cited ({killers.length})
+          </summary>
+          <ul className="mt-1 list-disc space-y-0.5 pl-5 font-mono text-[11px] text-muted-foreground">
+            {killers.map((k) => (
+              <li key={k}>{k}</li>
+            ))}
+          </ul>
+        </details>
+      ) : null}
     </div>
   )
 }

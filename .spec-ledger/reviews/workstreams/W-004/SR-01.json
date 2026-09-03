@@ -8,12 +8,14 @@
   "verdict": "request-changes",
   "blocking": true,
   "summary": "Related pack (features lattice/turns/verify, claims SL-001..008, PC-013/014, prior T-006 UI trail, docs work-model/episodes) shows the bet is directionally right (TN-002 + path coverage + cheap align JSON) but several high gaps before seal: missing client/server in featureIds vs real UI/hook blast, expectedPaths/treeDigest not on schemas yet, waiver abuse, and cheap-model false-approve without a structured checklist. Worktree scan caution-only (no sibling dirty entries).",
+  "plainSummary": "The plan was not ready to seal: coverage, skip, and schema holes would have made the gate unenforceable.",
   "findings": [
     {
       "id": "F1",
       "severity": "high",
       "claimId": "PC-013",
-      "gap": "Acceptance and PC-013 rely on slice expectedPaths[], but schemas/workstream.json suggestedSlices has no expectedPaths field and no graph→path ownership table beyond node.locator. Without that, 'covered by spec at every path' is untestable and agents will invent ad-hoc rules.",
+      "gap": "Acceptance and PC-013 rely on slice expectedPaths[], but schemas/workstream.json suggestedSlices has no expectedPaths field and no graph\u2192path ownership table beyond node.locator. Without that, 'covered by spec at every path' is untestable and agents will invent ad-hoc rules.",
+      "plainImpact": "You could not tell which files a slice was allowed to touch, so coverage would be guesswork.",
       "fixProposal": "Add optional expectedPaths: string[] (globs ok) on suggestedSlices in schema + W-004 slices for packages/ui/**, packages/ledger/src/{audit,turns,reviews}/**, scripts/git-hooks/** before seal; document coverage algorithm in work-model.md one paragraph.",
       "evidencePath": "schemas/workstream.json"
     },
@@ -21,6 +23,7 @@
       "id": "F2",
       "severity": "high",
       "gap": "featureIds are [lattice, turns, verify] but related prior turn T-006 (same Lattice surface) touched client + server packages and claim SL-003/SL-005. Hooks/CI and FileDiff live under ui; align CLI may touch client HTTP. Omitting client/server understates blast and starves path coverage via graph locators.",
+      "plainImpact": "The plan would ignore client and server packages that the UI already changes.",
       "fixProposal": "Extend featureIds to include client and server (or add explicit expectedPaths covering packages/client and packages/server for SLC-03/04). Update primaryFeatureId only if lattice remains the hero.",
       "evidencePath": ".spec-ledger/turns/T-006.json"
     },
@@ -28,7 +31,8 @@
       "id": "F3",
       "severity": "high",
       "claimId": "PC-014",
-      "gap": "PC-014 and SLC-03 require code approve bound to treeDigest, but schemas/review.json has no treeDigest (or waiver) property. writeReview() only supports turn-scoped files; workstream/spec reviews are hand-written paths. Risk: treeDigest stuffed into untyped findings.evidence → weak gate.",
+      "gap": "PC-014 and SLC-03 require code approve bound to treeDigest, but schemas/review.json has no treeDigest (or waiver) property. writeReview() only supports turn-scoped files; workstream/spec reviews are hand-written paths. Risk: treeDigest stuffed into untyped findings.evidence \u2192 weak gate.",
+      "plainImpact": "Approves could not be bound to a real tree, so the gate would be unenforceable.",
       "fixProposal": "Before seal, amend acceptance to require schema+CLI changes in SLC-03: review.treeDigest?: string; optional waiver collection schema; listSpecReviews helper. Do not seal implying the field already exists.",
       "evidencePath": "schemas/review.json"
     },
@@ -36,28 +40,32 @@
       "id": "F4",
       "severity": "high",
       "gap": "correctnessCritical + cheap Haiku-class align agent can rubber-stamp approve. Acceptance says 'asks user for coverage intent' but does not require a machine-checkable checklist (uncovered path count == 0 OR waiver ids listed) inside the approve JSON. Free-text summary alone fails TN-001 spirit.",
+      "plainImpact": "A cheap reviewer could rubber-stamp coverage with a free-text note.",
       "fixProposal": "Require approve reviews to cite killers or structured fields: uncoveredPaths: [] and coverageSource: user|graph|expectedPaths; refuse approve when uncoveredPaths non-empty unless waiver ids listed. Skill must say: cheap model fills checklist; user confirms coverage intent.",
       "evidencePath": "docs/architecture/work-model.md"
     },
     {
       "id": "F5",
       "severity": "high",
-      "gap": "allowExplicitAlignSkip: true without constraints — a one-line waiver nullifies the whole gate. No min reason length, no severity, no audit failOn for naked waivers, no 'who' distinct from builder required in acceptance.",
-      "fixProposal": "Acceptance: waiver requires reason (>= N chars), actor, treeDigest, workstreamId; audit warns/fails on waiver without reason; policy.alignSkipMaxPerTurn default 1. Silence still ≠ skip.",
+      "gap": "allowExplicitAlignSkip: true without constraints \u2014 a one-line waiver nullifies the whole gate. No min reason length, no severity, no audit failOn for naked waivers, no 'who' distinct from builder required in acceptance.",
+      "plainImpact": "A one-line skip could turn the whole coverage gate off.",
+      "fixProposal": "Acceptance: waiver requires reason (>= N chars), actor, treeDigest, workstreamId; audit warns/fails on waiver without reason; policy.alignSkipMaxPerTurn default 1. Silence still \u2260 skip.",
       "evidencePath": ".spec-ledger/workstreams/W-004.json"
     },
     {
       "id": "F6",
       "severity": "moderate",
       "claimId": "SL-001",
-      "gap": "Bet correctly keeps verify.ok claims-pure, but SLC-04 'CI job runs the same check' could be mistakenly folded into pnpm verify. Related SL-001/SL-008 already separate audit vs verify — acceptance should name the script (e.g. pnpm ledger:align or audit --fail-on align) explicitly.",
+      "gap": "Bet correctly keeps verify.ok claims-pure, but SLC-04 'CI job runs the same check' could be mistakenly folded into pnpm verify. Related SL-001/SL-008 already separate audit vs verify \u2014 acceptance should name the script (e.g. pnpm ledger:align or audit --fail-on align) explicitly.",
+      "plainImpact": "CI might mix coverage into claim verify and break the claims-only report.",
       "fixProposal": "Name the CI step and npm script in acceptance; state verify workflow remains untouched.",
       "evidencePath": "DESIGN.md"
     },
     {
       "id": "F7",
       "severity": "moderate",
-      "gap": "SLC-01 absorbs large uncommitted UI polish already in the working tree (plan-first turns, density, FileDiff) that was implemented under done W-003 without a new turn — related T-006 treeDigestDrift already true. Seal without a residualRisk note invites repeating TN-002 breach mid-build.",
+      "gap": "SLC-01 absorbs large uncommitted UI polish already in the working tree (plan-first turns, density, FileDiff) that was implemented under done W-003 without a new turn \u2014 related T-006 treeDigestDrift already true. Seal without a residualRisk note invites repeating TN-002 breach mid-build.",
+      "plainImpact": "Uncommitted UI work could land without an open turn on this bet.",
       "fixProposal": "Add residualRisks: orphan UI diff must land only after seal under open T-00x for W-004 SLC-01; no further product UI until turn open. Optionally list current dirty UI paths in an attachment.",
       "evidencePath": "packages/ui/components/turn-detail.tsx"
     },
@@ -65,13 +73,15 @@
       "id": "F8",
       "severity": "moderate",
       "gap": "Acceptance 'skills/AGENTS instructions tell any host to use cheap model' is not e2e-checkable evidence. Without a committed skill file path in acceptance, hosts will ignore it.",
+      "plainImpact": "Hosts would not be told to use a cheap align model or ask for coverage intent.",
       "fixProposal": "Name artifacts: skills/sl-dev-align/SKILL.md + AGENTS.md bullet; evidence = path exists + mentions Haiku/cheap model and user coverage ask.",
       "evidencePath": "AGENTS.md"
     },
     {
       "id": "F9",
       "severity": "low",
-      "gap": "worktreeCautions from related: scan is caution-only string, not structured sibling entries — residualRisk for multi-worktree agents remains soft.",
+      "gap": "worktreeCautions from related: scan is caution-only string, not structured sibling entries \u2014 residualRisk for multi-worktree agents remains soft.",
+      "plainImpact": "Other worktrees would stay a soft warning, not a hard stop.",
       "fixProposal": "Copy into residualRisks; do not block seal on this alone.",
       "evidencePath": "docs/architecture/work-model.md"
     }

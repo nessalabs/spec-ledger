@@ -379,6 +379,8 @@ export interface ReviewFinding {
   severity: "low" | "moderate" | "high" | "critical"
   claimId?: string
   gap: string
+  /** One sentence of end behavior if this finding stands. Shown in Lattice. */
+  plainImpact?: string
   fixProposal?: string
   evidence?: ReviewEvidence
   evidencePath?: string
@@ -394,6 +396,8 @@ export interface Review {
   reviewer: string
   verdict: ReviewVerdict
   summary: string
+  /** One Lattice-facing sentence; keep `summary` for the technical trail. */
+  plainSummary?: string
   blocking?: boolean
   /** Tree digest this code / align approve applies to. */
   treeDigest?: string
@@ -402,6 +406,8 @@ export interface Review {
   coverageSource?: "user" | "graph" | "expectedPaths" | "mixed"
   waiverIds?: string[]
   killersCited?: string[]
+  alertOnSeverity?: "low" | "moderate" | "high" | "critical"
+  residualRisks?: string[]
   findings?: ReviewFinding[]
   resolvesReviewId?: string
   supersedesReviewId?: string

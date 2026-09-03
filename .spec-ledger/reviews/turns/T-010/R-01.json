@@ -6,7 +6,8 @@
   "target": "code",
   "reviewer": "agent:sl-dev-break",
   "verdict": "approve",
-  "summary": "Turn page section order: Before→after, Commit, Related docs, then Plan (verified on /turns/T-007).",
+  "summary": "Turn page section order: Before\u2192after, Commit, Related docs, then Plan (verified on /turns/T-007).",
+  "plainSummary": "A turn page now tells the story before the long plan.",
   "killersCited": [
     "curl:/turns/T-007#section-order"
   ],
@@ -14,13 +15,12 @@
     {
       "id": "T-010/R-01/F-01",
       "severity": "low",
-      "title": "Story sections must precede Plan",
-      "detail": "Long pitch buried what shipped.",
-      "status": "open",
+      "gap": "Story sections must precede Plan: Long pitch buried what shipped.",
+      "plainImpact": "The long plan would hide what actually shipped on the turn.",
       "evidence": {
         "kind": "command",
-        "command": "curl -s http://127.0.0.1:3737/turns/T-007 | grep -oE 'Before → after|Commit|Related docs|Plan|Trail|Files' | awk '!seen[$0]++'",
-        "observedOutput": "Before → after\nCommit\nRelated docs\nPlan\nTrail\nFiles",
+        "command": "curl -s http://127.0.0.1:3737/turns/T-007 | grep -oE 'Before \u2192 after|Commit|Related docs|Plan|Trail|Files' | awk '!seen[$0]++'",
+        "observedOutput": "Before \u2192 after\nCommit\nRelated docs\nPlan\nTrail\nFiles",
         "exitCode": 0
       }
     }

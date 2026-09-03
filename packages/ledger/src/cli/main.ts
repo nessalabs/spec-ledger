@@ -86,6 +86,22 @@ function hasFlag(args: string[], flag: string): boolean {
   return args.includes(flag)
 }
 
+/** Lattice headline — required on every review JSON (`schemas/review.json`). */
+function requirePlainSummary(argv: string[]): string {
+  const plainSummary = argValue(argv, "--plain-summary")
+  if (!plainSummary?.trim()) {
+    console.error(
+      "required: --plain-summary <one sentence of end behavior, <=280 chars>",
+    )
+    process.exit(2)
+  }
+  if (plainSummary.length > 280) {
+    console.error("plain-summary must be <= 280 characters")
+    process.exit(2)
+  }
+  return plainSummary
+}
+
 async function main(): Promise<void> {
   const argv = process.argv.slice(2)
   const cmd = argv[0]
@@ -390,10 +406,11 @@ async function main(): Promise<void> {
       const summary = argValue(argv, "--summary")
       if (!turnId || !verdict || !reviewer || !summary) {
         console.error(
-          "usage: spec-ledger review add --turn T --verdict approve|request-changes|comment --reviewer <who> --summary <text> [--killers a,b] [--blocking]",
+          "usage: spec-ledger review add --turn T --verdict approve|request-changes|comment --reviewer <who> --summary <text> --plain-summary <one sentence> [--killers a,b] [--blocking]",
         )
         process.exit(2)
       }
+      const plainSummary = requirePlainSummary(argv)
       if (!["approve", "request-changes", "comment"].includes(verdict)) {
         console.error("verdict must be approve|request-changes|comment")
         process.exit(2)
@@ -416,6 +433,7 @@ async function main(): Promise<void> {
         reviewer,
         verdict,
         summary,
+        plainSummary,
         ...(killersCited ? { killersCited } : {}),
         ...(hasFlag(argv, "--blocking") ? { blocking: true } : {}),
       }
@@ -515,9 +533,10 @@ async function main(): Promise<void> {
       const turnId = argValue(argv, "--turn")
       const reviewer = argValue(argv, "--reviewer") ?? "agent:align"
       const summary = argValue(argv, "--summary") ?? "align: path coverage OK"
+      const plainSummary = requirePlainSummary(argv)
       if (!turnId) {
         console.error(
-          "usage: spec-ledger align approve --turn T [--reviewer agent:align] [--summary text]",
+          "usage: spec-ledger align approve --turn T --plain-summary <one sentence> [--reviewer agent:align] [--summary text]",
         )
         process.exit(2)
       }
@@ -547,6 +566,7 @@ async function main(): Promise<void> {
         reviewer,
         verdict: "approve",
         summary,
+        plainSummary,
         treeDigest: report.treeDigest,
         uncoveredPaths: report.coverage.uncoveredPaths,
         coverageSource: report.coverage.coverageSource,

@@ -26,7 +26,8 @@ Haiku-class** model. Does **not** affect `verify.ok`.
 2. Run `spec-ledger align check --turn T-…` (or `pnpm ledger:align`).
 3. Approve only when `uncoveredPaths` is empty **or** `waiverIds` references a written waiver.
 4. Reviewer must start with `policy.alignReviewerPrefix` (default `agent:align`) and must **not** equal turn `opened.producedBy`.
-5. Stamp `treeDigest`, `coverageSource`, `uncoveredPaths` on the review (schema + CLI `align approve`).
+5. Stamp `treeDigest`, `coverageSource`, `uncoveredPaths`, and **`plainSummary`**
+   on the review (schema + CLI `align approve --plain-summary`).
 6. Explicit skip = `align waiver --reason …` (≥ `alignWaiverMinReasonChars`); silence is not skip.
 
 ## Commands
@@ -36,10 +37,14 @@ pnpm ledger:align
 # or
 node packages/ledger/dist/cli/main.js align check --turn T-016
 node packages/ledger/dist/cli/main.js align approve --turn T-016 --reviewer agent:align \
+  --plain-summary "Product files in this turn are covered by the sealed plan." \
   --summary "user intent: …"
 node packages/ledger/dist/cli/main.js align waiver --turn T-016 --actor human \
   --reason "…… at least forty characters explaining the skip ……"
 ```
+
+Lattice copy rules:
+[`../references/review-lattice-copy.md`](../references/review-lattice-copy.md).
 
 ## Stop
 

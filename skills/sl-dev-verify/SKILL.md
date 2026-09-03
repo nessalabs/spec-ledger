@@ -26,6 +26,8 @@ open → implement → [`sl-dev-break`](../sl-dev-break/SKILL.md) → **this ski
 1. Ensure code-break ran (or typed waiver) while turn was open.
    Accept only `request-changes` (then resolved) or `approve` with non-empty
    `killersCited` and run `evidence` on findings — not bare paths, not `comment`.
+   Reviews must include Lattice copy (`plainSummary` / finding `plainImpact`) —
+   [`../references/review-lattice-copy.md`](../references/review-lattice-copy.md).
 2. Clear blocking findings via a resolving review (`resolvesReviewId` /
    `resolvesFindingIds`) — do not mutate the original adversarial review.
    Builder fixes **prod** only; do not rewrite breaker killers to go green.

@@ -609,40 +609,31 @@ Review {
   target?: "spec"|"code"
   reviewer: string
   verdict: "approve"|"request-changes"|"comment"
-  summary: string
+  summary: string                  // technical trail (collapsed in Lattice)
+  plainSummary: string             // REQUIRED — one Lattice sentence, ≤280
   blocking?: boolean               // set at authoring; do not clear by mutating
+  treeDigest?: string              // code / align approve binding
+  uncoveredPaths?: string[]
+  coverageSource?: "user"|"graph"|"expectedPaths"|"mixed"
+  waiverIds?: string[]
   // Required when verdict === "approve" && target === "code" && kind === "adversarial"
   killersCited?: string[]          // non-empty — citedTest ids or command labels run
   alertOnSeverity?: "low"|"moderate"|"high"|"critical"
-  interrupt?: {
-    mode: "move"|"block"|"wait"
-    eventId?: string
-  }
-  checklist?: { id: string; ok: boolean; note?: string }[]
+  residualRisks?: string[]
   findings?: {
     id: string                     // "F-01" — stable for resolution refs
     severity: "low"|"moderate"|"high"|"critical"
     claimId?: ClaimId
-    gap: string                    // what was wrong / missing
-    fixProposal?: string           // what they asked for
-    // Code-adversarial: evidence REQUIRED (schema if/then). No bare path-only.
+    gap: string                    // what was wrong / missing (technical)
+    plainImpact: string            // REQUIRED — one sentence of end behavior if this stands
+    fixProposal?: string
+    // Code-adversarial: evidence REQUIRED (schema allOf). No bare path-only.
     evidence?: ReviewEvidence
-    // Deprecated for code-adversarial — do not use as sole proof
-    evidencePath?: string
-    messages?: ReviewMessage[]
+    evidencePath?: string          // spec reviews only; not sole proof for code-break
   }[]
-  messages?: ReviewMessage[]
   resolvesReviewId?: string
   supersedesReviewId?: string
   resolvesFindingIds?: string[]
-  resolution?: {
-    at: datetime
-    by: string
-    note?: string
-  }
-  residualRisks?: string[]
-  attachmentIds?: string[]
-  externalRef?: string
 }
 
 ReviewEvidence =
@@ -671,7 +662,9 @@ ReviewMessage {
 }
 ```
 
-**JSON Schema conditionals (encode-lessons-in-structure):**
+Lattice copy: [`skills/references/review-lattice-copy.md`](../../skills/references/review-lattice-copy.md). Review JSON that omits `plainSummary` / finding `plainImpact` is invalid.
+
+**JSON Schema conditionals (encode-lessons-in-structure; in `schemas/review.json`):**
 
 - `kind === "adversarial" && target === "code"` → every `findings[]` entry
   **requires** `evidence`; `evidencePath` alone is insufficient.
@@ -892,7 +885,8 @@ spec-ledger attachment add --turn T-002 --path path-or-url \
   [--kind log-excerpt|image|video|…] [--title "…"] [--media-type image/png] \
   [--review T-002/R-01] [--json]
 spec-ledger review add --turn T-002 --reviewer "…" --verdict approve|request-changes|comment \
-  --summary "…" [--blocking] [--json]
+  --summary "…" --plain-summary "…" [--blocking]
+spec-ledger align approve --turn T-002 --plain-summary "…" [--summary "…"]
 
 spec-ledger verify [--write-report] [--root .]
 spec-ledger audit [--root .] [--json]

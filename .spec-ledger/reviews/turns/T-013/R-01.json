@@ -7,6 +7,7 @@
   "reviewer": "agent:sl-dev-break",
   "verdict": "approve",
   "summary": "Plan/Pitch are path + Read only; full Markdown only after SplitView open. Related docs use Read too.",
+  "plainSummary": "Plan is a link you Read into the side pane, not a second full dump.",
   "killersCited": [
     "curl:/turns/T-007#Plan-Read-no-inline-pitch",
     "grep:turn-plan-section#Read"
@@ -14,10 +15,9 @@
   "findings": [
     {
       "id": "T-013/R-01/F-01",
-      "severity": "medium",
-      "title": "Plan must not inline SpecDoc",
-      "detail": "User wants doc link + Read opening side pane, not dual rendering.",
-      "status": "open",
+      "severity": "moderate",
+      "gap": "Plan must not inline SpecDoc: User wants doc link + Read opening side pane, not dual rendering.",
+      "plainImpact": "The turn page would dump the whole plan twice instead of opening it on the side.",
       "evidence": {
         "kind": "command",
         "command": "curl -s http://127.0.0.1:3737/turns/T-007 | grep -oE 'Plan|Read|Human vs agent surfaces' | sort | uniq -c",

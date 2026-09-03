@@ -2,10 +2,17 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://nessalabs.ai/spec-ledger/schemas/review.json",
   "title": "Review",
-  "description": "Human/agent review of a turn (code) or workstream (spec). Immutable resolution — do not mutate blocking findings away.",
+  "description": "Human/agent review of a turn (code) or workstream (spec). Immutable resolution — do not mutate blocking findings away. Lattice shows plainSummary / plainImpact; summary / gap stay technical.",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schemaVersion", "id", "reviewer", "verdict", "summary"],
+  "required": [
+    "schemaVersion",
+    "id",
+    "reviewer",
+    "verdict",
+    "summary",
+    "plainSummary"
+  ],
   "properties": {
     "schemaVersion": { "const": 1 },
     "id": { "type": "string", "minLength": 1 },
@@ -18,7 +25,17 @@
       "type": "string",
       "enum": ["approve", "request-changes", "comment"]
     },
-    "summary": { "type": "string", "minLength": 1 },
+    "summary": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Technical trail for builders. Not the Lattice headline."
+    },
+    "plainSummary": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 280,
+      "description": "Exactly one Lattice sentence: end behavior if this ships / what a human should take away. No function names, paths, or test ids."
+    },
     "blocking": { "type": "boolean" },
     "treeDigest": {
       "type": "string",
@@ -42,25 +59,67 @@
       "type": "array",
       "items": { "type": "string", "minLength": 1 }
     },
+    "alertOnSeverity": {
+      "type": "string",
+      "enum": ["low", "moderate", "high", "critical"]
+    },
+    "residualRisks": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
     "findings": {
       "type": "array",
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["id", "severity", "gap"],
+        "required": ["id", "severity", "gap", "plainImpact"],
         "properties": {
-          "id": { "type": "string" },
+          "id": { "type": "string", "minLength": 1 },
           "severity": {
             "type": "string",
             "enum": ["low", "moderate", "high", "critical"]
           },
           "claimId": { "type": "string" },
-          "gap": { "type": "string" },
+          "gap": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Technical description for the builder."
+          },
+          "plainImpact": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 280,
+            "description": "Exactly one sentence of end behavior if this finding stands. No internals."
+          },
           "fixProposal": { "type": "string" },
           "evidencePath": { "type": "string" },
           "evidence": {
-            "type": "object",
-            "additionalProperties": true
+            "description": "Run proof. Required on code-adversarial findings (see allOf).",
+            "oneOf": [
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["kind", "command", "observedOutput"],
+                "properties": {
+                  "kind": { "const": "command" },
+                  "command": { "type": "string", "minLength": 1 },
+                  "observedOutput": { "type": "string" },
+                  "exitCode": { "type": "integer" }
+                }
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["kind", "citedTest", "ran"],
+                "properties": {
+                  "kind": { "const": "test" },
+                  "citedTest": { "type": "string", "minLength": 1 },
+                  "ran": { "const": true },
+                  "command": { "type": "string" },
+                  "observedOutput": { "type": "string" }
+                }
+              }
+            ]
           }
         }
       }
@@ -71,5 +130,39 @@
       "type": "array",
       "items": { "type": "string" }
     }
-  }
+  },
+  "allOf": [
+    {
+      "if": {
+        "required": ["kind", "target"],
+        "properties": {
+          "kind": { "const": "adversarial" },
+          "target": { "const": "code" }
+        }
+      },
+      "then": {
+        "properties": {
+          "findings": {
+            "items": { "required": ["evidence"] }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "required": ["kind", "target", "verdict"],
+        "properties": {
+          "kind": { "const": "adversarial" },
+          "target": { "const": "code" },
+          "verdict": { "const": "approve" }
+        }
+      },
+      "then": {
+        "required": ["killersCited"],
+        "properties": {
+          "killersCited": { "type": "array", "minItems": 1 }
+        }
+      }
+    }
+  ]
 }

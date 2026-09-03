@@ -7,6 +7,7 @@
   "reviewer": "agent:sl-dev-break",
   "verdict": "approve",
   "summary": "Turn pages wrap TurnDocSplit; Related docs are openable; SplitView is in client chunks.",
+  "plainSummary": "Related docs open beside the turn instead of as dead path lists.",
   "killersCited": [
     "curl:/turns/T-007#Related-docs",
     "grep:.next/static#SplitView"
@@ -15,9 +16,8 @@
     {
       "id": "T-011/R-01/F-01",
       "severity": "low",
-      "title": "Related docs must open via SplitView",
-      "detail": "Static path list did not preview docs beside the turn.",
-      "status": "open",
+      "gap": "Related docs must open via SplitView: Static path list did not preview docs beside the turn.",
+      "plainImpact": "You could not read related docs next to the change.",
       "evidence": {
         "kind": "command",
         "command": "curl -s http://127.0.0.1:3737/turns/T-007 | grep -c 'Click a doc to open'; rg -l SplitView packages/ui/.next/static/chunks | head -1",

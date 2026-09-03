@@ -7,6 +7,7 @@
   "reviewer": "agent:sl-dev-break",
   "verdict": "approve",
   "summary": "SpecDoc uses MessageMarkdown: W-004/T-007 HTML has data-slot=message-markdown and <strong>explicit</strong> (not half-parser raw ###/** only).",
+  "plainSummary": "Workstream pitch now renders as real formatted text, not raw markdown marks.",
   "killersCited": [
     "curl:/workstreams/W-004#message-markdown+strong",
     "curl:/turns/T-007#message-markdown",
@@ -15,10 +16,9 @@
   "findings": [
     {
       "id": "T-008/R-01/F-01",
-      "severity": "medium",
-      "title": "Pitch must render GFM via MessageMarkdown",
-      "detail": "Half-parser left ** and ### visible. Killer: production page must expose MessageMarkdown slot and bold as <strong>.",
-      "status": "open",
+      "severity": "moderate",
+      "gap": "Pitch must render GFM via MessageMarkdown: Half-parser left ** and ### visible. Killer: production page must expose MessageMarkdown slot and bold as <strong>.",
+      "plainImpact": "Pitch pages would show raw stars and hashes instead of bold headings.",
       "evidence": {
         "kind": "command",
         "command": "curl -s http://127.0.0.1:3737/workstreams/W-004 | grep -E 'data-slot=\"message-markdown\"|<strong>explicit</strong>'",

@@ -8,6 +8,7 @@
   "reviewer": "agent:sl-dev-break",
   "verdict": "approve",
   "summary": "Killer: after commit, clean-tree align check must still honor closed-turn approve/waiver digests.",
+  "plainSummary": "Post-commit coverage tests passed; this slice may ship.",
   "killersCited": [
     "packages/ledger/src/align/check.ts::closed-turn digest fallback",
     "pnpm ledger:align on clean tree"

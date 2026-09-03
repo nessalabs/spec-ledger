@@ -21,6 +21,10 @@ Install separately when available (plugin / `npx skills add nessalabs/skills`):
 [`references/cheap-to-change.md`](./references/cheap-to-change.md) — even if the
 companion pack is not installed.
 
+When writing any review JSON, also apply
+[`references/review-lattice-copy.md`](./references/review-lattice-copy.md)
+(`plainSummary` / `plainImpact`; schema `schemas/review.json`).
+
 ## Lanes
 
 | Lane | Meaning |

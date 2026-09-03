@@ -31,6 +31,7 @@ function baseReview(over: Partial<Review> = {}): Review {
     reviewer: "agent:align",
     verdict: "approve",
     summary: "paths covered",
+    plainSummary: "Sealed plan covers the product files in this turn.",
     treeDigest: "0123456789abcdef0123456789abcdef",
     uncoveredPaths: [],
     coverageSource: "graph",
@@ -84,6 +85,22 @@ describe("align approve", () => {
           policy: { alignReviewerPrefix: "@nessa" },
         }),
       /producer/,
+    )
+  })
+
+  it("refuses missing Lattice plainSummary", () => {
+    assert.throws(
+      () =>
+        assertAlignApproveValid({
+          review: baseReview({ plainSummary: "" }),
+          turn,
+          policy: {},
+        }),
+      /plainSummary/,
+    )
+    assert.equal(
+      isAlignApproveReview(baseReview({ plainSummary: undefined }), "agent:align"),
+      false,
     )
   })
 })

@@ -6,7 +6,8 @@
   "target": "code",
   "reviewer": "agent:sl-dev-break",
   "verdict": "approve",
-  "summary": "UI copy Bets→Workstreams: / and /workstreams show Workstreams; no >Bets< nav labels.",
+  "summary": "UI copy Bets\u2192Workstreams: / and /workstreams show Workstreams; no >Bets< nav labels.",
+  "plainSummary": "The UI says Workstreams everywhere it used to say Bets.",
   "killersCited": [
     "curl:/#Workstreams+Active-workstream",
     "curl:/workstreams#Workstreams-no-Bets",
@@ -16,9 +17,8 @@
     {
       "id": "T-009/R-01/F-01",
       "severity": "low",
-      "title": "Nav and list must say Workstreams not Bets",
-      "detail": "Dual naming confused browse vs ledger language.",
-      "status": "open",
+      "gap": "Nav and list must say Workstreams not Bets: Dual naming confused browse vs ledger language.",
+      "plainImpact": "People would see two names for the same thing and not know which list to open.",
       "evidence": {
         "kind": "command",
         "command": "curl -s http://127.0.0.1:3737/workstreams | grep -cE '>[Bb]ets?<' ; curl -s http://127.0.0.1:3737/ | grep -c Workstreams",

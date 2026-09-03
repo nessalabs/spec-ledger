@@ -7,7 +7,8 @@
   "reviewer": "agent:sl-plan-break-spec",
   "verdict": "comment",
   "blocking": false,
-  "summary": "Human confirmed amend-after-review. W-004 body updated for SR-01 F1–F8 + brand wordmark + human Verify. Schema: expectedPaths on slices; review treeDigest/uncoveredPaths/coverageSource/waiverIds. Ready for human seal — not sealed by agent.",
+  "summary": "Human confirmed amend-after-review. W-004 body updated for SR-01 F1\u2013F8 + brand wordmark + human Verify. Schema: expectedPaths on slices; review treeDigest/uncoveredPaths/coverageSource/waiverIds. Ready for human seal \u2014 not sealed by agent.",
+  "plainSummary": "The plan was amended after review; a human still needs to seal it.",
   "resolvesReviewId": "W-004/SR-01",
   "resolvesFindingIds": [
     "W-004/SR-01#F1",
@@ -25,6 +26,7 @@
       "id": "F-seal",
       "severity": "low",
       "gap": "Awaiting human seal via: pnpm exec / node packages/ledger/dist/cli/main.js workstream seal W-004 --by <you>",
+      "plainImpact": "Until a human seals, builders must not treat this bet as approved to implement.",
       "fixProposal": "Human reads W-004 + PC-013/014 + SR-01/02 then seals."
     }
   ]

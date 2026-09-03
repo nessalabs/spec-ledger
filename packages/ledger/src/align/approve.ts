@@ -53,6 +53,7 @@ export function isAlignApproveReview(
   if (!review.treeDigest || review.treeDigest.length < 16) return false
   if (!review.coverageSource) return false
   if (!Array.isArray(review.uncoveredPaths)) return false
+  if (!review.plainSummary?.trim() || review.plainSummary.length > 280) return false
   if (!review.reviewer.startsWith(prefix)) return false
   const uncovered = review.uncoveredPaths
   if (uncovered.length > 0 && !waiverIdsResolved(review, waivers)) return false
@@ -82,6 +83,12 @@ export function assertAlignApproveValid(args: {
   }
   if (!Array.isArray(review.uncoveredPaths)) {
     throw new Error("align approve refused: uncoveredPaths array required")
+  }
+  if (!review.plainSummary?.trim()) {
+    throw new Error("align approve refused: plainSummary required (one Lattice sentence)")
+  }
+  if (review.plainSummary.length > 280) {
+    throw new Error("align approve refused: plainSummary must be <= 280 characters")
   }
   if (!review.reviewer.startsWith(prefix)) {
     throw new Error(

@@ -1,0 +1,45 @@
+---
+description: Code-break and other reviews must run on separate subagents; model class defaults to builder's class unless user names an explicit model (e.g. Fable).
+alwaysApply: true
+---
+
+# Review subagents (model class)
+
+## Hard split
+
+- **Code-break** (`sl-dev-break`), **spec-break** (`sl-plan-break-spec`), and other adversarial / formal reviews must run as a **separate Task subagent**, not the builder writing the review JSON in-process.
+- Builder owns production fixes after `request-changes`. Breaker owns killers + review artifacts only.
+
+## Model selection
+
+1. **Initial setup / first review in a session:** if the user has not already stated a preference, ask which **class** of model to use for reviews (same class as the builder vs a named stronger/cheaper class).
+2. **Default (this user / when they say “same class”):** launch the review subagent with **`model: "inherit"`** (same class as the parent / builder). Do not upgrade to a different family on your own.
+3. **Named models** (e.g. Fable, Opus, a specific slug): use **only** when the user explicitly asks for that model in the current request or a standing instruction that names it.
+4. Do not treat a past one-off (“use Fable this time”) as standing preference for every later review unless the user says so.
+
+## Examples
+
+| User says | Review subagent `model` |
+| --- | --- |
+| (no mention; preference = same class) | `inherit` |
+| “code-break with Fable” / “use fable 5.1” | the requested Fable slug |
+| “use the same model as you” | `inherit` |
+
+## Lattice copy (required)
+
+Every review JSON must include Lattice-facing sentences per
+[`skills/references/review-lattice-copy.md`](../../skills/references/review-lattice-copy.md)
+and [`schemas/review.json`](../../schemas/review.json):
+
+- `plainSummary` — one sentence of end behavior / takeaway (≤280 chars)
+- each finding `plainImpact` — one sentence if this finding stands
+- Keep `summary` / `gap` technical (collapsed in Lattice)
+
+CLI: `review add` and `align approve` require `--plain-summary`.
+
+## Loop
+
+1. Host launches breaker subagent (this rule).
+2. Breaker writes review with Lattice copy + evidence / killers as required.
+3. Builder fixes prod only after `request-changes`.
+4. Breaker re-approves; align approve (with `plainSummary`) when policy requires; then close.

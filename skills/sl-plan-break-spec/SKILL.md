@@ -38,6 +38,11 @@ Contract: [`docs/architecture/work-model.md`](../../docs/architecture/work-model
 | Citing `related` pack paths / cautions | DIY worktree scans or ignoring the pack when the CLI exists |
 | Treating `worktree-caution` as caution only | Refusing seal solely because another worktree is dirty |
 
+**Host:** run this skill via a **separate Task subagent**, not the shaper writing
+the review in-process. Default model: **same class as parent** (`inherit`);
+named models (e.g. Fable) only when the user asks — see
+[`.cursor/rules/review-subagent-models.mdc`](../../.cursor/rules/review-subagent-models.mdc).
+
 ## Method
 
 ### 1. Load the bet + related pack (required)
@@ -80,6 +85,9 @@ If `worktrees.scanned === false`, copy `skippedReason` into `residualRisks`.
 ### 3. Findings + interrupt policy
 
 1. Emit findings with severity; cite claim / feature / path / turn ids from the pack.
+   Each review needs `plainSummary` and each finding needs `plainImpact` — see
+   [`../references/review-lattice-copy.md`](../references/review-lattice-copy.md).
+   Keep `gap` technical.
 2. Alert when `severity >= policy.alertOnSeverity`; apply `onAlert`.
 3. Propose fixes; honor `block`/`wait` / timeout.
 4. Re-check until alert-threshold findings clear, waive, or policy `move`.

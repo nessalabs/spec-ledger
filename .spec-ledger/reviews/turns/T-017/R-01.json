@@ -8,6 +8,7 @@
   "reviewer": "agent:align",
   "verdict": "approve",
   "summary": "Coverage intent: fix align check exit to honor approve/waiver so pnpm ledger:align / pre-push / CI match SLC-04.",
+  "plainSummary": "Coverage check now counts an explicit skip as passing for CI and push.",
   "treeDigest": "51bf73938c3f02c58d3ef935b7759d8c26c26934f445363079181eee3c6dd034",
   "uncoveredPaths": [
     "AGENTS.md",
