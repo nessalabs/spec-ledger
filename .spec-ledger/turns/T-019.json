@@ -1,0 +1,170 @@
+{
+  "schemaVersion": 1,
+  "id": "T-019",
+  "status": "closed",
+  "openedAt": "2026-09-03T08:46:58.398Z",
+  "opened": {
+    "producedBy": "@nessa/spec-ledger@0.1.0",
+    "baseCommit": "d831b2c155e9cdb87fc4227760c6f46f4dcf2775",
+    "treeDigest": "5fd85d3a5cfe0d24f8f3497260c1515a447e0aa5c9c4ef768bb34b992cfdc71f",
+    "dirtyAtOpen": [],
+    "contextDigest": "cbe3752636451a2131e4930c32c77849cccbbd84d69b04df10ae688692236237",
+    "contextWorkstreamId": "W-004",
+    "contextSliceId": "SLC-04",
+    "contextSealRevision": 1,
+    "contextGeneratedAt": "2026-09-03T08:46:58.397Z"
+  },
+  "intent": {
+    "userPrompt": "Real sl-dev-break (Fable 5.1) on align check/approve/waiver/gates/hooks — not self-approve",
+    "restatedGoal": "Adversarial code-break of Phase II align stack; fix all findings",
+    "changeType": "feature",
+    "riskLevel": "moderate",
+    "workstreamId": "W-004",
+    "sliceId": "SLC-04",
+    "featureIds": [
+      "turns",
+      "verify"
+    ]
+  },
+  "closedAt": "2026-09-03T09:01:49.621Z",
+  "facts": {
+    "producedBy": "@nessa/spec-ledger@0.1.0",
+    "commit": "d831b2c155e9cdb87fc4227760c6f46f4dcf2775",
+    "files": [
+      {
+        "path": ".github/workflows/ci.yml",
+        "kind": "modified",
+        "additions": 2,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/turns/T-019/R-01.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/turns/T-019/R-02.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/turns/T-019/R-03.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/turns/T-019.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "docs/ci/github-actions.yml",
+        "kind": "modified",
+        "additions": 2,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/align/approve.ts",
+        "kind": "modified",
+        "additions": 82,
+        "deletions": 16
+      },
+      {
+        "path": "packages/ledger/src/align/break.test.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/align/check.break.test.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/align/check.ts",
+        "kind": "modified",
+        "additions": 43,
+        "deletions": 18
+      },
+      {
+        "path": "packages/ledger/src/align/coverage.ts",
+        "kind": "modified",
+        "additions": 8,
+        "deletions": 1
+      },
+      {
+        "path": "packages/ledger/src/align/paths.ts",
+        "kind": "modified",
+        "additions": 19,
+        "deletions": 5
+      },
+      {
+        "path": "packages/ledger/src/cli/main.ts",
+        "kind": "modified",
+        "additions": 29,
+        "deletions": 5
+      },
+      {
+        "path": "packages/ledger/src/git/tree.test.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/git/tree.ts",
+        "kind": "modified",
+        "additions": 39,
+        "deletions": 16
+      },
+      {
+        "path": "packages/ledger/src/index.ts",
+        "kind": "modified",
+        "additions": 1,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/turns/gates.ts",
+        "kind": "modified",
+        "additions": 9,
+        "deletions": 1
+      },
+      {
+        "path": "scripts/git-hooks/pre-push",
+        "kind": "modified",
+        "additions": 5,
+        "deletions": 5
+      }
+    ],
+    "touchedNodeIds": [
+      "ledger-core"
+    ],
+    "touchedFeatureIds": [
+      "lattice",
+      "turns",
+      "verify"
+    ],
+    "touchedClaimIds": [],
+    "blastRadius": {
+      "direct": [
+        "ledger-server"
+      ],
+      "transitive": [
+        "ledger-server"
+      ]
+    },
+    "verify": {
+      "ok": true,
+      "ledgerDigest": "9731a4d02e58971ec6e340a4385d32d9fc3c09ad55c0a7f2c137cbc356c9052a",
+      "resultsDigest": "ded3eb2608a70a2e28040c5e1e7c4faa49be0d27b4ffc4d3e2a3ffb91bf72fbb",
+      "treeDigest": "257ef1ad1c5c9c953f133a88e1b08bdc8ebba3ff0189d4998aa3f9a0a5a48f9e",
+      "producedAt": "2026-09-03T09:01:49.085Z"
+    },
+    "schemaSurfaceChanged": false,
+    "reviewsDigest": "9180c46635695d4b4cb18f170ef18f17497bd1e3fb3302577a08c7ac7b08a830"
+  }
+}

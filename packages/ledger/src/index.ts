@@ -70,6 +70,7 @@ export {
   alignApproveSatisfied,
   assertAlignCloseAllowed,
   alignPolicy,
+  resolveAlignReviewerPrefix,
 } from "./align/approve.js"
 export {
   writeAlignWaiver,

@@ -13,7 +13,41 @@ export function alignPolicy(ws: Workstream): AlignPolicy {
   return (ws.policy ?? {}) as AlignPolicy
 }
 
-export function isAlignApproveReview(review: Review, prefix: string): boolean {
+/** Default prefix; empty / whitespace is invalid (not "match anything"). */
+export function resolveAlignReviewerPrefix(policy: AlignPolicy): string {
+  if (policy.alignReviewerPrefix === undefined || policy.alignReviewerPrefix === null) {
+    return "agent:align"
+  }
+  const t = String(policy.alignReviewerPrefix).trim()
+  if (!t) {
+    throw new Error(
+      "align approve refused: alignReviewerPrefix must not be empty (blank prefix)",
+    )
+  }
+  return t
+}
+
+function waiverIdsResolved(
+  review: Review,
+  waivers: AlignWaiver[],
+): boolean {
+  const ids = review.waiverIds ?? []
+  if (!ids.length) return false
+  const byId = new Map(waivers.map((w) => [w.id, w]))
+  for (const id of ids) {
+    const w = byId.get(id)
+    if (!w) return false
+    if (w.treeDigest !== review.treeDigest) return false
+    if (review.turnId && w.turnId && w.turnId !== review.turnId) return false
+  }
+  return true
+}
+
+export function isAlignApproveReview(
+  review: Review,
+  prefix: string,
+  waivers: AlignWaiver[] = [],
+): boolean {
   if (review.target === "spec") return false
   if (review.verdict !== "approve") return false
   if (!review.treeDigest || review.treeDigest.length < 16) return false
@@ -21,8 +55,7 @@ export function isAlignApproveReview(review: Review, prefix: string): boolean {
   if (!Array.isArray(review.uncoveredPaths)) return false
   if (!review.reviewer.startsWith(prefix)) return false
   const uncovered = review.uncoveredPaths
-  const waivers = review.waiverIds ?? []
-  if (uncovered.length > 0 && waivers.length === 0) return false
+  if (uncovered.length > 0 && !waiverIdsResolved(review, waivers)) return false
   return true
 }
 
@@ -34,9 +67,10 @@ export function assertAlignApproveValid(args: {
   review: Review
   turn: Turn
   policy: AlignPolicy
+  waivers?: AlignWaiver[]
 }): void {
   const { review, turn, policy } = args
-  const prefix = policy.alignReviewerPrefix ?? "agent:align"
+  const prefix = resolveAlignReviewerPrefix(policy)
   if (review.verdict !== "approve") {
     throw new Error("align approve refused: verdict must be approve")
   }
@@ -58,13 +92,13 @@ export function assertAlignApproveValid(args: {
   if (producer && review.reviewer === producer) {
     throw new Error("align approve refused: reviewer must not equal turn producer")
   }
-  if (
-    review.uncoveredPaths.length > 0 &&
-    !(review.waiverIds && review.waiverIds.length > 0)
-  ) {
-    throw new Error(
-      "align approve refused: uncoveredPaths non-empty without waiverIds",
-    )
+  if (review.uncoveredPaths.length > 0) {
+    const waivers = args.waivers ?? []
+    if (!waiverIdsResolved(review, waivers)) {
+      throw new Error(
+        "align approve refused: uncoveredPaths non-empty without resolved waiverIds for this treeDigest",
+      )
+    }
   }
 }
 
@@ -74,15 +108,23 @@ export function alignApproveSatisfied(args: {
   treeDigest: string
   policy: AlignPolicy
   turnHasProductFiles: boolean
+  producer?: string
 }): boolean {
   const { reviews, waivers, treeDigest, policy, turnHasProductFiles } = args
   if (!policy.requireAlignApprove) return true
   if (!turnHasProductFiles) return true
 
-  const prefix = policy.alignReviewerPrefix ?? "agent:align"
-  const approve = reviews.some(
-    (r) => isAlignApproveReview(r, prefix) && r.treeDigest === treeDigest,
-  )
+  let prefix: string
+  try {
+    prefix = resolveAlignReviewerPrefix(policy)
+  } catch {
+    return false
+  }
+
+  const approve = reviews.some((r) => {
+    if (args.producer && r.reviewer === args.producer) return false
+    return isAlignApproveReview(r, prefix, waivers) && r.treeDigest === treeDigest
+  })
   if (approve) return true
 
   if (policy.allowExplicitAlignSkip === false) return false
@@ -103,16 +145,40 @@ export function assertAlignCloseAllowed(args: {
   if (productPathCount === 0) return
 
   const waivers = listAlignWaiversForTurn(args.repoRoot, turn.id)
+  const producer = turn.opened?.producedBy
   const ok = alignApproveSatisfied({
     reviews,
     waivers,
     treeDigest,
     policy,
     turnHasProductFiles: productPathCount > 0,
+    producer,
   })
   if (!ok) {
+    // Explicit producer collision message when that is the only blocker shape
+    const prefix = (() => {
+      try {
+        return resolveAlignReviewerPrefix(policy)
+      } catch {
+        return "agent:align"
+      }
+    })()
+    const selfApprove = reviews.some(
+      (r) =>
+        r.verdict === "approve" &&
+        r.coverageSource &&
+        r.treeDigest === treeDigest &&
+        producer &&
+        r.reviewer === producer &&
+        r.reviewer.startsWith(prefix),
+    )
+    if (selfApprove) {
+      throw new Error(
+        `turn close refused: align approve reviewer must not equal turn producer (${producer})`,
+      )
+    }
     throw new Error(
-      `turn close refused: workstream ${workstream.id} requireAlignApprove — need align approve (reviewer ${policy.alignReviewerPrefix ?? "agent:align"}* + treeDigest) or explicit waiver for treeDigest ${treeDigest.slice(0, 12)}…`,
+      `turn close refused: workstream ${workstream.id} requireAlignApprove — need align approve (reviewer ${prefix}* + treeDigest) or explicit waiver for treeDigest ${treeDigest.slice(0, 12)}…`,
     )
   }
 }

@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "id": "T-019/R-03",
+  "turnId": "T-019",
+  "workstreamId": "W-004",
+  "kind": "human",
+  "target": "code",
+  "reviewer": "agent:align",
+  "verdict": "approve",
+  "summary": "Coverage intent: T-019 fixes Fable code-break findings F-01..F-10 on align stack; paths covered by graph+expectedPaths.",
+  "treeDigest": "257ef1ad1c5c9c953f133a88e1b08bdc8ebba3ff0189d4998aa3f9a0a5a48f9e",
+  "uncoveredPaths": [],
+  "coverageSource": "mixed"
+}

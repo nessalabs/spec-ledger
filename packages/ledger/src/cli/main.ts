@@ -43,6 +43,7 @@ import {
 } from "../align/approve.js"
 import {
   listAlignWaivers,
+  listAlignWaiversForTurn,
   writeAlignWaiver,
 } from "../align/waiver.js"
 import { computeTreeDigest } from "../git/tree.js"
@@ -459,7 +460,7 @@ async function main(): Promise<void> {
       const turnId = argValue(argv, "--turn")
       if (!reason || !actor) {
         console.error(
-          "usage: spec-ledger align waiver --reason <text>=40chars --actor <who> [--turn T] [--workstream W]",
+          "usage: spec-ledger align waiver --reason <text>=40chars --actor <who> --turn T [--workstream W]",
         )
         process.exit(2)
       }
@@ -467,8 +468,18 @@ async function main(): Promise<void> {
       const turn = turnId
         ? ledger.turns.find((t) => t.id === turnId)
         : ledger.turns.find((t) => t.status === "open")
+      if (!turn) {
+        console.error("align waiver refused: turn not found (open turn required)")
+        process.exit(1)
+      }
+      if (turn.status !== "open") {
+        console.error(
+          `align waiver refused: turn ${turn.id} is ${turn.status} — open turn required`,
+        )
+        process.exit(1)
+      }
       const workstreamId =
-        argValue(argv, "--workstream") ?? turn?.intent.workstreamId
+        argValue(argv, "--workstream") ?? turn.intent.workstreamId
       let minReason = 40
       let maxPerTurn = 1
       if (workstreamId) {
@@ -477,13 +488,21 @@ async function main(): Promise<void> {
         minReason = p.alignWaiverMinReasonChars ?? 40
         maxPerTurn = p.alignSkipMaxPerTurn ?? 1
       }
+      const currentDigest = computeTreeDigest(root)
+      const requested = argValue(argv, "--tree-digest")
+      if (requested && requested !== currentDigest) {
+        console.error(
+          "align waiver refused: --tree-digest must match current treeDigest (arbitrary digests are not skip)",
+        )
+        process.exit(1)
+      }
       const w = writeAlignWaiver(
         root,
         {
           reason,
           actor,
-          treeDigest: argValue(argv, "--tree-digest") ?? computeTreeDigest(root),
-          turnId: turn?.id,
+          treeDigest: currentDigest,
+          turnId: turn.id,
           workstreamId,
         },
         { minReasonChars: minReason, maxPerTurn },
@@ -533,7 +552,12 @@ async function main(): Promise<void> {
         coverageSource: report.coverage.coverageSource,
         ...(waiverIds?.length ? { waiverIds } : {}),
       }
-      assertAlignApproveValid({ review, turn, policy })
+      assertAlignApproveValid({
+        review,
+        turn,
+        policy,
+        waivers: listAlignWaiversForTurn(root, turnId),
+      })
       writeReview(root, review)
       console.log(`wrote align approve ${id}`)
       console.log(`  treeDigest: ${report.treeDigest.slice(0, 12)}…`)

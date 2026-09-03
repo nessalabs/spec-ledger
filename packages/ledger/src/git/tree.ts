@@ -6,26 +6,35 @@ function git(repoRoot: string, args: string[]): { ok: boolean; out: string } {
   return { ok: r.status === 0, out: (r.stdout || "").replace(/\n$/, "") }
 }
 
-/** Content-ish digest of HEAD tracked paths + dirty porcelain. */
+function productDirtyEntries(repoRoot: string): string[] {
+  const status = git(repoRoot, ["status", "--porcelain", "-uall"])
+  if (!status.ok) return []
+  return status.out
+    .split("\n")
+    .filter(Boolean)
+    .map((line) => {
+      let path = line.slice(3).trim().replace(/^"+|"+$/g, "")
+      if (path.includes(" -> ")) path = path.split(" -> ").at(-1)!.trim()
+      return path
+    })
+    .filter(Boolean)
+    .filter((p) => !p.startsWith(".spec-ledger/") && !p.startsWith(".spec-ledger\\"))
+    .sort()
+}
+
+/** Content-addressed digest: HEAD + tracked names + dirty path→blob hashes. */
 export function computeTreeDigest(repoRoot: string): string {
   const head = git(repoRoot, ["rev-parse", "HEAD"])
   const ls = git(repoRoot, ["ls-tree", "-r", "HEAD", "--name-only"])
-  const status = git(repoRoot, ["status", "--porcelain", "-uall"])
-  const dirty = status.ok
-    ? status.out
-        .split("\n")
-        .filter(Boolean)
-        .map((line) => line.slice(3).trim().replace(/^"+|"+$/g, ""))
-        .filter(Boolean)
-        // Ledger metadata writes (reviews, waivers, turn JSON) must not
-        // invalidate treeDigest stamped on align / code reviews.
-        .filter((p) => !p.startsWith(".spec-ledger/") && !p.startsWith(".spec-ledger\\"))
-        .sort()
-    : []
+  const dirty = productDirtyEntries(repoRoot)
+  const dirtyBlobs = dirty.map((p) => {
+    const h = git(repoRoot, ["hash-object", p])
+    return { path: p, blob: h.ok ? h.out : null }
+  })
   return sha256Stable({
     head: head.ok ? head.out : null,
     tracked: ls.ok ? ls.out.split("\n").filter(Boolean).sort() : [],
-    dirty,
+    dirtyBlobs,
   })
 }
 
@@ -44,14 +53,28 @@ export function dirtyPaths(repoRoot: string): string[] {
     .sort()
 }
 
-/** Paths changed since base (committed + dirty). Falls back to dirty-only. */
+/**
+ * Paths changed since base (committed + dirty).
+ * Fail closed when baseCommit is set but not resolvable (shallow clone / gc).
+ */
 export function changedPathsSince(
   repoRoot: string,
   baseCommit: string | null | undefined,
 ): string[] {
   const dirty = dirtyPaths(repoRoot)
   if (!baseCommit) return dirty
+  const exists = git(repoRoot, ["cat-file", "-e", `${baseCommit}^{commit}`])
+  if (!exists.ok) {
+    throw new Error(
+      `changedPathsSince refused: baseCommit ${baseCommit} is unresolvable — cannot verify product paths (shallow clone?). Use fetch-depth: 0 for align/close.`,
+    )
+  }
   const names = git(repoRoot, ["diff", "--name-only", `${baseCommit}...HEAD`])
-  const committed = names.ok ? names.out.split("\n").filter(Boolean) : []
+  if (!names.ok) {
+    throw new Error(
+      `changedPathsSince refused: git diff ${baseCommit}...HEAD failed`,
+    )
+  }
+  const committed = names.out.split("\n").filter(Boolean)
   return [...new Set([...committed, ...dirty])].sort()
 }

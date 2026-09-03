@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# pre-push — refuse push when product diffs lack align approve/waiver (if CLI built).
+# pre-push — refuse push when product diffs lack align approve/waiver.
 set -euo pipefail
 
 ROOT="$(git rev-parse --show-toplevel 2>/dev/null)" || exit 0
@@ -7,16 +7,16 @@ cd "$ROOT"
 
 CLI="$ROOT/packages/ledger/dist/cli/main.js"
 if [[ ! -f "$CLI" ]]; then
-  echo "spec-ledger pre-push: CLI not built — skip align (run pnpm -r build)" >&2
-  exit 0
+  echo "spec-ledger pre-push: CLI not built — refusing push (silence is not skip)." >&2
+  echo "Run: pnpm -r build && pnpm ledger:align" >&2
+  exit 1
 fi
 
-# If no open turn and clean tree relative to upstream, skip quietly.
 if ! node "$CLI" align check --root "$ROOT" >/tmp/spec-ledger-align-pre-push.txt 2>&1; then
   echo "spec-ledger pre-push: align check FAILED" >&2
   cat /tmp/spec-ledger-align-pre-push.txt >&2
   echo "Fix coverage, run: node packages/ledger/dist/cli/main.js align approve --turn <T>" >&2
-  echo "Or explicit waiver: … align waiver --reason '…' --actor <who>" >&2
+  echo "Or explicit waiver: … align waiver --reason '…' --actor <who> --turn <T>" >&2
   echo "Pre-PR: same gate — see docs/ci/align.md" >&2
   exit 1
 fi

@@ -36,7 +36,15 @@ export function assertTurnCloseAllowed(repoRoot: string, turn: Turn): void {
     )
   }
 
-  const paths = changedPathsSince(repoRoot, turn.opened?.baseCommit)
+  let paths: string[]
+  try {
+    paths = changedPathsSince(repoRoot, turn.opened?.baseCommit)
+  } catch (err) {
+    const detail = err instanceof Error ? err.message : String(err)
+    throw new Error(
+      `turn close refused: workstream ${workstreamId} requireAlignApprove — ${detail}`,
+    )
+  }
   const productPaths = paths.filter((p) => p && !isExemptPath(p))
   const treeDigest = computeTreeDigest(repoRoot)
   assertAlignCloseAllowed({

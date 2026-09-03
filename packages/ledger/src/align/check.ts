@@ -37,9 +37,27 @@ function openOrTargetTurn(
   )
 }
 
+function pathsForAlign(repoRoot: string, turn: Turn | undefined): string[] {
+  if (!turn) return dirtyPaths(repoRoot)
+  if (turn.status === "closed") {
+    const fromFacts = turn.facts?.files?.map((f) => f.path) ?? []
+    const dirty = dirtyPaths(repoRoot)
+    // Product changes after close (dirty or committed since facts.commit)
+    let sinceClose: string[] = []
+    if (turn.facts?.commit) {
+      sinceClose = changedPathsSince(repoRoot, turn.facts.commit)
+    } else if (turn.opened?.baseCommit) {
+      sinceClose = changedPathsSince(repoRoot, turn.opened.baseCommit)
+    }
+    return [...new Set([...fromFacts, ...sinceClose, ...dirty])]
+  }
+  const paths = changedPathsSince(repoRoot, turn.opened?.baseCommit)
+  return paths.length ? paths : dirtyPaths(repoRoot)
+}
+
 /**
  * Align check: product paths (turn files or dirty tree) vs sealed plan coverage.
- * OK when uncovered empty OR approve/waiver covers treeDigest (when required).
+ * OK when uncovered empty OR approve/waiver covers an allowed treeDigest.
  * Does not affect verify.ok.
  */
 export function alignCheck(
@@ -51,13 +69,23 @@ export function alignCheck(
   const turn = openOrTargetTurn(ledger.turns, opts.turnId)
 
   let paths: string[]
-  if (turn?.status === "closed" && turn.facts?.files?.length) {
-    paths = turn.facts.files.map((f) => f.path)
-  } else if (turn) {
-    paths = changedPathsSince(ledger.repoRoot, turn.opened?.baseCommit)
-    if (!paths.length) paths = dirtyPaths(ledger.repoRoot)
-  } else {
-    paths = dirtyPaths(ledger.repoRoot)
+  try {
+    paths = pathsForAlign(ledger.repoRoot, turn)
+  } catch (err) {
+    return {
+      ok: false,
+      treeDigest,
+      turnId: turn?.id,
+      workstreamId: turn?.intent.workstreamId,
+      coverage: {
+        productPaths: [],
+        coveredPaths: [],
+        uncoveredPaths: [],
+        coverageSource: "user",
+        coveredBy: {},
+      },
+      message: err instanceof Error ? err.message : String(err),
+    }
   }
 
   const workstreamId =
@@ -110,16 +138,11 @@ export function alignCheck(
   if (turn && policy.requireAlignApprove) {
     const reviews = listReviewsForTurn(repoRoot, turn.id)
     const waivers = listAlignWaiversForTurn(repoRoot, turn.id)
-    const dirtyProduct = dirtyPaths(repoRoot).filter((p) => !isExemptPath(p))
+    // Only current digest + close-time digest — never digests harvested from
+    // the reviews/waivers under evaluation (tautology).
     const digests = new Set<string>([treeDigest])
-    // After commit, HEAD moves — approve stamped pre-commit still counts
-    // when there is no fresh dirty product surface.
-    if (turn.status === "closed" && dirtyProduct.length === 0) {
-      if (turn.facts?.verify?.treeDigest) digests.add(turn.facts.verify.treeDigest)
-      for (const r of reviews) {
-        if (r.treeDigest) digests.add(r.treeDigest)
-      }
-      for (const w of waivers) digests.add(w.treeDigest)
+    if (turn.status === "closed" && turn.facts?.verify?.treeDigest) {
+      digests.add(turn.facts.verify.treeDigest)
     }
     for (const d of digests) {
       const satisfied = alignApproveSatisfied({
@@ -128,12 +151,14 @@ export function alignCheck(
         treeDigest: d,
         policy,
         turnHasProductFiles: productCount > 0,
+        producer: turn.opened?.producedBy,
       })
       if (satisfied) {
         const byApprove = reviews.some(
           (r) =>
             r.treeDigest === d &&
-            (Boolean(r.waiverIds?.length) || r.uncoveredPaths?.length === 0),
+            r.coverageSource &&
+            (r.uncoveredPaths?.length === 0 || Boolean(r.waiverIds?.length)),
         )
         return {
           ok: true,

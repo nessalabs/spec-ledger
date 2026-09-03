@@ -2,6 +2,7 @@ import type { CodebaseGraph, Turn, Workstream } from "../types.js"
 import {
   DEFAULT_ALIGN_IGNORE,
   isExemptPath,
+  isUnsafeRepoPath,
   normalizeRepoPath,
   pathMatchesPattern,
 } from "./paths.js"
@@ -43,7 +44,8 @@ export function checkPathCoverage(input: AlignCoverageInput): AlignCoverageResul
   const productPaths = [
     ...new Set(
       input.paths
-        .map(normalizeRepoPath)
+        .filter((p) => p && p.trim())
+        .map((p) => normalizeRepoPath(p))
         .filter((p) => p && !isExemptPath(p, ignore)),
     ),
   ].sort()
@@ -57,6 +59,11 @@ export function checkPathCoverage(input: AlignCoverageInput): AlignCoverageResul
   const uncoveredPaths: string[] = []
 
   for (const path of productPaths) {
+    // Traversal / absolute never count as covered (defense in depth after normalize).
+    if (isUnsafeRepoPath(path)) {
+      uncoveredPaths.push(path)
+      continue
+    }
     const hits = patterns.filter((pat) => pathMatchesPattern(path, pat))
     if (hits.length) {
       coveredPaths.push(path)
