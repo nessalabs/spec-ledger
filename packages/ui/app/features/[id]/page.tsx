@@ -8,7 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@nessa-ui/react"
-import { serverClient } from "@/lib/ledger"
+import { liveReport, serverClient } from "@/lib/ledger"
 import { TurnSummaryCard } from "@/components/turn-detail"
 import { turnsTouchingFeature } from "@/lib/turns"
 
@@ -24,7 +24,7 @@ export default async function FeaturePage({
   const [graph, turns, report, claims] = await Promise.all([
     client.getGraph(),
     client.getTurns(),
-    client.verify(),
+    liveReport(),
     client.getClaims(),
   ])
   const feature = graph?.features.find((f) => f.id === id)

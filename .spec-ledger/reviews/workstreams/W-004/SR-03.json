@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "id": "W-004/SR-03",
+  "workstreamId": "W-004",
+  "kind": "adversarial",
+  "target": "spec",
+  "reviewer": "agent:sl-plan-break-spec",
+  "verdict": "comment",
+  "blocking": false,
+  "summary": "Post-SR-02 human amends: bet prose lives at docs/workstreams/<title-slug>.md; vision at docs/compass/vision.md; W-001..003 retrofitted with specPath. No new high gaps vs sealed acceptance. Human approved drive-e2e — ready to seal.",
+  "resolvesReviewId": "W-004/SR-02",
+  "findings": []
+}

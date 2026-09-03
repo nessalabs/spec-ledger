@@ -1,18 +1,18 @@
 "use client"
 
 import Link from "next/link"
-import { Badge, Card, CardContent } from "@nessa-ui/react"
 import type { Claim, EvidenceBinding } from "@nessa/spec-ledger-client"
+import { cn } from "@/lib/cn"
 
-const outcomeVariant = {
-  pass: "default",
-  fail: "destructive",
-  missing: "outline",
-  unbound: "outline",
-  attested: "secondary",
-} as const
+const outcomeClass: Record<string, string> = {
+  pass: "text-emerald-400",
+  fail: "text-red-400",
+  missing: "text-amber-400",
+  unbound: "text-amber-400",
+  attested: "text-muted-foreground",
+}
 
-type Outcome = keyof typeof outcomeVariant
+type Outcome = keyof typeof outcomeClass
 
 export function ClaimsList({
   claims,
@@ -30,43 +30,49 @@ export function ClaimsList({
   }
 
   return (
-    <div className="flex flex-col gap-3">
+    <ul className="divide-y divide-border rounded-lg border border-border">
       {claims.map((claim) => {
         const v = verdict.get(claim.id)
         const n = bindingCount.get(claim.id) ?? 0
+        const docs = claim.links?.docs?.[0]
         return (
-          <Card key={claim.id} className="gap-0 py-0">
-            <CardContent className="space-y-2 px-5 py-4">
-              <div className="flex flex-wrap items-center gap-2">
-                <Link
-                  href={`/claims/${encodeURIComponent(claim.id)}`}
-                  className="font-mono text-sm font-semibold text-foreground no-underline hover:underline"
-                >
-                  {claim.id}
-                </Link>
-                <Badge variant="outline">{claim.kind}</Badge>
-                {claim.required ? <Badge>required</Badge> : null}
-                {v ? (
-                  <Badge variant={outcomeVariant[v.outcome] ?? "outline"}>
-                    {v.outcome}
-                  </Badge>
-                ) : null}
-                <span className="font-mono text-[10px] text-muted-foreground">
-                  {n} binding{n === 1 ? "" : "s"}
+          <li key={claim.id}>
+            <Link
+              href={`/claims/${encodeURIComponent(claim.id)}`}
+              className="grid gap-1 px-3 py-2.5 no-underline transition-colors hover:bg-muted/40 sm:grid-cols-[5.5rem_minmax(0,1fr)_auto] sm:items-baseline sm:gap-3"
+            >
+              <span className="font-mono text-xs font-semibold text-foreground">
+                {claim.id}
+              </span>
+              <span className="min-w-0">
+                <span className="line-clamp-2 text-sm leading-snug text-foreground/90">
+                  {claim.statement}
                 </span>
-              </div>
-              <p className="text-sm leading-relaxed text-muted-foreground">
-                {claim.statement}
-              </p>
-              {claim.links?.docs?.length ? (
-                <p className="font-mono text-[11px] text-muted-foreground/80">
-                  {claim.links.docs.join(" · ")}
-                </p>
-              ) : null}
-            </CardContent>
-          </Card>
+                <span className="mt-0.5 flex flex-wrap items-center gap-x-2 gap-y-0.5 text-[11px] text-muted-foreground">
+                  <span>{claim.kind}</span>
+                  {claim.required ? <span>required</span> : <span>optional</span>}
+                  <span>
+                    {n} binding{n === 1 ? "" : "s"}
+                  </span>
+                  {docs ? (
+                    <span className="font-mono truncate" title={docs}>
+                      {docs}
+                    </span>
+                  ) : null}
+                </span>
+              </span>
+              <span
+                className={cn(
+                  "shrink-0 text-xs font-medium capitalize sm:text-right",
+                  v ? outcomeClass[v.outcome] : "text-muted-foreground",
+                )}
+              >
+                {v?.outcome ?? "—"}
+              </span>
+            </Link>
+          </li>
         )
       })}
-    </div>
+    </ul>
   )
 }

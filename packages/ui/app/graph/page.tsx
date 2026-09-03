@@ -1,5 +1,17 @@
-import { GraphWorkspace } from "@/components/graph-workspace"
+import nextDynamic from "next/dynamic"
 import { serverClient } from "@/lib/ledger"
+
+const GraphWorkspace = nextDynamic(
+  () =>
+    import("@/components/graph-workspace").then((m) => m.GraphWorkspace),
+  {
+    loading: () => (
+      <div className="flex h-[28rem] items-center justify-center rounded-xl border border-border text-sm text-muted-foreground">
+        Loading graph…
+      </div>
+    ),
+  },
+)
 
 export const dynamic = "force-dynamic"
 

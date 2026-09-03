@@ -1,73 +1,17 @@
 "use client"
 
-import * as React from "react"
-import mermaid from "mermaid"
-
-let initialized = false
-
-function ensureMermaid() {
-  if (initialized) return
-  mermaid.initialize({
-    startOnLoad: false,
-    securityLevel: "strict",
-    theme: "dark",
-    flowchart: { htmlLabels: false },
-  })
-  initialized = true
-}
+import nextDynamic from "next/dynamic"
 
 /**
- * Static Mermaid render for Lattice — no "Drawing diagram" generating surface.
- * Prefer this over MermaidDiagram for committed, non-streaming charts.
+ * Mermaid is heavy — load only when a turn/flow actually needs a chart.
+ * Prefer this over importing mermaid from RSC trees.
  */
-export function StaticMermaid({
-  chart,
-  className,
-}: {
-  chart: string
-  className?: string
-}) {
-  const [svg, setSvg] = React.useState<string | null>(null)
-  const [failed, setFailed] = React.useState(false)
-  const id = React.useId().replace(/:/g, "")
-
-  React.useEffect(() => {
-    let cancelled = false
-    setFailed(false)
-    ensureMermaid()
-    const renderId = `lattice-mmd-${id}`
-    mermaid
-      .render(renderId, chart)
-      .then((result) => {
-        if (!cancelled) setSvg(result.svg)
-      })
-      .catch(() => {
-        if (!cancelled) {
-          setSvg(null)
-          setFailed(true)
-        }
-      })
-    return () => {
-      cancelled = true
-    }
-  }, [chart, id])
-
-  if (failed) {
-    return (
-      <pre className="overflow-x-auto whitespace-pre-wrap font-mono text-xs text-muted-foreground">
-        {chart}
-      </pre>
-    )
-  }
-
-  if (!svg) {
-    return <div className={className} aria-hidden style={{ minHeight: "8rem" }} />
-  }
-
-  return (
-    <div
-      className={className}
-      dangerouslySetInnerHTML={{ __html: svg }}
-    />
-  )
-}
+export const StaticMermaid = nextDynamic(
+  () => import("./static-mermaid-inner").then((m) => m.StaticMermaidInner),
+  {
+    ssr: false,
+    loading: () => (
+      <div aria-hidden className="min-h-32 animate-pulse rounded-md bg-muted/40" />
+    ),
+  },
+)

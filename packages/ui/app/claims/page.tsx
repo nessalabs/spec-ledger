@@ -1,5 +1,5 @@
 import { ClaimsList } from "@/components/claims-list"
-import { serverClient } from "@/lib/ledger"
+import { liveReport, serverClient } from "@/lib/ledger"
 
 export const dynamic = "force-dynamic"
 
@@ -8,7 +8,7 @@ export default async function ClaimsPage() {
   const [claims, bindings, report] = await Promise.all([
     client.getClaims(),
     client.getBindings(),
-    client.verify(),
+    liveReport(),
   ])
 
   return (
@@ -19,8 +19,7 @@ export default async function ClaimsPage() {
         </p>
         <h1 className="text-2xl font-semibold tracking-tight">What must stay true</h1>
         <p className="max-w-2xl text-sm text-muted-foreground">
-          Claims are language-agnostic. Bindings declare how we check them; outcomes
-          live only on verify results — never on the binding.
+          Standing truths and their live verify outcome. Open a row for bindings.
         </p>
       </header>
 

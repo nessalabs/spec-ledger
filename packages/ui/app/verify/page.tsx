@@ -1,20 +1,25 @@
-import {
-  Badge,
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-  JsonTree,
-} from "@nessa-ui/react"
-import { serverClient } from "@/lib/ledger"
+import Link from "next/link"
+import { Badge, JsonTree } from "@nessa-ui/react"
+import { liveReport, serverClient } from "@/lib/ledger"
+import { cn } from "@/lib/cn"
 
 export const dynamic = "force-dynamic"
 
+const outcomeClass: Record<string, string> = {
+  pass: "text-emerald-400",
+  fail: "text-red-400",
+  missing: "text-amber-400",
+  unbound: "text-amber-400",
+  attested: "text-muted-foreground",
+}
+
 export default async function VerifyPage() {
   const client = serverClient()
-  const report = await client.verify()
+  const [report, claims] = await Promise.all([liveReport(), client.getClaims()])
+  const claimById = new Map(claims.map((c) => [c.id, c]))
 
+  const required = report.claims.filter((c) => c.required)
+  const requiredPass = required.filter((c) => c.outcome === "pass").length
   const counts = {
     pass: report.claims.filter((c) => c.outcome === "pass").length,
     fail: report.claims.filter((c) => c.outcome === "fail").length,
@@ -25,24 +30,30 @@ export default async function VerifyPage() {
   }
 
   return (
-    <div className="mx-auto flex max-w-5xl flex-col gap-8">
+    <div className="mx-auto flex max-w-5xl flex-col gap-6">
       <header className="flex flex-col gap-2">
-        <p className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
+        <p className="text-[10px] uppercase tracking-wider text-muted-foreground">
           Verify
         </p>
         <div className="flex flex-wrap items-center gap-3">
-          <h1 className="text-2xl font-semibold tracking-tight">Report</h1>
+          <h1 className="text-2xl font-semibold tracking-tight">What still holds</h1>
           <Badge variant={report.ok ? "default" : "destructive"}>
             {report.ok ? "OK" : "FAIL"}
           </Badge>
         </div>
         <p className="max-w-2xl text-sm text-muted-foreground">
-          Pure function of ledger files + source tree + ingested results. Digests
-          below are what CI and agents must paste.
+          Live check of standing claims. Digests below are what CI pastes — not the
+          story; the statements are.
         </p>
       </header>
 
-      <section className="grid gap-3 sm:grid-cols-4">
+      <section className="grid gap-2 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="rounded-lg border border-border px-3 py-3 sm:col-span-2 lg:col-span-1">
+          <p className="text-[11px] text-muted-foreground">Required covered</p>
+          <p className="font-mono text-xl font-semibold tabular-nums">
+            {requiredPass}/{required.length}
+          </p>
+        </div>
         {(
           [
             ["pass", counts.pass],
@@ -51,92 +62,69 @@ export default async function VerifyPage() {
             ["attested", counts.attested],
           ] as const
         ).map(([label, n]) => (
-          <Card key={label} className="gap-1 py-4">
-            <CardHeader className="px-4 pb-0">
-              <CardDescription>{label}</CardDescription>
-              <CardTitle className="font-mono">{n}</CardTitle>
-            </CardHeader>
-          </Card>
+          <div key={label} className="rounded-lg border border-border px-3 py-3">
+            <p className="text-[11px] capitalize text-muted-foreground">{label}</p>
+            <p className="font-mono text-xl tabular-nums">{n}</p>
+          </div>
         ))}
       </section>
 
-      <Card>
-        <CardHeader>
-          <CardTitle>Provenance</CardTitle>
-          <CardDescription>{report.producedAt}</CardDescription>
-        </CardHeader>
-        <CardContent className="font-mono text-xs">
-          <JsonTree value={report.provenance} defaultExpandedDepth={2} collapsible />
-        </CardContent>
-      </Card>
-
-      <Card>
-        <CardHeader>
-          <CardTitle>Claim verdicts</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <ul className="divide-y divide-border">
-            {report.claims.map((c) => (
-              <li
-                key={c.claimId}
-                className="flex flex-wrap items-center gap-2 py-2 text-sm"
-              >
-                <span className="font-mono text-xs">{c.claimId}</span>
-                <Badge
-                  variant={
-                    c.outcome === "pass"
-                      ? "default"
-                      : c.outcome === "fail"
-                        ? "destructive"
-                        : "outline"
-                  }
+      <section className="space-y-2">
+        <h2 className="text-sm font-medium">Claims</h2>
+        <ul className="divide-y divide-border rounded-lg border border-border">
+          {report.claims.map((c) => {
+            const claim = claimById.get(c.claimId)
+            return (
+              <li key={c.claimId}>
+                <Link
+                  href={`/claims/${encodeURIComponent(c.claimId)}`}
+                  className="grid gap-1 px-3 py-2.5 no-underline transition-colors hover:bg-muted/40 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-baseline sm:gap-3"
                 >
-                  {c.outcome}
-                </Badge>
-                {c.required ? <Badge variant="secondary">required</Badge> : null}
-                {c.detail ? (
-                  <span className="text-xs text-muted-foreground">{c.detail}</span>
-                ) : null}
+                  <span className="min-w-0">
+                    <span className="line-clamp-2 text-sm text-foreground">
+                      {claim?.statement ?? c.claimId}
+                    </span>
+                    <span className="mt-0.5 flex flex-wrap gap-x-2 text-[11px] text-muted-foreground">
+                      <span className="font-mono">{c.claimId}</span>
+                      {c.required ? <span>required</span> : <span>optional</span>}
+                      {claim?.kind ? <span>{claim.kind}</span> : null}
+                      {c.detail ? <span className="truncate">{c.detail}</span> : null}
+                    </span>
+                  </span>
+                  <span
+                    className={cn(
+                      "shrink-0 text-xs font-medium capitalize",
+                      outcomeClass[c.outcome] ?? "text-muted-foreground",
+                    )}
+                  >
+                    {c.outcome}
+                  </span>
+                </Link>
               </li>
-            ))}
-          </ul>
-        </CardContent>
-      </Card>
+            )
+          })}
+        </ul>
+      </section>
 
-      {report.graph ? (
-        <Card>
-          <CardHeader>
-            <CardTitle>Graph check</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <JsonTree value={report.graph} defaultExpandedDepth={2} collapsible />
-          </CardContent>
-        </Card>
-      ) : null}
-
-      {report.problems.length > 0 ? (
-        <Card>
-          <CardHeader>
-            <CardTitle>Problems</CardTitle>
-          </CardHeader>
-          <CardContent>
+      <details className="rounded-lg border border-border/60 px-4 py-3 text-sm">
+        <summary className="cursor-pointer text-muted-foreground">
+          Provenance & raw report
+        </summary>
+        <div className="mt-3 space-y-4">
+          <p className="text-xs text-muted-foreground">{report.producedAt}</p>
+          <div className="font-mono text-xs">
+            <JsonTree value={report.provenance} defaultExpandedDepth={1} collapsible />
+          </div>
+          {report.problems.length > 0 ? (
             <ul className="space-y-1 font-mono text-xs text-destructive">
               {report.problems.map((p) => (
                 <li key={p}>{p}</li>
               ))}
             </ul>
-          </CardContent>
-        </Card>
-      ) : null}
-
-      <Card>
-        <CardHeader>
-          <CardTitle>Full report JSON</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <JsonTree value={report} defaultExpandedDepth={1} collapsible />
-        </CardContent>
-      </Card>
+          ) : null}
+          <JsonTree value={report} defaultExpandedDepth={0} collapsible />
+        </div>
+      </details>
     </div>
   )
 }

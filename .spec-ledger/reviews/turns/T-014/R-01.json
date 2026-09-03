@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "T-014/R-01",
+  "turnId": "T-014",
+  "kind": "adversarial",
+  "target": "code",
+  "reviewer": "agent:sl-dev-break",
+  "verdict": "approve",
+  "summary": "/turns rows show workstream Badge pills (W-001…W-004) linking to workstream pages.",
+  "killersCited": [
+    "curl:/turns#W-004-pill"
+  ],
+  "findings": [
+    {
+      "id": "T-014/R-01/F-01",
+      "severity": "low",
+      "title": "Turns list must show workstream parent",
+      "detail": "Flat goal-only rows hid the workstream join.",
+      "status": "open",
+      "evidence": {
+        "kind": "command",
+        "command": "curl -s http://127.0.0.1:3737/turns | grep -oE 'W-00[1-4]' | sort | uniq -c",
+        "observedOutput": "W-001…W-004 present as outline Badge pills; HTTP 200",
+        "exitCode": 0
+      }
+    }
+  ]
+}

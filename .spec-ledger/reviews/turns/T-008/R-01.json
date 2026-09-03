@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "T-008/R-01",
+  "turnId": "T-008",
+  "kind": "adversarial",
+  "target": "code",
+  "reviewer": "agent:sl-dev-break",
+  "verdict": "approve",
+  "summary": "SpecDoc uses MessageMarkdown: W-004/T-007 HTML has data-slot=message-markdown and <strong>explicit</strong> (not half-parser raw ###/** only).",
+  "killersCited": [
+    "curl:/workstreams/W-004#message-markdown+strong",
+    "curl:/turns/T-007#message-markdown",
+    "grep:spec-doc.tsx#MessageMarkdown"
+  ],
+  "findings": [
+    {
+      "id": "T-008/R-01/F-01",
+      "severity": "medium",
+      "title": "Pitch must render GFM via MessageMarkdown",
+      "detail": "Half-parser left ** and ### visible. Killer: production page must expose MessageMarkdown slot and bold as <strong>.",
+      "status": "open",
+      "evidence": {
+        "kind": "command",
+        "command": "curl -s http://127.0.0.1:3737/workstreams/W-004 | grep -E 'data-slot=\"message-markdown\"|<strong>explicit</strong>'",
+        "observedOutput": "data-slot=\"message-markdown\" and <strong>explicit</strong> both present; HTTP 200",
+        "exitCode": 0
+      }
+    }
+  ]
+}

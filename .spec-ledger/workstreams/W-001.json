@@ -4,6 +4,7 @@
   "status": "done",
   "createdAt": "2026-09-03T04:10:00.000Z",
   "updatedAt": "2026-09-03T04:49:16.470Z",
+  "specPath": "docs/workstreams/builder-episode-loop.md",
   "featureIds": [
     "turns",
     "lattice",

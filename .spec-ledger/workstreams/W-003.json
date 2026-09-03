@@ -4,6 +4,7 @@
   "status": "done",
   "createdAt": "2026-09-03T05:06:00.000Z",
   "updatedAt": "2026-09-03T05:14:17.551Z",
+  "specPath": "docs/workstreams/spec-ledger-dogfood-ui.md",
   "featureIds": [
     "lattice",
     "turns",

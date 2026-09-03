@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "T-009/R-01",
+  "turnId": "T-009",
+  "kind": "adversarial",
+  "target": "code",
+  "reviewer": "agent:sl-dev-break",
+  "verdict": "approve",
+  "summary": "UI copy Bets→Workstreams: / and /workstreams show Workstreams; no >Bets< nav labels.",
+  "killersCited": [
+    "curl:/#Workstreams+Active-workstream",
+    "curl:/workstreams#Workstreams-no-Bets",
+    "grep:packages/ui#no-user-facing-Bets-nav"
+  ],
+  "findings": [
+    {
+      "id": "T-009/R-01/F-01",
+      "severity": "low",
+      "title": "Nav and list must say Workstreams not Bets",
+      "detail": "Dual naming confused browse vs ledger language.",
+      "status": "open",
+      "evidence": {
+        "kind": "command",
+        "command": "curl -s http://127.0.0.1:3737/workstreams | grep -cE '>[Bb]ets?<' ; curl -s http://127.0.0.1:3737/ | grep -c Workstreams",
+        "observedOutput": "Bets label count 0; Workstreams present on / and /workstreams; HTTP 200",
+        "exitCode": 0
+      }
+    }
+  ]
+}

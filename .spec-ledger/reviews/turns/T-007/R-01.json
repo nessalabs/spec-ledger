@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "id": "T-007/R-01",
+  "turnId": "T-007",
+  "kind": "adversarial",
+  "target": "code",
+  "reviewer": "agent:sl-dev-break",
+  "verdict": "approve",
+  "summary": "SLC-01 e2e: specLedger wordmark; Verify statement-first + required covered; W-004 pitch from docs Markdown; T-007 plan+architecture touch.",
+  "killersCited": [
+    "curl:/",
+    "curl:/verify",
+    "curl:/workstreams/W-004",
+    "curl:/turns/T-007"
+  ]
+}

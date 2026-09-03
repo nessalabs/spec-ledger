@@ -188,30 +188,32 @@ function GraphMain({
       </Card>
 
       <section className="grid gap-4 lg:grid-cols-2">
-        <Card>
-          <CardHeader>
-            <CardTitle>Features</CardTitle>
-            <CardDescription>
-              Hover a claim id for its statement; click to open a split pane.
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="flex flex-col gap-3">
+        <div className="rounded-lg border border-border">
+          <div className="border-b border-border px-3 py-2">
+            <h2 className="text-sm font-medium">Features</h2>
+            <p className="text-[11px] text-muted-foreground">
+              Hover a claim id; click to open a pane.
+            </p>
+          </div>
+          <ul className="divide-y divide-border">
             {graph.features.map((f) => (
-              <div key={f.id} className="rounded-lg border border-border p-3">
-                <div className="flex flex-wrap items-center gap-2">
+              <li key={f.id} className="px-3 py-2">
+                <div className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
                   <Link
                     href={`/features/${encodeURIComponent(f.id)}`}
-                    className="font-medium text-foreground no-underline hover:underline"
+                    className="text-sm font-medium text-foreground no-underline hover:underline"
                   >
                     {f.name}
                   </Link>
-                  <Badge variant="outline" className="font-mono text-[10px]">
+                  <span className="font-mono text-[10px] text-muted-foreground">
                     {f.id}
-                  </Badge>
+                  </span>
                 </div>
-                <p className="mt-1 text-sm text-muted-foreground">{f.summary}</p>
+                <p className="mt-0.5 line-clamp-1 text-xs text-muted-foreground">
+                  {f.summary}
+                </p>
                 {f.claimIds?.length ? (
-                  <div className="mt-2 flex flex-wrap gap-1">
+                  <div className="mt-1 flex flex-wrap gap-1">
                     {f.claimIds.map((id) => (
                       <ClaimChip
                         key={id}
@@ -222,21 +224,21 @@ function GraphMain({
                     ))}
                   </div>
                 ) : null}
-              </div>
+              </li>
             ))}
-          </CardContent>
-        </Card>
+          </ul>
+        </div>
 
-        <Card>
-          <CardHeader>
-            <CardTitle>Layer policy</CardTitle>
-            <CardDescription>
+        <div className="rounded-lg border border-border">
+          <div className="border-b border-border px-3 py-2">
+            <h2 className="text-sm font-medium">Layer policy</h2>
+            <p className="text-[11px] text-muted-foreground">
               {violations.length
                 ? `${violations.length} violation(s)`
                 : "No violations"}
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-3 font-mono text-xs">
+            </p>
+          </div>
+          <div className="space-y-1.5 px-3 py-2 font-mono text-[11px]">
             {policy ? (
               Object.entries(policy.allow).map(([from, tos]) => (
                 <div key={from}>
@@ -252,28 +254,33 @@ function GraphMain({
                 {v.from} ({v.fromLayer}) → {v.to} ({v.toLayer})
               </p>
             ))}
-          </CardContent>
-        </Card>
+          </div>
+        </div>
       </section>
 
       <Card>
-        <CardHeader>
-          <CardTitle>Nodes</CardTitle>
+        <CardHeader className="py-3">
+          <CardTitle className="text-base">Nodes</CardTitle>
         </CardHeader>
-        <CardContent>
+        <CardContent className="pt-0">
           <ul className="divide-y divide-border">
             {graph.nodes.map((n) => (
-              <li key={n.id} className="flex flex-wrap items-center gap-2 py-2 text-sm">
+              <li
+                key={n.id}
+                className="flex flex-wrap items-center gap-x-2 gap-y-0.5 py-1.5 text-sm"
+              >
                 <Link
                   href={`/nodes/${encodeURIComponent(n.id)}`}
                   className="font-mono text-xs text-foreground no-underline hover:underline"
                 >
                   {n.id}
                 </Link>
-                <Badge variant="outline">{n.layer}</Badge>
-                <Badge variant="secondary">{n.kind}</Badge>
+                <span className="text-[11px] text-muted-foreground">{n.layer}</span>
+                <span className="text-[11px] text-muted-foreground">{n.kind}</span>
                 {n.locator ? (
-                  <span className="font-mono text-xs text-muted-foreground">{n.locator}</span>
+                  <span className="font-mono text-[11px] text-muted-foreground">
+                    {n.locator}
+                  </span>
                 ) : null}
               </li>
             ))}

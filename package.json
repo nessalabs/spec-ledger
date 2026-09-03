@@ -9,6 +9,7 @@
     "verify": "node packages/ledger/dist/cli/main.js verify --root .",
     "ledger:audit": "node packages/ledger/dist/cli/main.js audit --root .",
     "lattice": "pnpm --filter @nessa/spec-ledger-ui dev",
+    "lattice:prod": "pnpm --filter @nessa/spec-ledger-ui build && pnpm --filter @nessa/spec-ledger-ui start",
     "serve": "node packages/server/dist/main.js",
     "hooks:install": "git config core.hooksPath scripts/git-hooks && chmod +x scripts/git-hooks/commit-msg scripts/git-hooks/pre-commit && echo \"hooksPath=$(git config core.hooksPath)\""
   },

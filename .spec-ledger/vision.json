@@ -13,6 +13,7 @@
     "coding agents that must not invent pass",
     "embedders on @nessa/spec-ledger-client"
   ],
-  "updatedAt": "2026-09-03T04:00:00.000Z",
+  "specPath": "docs/compass/vision.md",
+  "updatedAt": "2026-09-03T07:30:00.000Z",
   "updatedBy": "human"
 }

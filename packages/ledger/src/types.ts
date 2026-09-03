@@ -251,6 +251,9 @@ export interface WorkstreamSlice {
   acceptance: string[]
   evidence?: string[]
   expectedClaimIds?: string[]
+  /** Product path prefixes/globs this vertical may cover (align check). */
+  expectedPaths?: string[]
+  notes?: string
   doneTurnId?: string
   codeBreakReviewId?: string
   specBreakReviewId?: string
@@ -284,6 +287,8 @@ export interface Workstream {
   title: string
   problem: string
   objective: string
+  /** Repo-relative Markdown humans review (docs/workstreams/<title-slug>.md). */
+  specPath?: string
   appetite?: string
   changeType?: "feature" | "refactor" | "fix" | "migration" | "chore" | "docs"
   riskLevel?: "low" | "moderate" | "elevated" | "high"
@@ -303,6 +308,8 @@ export interface Vision {
   northStar?: string
   nonGoals?: string[]
   users?: string[]
+  /** Repo-relative Markdown for human vision prose. */
+  specPath?: string
   updatedAt?: string
   updatedBy?: string
 }

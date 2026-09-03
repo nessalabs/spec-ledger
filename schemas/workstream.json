@@ -42,6 +42,11 @@
     "title": { "type": "string", "minLength": 1 },
     "problem": { "type": "string", "minLength": 1 },
     "objective": { "type": "string", "minLength": 1 },
+    "specPath": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Repo-relative Markdown humans review under docs/ (e.g. docs/workstreams/spec-code-coupling-and-honest-lattice-trail.md). Title-slug filename. .spec-ledger JSON is agent/metadata only."
+    },
     "appetite": { "type": "string" },
     "changeType": {
       "type": "string",
@@ -78,6 +83,12 @@
             "type": "array",
             "items": { "type": "string" }
           },
+          "expectedPaths": {
+            "type": "array",
+            "description": "Product path prefixes/globs this vertical is allowed to cover (align check).",
+            "items": { "type": "string", "minLength": 1 }
+          },
+          "notes": { "type": "string" },
           "doneTurnId": { "type": "string" },
           "codeBreakReviewId": { "type": "string" },
           "specBreakReviewId": { "type": "string" }

@@ -98,10 +98,12 @@ number each question; give your recommended answer; wait.
 
 ## On-disk artifacts
 
-Prefer CLI when available. Until then, write JSON per
-[workstream-template.md](workstream-template.md):
+Prefer CLI when available. Human pitch Markdown under **`docs/workstreams/<title-slug>.md`**
+first; then JSON per [workstream-template.md](workstream-template.md) with `specPath`
+pointing at that file (`.spec-ledger` = metadata only):
 
-- Workstream → `.spec-ledger/workstreams/W-00N.json` (`status: shaped` after confirm)
+- Pitch → `docs/workstreams/<title-slug>.md`
+- Workstream → `.spec-ledger/workstreams/W-00N.json` (`status: shaped` after confirm, `specPath` set)
 - Proposed claim → `.spec-ledger/proposed-claims/PC-00N.json` (`status: "proposed"`)
 
 Pick the next free `W-` / `PC-` id by listing those directories.

@@ -1,13 +1,5 @@
 import Link from "next/link"
-import {
-  Badge,
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@nessa-ui/react"
-import { serverClient } from "@/lib/ledger"
+import { liveReport, serverClient } from "@/lib/ledger"
 import { TurnSummaryCard } from "@/components/turn-detail"
 
 export const dynamic = "force-dynamic"
@@ -17,27 +9,26 @@ export default async function FeaturesPage() {
   const [graph, turns, report] = await Promise.all([
     client.getGraph(),
     client.getTurns(),
-    client.verify(),
+    liveReport(),
   ])
   const features = graph?.features ?? []
 
   return (
-    <div className="mx-auto flex max-w-5xl flex-col gap-8">
-      <header className="flex flex-col gap-2">
-        <p className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
+    <div className="mx-auto flex max-w-5xl flex-col gap-6">
+      <header className="flex flex-col gap-1.5">
+        <p className="text-[10px] uppercase tracking-wider text-muted-foreground">
           Features
         </p>
-        <h1 className="text-2xl font-semibold tracking-tight">Features</h1>
+        <h1 className="text-2xl font-semibold tracking-tight">Capabilities</h1>
         <p className="max-w-2xl text-sm text-muted-foreground">
-          Product capabilities. Each feature accumulates turn history when{" "}
-          <code className="font-mono text-xs">turn close</code> maps files to it.
+          Product surfaces in the graph. Open one for history; recent changes below.
         </p>
       </header>
 
       {features.length === 0 ? (
         <p className="text-sm text-muted-foreground">No features in the graph.</p>
       ) : (
-        <div className="flex flex-col gap-3">
+        <ul className="divide-y divide-border rounded-lg border border-border">
           {features.map((f) => {
             const history = turns.filter(
               (t) =>
@@ -45,40 +36,41 @@ export default async function FeaturesPage() {
                 t.intent.claimedFeatureIds?.includes(f.id),
             )
             return (
-              <Card key={f.id}>
-                <CardHeader className="gap-2">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <Link
-                      href={`/features/${encodeURIComponent(f.id)}`}
-                      className="text-base font-semibold text-foreground no-underline hover:underline"
-                    >
-                      {f.name}
-                    </Link>
-                    <Badge variant="outline" className="font-mono">
-                      {f.id}
-                    </Badge>
-                    <Badge variant="secondary">{history.length} turns</Badge>
-                  </div>
-                  <CardDescription>{f.summary}</CardDescription>
-                </CardHeader>
-              </Card>
+              <li key={f.id}>
+                <Link
+                  href={`/features/${encodeURIComponent(f.id)}`}
+                  className="grid gap-0.5 px-3 py-2 no-underline transition-colors hover:bg-muted/40 sm:grid-cols-[minmax(0,11rem)_minmax(0,1fr)_auto] sm:items-baseline sm:gap-3"
+                >
+                  <span className="truncate text-sm font-medium text-foreground">
+                    {f.name}
+                  </span>
+                  <span className="truncate text-sm text-muted-foreground">
+                    {f.summary}
+                  </span>
+                  <span className="shrink-0 font-mono text-[11px] text-muted-foreground">
+                    {f.id} · {history.length}
+                  </span>
+                </Link>
+              </li>
             )
           })}
-        </div>
+        </ul>
       )}
 
       {turns.length > 0 ? (
-        <section className="space-y-3">
-          <h2 className="text-sm font-medium">Recent turns</h2>
-          {turns
-            .slice()
-            .sort((a, b) =>
-              (b.closedAt ?? b.openedAt).localeCompare(a.closedAt ?? a.openedAt),
-            )
-            .slice(0, 3)
-            .map((t) => (
-              <TurnSummaryCard key={t.id} turn={t} report={report} />
-            ))}
+        <section className="space-y-2">
+          <h2 className="text-sm font-medium">Recent changes</h2>
+          <div className="flex flex-col gap-1.5">
+            {turns
+              .slice()
+              .sort((a, b) =>
+                (b.closedAt ?? b.openedAt).localeCompare(a.closedAt ?? a.openedAt),
+              )
+              .slice(0, 5)
+              .map((t) => (
+                <TurnSummaryCard key={t.id} turn={t} report={report} compact />
+              ))}
+          </div>
         </section>
       ) : null}
     </div>

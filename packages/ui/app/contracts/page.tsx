@@ -1,3 +1,4 @@
+import nextDynamic from "next/dynamic"
 import {
   Badge,
   Card,
@@ -7,9 +8,20 @@ import {
   CardTitle,
   CodeBlock,
 } from "@nessa-ui/react"
-import { ContractsExplorer } from "@/components/contracts-explorer"
 import { serverClient } from "@/lib/ledger"
 import { HTTP_CONTRACT } from "@nessa/spec-ledger-client"
+
+const ContractsExplorer = nextDynamic(
+  () =>
+    import("@/components/contracts-explorer").then((m) => m.ContractsExplorer),
+  {
+    loading: () => (
+      <div className="rounded-xl border border-border p-8 text-sm text-muted-foreground">
+        Loading schemas…
+      </div>
+    ),
+  },
+)
 
 export const dynamic = "force-dynamic"
 
@@ -17,9 +29,11 @@ export default async function ContractsPage() {
   const client = serverClient()
   const names = await client.listSchemas()
   const schemas: Record<string, unknown> = {}
-  for (const name of names) {
-    schemas[name] = await client.getSchema(name)
-  }
+  await Promise.all(
+    names.map(async (name) => {
+      schemas[name] = await client.getSchema(name)
+    }),
+  )
 
   return (
     <div className="mx-auto flex max-w-5xl flex-col gap-8">

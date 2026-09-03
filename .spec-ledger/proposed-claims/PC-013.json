@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "id": "PC-013",
+  "status": "proposed",
+  "statement": "Product path changes in a turn or push are either covered by the sealed workstream (graph node.locator under the turn's featureIds and/or slice expectedPaths) or accompanied by an explicit ledger align-waiver bound to the same treeDigest.",
+  "rationale": "TN-002 forbids unsealed implementation in spirit; without a machine check, agents ship Lattice/UI and core changes with no plan trail. Coverage is path→plan/graph, not verify theater. expectedPaths is now on the workstream slice schema.",
+  "workstreamId": "W-004",
+  "suggestedLiveId": "SL-009",
+  "requiredEvidence": ["unit", "integration"]
+}

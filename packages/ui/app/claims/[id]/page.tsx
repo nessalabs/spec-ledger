@@ -8,7 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@nessa-ui/react"
-import { serverClient } from "@/lib/ledger"
+import { liveReport, serverClient } from "@/lib/ledger"
 import { TurnSummaryCard } from "@/components/turn-detail"
 import { turnsTouchingClaim } from "@/lib/turns"
 
@@ -25,7 +25,7 @@ export default async function ClaimPage({
     client.getClaims(),
     client.getBindings(),
     client.getTurns(),
-    client.verify(),
+    liveReport(),
     client.getGraph(),
   ])
   const claim = claims.find((c) => c.id === id)

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "T-013/R-01",
+  "turnId": "T-013",
+  "kind": "adversarial",
+  "target": "code",
+  "reviewer": "agent:sl-dev-break",
+  "verdict": "approve",
+  "summary": "Plan/Pitch are path + Read only; full Markdown only after SplitView open. Related docs use Read too.",
+  "killersCited": [
+    "curl:/turns/T-007#Plan-Read-no-inline-pitch",
+    "grep:turn-plan-section#Read"
+  ],
+  "findings": [
+    {
+      "id": "T-013/R-01/F-01",
+      "severity": "medium",
+      "title": "Plan must not inline SpecDoc",
+      "detail": "User wants doc link + Read opening side pane, not dual rendering.",
+      "status": "open",
+      "evidence": {
+        "kind": "command",
+        "command": "curl -s http://127.0.0.1:3737/turns/T-007 | grep -oE 'Plan|Read|Human vs agent surfaces' | sort | uniq -c",
+        "observedOutput": "Plan section has path+Read; no inline Human vs agent in Plan card body; 5 Read buttons",
+        "exitCode": 0
+      }
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "T-015/R-01",
+  "turnId": "T-015",
+  "kind": "adversarial",
+  "target": "code",
+  "reviewer": "agent:sl-dev-break",
+  "verdict": "approve",
+  "summary": "Doc reader lives in SpecLedgerShell with tabs; /api/repo-file serves DESIGN.md; page nav no longer owns the pane.",
+  "killersCited": [
+    "curl:/api/repo-file?path=DESIGN.md",
+    "grep:lattice-shell#DocReaderProvider"
+  ],
+  "findings": [
+    {
+      "id": "T-015/R-01/F-01",
+      "severity": "medium",
+      "title": "Reader must persist across routes",
+      "detail": "Page-local TurnDocSplit cleared the right pane on navigation.",
+      "status": "open",
+      "evidence": {
+        "kind": "command",
+        "command": "curl -s 'http://127.0.0.1:3737/api/repo-file?path=DESIGN.md' | head -c 40; rg -n DocReaderProvider packages/ui/components/lattice-shell.tsx",
+        "observedOutput": "DESIGN.md body returned; DocReaderProvider wraps shell inset",
+        "exitCode": 0
+      }
+    }
+  ]
+}

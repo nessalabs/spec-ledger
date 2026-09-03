@@ -20,6 +20,24 @@
     },
     "summary": { "type": "string", "minLength": 1 },
     "blocking": { "type": "boolean" },
+    "treeDigest": {
+      "type": "string",
+      "minLength": 16,
+      "description": "Tree digest this code review / align approve applies to."
+    },
+    "uncoveredPaths": {
+      "type": "array",
+      "description": "Product paths not covered by sealed plan/graph; must be empty on align approve unless waiverIds set.",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "coverageSource": {
+      "type": "string",
+      "enum": ["user", "graph", "expectedPaths", "mixed"]
+    },
+    "waiverIds": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
     "killersCited": {
       "type": "array",
       "items": { "type": "string", "minLength": 1 }

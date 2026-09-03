@@ -42,6 +42,7 @@ export function sealPayload(ws: Workstream): Record<string, unknown> {
     title: ws.title,
     problem: ws.problem,
     objective: ws.objective,
+    specPath: ws.specPath ?? null,
     appetite: ws.appetite ?? null,
     changeType: ws.changeType ?? null,
     riskLevel: ws.riskLevel ?? null,
@@ -57,6 +58,7 @@ export function sealPayload(ws: Workstream): Record<string, unknown> {
       acceptance: s.acceptance,
       evidence: s.evidence ?? [],
       expectedClaimIds: s.expectedClaimIds ?? [],
+      expectedPaths: s.expectedPaths ?? [],
     })),
   }
 }

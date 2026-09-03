@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "W-004/SR-02",
+  "workstreamId": "W-004",
+  "kind": "adversarial",
+  "target": "spec",
+  "reviewer": "agent:sl-plan-break-spec",
+  "verdict": "comment",
+  "blocking": false,
+  "summary": "Human confirmed amend-after-review. W-004 body updated for SR-01 F1–F8 + brand wordmark + human Verify. Schema: expectedPaths on slices; review treeDigest/uncoveredPaths/coverageSource/waiverIds. Ready for human seal — not sealed by agent.",
+  "resolvesReviewId": "W-004/SR-01",
+  "resolvesFindingIds": [
+    "W-004/SR-01#F1",
+    "W-004/SR-01#F2",
+    "W-004/SR-01#F3",
+    "W-004/SR-01#F4",
+    "W-004/SR-01#F5",
+    "W-004/SR-01#F6",
+    "W-004/SR-01#F7",
+    "W-004/SR-01#F8",
+    "W-004/SR-01#F9"
+  ],
+  "findings": [
+    {
+      "id": "F-seal",
+      "severity": "low",
+      "gap": "Awaiting human seal via: pnpm exec / node packages/ledger/dist/cli/main.js workstream seal W-004 --by <you>",
+      "fixProposal": "Human reads W-004 + PC-013/014 + SR-01/02 then seals."
+    }
+  ]
+}

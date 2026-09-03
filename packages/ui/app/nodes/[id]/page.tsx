@@ -8,7 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@nessa-ui/react"
-import { serverClient } from "@/lib/ledger"
+import { liveReport, serverClient } from "@/lib/ledger"
 import { TurnSummaryCard } from "@/components/turn-detail"
 import { turnsTouchingNode } from "@/lib/turns"
 
@@ -24,7 +24,7 @@ export default async function NodePage({
   const [graph, turns, report, impact, claims] = await Promise.all([
     client.getGraph(),
     client.getTurns(),
-    client.verify(),
+    liveReport(),
     client.impact(id).catch(() => ({ direct: [] as string[], transitive: [] as string[] })),
     client.getClaims(),
   ])

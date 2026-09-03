@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "id": "PC-014",
+  "status": "proposed",
+  "statement": "When workstream or repo policy requireAlignApprove is true, turn close and push/PR/CI (pnpm ledger:align) of product changes require a code-target review with verdict approve bound to treeDigest, coverageSource, and uncoveredPaths=[] (or waiverIds) from an align reviewer (identity prefix distinct from the turn producer), or an explicit align-waiver with minimum reason length; missing artifact fails the gate — silence is not skip. Align findings must not affect verify.ok.",
+  "rationale": "Cheap align agents write structured JSON approval; builder must not self-approve; hooks and CI enforce. review.schema now admits treeDigest/uncoveredPaths/coverageSource/waiverIds for implementation in SLC-03.",
+  "workstreamId": "W-004",
+  "suggestedLiveId": "SL-010",
+  "requiredEvidence": ["unit", "integration"]
+}

@@ -25,7 +25,7 @@ export default async function CompassPage() {
         </p>
         <h1 className="text-2xl font-semibold tracking-tight">Vision & weighing rules</h1>
         <p className="max-w-2xl text-sm text-muted-foreground">
-          Not verify truth — standing north star, tenets, and themes that shape bets.
+          Not verify truth — standing north star, tenets, and themes that shape workstreams.
         </p>
       </header>
 

@@ -7,7 +7,7 @@ import {
   CardTitle,
 } from "@nessa-ui/react"
 import Link from "next/link"
-import { serverClient } from "@/lib/ledger"
+import { ledgerSnapshot, serverClient } from "@/lib/ledger"
 import { FreshnessBadge, TurnVerifyBadge } from "@/components/freshness-badge"
 import { turnFreshness } from "@/lib/turns"
 import type { Turn } from "@nessa/spec-ledger-client"
@@ -17,18 +17,18 @@ export const dynamic = "force-dynamic"
 export default async function OverviewPage() {
   const client = serverClient()
   const [snap, workstreams] = await Promise.all([
-    client.getSnapshot(),
+    ledgerSnapshot(),
     client.listWorkstreams(),
   ])
   const { report, turns } = snap
 
   const openTurn = turns.find((t) => t.status === "open") ?? null
-  const activeBets = workstreams
+  const activeWorkstreams = workstreams
     .filter((w) => w.status === "active" || w.status === "sealed" || w.status === "done")
     .sort((a, b) => b.id.localeCompare(a.id))
   const spotlight =
-    activeBets.find((w) => w.status === "active" || w.status === "sealed") ??
-    activeBets[0] ??
+    activeWorkstreams.find((w) => w.status === "active" || w.status === "sealed") ??
+    activeWorkstreams[0] ??
     null
   const openFreshness = openTurn ? turnFreshness(openTurn, report) : "unknown"
 
@@ -42,14 +42,41 @@ export default async function OverviewPage() {
           </Badge>
         </div>
         <p className="max-w-2xl text-sm leading-relaxed text-muted-foreground">
-          Bets → turns → verify. Read-only view of this checkout&apos;s ledger. Git
-          and the CLI are the write path.
+          Read-only view of this checkout. Start with the active workstream, open
+          its turns, then check claims when you care about standing truth.
         </p>
       </header>
 
+      <nav
+        aria-label="How to browse"
+        className="grid gap-2 rounded-lg border border-border bg-muted/20 p-4 text-sm sm:grid-cols-3"
+      >
+        <BrowseStep
+          n="1"
+          title="Open a workstream"
+          body="A workstream is a sealed plan. That is your starting place."
+          href={spotlight ? `/workstreams/${spotlight.id}` : "/workstreams"}
+          cta={spotlight ? `Open ${spotlight.id}` : "All workstreams"}
+        />
+        <BrowseStep
+          n="2"
+          title="Follow turns"
+          body="Each turn is one intent → implementation slice under that workstream."
+          href={openTurn ? `/turns/${openTurn.id}` : "/turns"}
+          cta={openTurn ? `Open ${openTurn.id}` : "All turns"}
+        />
+        <BrowseStep
+          n="3"
+          title="Check truth"
+          body="Claims are what must stay true. Verify is the live report."
+          href="/claims"
+          cta="Claims"
+        />
+      </nav>
+
       <section className="space-y-3">
         <h2 className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
-          Active bet
+          Active workstream
         </h2>
         {spotlight ? (
           <Card>
@@ -89,7 +116,7 @@ export default async function OverviewPage() {
           </Card>
         ) : (
           <p className="text-sm text-muted-foreground">
-            No sealed workstreams yet. Shape and seal a bet with the CLI.
+            No sealed workstreams yet. Shape and seal one with the CLI.
           </p>
         )}
       </section>
@@ -118,7 +145,7 @@ export default async function OverviewPage() {
       <section className="space-y-3">
         <div className="flex items-center justify-between gap-2">
           <h2 className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
-            Workstreams
+            Recent workstreams
           </h2>
           <Link
             href="/workstreams"
@@ -150,6 +177,32 @@ export default async function OverviewPage() {
         ledgerDigest {report.provenance.ledgerDigest.slice(0, 12)}… · commit{" "}
         {report.provenance.commit?.slice(0, 10) ?? "(none)"}
       </p>
+    </div>
+  )
+}
+
+function BrowseStep({
+  n,
+  title,
+  body,
+  href,
+  cta,
+}: {
+  n: string
+  title: string
+  body: string
+  href: string
+  cta: string
+}) {
+  return (
+    <div className="flex flex-col gap-2">
+      <p className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
+        {n} · {title}
+      </p>
+      <p className="text-muted-foreground">{body}</p>
+      <Link href={href} className="text-primary underline-offset-4 hover:underline">
+        {cta} →
+      </Link>
     </div>
   )
 }
