@@ -1,0 +1,7 @@
+{
+  "schemaVersion": 1,
+  "id": "SL-008",
+  "statement": "spec-ledger audit exits non-zero when findings match policy.failOn severities.",
+  "severity": "medium",
+  "required": true
+}

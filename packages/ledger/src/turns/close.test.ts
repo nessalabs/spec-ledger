@@ -38,7 +38,7 @@ describe("turns", () => {
     const opened = openTurn(dir, {
       userPrompt: "touch hello",
       restatedGoal: "Change hello.txt",
-    })
+    }, { allowDirty: true })
     assert.equal(opened.status, "open")
     assert.equal(opened.id, "T-001")
 
@@ -83,11 +83,12 @@ describe("turns", () => {
           sliceId: "SLC-02",
           featureIds: ["turns"],
         },
-        { workstreamId: "W-001", sliceId: "SLC-02", featureIds: ["turns"] },
+        { workstreamId: "W-001", sliceId: "SLC-02", featureIds: ["turns"], allowDirty: true },
       )
       assert.equal(opened.opened?.contextWorkstreamId, "W-001")
       assert.equal(opened.opened?.contextSliceId, "SLC-02")
       assert.equal(opened.opened?.contextDigest?.length, 64)
+      assert.equal(opened.opened?.treeDigest?.length, 64)
 
       // close needs code-break; abandon by deleting for next fixture step
       rmSync(join(dir, ".spec-ledger/turns", `${opened.id}.json`))
@@ -107,7 +108,7 @@ describe("turns", () => {
               workstreamId: "W-001",
               sliceId: "SLC-02",
             },
-            { workstreamId: "W-001", sliceId: "SLC-02" },
+            { workstreamId: "W-001", sliceId: "SLC-02", allowDirty: true },
           ),
         /sealed/,
       )
@@ -138,7 +139,7 @@ describe("turns", () => {
           sliceId: "SLC-02",
           featureIds: ["turns"],
         },
-        { workstreamId: "W-001", sliceId: "SLC-02", featureIds: ["turns"] },
+        { workstreamId: "W-001", sliceId: "SLC-02", featureIds: ["turns"], allowDirty: true },
       )
 
       assert.throws(() => closeTurn(dir), /requireCodeBreak/)

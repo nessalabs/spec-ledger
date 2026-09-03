@@ -1,0 +1,6 @@
+{
+  "id": "b-sl-007",
+  "claimId": "SL-007",
+  "kind": "check",
+  "locator": { "type": "path", "path": "packages/server/src/routes.ts" }
+}

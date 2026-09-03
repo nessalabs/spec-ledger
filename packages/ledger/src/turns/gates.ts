@@ -3,6 +3,7 @@ import {
   listReviewsForTurn,
   unresolvedBlockingReviews,
 } from "../reviews/load.js"
+import { blockedAutomationEvents } from "../automation/load.js"
 import { loadWorkstream } from "../workstream/load.js"
 import type { Turn } from "../types.js"
 
@@ -29,6 +30,16 @@ export function assertTurnCloseAllowed(repoRoot: string, turn: Turn): void {
   if (requireCodeBreak && !codeBreakSatisfied(reviews)) {
     throw new Error(
       `turn close refused: workstream ${workstreamId} requireCodeBreak — need adversarial code review with verdict approve and non-empty killersCited (comment / bare approve do not count)`,
+    )
+  }
+
+  const blocked = blockedAutomationEvents(repoRoot, {
+    workstreamId,
+    turnId: turn.id,
+  })
+  if (blocked.length) {
+    throw new Error(
+      `turn close refused: blocked automation event(s): ${blocked.map((e) => e.id).join(", ")}`,
     )
   }
 }

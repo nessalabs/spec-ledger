@@ -1,0 +1,8 @@
+{
+  "schemaVersion": 1,
+  "id": "PC-012",
+  "statement": "spec-ledger audit fails the process when policy.failOn severities are present.",
+  "status": "accepted",
+  "workstreamId": "W-002",
+  "severity": "medium"
+}

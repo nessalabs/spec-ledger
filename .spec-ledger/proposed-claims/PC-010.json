@@ -1,0 +1,8 @@
+{
+  "schemaVersion": 1,
+  "id": "PC-010",
+  "statement": "Turn open stamps treeDigest and refuses a dirty worktree unless --allow-dirty.",
+  "status": "accepted",
+  "workstreamId": "W-002",
+  "severity": "medium"
+}

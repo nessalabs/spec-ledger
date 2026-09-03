@@ -11,6 +11,13 @@ import {
   snapshotLedger,
   listSchemaFiles,
   readSchemaFile,
+  getVerticalContext,
+  listAutomationEvents,
+  auditLedger,
+  getRelatedPack,
+  listThemes,
+  listProposedClaims,
+  getCompass,
   HTTP_CONTRACT,
 } from "@nessa/spec-ledger"
 import { readFileSync, existsSync } from "node:fs"
@@ -179,6 +186,82 @@ export function buildRoutes(rootDir: string): Route[] {
           sendJson(res, 404, { error: e instanceof Error ? e.message : "not found" })
         }
       },
+    },
+    {
+      method: "GET",
+      pattern: /^\/v1\/context$/,
+      paramNames: [],
+      handler: (req, res) => {
+        const url = new URL(req.url ?? "/", "http://127.0.0.1")
+        const ws = url.searchParams.get("workstream")
+        const slice = url.searchParams.get("slice")
+        if (!ws || !slice) {
+          sendJson(res, 400, { error: "workstream and slice query params required" })
+          return
+        }
+        try {
+          sendJson(res, 200, getVerticalContext(rootDir, ws, slice))
+        } catch (e) {
+          sendJson(res, 400, { error: e instanceof Error ? e.message : String(e) })
+        }
+      },
+    },
+    {
+      method: "GET",
+      pattern: /^\/v1\/automation-events$/,
+      paramNames: [],
+      handler: (_req, res) => sendJson(res, 200, listAutomationEvents(rootDir)),
+    },
+    {
+      method: "GET",
+      pattern: /^\/v1\/audit$/,
+      paramNames: [],
+      handler: (_req, res) => {
+        const report = auditLedger(rootDir)
+        sendJson(res, report.ok ? 200 : 409, report)
+      },
+    },
+    {
+      method: "GET",
+      pattern: /^\/v1\/related$/,
+      paramNames: [],
+      handler: (req, res) => {
+        const url = new URL(req.url ?? "/", "http://127.0.0.1")
+        const ws = url.searchParams.get("workstream")
+        if (!ws) {
+          sendJson(res, 400, { error: "workstream query param required" })
+          return
+        }
+        try {
+          sendJson(
+            res,
+            200,
+            getRelatedPack(rootDir, ws, {
+              worktrees: url.searchParams.get("worktrees") === "1",
+            }),
+          )
+        } catch (e) {
+          sendJson(res, 400, { error: e instanceof Error ? e.message : String(e) })
+        }
+      },
+    },
+    {
+      method: "GET",
+      pattern: /^\/v1\/themes$/,
+      paramNames: [],
+      handler: (_req, res) => sendJson(res, 200, listThemes(rootDir)),
+    },
+    {
+      method: "GET",
+      pattern: /^\/v1\/proposed-claims$/,
+      paramNames: [],
+      handler: (_req, res) => sendJson(res, 200, listProposedClaims(rootDir)),
+    },
+    {
+      method: "GET",
+      pattern: /^\/v1\/compass$/,
+      paramNames: [],
+      handler: (_req, res) => sendJson(res, 200, getCompass(rootDir)),
     },
   ]
 }

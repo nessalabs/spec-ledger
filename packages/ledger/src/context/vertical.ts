@@ -1,5 +1,8 @@
 import { existsSync, readdirSync, readFileSync } from "node:fs"
 import { join } from "node:path"
+import { resumeAutomationEvents } from "../automation/load.js"
+import { listDecisionsForTurn } from "../episodes/load.js"
+import { listProposedClaims } from "../proposed/load.js"
 import { blastRadius } from "../graph/impact.js"
 import { findRepoRoot, ledgerRoot, loadLedger, sha256Stable } from "../fs/load.js"
 import {
@@ -116,6 +119,17 @@ export function getVerticalContext(
     .sort((a, b) => b.id.localeCompare(a.id))
     .slice(0, 10)
 
+  const decisions = priorTurns.flatMap((t) =>
+    listDecisionsForTurn(repoRoot, t.id),
+  ).slice(0, 20)
+
+  const proposed = listProposedClaims(repoRoot).filter(
+    (p) =>
+      (ws.proposedClaimIds ?? []).includes(p.id) || p.workstreamId === workstreamId,
+  )
+
+  const automation = resumeAutomationEvents(repoRoot, { workstreamId })
+
   const vision = loadVision(rootDir, ledger.config.visionPath)
   const tenets = loadTenets(rootDir, ledger.config.tenetsDir)
 
@@ -130,8 +144,13 @@ export function getVerticalContext(
     workstream: ws,
     seal,
     slice: slice as WorkstreamSlice,
-    claims: { live: liveClaims, proposed: [], bindings },
-    prior: { turns: priorTurns, decisions: [] as unknown[] },
+    claims: { live: liveClaims, proposed, bindings },
+    prior: {
+      turns: priorTurns,
+      decisions,
+      openAutomationEvents: automation.open,
+      recentAutomationEvents: automation.recent,
+    },
     graph: {
       nodes,
       predictedBlastRadius: {
@@ -142,9 +161,9 @@ export function getVerticalContext(
     policy: ws.policy,
     trust: ws.trust,
     truncation: {
-      decisions: 0,
+      decisions: decisions.length,
       turns: priorTurns.length,
-      note: "decisions side-collection not loaded in P0",
+      note: "prior capped at 10 turns / 20 decisions",
     },
   }
 

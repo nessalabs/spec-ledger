@@ -1,0 +1,7 @@
+{
+  "schemaVersion": 1,
+  "id": "TH-001",
+  "title": "Make agent work reviewable",
+  "summary": "Claims, episodes, and Lattice so humans can trust agent output without greenwashing.",
+  "status": "active"
+}

@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "failOn": ["error"],
+  "rules": {
+    "openTurnRequiresContextDigest": true,
+    "closedWorkstreamRequiresCodeBreak": true,
+    "blockedAutomationMustResolve": true,
+    "approveNeedsKillers": true
+  }
+}

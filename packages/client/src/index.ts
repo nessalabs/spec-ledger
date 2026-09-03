@@ -13,6 +13,12 @@ import {
   listSchemaFiles,
   readSchemaFile,
   getVerticalContext,
+  getCompass,
+  auditLedger,
+  listThemes,
+  listProposedClaims,
+  listAutomationEvents,
+  getRelatedPack,
   HTTP_CONTRACT,
   type LoadedLedger,
   type VerifyReport,
@@ -24,6 +30,13 @@ import {
   type LedgerRootConfig,
   type Turn,
   type VerticalContext,
+  type AuditReport,
+  type Theme,
+  type ProposedClaim,
+  type AutomationEvent,
+  type RelatedPack,
+  type Vision,
+  type Tenet,
 } from "@nessa/spec-ledger"
 
 export type LedgerTransport =
@@ -48,6 +61,12 @@ export interface SpecLedgerClient {
   listSchemas(): Promise<string[]>
   getSchema(name: string): Promise<unknown>
   getVerticalContext(workstreamId: string, sliceId: string): Promise<VerticalContext>
+  getCompass(): Promise<{ vision: Vision | null; tenets: Tenet[]; themes: Theme[] }>
+  getAudit(): Promise<AuditReport>
+  getThemes(): Promise<Theme[]>
+  getProposedClaims(): Promise<ProposedClaim[]>
+  getAutomationEvents(): Promise<AutomationEvent[]>
+  getRelated(workstreamId: string): Promise<RelatedPack>
   httpContract(): typeof HTTP_CONTRACT
 }
 
@@ -111,6 +130,24 @@ function inProcess(rootDir: string): SpecLedgerClient {
     async getVerticalContext(workstreamId, sliceId) {
       return getVerticalContext(rootDir, workstreamId, sliceId)
     },
+    async getCompass() {
+      return getCompass(rootDir)
+    },
+    async getAudit() {
+      return auditLedger(rootDir)
+    },
+    async getThemes() {
+      return listThemes(rootDir)
+    },
+    async getProposedClaims() {
+      return listProposedClaims(rootDir)
+    },
+    async getAutomationEvents() {
+      return listAutomationEvents(rootDir)
+    },
+    async getRelated(workstreamId) {
+      return getRelatedPack(rootDir, workstreamId)
+    },
     httpContract() {
       return HTTP_CONTRACT
     },
@@ -139,6 +176,13 @@ function http(baseUrl: string): SpecLedgerClient {
         base,
         `v1/context?workstream=${encodeURIComponent(workstreamId)}&slice=${encodeURIComponent(sliceId)}`,
       ),
+    getCompass: () => httpGet(base, "v1/compass"),
+    getAudit: () => httpGet(base, "v1/audit"),
+    getThemes: () => httpGet(base, "v1/themes"),
+    getProposedClaims: () => httpGet(base, "v1/proposed-claims"),
+    getAutomationEvents: () => httpGet(base, "v1/automation-events"),
+    getRelated: (workstreamId) =>
+      httpGet(base, `v1/related?workstream=${encodeURIComponent(workstreamId)}`),
     httpContract() {
       return HTTP_CONTRACT
     },
@@ -160,5 +204,12 @@ export type {
   LedgerRootConfig,
   Turn,
   VerticalContext,
+  AuditReport,
+  Theme,
+  ProposedClaim,
+  AutomationEvent,
+  RelatedPack,
+  Vision,
+  Tenet,
 }
 export { HTTP_CONTRACT }

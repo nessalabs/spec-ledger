@@ -1,0 +1,6 @@
+{
+  "id": "b-sl-006",
+  "claimId": "SL-006",
+  "kind": "check",
+  "locator": { "type": "path", "path": "packages/ledger/src/turns/close.ts" }
+}

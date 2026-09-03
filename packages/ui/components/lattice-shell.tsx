@@ -17,17 +17,21 @@ import {
 } from "@nessa-ui/react"
 import {
   Boxes,
+  Compass,
   FileJson2,
   GitBranch,
   History,
   LayoutDashboard,
   Layers,
   ShieldCheck,
+  Timer,
 } from "lucide-react"
 import { cn } from "@/lib/cn"
 
 const NAV = [
   { href: "/", label: "Overview", icon: LayoutDashboard },
+  { href: "/compass", label: "Compass", icon: Compass },
+  { href: "/timeline", label: "Timeline", icon: Timer },
   { href: "/claims", label: "Claims", icon: ShieldCheck },
   { href: "/features", label: "Features", icon: Layers },
   { href: "/contracts", label: "Contracts", icon: FileJson2 },

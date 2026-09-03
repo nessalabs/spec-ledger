@@ -13,6 +13,8 @@ export { initLedger } from "./cli/init.js"
 export {
   openTurn,
   closeTurn,
+  checkTurn,
+  abandonTurn,
   listTurns,
   computeTurnFacts,
   collectGitFiles,
@@ -32,3 +34,22 @@ export {
   nextReviewId,
   codeBreakSatisfied,
 } from "./reviews/load.js"
+export {
+  listAutomationEvents,
+  writeAutomationEvent,
+  resumeAutomationEvents,
+  nextAutomationEventId,
+} from "./automation/load.js"
+export { getRelatedPack } from "./related/pack.js"
+export { listProposedClaims, listThemes } from "./proposed/load.js"
+export {
+  listDecisionsForTurn,
+  listSourcesForTurn,
+  listAttachmentsForTurn,
+  listProbesForTurn,
+  listFlowsForTurn,
+  episodeDigestsForTurn,
+} from "./episodes/load.js"
+export { auditLedger, loadAuditPolicy } from "./audit/audit.js"
+export { computeTreeDigest, dirtyPaths } from "./git/tree.js"
+export { getCompass } from "./compass/load.js"

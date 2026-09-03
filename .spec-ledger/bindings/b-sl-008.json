@@ -1,0 +1,6 @@
+{
+  "id": "b-sl-008",
+  "claimId": "SL-008",
+  "kind": "check",
+  "locator": { "type": "path", "path": "packages/ledger/src/audit/audit.ts" }
+}

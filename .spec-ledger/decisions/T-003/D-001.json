@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "id": "D-001",
+  "turnId": "T-003",
+  "decision": "Keep sha256Stable for seal digests until RFC 8785 JCS lands",
+  "rationale": "Stable stringify is good enough for pre-alpha dogfood; JCS is explicit out-of-scope for W-002.",
+  "alternativesRejected": ["Block ship on full JCS"],
+  "basis": {
+    "at": "2026-09-03T04:40:00.000Z",
+    "sealRevision": 1
+  }
+}

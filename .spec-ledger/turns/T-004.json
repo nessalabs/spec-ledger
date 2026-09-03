@@ -1,0 +1,318 @@
+{
+  "schemaVersion": 1,
+  "id": "T-004",
+  "status": "closed",
+  "openedAt": "2026-09-03T04:42:31.746Z",
+  "opened": {
+    "producedBy": "@nessa/spec-ledger@0.1.0",
+    "baseCommit": "d04ca05d3d70d7d82cff7ccbfed9fa135c36e735",
+    "treeDigest": "ddacd1d732528683f34f8ae49a6bb8813f43f6b57658066bfa3df165eb6cac3b",
+    "dirtyAtOpen": [
+      ".github/workflows/ci.yml",
+      ".spec-ledger/decisions/T-003/D-001.json",
+      ".spec-ledger/graph/codebase-graph.json",
+      ".spec-ledger/ledger.json",
+      ".spec-ledger/policy/audit.json",
+      ".spec-ledger/proposed-claims/PC-010.json",
+      ".spec-ledger/proposed-claims/PC-011.json",
+      ".spec-ledger/proposed-claims/PC-012.json",
+      ".spec-ledger/themes/TH-001.json",
+      ".spec-ledger/workstreams/W-002.json",
+      ".spec-ledger/workstreams/W-002.seals/1.json",
+      "package.json",
+      "packages/client/src/index.ts",
+      "packages/ledger/src/audit/audit.ts",
+      "packages/ledger/src/automation/load.ts",
+      "packages/ledger/src/cli/main.ts",
+      "packages/ledger/src/compass/load.ts",
+      "packages/ledger/src/context/vertical.ts",
+      "packages/ledger/src/episodes/load.ts",
+      "packages/ledger/src/fs/snapshot.ts",
+      "packages/ledger/src/git/tree.ts",
+      "packages/ledger/src/index.ts",
+      "packages/ledger/src/proposed/load.ts",
+      "packages/ledger/src/related/pack.ts",
+      "packages/ledger/src/runtime.p0.test.ts",
+      "packages/ledger/src/turns/close.test.ts",
+      "packages/ledger/src/turns/close.ts",
+      "packages/ledger/src/turns/gates.ts",
+      "packages/ledger/src/types.ts",
+      "packages/server/src/routes.ts",
+      "packages/ui/app/compass/page.tsx",
+      "packages/ui/app/timeline/page.tsx",
+      "packages/ui/components/lattice-shell.tsx"
+    ],
+    "contextDigest": "97175627c336082bdbea3c7e7f045531c24d670c574f919af5e2cd02d5e7953f",
+    "contextWorkstreamId": "W-002",
+    "contextSliceId": "SLC-01",
+    "contextSealRevision": 1,
+    "contextGeneratedAt": "2026-09-03T04:42:31.745Z"
+  },
+  "intent": {
+    "userPrompt": "Finish architecture through P3 and dogfood beyond W-001.",
+    "restatedGoal": "Ship W-002 P0–P3 runtime: turn ops, HTTP context, automation, related, episodes, audit/CI, compass/timeline",
+    "changeType": "feature",
+    "riskLevel": "moderate",
+    "workstreamId": "W-002",
+    "sliceId": "SLC-01",
+    "featureIds": [
+      "turns",
+      "client",
+      "server",
+      "lattice"
+    ]
+  },
+  "closedAt": "2026-09-03T04:42:31.953Z",
+  "facts": {
+    "producedBy": "@nessa/spec-ledger@0.1.0",
+    "commit": "d04ca05d3d70d7d82cff7ccbfed9fa135c36e735",
+    "files": [
+      {
+        "path": ".github/workflows/ci.yml",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/decisions/T-003/D-001.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/graph/codebase-graph.json",
+        "kind": "modified",
+        "additions": 16,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/ledger.json",
+        "kind": "modified",
+        "additions": 10,
+        "deletions": 1
+      },
+      {
+        "path": ".spec-ledger/policy/audit.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/proposed-claims/PC-010.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/proposed-claims/PC-011.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/proposed-claims/PC-012.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/turns/T-004/R-01.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/themes/TH-001.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/turns/T-004.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/workstreams/W-002.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/workstreams/W-002.seals/1.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "package.json",
+        "kind": "modified",
+        "additions": 1,
+        "deletions": 0
+      },
+      {
+        "path": "packages/client/src/index.ts",
+        "kind": "modified",
+        "additions": 51,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/audit/audit.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/automation/load.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/cli/main.ts",
+        "kind": "modified",
+        "additions": 87,
+        "deletions": 14
+      },
+      {
+        "path": "packages/ledger/src/compass/load.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/context/vertical.ts",
+        "kind": "modified",
+        "additions": 23,
+        "deletions": 4
+      },
+      {
+        "path": "packages/ledger/src/episodes/load.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/fs/snapshot.ts",
+        "kind": "modified",
+        "additions": 7,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/git/tree.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/index.ts",
+        "kind": "modified",
+        "additions": 21,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/proposed/load.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/related/pack.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/runtime.p0.test.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/turns/close.test.ts",
+        "kind": "modified",
+        "additions": 5,
+        "deletions": 4
+      },
+      {
+        "path": "packages/ledger/src/turns/close.ts",
+        "kind": "modified",
+        "additions": 88,
+        "deletions": 4
+      },
+      {
+        "path": "packages/ledger/src/turns/gates.ts",
+        "kind": "modified",
+        "additions": 11,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/types.ts",
+        "kind": "modified",
+        "additions": 135,
+        "deletions": 0
+      },
+      {
+        "path": "packages/server/src/routes.ts",
+        "kind": "modified",
+        "additions": 83,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ui/app/compass/page.tsx",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ui/app/timeline/page.tsx",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ui/components/lattice-shell.tsx",
+        "kind": "modified",
+        "additions": 4,
+        "deletions": 0
+      }
+    ],
+    "touchedNodeIds": [
+      "ledger-client",
+      "ledger-core",
+      "ledger-server",
+      "ledger-ui"
+    ],
+    "touchedFeatureIds": [
+      "client",
+      "lattice",
+      "server",
+      "turns",
+      "verify"
+    ],
+    "touchedClaimIds": [
+      "SL-001",
+      "SL-003"
+    ],
+    "blastRadius": {
+      "direct": [
+        "ledger-server",
+        "ledger-ui"
+      ],
+      "transitive": [
+        "ledger-server",
+        "ledger-ui"
+      ]
+    },
+    "verify": {
+      "ok": true,
+      "ledgerDigest": "d7c6644fdef03dde2e38ecf77732d932e48fc143670a85a09218eac33c9b1047",
+      "resultsDigest": "ded3eb2608a70a2e28040c5e1e7c4faa49be0d27b4ffc4d3e2a3ffb91bf72fbb",
+      "treeDigest": "671021efbf2f10ba65b3a348bc6489225269351fac65948ae3831c1211dfa673",
+      "producedAt": "2026-09-03T04:42:31.886Z"
+    },
+    "schemaSurfaceChanged": false,
+    "reviewsDigest": "ad5c3aa5175390d91ad15a8c28805f3e59d6269207dde47368f4089bfa7fb2e5"
+  }
+}

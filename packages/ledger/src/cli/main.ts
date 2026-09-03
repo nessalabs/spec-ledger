@@ -4,7 +4,7 @@ import { initLedger } from "./init.js"
 import { getVerticalContext } from "../context/vertical.js"
 import { loadLedger } from "../fs/load.js"
 import { blastRadius, layerViolations } from "../graph/impact.js"
-import { openTurn, closeTurn, listTurns } from "../turns/close.js"
+import { openTurn, closeTurn, checkTurn, abandonTurn, listTurns } from "../turns/close.js"
 import { verifyLedger } from "../verify/verify.js"
 import {
   checkSeal,
@@ -17,6 +17,10 @@ import {
   nextReviewId,
   writeReview,
 } from "../reviews/load.js"
+import { getRelatedPack } from "../related/pack.js"
+import { listAutomationEvents } from "../automation/load.js"
+import { auditLedger } from "../audit/audit.js"
+import { listProposedClaims, listThemes } from "../proposed/load.js"
 import type { Review, TurnIntent } from "../types.js"
 
 function usage(): never {
@@ -25,24 +29,19 @@ function usage(): never {
 Usage:
   spec-ledger init [--name <name>] [--root <dir>]
   spec-ledger verify [--root <dir>]
+  spec-ledger audit [--root <dir>]
   spec-ledger impact <nodeId> [--root <dir>]
   spec-ledger layers [--root <dir>]
   spec-ledger context --workstream W-001 --slice SLC-01 [--json] [--root <dir>]
-  spec-ledger workstream list [--root <dir>]
-  spec-ledger workstream show <W-id> [--root <dir>]
-  spec-ledger workstream seal <W-id> --by <human> [--root <dir>]
-  spec-ledger workstream check-seal <W-id> [--root <dir>]
-  spec-ledger turn open --goal <text> [--prompt <text>] [--id T-001]
-      [--workstream W-001 --slice SLC-01 --feature <id>]
-      [--no-context --no-context-reason <text>] [--root <dir>]
-  spec-ledger turn close [--id T-001] [--root <dir>]
-  spec-ledger turn list [--root <dir>]
-  spec-ledger review add --turn T-001 --verdict approve|request-changes|comment
-      --reviewer <who> --summary <text> [--killers id1,id2] [--blocking] [--root <dir>]
-  spec-ledger review list --turn T-001 [--root <dir>]
+  spec-ledger related --workstream W-001 [--worktrees] [--json] [--root <dir>]
+  spec-ledger workstream list|show|seal|check-seal …
+  spec-ledger turn open|close|check|abandon|list …
+  spec-ledger review add|list …
+  spec-ledger automation list [--root <dir>]
+  spec-ledger themes list | proposed-claims list [--root <dir>]
 
 Truth lives in .spec-ledger/ + source tree + ingested results.
-Turn facts are written only by \`turn close\` (git + verify digests).
+Turn facts are written only by \`turn close\` / \`turn abandon\` (git + verify).
 Workstreams/vision never enter verify digests. See DESIGN.md.
 `)
   process.exit(2)
@@ -94,6 +93,57 @@ async function main(): Promise<void> {
       for (const p of report.problems) console.log(`  - ${p}`)
     }
     process.exit(report.ok ? 0 : 1)
+  }
+
+  if (cmd === "audit") {
+    const report = auditLedger(root)
+    console.log(`spec-ledger audit ${report.ok ? "OK" : "FAIL"}`)
+    console.log(`  findings: ${report.findings.length}`)
+    for (const f of report.findings) {
+      console.log(`  - [${f.severity}] ${f.rule}: ${f.message}`)
+    }
+    process.exit(report.ok ? 0 : 1)
+  }
+
+  if (cmd === "related") {
+    const ws = argValue(argv, "--workstream")
+    if (!ws) {
+      console.error("usage: spec-ledger related --workstream W-001 [--worktrees] [--json]")
+      process.exit(2)
+    }
+    const pack = getRelatedPack(root, ws, { worktrees: hasFlag(argv, "--worktrees") })
+    if (hasFlag(argv, "--json")) {
+      console.log(JSON.stringify(pack, null, 2))
+      return
+    }
+    console.log(`related ${ws}`)
+    console.log(`  features: ${pack.features.length}`)
+    console.log(`  claims: ${pack.claims.map((c) => c.id).join(", ") || "(none)"}`)
+    console.log(`  proposed: ${pack.proposedClaims.map((c) => c.id).join(", ") || "(none)"}`)
+    console.log(`  turns: ${pack.turns.map((t) => t.id).join(", ") || "(none)"}`)
+    console.log(`  docs: ${pack.docs.length}`)
+    if (pack.worktreeCautions?.length) {
+      for (const c of pack.worktreeCautions) console.log(`  caution: ${c}`)
+    }
+    return
+  }
+
+  if (cmd === "automation") {
+    if (argv[1] !== "list") usage()
+    console.log(JSON.stringify(listAutomationEvents(root), null, 2))
+    return
+  }
+
+  if (cmd === "themes") {
+    if (argv[1] !== "list") usage()
+    console.log(JSON.stringify(listThemes(root), null, 2))
+    return
+  }
+
+  if (cmd === "proposed-claims") {
+    if (argv[1] !== "list") usage()
+    console.log(JSON.stringify(listProposedClaims(root), null, 2))
+    return
   }
 
   if (cmd === "impact") {
@@ -248,11 +298,34 @@ async function main(): Promise<void> {
         featureIds,
         noContext: hasFlag(argv, "--no-context"),
         noContextReason: argValue(argv, "--no-context-reason"),
+        allowDirty: hasFlag(argv, "--allow-dirty"),
       })
       console.log(`opened ${turn.id}`)
       if (turn.opened?.contextDigest) {
         console.log(`  contextDigest: ${turn.opened.contextDigest.slice(0, 12)}…`)
       }
+      if (turn.opened?.treeDigest) {
+        console.log(`  treeDigest: ${turn.opened.treeDigest.slice(0, 12)}…`)
+      }
+      return
+    }
+
+    if (sub === "check") {
+      const id = argValue(argv, "--id")
+      const { turn, facts, treeDigestDrift } = checkTurn(root, id)
+      console.log(`check ${turn.id} (${turn.status})`)
+      console.log(`  files: ${facts.files.length}`)
+      console.log(`  verify: ${facts.verify.ok ? "OK" : "FAIL"}`)
+      console.log(`  treeDigestDrift: ${treeDigestDrift}`)
+      console.log(`  ledgerDigest: ${facts.verify.ledgerDigest.slice(0, 12)}…`)
+      return
+    }
+
+    if (sub === "abandon") {
+      const id = argValue(argv, "--id")
+      const turn = abandonTurn(root, id)
+      console.log(`abandoned ${turn.id}`)
+      console.log(`  files: ${turn.facts?.files.length ?? 0}`)
       return
     }
 

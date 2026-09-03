@@ -3,9 +3,13 @@ import { existsSync, readdirSync, readFileSync } from "node:fs"
 import { join } from "node:path"
 import { getVerticalContext } from "../context/vertical.js"
 import { blastRadius } from "../graph/impact.js"
-import { loadLedger, writeJson } from "../fs/load.js"
+import { loadLedger, writeJson, sha256Stable } from "../fs/load.js"
 import { verifyLedger } from "../verify/verify.js"
 import { assertTurnCloseAllowed } from "./gates.js"
+import { computeTreeDigest, dirtyPaths } from "../git/tree.js"
+import { episodeDigestsForTurn } from "../episodes/load.js"
+import { listReviewsForTurn } from "../reviews/load.js"
+import { resumeAutomationEvents } from "../automation/load.js"
 import type {
   LoadedLedger,
   Turn,
@@ -165,10 +169,15 @@ export function deriveTouched(ledger: LoadedLedger, files: TurnFileChange[]) {
   }
 }
 
-export function computeTurnFacts(ledger: LoadedLedger): TurnFacts {
+export function computeTurnFacts(ledger: LoadedLedger, turnId?: string): TurnFacts {
   const files = collectGitFiles(ledger.repoRoot)
   const derived = deriveTouched(ledger, files)
   const report = verifyLedger(ledger)
+  const treeDigest = computeTreeDigest(ledger.repoRoot)
+  const episode = turnId
+    ? episodeDigestsForTurn(ledger.repoRoot, turnId)
+    : undefined
+  const reviews = turnId ? listReviewsForTurn(ledger.repoRoot, turnId) : []
   return {
     producedBy: PRODUCED_BY,
     commit: gitCommit(ledger.repoRoot),
@@ -181,9 +190,21 @@ export function computeTurnFacts(ledger: LoadedLedger): TurnFacts {
       ok: report.ok,
       ledgerDigest: report.provenance.ledgerDigest,
       resultsDigest: report.provenance.resultsDigest,
+      treeDigest,
       producedAt: report.producedAt,
     },
     schemaSurfaceChanged: derived.schemaSurfaceChanged,
+    ...(episode?.decisionIds.length
+      ? { decisionIds: episode.decisionIds }
+      : {}),
+    ...(episode?.decisionsDigest ? { decisionsDigest: episode.decisionsDigest } : {}),
+    ...(episode?.sourcesDigest ? { sourcesDigest: episode.sourcesDigest } : {}),
+    ...(episode?.attachmentsDigest
+      ? { attachmentsDigest: episode.attachmentsDigest }
+      : {}),
+    ...(episode?.probesDigest ? { probesDigest: episode.probesDigest } : {}),
+    ...(reviews.length ? { reviewsDigest: sha256Stable(reviews) } : {}),
+    ...(episode?.flowsDigest ? { flowsDigest: episode.flowsDigest } : {}),
   }
 }
 
@@ -218,6 +239,7 @@ export function openTurn(
     featureIds?: string[]
     noContext?: boolean
     noContextReason?: string
+    allowDirty?: boolean
   },
 ): Turn {
   const opts =
@@ -243,10 +265,22 @@ export function openTurn(
   const sliceId = opts.sliceId ?? intent.sliceId
   const featureIds = opts.featureIds ?? intent.featureIds
 
+  if (workstreamId) {
+    resumeAutomationEvents(ledger.repoRoot, { workstreamId })
+  }
+
+  const dirty = dirtyPaths(ledger.repoRoot)
+  if (dirty.length && !opts.allowDirty) {
+    throw new Error(
+      `turn open refused: dirty worktree (${dirty.length} paths). Pass --allow-dirty or commit first.`,
+    )
+  }
+
   let opened: Turn["opened"] = {
     producedBy: PRODUCED_BY,
     baseCommit: gitCommit(ledger.repoRoot),
-    dirtyAtOpen: [],
+    treeDigest: computeTreeDigest(ledger.repoRoot),
+    dirtyAtOpen: dirty,
   }
 
   const finalIntent: Turn["intent"] = {
@@ -288,6 +322,53 @@ export function openTurn(
   return turn
 }
 
+export function checkTurn(repoRootInput: string, id?: string): {
+  turn: Turn
+  facts: TurnFacts
+  treeDigestDrift: boolean
+} {
+  const ledger = loadLedger(repoRootInput)
+  const turns = listTurns(ledger)
+  const target =
+    id != null
+      ? turns.find((t) => t.id === id)
+      : turns.find((t) => t.status === "open") ?? turns.at(-1)
+  if (!target) throw new Error("no turn to check")
+  const facts = computeTurnFacts(ledger, target.id)
+  const openedDigest = target.opened?.treeDigest
+  return {
+    turn: target,
+    facts,
+    treeDigestDrift: Boolean(
+      openedDigest && facts.verify.treeDigest && openedDigest !== facts.verify.treeDigest,
+    ),
+  }
+}
+
+export function abandonTurn(repoRootInput: string, id?: string): Turn {
+  const ledger = loadLedger(repoRootInput)
+  const turns = listTurns(ledger)
+  const target =
+    id != null
+      ? turns.find((t) => t.id === id)
+      : turns.find((t) => t.status === "open")
+  if (!target) throw new Error("no open turn to abandon")
+  if (target.status !== "open") {
+    throw new Error(`turn ${target.id} is ${target.status}, cannot abandon`)
+  }
+  // Abandon skips code-break gate — episode ends without shipping claim.
+  const facts = computeTurnFacts(ledger, target.id)
+  const abandoned: Turn = {
+    ...target,
+    status: "abandoned",
+    closedAt: new Date().toISOString(),
+    facts,
+  }
+  const { path } = readTurnFile(ledger, target.id)
+  writeJson(path, abandoned)
+  return abandoned
+}
+
 export function closeTurn(repoRootInput: string, id?: string): Turn {
   const ledger = loadLedger(repoRootInput)
   const turns = listTurns(ledger)
@@ -299,10 +380,13 @@ export function closeTurn(repoRootInput: string, id?: string): Turn {
   if (target.status === "closed" && target.facts) {
     throw new Error(`turn ${target.id} is already closed`)
   }
+  if (target.status === "abandoned") {
+    throw new Error(`turn ${target.id} is abandoned`)
+  }
 
   assertTurnCloseAllowed(ledger.repoRoot, target)
 
-  const facts = computeTurnFacts(ledger)
+  const facts = computeTurnFacts(ledger, target.id)
   const closed: Turn = {
     ...target,
     status: "closed",

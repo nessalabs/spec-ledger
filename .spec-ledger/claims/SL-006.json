@@ -1,0 +1,7 @@
+{
+  "schemaVersion": 1,
+  "id": "SL-006",
+  "statement": "Turn open stamps treeDigest and refuses a dirty worktree unless --allow-dirty is set.",
+  "severity": "medium",
+  "required": true
+}

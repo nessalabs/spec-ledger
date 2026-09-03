@@ -59,4 +59,11 @@ export const HTTP_CONTRACT = [
   { method: "GET", path: "/v1/schemas/:name", description: "One schema document" },
   { method: "GET", path: "/v1/turns", description: "Turn change log (intent + close facts)" },
   { method: "GET", path: "/v1/turns/:id", description: "One turn by id" },
+  { method: "GET", path: "/v1/context", description: "VerticalContext ?workstream=&slice=" },
+  { method: "GET", path: "/v1/automation-events", description: "Automation events" },
+  { method: "GET", path: "/v1/audit", description: "History/audit report (not verify)" },
+  { method: "GET", path: "/v1/related", description: "Related pack ?workstream=" },
+  { method: "GET", path: "/v1/themes", description: "Themes" },
+  { method: "GET", path: "/v1/proposed-claims", description: "Proposed claims" },
+  { method: "GET", path: "/v1/compass", description: "Vision + tenets + themes" },
 ] as const

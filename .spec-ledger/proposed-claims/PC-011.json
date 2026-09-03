@@ -1,0 +1,8 @@
+{
+  "schemaVersion": 1,
+  "id": "PC-011",
+  "statement": "GET /v1/context returns the same VerticalContext contextDigest as the CLI/client in-process path.",
+  "status": "accepted",
+  "workstreamId": "W-002",
+  "severity": "high"
+}

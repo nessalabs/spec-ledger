@@ -11,5 +11,14 @@
   "visionPath": "vision.json",
   "tenetsDir": "tenets",
   "workstreamsDir": "workstreams",
-  "reviewsDir": "reviews"
+  "reviewsDir": "reviews",
+  "themesDir": "themes",
+  "proposedClaimsDir": "proposed-claims",
+  "decisionsDir": "decisions",
+  "sourcesDir": "sources",
+  "attachmentsDir": "attachments",
+  "probesDir": "probes",
+  "flowsDir": "flows",
+  "automationEventsDir": "automation-events",
+  "auditPolicyPath": "policy/audit.json"
 }

@@ -142,6 +142,14 @@ export interface LedgerRootConfig {
   workstreamsDir?: string
   proposedClaimsDir?: string
   reviewsDir?: string
+  themesDir?: string
+  decisionsDir?: string
+  sourcesDir?: string
+  attachmentsDir?: string
+  probesDir?: string
+  flowsDir?: string
+  automationEventsDir?: string
+  auditPolicyPath?: string
 }
 
 export type TurnStatus = "open" | "closed" | "abandoned"
@@ -212,9 +220,17 @@ export interface TurnFacts {
     ok: boolean
     ledgerDigest: string
     resultsDigest: string
+    treeDigest?: string
     producedAt?: string
   }
   schemaSurfaceChanged: boolean
+  decisionIds?: string[]
+  decisionsDigest?: string
+  sourcesDigest?: string
+  attachmentsDigest?: string
+  probesDigest?: string
+  reviewsDigest?: string
+  flowsDigest?: string
 }
 
 export interface Turn {
@@ -318,6 +334,8 @@ export interface VerticalContext {
   prior: {
     turns: Turn[]
     decisions: unknown[]
+    openAutomationEvents?: AutomationEvent[]
+    recentAutomationEvents?: AutomationEvent[]
   }
   graph: {
     nodes: GraphNode[]
@@ -374,6 +392,123 @@ export interface Review {
   resolvesReviewId?: string
   supersedesReviewId?: string
   resolvesFindingIds?: string[]
+}
+
+export interface AutomationEvent {
+  schemaVersion: 1
+  id: string
+  kind: "alert" | "sealed-deviation" | "awaiting-seal" | "waiver"
+  workstreamId?: string
+  turnId?: string
+  reviewId?: string
+  findingIds?: string[]
+  mode: "move" | "block" | "wait"
+  severity?: "low" | "moderate" | "high" | "critical"
+  policySnapshot: Record<string, unknown>
+  state: "pending" | "waiting" | "blocked" | "resolved"
+  alertedAt: string
+  waitUntil?: string
+  trigger?: "human" | "timeout" | "system"
+  resolution?: "move" | "block" | "waive" | "revert" | "cancel"
+  resolvedAt?: string
+  resolvedBy?: string
+  decisionId?: string
+  note?: string
+}
+
+export interface EpisodeDecision {
+  schemaVersion: 1
+  id: string
+  turnId: string
+  decision: string
+  rationale: string
+  alternativesRejected?: string[]
+  addressesFindingIds?: string[]
+  basis?: {
+    contextDigest?: string
+    sealRevision?: number
+    at: string
+  }
+}
+
+export interface EpisodeSource {
+  schemaVersion: 1
+  id: string
+  turnId: string
+  kind: string
+  ref: string
+  note?: string
+}
+
+export interface EpisodeAttachment {
+  schemaVersion: 1
+  id: string
+  turnId: string
+  path: string
+  contentDigest?: string
+  note?: string
+}
+
+export interface EpisodeProbe {
+  schemaVersion: 1
+  id: string
+  turnId: string
+  question: string
+  outcome?: string
+  evidence?: string
+}
+
+export interface EpisodeFlow {
+  schemaVersion: 1
+  id: string
+  turnId: string
+  title: string
+  kind?: "flowchart" | "sequence" | "er" | "state"
+  after: string
+  before?: string
+  narrative?: string
+}
+
+export interface Theme {
+  schemaVersion: 1
+  id: string
+  title: string
+  summary: string
+  status: "active" | "done" | "cancelled"
+}
+
+export interface ProposedClaim {
+  schemaVersion: 1
+  id: string
+  statement: string
+  status: "proposed" | "accepted" | "rejected" | "superseded"
+  workstreamId?: string
+  severity?: string
+}
+
+export interface AuditFinding {
+  id: string
+  severity: "info" | "warn" | "error"
+  rule: string
+  message: string
+  turnId?: string
+  workstreamId?: string
+}
+
+export interface AuditReport {
+  ok: boolean
+  producedAt: string
+  findings: AuditFinding[]
+}
+
+export interface RelatedPack {
+  workstreamId: string
+  features: unknown[]
+  claims: Claim[]
+  proposedClaims: ProposedClaim[]
+  turns: Turn[]
+  docs: string[]
+  worktreeCautions?: string[]
 }
 
 export interface LoadedLedger {
