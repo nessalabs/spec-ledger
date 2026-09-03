@@ -17,6 +17,9 @@ export function computeTreeDigest(repoRoot: string): string {
         .filter(Boolean)
         .map((line) => line.slice(3).trim().replace(/^"+|"+$/g, ""))
         .filter(Boolean)
+        // Ledger metadata writes (reviews, waivers, turn JSON) must not
+        // invalidate treeDigest stamped on align / code reviews.
+        .filter((p) => !p.startsWith(".spec-ledger/") && !p.startsWith(".spec-ledger\\"))
         .sort()
     : []
   return sha256Stable({
@@ -39,4 +42,16 @@ export function dirtyPaths(repoRoot: string): string[] {
     })
     .filter(Boolean)
     .sort()
+}
+
+/** Paths changed since base (committed + dirty). Falls back to dirty-only. */
+export function changedPathsSince(
+  repoRoot: string,
+  baseCommit: string | null | undefined,
+): string[] {
+  const dirty = dirtyPaths(repoRoot)
+  if (!baseCommit) return dirty
+  const names = git(repoRoot, ["diff", "--name-only", `${baseCommit}...HEAD`])
+  const committed = names.ok ? names.out.split("\n").filter(Boolean) : []
+  return [...new Set([...committed, ...dirty])].sort()
 }

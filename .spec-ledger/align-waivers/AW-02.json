@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "id": "T-017/AW-02",
+  "reason": "T-017 ships align-check honor of approve/waiver for CI exit; residual uncovered paths (skills, AGENTS, align-waiver schema) remain Phase II companions already waived under T-016 — re-attest for this treeDigest.",
+  "actor": "agent:composer",
+  "treeDigest": "51bf73938c3f02c58d3ef935b7759d8c26c26934f445363079181eee3c6dd034",
+  "createdAt": "2026-09-03T08:43:31.581Z",
+  "workstreamId": "W-004",
+  "turnId": "T-017"
+}

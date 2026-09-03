@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "T-016/R-01",
+  "turnId": "T-016",
+  "workstreamId": "W-004",
+  "kind": "human",
+  "target": "code",
+  "reviewer": "agent:align",
+  "verdict": "approve",
+  "summary": "Coverage intent: ship W-004 Phase II (align check+approve+gates/hooks/CI) under T-016; waiver covers SLC-03/04 path set outside SLC-02 expectedPaths.",
+  "treeDigest": "51bf73938c3f02c58d3ef935b7759d8c26c26934f445363079181eee3c6dd034",
+  "uncoveredPaths": [
+    ".github/workflows/ci.yml",
+    "AGENTS.md",
+    "docs/ci/align.md",
+    "docs/ci/github-actions.yml",
+    "package.json",
+    "schemas/align-waiver.json",
+    "scripts/git-hooks/README.md",
+    "scripts/git-hooks/pre-push",
+    "skills/README.md",
+    "skills/sl-dev-align/SKILL.md"
+  ],
+  "coverageSource": "mixed",
+  "waiverIds": [
+    "T-016/AW-01"
+  ]
+}

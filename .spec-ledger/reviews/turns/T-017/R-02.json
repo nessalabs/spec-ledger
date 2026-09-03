@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "id": "T-017/R-02",
+  "turnId": "T-017",
+  "workstreamId": "W-004",
+  "kind": "adversarial",
+  "target": "code",
+  "reviewer": "agent:sl-dev-break",
+  "verdict": "approve",
+  "summary": "Killer: align check must exit 0 when waive/approve covers treeDigest; unit suite still green.",
+  "killersCited": [
+    "packages/ledger/src/align/check.test.ts::align coverage",
+    "pnpm ledger:align exits 0 with waiver"
+  ],
+  "treeDigest": "51bf73938c3f02c58d3ef935b7759d8c26c26934f445363079181eee3c6dd034"
+}

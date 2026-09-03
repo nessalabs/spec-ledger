@@ -60,5 +60,21 @@ export {
   assertOpenTurn,
 } from "./episodes/write.js"
 export { auditLedger, loadAuditPolicy } from "./audit/audit.js"
-export { computeTreeDigest, dirtyPaths } from "./git/tree.js"
+export { computeTreeDigest, dirtyPaths, changedPathsSince } from "./git/tree.js"
 export { getCompass } from "./compass/load.js"
+export { alignCheck } from "./align/check.js"
+export { checkPathCoverage, coverageForTurn, locatorsForFeatures } from "./align/coverage.js"
+export {
+  assertAlignApproveValid,
+  isAlignApproveReview,
+  alignApproveSatisfied,
+  assertAlignCloseAllowed,
+  alignPolicy,
+} from "./align/approve.js"
+export {
+  writeAlignWaiver,
+  listAlignWaivers,
+  listAlignWaiversForTurn,
+  nextAlignWaiverId,
+  type AlignWaiver,
+} from "./align/waiver.js"

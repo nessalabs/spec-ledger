@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nessalabs.ai/spec-ledger/schemas/align-waiver.json",
+  "title": "AlignWaiver",
+  "description": "Explicit skip of align approve for a treeDigest. Silence is not skip.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "id",
+    "reason",
+    "actor",
+    "treeDigest",
+    "createdAt"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "id": { "type": "string", "minLength": 1 },
+    "reason": { "type": "string", "minLength": 40 },
+    "actor": { "type": "string", "minLength": 1 },
+    "treeDigest": { "type": "string", "minLength": 16 },
+    "workstreamId": { "type": "string", "pattern": "^W-" },
+    "turnId": { "type": "string", "pattern": "^T-" },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "paths": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    }
+  }
+}

@@ -1,0 +1,298 @@
+{
+  "schemaVersion": 1,
+  "id": "T-017",
+  "status": "closed",
+  "openedAt": "2026-09-03T08:42:10.200Z",
+  "opened": {
+    "producedBy": "@nessa/spec-ledger@0.1.0",
+    "baseCommit": "f774f8197b51b589ddd353737c04ab775fd60eef",
+    "treeDigest": "51bf73938c3f02c58d3ef935b7759d8c26c26934f445363079181eee3c6dd034",
+    "dirtyAtOpen": [
+      ".github/workflows/ci.yml",
+      ".spec-ledger/align-waivers/AW-01.json",
+      ".spec-ledger/reviews/turns/T-016/R-01.json",
+      ".spec-ledger/reviews/turns/T-016/R-02.json",
+      ".spec-ledger/turns/T-016.json",
+      ".spec-ledger/workstreams/W-004.json",
+      "AGENTS.md",
+      "docs/ci/align.md",
+      "docs/ci/github-actions.yml",
+      "package.json",
+      "packages/ledger/src/align/approve.test.ts",
+      "packages/ledger/src/align/approve.ts",
+      "packages/ledger/src/align/check.test.ts",
+      "packages/ledger/src/align/check.ts",
+      "packages/ledger/src/align/coverage.ts",
+      "packages/ledger/src/align/paths.ts",
+      "packages/ledger/src/align/waiver.ts",
+      "packages/ledger/src/audit/audit.ts",
+      "packages/ledger/src/cli/main.ts",
+      "packages/ledger/src/git/tree.ts",
+      "packages/ledger/src/index.ts",
+      "packages/ledger/src/turns/close.test.ts",
+      "packages/ledger/src/turns/gates.ts",
+      "packages/ledger/src/types.ts",
+      "schemas/align-waiver.json",
+      "scripts/git-hooks/README.md",
+      "scripts/git-hooks/pre-push",
+      "skills/README.md",
+      "skills/sl-dev-align/SKILL.md"
+    ],
+    "contextDigest": "cbe3752636451a2131e4930c32c77849cccbbd84d69b04df10ae688692236237",
+    "contextWorkstreamId": "W-004",
+    "contextSliceId": "SLC-04",
+    "contextSealRevision": 1,
+    "contextGeneratedAt": "2026-09-03T08:42:10.198Z"
+  },
+  "intent": {
+    "userPrompt": "SLC-04 follow-up: align check OK when approve/waiver covers treeDigest (CI/pre-push)",
+    "restatedGoal": "SLC-04 follow-up: align check OK when approve/waiver covers treeDigest (CI/pre-push)",
+    "changeType": "feature",
+    "riskLevel": "moderate",
+    "workstreamId": "W-004",
+    "sliceId": "SLC-04",
+    "featureIds": [
+      "turns",
+      "verify"
+    ]
+  },
+  "closedAt": "2026-09-03T08:43:36.802Z",
+  "facts": {
+    "producedBy": "@nessa/spec-ledger@0.1.0",
+    "commit": "f774f8197b51b589ddd353737c04ab775fd60eef",
+    "files": [
+      {
+        "path": ".github/workflows/ci.yml",
+        "kind": "modified",
+        "additions": 1,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/align-waivers/AW-01.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/align-waivers/AW-02.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/turns/T-016/R-01.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/turns/T-016/R-02.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/turns/T-017/R-01.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/turns/T-017/R-02.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/turns/T-016.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/turns/T-017.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/workstreams/W-004.json",
+        "kind": "modified",
+        "additions": 7,
+        "deletions": 3
+      },
+      {
+        "path": "AGENTS.md",
+        "kind": "modified",
+        "additions": 5,
+        "deletions": 4
+      },
+      {
+        "path": "docs/ci/align.md",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "docs/ci/github-actions.yml",
+        "kind": "modified",
+        "additions": 1,
+        "deletions": 0
+      },
+      {
+        "path": "package.json",
+        "kind": "modified",
+        "additions": 2,
+        "deletions": 1
+      },
+      {
+        "path": "packages/ledger/src/align/approve.test.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/align/approve.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/align/check.test.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/align/check.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/align/coverage.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/align/paths.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/align/waiver.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/audit/audit.ts",
+        "kind": "modified",
+        "additions": 11,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/cli/main.ts",
+        "kind": "modified",
+        "additions": 132,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/git/tree.ts",
+        "kind": "modified",
+        "additions": 15,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/index.ts",
+        "kind": "modified",
+        "additions": 17,
+        "deletions": 1
+      },
+      {
+        "path": "packages/ledger/src/turns/close.test.ts",
+        "kind": "modified",
+        "additions": 2,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/turns/gates.ts",
+        "kind": "modified",
+        "additions": 15,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/types.ts",
+        "kind": "modified",
+        "additions": 7,
+        "deletions": 0
+      },
+      {
+        "path": "schemas/align-waiver.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "scripts/git-hooks/pre-push",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "scripts/git-hooks/README.md",
+        "kind": "modified",
+        "additions": 3,
+        "deletions": 2
+      },
+      {
+        "path": "skills/README.md",
+        "kind": "modified",
+        "additions": 1,
+        "deletions": 0
+      },
+      {
+        "path": "skills/sl-dev-align/SKILL.md",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      }
+    ],
+    "touchedNodeIds": [
+      "ledger-core",
+      "schemas"
+    ],
+    "touchedFeatureIds": [
+      "lattice",
+      "turns",
+      "verify"
+    ],
+    "touchedClaimIds": [
+      "SL-008"
+    ],
+    "blastRadius": {
+      "direct": [
+        "ledger-client",
+        "ledger-core",
+        "ledger-server"
+      ],
+      "transitive": [
+        "ledger-client",
+        "ledger-core",
+        "ledger-server",
+        "ledger-ui"
+      ]
+    },
+    "verify": {
+      "ok": true,
+      "ledgerDigest": "9731a4d02e58971ec6e340a4385d32d9fc3c09ad55c0a7f2c137cbc356c9052a",
+      "resultsDigest": "ded3eb2608a70a2e28040c5e1e7c4faa49be0d27b4ffc4d3e2a3ffb91bf72fbb",
+      "treeDigest": "51bf73938c3f02c58d3ef935b7759d8c26c26934f445363079181eee3c6dd034",
+      "producedAt": "2026-09-03T08:43:36.735Z"
+    },
+    "schemaSurfaceChanged": true,
+    "reviewsDigest": "b5496ab90771059eecc80b0c5e2e21a1c1bc2a1c18c16f78538ed766e562c98d"
+  }
+}

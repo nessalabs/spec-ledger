@@ -68,6 +68,8 @@ describe("turns", () => {
     const dir = mkdtempSync(join(tmpdir(), "sl-open-ctx-"))
     try {
       cpSync(join(REPO, ".spec-ledger"), join(dir, ".spec-ledger"), { recursive: true })
+      rmSync(join(dir, ".spec-ledger/turns"), { recursive: true, force: true })
+      mkdirSync(join(dir, ".spec-ledger/turns"), { recursive: true })
       spawnSync("git", ["init"], { cwd: dir })
       spawnSync("git", ["config", "user.email", "t@e.com"], { cwd: dir })
       spawnSync("git", ["config", "user.name", "t"], { cwd: dir })

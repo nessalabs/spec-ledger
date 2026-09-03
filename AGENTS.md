@@ -11,10 +11,11 @@
 9. High-signal user correction → [skills/sl-learn](skills/sl-learn/SKILL.md) (≤1 ask/turn).
 10. Post-seal drift → document + honor `onSealedSpecDeviation`.
 11. After each vertical implements → [skills/sl-dev-break](skills/sl-dev-break/SKILL.md) **while turn open**; honor `onAlert`.
-12. End every turn with [skills/sl-dev-verify](skills/sl-dev-verify/SKILL.md) — `turn close` (refuses without contextDigest / unresolved blocking).
-13. UI packages must not import `@nessa/spec-ledger` — only `@nessa/spec-ledger-client`.
-14. Server is read-only (SL-003). Git is the write path. Never hand-edit turn `facts`.
+12. Path coverage before close/push when `requireAlignApprove` → [skills/sl-dev-align](skills/sl-dev-align/SKILL.md) (cheap/Haiku; **ask user for coverage intent** before approve).
+13. End every turn with [skills/sl-dev-verify](skills/sl-dev-verify/SKILL.md) — `turn close` (refuses without contextDigest / unresolved blocking / align when required).
+14. UI packages must not import `@nessa/spec-ledger` — only `@nessa/spec-ledger-client`.
+15. Server is read-only (SL-003). Git is the write path. Never hand-edit turn `facts`.
 
 ```bash
-pnpm -r build && pnpm test && pnpm verify
+pnpm -r build && pnpm test && pnpm verify && pnpm ledger:align
 ```

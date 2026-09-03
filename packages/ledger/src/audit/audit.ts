@@ -4,6 +4,7 @@ import { findRepoRoot, ledgerRoot, loadLedger } from "../fs/load.js"
 import { listAutomationEvents } from "../automation/load.js"
 import { listReviewsForTurn } from "../reviews/load.js"
 import { listWorkstreams } from "../workstream/load.js"
+import { listAlignWaivers } from "../align/waiver.js"
 import type { AuditFinding, AuditReport, LedgerRootConfig } from "../types.js"
 
 function readJson<T>(path: string): T {
@@ -105,6 +106,7 @@ export function auditLedger(repoRootInput: string): AuditReport {
         if (
           r.verdict === "approve" &&
           r.target !== "spec" &&
+          !r.coverageSource &&
           (!r.killersCited || !r.killersCited.length)
         ) {
           add(
@@ -116,6 +118,15 @@ export function auditLedger(repoRootInput: string): AuditReport {
         }
       }
     }
+  }
+
+  for (const w of listAlignWaivers(repoRootInput)) {
+    add(
+      "info",
+      "align-waiver",
+      `align waiver ${w.id}: ${w.reason.slice(0, 80)}${w.reason.length > 80 ? "…" : ""}`,
+      { turnId: w.turnId, workstreamId: w.workstreamId },
+    )
   }
 
   if (policy.rules.blockedAutomationMustResolve) {

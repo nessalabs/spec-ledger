@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "id": "T-016/AW-01",
+  "reason": "Phase II dogfood under T-016 spans sealed SLC-02..04: uncovered paths are SLC-03/04 artifacts (skill, AGENTS, hooks, CI, package.json, align-waiver schema) outside SLC-02 expectedPaths; coverage intent is full W-004 Phase II verticals in one turn per user drive-to-completion.",
+  "actor": "agent:composer",
+  "treeDigest": "51bf73938c3f02c58d3ef935b7759d8c26c26934f445363079181eee3c6dd034",
+  "createdAt": "2026-09-03T08:41:08.121Z",
+  "workstreamId": "W-004",
+  "turnId": "T-016"
+}

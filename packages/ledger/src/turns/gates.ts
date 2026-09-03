@@ -5,6 +5,9 @@ import {
 } from "../reviews/load.js"
 import { blockedAutomationEvents } from "../automation/load.js"
 import { loadWorkstream } from "../workstream/load.js"
+import { changedPathsSince, computeTreeDigest } from "../git/tree.js"
+import { isExemptPath } from "../align/paths.js"
+import { assertAlignCloseAllowed } from "../align/approve.js"
 import type { Turn } from "../types.js"
 
 /**
@@ -32,6 +35,18 @@ export function assertTurnCloseAllowed(repoRoot: string, turn: Turn): void {
       `turn close refused: workstream ${workstreamId} requireCodeBreak — need adversarial code review with verdict approve and non-empty killersCited (comment / bare approve do not count)`,
     )
   }
+
+  const paths = changedPathsSince(repoRoot, turn.opened?.baseCommit)
+  const productPaths = paths.filter((p) => p && !isExemptPath(p))
+  const treeDigest = computeTreeDigest(repoRoot)
+  assertAlignCloseAllowed({
+    turn,
+    workstream: ws,
+    reviews,
+    treeDigest,
+    productPathCount: productPaths.length,
+    repoRoot,
+  })
 
   const blocked = blockedAutomationEvents(repoRoot, {
     workstreamId,

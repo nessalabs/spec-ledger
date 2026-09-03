@@ -142,6 +142,7 @@ export interface LedgerRootConfig {
   workstreamsDir?: string
   proposedClaimsDir?: string
   reviewsDir?: string
+  alignWaiversDir?: string
   themesDir?: string
   decisionsDir?: string
   sourcesDir?: string
@@ -394,6 +395,12 @@ export interface Review {
   verdict: ReviewVerdict
   summary: string
   blocking?: boolean
+  /** Tree digest this code / align approve applies to. */
+  treeDigest?: string
+  /** Product paths not covered; empty on align approve unless waiverIds set. */
+  uncoveredPaths?: string[]
+  coverageSource?: "user" | "graph" | "expectedPaths" | "mixed"
+  waiverIds?: string[]
   killersCited?: string[]
   findings?: ReviewFinding[]
   resolvesReviewId?: string

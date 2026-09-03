@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "id": "W-004",
-  "status": "sealed",
+  "status": "done",
   "createdAt": "2026-09-03T06:45:00.000Z",
-  "updatedAt": "2026-09-03T06:42:14.120Z",
+  "updatedAt": "2026-09-03T08:44:04.275Z",
   "specBreakReviewId": "W-004/SR-01",
   "amendedAfterSpecBreak": [
     "W-004/SR-01",
@@ -145,7 +145,9 @@
         "packages/ledger/src/cli/**",
         "packages/ledger/src/index.ts",
         "schemas/workstream.json"
-      ]
+      ],
+      "notes": "Phase II dogfood: SLC-02..03 (+ gates body) under T-016; align waiver for cross-slice paths",
+      "doneTurnId": "T-016"
     },
     {
       "id": "SLC-03",
@@ -172,7 +174,8 @@
         "packages/ledger/src/cli/**",
         "skills/sl-dev-align/**",
         "AGENTS.md"
-      ]
+      ],
+      "doneTurnId": "T-016"
     },
     {
       "id": "SLC-04",
@@ -197,7 +200,8 @@
         "package.json",
         ".github/workflows/**",
         "docs/ci/**"
-      ]
+      ],
+      "doneTurnId": "T-017"
     }
   ],
   "shapedBy": "agent:sl-plan-shape",

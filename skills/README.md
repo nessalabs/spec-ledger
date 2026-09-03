@@ -36,6 +36,7 @@ companion pack is not installed.
 | [`sl-plan-decompose`](./sl-plan-decompose/SKILL.md) | Carve bet → e2e verticals |
 | [`sl-plan-break-spec`](./sl-plan-break-spec/SKILL.md) | Spec adversary → seal |
 | [`sl-dev-build`](./sl-dev-build/SKILL.md) | Build sealed verticals |
+| [`sl-dev-align`](./sl-dev-align/SKILL.md) | Path coverage align check + approve (cheap model) |
 | [`sl-dev-break`](./sl-dev-break/SKILL.md) | Code adversary |
 | [`sl-dev-verify`](./sl-dev-verify/SKILL.md) | Turn close + digests |
 | [`sl-learn`](./sl-learn/SKILL.md) | Learnings / tenet promote |

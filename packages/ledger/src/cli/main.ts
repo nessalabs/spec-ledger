@@ -36,6 +36,16 @@ import {
   listProbesForTurn,
   listSourcesForTurn,
 } from "../episodes/load.js"
+import { alignCheck } from "../align/check.js"
+import {
+  assertAlignApproveValid,
+  alignPolicy,
+} from "../align/approve.js"
+import {
+  listAlignWaivers,
+  writeAlignWaiver,
+} from "../align/waiver.js"
+import { computeTreeDigest } from "../git/tree.js"
 import type { EpisodeAttachment, Review, TurnIntent } from "../types.js"
 
 function usage(): never {
@@ -52,6 +62,7 @@ Usage:
   spec-ledger workstream list|show|seal|check-seal …
   spec-ledger turn open|close|check|abandon|list …
   spec-ledger review add|list …
+  spec-ledger align check|approve|waiver …
   spec-ledger automation list [--root <dir>]
   spec-ledger themes list | proposed-claims list [--root <dir>]
   spec-ledger decision|source|attachment|probe|flow add|list --turn T-…
@@ -59,6 +70,7 @@ Usage:
 Truth lives in .spec-ledger/ + source tree + ingested results.
 Turn facts are written only by \`turn close\` / \`turn abandon\` (git + verify).
 Workstreams/vision never enter verify digests. Seal digests use RFC 8785 JCS.
+Align is separate from verify — \`align check\` / \`pnpm ledger:align\` do not affect verify.ok.
 `)
   process.exit(2)
 }
@@ -410,6 +422,126 @@ async function main(): Promise<void> {
       console.log(`wrote ${id}`)
       return
     }
+    usage()
+  }
+
+  if (cmd === "align") {
+    const sub = argv[1]
+    if (sub === "check") {
+      const report = alignCheck(root, {
+        turnId: argValue(argv, "--turn"),
+        workstreamId: argValue(argv, "--workstream"),
+      })
+      if (hasFlag(argv, "--json")) {
+        console.log(JSON.stringify(report, null, 2))
+      } else {
+        console.log(`spec-ledger align check ${report.ok ? "OK" : "FAIL"}`)
+        console.log(`  ${report.message}`)
+        console.log(`  treeDigest: ${report.treeDigest.slice(0, 12)}…`)
+        if (report.turnId) console.log(`  turn: ${report.turnId}`)
+        if (report.workstreamId) console.log(`  workstream: ${report.workstreamId}`)
+        console.log(`  covered: ${report.coverage.coveredPaths.length}`)
+        console.log(`  uncovered: ${report.coverage.uncoveredPaths.length}`)
+        for (const p of report.coverage.uncoveredPaths) {
+          console.log(`    - ${p}`)
+        }
+      }
+      process.exit(report.ok ? 0 : 1)
+    }
+
+    if (sub === "waiver") {
+      if (argv[2] === "list") {
+        console.log(JSON.stringify(listAlignWaivers(root), null, 2))
+        return
+      }
+      const reason = argValue(argv, "--reason")
+      const actor = argValue(argv, "--actor")
+      const turnId = argValue(argv, "--turn")
+      if (!reason || !actor) {
+        console.error(
+          "usage: spec-ledger align waiver --reason <text>=40chars --actor <who> [--turn T] [--workstream W]",
+        )
+        process.exit(2)
+      }
+      const ledger = loadLedger(root)
+      const turn = turnId
+        ? ledger.turns.find((t) => t.id === turnId)
+        : ledger.turns.find((t) => t.status === "open")
+      const workstreamId =
+        argValue(argv, "--workstream") ?? turn?.intent.workstreamId
+      let minReason = 40
+      let maxPerTurn = 1
+      if (workstreamId) {
+        const ws = loadWorkstream(root, workstreamId)
+        const p = alignPolicy(ws)
+        minReason = p.alignWaiverMinReasonChars ?? 40
+        maxPerTurn = p.alignSkipMaxPerTurn ?? 1
+      }
+      const w = writeAlignWaiver(
+        root,
+        {
+          reason,
+          actor,
+          treeDigest: argValue(argv, "--tree-digest") ?? computeTreeDigest(root),
+          turnId: turn?.id,
+          workstreamId,
+        },
+        { minReasonChars: minReason, maxPerTurn },
+      )
+      console.log(`wrote waiver ${w.id}`)
+      return
+    }
+
+    if (sub === "approve") {
+      const turnId = argValue(argv, "--turn")
+      const reviewer = argValue(argv, "--reviewer") ?? "agent:align"
+      const summary = argValue(argv, "--summary") ?? "align: path coverage OK"
+      if (!turnId) {
+        console.error(
+          "usage: spec-ledger align approve --turn T [--reviewer agent:align] [--summary text]",
+        )
+        process.exit(2)
+      }
+      const ledger = loadLedger(root)
+      const turn = ledger.turns.find((t) => t.id === turnId)
+      if (!turn) {
+        console.error(`turn not found: ${turnId}`)
+        process.exit(1)
+      }
+      const report = alignCheck(root, { turnId })
+      const workstreamId = turn.intent.workstreamId
+      const policy = workstreamId
+        ? alignPolicy(loadWorkstream(root, workstreamId))
+        : { alignReviewerPrefix: "agent:align" }
+      const waiverIdsRaw = argValue(argv, "--waiver-ids")
+      const waiverIds = waiverIdsRaw
+        ? waiverIdsRaw.split(",").map((s) => s.trim()).filter(Boolean)
+        : undefined
+      const id = nextReviewId(root, turnId)
+      const review: Review = {
+        schemaVersion: 1,
+        id,
+        turnId,
+        ...(workstreamId ? { workstreamId } : {}),
+        kind: "human",
+        target: "code",
+        reviewer,
+        verdict: "approve",
+        summary,
+        treeDigest: report.treeDigest,
+        uncoveredPaths: report.coverage.uncoveredPaths,
+        coverageSource: report.coverage.coverageSource,
+        ...(waiverIds?.length ? { waiverIds } : {}),
+      }
+      assertAlignApproveValid({ review, turn, policy })
+      writeReview(root, review)
+      console.log(`wrote align approve ${id}`)
+      console.log(`  treeDigest: ${report.treeDigest.slice(0, 12)}…`)
+      console.log(`  coverageSource: ${review.coverageSource}`)
+      console.log(`  uncovered: ${review.uncoveredPaths?.length ?? 0}`)
+      return
+    }
+
     usage()
   }
 
