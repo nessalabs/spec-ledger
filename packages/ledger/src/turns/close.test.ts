@@ -155,6 +155,7 @@ describe("turns", () => {
         reviewer: "agent:test",
         verdict: "comment",
         summary: "note only",
+        plainSummary: "A note only — not a pass.",
       })
       assert.throws(() => closeTurn(dir), /requireCodeBreak/)
 
@@ -167,6 +168,7 @@ describe("turns", () => {
         reviewer: "agent:test",
         verdict: "approve",
         summary: "killers ran",
+        plainSummary: "Attack tests ran and this slice may ship.",
         killersCited: ["packages/ledger/src/turns/close.test.ts::close refuses"],
       })
       const closed = closeTurn(dir)

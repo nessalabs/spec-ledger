@@ -225,6 +225,7 @@ describe("KILLERS turns/gates — close gate bypass", () => {
         reviewer: "agent:sl-dev-break",
         verdict: "approve",
         summary: "code-break ok",
+        plainSummary: "Code-break killers passed for this fixture turn.",
         killersCited: ["x"],
       })
       assert.throws(

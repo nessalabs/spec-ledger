@@ -18,5 +18,5 @@
 16. Never put `status: pass` on a binding.
 
 ```bash
-pnpm -r build && pnpm test && pnpm verify && pnpm ledger:align
+pnpm -r build && pnpm test && pnpm verify && pnpm ledger:audit && pnpm ledger:align
 ```

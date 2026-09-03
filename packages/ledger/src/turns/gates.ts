@@ -3,6 +3,7 @@ import {
   listReviewsForTurn,
   unresolvedBlockingReviews,
 } from "../reviews/load.js"
+import { latticeCopyProblems } from "../reviews/lattice-copy.js"
 import { blockedAutomationEvents } from "../automation/load.js"
 import { loadWorkstream } from "../workstream/load.js"
 import { changedPathsSince, computeTreeDigest } from "../git/tree.js"
@@ -23,6 +24,14 @@ export function assertTurnCloseAllowed(repoRoot: string, turn: Turn): void {
   const requireCodeBreak = policy.requireCodeBreak !== false
 
   const reviews = listReviewsForTurn(repoRoot, turn.id)
+  for (const r of reviews) {
+    const problems = latticeCopyProblems(r)
+    if (problems.length) {
+      throw new Error(
+        `turn close refused: review ${r.id} Lattice copy invalid: ${problems.join("; ")}`,
+      )
+    }
+  }
   const unresolved = unresolvedBlockingReviews(reviews)
   if (unresolved.length) {
     throw new Error(

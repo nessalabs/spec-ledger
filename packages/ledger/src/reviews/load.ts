@@ -1,6 +1,7 @@
-import { existsSync, mkdirSync, readdirSync, readFileSync } from "node:fs"
+import { existsSync, mkdirSync, readdirSync, readFileSync, statSync } from "node:fs"
 import { join } from "node:path"
 import { findRepoRoot, ledgerRoot, writeJson } from "../fs/load.js"
+import { assertReviewLatticeCopy } from "./lattice-copy.js"
 import type { LedgerRootConfig, Review } from "../types.js"
 
 function readJson<T>(path: string): T {
@@ -41,8 +42,25 @@ export function nextReviewId(repoRootInput: string, turnId: string): string {
   return `${turnId}/R-${String(max + 1).padStart(2, "0")}`
 }
 
+function walkReviewJsonFiles(dir: string): string[] {
+  if (!existsSync(dir)) return []
+  const out: string[] = []
+  for (const name of readdirSync(dir)) {
+    const p = join(dir, name)
+    if (statSync(p).isDirectory()) out.push(...walkReviewJsonFiles(p))
+    else if (name.endsWith(".json")) out.push(p)
+  }
+  return out
+}
+
+/** All turn + workstream reviews under reviewsDir. */
+export function listAllReviews(repoRootInput: string): Review[] {
+  return walkReviewJsonFiles(reviewsDir(repoRootInput)).map((p) => readJson<Review>(p))
+}
+
 export function writeReview(repoRootInput: string, review: Review): Review {
   if (!review.turnId) throw new Error("review.turnId required for turn reviews")
+  assertReviewLatticeCopy(review)
   const dir = turnReviewsDir(repoRootInput, review.turnId)
   mkdirSync(dir, { recursive: true })
   const fileStem = review.id.includes("/") ? review.id.split("/").at(-1)! : review.id

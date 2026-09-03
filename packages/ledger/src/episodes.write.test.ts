@@ -66,6 +66,7 @@ test("episode write CLIs leave digests on close", () => {
       reviewer: "agent:test",
       verdict: "approve",
       summary: "ok",
+      plainSummary: "Episode writes stamp digests on close.",
       killersCited: ["episode write"],
     })
     const closed = closeTurn(dir)

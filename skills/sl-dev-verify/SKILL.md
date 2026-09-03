@@ -38,15 +38,18 @@ pnpm exec spec-ledger turn close [--id T-00N] [--slice SLC-01]
 ```
 
 Close **refuses** if: missing `opened.contextDigest` on a workstream turn,
-`requireCodeBreak` unmet, unresolved blocking reviews, or `blocked` automation
-events. Exit code must be `0`.
+`requireCodeBreak` unmet, unresolved blocking reviews, reviews missing Lattice
+`plainSummary` / finding `plainImpact`, or `blocked` automation events.
+Exit code must be `0`.
 
 4. If not using turns yet:
 
 ```bash
-pnpm test && pnpm verify
+pnpm test && pnpm verify && pnpm ledger:audit
 ```
 
+`pnpm verify` stays claims-only. `pnpm ledger:audit` (policy
+`reviewsNeedLatticeCopy`) fails when any on-disk review lacks Lattice copy.
 ## Commit messages
 
 While the turn is open, every commit (especially the closing one) should carry

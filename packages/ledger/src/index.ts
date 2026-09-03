@@ -30,10 +30,15 @@ export {
 } from "./workstream/load.js"
 export {
   listReviewsForTurn,
+  listAllReviews,
   writeReview,
   nextReviewId,
   codeBreakSatisfied,
 } from "./reviews/load.js"
+export {
+  latticeCopyProblems,
+  assertReviewLatticeCopy,
+} from "./reviews/lattice-copy.js"
 export {
   listAutomationEvents,
   writeAutomationEvent,

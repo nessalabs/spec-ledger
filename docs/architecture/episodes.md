@@ -765,6 +765,7 @@ Finding kinds → `results/audit.json`:
 - `missing-feature-scope`
 - `open-turn-stale`, `abandoned-turn`
 - `probe-without-outcome`, `review-blocking-unresolved`
+- `review-missing-lattice-copy` — review lacks `plainSummary` / finding `plainImpact`
 - `attachment-too-large`, `attachment-secret-heuristic`
 - `seal-digest-drift`, `post-seal-amend-unconfirmed`, `follow-up-stale`
 - `automation-event-wait-unresolved`, `builder-without-context`

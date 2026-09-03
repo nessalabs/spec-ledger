@@ -5,6 +5,7 @@
     "openTurnRequiresContextDigest": true,
     "closedWorkstreamRequiresCodeBreak": true,
     "blockedAutomationMustResolve": true,
-    "approveNeedsKillers": true
+    "approveNeedsKillers": true,
+    "reviewsNeedLatticeCopy": true
   }
 }

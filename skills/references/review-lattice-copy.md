@@ -54,3 +54,7 @@ Pre-commit validates staged review JSON for Lattice copy + code-break evidence r
 4. Breaker re-runs and writes resolve/approve when green.
 5. Align approve is also a review: include `plainSummary` (coverage in human language) before close when `requireAlignApprove`.
 6. Lattice Trail shows `plainSummary` / `plainImpact` first; technical notes stay collapsed.
+7. Gates (history plane — not `verify.ok`):
+   - `writeReview` / CLI refuse without Lattice copy
+   - `turn close` refuses reviews missing `plainSummary` / `plainImpact`
+   - `pnpm ledger:audit` rule `reviewsNeedLatticeCopy` fails CI when any on-disk review is missing them

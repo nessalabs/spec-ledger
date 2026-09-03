@@ -2,7 +2,8 @@ import { existsSync, readFileSync } from "node:fs"
 import { join } from "node:path"
 import { findRepoRoot, ledgerRoot, loadLedger } from "../fs/load.js"
 import { listAutomationEvents } from "../automation/load.js"
-import { listReviewsForTurn } from "../reviews/load.js"
+import { listAllReviews, listReviewsForTurn } from "../reviews/load.js"
+import { latticeCopyProblems } from "../reviews/lattice-copy.js"
 import { listWorkstreams } from "../workstream/load.js"
 import { listAlignWaivers } from "../align/waiver.js"
 import type { AuditFinding, AuditReport, LedgerRootConfig } from "../types.js"
@@ -19,6 +20,8 @@ export interface AuditPolicy {
     closedWorkstreamRequiresCodeBreak?: boolean
     blockedAutomationMustResolve?: boolean
     approveNeedsKillers?: boolean
+    /** Fail when review JSON lacks Lattice plainSummary / finding plainImpact. */
+    reviewsNeedLatticeCopy?: boolean
   }
 }
 
@@ -30,6 +33,7 @@ const DEFAULT_POLICY: AuditPolicy = {
     closedWorkstreamRequiresCodeBreak: true,
     blockedAutomationMustResolve: true,
     approveNeedsKillers: true,
+    reviewsNeedLatticeCopy: true,
   },
 }
 
@@ -39,7 +43,12 @@ export function loadAuditPolicy(repoRootInput: string): AuditPolicy {
   const config = readJson<LedgerRootConfig>(join(rootDir, "ledger.json"))
   const path = join(rootDir, config.auditPolicyPath ?? "policy/audit.json")
   if (!existsSync(path)) return DEFAULT_POLICY
-  return { ...DEFAULT_POLICY, ...readJson<AuditPolicy>(path) }
+  const disk = readJson<AuditPolicy>(path)
+  return {
+    ...DEFAULT_POLICY,
+    ...disk,
+    rules: { ...DEFAULT_POLICY.rules, ...disk.rules },
+  }
 }
 
 export function auditLedger(repoRootInput: string): AuditReport {
@@ -117,6 +126,19 @@ export function auditLedger(repoRootInput: string): AuditReport {
           )
         }
       }
+    }
+  }
+
+  if (policy.rules.reviewsNeedLatticeCopy) {
+    for (const r of listAllReviews(repoRootInput)) {
+      const problems = latticeCopyProblems(r)
+      if (!problems.length) continue
+      add(
+        "error",
+        "review-missing-lattice-copy",
+        `review ${r.id}: ${problems.join("; ")}`,
+        { turnId: r.turnId, workstreamId: r.workstreamId },
+      )
     }
   }
 
