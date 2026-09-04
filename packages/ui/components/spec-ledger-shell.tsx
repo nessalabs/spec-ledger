@@ -144,7 +144,7 @@ export function SpecLedgerShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
 
   return (
-    <SidebarProvider className="h-svh max-h-svh overflow-hidden" defaultOpen>
+    <SidebarProvider className="spec-ledger-shell h-svh max-h-svh overflow-hidden" defaultOpen>
       <Sidebar collapsible="icon" className="h-svh shrink-0">
         <SidebarHeader className="gap-2 border-b border-sidebar-border px-3 py-3">
           <div className="group/brand relative flex items-center gap-2">

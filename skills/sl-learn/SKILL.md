@@ -75,3 +75,9 @@ with `sourceLearningId` / `sourceTurnId`.
 - Not for subagent review dumps
 - Not a claims substitute
 - Never `origin: "user"` unless they actually authored/confirmed that way
+
+## Issues reported during implementation
+
+Accept a bug report in the active conversation. Reuse the relevant workstream unless the fix needs independent scope. Record a source and a decision with optional `discovery` classification (`code-defect`, `spec-gap`, `spec-conflict`, `verification-gap`, or `workflow-gap`), observation, how it was found, known cause, and regression check. Fix a code defect against existing intent. Amend the spec only when intent is missing, wrong, or contradictory; cite the discovery decision in the amendment. Never amend acceptance merely to bless broken code.
+
+Use repeated causes as learning candidates, not automatic global tenets. The implemented portable API is `learning record --file <json>` with `source.kind: user-reported|agent-inferred`, explicit source reference, optional workstream/feature scope, and optional superseded IDs. Inferred entries remain outside active context until the user confirms a superseding correction. See `docs/architecture/issue-intake.md` and `docs/architecture/permission.md`.

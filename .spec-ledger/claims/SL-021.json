@@ -1,0 +1,12 @@
+{
+  "id": "SL-021",
+  "kind": "invariant",
+  "statement": "Session projections separate implementation from evidence, remain read-only across transports, and enforce current permission at completion.",
+  "required": true,
+  "area": "core",
+  "links": {
+    "docs": [
+      "docs/workstreams/W-006-trustworthy-autonomous-coding/spec.md"
+    ]
+  }
+}

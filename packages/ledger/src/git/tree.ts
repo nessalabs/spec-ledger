@@ -1,41 +1,20 @@
+import { existsSync, readFileSync } from "node:fs"
+import { join } from "node:path"
 import { spawnSync } from "node:child_process"
-import { sha256Stable } from "../fs/load.js"
+import { sourceFingerprint } from "../evidence/fingerprint.js"
 
 function git(repoRoot: string, args: string[]): { ok: boolean; out: string } {
   const r = spawnSync("git", args, { cwd: repoRoot, encoding: "utf8" })
   return { ok: r.status === 0, out: (r.stdout || "").replace(/\n$/, "") }
 }
 
-function productDirtyEntries(repoRoot: string): string[] {
-  const status = git(repoRoot, ["status", "--porcelain", "-uall"])
-  if (!status.ok) return []
-  return status.out
-    .split("\n")
-    .filter(Boolean)
-    .map((line) => {
-      let path = line.slice(3).trim().replace(/^"+|"+$/g, "")
-      if (path.includes(" -> ")) path = path.split(" -> ").at(-1)!.trim()
-      return path
-    })
-    .filter(Boolean)
-    .filter((p) => !p.startsWith(".spec-ledger/") && !p.startsWith(".spec-ledger\\"))
-    .sort()
-}
-
-/** Content-addressed digest: HEAD + tracked names + dirty path→blob hashes. */
+/** Current product content; commits and ledger-only metadata do not invalidate it. */
 export function computeTreeDigest(repoRoot: string): string {
-  const head = git(repoRoot, ["rev-parse", "HEAD"])
-  const ls = git(repoRoot, ["ls-tree", "-r", "HEAD", "--name-only"])
-  const dirty = productDirtyEntries(repoRoot)
-  const dirtyBlobs = dirty.map((p) => {
-    const h = git(repoRoot, ["hash-object", p])
-    return { path: p, blob: h.ok ? h.out : null }
-  })
-  return sha256Stable({
-    head: head.ok ? head.out : null,
-    tracked: ls.ok ? ls.out.split("\n").filter(Boolean).sort() : [],
-    dirtyBlobs,
-  })
+  const configPath = join(repoRoot,".spec-ledger/ledger.json")
+  const generatedArtifacts = existsSync(configPath) ? JSON.parse(readFileSync(configPath,"utf8")).generatedArtifactPaths ?? [] : []
+  const digest = sourceFingerprint(repoRoot, generatedArtifacts)
+  if (!digest) throw new Error("cannot observe current source content")
+  return digest
 }
 
 export function dirtyPaths(repoRoot: string): string[] {

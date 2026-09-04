@@ -1,3 +1,4 @@
+import { featureHref, featureLabel } from "@/lib/features"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import {
@@ -165,8 +166,8 @@ export default async function NodePage({
           </CardHeader>
           <CardContent className="flex flex-wrap gap-2">
             {node.featureIds?.map((f) => (
-              <Link key={f} href={`/features/${encodeURIComponent(f)}`}>
-                <Badge className="font-mono">{f}</Badge>
+              <Link key={f} href={featureHref(f, graph?.features)}>
+                <Badge className="font-mono">{featureLabel(f)}</Badge>
               </Link>
             ))}
             {linkedClaims.map((c) => (

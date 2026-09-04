@@ -1,0 +1,124 @@
+"use client"
+
+import { useEffect, useRef, useState } from "react"
+import Link from "next/link"
+import { Button, DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuRadioGroup, DropdownMenuRadioItem } from "@nessalabs/ui"
+import { ChevronDown } from "lucide-react"
+import type { SessionProjection } from "@nessalabs/spec-ledger-client"
+
+export function LiveSession({ initial }: { initial: SessionProjection }) {
+  const [data, setData] = useState(initial)
+  const [selected, setSelected] = useState(initial.session?.workstreamId ?? "")
+  const [state, setState] = useState<"connected" | "loading" | "disconnected">("connected")
+  const [observed, setObserved] = useState("")
+  const [saving, setSaving] = useState(false)
+  const [decisionMessage, setDecisionMessage] = useState("")
+  const observationEpoch = useRef(0)
+  const pendingDecision = useRef<{ key: string; requestId: string } | null>(null)
+
+  useEffect(() => {
+    let cancelled = false
+    let timer: ReturnType<typeof setTimeout>
+    let controller: AbortController | undefined
+    async function observe() {
+      const epoch = observationEpoch.current
+      controller = new AbortController()
+      const timeout = setTimeout(() => controller?.abort(), 8000)
+      try {
+        const response = await fetch(`/api/session${selected ? `?workstream=${encodeURIComponent(selected)}` : ""}`, {
+          cache: "no-store", signal: controller.signal,
+        })
+        if (!response.ok) throw new Error("Observation failed")
+        const next: SessionProjection = await response.json()
+        if (!cancelled && epoch === observationEpoch.current) {
+          setData(next); setState("connected"); setObserved(new Date(next.observedAt).toLocaleTimeString())
+        }
+      } catch {
+        if (!cancelled && epoch === observationEpoch.current) setState("disconnected")
+      } finally {
+        clearTimeout(timeout)
+        if (!cancelled) timer = setTimeout(observe, 5000)
+      }
+    }
+    setState("loading")
+    void observe()
+    return () => { cancelled = true; clearTimeout(timer); controller?.abort() }
+  }, [selected])
+
+  const session = selected && data.session?.workstreamId !== selected ? null : data.session
+  async function decide(action: "approve" | "deny") {
+    if (!session || saving) return
+    observationEpoch.current++
+    setSaving(true); setDecisionMessage("")
+    const key = `${action}/${session.workstreamId}/${session.revisionDigest}/${session.authorityDigest}`
+    if (pendingDecision.current?.key !== key) pendingDecision.current = { key, requestId: crypto.randomUUID() }
+    try {
+      const tokenResponse = await fetch("/api/approval", { cache: "no-store", signal: AbortSignal.timeout(8000) })
+      if (!tokenResponse.ok) throw new Error("Local approval is unavailable.")
+      const { token } = await tokenResponse.json()
+      const response = await fetch("/api/approval", {
+        method: "POST", signal: AbortSignal.timeout(8000), headers: { "Content-Type": "application/json", "X-Spec-Ledger-Token": token },
+        body: JSON.stringify({ action, workstreamId: session.workstreamId, revisionDigest: session.revisionDigest,
+          authorityDigest: session.authorityDigest, requestId: pendingDecision.current.requestId }),
+      })
+      const result = await response.json()
+      if (!response.ok || !result.saved) throw new Error(result.error ?? "Decision could not be saved.")
+      const observation = await fetch(`/api/session?workstream=${encodeURIComponent(session.workstreamId)}`, { cache: "no-store", signal: AbortSignal.timeout(8000) })
+      if (!observation.ok) throw new Error("Decision saved, but the current state could not be refreshed.")
+      const next: SessionProjection = await observation.json()
+      setData(next); setState("connected"); setObserved(new Date(next.observedAt).toLocaleTimeString())
+      setDecisionMessage(action === "approve" && next.session?.permission.allowed ? "Approval saved." : action === "deny" && !next.session?.permission.allowed ? "Denial saved." : "Decision saved. The current state has changed; review it before continuing.")
+      pendingDecision.current = null
+    } catch (error) { setDecisionMessage(error instanceof Error ? error.message : "Decision could not be saved.") }
+    finally { observationEpoch.current++; setSaving(false) }
+  }
+  return <section className="space-y-6" aria-label="Live session">
+    <header className="space-y-2">
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <h1 className="text-2xl font-semibold tracking-tight">Follow the work</h1>
+        <span role="status" className="text-sm text-muted-foreground">
+          {state === "disconnected" ? "Disconnected · showing last observation" : state === "loading" ? "Refreshing…" : "Connected"}
+          {observed ? ` · ${observed}` : ""}
+        </span>
+      </div>
+      <div className="flex flex-wrap items-center gap-3 text-sm"><span id="session-label">Session</span>
+        <DropdownMenu><DropdownMenuTrigger asChild><Button disabled={saving} variant="outline" className="max-w-full" aria-labelledby="session-label session-value"><span id="session-value" className="truncate">{data.choices.find(w => w.id === selected)?.title ?? session?.title ?? "Choose a workstream"}</span><ChevronDown className="ml-2 size-4 shrink-0" /></Button></DropdownMenuTrigger>
+          <DropdownMenuContent align="start" className="max-w-[calc(100vw-5rem)]"><DropdownMenuRadioGroup value={selected} onValueChange={id => { setSelected(id); setDecisionMessage("") }}>
+            {data.choices.map(w => <DropdownMenuRadioItem key={w.id} value={w.id}>{w.title}</DropdownMenuRadioItem>)}
+          </DropdownMenuRadioGroup></DropdownMenuContent>
+        </DropdownMenu>
+      </div>
+    </header>
+    {!session ? <p className="text-muted-foreground">{data.selectionRequired ? "Several workstreams are available. Choose the one you want to follow." : "No active workstream yet. Start with a plan."}</p> : <>
+      <div className="space-y-3 rounded-xl border border-border p-5">
+        <Link className="text-xl font-semibold hover:underline" href={`/workstreams/${session.workstreamId}`}>{session.title}</Link>
+        <p>{session.goal}</p>
+        <p className="text-sm text-muted-foreground">Revision {session.revision ?? "not yet sealed"} · {session.status === "done" ? "Complete" : session.permission.allowed ? "Approved to proceed" : "Needs your decision"}</p>
+        <details className="text-xs text-muted-foreground"><summary>Approval details</summary><p>{session.permission.mode ?? "No permission recorded"} · {session.permission.provenance}</p>{session.permission.reasons.map(reason => <p key={reason}>{reason}</p>)}</details>
+        {!session.permission.allowed && !["done", "cancelled"].includes(session.status) && <div className="space-y-2">
+          <div className="flex flex-wrap gap-3"><Button disabled={saving || state !== "connected"} onClick={() => void decide("approve")}>{saving ? "Saving…" : "Approve this revision"}</Button><Button variant="outline" disabled={saving || state !== "connected"} onClick={() => void decide("deny")}>Deny</Button></div>
+          <p className="text-xs text-muted-foreground">Approving this revision replaces any previous denial for this workstream.</p>
+        </div>}
+        {decisionMessage && <p role="status" className="text-sm">{decisionMessage}</p>}
+      </div>
+      <section className="space-y-2"><h2 className="font-semibold">Needs attention</h2>
+        {session.attention.length ? <ul className="list-disc space-y-1 pl-5 text-sm">{session.attention.map((item, i) => <li key={i}>{item}</li>)}</ul> : <p className="text-sm text-muted-foreground">No blocking attention items reported.</p>}
+      </section>
+      <section className="space-y-3"><h2 className="font-semibold">Acceptance</h2>
+        <p className="text-sm text-muted-foreground">{session.evidenceCount} of {session.criteria.length} criteria have current passing evidence. Implementation is reported by the agent.</p>
+        {!session.criteria.length && <p className="text-sm">No acceptance criteria defined.</p>}
+        <ul className="divide-y divide-border rounded-xl border border-border px-4">{session.criteria.map(c => <li key={c.id} className="space-y-2 py-4">
+          <p className="text-sm">{c.text}</p>
+          <div className="flex flex-wrap gap-3 text-xs text-muted-foreground"><span>{c.implemented ? "Implemented · agent reported" : "Implementation not confirmed on this version"}</span><span>Evidence: {c.evidence}</span></div>
+          <details className="text-xs text-muted-foreground"><summary>Evidence links</summary><p>{c.id}</p>{c.claimIds.length ? c.claimIds.map(id => <Link className="mr-3 underline" href={`/claims/${encodeURIComponent(id)}`} key={id}>{id}</Link>) : <p>No explicit claim mapping yet.</p>}</details>
+        </li>)}</ul>
+      </section>
+      <section className="space-y-3"><h2 className="font-semibold">Meaningful changes</h2>
+        {session.activity.length ? <ul className="space-y-3">{session.activity.map(item => <li key={item.id} className="rounded-lg border border-border p-3 text-sm"><p>{item.summary}</p><details className="mt-2 text-xs text-muted-foreground"><summary>Why · {item.id}</summary><p>{item.reason}</p>{item.discovery && <p>{item.discovery.kind}: {item.discovery.observation}</p>}</details></li>)}</ul> : <p className="text-sm text-muted-foreground">No changes recorded yet.</p>}
+      </section>
+      <section className="space-y-2"><h2 className="font-semibold">Try it</h2>
+        {session.preview ? <><a href={session.preview.url} target="_blank" rel="noopener noreferrer" className="underline">{session.preview.label}</a><p className="text-xs text-muted-foreground">Reported for this source revision. Availability has not been checked.</p></> : <p className="text-sm text-muted-foreground">No preview recorded for the current version.</p>}
+      </section>
+    </>}
+  </section>
+}

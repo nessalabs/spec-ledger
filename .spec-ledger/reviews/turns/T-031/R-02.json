@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "id": "T-031/R-02",
+  "turnId": "T-031",
+  "workstreamId": "W-006",
+  "kind": "adversarial",
+  "target": "code",
+  "reviewer": "agent:sl-dev-break:w006-final",
+  "verdict": "approve",
+  "blocking": false,
+  "alertOnSeverity": "high",
+  "supersedesReviewId": "T-031/R-01",
+  "plainSummary": "The six implemented slices pass their behavioral checks, with bounded browser observations supporting the session experience.",
+  "summary": "Current-source final review across all six W006 verticals combines prior independent source/boundary reviews with a full rerun of all mapped suites: node --test packages/ledger/dist/verify/aggregation.break.test.js packages/ledger/dist/verify/readonly.break.test.js packages/ledger/dist/evidence/fingerprint.break.test.js packages/ledger/dist/permission/authority.break.test.js packages/ledger/dist/deferrals/index.test.js packages/ledger/dist/deferrals/deferrals.break.test.js packages/ledger/dist/deferrals/portability.test.js packages/ledger/dist/session/session.break.test.js packages/ledger/dist/graph/display.test.js;41pass0fail0skip. Coverage includes every-binding order, malformed/duplicate evidence, HTTP/inprocess read parity and no persistent side effects, current evidence/artifact/source/review/align gates, explicit permission and immutable reviewed delegated revisions, durable deferral activation/resolution and clean/dirty CLI handoff, true session completion versus progress-only/stale/revoked paths, and incomplete graph display prerequisite guard. Reviewed browser-check.md: root manually observed655px rail and toggle clearance, live mixed1/3 pass/fail/missing state with separate agent implementation, due isolation attention, unconfirmed preview, exact-revision CLI handoff with no-save disclosure, disconnect state, and incomplete-graph fallback. Those visual observations are attributed to root; independent reviewer inspected UI selector/component logic and exercised runtime/transport tests. Source fingerprint is tool-stamped after final generated-evidence exclusions settled; slice code-review pointers do not change source content.",
+  "killersCited": [
+    "packages/ledger/src/verify/aggregation.break.test.ts",
+    "packages/ledger/src/verify/readonly.break.test.ts",
+    "packages/ledger/src/evidence/fingerprint.break.test.ts",
+    "packages/ledger/src/permission/authority.break.test.ts",
+    "packages/ledger/src/deferrals/index.test.ts",
+    "packages/ledger/src/deferrals/deferrals.break.test.ts",
+    "packages/ledger/src/deferrals/portability.test.ts",
+    "packages/ledger/src/session/session.break.test.ts::serves identical session state through both clients without writes",
+    "packages/ledger/src/session/session.break.test.ts::rechecks revoked permission before completing otherwise finished work",
+    "packages/ledger/src/session/session.break.test.ts::permits completion after implementation, current evidence, and turn closure all satisfy policy",
+    "packages/ledger/src/session/session.break.test.ts::does not turn agent progress into proof and stales progress/preview after source changes",
+    "packages/ledger/src/graph/display.test.ts::graph display rejects the incomplete session fixture instead of iterating missing layers"
+  ],
+  "findings": [],
+  "residualRisks": [
+    "Manual browser observations are supplemental agent observations, not authenticated approval or automated browser CI; independent reviewer did not repeat that browser campaign.",
+    "Only655px layout/toggle observations are documented.375/767/768px attempts timed out and are not claimed.",
+    "Semantic scope, adequacy of arbitrary prose-to-test coverage, and producer honesty remain judgment boundaries; explicit mechanical restrictions are tested.",
+    "Concurrent-writer stress, comprehensive malformed schema handling, hostile checkout-owner authentication, and remote artifact fetching are not claimed.",
+    "Graph display guard prevents the reported incomplete graph crash; it is not comprehensive validation of all policy/claim records."
+  ],
+  "treeDigest": "b5d25e66897f1b13e2705e6899e139fd8ed88e49aa2dda65e3f9d1a49db0de88"
+}

@@ -1,0 +1,12 @@
+{
+  "id": "SL-017",
+  "kind": "invariant",
+  "statement": "Reading verification, context, snapshots, and client/server projections does not execute checks or persist reports.",
+  "required": true,
+  "area": "core",
+  "links": {
+    "docs": [
+      "docs/workstreams/W-006-trustworthy-autonomous-coding/spec.md"
+    ]
+  }
+}

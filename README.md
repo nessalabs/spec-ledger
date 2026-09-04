@@ -2,7 +2,7 @@
 
 **Repo:** [nessalabs/spec-ledger](https://github.com/nessalabs/spec-ledger)
 
-Generic **claim adherence** + **lattice viewing** for any codebase. Built so Nessa
+Generic **claim adherence** with a **Spec Ledger UI** for any codebase. Built so Nessa
 (and later any product) can keep agent velocity high without quality rotting.
 
 Episode attachments may reference **image/video** for code-review evidence
@@ -49,7 +49,7 @@ npm, then:
 ```bash
 npm i -D @nessalabs/spec-ledger-client@0.1.0-alpha.0 @nessalabs/spec-ledger-server@0.1.0-alpha.0
 tar -xzf spec-ledger-ui-0.1.0-alpha.0.tgz
-cd spec-ledger-ui && SPEC_LEDGER_ROOT=/path/to/your/repo npx next start --port 3737
+cd spec-ledger-ui && SPEC_LEDGER_ROOT=/path/to/your/repo npx next start --hostname 127.0.0.1 --port 3737
 ```
 
 The Release tarball vendors `@nessalabs/ui` (not on the public registry for this
@@ -66,7 +66,7 @@ pnpm -r build
 pnpm test
 pnpm verify          # dogfoods this repo's .spec-ledger/
 pnpm hooks:install   # SL-Turn commit-msg + staged JSON checks
-pnpm lattice         # http://127.0.0.1:3737
+pnpm ui              # http://127.0.0.1:3737
 pnpm serve           # http://127.0.0.1:8787 — read-only HTTP API
 ```
 
@@ -107,7 +107,7 @@ pnpm serve
 # GET http://127.0.0.1:8787/v1/schemas
 ```
 
-Lattice web UI (nessa-ui): **http://127.0.0.1:3737** via `pnpm lattice`
+Spec Ledger UI: **http://127.0.0.1:3737** via `pnpm ui`
 
 | Route | Shows |
 | --- | --- |

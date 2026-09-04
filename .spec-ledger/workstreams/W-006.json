@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "W-006",
-  "status": "draft",
+  "status": "done",
   "createdAt": "2026-09-04T19:53:38.977Z",
   "featureIds": [
     "verify",
@@ -18,7 +18,6 @@
   "objective": "Follow agent work through readable specs, explicit permission, meaningful progress, and current evidence.",
   "changeType": "feature",
   "outOfScope": [
-    "Implementation or seal from this draft alone",
     "Replacing existing W-005 work without reconciling scope",
     "Multi-user SaaS, a new agent runtime, or generic workflow engine",
     "Claiming full semantic equivalence between arbitrary prose and code",
@@ -40,5 +39,245 @@
     "SL-005"
   ],
   "proposedClaimIds": [],
-  "updatedAt": "2026-09-04T20:25:34.579619+00:00"
+  "updatedAt": "2026-09-04T23:01:11.786Z",
+  "appetite": "Incremental delivery in independently verified verticals; portable local workflow first",
+  "riskLevel": "elevated",
+  "trust": {
+    "deployTarget": "library-consumer",
+    "userFacing": true,
+    "performanceCritical": false,
+    "securitySensitive": true,
+    "correctnessCritical": true,
+    "requiredEvidence": [
+      "unit",
+      "integration",
+      "e2e"
+    ]
+  },
+  "policy": {
+    "alertOnSeverity": "high",
+    "onAlert": "block",
+    "onSealedSpecDeviation": "block",
+    "requireSpecBreak": true,
+    "requireCodeBreak": true,
+    "requireAlignApprove": true,
+    "alignReviewerPrefix": "agent:align",
+    "allowExplicitAlignSkip": true
+  },
+  "suggestedSlices": [
+    {
+      "id": "SLC-01",
+      "title": "Every required check contributes to the verdict",
+      "kind": "vertical",
+      "acceptance": [
+        "AC-05: Fail dominates missing, which dominates attested, which dominates pass; order never changes the result. Duplicate result keys are rejected. Empty ledgers show no requirements checked."
+      ],
+      "expectedClaimIds": [
+        "SL-001",
+        "SL-002",
+        "SL-003",
+        "SL-004",
+        "SL-005"
+      ],
+      "evidence": [
+        "unit",
+        "integration"
+      ],
+      "expectedPaths": [
+        "packages/ledger/src/verify/**",
+        "packages/ledger/src/types.ts",
+        "packages/client/**",
+        "packages/server/**",
+        "packages/ui/**",
+        "schemas/**",
+        "docs/**",
+        "packages/ledger/src/cli/**"
+      ],
+      "codeBreakReviewId": "T-032/R-01"
+    },
+    {
+      "id": "SLC-02",
+      "title": "Reads cannot run checks or change ledger state",
+      "kind": "vertical",
+      "acceptance": [
+        "AC-06: CLI execution and report persistence are explicit; client/server/context reads do not run commands, write reports, or resume automation."
+      ],
+      "expectedClaimIds": [
+        "SL-001",
+        "SL-002",
+        "SL-003",
+        "SL-004",
+        "SL-005"
+      ],
+      "evidence": [
+        "unit",
+        "integration"
+      ],
+      "expectedPaths": [
+        "packages/ledger/src/**",
+        "packages/client/**",
+        "packages/server/**",
+        "packages/ui/**",
+        "schemas/**",
+        "docs/**"
+      ],
+      "codeBreakReviewId": "T-032/R-01"
+    },
+    {
+      "id": "SLC-03",
+      "title": "Evidence and approvals match the current source",
+      "kind": "vertical",
+      "acceptance": [
+        "AC-06/09: Relevant dirty and untracked content changes invalidate results and reviews; metadata-only changes and content-preserving commits do not. Artifact references are confined and integrity checked."
+      ],
+      "expectedClaimIds": [
+        "SL-001",
+        "SL-002",
+        "SL-003",
+        "SL-004",
+        "SL-005"
+      ],
+      "evidence": [
+        "unit",
+        "integration"
+      ],
+      "expectedPaths": [
+        "packages/ledger/src/**",
+        "packages/client/**",
+        "packages/server/**",
+        "schemas/**",
+        "docs/**"
+      ],
+      "codeBreakReviewId": "T-032/R-01"
+    },
+    {
+      "id": "SLC-04",
+      "title": "Proceed under explicit permission and scoped corrections",
+      "kind": "vertical",
+      "acceptance": [
+        "AC-01/02: Revision approval, request and standing delegation are distinct; denial/revocation blocks affected work. Corrections are scoped, provenance is honest, context hashes content."
+      ],
+      "expectedClaimIds": [
+        "SL-001",
+        "SL-002",
+        "SL-003",
+        "SL-004",
+        "SL-005"
+      ],
+      "evidence": [
+        "unit",
+        "integration"
+      ],
+      "expectedPaths": [
+        "packages/ledger/src/**",
+        "packages/client/**",
+        "packages/server/**",
+        "schemas/**",
+        "skills/**",
+        "docs/**",
+        "DESIGN.md",
+        "AGENTS.md"
+      ],
+      "codeBreakReviewId": "T-032/R-01"
+    },
+    {
+      "id": "SLC-05",
+      "title": "Deferred work returns when its feature is planned",
+      "kind": "vertical",
+      "acceptance": [
+        "AC-03/04: Old unresolved linked deferrals appear independent of recent history; activation is persistent and idempotent, unknown inputs stay unknown, completion requires a valid response. Backlog projects drafts and deferrals."
+      ],
+      "expectedClaimIds": [
+        "SL-001",
+        "SL-002",
+        "SL-003",
+        "SL-004",
+        "SL-005"
+      ],
+      "evidence": [
+        "unit",
+        "integration"
+      ],
+      "expectedPaths": [
+        "packages/ledger/src/**",
+        "packages/client/**",
+        "packages/server/**",
+        "schemas/**",
+        "skills/**",
+        "docs/**"
+      ],
+      "codeBreakReviewId": "T-032/R-01"
+    },
+    {
+      "id": "SLC-06",
+      "title": "Follow work through one clear session",
+      "kind": "vertical",
+      "acceptance": [
+        "AC-07/08: Session shows meaningful progress, current evidence, and approval state. Local UI records revision-bound approve/deny; approved work has no repeated prompt. Portable CLI remains available."
+      ],
+      "expectedClaimIds": [
+        "SL-001",
+        "SL-002",
+        "SL-003",
+        "SL-004",
+        "SL-005"
+      ],
+      "evidence": [
+        "unit",
+        "integration"
+      ],
+      "expectedPaths": [
+        "packages/ledger/src/**",
+        "packages/client/**",
+        "packages/server/**",
+        "packages/ui/**",
+        "schemas/**",
+        "skills/**",
+        "docs/**"
+      ],
+      "codeBreakReviewId": "T-032/R-01"
+    }
+  ],
+  "specBreakReviewId": "W-006/SR-03",
+  "seal": {
+    "sealedAt": "2026-09-04T22:52:24.006Z",
+    "sealedBy": "agent:permission:AUTH-W006-REQUEST",
+    "specDigest": "8b34fcefe25f12a6979fbb8a68626c92fcacffae15121d072ead18c9520638f8",
+    "snapshotPath": "workstreams/W-006.seals/3.json",
+    "revision": 3,
+    "specDocDigest": "3997c7a9814c99d190e11d926168975c46930726d8c8dd518b1c1f49f8d68999"
+  },
+  "acceptanceClaimIds": {
+    "SLC-01/AC-1": [
+      "SL-016"
+    ],
+    "SLC-02/AC-1": [
+      "SL-017"
+    ],
+    "SLC-03/AC-1": [
+      "SL-018"
+    ],
+    "SLC-04/AC-1": [
+      "SL-019"
+    ],
+    "SLC-05/AC-1": [
+      "SL-020"
+    ],
+    "SLC-06/AC-1": [
+      "SL-021"
+    ]
+  },
+  "postSealAmends": [
+    {
+      "at": "2026-09-04T22:39:34.914Z",
+      "summary": "User selected local UI host for direct revision-bound approve/deny; simplify session controls and standardize product naming.",
+      "humanConfirmed": true,
+      "sealedRevision": 2,
+      "beforeDocDigest": "d1633692de274c1fe2a5eed8c92800e15e1c48de8c821d72e4f2255bc962b8d0",
+      "afterDocDigest": "3997c7a9814c99d190e11d926168975c46930726d8c8dd518b1c1f49f8d68999",
+      "actor": "agent:user-requested-ui-refinement",
+      "turnId": "T-032",
+      "decisionId": "T-032/D-01"
+    }
+  ]
 }

@@ -1,3 +1,5 @@
+import { prepareExecutablePlan } from "../permission/authority.js"
+import { activateDeferralsForWork } from "../deferrals/index.js"
 import { spawnSync } from "node:child_process"
 import { existsSync, readdirSync, readFileSync } from "node:fs"
 import { join } from "node:path"
@@ -265,15 +267,17 @@ export function openTurn(
   const sliceId = opts.sliceId ?? intent.sliceId
   const featureIds = opts.featureIds ?? intent.featureIds
 
-  if (workstreamId) {
-    resumeAutomationEvents(ledger.repoRoot, { workstreamId })
-  }
-
   const dirty = dirtyPaths(ledger.repoRoot)
   if (dirty.length && !opts.allowDirty) {
     throw new Error(
       `turn open refused: dirty worktree (${dirty.length} paths). Pass --allow-dirty or commit first.`,
     )
+  }
+
+  if (workstreamId) {
+    prepareExecutablePlan(ledger.repoRoot,workstreamId)
+    activateDeferralsForWork(ledger.repoRoot, workstreamId)
+    resumeAutomationEvents(ledger.repoRoot, { workstreamId })
   }
 
   let opened: Turn["opened"] = {

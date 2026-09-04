@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "turnId": "T-032",
+  "decision": "Normalize loopback URL and Host handling for the Next approval adapter.",
+  "rationale": "Next supplies an internal localhost request URL while the browser uses 127.0.0.1; validate both as loopback with equal ports and bind Origin to the external Host.",
+  "discovery": {
+    "kind": "code-defect",
+    "reportedVia": "runtime",
+    "observation": "Actual browser approval returned 403 although isolated endpoint tests passed.",
+    "cause": "Framework request normalization was absent from the initial test fixture.",
+    "specRef": "W-006/SLC-06",
+    "regression": "Independent local-ui.break test now exercises normalized URL, external Host and mismatched port."
+  },
+  "id": "T-032/D-02"
+}

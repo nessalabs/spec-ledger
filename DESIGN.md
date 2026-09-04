@@ -31,7 +31,7 @@ results) and carries digests of those inputs; nothing else may produce `pass`.**
 | `attested` never collapses to `pass` | Honest when evidence is human judgment |
 | Results-file evidence seam | Any language can prove claims without a TS plugin API |
 | Server is GET-only | Git is the write path; no “mark verified” button |
-| Client is the only UI/embed gateway | Lattice stays replaceable; no FS imports from UI |
+| Client is the only UI/embed gateway | Spec Ledger UI stays replaceable; no FS imports from UI |
 | Core in `@nessalabs/spec-ledger`; thin client/server/ui | One implementable core; satellites stay small |
 | Schemas as files under `schemas/` | SSOT without a schema package |
 | Name `@nessalabs/spec-ledger*` / `.spec-ledger/` | Avoid npm/`@ledger` collisions |
@@ -40,7 +40,7 @@ results) and carries digests of those inputs; nothing else may produce `pass`.**
 | Automation event state machine + resume | Wait/timeout survives process death |
 | Immutable review resolution + close gates | Blocking findings cannot be greenwashed |
 | Revisioned seal snapshots (JCS) | Seal history is reproducible |
-| Spec break → seal → build → code break | Trust the bet before code; falsify after |
+| Spec break → permission + snapshot → build → code break | Revision approval or scoped delegation; falsify after |
 | Breaker owns killers; builder owns prod | Adversarial review is not oracle negotiation |
 | Code-break evidence is a run (schema) | No test run → no representable finding / pass |
 | `sl-*` stay in-repo; nessalabs engineering optional | Cheap-to-change gems shared via skills/references |
@@ -49,8 +49,8 @@ results) and carries digests of those inputs; nothing else may produce `pass`.**
 | Default alert: high / wait 10m / then move | Interrupt on serious gaps; don’t hang forever |
 | Episodes + compass never affect `verify.ok` | Only claims/bindings/results/graph gate adherence |
 | Turn id joins docs ↔ commits; SHAs are best-effort | Rebases rewrite SHAs; trailers + path history stay navigable |
-| Finding → decision trail (+ review messages) | Lattice can answer why X vs Y |
-| Schema paths + child FKs are the query model | Efficient Lattice joins without untyped bags |
+| Finding → decision trail (+ review messages) | Spec Ledger UI can answer why X vs Y |
+| Schema paths + child FKs are the query model | Efficient Spec Ledger UI joins without untyped bags |
 | `commit-msg` hook when a turn is open | SL-Turn trailer is enforced, not optional |
 
 ## Two bounded contexts
@@ -58,10 +58,10 @@ results) and carries digests of those inputs; nothing else may produce `pass`.**
 | Context | Owns | Does not own |
 | --- | --- | --- |
 | **Claims / Evidence** | Claim IDs, bindings, results ingestion, verify report | UI, module call graphs |
-| **Lattice / Graph** | Features, modules, edges, layer policy, blast radius | Whether a claim is true |
+| **Spec Ledger UI / Graph** | Features, modules, edges, layer policy, blast radius | Whether a claim is true |
 
 They join **only by claim ID** (and optional `featureIds` on nodes). Graph may
-reference claim IDs; claims/evidence must not import lattice algorithms.
+reference claim IDs; claims/evidence must not import graph algorithms.
 
 ## Truth ownership
 
@@ -129,3 +129,5 @@ context → sl-dev-build → sl-dev-break (open turn) → close/verify**
 ## Naming
 
 `@nessalabs/spec-ledger*`. On-disk `.spec-ledger/`. Avoid bare `@ledger`.
+
+Permission and correction runtime: [permission.md](docs/architecture/permission.md). Explicit check execution and read-only evidence evaluation: [evidence.md](docs/architecture/evidence.md).

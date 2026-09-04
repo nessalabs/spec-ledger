@@ -14,13 +14,13 @@ A verify verdict is a pure function of ledger + tree + results; episodes and com
 
 ## Non-goals
 
-- AST graph extraction  
-- Multi-tenant SaaS  
-- Server write APIs  
-- Inventing pass outside verify  
+- AST graph extraction
+- Multi-tenant SaaS
+- Server write APIs
+- Inventing pass outside verify
 
 ## Users
 
-- Humans reviewing agent work in Lattice  
-- Coding agents that must not invent pass  
-- Embedders on `@nessalabs/spec-ledger-client`  
+- Humans reviewing agent work in Spec Ledger UI
+- Coding agents that must not invent pass
+- Embedders on `@nessalabs/spec-ledger-client`

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "T-031/R-01",
+  "turnId": "T-031",
+  "workstreamId": "W-006",
+  "kind": "adversarial",
+  "target": "code",
+  "reviewer": "agent:sl-dev-break:session",
+  "verdict": "approve",
+  "blocking": false,
+  "alertOnSeverity": "high",
+  "plainSummary": "The session keeps progress separate from proof, rejects invalid completion, and handles incomplete graph data clearly.",
+  "summary": "Independent session/session.break.test.ts4/4 green: actual production HTTP routes and in-process client shared JSON parity with whole-fixture byte equality; otherwise complete work refuses revoked permission; current implemented+verified+closed work succeeds; open turn blocks; progress alone never verifies; changed source hides stale progress/preview; preview remains unconfirmed and unsafe schemes are refused; handoff names exact revision without saving a decision. Ran session, graph/display, deferrals and permission tests together:19 pass0 fail0 skip. Source-reviewed graphDisplayIssue and GraphPage early return before layerViolations/GraphWorkspace, plus rendered consumer assumptions; graph/display regression passes incomplete/malformed layers/null-node cases and valid controls. Source-reviewed mobile CSS against actual external Sidebar fixed mobile behavior and variable width: narrowly scoped rule has no observed source defect. Root separately reports live browser evidence at655px, mixed1/3 passing fixture with implementation separate from pass/fail/missing, isolation attention, unconfirmed preview, honest CLI buttons, disconnect, and incomplete graph fallback; those browser observations were not independently repeated by this reviewer. Command: node --test packages/ledger/dist/session/session.break.test.js packages/ledger/dist/graph/display.test.js packages/ledger/dist/deferrals/deferrals.break.test.js packages/ledger/dist/permission/authority.break.test.js.",
+  "killersCited": [
+    "packages/ledger/src/session/session.break.test.ts::serves identical session state through both clients without writes",
+    "packages/ledger/src/session/session.break.test.ts::rechecks revoked permission before completing otherwise finished work",
+    "packages/ledger/src/session/session.break.test.ts::permits completion after implementation, current evidence, and turn closure all satisfy policy",
+    "packages/ledger/src/session/session.break.test.ts::does not turn agent progress into proof and stales progress/preview after source changes",
+    "packages/ledger/src/graph/display.test.ts::graph display rejects the incomplete session fixture instead of iterating missing layers"
+  ],
+  "findings": [],
+  "residualRisks": [
+    "Browser observations are attributed to root; this reviewer independently exercised runtime API boundaries and inspected UI code, not an independent full browser campaign.",
+    "Only655px narrow layout evidence was reported. Additional widths, breakpoint crossings, and mobile open/close visual regressions are unverified.",
+    "Graph guard checks display prerequisites rather than comprehensive graph/schema validity; policy/claim corruption beyond the reported incomplete graph is not covered.",
+    "Standalone approval remains an explicitly labeled portable CLI handoff; no authenticated host bridge or remote artifact availability is claimed."
+  ],
+  "treeDigest": "b5d25e66897f1b13e2705e6899e139fd8ed88e49aa2dda65e3f9d1a49db0de88"
+}

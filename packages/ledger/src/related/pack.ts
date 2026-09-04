@@ -2,7 +2,8 @@ import { existsSync, readdirSync, readFileSync } from "node:fs"
 import { join } from "node:path"
 import { findRepoRoot, ledgerRoot, loadLedger } from "../fs/load.js"
 import { listProposedClaims } from "../proposed/load.js"
-import { loadWorkstream } from "../workstream/load.js"
+import { loadWorkstream, listWorkstreams } from "../workstream/load.js"
+import { backlog } from "../deferrals/index.js"
 import type { LedgerRootConfig, RelatedPack } from "../types.js"
 
 function readJson<T>(path: string): T {
@@ -75,6 +76,9 @@ export function getRelatedPack(
   void loadConfig(rootDir)
 
   return {
+    backlog: backlog(repoRoot, workstreamId),
+    relatedWorkstreams: listWorkstreams(repoRoot).filter(w => w.id !== workstreamId && w.featureIds.some(f => featureIds.has(f)))
+      .map(w => ({ id: w.id, specPath: w.specPath, reasons: w.featureIds.filter(f => featureIds.has(f)).map(f => `shared feature: ${f}`) })),
     workstreamId,
     features,
     claims,

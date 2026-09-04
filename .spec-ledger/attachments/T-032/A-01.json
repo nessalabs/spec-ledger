@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "turnId": "T-032",
+  "kind": "log-excerpt",
+  "title": "Local approval browser verification",
+  "mediaType": "text/markdown",
+  "path": "docs/workstreams/W-006-trustworthy-autonomous-coding/evidence/T-032/browser-check.md",
+  "contentDigest": "e2236814072fa6193484459c7309dda0118831d4e8904673c6b1b16192a63547",
+  "note": "Isolated fixture browser save, reload and Nessa dropdown; manual observations.",
+  "id": "T-032/A-01"
+}

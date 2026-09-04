@@ -1,3 +1,4 @@
+import { featureHref, featureLabel, featureSummary, featureSlug } from "@/lib/features"
 import Link from "next/link"
 import { liveReport, serverClient } from "@/lib/ledger"
 import { TurnSummaryCard } from "@/components/turn-detail"
@@ -38,17 +39,17 @@ export default async function FeaturesPage() {
             return (
               <li key={f.id}>
                 <Link
-                  href={`/features/${encodeURIComponent(f.id)}`}
+                  href={featureHref(f.id, graph?.features)}
                   className="grid gap-0.5 px-3 py-2 no-underline transition-colors hover:bg-muted/40 sm:grid-cols-[minmax(0,11rem)_minmax(0,1fr)_auto] sm:items-baseline sm:gap-3"
                 >
                   <span className="truncate text-sm font-medium text-foreground">
-                    {f.name}
+                    {featureLabel(f.id, f.name)}
                   </span>
                   <span className="truncate text-sm text-muted-foreground">
-                    {f.summary}
+                    {featureSummary(f.id, f.summary)}
                   </span>
                   <span className="shrink-0 font-mono text-[11px] text-muted-foreground">
-                    {f.id} · {history.length}
+                    {featureSlug(f.id)} · {history.length}
                   </span>
                 </Link>
               </li>

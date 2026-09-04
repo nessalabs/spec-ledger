@@ -1,0 +1,12 @@
+{
+  "id": "SL-016",
+  "kind": "invariant",
+  "statement": "Every required binding contributes to a deterministic verdict; failed reports remain readable through both transports.",
+  "required": true,
+  "area": "core",
+  "links": {
+    "docs": [
+      "docs/workstreams/W-006-trustworthy-autonomous-coding/spec.md"
+    ]
+  }
+}

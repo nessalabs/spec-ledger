@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "id": "T-026/R-01",
+  "turnId": "T-026",
+  "workstreamId": "W-006",
+  "kind": "adversarial",
+  "target": "code",
+  "reviewer": "agent:sl-dev-break:aggregation",
+  "verdict": "request-changes",
+  "blocking": true,
+  "alertOnSeverity": "high",
+  "plainSummary": "A failed requirement still prevents the HTTP client from loading the session snapshot.",
+  "summary": "Independent mixed-binding, duplicate, malformed-locator tests pass; actual route plus HTTP client integration fails at getSnapshot after the rebuilt verify endpoint fix. Original production verifier from 27f8935 was transpiled into an isolated temporary dist copy and all three aggregation killers failed for intended reasons.",
+  "findings": [
+    {
+      "id": "F-01",
+      "severity": "high",
+      "claimId": "SL-001",
+      "gap": "GET /v1/snapshot continues returning 409 when snap.report.ok is false. SpecLedgerClient.getSnapshot uses httpGet, which throws on 409, so failed requirements still hide the snapshot despite /v1/verify now returning readable verdict data.",
+      "plainImpact": "Users cannot read the session snapshot when a required check fails.",
+      "fixProposal": "Return a successful HTTP read containing the failing snapshot report, consistently with verify/report, and rerun the unchanged transport killer.",
+      "evidence": {
+        "kind": "test",
+        "citedTest": "packages/ledger/src/verify/aggregation.break.test.ts::delivers failed reports and snapshots through actual HTTP and in-process clients",
+        "ran": true,
+        "command": "node --test packages/ledger/dist/verify/aggregation.break.test.js",
+        "observedOutput": "3 passed, 1 failed: Error: v1/snapshot: 409 at httpGet, then getSnapshot assertion."
+      }
+    }
+  ],
+  "residualRisks": [
+    "Read side effects and evidence freshness are deferred to later W-006 slices and were not evaluated as this slice correctness."
+  ]
+}

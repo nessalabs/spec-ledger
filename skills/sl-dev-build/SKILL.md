@@ -22,7 +22,7 @@ Corrections: [`sl-learn`](../sl-learn/SKILL.md).
 
 ## Preconditions
 
-1. Workstream **`sealed`** (or typed human bypass).
+1. An executable spec snapshot and applicable revision approval or delegation. `spec-ledger work` prepares the snapshot under existing authority; see [permission](../../docs/architecture/permission.md).
 2. **`spec-ledger context`** / `turn open --workstream` stamps `opened.contextDigest`
    (tool-only). Do not skip.
 3. If still `shaped` / `spec_review` → [`sl-plan-break-spec`](../sl-plan-break-spec/SKILL.md) + seal.
@@ -93,15 +93,15 @@ pnpm exec spec-ledger turn open \
 Until flags exist, set `intent.workstreamId`, `featureIds`, `sliceId`,
 `restatedGoal` on the turn file **before** closing. Never hand-edit `facts`.
 
-`restatedGoal` is the Lattice list title — write it as a short human outcome
-([`../references/lattice-plain-titles.md`](../references/lattice-plain-titles.md)),
+`restatedGoal` is the Spec Ledger UI list title — write it as a short human outcome
+([`../references/plain-titles.md`](../references/plain-titles.md)),
 not a slice id or file path.
 
 **Before → after** on a turn is turn-scoped (`flows/` or `intent.flows`), never the
 workstream `problem`/`objective`. When this slice changes a user-visible story,
 add a flow for **this** turn (`spec-ledger flow add` or episode JSON) with a
 before and after that describe only what this turn moved. Skip the chart if
-there is nothing honest to say — Lattice must not invent a shared workstream
+there is nothing honest to say — Spec Ledger UI must not invent a shared workstream
 diagram on every turn.
 
 First turn on a workstream: set status → `active` if still `sealed`.
@@ -125,12 +125,13 @@ pnpm exec spec-ledger turn close [--id T-00N] [--slice SLC-01]
 
 ### Finish the workstream
 
-When acceptance is met and blocking adversarial reviews clear (or waived), set
-`status` → `done`.
+When acceptance is met, run `spec-ledger complete --workstream W-NNN`.
+Do not set `status` directly: completion also checks current evidence, permission,
+required reviews, and affected deferred commitments.
 
 ## Absences
 
 - No `tasks/` files — the vertical/turn is the task
 - Workstreams / proposals / compass never affect `verify.ok`
-- Do not treat Lattice or Flow as proof
+- Do not treat Spec Ledger UI or Flow as proof
 - Server stays read-only; git is the write path

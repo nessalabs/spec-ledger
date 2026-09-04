@@ -1,3 +1,4 @@
+import { permissionStatus } from "../permission/authority.js"
 import {
   codeBreakSatisfied,
   listReviewsForTurn,
@@ -19,6 +20,8 @@ export function assertTurnCloseAllowed(repoRoot: string, turn: Turn): void {
   const workstreamId = turn.intent.workstreamId
   if (!workstreamId) return
 
+  const eligibility = permissionStatus(repoRoot,workstreamId)
+  if (!eligibility.allowed) throw new Error(`turn close refused: ${eligibility.reasons.join("; ")}`)
   const ws = loadWorkstream(repoRoot, workstreamId)
   const policy = (ws.policy ?? {}) as { requireCodeBreak?: boolean }
   const requireCodeBreak = policy.requireCodeBreak !== false
@@ -28,7 +31,7 @@ export function assertTurnCloseAllowed(repoRoot: string, turn: Turn): void {
     const problems = latticeCopyProblems(r)
     if (problems.length) {
       throw new Error(
-        `turn close refused: review ${r.id} Lattice copy invalid: ${problems.join("; ")}`,
+        `turn close refused: review ${r.id} Spec Ledger UI copy invalid: ${problems.join("; ")}`,
       )
     }
   }
@@ -39,7 +42,7 @@ export function assertTurnCloseAllowed(repoRoot: string, turn: Turn): void {
     )
   }
 
-  if (requireCodeBreak && !codeBreakSatisfied(reviews)) {
+  if (requireCodeBreak && !codeBreakSatisfied(reviews, computeTreeDigest(repoRoot))) {
     throw new Error(
       `turn close refused: workstream ${workstreamId} requireCodeBreak — need adversarial code review with verdict approve and non-empty killersCited (comment / bare approve do not count)`,
     )

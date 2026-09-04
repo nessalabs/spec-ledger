@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "T-029/R-03",
+  "turnId": "T-029",
+  "workstreamId": "W-006",
+  "kind": "adversarial",
+  "target": "code",
+  "reviewer": "agent:sl-dev-break:permission",
+  "verdict": "approve",
+  "blocking": false,
+  "alertOnSeverity": "high",
+  "resolvesReviewId": "T-029/R-01",
+  "plainSummary": "Scoped permission checks still pass; the mobile layout change requires its separate visual validation.",
+  "summary": "Refreshed bounded SLC04 approval after turn fixture document-copy repair and user-reported mobile issue intake additions. Reran unchanged node --test packages/ledger/dist/permission/authority.break.test.js:8 pass0 fail0 skip. No permission production changes since previous run. Reviewed change scope: turn fixture now includes documents needed by seal validation; EpisodeDecision discovery/issue-intake metadata records new UI correction. This review approves permission/correction behavior only and explicitly does not approve mobile CSS, shell layout, or session presentation. Those are pending SLC06 browser/code review. writeReview stamps current content digest without broadening the reviewed scope.",
+  "killersCited": [
+    "packages/ledger/src/permission/authority.break.test.ts::enforces explicit feature exclusions and immutable authority retries",
+    "packages/ledger/src/permission/authority.break.test.ts::requires a real current spec review before snapshotting a revised delegated plan",
+    "packages/ledger/src/permission/authority.break.test.ts::raw denial records prevent the same standing delegation from restarting renamed work",
+    "packages/ledger/src/permission/authority.break.test.ts::refuses denied work through CLI even when context collection is explicitly skipped",
+    "packages/ledger/src/permission/authority.break.test.ts::distinguishes revision/request/standing authority and revocation without broader fallback",
+    "packages/ledger/src/permission/authority.break.test.ts::requires revision reapproval after acceptance changes and never invents host consent",
+    "packages/ledger/src/permission/authority.break.test.ts::does not accept a fabricated spec-review reference when a delegated plan requires review",
+    "packages/ledger/src/permission/authority.break.test.ts::applies corrections only in scope, excludes inferred preferences, and hashes same-ID content"
+  ],
+  "findings": [],
+  "residualRisks": [
+    "Portable authority remains agent-reported and trusted-local-caller input, not authenticated user consent. A malicious checkout writer is out of scope.",
+    "Semantic scope correctness cannot be proven from feature IDs; the granted explicit limits are enforced, with semantic judgments attributed separately.",
+    "Review tests cover fresh/missing/stale approvals and actual CLI work denial; no UI approval bridge exists or is claimed.",
+    "No concurrent authority-writer stress test was run; identical/conflicting ID retries were exercised sequentially.",
+    "New mobile rail CSS/shell changes and visible browser behavior are outside this bounded approval; root must obtain SLC06 validation before claiming the UI issue fixed."
+  ],
+  "supersedesReviewId": "T-029/R-02",
+  "treeDigest": "daa3ec3387cc58e0ded9db9c526a3086c465f6f660fabf3a61356da131a518ae"
+}

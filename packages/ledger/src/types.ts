@@ -1,3 +1,5 @@
+import type { PermissionStatus } from "./permission/authority.js"
+import type { Learning } from "./compass/learnings.js"
 export type ClaimKind = "spec" | "adr" | "invariant" | "protocol" | "absence"
 export type EvidenceKind = "test" | "check" | "contract" | "proof" | "attestation"
 export type Outcome = "pass" | "fail" | "missing" | "attested" | "unbound"
@@ -38,11 +40,22 @@ export interface EvidenceBinding {
   }
 }
 
+export interface EvidenceArtifact {
+  path?: string
+  url?: string
+  sha256: string
+  required: boolean
+}
+
 export interface ResultsRow {
   key: string
   outcome: "pass" | "fail" | "missing" | "attested"
   detail?: string
   durationMs?: number
+  runId?: string
+  sourceDigest?: string
+  checkDigest?: string
+  artifacts?: EvidenceArtifact[]
 }
 
 export interface ResultsFile {
@@ -70,6 +83,7 @@ export interface VerifyReport {
     commit: string | null
     ledgerDigest: string
     resultsDigest: string
+    sourceDigest?: string | null
     treeHint: string
   }
   claims: ClaimVerdict[]
@@ -136,6 +150,7 @@ export interface LedgerRootConfig {
   graphPath?: string
   policyPath?: string
   resultsPath?: string
+  generatedArtifactPaths?: string[]
   reportPath?: string
   visionPath?: string
   tenetsDir?: string
@@ -286,6 +301,9 @@ export interface PostSealAmend {
 }
 
 export interface Workstream {
+  specBreakReviewId?: string
+  /** Explicit links from acceptance item addresses to standing claims. */
+  acceptanceClaimIds?: Record<string, string[]>
   schemaVersion: 1
   id: string
   status:
@@ -345,6 +363,9 @@ export interface Tenet {
 }
 
 export interface VerticalContext {
+  obligations?: import("./deferrals/index.js").DeferralEvaluation[]
+  permission: PermissionStatus
+  learnings: Learning[]
   vision: Vision | null
   tenets: Tenet[]
   workstream: Workstream
@@ -395,7 +416,7 @@ export interface ReviewFinding {
   severity: "low" | "moderate" | "high" | "critical"
   claimId?: string
   gap: string
-  /** One sentence of end behavior if this finding stands. Shown in Lattice. */
+  /** One sentence of end behavior if this finding stands. Shown in Spec Ledger UI. */
   plainImpact?: string
   fixProposal?: string
   evidence?: ReviewEvidence
@@ -412,11 +433,12 @@ export interface Review {
   reviewer: string
   verdict: ReviewVerdict
   summary: string
-  /** One Lattice-facing sentence; keep `summary` for the technical trail. */
+  /** One Spec Ledger UI-facing sentence; keep `summary` for the technical trail. */
   plainSummary?: string
   blocking?: boolean
   /** Tree digest this code / align approve applies to. */
   treeDigest?: string
+  revisionDigest?: string
   /** Product paths not covered; empty on align approve unless waiverIds set. */
   uncoveredPaths?: string[]
   coverageSource?: "user" | "graph" | "expectedPaths" | "mixed"
@@ -453,12 +475,23 @@ export interface AutomationEvent {
 }
 
 export interface EpisodeDecision {
+  deferral?: import("./deferrals/index.js").DeferredCommitment
+  deferralResolution?: import("./deferrals/index.js").DeferralResolution
+  progress?: import("./session/project.js").ProgressUpdate
   schemaVersion: 1
   id: string
   turnId: string
   decision: string
   rationale: string
   alternativesRejected?: string[]
+  discovery?: {
+    kind: "code-defect" | "spec-gap" | "spec-conflict" | "verification-gap" | "workflow-gap"
+    reportedVia: "user" | "test" | "review" | "runtime"
+    observation: string
+    cause?: string
+    specRef?: string
+    regression?: string
+  }
   addressesFindingIds?: string[]
   basis?: {
     contextDigest?: string
@@ -558,6 +591,8 @@ export interface AuditReport {
 }
 
 export interface RelatedPack {
+  backlog?: { candidates: Array<{id: string; title: string; featureIds: string[]; optional: boolean}>; deferrals: import("./deferrals/index.js").DeferralEvaluation[]; externalDiscovery: {status: "not-configured"; reason: string}; truncated: boolean }
+  relatedWorkstreams?: Array<{ id: string; specPath?: string; reasons: string[] }>
   workstreamId: string
   features: unknown[]
   claims: Claim[]

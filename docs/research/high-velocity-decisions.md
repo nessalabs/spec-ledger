@@ -58,7 +58,7 @@ Agile/architecture studies find NDM/RPD dominates day-to-day design; rational mu
 | Complex | Probe → sense → respond | `add` / `deviate` after a probe; capture what was learned |
 | Chaotic | Act → sense → respond | Stabilize first; decision may lag the act — still record |
 
-**Encode (optional field):** `situation: clear | complicated | complex | chaotic` — helps Lattice explain *why* the decision looks thin or exploratory.
+**Encode (optional field):** `situation: clear | complicated | complex | chaotic` — helps Spec Ledger UI explain *why* the decision looks thin or exploratory.
 
 ### 4. Motivation dies without bite-sized records (Nygard ADR)
 
@@ -132,6 +132,6 @@ Turn
 1. Open turn with user intent (the first source).
 2. As work proceeds, append decisions when cue arrives (`runtime` fail, `user` redirect, `doc` re-read).
 3. Close turn → facts.
-4. Lattice: claim page shows decisions that cited it; turn page groups deviate/add first and shows source trail.
+4. Spec Ledger UI: claim page shows decisions that cited it; turn page groups deviate/add first and shows source trail.
 
 That is how high-velocity teams actually work: **short cycles, rich cues, recorded judgment, standing contracts**. Spec Ledger already has cycles (turns) and contracts (claims); decisions + sources close the judgment gap.

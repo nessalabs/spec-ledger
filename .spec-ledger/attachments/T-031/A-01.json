@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "turnId": "T-031",
+  "kind": "log-excerpt",
+  "title": "Browser observations for session and UI regressions",
+  "mediaType": "text/markdown",
+  "path": "docs/workstreams/W-006-trustworthy-autonomous-coding/evidence/T-031/browser-check.md",
+  "contentDigest": "82182b41c9e2bac5c7eff878f8c370d4274d0228684be00aa808db1e3514be42",
+  "note": "Manual agent observations; additional breakpoint tests unavailable. Current source tied by turn review.",
+  "id": "T-031/A-01"
+}

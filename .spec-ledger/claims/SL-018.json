@@ -1,0 +1,12 @@
+{
+  "id": "SL-018",
+  "kind": "invariant",
+  "statement": "Evidence becomes stale when source or check content changes; code reviews become stale when source changes; required artifacts must retain integrity.",
+  "required": true,
+  "area": "core",
+  "links": {
+    "docs": [
+      "docs/workstreams/W-006-trustworthy-autonomous-coding/spec.md"
+    ]
+  }
+}

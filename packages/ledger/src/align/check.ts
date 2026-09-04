@@ -141,9 +141,6 @@ export function alignCheck(
     // Only current digest + close-time digest — never digests harvested from
     // the reviews/waivers under evaluation (tautology).
     const digests = new Set<string>([treeDigest])
-    if (turn.status === "closed" && turn.facts?.verify?.treeDigest) {
-      digests.add(turn.facts.verify.treeDigest)
-    }
     for (const d of digests) {
       const satisfied = alignApproveSatisfied({
         reviews,

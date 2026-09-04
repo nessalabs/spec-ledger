@@ -1,3 +1,5 @@
+import { presentationCopy } from "@/lib/features"
+import { featureHref, featureLabel, featureSlug } from "@/lib/features"
 import Link from "next/link"
 import {
   Badge,
@@ -103,7 +105,7 @@ export function TurnSummaryCard({
             href={`/turns/${turn.id}`}
             className="min-w-0 flex-1 text-sm font-medium leading-snug text-foreground no-underline hover:underline"
           >
-            {turn.intent.restatedGoal}
+            {presentationCopy(turn.intent.restatedGoal)}
           </Link>
         </div>
         <span className="shrink-0 text-[11px] text-muted-foreground">{when}</span>
@@ -186,13 +188,13 @@ export function TurnDetail({
                 href={`/workstreams/${encodeURIComponent(turn.intent.workstreamId)}`}
                 className="no-underline hover:underline"
               >
-                {workstream?.title ?? turn.intent.workstreamId}
+                {presentationCopy(workstream?.title ?? turn.intent.workstreamId)}
               </Link>
             </>
           ) : null}
         </p>
         <h1 className="max-w-3xl text-2xl font-semibold tracking-tight">
-          {turn.intent.restatedGoal}
+          {presentationCopy(turn.intent.restatedGoal)}
         </h1>
         <div className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
           <span>{humanStatus(turn.status)}</span>
@@ -224,9 +226,9 @@ export function TurnDetail({
           {flows.map((flow) => (
             <Card key={flow.id}>
               <CardHeader>
-                <CardTitle className="text-base">{flow.title}</CardTitle>
+                <CardTitle className="text-base">{presentationCopy(flow.title)}</CardTitle>
                 {flow.narrative ? (
-                  <CardDescription>{flow.narrative}</CardDescription>
+                  <CardDescription>{presentationCopy(flow.narrative)}</CardDescription>
                 ) : null}
               </CardHeader>
               <CardContent className="space-y-4">
@@ -256,7 +258,7 @@ export function TurnDetail({
           <Card>
             <CardHeader className="gap-1">
               <CardTitle className="text-base font-medium leading-snug">
-                {commit.subject}
+                {presentationCopy(commit.subject)}
               </CardTitle>
               <CardDescription className="font-mono text-[11px]">
                 {commit.short}
@@ -409,7 +411,7 @@ export function TurnDetail({
                   href={`/workstreams/${encodeURIComponent(workstream.id)}`}
                   className="text-sm hover:underline"
                 >
-                  {workstream.title}{" "}
+                  {presentationCopy(workstream.title)}{" "}
                   <span className="font-mono text-[11px] text-muted-foreground">
                     {workstream.id}
                   </span>
@@ -425,11 +427,11 @@ export function TurnDetail({
                   {impact.features.map((id) => {
                     const meta = featureMeta?.find((f) => f.id === id)
                     return (
-                      <Link key={id} href={`/features/${encodeURIComponent(id)}`}>
+                      <Link key={id} href={featureHref(id, featureMeta)}>
                         <Badge variant="secondary">
-                          {meta?.name ?? id}
+                          {featureLabel(id, meta?.name)}
                           <span className="ms-1 font-mono text-[10px] text-muted-foreground">
-                            {id}
+                            {featureSlug(id)}
                           </span>
                         </Badge>
                       </Link>
@@ -498,7 +500,7 @@ function ChipRow({
 function ReviewCard({ review }: { review: EpisodeReview }) {
   const findings = review.findings ?? []
   const killers = review.killersCited ?? []
-  const headline = review.plainSummary?.trim()
+  const headline = presentationCopy(review.plainSummary?.trim())
   return (
     <div className="rounded-lg border border-border px-3 py-3 text-sm">
       <div className="flex flex-wrap items-center gap-2">
@@ -518,7 +520,7 @@ function ReviewCard({ review }: { review: EpisodeReview }) {
       {headline ? (
         <p className="mt-2 text-foreground">{headline}</p>
       ) : (
-        <p className="mt-2 text-muted-foreground">{review.summary}</p>
+        <p className="mt-2 text-muted-foreground">{presentationCopy(review.summary)}</p>
       )}
       {review.resolvesReviewId ? (
         <p className="mt-1 text-[11px] text-muted-foreground">
@@ -528,7 +530,7 @@ function ReviewCard({ review }: { review: EpisodeReview }) {
       {findings.length ? (
         <ul className="mt-3 space-y-3 border-t border-border/60 pt-3">
           {findings.map((f) => {
-            const impact = f.plainImpact?.trim()
+            const impact = presentationCopy(f.plainImpact?.trim())
             const hasTech = Boolean(f.gap || f.fixProposal)
             return (
               <li key={f.id} className="space-y-1">
@@ -564,7 +566,7 @@ function ReviewCard({ review }: { review: EpisodeReview }) {
             {killers.length ? ` · ${killers.length} killers` : ""}
           </summary>
           {headline ? (
-            <p className="mt-2 text-xs text-muted-foreground">{review.summary}</p>
+            <p className="mt-2 text-xs text-muted-foreground">{presentationCopy(review.summary)}</p>
           ) : null}
           {killers.length ? (
             <ul className="mt-1 list-disc space-y-0.5 pl-5 font-mono text-[11px] text-muted-foreground">

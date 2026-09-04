@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "id": "T-030/R-01",
+  "turnId": "T-030",
+  "workstreamId": "W-006",
+  "kind": "adversarial",
+  "target": "code",
+  "reviewer": "agent:sl-dev-break:deferrals",
+  "verdict": "request-changes",
+  "blocking": true,
+  "alertOnSeverity": "high",
+  "plainSummary": "Malformed deferred work can crash planning instead of showing an unknown obligation.",
+  "summary": "Independent deferrals.break.test.ts4/5 passing. Malformed parsed JSON with deferral.deferred:42 reaches validDeferral optional .trim call and throws rather than projecting unknown. Read discovery APIs now compose this evaluator, so malformed agent-authored ledger data disrupts the planning/session read.",
+  "findings": [
+    {
+      "id": "F-01",
+      "severity": "high",
+      "gap": "validDeferral assumes string-typed fields after reading unvalidated JSON. deferred:42 causes TypeError v.deferred?.trim is not a function in evaluateDeferrals. Equivalent assumptions exist for originSpecRef/requirementRef and resolution rationale.",
+      "plainImpact": "A malformed remembered task can prevent users and agents from reading the planning context.",
+      "fixProposal": "Validate primitive types before string/array operations, project malformed commitments as unknown, and keep affected completion blocked without crashing unrelated discovery.",
+      "evidence": {
+        "kind": "test",
+        "citedTest": "packages/ledger/src/deferrals/deferrals.break.test.ts::projects missing references and malformed commitments as unknown",
+        "ran": true,
+        "command": "node --test packages/ledger/dist/deferrals/deferrals.break.test.js",
+        "observedOutput": "4 passed1 failed; TypeError v.deferred?.trim is not a function"
+      }
+    }
+  ],
+  "residualRisks": [
+    "Other bounded tests pass activation idempotency, deletion/feature removal persistence, old orphan decision discovery, hard requirement dismissal/path-only denial, and scoped revisit authority/revocation."
+  ],
+  "treeDigest": "c243c525c46e6a06c2cd8b93c94f50ba7214dc45a39c3291a6452eab803c1527"
+}

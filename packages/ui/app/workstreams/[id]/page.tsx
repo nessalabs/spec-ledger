@@ -1,3 +1,4 @@
+import { presentationCopy } from "@/lib/features"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import { Badge } from "@nessalabs/ui"
@@ -43,7 +44,7 @@ export default async function WorkstreamPage({
 
   const docs =
     specPath && planMarkdown
-      ? [{ path: specPath, label: ws.title, content: planMarkdown }]
+      ? [{ path: specPath, label: presentationCopy(ws.title), content: planMarkdown }]
       : []
 
   const body = (
@@ -57,7 +58,7 @@ export default async function WorkstreamPage({
           {ws.id}
         </p>
         <div className="flex flex-wrap items-center gap-2">
-          <h1 className="text-2xl font-semibold tracking-tight">{ws.title}</h1>
+          <h1 className="text-2xl font-semibold tracking-tight">{presentationCopy(ws.title)}</h1>
           <Badge variant="outline">{statusLabel}</Badge>
         </div>
         <details className="max-w-2xl text-xs text-muted-foreground">
@@ -82,7 +83,7 @@ export default async function WorkstreamPage({
         <PitchDocLink path={specPath} title="Sealed pitch" />
       ) : (
         <p className="max-w-2xl text-sm leading-relaxed text-muted-foreground">
-          {ws.objective}
+          {presentationCopy(ws.objective)}
         </p>
       )}
 
@@ -105,7 +106,7 @@ export default async function WorkstreamPage({
                 turn={t}
                 report={report}
                 compact
-                workstreamTitle={ws.title}
+                workstreamTitle={presentationCopy(ws.title)}
               />
             ))}
           </div>

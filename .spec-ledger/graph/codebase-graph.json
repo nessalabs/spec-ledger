@@ -1,7 +1,7 @@
 {
   "system": {
     "name": "Spec Ledger",
-    "description": "Generic claim-adherence gate + replaceable lattice viewing layer.",
+    "description": "Generic claim-adherence gate + replaceable Spec Ledger UI viewing layer.",
     "revision": "0.1.0",
     "languages": [
       "typescript"
@@ -43,7 +43,10 @@
         "SL-001",
         "SL-002",
         "SL-003",
-        "SL-008"
+        "SL-008",
+        "SL-016",
+        "SL-017",
+        "SL-018"
       ],
       "entryPoints": [
         "packages/ledger/src/verify/verify.ts"
@@ -60,7 +63,8 @@
       "name": "Spec Ledger UI",
       "summary": "Feature/module graph, blast radius, layer policy, and Spec Ledger viewing surface.",
       "claimIds": [
-        "SL-004"
+        "SL-004",
+        "SL-021"
       ],
       "entryPoints": [
         "packages/ledger/src/graph/impact.ts",
@@ -81,7 +85,8 @@
       "claimIds": [
         "SL-001",
         "SL-003",
-        "SL-006"
+        "SL-006",
+        "SL-020"
       ],
       "entryPoints": [
         "packages/ledger/src/turns/close.ts"
@@ -132,7 +137,8 @@
       "summary": "Installable spec-ledger bin: init, verify, turns; npm publish surface.",
       "claimIds": [
         "SL-011",
-        "SL-015"
+        "SL-015",
+        "SL-019"
       ],
       "entryPoints": [
         "packages/ledger/src/cli/main.ts",

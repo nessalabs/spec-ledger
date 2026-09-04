@@ -22,7 +22,7 @@ Do **not** implement code, open turns, or mint live claims.
 ## Goal
 
 Leave a builder a sequence where **after each closed turn** something real is
-true (typed API, CLI path, Lattice join, fixture loop)—not “schemas landed” or
+true (typed API, CLI path, Spec Ledger UI join, fixture loop)—not “schemas landed” or
 “S3 client exists” with no product behavior. Prefer cuts where the **next**
 change stays cheap: small surface, one owner of the information, deletable
 without rewriting the core.
@@ -38,7 +38,7 @@ without rewriting the core.
 | Optional slice when schema/scope is ambiguous | Inventing a third vertical “just in case” |
 | One owner / one deletable module cluster | Slices that must touch every package to mean anything |
 
-**Independently fail-able** means a later builder (or Lattice) can be wrong in
+**Independently fail-able** means a later builder (or Spec Ledger UI) can be wrong in
 that moment while earlier moments stay green. Example loop moments:
 
 1. Context wrong / unsealed  
@@ -67,12 +67,12 @@ tell schema bugs from transport bugs. Prefer split when evidence kinds differ
 
 ## Platform bets (this repo)
 
-If the owner asks for “agents get context + Lattice shows evolution,” prefer
+If the owner asks for “agents get context + Spec Ledger UI shows evolution,” prefer
 proving the **builder episode loop** before polishing the history catalog:
 
 1. Sealed slice → `context` / `contextDigest`  
 2. One workstream turn → break-while-open → close refusals  
-3. Closed episode visible on feature history (client + Lattice join)
+3. Closed episode visible on feature history (client + Spec Ledger UI join)
 
 Defer until the loop is real: vision/compass UI, automation wait/resume,
 decision `basis` taxonomy, full timeline product, seal CRUD beyond fixtures.
@@ -82,7 +82,7 @@ decision `basis` taxonomy, full timeline product, seal CRUD beyond fixtures.
 Each vertical must name:
 
 - **Given / when / then** checks a builder can run (CLI flags, HTTP method,
-  client method, Lattice route—use real paths in this repo when known)
+  client method, Spec Ledger UI route—use real paths in this repo when known)
 - **`evidence[]`** matching trust (`unit`, `integration`, `e2e`, …)
 - **`expectedClaimIds`** (live) and gaps as **proposed** claims only
 - What is **out of scope** for that slice (not the whole bet)

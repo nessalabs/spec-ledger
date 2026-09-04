@@ -37,8 +37,8 @@ export default async function VerifyPage() {
         </p>
         <div className="flex flex-wrap items-center gap-3">
           <h1 className="text-2xl font-semibold tracking-tight">What still holds</h1>
-          <Badge variant={report.ok ? "default" : "destructive"}>
-            {report.ok ? "OK" : "FAIL"}
+          <Badge variant={report.claims.length === 0 && report.ok ? "outline" : report.ok ? "default" : "destructive"}>
+            {report.claims.length === 0 && report.ok ? "No requirements checked" : report.ok ? "OK" : "FAIL"}
           </Badge>
         </div>
         <p className="max-w-2xl text-sm text-muted-foreground">

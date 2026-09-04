@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "turnId": "T-026",
+  "decision": "Deliver W-006 as six independently checked verticals, beginning with aggregation.",
+  "rationale": "User authorized implementation. Preserve the library-consumer correctness bar, package boundaries, and prior seal history. Portable CLI handoff first is explicitly selected. Failures must dominate other binding outcomes; duplicates remain errors. SLC-01 does not claim evidence freshness or read-only execution yet.",
+  "basis": {
+    "sealRevision": 1,
+    "at": "2026-09-04T21:26:03.098Z"
+  },
+  "id": "T-026/D-01"
+}

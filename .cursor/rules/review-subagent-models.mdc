@@ -25,21 +25,21 @@ alwaysApply: true
 | “code-break with Fable” / “use fable 5.1” | the requested Fable slug |
 | “use the same model as you” | `inherit` |
 
-## Lattice copy (required)
+## Spec Ledger UI copy (required)
 
-Every review JSON must include Lattice-facing sentences per
-[`skills/references/review-lattice-copy.md`](../../skills/references/review-lattice-copy.md)
+Every review JSON must include Spec Ledger UI-facing sentences per
+[`skills/references/review-copy.md`](../../skills/references/review-copy.md)
 and [`schemas/review.json`](../../schemas/review.json):
 
 - `plainSummary` — one sentence of end behavior / takeaway (≤280 chars)
 - each finding `plainImpact` — one sentence if this finding stands
-- Keep `summary` / `gap` technical (collapsed in Lattice)
+- Keep `summary` / `gap` technical (collapsed in Spec Ledger UI)
 
 CLI: `review add` and `align approve` require `--plain-summary`.
 
 ## Loop
 
 1. Host launches breaker subagent (this rule).
-2. Breaker writes review with Lattice copy + evidence / killers as required.
+2. Breaker writes review with Spec Ledger UI copy + evidence / killers as required.
 3. Builder fixes prod only after `request-changes`.
 4. Breaker re-approves; align approve (with `plainSummary`) when policy requires; then close.

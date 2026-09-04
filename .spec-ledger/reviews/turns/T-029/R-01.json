@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "id": "T-029/R-01",
+  "turnId": "T-029",
+  "workstreamId": "W-006",
+  "kind": "adversarial",
+  "target": "code",
+  "reviewer": "agent:sl-dev-break:permission",
+  "verdict": "request-changes",
+  "blocking": true,
+  "alertOnSeverity": "high",
+  "plainSummary": "A delegated plan can claim a review that never happened and start work anyway.",
+  "summary": "authority.break.test.ts runs4 tests:3 pass,1 fail. prepareExecutablePlan checks only truthiness of workstream.specBreakReviewId before creating a delegated seal; it does not load the review or verify approval/target/scope. Fabricated W-001/SR-does-not-exist bypasses requireSpecBreak:true.",
+  "findings": [
+    {
+      "id": "F-01",
+      "severity": "high",
+      "gap": "New delegated snapshot path accepts arbitrary nonempty specBreakReviewId despite requireSpecBreak. A request grant plus nonexistent review string creates a seal and makes the plan executable.",
+      "plainImpact": "Agents can begin work without the independent spec review required by the plan.",
+      "fixProposal": "Resolve the referenced review and require a matching workstream spec approval with no unresolved blocking review; ensure review applies to the proposed revision rather than an older plan.",
+      "evidence": {
+        "kind": "test",
+        "citedTest": "packages/ledger/src/permission/authority.break.test.ts::does not accept a fabricated spec-review reference when a delegated plan requires review",
+        "ran": true,
+        "command": "node --test packages/ledger/dist/permission/authority.break.test.js",
+        "observedOutput": "Missing expected exception; 3 passed,1 failed."
+      }
+    }
+  ],
+  "residualRisks": [
+    "Other tests cover scoped authority/revoke/deny and context correction identity. Review freshness and CLI no-context denial require follow-up regression after fixing this boundary."
+  ],
+  "treeDigest": "cdb3b76c37e43044dbc2c6cc4ecc966854ac0d62a76c957db6017b2f6aa9da20"
+}

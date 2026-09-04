@@ -68,8 +68,8 @@ number each question; give your recommended answer; wait.
 
 1. Theme / business outcome (optional standing theme)
 2. Standing **feature(s)** — create in graph only with human confirm
-3. Problem + restated objective — Lattice list uses `title` + short `objective`
-   ([`../references/lattice-plain-titles.md`](../references/lattice-plain-titles.md));
+3. Problem + restated objective — Spec Ledger UI list uses `title` + short `objective`
+   ([`../references/plain-titles.md`](../references/plain-titles.md));
    keep sharp technical context in `problem` for the detail pitch.
 4. Appetite (time box) / changeType / risk
 5. Acceptance criteria + out of scope / no-gos  
@@ -130,7 +130,7 @@ policy: alertOnSeverity=… onAlert=… onSealedSpecDeviation=…
 featureIds: …
 proposedClaimIds: …
 verticals: SLC-01 … (acceptance each)
-next: sl-plan-break-spec → human seal → sl-dev-build
+next: sl-plan-break-spec → revision approval or applicable delegation → sl-work
 ```
 
 4. Stop. Do not open a turn or seal in this skill.

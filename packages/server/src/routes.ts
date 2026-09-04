@@ -4,6 +4,9 @@
  */
 import { createServer, type IncomingMessage, type ServerResponse } from "node:http"
 import {
+  getSession,
+  permissionStatus,
+  listLearnings,
   loadLedger,
   verifyLedger,
   blastRadius,
@@ -50,6 +53,19 @@ function sendJson(res: ServerResponse, status: number, body: unknown): void {
 
 export function buildRoutes(rootDir: string): Route[] {
   return [
+    { method: "GET", pattern: /^\/v1\/session$/, paramNames: [], handler: (req, res) => {
+      const id = new URL(req.url ?? "/", "http://localhost").searchParams.get("workstream") ?? undefined
+      sendJson(res, 200, getSession(rootDir, id))
+    } },
+    {
+      method:"GET",pattern:/^\/v1\/permission$/,paramNames:[],
+      handler:(req,res)=>{
+        const id=new URL(req.url ?? "/","http://localhost").searchParams.get("workstream")
+        if (!id) {sendJson(res,400,{error:"workstream required"});return}
+        sendJson(res,200,permissionStatus(rootDir,id))
+      },
+    },
+    {method:"GET",pattern:/^\/v1\/learnings$/,paramNames:[],handler:(_req,res)=>sendJson(res,200,listLearnings(rootDir))},
     {
       method: "GET",
       pattern: /^\/v1\/health$/,
@@ -68,7 +84,7 @@ export function buildRoutes(rootDir: string): Route[] {
       paramNames: [],
       handler: (_req, res) => {
         const snap = snapshotLedger(loadLedger(rootDir))
-        sendJson(res, snap.report.ok ? 200 : 409, snap)
+        sendJson(res, 200, snap)
       },
     },
     {
@@ -138,7 +154,8 @@ export function buildRoutes(rootDir: string): Route[] {
       paramNames: [],
       handler: (_req, res) => {
         const report = verifyLedger(loadLedger(rootDir))
-        sendJson(res, report.ok ? 200 : 409, report)
+        // A failed verdict is a successful read, not a transport failure.
+        sendJson(res, 200, report)
       },
     },
     {
@@ -149,7 +166,7 @@ export function buildRoutes(rootDir: string): Route[] {
         const ledger = loadLedger(rootDir)
         const path = join(ledger.rootDir, ledger.config.reportPath ?? "results/report.json")
         if (!existsSync(path)) {
-          sendJson(res, 404, { error: "no report; run GET /v1/verify first" })
+          sendJson(res, 404, { error: "no report; run spec-ledger check first" })
           return
         }
         sendJson(res, 200, JSON.parse(readFileSync(path, "utf8")))
@@ -233,7 +250,8 @@ export function buildRoutes(rootDir: string): Route[] {
       paramNames: [],
       handler: (_req, res) => {
         const report = auditLedger(rootDir)
-        sendJson(res, report.ok ? 200 : 409, report)
+        // A failed verdict is a successful read, not a transport failure.
+        sendJson(res, 200, report)
       },
     },
     {

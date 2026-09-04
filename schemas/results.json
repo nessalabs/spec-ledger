@@ -5,26 +5,49 @@
   "description": "Language-agnostic evidence seam. Reporters in any ecosystem emit this; the ledger only ingests.",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schemaVersion", "producedAt", "producer", "rows"],
+  "required": [
+    "schemaVersion",
+    "producedAt",
+    "producer",
+    "rows"
+  ],
   "properties": {
-    "schemaVersion": { "type": "integer", "const": 1 },
-    "producedAt": { "type": "string", "format": "date-time" },
+    "schemaVersion": {
+      "type": "integer",
+      "const": 1
+    },
+    "producedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
     "producer": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["name", "version"],
+      "required": [
+        "name",
+        "version"
+      ],
       "properties": {
-        "name": { "type": "string" },
-        "version": { "type": "string" }
+        "name": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        }
       }
     },
-    "commit": { "type": "string" },
+    "commit": {
+      "type": "string"
+    },
     "rows": {
       "type": "array",
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["key", "outcome"],
+        "required": [
+          "key",
+          "outcome"
+        ],
         "properties": {
           "key": {
             "type": "string",
@@ -32,10 +55,54 @@
           },
           "outcome": {
             "type": "string",
-            "enum": ["pass", "fail", "missing", "attested"]
+            "enum": [
+              "pass",
+              "fail",
+              "missing",
+              "attested"
+            ]
           },
-          "detail": { "type": "string" },
-          "durationMs": { "type": "number" }
+          "detail": {
+            "type": "string"
+          },
+          "durationMs": {
+            "type": "number"
+          },
+          "runId": {
+            "type": "string"
+          },
+          "sourceDigest": {
+            "type": "string"
+          },
+          "checkDigest": {
+            "type": "string"
+          },
+          "artifacts": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "sha256",
+                "required"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "url": {
+                  "type": "string"
+                },
+                "sha256": {
+                  "type": "string",
+                  "pattern": "^[a-f0-9]{64}$"
+                },
+                "required": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
         }
       }
     }

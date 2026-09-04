@@ -1,5 +1,6 @@
 import nextDynamic from "next/dynamic"
 import { serverClient } from "@/lib/ledger"
+import { graphDisplayIssue } from "@nessalabs/spec-ledger-client"
 
 const GraphWorkspace = nextDynamic(
   () =>
@@ -17,16 +18,16 @@ export const dynamic = "force-dynamic"
 
 export default async function GraphPage() {
   const client = serverClient()
-  const [graph, violations, policy, claims] = await Promise.all([
-    client.getGraph(),
+  const graph = await client.getGraph()
+  const issue = graphDisplayIssue(graph)
+  if (issue || !graph) {
+    return <section className="space-y-2 rounded-xl border border-border p-5"><h1 className="text-xl font-semibold">Graph unavailable</h1><p role="status" className="text-sm text-muted-foreground">{issue}</p><p className="text-sm text-muted-foreground">Check the graph record in this checkout. No architecture result is inferred from incomplete data.</p></section>
+  }
+  const [violations, policy, claims] = await Promise.all([
     client.layerViolations(),
     client.getPolicy(),
     client.getClaims(),
   ])
-
-  if (!graph) {
-    return <p className="text-sm text-muted-foreground">No graph loaded.</p>
-  }
 
   return (
     <div className="mx-auto flex h-full max-w-6xl flex-col gap-4">

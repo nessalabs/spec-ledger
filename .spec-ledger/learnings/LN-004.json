@@ -1,0 +1,13 @@
+{
+  "id": "LN-004",
+  "statement": "A user may approve a particular revision, delegate a specific request, or establish standing scoped delegation. Preserve a spec snapshot and explicit permission; never silently rewrite past approvals.",
+  "source": {
+    "kind": "user-reported",
+    "reference": "User discussion for W-006: autonomous coding can be approved for a given request or in general; implementation requested September 4, 2026."
+  },
+  "supersedesTenetIds": [
+    "TN-002"
+  ],
+  "schemaVersion": 1,
+  "createdAt": "2026-09-04T21:44:45.485Z"
+}

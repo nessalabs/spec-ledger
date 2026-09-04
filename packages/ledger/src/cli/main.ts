@@ -1,11 +1,18 @@
 #!/usr/bin/env node
+import { readFileSync } from "node:fs"
+import { getSession, recordProgress, completeWorkstream } from "../session/project.js"
+import { backlog, evaluateDeferrals, recordDeferredDecision, recordDeferralResolution } from "../deferrals/index.js"
+import { permissionStatus, recordSpecReview, recordAuthority, planRevision, type Authority } from "../permission/authority.js"
+import { listLearnings, recordLearning, type Learning } from "../compass/learnings.js"
 import { resolve } from "node:path"
 import { initLedgerDetailed } from "./init.js"
 import { getVerticalContext } from "../context/vertical.js"
 import { loadLedger } from "../fs/load.js"
 import { blastRadius, layerViolations } from "../graph/impact.js"
 import { openTurn, closeTurn, checkTurn, abandonTurn, listTurns } from "../turns/close.js"
-import { verifyLedger } from "../verify/verify.js"
+import { sourceFingerprint, checkFingerprint } from "../evidence/fingerprint.js"
+import { recordEvidence, type EvidenceInput } from "../evidence/record.js"
+import { checkLedger } from "../verify/execute.js"
 import {
   checkSeal,
   listWorkstreams,
@@ -64,7 +71,16 @@ Usage:
   spec-ledger related --workstream W-001 [--worktrees] [--json] [--root <dir>]
   spec-ledger workstream list|show|seal|check-seal|amend|backfill-doc-digest …
   spec-ledger turn open|close|check|abandon|list …
+  spec-ledger plan --workstream W-…
+  spec-ledger work --workstream W-… --slice SLC-… --goal "…"
+  spec-ledger check | fingerprint | evidence record --file <json>
+  spec-ledger permission status|approve|deny|delegate|revoke|record …
+  spec-ledger learning list|record --file <json>
   spec-ledger review add|list …
+  spec-ledger session | complete --workstream W-…
+  spec-ledger progress --file <json>
+  spec-ledger backlog [--workstream W-…] | obligations --workstream W-…
+  spec-ledger defer | resolve-deferral --file <json>
   spec-ledger align check|approve|waiver …
   spec-ledger automation list [--root <dir>]
   spec-ledger themes list | proposed-claims list [--root <dir>]
@@ -88,7 +104,7 @@ function hasFlag(args: string[], flag: string): boolean {
   return args.includes(flag)
 }
 
-/** Lattice headline — required on every review JSON (`schemas/review.json`). */
+/** Spec Ledger UI headline — required on every review JSON (`schemas/review.json`). */
 function requirePlainSummary(argv: string[]): string {
   const plainSummary = argValue(argv, "--plain-summary")
   if (!plainSummary?.trim()) {
@@ -106,6 +122,7 @@ function requirePlainSummary(argv: string[]): string {
 
 async function main(): Promise<void> {
   const argv = process.argv.slice(2)
+  if (argv[0] === "work") argv.splice(0,1,"turn","open")
   const cmd = argv[0]
   if (!cmd || cmd === "-h" || cmd === "--help") usage()
 
@@ -119,9 +136,104 @@ async function main(): Promise<void> {
     return
   }
 
-  if (cmd === "verify") {
+  if (cmd === "review" && argv[1] === "spec") {
+    const file=argValue(argv,"--file")
+    if (!file) throw new Error("review spec requires --file")
+    console.log(JSON.stringify(recordSpecReview(root,JSON.parse(readFileSync(resolve(file),"utf8"))),null,2));return
+  }
+  if (cmd === "plan") {
+    const id=argValue(argv,"--workstream")
+    if (!id) throw new Error("plan requires --workstream")
+    const permission=permissionStatus(root,id)
+    console.log(JSON.stringify({workstream:loadWorkstream(root,id),related:getRelatedPack(root,id),permission,
+      nextAction:permission.allowed ? "work" : "permission",missingPrerequisites:permission.allowed ? [] : permission.reasons},null,2))
+    return
+  }
+  if (cmd === "session") {
+    console.log(JSON.stringify(getSession(root, argValue(argv, "--workstream")), null, 2)); return
+  }
+  if (cmd === "complete") {
+    const id = argValue(argv, "--workstream")
+    if (!id) throw new Error("complete requires --workstream")
+    console.log(JSON.stringify(completeWorkstream(root, id), null, 2)); return
+  }
+  if (cmd === "backlog") {
+    const id = argValue(argv, "--workstream")
+    console.log(JSON.stringify(id ? backlog(root, id) : backlog(root), null, 2)); return
+  }
+  if (cmd === "obligations") {
+    const id = argValue(argv, "--workstream")
+    if (!id) throw new Error("obligations requires --workstream")
+    console.log(JSON.stringify(evaluateDeferrals(root, id), null, 2)); return
+  }
+  if (cmd === "defer" || cmd === "resolve-deferral") {
+    const file = argValue(argv, "--file")
+    if (!file) throw new Error(`${cmd} requires --file JSON decision`)
+    const input = JSON.parse(readFileSync(resolve(file), "utf8"))
+    console.log(JSON.stringify(cmd === "defer" ? recordDeferredDecision(root, input) : recordDeferralResolution(root, input), null, 2)); return
+  }
+  if (cmd === "progress") {
+    const file = argValue(argv, "--file")
+    if (!file) throw new Error("progress requires --file JSON with turnId, summary, criterionIds, implemented, and optional preview")
+    console.log(JSON.stringify(recordProgress(root, JSON.parse(readFileSync(resolve(file), "utf8"))), null, 2)); return
+  }
+  if (cmd === "permission") {
+    const id=argValue(argv,"--workstream")
+    if (argv[1] === "status") {
+      if (!id) throw new Error("permission status requires --workstream")
+      console.log(JSON.stringify(permissionStatus(root,id),null,2)); return
+    }
+    if (argv[1] === "record") {
+      const file=argValue(argv,"--file")
+      if (!file) throw new Error("permission record requires --file")
+      console.log(JSON.stringify(recordAuthority(root,JSON.parse(readFileSync(resolve(file),"utf8")) as Authority),null,2)); return
+    }
+    const reference=argValue(argv,"--source")
+    if (!reference) throw new Error("permission action requires --source with the authorizing instruction")
+    const source={kind:"agent-reported" as const,reference}
+    const action=argv[1]
+    if (action === "revoke") {
+      console.log(JSON.stringify(recordAuthority(root,{action:"revoke",targetId:argValue(argv,"--id"),source}),null,2)); return
+    }
+    const ws=id ? loadWorkstream(root,id) : undefined
+    if (action === "approve" || action === "deny") {
+      if (!ws || !id) throw new Error("approval/denial requires --workstream")
+      const revisionDigest=argValue(argv,"--revision")
+      if (revisionDigest !== planRevision(root,ws)) throw new Error("use the exact revision from permission status")
+      const targetId=action === "deny" ? permissionStatus(root,id).authorityId : undefined
+      console.log(JSON.stringify(recordAuthority(root,{action:action==="deny" ? "deny" : "grant",mode:action==="approve" ? "revision" : undefined,
+        workstreamId:id,revisionDigest,featureIds:ws.featureIds,targetId,source,
+        supersedes:argValue(argv,"--supersedes")?.split(",")}),null,2)); return
+    }
+    if (action === "delegate") {
+      const featureIds=argValue(argv,"--features")?.split(",") ?? ws?.featureIds
+      console.log(JSON.stringify(recordAuthority(root,{action:"grant",mode:id ? "request" : "standing",workstreamId:id,featureIds,
+        excludeFeatureIds:argValue(argv,"--exclude-features")?.split(","),source}),null,2)); return
+    }
+    throw new Error("unknown permission action")
+  }
+  if (cmd === "learning") {
+    if (argv[1] === "list") { console.log(JSON.stringify(listLearnings(root),null,2));return }
+    const file=argValue(argv,"--file")
+    if (argv[1] !== "record" || !file) throw new Error("learning record requires --file")
+    console.log(JSON.stringify(recordLearning(root,JSON.parse(readFileSync(resolve(file),"utf8")) as Learning),null,2)); return
+  }
+
+  if (cmd === "fingerprint") {
     const ledger = loadLedger(root)
-    const report = verifyLedger(ledger)
+    console.log(JSON.stringify({sourceDigest:sourceFingerprint(ledger.repoRoot,ledger.config.generatedArtifactPaths),
+      checks:ledger.bindings.map(binding=>({bindingId:binding.id,checkDigest:ledger.claims.find(c=>c.id===binding.claimId) ? checkFingerprint(ledger.claims.find(c=>c.id===binding.claimId)!,binding) : null}))},null,2))
+    return
+  }
+  if (cmd === "evidence" && argv[1] === "record") {
+    const file = argValue(argv,"--file")
+    if (!file) throw new Error("usage: spec-ledger evidence record --file <runner-evidence.json>")
+    console.log(JSON.stringify(recordEvidence(root,JSON.parse(readFileSync(resolve(file),"utf8")) as EvidenceInput),null,2))
+    return
+  }
+
+  if (cmd === "verify" || cmd === "check") {
+    const report = checkLedger(root)
     const pass = report.claims.filter((c) => c.outcome === "pass").length
     const fail = report.claims.filter((c) => c.outcome === "fail").length
     const missing = report.claims.filter(
@@ -130,6 +242,7 @@ async function main(): Promise<void> {
     const attested = report.claims.filter((c) => c.outcome === "attested").length
 
     console.log(`spec-ledger verify ${report.ok ? "OK" : "FAIL"}`)
+    if (report.claims.length === 0) console.log("  No requirements checked")
     console.log(
       `  claims: ${pass} pass, ${fail} fail, ${missing} missing/unbound, ${attested} attested`,
     )

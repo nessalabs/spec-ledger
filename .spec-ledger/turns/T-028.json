@@ -1,0 +1,360 @@
+{
+  "schemaVersion": 1,
+  "id": "T-028",
+  "status": "closed",
+  "openedAt": "2026-09-04T21:32:39.026Z",
+  "opened": {
+    "producedBy": "@nessalabs/spec-ledger@0.1.0",
+    "baseCommit": "27f8935ded65daaedb34e30d682ee2647a9f6d3a",
+    "treeDigest": "65104238988a09dd2fcf7d936a58e529bfc521f31eb3ce2f811dff030d8e09f8",
+    "dirtyAtOpen": [
+      ".spec-ledger/decisions/T-026/D-01.json",
+      ".spec-ledger/reviews/turns/T-026/R-01.json",
+      ".spec-ledger/reviews/turns/T-026/R-02.json",
+      ".spec-ledger/reviews/turns/T-026/R-03.json",
+      ".spec-ledger/reviews/turns/T-027/R-01.json",
+      ".spec-ledger/reviews/turns/T-027/R-02.json",
+      ".spec-ledger/reviews/workstreams/W-006/SR-01.json",
+      ".spec-ledger/sources/T-026/S-01.json",
+      ".spec-ledger/turns/T-026.json",
+      ".spec-ledger/turns/T-027.json",
+      ".spec-ledger/workstreams/W-006.json",
+      ".spec-ledger/workstreams/W-006.seals/1.json",
+      "docs/architecture/evidence.md",
+      "docs/workstreams/W-006-trustworthy-autonomous-coding/spec.md",
+      "packages/client/src/index.ts",
+      "packages/ledger/src/cli/main.ts",
+      "packages/ledger/src/context/vertical.ts",
+      "packages/ledger/src/fs/snapshot.ts",
+      "packages/ledger/src/index.ts",
+      "packages/ledger/src/verify/aggregation.break.test.ts",
+      "packages/ledger/src/verify/execute.ts",
+      "packages/ledger/src/verify/readonly.break.test.ts",
+      "packages/ledger/src/verify/verify.ts",
+      "packages/server/src/routes.ts",
+      "packages/ui/app/page.tsx",
+      "packages/ui/app/verify/page.tsx"
+    ],
+    "contextDigest": "be38dc1da0827018adbff6a68ba3d81d624199abd45b371230ac6ddf2fce0e1e",
+    "contextWorkstreamId": "W-006",
+    "contextSliceId": "SLC-03",
+    "contextSealRevision": 1,
+    "contextGeneratedAt": "2026-09-04T21:32:39.026Z"
+  },
+  "intent": {
+    "userPrompt": "Continue W006: source and check fingerprints, artifact integrity, and current-content review and coverage gates.",
+    "restatedGoal": "Keep evidence and reviews tied to the code they checked",
+    "changeType": "feature",
+    "riskLevel": "moderate",
+    "workstreamId": "W-006",
+    "sliceId": "SLC-03",
+    "featureIds": [
+      "verify",
+      "cli",
+      "client",
+      "server",
+      "turns"
+    ]
+  },
+  "closedAt": "2026-09-04T21:39:40.694Z",
+  "facts": {
+    "producedBy": "@nessalabs/spec-ledger@0.1.0",
+    "commit": "27f8935ded65daaedb34e30d682ee2647a9f6d3a",
+    "files": [
+      {
+        "path": ".spec-ledger/align-waivers/AW-09.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/decisions/T-026/D-01.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/turns/T-026/R-01.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/turns/T-026/R-02.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/turns/T-026/R-03.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/turns/T-027/R-01.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/turns/T-027/R-02.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/turns/T-028/R-01.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/turns/T-028/R-02.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/workstreams/W-006/SR-01.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/sources/T-026/S-01.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/turns/T-026.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/turns/T-027.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/turns/T-028.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/workstreams/W-006.json",
+        "kind": "modified",
+        "additions": 206,
+        "deletions": 3
+      },
+      {
+        "path": ".spec-ledger/workstreams/W-006.seals/1.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "docs/architecture/evidence.md",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "docs/workstreams/W-006-trustworthy-autonomous-coding/spec.md",
+        "kind": "modified",
+        "additions": 17,
+        "deletions": 5
+      },
+      {
+        "path": "packages/client/src/index.ts",
+        "kind": "modified",
+        "additions": 8,
+        "deletions": 2
+      },
+      {
+        "path": "packages/ledger/src/align/check.ts",
+        "kind": "modified",
+        "additions": 0,
+        "deletions": 3
+      },
+      {
+        "path": "packages/ledger/src/cli/main.ts",
+        "kind": "modified",
+        "additions": 19,
+        "deletions": 3
+      },
+      {
+        "path": "packages/ledger/src/context/vertical.ts",
+        "kind": "modified",
+        "additions": 7,
+        "deletions": 2
+      },
+      {
+        "path": "packages/ledger/src/evidence/fingerprint.break.test.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/evidence/fingerprint.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/evidence/record.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/fs/snapshot.ts",
+        "kind": "modified",
+        "additions": 7,
+        "deletions": 1
+      },
+      {
+        "path": "packages/ledger/src/git/tree.ts",
+        "kind": "modified",
+        "additions": 9,
+        "deletions": 30
+      },
+      {
+        "path": "packages/ledger/src/index.ts",
+        "kind": "modified",
+        "additions": 7,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/reviews/load.ts",
+        "kind": "modified",
+        "additions": 5,
+        "deletions": 3
+      },
+      {
+        "path": "packages/ledger/src/turns/gates.ts",
+        "kind": "modified",
+        "additions": 1,
+        "deletions": 1
+      },
+      {
+        "path": "packages/ledger/src/types.ts",
+        "kind": "modified",
+        "additions": 13,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/verify/aggregation.break.test.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/verify/execute.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/verify/readonly.break.test.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/verify/verify.ts",
+        "kind": "modified",
+        "additions": 54,
+        "deletions": 44
+      },
+      {
+        "path": "packages/server/src/routes.ts",
+        "kind": "modified",
+        "additions": 6,
+        "deletions": 4
+      },
+      {
+        "path": "packages/ui/app/page.tsx",
+        "kind": "modified",
+        "additions": 2,
+        "deletions": 2
+      },
+      {
+        "path": "packages/ui/app/verify/page.tsx",
+        "kind": "modified",
+        "additions": 2,
+        "deletions": 2
+      },
+      {
+        "path": "schemas/ledger-root.json",
+        "kind": "modified",
+        "additions": 42,
+        "deletions": 9
+      },
+      {
+        "path": "schemas/report.json",
+        "kind": "modified",
+        "additions": 87,
+        "deletions": 19
+      },
+      {
+        "path": "schemas/results.json",
+        "kind": "modified",
+        "additions": 78,
+        "deletions": 11
+      }
+    ],
+    "touchedNodeIds": [
+      "ledger-client",
+      "ledger-core",
+      "ledger-server",
+      "ledger-ui",
+      "schemas"
+    ],
+    "touchedFeatureIds": [
+      "cli",
+      "client",
+      "lattice",
+      "server",
+      "turns",
+      "verify"
+    ],
+    "touchedClaimIds": [
+      "SL-001",
+      "SL-002",
+      "SL-003",
+      "SL-004",
+      "SL-007",
+      "SL-008",
+      "SL-011",
+      "SL-015"
+    ],
+    "blastRadius": {
+      "direct": [
+        "ledger-client",
+        "ledger-core",
+        "ledger-server",
+        "ledger-ui"
+      ],
+      "transitive": [
+        "ledger-client",
+        "ledger-core",
+        "ledger-server",
+        "ledger-ui"
+      ]
+    },
+    "verify": {
+      "ok": true,
+      "ledgerDigest": "35e4d3d1ebdf1e74071441c1087a1ee79fe1ac3b7813f90f8fbf560141eaf15b",
+      "resultsDigest": "ded3eb2608a70a2e28040c5e1e7c4faa49be0d27b4ffc4d3e2a3ffb91bf72fbb",
+      "treeDigest": "7d73478b08a2a66ae925a726487fc1d744b5738f2e7a2c5b92db3264949e2897",
+      "producedAt": "2026-09-04T21:39:40.647Z"
+    },
+    "schemaSurfaceChanged": true,
+    "reviewsDigest": "491babb8cd9ee1f0283cbb52f1111d168a76fb5362470f09966e3a8bd921c118"
+  }
+}

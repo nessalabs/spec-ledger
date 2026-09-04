@@ -5,11 +5,18 @@
  * v1: in-process transport (no daemon). HTTP transport talks to read-only server.
  */
 import {
+  getSession,
+  type SessionProjection,
+  permissionStatus,
+  listLearnings,
+  type PermissionStatus,
+  type Learning,
   loadLedger,
   verifyLedger,
   blastRadius,
   layerViolations,
   snapshotLedger,
+  readStoredReport,
   listSchemaFiles,
   readSchemaFile,
   getVerticalContext,
@@ -49,6 +56,9 @@ export type LedgerTransport =
   | { kind: "http"; baseUrl: string }
 
 export interface SpecLedgerClient {
+  getSession(workstreamId?: string): Promise<SessionProjection>
+  getPermission(workstreamId:string): Promise<PermissionStatus>
+  getLearnings(): Promise<Learning[]>
   getSnapshot(): Promise<LedgerSnapshot>
   getClaims(): Promise<Claim[]>
   getBindings(): Promise<EvidenceBinding[]>
@@ -87,6 +97,9 @@ async function httpGet<T>(baseUrl: string, path: string): Promise<T> {
 function inProcess(rootDir: string): SpecLedgerClient {
   const load = (): LoadedLedger => loadLedger(rootDir)
   return {
+    async getSession(id) { return getSession(rootDir, id) },
+    async getPermission(id) { return permissionStatus(rootDir,id) },
+    async getLearnings() { return listLearnings(rootDir) },
     async getSnapshot() {
       return snapshotLedger(load())
     },
@@ -120,7 +133,7 @@ function inProcess(rootDir: string): SpecLedgerClient {
       return verifyLedger(load())
     },
     async getReport() {
-      return verifyLedger(load())
+      return readStoredReport(load())
     },
     async impact(nodeId) {
       const g = load().graph
@@ -174,6 +187,9 @@ function inProcess(rootDir: string): SpecLedgerClient {
 function http(baseUrl: string): SpecLedgerClient {
   const base = baseUrl.endsWith("/") ? baseUrl : `${baseUrl}/`
   return {
+    getSession: (id) => httpGet(base, `v1/session${id ? `?workstream=${encodeURIComponent(id)}` : ""}`),
+    getPermission: (id) => httpGet(base, `v1/permission?workstream=${encodeURIComponent(id)}`),
+    getLearnings: () => httpGet(base,"v1/learnings"),
     getSnapshot: () => httpGet(base, "v1/snapshot"),
     getClaims: () => httpGet(base, "v1/claims"),
     getBindings: () => httpGet(base, "v1/bindings"),
@@ -185,7 +201,12 @@ function http(baseUrl: string): SpecLedgerClient {
     getPolicy: () => httpGet(base, "v1/policy"),
     getConfig: () => httpGet(base, "v1/config"),
     verify: () => httpGet(base, "v1/verify"),
-    getReport: () => httpGet(base, "v1/report"),
+    getReport: async () => {
+      const response = await fetch(new URL("v1/report", base))
+      if (response.status === 404) return null
+      if (!response.ok) throw new Error(`v1/report: ${response.status}`)
+      return await response.json() as VerifyReport
+    },
     impact: (nodeId) => httpGet(base, `v1/impact/${encodeURIComponent(nodeId)}`),
     layerViolations: () => httpGet(base, "v1/layers/violations"),
     listSchemas: () => httpGet(base, "v1/schemas"),
@@ -217,6 +238,9 @@ export function createSpecLedgerClient(transport: LedgerTransport): SpecLedgerCl
 }
 
 export type {
+  SessionProjection,
+  PermissionStatus,
+  Learning,
   Claim,
   EvidenceBinding,
   CodebaseGraph,
@@ -237,3 +261,5 @@ export type {
   TurnEpisode,
 }
 export { HTTP_CONTRACT }
+export { graphDisplayIssue } from "./graph-shape.js"
+export { createLocalApprovalBridge } from "@nessalabs/spec-ledger"

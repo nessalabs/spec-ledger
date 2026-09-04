@@ -1,5 +1,8 @@
 "use client"
 
+import { presentationCopy } from "@/lib/features"
+
+
 import { Badge } from "@nessalabs/ui"
 import type { Turn } from "@nessalabs/spec-ledger-client"
 import { PeekLink, turnPeekMarkdown } from "@/components/peek-link"
@@ -37,7 +40,7 @@ export function CompactTurnRow({
     .map((a) => a.area.replace(/^packages\//, ""))
     .join(", ")
   const wsId = turn.intent.workstreamId
-  const goal = turn.intent.restatedGoal
+  const goal = presentationCopy(turn.intent.restatedGoal)
   const peek = turnPeekMarkdown({
     id: turn.id,
     goal,
@@ -59,14 +62,14 @@ export function CompactTurnRow({
               peekPath={`peek:workstream/${wsId}`}
               peekLabel={wsId}
               peekContent={[
-                `# ${workstreamTitle ?? wsId}`,
+                `# ${presentationCopy(workstreamTitle ?? wsId)}`,
                 "",
                 `**${wsId}**`,
                 "",
                 `[Open full workstream](/workstreams/${encodeURIComponent(wsId)})`,
                 "",
               ].join("\n")}
-              title={workstreamTitle ?? wsId}
+              title={presentationCopy(workstreamTitle ?? wsId)}
               className="no-underline"
             >
               <Badge

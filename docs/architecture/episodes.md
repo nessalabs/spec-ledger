@@ -74,7 +74,7 @@ It must also answer:
 | **History / episodes** | turns, decisions, sources, attachments, probes, reviews, flows, automation events, audit | **No** |
 
 `ledgerDigest` / verify input digests **exclude** compass + history (avoids
-close → digest cycle). A separate `historyDigest` may exist for Lattice cache only.
+close → digest cycle). A separate `historyDigest` may exist for Spec Ledger UI cache only.
 Agents load joins via `getVerticalContext` (work-model §9.1).
 
 ### 3.2 Product anatomy (standing) vs episode (temporary)
@@ -135,7 +135,7 @@ After this contract ships, a *new* association kind requires:
 1. `schemas/<kind>.json`
 2. `.spec-ledger/<kindDir>/` + `ledger.json` path field
 3. Required `turnId` (path encoding per §5)
-4. `LoadedEpisodes` + client + HTTP GET + Lattice bundle updates
+4. `LoadedEpisodes` + client + HTTP GET + Spec Ledger UI bundle updates
 5. **No** new fields on `Turn` except true spine needs
 
 **In this contract the episode kinds are complete:**  
@@ -366,7 +366,7 @@ make that chain joinable without hand-maintaining commit SHAs inside documents.
 | Workstream / slice / feature / claim ids | Yes | Scope of the episode |
 | **Paths** touched (`facts.files[].path`) | Yes (as names) | Doc ↔ code adjacency |
 | `treeDigest` / file content digests | Yes for same bytes | “Same tree/content, new SHA” |
-| **Commit SHA** (`facts.headCommit` / `commit`) | **No** — rebase/amend/squash rewrite it | Best-effort pointer at close time; Lattice may show **stale/unknown** if missing |
+| **Commit SHA** (`facts.headCommit` / `commit`) | **No** — rebase/amend/squash rewrite it | Best-effort pointer at close time; Spec Ledger UI may show **stale/unknown** if missing |
 
 Do **not** paste commit SHAs into docs as the source of truth — they rot. Prefer
 turn ids (and feature ids) if a doc needs an explicit cross-link.
@@ -393,7 +393,7 @@ next turn that touches the same path or feature  →  evolution chain
 2. Each step is “the episode that changed this doc (and usually the code it describes).”
 3. Feature history is the same join filtered by `touchedFeatureIds` / `featureIds`.
 
-Lattice should expose these joins (`turnsTouchingPath`, feature history, turn
+Spec Ledger UI should expose these joins (`turnsTouchingPath`, feature history, turn
 bundle) — not require authors to maintain a changelog of SHAs in Markdown.
 
 Optional later: `facts.refs.unresolvedDocRefs` / graph locators when a turn cites
@@ -406,12 +406,12 @@ line stays normal prose. Body (or trailers) carries Spec Ledger ids so
 `git log` / PR review / blame can jump back to the ledger:
 
 ```
-Close Lattice turn-detail gaps
+Close Spec Ledger UI turn-detail gaps
 
 SL-Turn: T-002
 SL-Workstream: W-001
 SL-Slice: SLC-03
-SL-Features: turns,lattice
+SL-Features: turns,verify
 SL-Claims: SL-005
 ```
 
@@ -609,8 +609,8 @@ Review {
   target?: "spec"|"code"
   reviewer: string
   verdict: "approve"|"request-changes"|"comment"
-  summary: string                  // technical trail (collapsed in Lattice)
-  plainSummary: string             // REQUIRED — one Lattice sentence, ≤280
+  summary: string                  // technical trail (collapsed in Spec Ledger UI)
+  plainSummary: string             // REQUIRED — one Spec Ledger UI sentence, ≤280
   blocking?: boolean               // set at authoring; do not clear by mutating
   treeDigest?: string              // code / align approve binding
   uncoveredPaths?: string[]
@@ -662,7 +662,7 @@ ReviewMessage {
 }
 ```
 
-Lattice copy: [`skills/references/review-lattice-copy.md`](../../skills/references/review-lattice-copy.md). Review JSON that omits `plainSummary` / finding `plainImpact` is invalid.
+Spec Ledger UI copy: [`skills/references/review-copy.md`](../../skills/references/review-copy.md). Review JSON that omits `plainSummary` / finding `plainImpact` is invalid.
 
 **JSON Schema conditionals (encode-lessons-in-structure; in `schemas/review.json`):**
 
@@ -683,10 +683,10 @@ Alert/interrupt when `finding.severity >= workstream.policy.alertOnSeverity`,
 then apply `onAlert` and **persist** an `AutomationEvent`. Same for
 `onSealedSpecDeviation`.
 
-#### Discussion → decision → change chain (Lattice “why X vs Y”)
+#### Discussion → decision → change chain (Spec Ledger UI “why X vs Y”)
 
 Code review is how teams remember **why**. Capture threads as typed records so
-Lattice can answer without archaeology:
+Spec Ledger UI can answer without archaeology:
 
 ```
 finding (reviewer caught X)
@@ -807,7 +807,7 @@ server GET          →  evaluate in memory OR read last report; never collect; 
 
 ### 7.4 Query module (`episodes/query.ts`)
 
-Schemas and on-disk layout **are** the query model for Lattice. Design for
+Schemas and on-disk layout **are** the query model for Spec Ledger UI. Design for
 cheap joins — not full-repo greps.
 
 #### Layout as index
@@ -817,7 +817,7 @@ cheap joins — not full-repo greps.
 | All decisions for a turn | `decisions/{turnId}/*.json` directory list |
 | All reviews for a turn | `reviews/turns/{turnId}/*.json` |
 | Turn by id | `turns/{turnId}.json` |
-| Feature → turns | Scan turns’ `intent.featureIds` / `facts.touchedFeatureIds` (build map once per Lattice load / server request) |
+| Feature → turns | Scan turns’ `intent.featureIds` / `facts.touchedFeatureIds` (build map once per Spec Ledger UI load / server request) |
 | Claim → decisions | `decisionsCiting(claimId)` over decision `claimIds` |
 | Finding → decisions | Filter decisions by `addressesFindingIds` |
 | Path → turns | Filter `facts.files[].path` (build inverted index in memory) |
@@ -827,7 +827,7 @@ cheap joins — not full-repo greps.
 
 1. **FK on the child** — `turnId` required (except workstream-scoped spec reviews).
 2. **Stable string ids** with sortable prefixes (`T-002`, `T-002/D-01`, `F-01`).
-3. **No untyped bags** — Lattice fields must be schema keys so clients can project columns.
+3. **No untyped bags** — Spec Ledger UI fields must be schema keys so clients can project columns.
 4. **Denormalize onto `facts` at close** what UI lists need without opening every side file when possible (`decisionIds`, digests, touched*).
 5. **Arrays of ids over embedded blobs** for large text (rationale files / attachments).
 6. **Sort** list APIs by `id` ascending (deterministic).
@@ -895,7 +895,7 @@ spec-ledger audit [--root .] [--json]
 
 ---
 
-## 9. Client / HTTP / Lattice
+## 9. Client / HTTP / Spec Ledger UI
 
 **Client:** `getVerticalContext`, `getTurnBundle`, typed getters, `getFeatureHistory`,
 `getClaimHistory`, `audit()`, adherence APIs unchanged.
@@ -904,7 +904,7 @@ spec-ledger audit [--root .] [--json]
 nested collection routes, `/v1/claims/:id/history`, `/v1/features/:id/history`,
 `/v1/audit`, `/v1/automation-events`, plus existing adherence routes. Writes → 405.
 
-**Lattice:**
+**Spec Ledger UI:**
 
 | Route | Shows |
 | --- | --- |
@@ -971,7 +971,7 @@ land, rewrite the two turns in the same change:
 6. Decisions + sources
 7. Attachments + probes + reviews + flows
 8. Audit + policy
-9. Client/HTTP/Lattice bundle + histories
+9. Client/HTTP/Spec Ledger UI bundle + histories
 10. Skill + DESIGN/AGENTS updates
 
 **P2 — CI policy**
@@ -1000,7 +1000,7 @@ land, rewrite the two turns in the same change:
 | Code-adversarial evidence requires a run | Bare path strings unrepresentable; approve needs killersCited |
 | Immutable review resolution + close gates | Blocking findings cannot be greenwashed |
 | Finding → decision → turn trail + review messages | “Why X vs Y” without archaeology |
-| Schema layout + FKs are the Lattice query model | Efficient joins without untyped bags |
+| Schema layout + FKs are the Spec Ledger UI query model | Efficient joins without untyped bags |
 | `commit-msg` hook requires SL-Turn when a turn is open | Trailers stay real, not honor-system |
 | `opened.contextDigest` tool-stamped | Context use is auditable |
 | VerticalContext as step 0 | Agents must not start from a blank chat |

@@ -25,6 +25,12 @@ export function snapshotLedger(ledger: LoadedLedger): LedgerSnapshot {
   }
 }
 
+/** Last persisted report; historical observation, not a fresh verification. */
+export function readStoredReport(ledger: LoadedLedger): VerifyReport | null {
+  const path = join(ledger.rootDir, ledger.config.reportPath ?? "results/report.json")
+  return existsSync(path) ? JSON.parse(readFileSync(path, "utf8")) : null
+}
+
 /** Protocol / schema contracts living next to the tool (repo `schemas/`). */
 export function listSchemaFiles(repoRoot: string): string[] {
   const dir = join(repoRoot, "schemas")
@@ -43,6 +49,9 @@ export function readSchemaFile(repoRoot: string, name: string): unknown {
 
 /** Documented HTTP surface (read-only). Kept in sync with server routes. */
 export const HTTP_CONTRACT = [
+  {method:"GET",path:"/v1/session",description:"Read-only session projection; optional ?workstream=. Never runs checks or saves approvals."},
+  {method:"GET",path:"/v1/permission",description:"Current permission ?workstream="},
+  {method:"GET",path:"/v1/learnings",description:"Attributed correction history"},
   { method: "GET", path: "/v1/health", description: "Liveness" },
   { method: "GET", path: "/v1/contract", description: "This HTTP route table" },
   { method: "GET", path: "/v1/snapshot", description: "Claims, bindings, graph, policy, fresh verify report" },
@@ -51,7 +60,7 @@ export const HTTP_CONTRACT = [
   { method: "GET", path: "/v1/bindings", description: "All evidence bindings" },
   { method: "GET", path: "/v1/graph", description: "Codebase graph" },
   { method: "GET", path: "/v1/policy", description: "Layer policy" },
-  { method: "GET", path: "/v1/verify", description: "Run verify; write report; return it" },
+  { method: "GET", path: "/v1/verify", description: "Evaluate current observations without running checks or writing reports" },
   { method: "GET", path: "/v1/report", description: "Last written report (404 if none)" },
   { method: "GET", path: "/v1/impact/:nodeId", description: "Blast radius" },
   { method: "GET", path: "/v1/layers/violations", description: "Illegal cross-layer edges" },

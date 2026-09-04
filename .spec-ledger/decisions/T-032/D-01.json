@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "turnId": "T-032",
+  "decision": "Use a local browser approval adapter and show approval controls only when a decision is needed.",
+  "rationale": "User requested direct saved approval, Nessa UI dropdowns, removal of duplicate overview, and consistent Spec Ledger UI naming.",
+  "discovery": {
+    "kind": "spec-gap",
+    "reportedVia": "user",
+    "observation": "CLI handoff and repeated prompts did not match the desired local UI workflow.",
+    "specRef": "W-006/AC-08",
+    "regression": "Local approval adapter adversarial tests and browser persistence walkthrough."
+  },
+  "id": "T-032/D-01"
+}

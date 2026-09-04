@@ -91,29 +91,22 @@ If `worktrees.scanned === false`, copy `skippedReason` into `residualRisks`.
 
 1. Emit findings with severity; cite claim / feature / path / turn ids from the pack.
    Each review needs `plainSummary` and each finding needs `plainImpact` — see
-   [`../references/review-lattice-copy.md`](../references/review-lattice-copy.md).
+   [`../references/review-copy.md`](../references/review-copy.md).
    Keep `gap` technical.
 2. Alert when `severity >= policy.alertOnSeverity`; apply `onAlert`.
 3. Propose fixes; honor `block`/`wait` / timeout.
 4. Re-check until alert-threshold findings clear, waive, or policy `move`.
-5. Ask human to **seal** when ready:
-
-```json
-{
-  "status": "sealed",
-  "seal": {
-    "sealedAt": "<iso>",
-    "sealedBy": "<human>",
-    "specDigest": "<hash of sealed body>",
-    "specBreakReviewId": "W-00N/SR-01"
-  }
-}
-```
+5. Honor the user's approval mode. In revision mode obtain approval of the current
+revision; with applicable request or standing delegation, proceed within its
+scope. `spec-ledger work` creates the executable snapshot after checking permission
+and the current independent spec review. Never hand-write seal hashes or claim a
+user signed an agent-created snapshot.
 
 ## Review artifact
 
-Until CLI exists, write e.g. `.spec-ledger/reviews/workstreams/W-00N/SR-01.json`
-(include `id` on findings). Cite pack paths in `gap` / `evidencePath`.
+Use `spec-ledger review spec --file review.json`; it stamps the current revision
+and writes an immutable workstream review. Set the workstream's `specBreakReviewId`
+to that record's ID. Include finding IDs and cite pack paths in `gap` / `evidencePath`.
 
 ## Exit summary
 
@@ -124,13 +117,13 @@ related: features=… claims=… docs=… worktree-cautions=N|skipped
 alertOnSeverity: high
 onAlert: move|block|wait
 alerted: N | waived: N | timed_out: N
-next: human seal | shape amend | wait-timeout | sl-dev-build (only if sealed/bypass)
+next: revision approval | applicable delegation | shape amend | sl-work
 ```
 
 ## Absences
 
 - No code, no turns, no verify theater
-- No sealing without human confirm
+- No executable snapshot without applicable user authorization
 - No silent post-seal edits
 - No inventing foreign-worktree conflicts without pack `worktree-caution` entries
 - No skipping `related` when the command exists for this workstream

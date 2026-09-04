@@ -1,0 +1,12 @@
+{
+  "id": "SL-019",
+  "kind": "invariant",
+  "statement": "Execution permission honors scoped grants, denial, revocation, current revisions and scoped corrections without claiming host authentication.",
+  "required": true,
+  "area": "core",
+  "links": {
+    "docs": [
+      "docs/workstreams/W-006-trustworthy-autonomous-coding/spec.md"
+    ]
+  }
+}

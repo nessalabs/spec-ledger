@@ -1,5 +1,6 @@
+import { resolveFeatureId, featureHref, featureSlug, featureLabel, featureSummary } from "@/lib/features"
 import Link from "next/link"
-import { notFound } from "next/navigation"
+import { notFound, redirect } from "next/navigation"
 import {
   Badge,
   Card,
@@ -27,12 +28,13 @@ export default async function FeaturePage({
     liveReport(),
     client.getClaims(),
   ])
-  const feature = graph?.features.find((f) => f.id === id)
+  const feature = resolveFeatureId(graph?.features ?? [], id)
   if (!feature) notFound()
+  if (id === "lattice" && !graph?.features.some(f => f.id === "spec-ledger-ui")) redirect(featureHref(feature.id))
 
-  const history = turnsTouchingFeature(turns, id)
+  const history = turnsTouchingFeature(turns, feature.id)
   const nodes =
-    graph?.nodes.filter((n) => n.featureIds?.includes(id)) ?? []
+    graph?.nodes.filter((n) => n.featureIds?.includes(feature.id)) ?? []
   const linkedClaims = claims.filter((c) => feature.claimIds?.includes(c.id))
 
   return (
@@ -43,22 +45,22 @@ export default async function FeaturePage({
             Features
           </Link>
           {" / "}
-          {feature.id}
+          {featureSlug(feature.id)}
         </p>
         <div className="flex flex-wrap items-center gap-2">
-          <h1 className="text-2xl font-semibold tracking-tight">{feature.name}</h1>
+          <h1 className="text-2xl font-semibold tracking-tight">{featureLabel(feature.id, feature.name)}</h1>
           <Badge variant="outline" className="font-mono">
-            {feature.id}
+            {featureSlug(feature.id)}
           </Badge>
         </div>
-        <p className="max-w-2xl text-sm text-muted-foreground">{feature.summary}</p>
+        <p className="max-w-2xl text-sm text-muted-foreground">{featureSummary(feature.id, feature.summary)}</p>
       </header>
 
       {feature.keywords?.length ? (
         <div className="flex flex-wrap gap-2">
           {feature.keywords.map((k) => (
             <Badge key={k} variant="secondary">
-              {k}
+              {feature.id === "lattice" ? k.replace(/\blattice\b/gi, "Spec Ledger UI") : k}
             </Badge>
           ))}
         </div>

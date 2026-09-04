@@ -25,3 +25,10 @@ pre,
   background: var(--foreground);
   color: var(--background);
 }
+
+/* The collapsed mobile rail is fixed; reserve its width in the content flow. */
+@media (width < 48rem) {
+  .spec-ledger-shell:has(> [data-slot="sidebar"][data-state="collapsed"][data-collapsible="icon"]) > [data-slot="sidebar-inset"] {
+    margin-inline-start: var(--nessa-sidebar-width-icon);
+  }
+}

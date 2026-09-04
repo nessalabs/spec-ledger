@@ -1,16 +1,24 @@
 # Spec Ledger — Work model (implementation contract)
 
-**Status:** Ready for human review  
-**Date:** 2026-09-02  
-**Repo:** `nessa-spec-test`  
-**Audience:** you (approve / amend); then agents implement  
+The execution and evidence portions below describe the original human-seal
+workflow. Current implementations use [permission](permission.md),
+[evidence](evidence.md), [deferrals](deferrals.md), and [session](session.md) as the
+contracts for those concerns. In particular, applicable user delegation can
+authorize an agent-created executable snapshot, reads never run checks, and
+completion uses the shared gate. Historical human-seal-only and direct-status
+instructions below do not override these contracts or the user's explicit scope.
+
+**Status:** Ready for human review
+**Date:** 2026-09-02
+**Repo:** `nessa-spec-test`
+**Audience:** you (approve / amend); then agents implement
 
 This is the **single SSOT** for how work is shaped, stored, and executed under Spec
 Ledger. Episode file-level detail remains in
 [`episodes.md`](./episodes.md);
 this document owns the **hierarchy**, **agent roles**, and how they compose.
 
-Index: [`../README.md`](../README.md).  
+Index: [`../README.md`](../README.md).
 Companions: [`../research/project-anatomy.md`](../research/project-anatomy.md),
 [`../research/high-velocity-decisions.md`](../research/high-velocity-decisions.md),
 [`../../DESIGN.md`](../../DESIGN.md).
@@ -323,7 +331,7 @@ For each vertical:
     fix → turn close → verify
     │
     ▼
-verify + audit · Lattice: compass + workstreams + turns + automation events
+verify + audit · Spec Ledger UI: compass + workstreams + turns + automation events
 ```
 
 ---
@@ -338,7 +346,7 @@ especially when wait timeouts / automated cycles proceed without the user.
 
 #### Vision — `schemas/vision.json`
 
-Path: `.spec-ledger/vision.json`  
+Path: `.spec-ledger/vision.json`
 Optional narrative twin: `.spec-ledger/vision.md` (human-readable; JSON wins for
 fields agents must parse).
 
@@ -429,7 +437,7 @@ Learning {
 ```
 
 **Promotion:** learning → tenet when it should weigh *future* automated choices.
-Keep the learning `status: promoted` + `promotedTenetId` for Lattice history.
+Keep the learning `status: promoted` + `promotedTenetId` for Spec Ledger UI history.
 
 #### Compass absences
 
@@ -467,7 +475,7 @@ FeatureMeta {
 
 **Rule:** Sub-feature *delivery* prefers a **workstream under a feature**, not an
 infinite feature tree. Split a standing child feature only when the capability is
-durable and independently talkaboutable forever in Lattice.
+durable and independently talkaboutable forever in Spec Ledger UI.
 
 ### 4.3 Claim / binding / verify
 
@@ -591,11 +599,11 @@ draft → shaped → spec_review → sealed → active → done
 | `active` | ≥1 implementing turn opened |
 | `done` | Acceptance met; blocking reviews clear (or waived) |
 
-**Severity order:** `low` < `moderate` < `high` < `critical`.  
+**Severity order:** `low` < `moderate` < `high` < `critical`.
 Alert when `finding.severity >= policy.alertOnSeverity`.
 
 **Theme ↔ feature ownership:** `feature.themeId` is canonical. Optional
-`theme.featureIds` is a denormalized Lattice cache — audit may warn on drift;
+`theme.featureIds` is a denormalized Spec Ledger UI cache — audit may warn on drift;
 do not author conflicting pairs.
 
 ### 5.1 Vertical rule
@@ -606,7 +614,7 @@ end-to-end paths over horizontal layer chores. No `tasks/` WBS.
 
 **Cut by independently fail-able product moments**, not package layers. After
 each closed turn, something product-true should hold (typed API, CLI path,
-Lattice join)—not “schemas landed.” For IO libraries: fixture→typed first,
+Spec Ledger UI join)—not “schemas landed.” For IO libraries: fixture→typed first,
 then the **same typed contract** over storage; skip a raw-bytes-only middle
 slice unless the storage client is itself a standing feature. For platform
 bets: prove the asked loop (e.g. context → open/break/close → visible episode)
@@ -685,7 +693,7 @@ Agents do **not** sleep for 10 minutes; the next invocation applies the timeout.
 
 ### 5.3 Seal digest + revisioned snapshots
 
-**Canonicalization:** [RFC 8785 JSON Canonicalization Scheme (JCS)](https://www.rfc-editor.org/rfc/rfc8785).  
+**Canonicalization:** [RFC 8785 JSON Canonicalization Scheme (JCS)](https://www.rfc-editor.org/rfc/rfc8785).
 `specDigest = sha256(JCS(sealPayload))` hex-encoded.
 
 `sealPayload` contains:
@@ -703,12 +711,12 @@ workstreams/W-001.seals/1.json         # immutable snapshot revision 1
 workstreams/W-001.seals/2.json         # revision 2 after explicit re-seal
 ```
 
-`seal.snapshotPath` = `workstreams/W-001.seals/{revision}.json`.  
+`seal.snapshotPath` = `workstreams/W-001.seals/{revision}.json`.
 `seal.revision` increments only on explicit `workstream seal`. Prior revision
 files are retained forever (git history + on-disk). Live `W-001.json` may update
 `seal` pointer; never mutate a seals/N.json file.
 
-`workstream check-seal` recomputes digest from the pointed snapshot.  
+`workstream check-seal` recomputes digest from the pointed snapshot.
 Audit `seal-digest-drift` if live shaped fields diverge from current snapshot
 without a `postSealAmends` entry.
 
@@ -766,7 +774,7 @@ audit): see [`episodes.md`](./episodes.md).
 ```
 
 `ledger.json`: `visionPath`, `tenetsDir`, `learningsDir`, `themesDir`,
-`workstreamsDir`, `proposedClaimsDir`, `automationEventsDir`.  
+`workstreamsDir`, `proposedClaimsDir`, `automationEventsDir`.
 Verify **ignores** compass + workstreams + proposed-claims + themes + events.
 
 ---
@@ -814,7 +822,7 @@ not skip this.
 
 ---
 
-## 9. Client / Lattice / VerticalContext
+## 9. Client / Spec Ledger UI / VerticalContext
 
 ### 9.1 `getVerticalContext(workstreamId, sliceId)` / CLI `context`
 
@@ -991,11 +999,11 @@ Honor interrupt resume on context/open. Naming: [`skills/README.md`](../../skill
 ## 13. Implementation order
 
 **P0** — Episode trust + **VerticalContext** CLI/client + seal digest + automation
-events + breaker-before-close  
+events + breaker-before-close
 **P1** — Work model runtime: themes, workstreams, compass, proposed-claims,
-turn.workstreamId, skills, Lattice timeline  
-**P2** — Episode side collections + decision `basis`  
-**P3** — Audit policy + CI  
+turn.workstreamId, skills, Spec Ledger UI timeline
+**P2** — Episode side collections + decision `basis`
+**P3** — Audit policy + CI
 **P4** — Dogfood (blocked on `context` + `turn open --workstream` existing)
 
 **P4 — Dogfood this repo** (after P0–P1 runtime; docs layout already started):

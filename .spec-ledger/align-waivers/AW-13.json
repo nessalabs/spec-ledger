@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "id": "T-032/AW-13",
+  "reason": "User explicitly authorized W006 implementation, local UI approval controls, and Spec Ledger UI branding. Exact uncovered paths only: .cursor/rules/review-subagent-models.mdc and scripts/git-hooks/validate-staged-json.mjs rename visible review copy; AGENTS.md and DESIGN.md document scoped permission/workflow; README.md and package.json document loopback UI entry points, rename UI scripts, and include presentation helper tests. This waiver covers only these six paths at the current source digest.",
+  "actor": "agent:align:w006-independent",
+  "treeDigest": "08a3836ed83dfdc3780d94f773a8b39146127774ebd38dfc55b4ea17dc5818e4",
+  "createdAt": "2026-09-04T23:00:55.180Z",
+  "workstreamId": "W-006",
+  "turnId": "T-032",
+  "paths": [
+    ".cursor/rules/review-subagent-models.mdc",
+    "AGENTS.md",
+    "DESIGN.md",
+    "README.md",
+    "package.json",
+    "scripts/git-hooks/validate-staged-json.mjs"
+  ]
+}

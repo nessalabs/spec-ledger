@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "id": "T-030/AW-11",
+  "reason": "User-authorized W-006 implementation includes AGENTS and DESIGN permission guidance carried from SLC-04; concurrent session work and the requested UI repair are covered by the existing W-006 plan. This scoped carryover does not waive behavioral or completion checks.",
+  "actor": "agent:user-request-scope",
+  "treeDigest": "176ce1b2734003743f950d8e7a0db7872dc7069d4302d444b8c18e78174a58be",
+  "createdAt": "2026-09-04T22:20:58.409Z",
+  "workstreamId": "W-006",
+  "turnId": "T-030"
+}

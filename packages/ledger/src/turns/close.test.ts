@@ -68,6 +68,7 @@ describe("turns", () => {
     const dir = mkdtempSync(join(tmpdir(), "sl-open-ctx-"))
     try {
       cpSync(join(REPO, ".spec-ledger"), join(dir, ".spec-ledger"), { recursive: true })
+      cpSync(join(REPO, "docs"), join(dir, "docs"), { recursive: true })
       rmSync(join(dir, ".spec-ledger/turns"), { recursive: true, force: true })
       mkdirSync(join(dir, ".spec-ledger/turns"), { recursive: true })
       spawnSync("git", ["init"], { cwd: dir })
@@ -123,6 +124,7 @@ describe("turns", () => {
     const dir = mkdtempSync(join(tmpdir(), "sl-close-gate-"))
     try {
       cpSync(join(REPO, ".spec-ledger"), join(dir, ".spec-ledger"), { recursive: true })
+      cpSync(join(REPO, "docs"), join(dir, "docs"), { recursive: true })
       // Avoid colliding with copied open/closed turns
       rmSync(join(dir, ".spec-ledger/turns"), { recursive: true, force: true })
       mkdirSync(join(dir, ".spec-ledger/turns"), { recursive: true })

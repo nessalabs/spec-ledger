@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "T-026/R-02",
+  "turnId": "T-026",
+  "workstreamId": "W-006",
+  "kind": "adversarial",
+  "target": "code",
+  "reviewer": "agent:sl-dev-break:aggregation",
+  "verdict": "approve",
+  "blocking": false,
+  "alertOnSeverity": "high",
+  "treeDigest": "64a56bb4b18fc5bc200e39f042ab5157ba04b64c5f1ec59482077c1335cd55a7",
+  "resolvesReviewId": "T-026/R-01",
+  "plainSummary": "All required checks affect the verdict, and failed reports remain readable through both client transports.",
+  "summary": "Ran node --test packages/ledger/dist/verify/aggregation.break.test.js with loopback permission: 4 tests passed, no skips. 152 mixed-evidence permutations preserve fail > missing > attested > pass; duplicate keys are rejected including agreeing and unreferenced duplicates; malformed locators/invalid result values stay missing. Actual production buildRoutes behind a temporary HTTP server plus both client transports deliver failed verify/report/snapshot data. T-026/R-01 F-01 is resolved after snapshot route changed to HTTP 200 with report.ok:false. Prior-HEAD verifier was separately transpiled into an isolated dist copy; all three aggregation groups failed before fixes. Breaker changed only its new test and review artifacts.",
+  "killersCited": [
+    "packages/ledger/src/verify/aggregation.break.test.ts::is invariant under every ordering of mixed evidence kinds",
+    "packages/ledger/src/verify/aggregation.break.test.ts::rejects agreeing duplicates and unused duplicates without silently choosing a row",
+    "packages/ledger/src/verify/aggregation.break.test.ts::cannot hide a malformed locator or invalid result outcome behind a passing check",
+    "packages/ledger/src/verify/aggregation.break.test.ts::delivers failed reports and snapshots through actual HTTP and in-process clients"
+  ],
+  "findings": [],
+  "residualRisks": [
+    "Bounded SLC-01 aggregation/transport review; no browser rendering claim is made by these tests. Root is verifying the visible UI scenario separately.",
+    "Actual HTTP route handlers and clients are exercised; createLedgerServer lifecycle itself is not part of this test scope.",
+    "Read side effects, evidence freshness, permissions and deferrals remain explicit later slices.",
+    "Extra poison-input case: duplicate rows unused by a binding still invalidate report input."
+  ]
+}
