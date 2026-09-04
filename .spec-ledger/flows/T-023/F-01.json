@@ -1,0 +1,8 @@
+{
+  "schemaVersion": 1,
+  "turnId": "T-023",
+  "title": "Release publishes to npm",
+  "after": "publish.yml on Release only; dry-run via workflow_dispatch",
+  "before": "No Release→npm path",
+  "id": "T-023/F-01"
+}

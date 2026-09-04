@@ -27,8 +27,12 @@ test("seal + contextDigest stable across calls", () => {
   const dir = mkdtempSync(join(tmpdir(), "sl-ctx-"))
   try {
     cpSync(join(REPO, ".spec-ledger"), join(dir, ".spec-ledger"), { recursive: true })
+    cpSync(join(REPO, "docs/workstreams"), join(dir, "docs/workstreams"), {
+      recursive: true,
+    })
     const ws = sealWorkstream(dir, "W-001", "test")
     assert.ok(ws.seal)
+    assert.ok(ws.seal.specDocDigest)
     assert.equal(ws.seal.specDigest, computeSpecDigest(ws))
     const check = checkSeal(dir, "W-001")
     assert.equal(check.ok, true)

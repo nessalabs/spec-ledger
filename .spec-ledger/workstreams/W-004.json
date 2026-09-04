@@ -3,7 +3,7 @@
   "id": "W-004",
   "status": "done",
   "createdAt": "2026-09-03T06:45:00.000Z",
-  "updatedAt": "2026-09-03T08:44:04.275Z",
+  "updatedAt": "2026-09-04T20:22:27.977Z",
   "specBreakReviewId": "W-004/SR-01",
   "amendedAfterSpecBreak": [
     "W-004/SR-01",
@@ -19,9 +19,9 @@
   ],
   "primaryFeatureId": "lattice",
   "title": "Spec and code stay coupled",
-  "problem": "Agents implement UI and product changes without a sealed bet or open turn (violating TN-002 in spirit). Lattice then shows file lists and bare node ids instead of the plan story; Verify shows cryptic SL-00N badges without statements. Nothing flags product paths that are not covered by sealed spec, and nothing requires an align-approve JSON before push/PR/CI \u2014 skip is too easy by silence.",
+  "problem": "Agents implement UI and product changes without a sealed bet or open turn (violating TN-002 in spirit). Lattice then shows file lists and bare node ids instead of the plan story; Verify shows cryptic SL-00N badges without statements. Nothing flags product paths that are not covered by sealed spec, and nothing requires an align-approve JSON before push/PR/CI — skip is too easy by silence.",
   "objective": "Plan-first Lattice, and product paths need coverage approve before they ship.",
-  "appetite": "1\u20132 days",
+  "appetite": "1–2 days",
   "changeType": "feature",
   "riskLevel": "elevated",
   "trust": {
@@ -55,8 +55,8 @@
   },
   "acceptanceCriteria": [
     "Human-reviewed bet prose lives under docs/workstreams/ as a title-slug Markdown file; .spec-ledger holds JSON metadata only and links via specPath (repo-relative)",
-    "Sidebar wordmark is specLedger (bold 'spec', regular 'Ledger'); no 'Bets \u2192 turns \u2192 claims' subtitle under the brand",
-    "Turn detail leads with plan loaded from workstream specPath Markdown (before/after + ask), before\u2192after diagram or flows, commit subject/body, related docs; FileDiffCard lists product files; build artifacts (.next, node_modules) excluded from impact lists",
+    "Sidebar wordmark is specLedger (bold 'spec', regular 'Ledger'); no 'Bets → turns → claims' subtitle under the brand",
+    "Turn detail leads with plan loaded from workstream specPath Markdown (before/after + ask), before→after diagram or flows, commit subject/body, related docs; FileDiffCard lists product files; build artifacts (.next, node_modules) excluded from impact lists",
     "Architecture touch shows workstream link + named features (+ claim count), not only bare node ids",
     "Verify page: covered totals (e.g. required pass/total) plus each verdict row shows claim statement primary and id secondary",
     "Claims/features/bets/turns index rows stay compact",
@@ -77,11 +77,11 @@
     "Semantic line-by-line 'is this justified by prose' beyond path coverage"
   ],
   "rabbitHoles": [
-    "Perfect semantic justification of every line \u2014 out; path\u2192feature/plan coverage only in v1",
+    "Perfect semantic justification of every line — out; path→feature/plan coverage only in v1",
     "Per-hunk blame theater"
   ],
   "residualRisks": [
-    "Large uncommitted UI polish already exists under done W-003; after seal it must land only under an open W-004 turn (SLC-01) \u2014 no further product UI until turn open",
+    "Large uncommitted UI polish already exists under done W-003; after seal it must land only under an open W-004 turn (SLC-01) — no further product UI until turn open",
     "related worktree scan remains caution-only string; multi-worktree agents still need human judgment",
     "Schema fields treeDigest/uncoveredPaths/expectedPaths are declared for this bet; CLI/runtime enforcement ships in SLC-02..04"
   ],
@@ -103,7 +103,7 @@
       "acceptance": [
         "Wordmark specLedger (bold spec); drop path subtitle under brand",
         "Turn page loads plan from titled Markdown at workstream specPath",
-        "Turn page order: plan \u2192 before/after \u2192 commit \u2192 docs \u2192 trail \u2192 FileDiffCard \u2192 collapsed architecture/ledger",
+        "Turn page order: plan → before/after → commit → docs → trail → FileDiffCard → collapsed architecture/ledger",
         "Architecture touch: workstream + feature names; ignore .next/node_modules in file impact",
         "Verify: covered totals + statement-first verdict rows",
         "Dense list rows on claims/features/bets/turns"
@@ -207,10 +207,33 @@
   "shapedBy": "agent:sl-plan-shape",
   "attachmentIds": [],
   "seal": {
-    "sealedAt": "2026-09-03T06:42:14.120Z",
+    "sealedAt": "2026-09-04T20:15:19.777Z",
     "sealedBy": "human",
-    "specDigest": "f8689eb9a9112b41cad4f8cfd87501503d510960bedff0de85be9818a2e489ca",
-    "snapshotPath": "workstreams/W-004.seals/1.json",
-    "revision": 1
-  }
+    "specDigest": "73c225e6f1dcd923c32b1731e64d3e21b3c94f7165b2779a749fc179204291e6",
+    "snapshotPath": "workstreams/W-004.seals/3.json",
+    "revision": 3,
+    "specDocDigest": "210575dcce65105d98c1f32eb6a2f194acef1d22868bfba8c5c58bcf22676e4c"
+  },
+  "postSealAmends": [
+    {
+      "at": "2026-09-04T20:22:15.180Z",
+      "summary": "Rename npm package scope @nessa → @nessalabs in pitch prose",
+      "humanConfirmed": true,
+      "sealedRevision": 3,
+      "beforeDocDigest": "210575dcce65105d98c1f32eb6a2f194acef1d22868bfba8c5c58bcf22676e4c",
+      "afterDocDigest": "d3e77d906a0067f9440a11fbaa9eedd6497651053bb24b05fbd8b7cb8320200d",
+      "actor": "human",
+      "turnId": "T-022"
+    },
+    {
+      "at": "2026-09-04T20:22:27.977Z",
+      "summary": "Add Modifications table for @nessalabs rename",
+      "humanConfirmed": true,
+      "sealedRevision": 3,
+      "beforeDocDigest": "d3e77d906a0067f9440a11fbaa9eedd6497651053bb24b05fbd8b7cb8320200d",
+      "afterDocDigest": "4bba6a2e047a6657ef4fcc8a72531442ad6c89f4499547d99906160f30d521af",
+      "actor": "human",
+      "turnId": "T-022"
+    }
+  ]
 }

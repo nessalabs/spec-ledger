@@ -32,9 +32,9 @@ results) and carries digests of those inputs; nothing else may produce `pass`.**
 | Results-file evidence seam | Any language can prove claims without a TS plugin API |
 | Server is GET-only | Git is the write path; no “mark verified” button |
 | Client is the only UI/embed gateway | Lattice stays replaceable; no FS imports from UI |
-| Core in `@nessa/spec-ledger`; thin client/server/ui | One implementable core; satellites stay small |
+| Core in `@nessalabs/spec-ledger`; thin client/server/ui | One implementable core; satellites stay small |
 | Schemas as files under `schemas/` | SSOT without a schema package |
-| Name `@nessa/spec-ledger*` / `.spec-ledger/` | Avoid npm/`@ledger` collisions |
+| Name `@nessalabs/spec-ledger*` / `.spec-ledger/` | Avoid npm/`@ledger` collisions |
 | Workstreams + verticals, not `tasks/` | Shape Up: no fake WBS; one turn = one e2e-checkable slice |
 | `opened.contextDigest` stamped at turn open | Context use is auditable, not honor-system |
 | Automation event state machine + resume | Wait/timeout survives process death |
@@ -128,4 +128,4 @@ context → sl-dev-build → sl-dev-break (open turn) → close/verify**
 
 ## Naming
 
-`@nessa/spec-ledger*`. On-disk `.spec-ledger/`. Avoid bare `@ledger`.
+`@nessalabs/spec-ledger*`. On-disk `.spec-ledger/`. Avoid bare `@ledger`.

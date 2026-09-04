@@ -1,4 +1,4 @@
-import { Badge } from "@nessa-ui/react"
+import { Badge } from "@nessalabs/ui"
 import type { DigestFreshness } from "@/lib/turns"
 
 export function FreshnessBadge({ freshness }: { freshness: DigestFreshness }) {

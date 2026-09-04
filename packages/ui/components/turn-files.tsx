@@ -11,8 +11,8 @@ import {
   FileDiffListItem,
   FileDiffListToggle,
   FileDiffPath,
-} from "@nessa-ui/react"
-import type { Turn } from "@nessa/spec-ledger-client"
+} from "@nessalabs/ui"
+import type { Turn } from "@nessalabs/spec-ledger-client"
 import { splitTurnFiles } from "@/lib/impact"
 
 type TurnFile = NonNullable<Turn["facts"]>["files"][number]

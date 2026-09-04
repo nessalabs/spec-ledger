@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "T-025/R-01",
+  "turnId": "T-025",
+  "workstreamId": "W-005",
+  "kind": "adversarial",
+  "target": "code",
+  "reviewer": "agent:sl-dev-break:seals",
+  "verdict": "approve",
+  "blocking": false,
+  "plainSummary": "Newly approved spec revisions remain authoritative, and changing a live document hash cannot conceal drift.",
+  "summary": "Bounded SLC-05 review of revision-scoped document amendments and snapshot-backed document digest validation. Breaker-owned initial regression tests ran red before production changes: node --test packages/ledger/dist/workstream/pr1-regressions.break.test.js exited 1, 0 passed / 4 failed for the intended assertions. After production fix, compiled with node packages/ledger/node_modules/typescript/bin/tsc -p packages/ledger/tsconfig.json (exit 0) and ran node --test packages/ledger/dist/workstream/doc-digest.test.js packages/ledger/dist/workstream/doc-digest.break.test.js packages/ledger/dist/workstream/pr1-regressions.break.test.js (exit 0): 18 tests passed, 0 failed. The four original killers were not weakened. One additional composition probe verifies a legitimate amendment after reseal still succeeds and cannot mask mutation of the underlying seal pointer.",
+  "killersCited": [
+    "packages/ledger/src/workstream/pr1-regressions.break.test.ts::resealing an amended document accepts the newly sealed bytes",
+    "packages/ledger/src/workstream/pr1-regressions.break.test.ts::reverting to a prior revision amendment fails both seal check and audit",
+    "packages/ledger/src/workstream/pr1-regressions.break.test.ts::check-seal rejects rewriting only the live document digest",
+    "packages/ledger/src/workstream/pr1-regressions.break.test.ts::audit rejects rewriting only the live document digest",
+    "packages/ledger/src/workstream/pr1-regressions.break.test.ts::a current amendment works after resealing but cannot hide a corrupted seal pointer",
+    "packages/ledger/src/workstream/doc-digest.break.test.ts::out-of-intent: empty afterDocDigest on latest amend must not fall back past prior amend"
+  ],
+  "findings": [],
+  "alertOnSeverity": "high",
+  "residualRisks": [
+    "Scope is the two document-seal regressions and neighboring seal/backfill/amend checks; release packaging and CI changes require their separate review.",
+    "Snapshot validation detects divergence from the committed snapshot; it does not authenticate a principal or protect against simultaneous rewriting of both live records and snapshot history.",
+    "Breaker owned regression tests and this review only; production changes were independently owned by the builder."
+  ]
+}

@@ -1,0 +1,188 @@
+{
+  "schemaVersion": 1,
+  "workstreamId": "W-004",
+  "revision": 2,
+  "sealedAt": "2026-09-04T19:53:55.647Z",
+  "sealedBy": "agent:backfill-doc-digest",
+  "specDigest": "f8689eb9a9112b41cad4f8cfd87501503d510960bedff0de85be9818a2e489ca",
+  "specDocDigest": "210575dcce65105d98c1f32eb6a2f194acef1d22868bfba8c5c58bcf22676e4c",
+  "body": {
+    "id": "W-004",
+    "featureIds": [
+      "lattice",
+      "turns",
+      "verify",
+      "client",
+      "server"
+    ],
+    "primaryFeatureId": "lattice",
+    "title": "Spec↔code coupling + honest Lattice trail",
+    "problem": "Agents implement UI and product changes without a sealed bet or open turn (violating TN-002 in spirit). Lattice then shows file lists and bare node ids instead of the plan story; Verify shows cryptic SL-00N badges without statements. Nothing flags product paths that are not covered by sealed spec, and nothing requires an align-approve JSON before push/PR/CI — skip is too easy by silence.",
+    "objective": "Dogfood UI: plan-first turns, denser lists, human Verify report, architecture touch with workstream+features, sidebar wordmark specLedger. Product changes require path coverage against sealed plan+graph (or explicit waiver). A cheap align agent writes approve review JSON bound to treeDigest after user-supplied coverage intent; turn close, pre-push/pre-PR, and CI (pnpm ledger:align) fail without approve or waiver. verify.ok stays claims-only.",
+    "specPath": "docs/workstreams/spec-code-coupling-and-honest-lattice-trail.md",
+    "appetite": "1–2 days",
+    "changeType": "feature",
+    "riskLevel": "elevated",
+    "trust": {
+      "deployTarget": "library-consumer",
+      "userFacing": true,
+      "performanceCritical": false,
+      "securitySensitive": false,
+      "correctnessCritical": true,
+      "requiredEvidence": [
+        "unit",
+        "integration",
+        "e2e"
+      ]
+    },
+    "policy": {
+      "alertOnSeverity": "high",
+      "onAlert": "wait",
+      "alertWaitMinutes": 10,
+      "onAlertTimeout": "move",
+      "onSealedSpecDeviation": "wait",
+      "sealedDeviationWaitMinutes": 10,
+      "onSealedDeviationTimeout": "move",
+      "requireSpecBreak": true,
+      "requireCodeBreak": true,
+      "onAwaitingSeal": "block",
+      "requireAlignApprove": true,
+      "alignReviewerPrefix": "agent:align",
+      "allowExplicitAlignSkip": true,
+      "alignSkipMaxPerTurn": 1,
+      "alignWaiverMinReasonChars": 40
+    },
+    "acceptanceCriteria": [
+      "Human-reviewed bet prose lives under docs/workstreams/ as a title-slug Markdown file; .spec-ledger holds JSON metadata only and links via specPath (repo-relative)",
+      "Sidebar wordmark is specLedger (bold 'spec', regular 'Ledger'); no 'Bets → turns → claims' subtitle under the brand",
+      "Turn detail leads with plan loaded from workstream specPath Markdown (before/after + ask), before→after diagram or flows, commit subject/body, related docs; FileDiffCard lists product files; build artifacts (.next, node_modules) excluded from impact lists",
+      "Architecture touch shows workstream link + named features (+ claim count), not only bare node ids",
+      "Verify page: covered totals (e.g. required pass/total) plus each verdict row shows claim statement primary and id secondary",
+      "Claims/features/bets/turns index rows stay compact",
+      "Align coverage: product path is covered if it matches a graph node.locator under the turn's featureIds OR a slice expectedPaths[] entry; .spec-ledger/** and ignore globs exempt; uncovered paths reported",
+      "Code-target align approve requires treeDigest, coverageSource, uncoveredPaths (empty) or waiverIds; reviewer starts with policy.alignReviewerPrefix and must not equal turn producer",
+      "Explicit skip writes align-waiver JSON: reason (>= policy.alignWaiverMinReasonChars), actor, treeDigest, workstreamId/turnId; max alignSkipMaxPerTurn; silence is not skip; audit lists waivers",
+      "turn close refuses product-file turns without covering align-approve or waiver for that treeDigest when requireAlignApprove",
+      "scripts/git-hooks pre-push (+ documented pre-PR) and CI step 'pnpm ledger:align' fail without approve/waiver for product diffs; pnpm verify / verify workflow remain claims-pure and separate",
+      "skills/sl-dev-align/SKILL.md exists and AGENTS.md points hosts at it: cheap/Haiku-class model, ask user for coverage intent before approve"
+    ],
+    "outOfScope": [
+      "Hosting or running cloud LLMs inside @nessa/spec-ledger core",
+      "Making align findings affect verify.ok / ledgerDigest",
+      "Write/mutate Lattice UI (forms that change ledger)",
+      "Media player",
+      "Replacing human seal with agent seal",
+      "Auto-merge of foreign worktrees",
+      "Semantic line-by-line 'is this justified by prose' beyond path coverage"
+    ],
+    "proposedClaimIds": [
+      "PC-013",
+      "PC-014"
+    ],
+    "suggestedSlices": [
+      {
+        "id": "SLC-01",
+        "title": "Lattice: plan-first UX + brand + human Verify",
+        "kind": "vertical",
+        "acceptance": [
+          "Wordmark specLedger (bold spec); drop path subtitle under brand",
+          "Turn page loads plan from titled Markdown at workstream specPath",
+          "Turn page order: plan → before/after → commit → docs → trail → FileDiffCard → collapsed architecture/ledger",
+          "Architecture touch: workstream + feature names; ignore .next/node_modules in file impact",
+          "Verify: covered totals + statement-first verdict rows",
+          "Dense list rows on claims/features/bets/turns"
+        ],
+        "evidence": [
+          "e2e",
+          "integration"
+        ],
+        "expectedClaimIds": [
+          "SL-005"
+        ],
+        "expectedPaths": [
+          "packages/ui/**",
+          "package.json",
+          "docs/workstreams/**"
+        ]
+      },
+      {
+        "id": "SLC-02",
+        "title": "Align check: path coverage vs sealed plan + graph",
+        "kind": "vertical",
+        "acceptance": [
+          "CLI `spec-ledger align check` (and/or audit findings) reports uncovered product paths for a turn or working tree vs sealed workstream",
+          "Coverage = graph node.locator under turn featureIds OR slice expectedPaths[]; .spec-ledger and ignore globs exempt",
+          "Unit tests for coverage mapper"
+        ],
+        "evidence": [
+          "unit",
+          "integration"
+        ],
+        "expectedClaimIds": [
+          "PC-013"
+        ],
+        "expectedPaths": [
+          "packages/ledger/src/align/**",
+          "packages/ledger/src/audit/**",
+          "packages/ledger/src/cli/**",
+          "packages/ledger/src/index.ts",
+          "schemas/workstream.json"
+        ]
+      },
+      {
+        "id": "SLC-03",
+        "title": "Align approve review + explicit waiver JSON",
+        "kind": "vertical",
+        "acceptance": [
+          "review schema+CLI support treeDigest, uncoveredPaths, coverageSource, waiverIds on code reviews",
+          "Refuse align approve when uncoveredPaths non-empty without waiverIds; refuse when reviewer is producer or missing align prefix",
+          "schemas/align-waiver.json + write/list waiver; reason length and actor enforced",
+          "skills/sl-dev-align/SKILL.md: Haiku-class/cheap model; ask user for coverage intent; AGENTS.md links it"
+        ],
+        "evidence": [
+          "unit",
+          "integration"
+        ],
+        "expectedClaimIds": [
+          "PC-014"
+        ],
+        "expectedPaths": [
+          "schemas/review.json",
+          "schemas/align-waiver.json",
+          "packages/ledger/src/reviews/**",
+          "packages/ledger/src/align/**",
+          "packages/ledger/src/cli/**",
+          "skills/sl-dev-align/**",
+          "AGENTS.md"
+        ]
+      },
+      {
+        "id": "SLC-04",
+        "title": "Gates: turn close + hooks + CI",
+        "kind": "vertical",
+        "acceptance": [
+          "turn close enforces requireAlignApprove unless waiver present for treeDigest",
+          "scripts/git-hooks pre-push (+ docs for pre-PR) fail without approve/waiver for product diffs",
+          "package.json script ledger:align; CI runs it separately from verify"
+        ],
+        "evidence": [
+          "integration",
+          "e2e"
+        ],
+        "expectedClaimIds": [
+          "PC-013",
+          "PC-014"
+        ],
+        "expectedPaths": [
+          "packages/ledger/src/turns/**",
+          "scripts/git-hooks/**",
+          "package.json",
+          ".github/workflows/**",
+          "docs/ci/**"
+        ]
+      }
+    ]
+  },
+  "backfillOfRevision": 1,
+  "backfillReason": "stamp specDocDigest for sealed specPath (consumer upgrade path)"
+}

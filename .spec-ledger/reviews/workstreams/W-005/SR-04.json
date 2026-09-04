@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "id": "W-005/SR-04",
+  "workstreamId": "W-005",
+  "kind": "adversarial",
+  "target": "spec",
+  "reviewer": "agent:sl-plan-break-spec",
+  "verdict": "approve",
+  "blocking": false,
+  "alertOnSeverity": "high",
+  "summary": "Re-break after SR-03 amends. Related: features=6 (cli/verify/client/server/lattice/turns), claims SL-001..004/006..008, PC-015..019, worktree caution-only. Highs cleared: F1 grandfather (check-seal skips doc check when no expected digest; audit warn spec-doc-digest-missing; error spec-doc-digest-drift only when expected exists) in pitch + W-005 acceptance + PC-019 + outOfScope; F2 last expected = latest afterDocDigest else seal.specDocDigest, never mutate seal.specDocDigest, amend appends only. SR-03 moderates also addressed: audit error|warn rule ids named; amend sealed-only + no-op refuse + humanConfirmed via --by; seal-digest-drift ERROR in-slice in PC-019. Soft residual only: grandfather stamp-only amend may conflict with before===after no-op (re-seal still backfills). Not alert-threshold.",
+  "plainSummary": "The holes are closed; sealed-plan digests, grandfather behavior, and publish/init rules are clear enough to seal and build.",
+  "resolvesReviewId": "W-005/SR-03",
+  "resolvesFindingIds": [
+    "W-005/SR-03#F1",
+    "W-005/SR-03#F2",
+    "W-005/SR-03#F3",
+    "W-005/SR-03#F4",
+    "W-005/SR-03#F5",
+    "W-005/SR-03#F6",
+    "W-005/SR-03#F-seal"
+  ],
+  "supersedesReviewId": "W-005/SR-03",
+  "residualRisks": [
+    "Grandfather stamp-only amend: if beforeDocDigest falls back to current file hash and after is also current, no-op refuse blocks a no-byte-change backfill — re-seal still works; at build prefer allow first amend when no prior expected digest even if before===after, or document re-seal-only backfill",
+    "humanConfirmed:true whenever --by is set trusts the caller (agent-with-instruction) — process, not a seal blocker",
+    "UTF-8 / line-ending sensitivity of sha256(utf8 file bytes)",
+    "Graph feature cli.claimIds empty until PC→SL promote",
+    "worktree scan caution-only — not a seal blocker",
+    "## Modifications is human convention only (not audited)",
+    "Proposed killers: K-init-table, K-init-reinit, K-init-no-pass, K-pack-ledger-bin, K-pack-no-workspace, K-ui-asset-no-file-deps, K-publish-yml-triggers, K-version-tag-match, K-seal-specdoc-digest, K-check-seal-doc-last-expected, K-check-seal-grandfather-skip, K-amend-before-after-noop, K-amend-sealed-only, K-audit-spec-doc-drift-error, K-audit-spec-doc-missing-warn, K-audit-seal-digest-drift-error"
+  ],
+  "findings": [
+    {
+      "id": "F-grandfather-noop",
+      "severity": "moderate",
+      "claimId": "PC-019",
+      "gap": "Pitch says first amend on a grandfather seal backfills the trail with beforeDocDigest = current file hash when no expected digest exists, and also refuses no-op when before===after. A stamp-only backfill (no byte edit) therefore always no-ops. OutOfScope still allows re-seal backfill, so dogfood is not broken — clarify at build.",
+      "plainImpact": "Teams may think a no-edit amend alone stamps old seals when only a re-seal or a real edit works as written.",
+      "fixProposal": "At SLC-05 implement: when no prior expected digest, allow append with before===after as explicit backfill; or document that grandfather backfill is re-seal-only / requires a byte change. Not required before human seal.",
+      "evidencePath": "docs/workstreams/consumer-cli-and-npm-publish.md"
+    },
+    {
+      "id": "F-seal",
+      "severity": "low",
+      "gap": "Spec-break approve only — human must seal W-005 (specDigest + sealedBy + new seal.specDocDigest on the pitch file) before sl-dev-build. Agent must not seal.",
+      "plainImpact": "Until a human seals, builders must not treat this bet as approved to implement.",
+      "fixProposal": "Human reads pitch + PC-015..019 + SR-03/SR-04, then seals via workstream seal CLI with specBreakReviewId W-005/SR-04.",
+      "evidencePath": ".spec-ledger/workstreams/W-005.json"
+    }
+  ]
+}

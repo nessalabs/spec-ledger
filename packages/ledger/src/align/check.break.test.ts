@@ -70,7 +70,7 @@ function closedTurn(args: {
     openedAt: "2026-01-01T00:00:00.000Z",
     closedAt: "2026-01-01T01:00:00.000Z",
     opened: {
-      producedBy: "@nessa/spec-ledger@0.1.0",
+      producedBy: "@nessalabs/spec-ledger@0.1.0",
       baseCommit: args.baseCommit,
       dirtyAtOpen: [],
     },
@@ -82,7 +82,7 @@ function closedTurn(args: {
       featureIds: ["turns"],
     },
     facts: {
-      producedBy: "@nessa/spec-ledger@0.1.0",
+      producedBy: "@nessalabs/spec-ledger@0.1.0",
       commit: args.commit,
       files: args.files.map((path) => ({ path, kind: "modified" as const })),
       touchedNodeIds: [],
@@ -200,7 +200,7 @@ describe("KILLERS turns/gates — close gate bypass", () => {
         status: "open",
         openedAt: "2026-01-01T00:00:00.000Z",
         opened: {
-          producedBy: "@nessa/spec-ledger@0.1.0",
+          producedBy: "@nessalabs/spec-ledger@0.1.0",
           // e.g. shallow CI clone / gc'd rebase — base no longer resolvable
           baseCommit: "0000000000000000000000000000000000000000",
           dirtyAtOpen: [],

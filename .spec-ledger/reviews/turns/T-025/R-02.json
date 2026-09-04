@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "id": "T-025/R-02",
+  "turnId": "T-025",
+  "kind": "adversarial",
+  "target": "code",
+  "reviewer": "agent:sl-dev-break:packaging",
+  "verdict": "approve",
+  "blocking": false,
+  "plainSummary": "Package creation now preserves the checkout during concurrent builds and failures while keeping consumer installs usable.",
+  "summary": "Bounded review of npm packaging fixes: exact version dependencies match lockfile specifiers, .npmrc retains local workspace linking, mutating rewrite hooks/script are removed, and build prepack remains. Against archived PR HEAD, the new tests failed with server manifest workspace:* changed to 0.1.0-alpha.0 after overlapping packs and a backup left after failed prepack. Final command: PATH=/tmp/spec-ledger-pr1-tools:$PATH npm_config_cache=/tmp/sl-pack-break-npm-cache node --test packages/ledger/dist/pack.concurrency.break.test.js. Exit 0; 3 tests passed, 0 failed. Concurrent packs use isolated copies and a build barrier; generated client/server/ledger tarballs install offline and real module imports succeed. Failure injection confirms manifests remain byte-identical and backups absent. This review covers packaging only; other PR fixes are reviewed separately.",
+  "killersCited": [
+    "packages/ledger/src/pack.concurrency.break.test.ts::overlapping npm packs preserve manifests and produce installable tarballs",
+    "packages/ledger/src/pack.concurrency.break.test.ts::a failed prepack build does not rewrite the source manifest",
+    "packages/ledger/src/pack.concurrency.break.test.ts::client and server resolve this checkout's ledger during development"
+  ],
+  "findings": [],
+  "residualRisks": [
+    "No live npm publication was performed; registry authorization and actual release delivery are outside this bounded packaging review."
+  ]
+}

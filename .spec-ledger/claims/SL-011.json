@@ -1,0 +1,11 @@
+{
+  "id": "SL-011",
+  "kind": "invariant",
+  "statement": "spec-ledger init creates exactly the normative .spec-ledger/ path table (ledger.json last; vision stub; empty claims/bindings/turns/workstreams/proposed-claims/reviews/themes/tenets; graph+policy files; results/.gitkeep). Re-init when ledger.json exists is refused. After init, verify invents no claim outcome pass and no binding contains status or pass.",
+  "area": "core",
+  "required": true,
+  "links": {
+    "docs": ["docs/workstreams/consumer-cli-and-npm-publish.md"],
+    "proposedClaimId": "PC-015"
+  }
+}

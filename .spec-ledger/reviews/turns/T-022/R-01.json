@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "id": "T-022/R-01",
+  "turnId": "T-022",
+  "workstreamId": "W-005",
+  "kind": "adversarial",
+  "target": "code",
+  "reviewer": "agent:sl-dev-break",
+  "verdict": "request-changes",
+  "blocking": true,
+  "treeDigest": "a5f755a7b176ef17c4521e3ea4c773e2c5c72702997f73486398b16d5db24e84",
+  "alertOnSeverity": "high",
+  "summary": "SLC-02 pack killers: 3 green (pnpm pack → import client/server + spec-ledger-serve starts outside monorepo; pnpm-packed dep fields free of workspace:/file:/link:/portal:; packed CLI shebang + direct node --help). Red: npm pack of client and server leaves @nessalabs/spec-ledger=workspace:* in dependencies — SL-012 pack cleanliness is only true under pnpm rewrite, not under npm pack/publish path. Builder pack.smoke.test.ts only exercises pnpm pack + package.json resolve.",
+  "plainSummary": "Client and server look installable in the pnpm smoke test, but packing them the npm way still ships monorepo-only dependencies that consumers cannot install.",
+  "findings": [
+    {
+      "id": "F-01",
+      "severity": "high",
+      "claimId": "SL-012",
+      "gap": "packages/client and packages/server keep \"@nessalabs/spec-ledger\": \"workspace:*\" in source package.json; cleanliness depends on pnpm pack rewriting the tarball. npm pack leaves workspace:* in dependencies (client and server). Killer: packages/ledger/src/pack.break.test.ts::npm pack client/server must not ship workspace: or file: deps (SL-012). Builder smoke only runs pnpm pack.",
+      "plainImpact": "Publishing or packing client/server with npm would ship packages that cannot install outside this monorepo.",
+      "fixProposal": "Durable rewrite before any pack/publish: prepack (or dedicated pack script) replaces workspace:* with the package version (0.1.0-alpha.0) in the published package.json, or pin a non-workspace version in source and keep workspace via pnpm overrides. Extend the pack oracle to fail on npm pack (and later publish.yml) the same way as pnpm pack.",
+      "evidence": {
+        "kind": "test",
+        "citedTest": "packages/ledger/src/pack.break.test.ts::npm pack client/server must not ship workspace: or file: deps (SL-012)",
+        "ran": true,
+        "command": "pnpm --filter @nessalabs/spec-ledger exec node --test dist/pack.break.test.js",
+        "observedOutput": "AssertionError [ERR_ASSERTION]: npm pack must rewrite workspace:/file: (publish path); got: client dependencies @nessalabs/spec-ledger=workspace:*; server dependencies @nessalabs/spec-ledger=workspace:*"
+      }
+    }
+  ],
+  "killersCited": [
+    "packages/ledger/src/pack.break.test.ts::npm pack client/server must not ship workspace: or file: deps (SL-012)",
+    "packages/ledger/src/pack.break.test.ts::after pnpm pack install, client and server modules import and run (not package.json-only)",
+    "packages/ledger/src/pack.break.test.ts::pnpm-packed package.json: all dep fields free of workspace:/file:/link:/portal:",
+    "packages/ledger/src/pack.break.test.ts::out-of-intent: packed ledger bin shebang survives and is directly executable via node path"
+  ],
+  "residualRisks": [
+    "Hunt budget: one out-of-intent killer used (shebang/direct node bin) — passed; correctnessCritical allowance unused for a second miss.",
+    "onAlert=wait for high — human/timeout before close.",
+    "pnpm pack path + runtime import + server bin already green; gap is tool-boundary durability for npm pack/publish.",
+    "SLC-04 publish.yml not in this slice — still SL-012/SLC-02 pack oracle must not be pnpm-only."
+  ]
+}

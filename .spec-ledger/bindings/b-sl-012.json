@@ -1,0 +1,9 @@
+{
+  "id": "b-sl-012",
+  "claimId": "SL-012",
+  "kind": "check",
+  "locator": {
+    "type": "path",
+    "path": "packages/ledger/package.json"
+  }
+}

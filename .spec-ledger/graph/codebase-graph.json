@@ -57,18 +57,21 @@
     },
     {
       "id": "lattice",
-      "name": "Lattice graph",
-      "summary": "Feature/module graph, blast radius, layer policy.",
+      "name": "Spec Ledger UI",
+      "summary": "Feature/module graph, blast radius, layer policy, and Spec Ledger viewing surface.",
       "claimIds": [
         "SL-004"
       ],
       "entryPoints": [
-        "packages/ledger/src/graph/impact.ts"
+        "packages/ledger/src/graph/impact.ts",
+        "packages/ui"
       ],
       "keywords": [
         "graph",
         "blast radius",
-        "layers"
+        "layers",
+        "spec ledger",
+        "ui"
       ]
     },
     {
@@ -122,6 +125,31 @@
         "http",
         "readonly"
       ]
+    },
+    {
+      "id": "cli",
+      "name": "Consumer CLI",
+      "summary": "Installable spec-ledger bin: init, verify, turns; npm publish surface.",
+      "claimIds": [
+        "SL-011",
+        "SL-015"
+      ],
+      "entryPoints": [
+        "packages/ledger/src/cli/main.ts",
+        "packages/ledger/src/cli/init.ts",
+        "packages/ledger/package.json",
+        "packages/client/package.json",
+        "packages/server/package.json",
+        "packages/ui/package.json",
+        ".github/workflows/publish.yml"
+      ],
+      "keywords": [
+        "cli",
+        "init",
+        "npm",
+        "bin",
+        "release"
+      ]
     }
   ],
   "nodes": [
@@ -135,20 +163,21 @@
     },
     {
       "id": "ledger-core",
-      "name": "@nessa/spec-ledger",
+      "name": "@nessalabs/spec-ledger",
       "layer": "core",
       "kind": "package",
       "locator": "packages/ledger",
       "featureIds": [
         "verify",
         "lattice",
-        "turns"
+        "turns",
+        "cli"
       ],
       "purpose": "Core verify + CLI"
     },
     {
       "id": "ledger-client",
-      "name": "@nessa/spec-ledger-client",
+      "name": "@nessalabs/spec-ledger-client",
       "layer": "client",
       "kind": "package",
       "locator": "packages/client",
@@ -156,7 +185,7 @@
     },
     {
       "id": "ledger-server",
-      "name": "@nessa/spec-ledger-server",
+      "name": "@nessalabs/spec-ledger-server",
       "layer": "server",
       "kind": "package",
       "locator": "packages/server",
@@ -164,11 +193,14 @@
     },
     {
       "id": "ledger-ui",
-      "name": "@nessa/spec-ledger-ui",
+      "name": "@nessalabs/spec-ledger-ui",
       "layer": "ui",
       "kind": "package",
       "locator": "packages/ui",
-      "purpose": "Reference Lattice UI"
+      "featureIds": [
+        "lattice"
+      ],
+      "purpose": "Spec Ledger UI — presentation only"
     }
   ],
   "edges": [

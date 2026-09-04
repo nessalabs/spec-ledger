@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "id": "T-025/R-03",
+  "turnId": "T-025",
+  "workstreamId": "W-005",
+  "kind": "adversarial",
+  "target": "code",
+  "reviewer": "agent:sl-dev-break:ui",
+  "verdict": "approve",
+  "blocking": false,
+  "plainSummary": "UI packaging checks run without a sibling checkout, and releases must build the real UI asset before publishing packages.",
+  "summary": "Bounded approval of UI test isolation and release ordering only. Red baseline: NESSA_UI_ROOT=/tmp/no-checkout-ui-pr1 node --test packages/ledger/dist/ui-release.smoke.test.js failed 1/2 with missing @nessalabs/ui. After migrating setup to an isolated fixture, NESSA_UI_ROOT=/tmp/no-checkout-ui-pr1 node --test packages/ledger/dist/ui-release.smoke.test.js packages/ledger/dist/ui-release.break.test.js passed 7/7 (40.1s). The smoke invokes the actual pack script without --skip-build, extracts its artifact, removes fixture sources, initializes a fresh consumer using the vendored CLI, starts the extracted Next runtime, and verifies HTTP 200 plus ledger configuration and UI/agent-stream render output. Existing all-node_modules protocol, dependency absence, package scope and version assertions remain. Final node --test --test-name-pattern=publish.yml packages/ledger/dist/ui-release.break.test.js passed 1/1, including real UI build then pack before npm publication. packages/ledger/node_modules/.bin/tsc -p packages/ledger/tsconfig.json passed. No production code was edited by this reviewer.",
+  "killersCited": [
+    "ui-release.smoke.test.ts::built release boots outside the checkout and reads the consumer ledger",
+    "ui-release.break.test.ts::shipped tree incl node_modules has zero file:/workspace: protocols",
+    "ui-release.break.test.ts::pack-ui-release fails closed when NESSA_UI_ROOT / agent-stream missing",
+    "ui-release.break.test.ts::packaged UI name/deps stay @nessalabs/* and tarball version matches ledger",
+    "ui-release.break.test.ts::publish.yml packs UI Release asset with NESSA_UI_ROOT, dist build, no --skip-build, contents:write upload"
+  ],
+  "findings": [],
+  "residualRisks": [
+    "The minimal fixture proves packaging and extracted runtime dependency resolution, not compatibility of the real external @nessalabs/ui distribution. The previously inspected sibling distribution failed a production Next build because its client boundary contained wildcard exports. This review does not establish that the real external UI builds or approve that external dependency.",
+    "The real dependency build and full pack are release-only gates before npm publication. Neither a GitHub Release nor registry publication was executed during this review.",
+    "Fixture package prepack hooks are no-ops because compiled ledger/client files are copied in; actual core package lifecycle behavior is covered by the separate package test review."
+  ]
+}

@@ -8,7 +8,7 @@ import {
   SplitView,
   SplitViewPanel,
   SplitViewSeparator,
-} from "@nessa-ui/react"
+} from "@nessalabs/ui"
 import { cn } from "@/lib/cn"
 import { resolveRepoDocPath } from "@/lib/repo-doc-path"
 import type { DocTab } from "@/components/doc-reader"

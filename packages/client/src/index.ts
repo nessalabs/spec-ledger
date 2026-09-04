@@ -1,6 +1,6 @@
 /**
  * Transport-agnostic client. UIs and third-party products depend on this —
- * never on @nessa/spec-ledger filesystem APIs or the reference UI.
+ * never on @nessalabs/spec-ledger filesystem APIs or the reference UI.
  *
  * v1: in-process transport (no daemon). HTTP transport talks to read-only server.
  */
@@ -42,7 +42,7 @@ import {
   type Tenet,
   type Workstream,
   type TurnEpisode,
-} from "@nessa/spec-ledger"
+} from "@nessalabs/spec-ledger"
 
 export type LedgerTransport =
   | { kind: "inProcess"; rootDir: string }

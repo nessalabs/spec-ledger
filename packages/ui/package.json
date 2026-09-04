@@ -1,8 +1,8 @@
 {
-  "name": "@nessa/spec-ledger-ui",
+  "name": "@nessalabs/spec-ledger-ui",
   "version": "0.1.0",
   "private": true,
-  "description": "Reference Spec Ledger UI — presentation only; @nessa-ui/react + @nessa/spec-ledger-client",
+  "description": "Reference Spec Ledger UI — presentation only; @nessalabs/ui + @nessalabs/spec-ledger-client",
   "type": "module",
   "scripts": {
     "dev": "next dev --turbopack --port 3737",
@@ -11,8 +11,8 @@
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },
   "dependencies": {
-    "@nessa-ui/react": "file:../../../nessa/packages/react",
-    "@nessa/spec-ledger-client": "file:../client",
+    "@nessalabs/ui": "file:../../../nessa_ui/packages/react",
+    "@nessalabs/spec-ledger-client": "file:../client",
     "lucide-react": "^0.468.0",
     "mermaid": "^11.16.1",
     "next": "^15.5.2",

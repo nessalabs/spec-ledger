@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "id": "T-021/AW-04",
+  "reason": "T-021 product surface is sealed plan digests (workstream/audit/cli/schemas/docs); UI rename, skills, and .gitignore remain dirty from T-020 and are outside SLC-05 expectedPaths.",
+  "actor": "human",
+  "treeDigest": "f9af08db359683a16910887c7a4a12d7b93301853c614a0a29bc12af207aed0b",
+  "createdAt": "2026-09-04T20:20:21.536Z",
+  "workstreamId": "W-005",
+  "turnId": "T-021"
+}

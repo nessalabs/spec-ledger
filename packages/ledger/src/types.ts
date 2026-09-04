@@ -267,6 +267,22 @@ export interface WorkstreamSeal {
   snapshotPath: string
   revision: number
   specBreakReviewId?: string
+  /** sha256 of UTF-8 bytes at specPath when sealed (immutable for this revision). */
+  specDocDigest?: string
+}
+
+/** Machine trail for post-seal Markdown (or other) plan edits at specPath. */
+export interface PostSealAmend {
+  at: string
+  summary: string
+  humanConfirmed: boolean
+  sealedRevision: number
+  beforeDocDigest: string
+  afterDocDigest: string
+  turnId?: string
+  decisionId?: string
+  commit?: string
+  actor?: string
 }
 
 export interface Workstream {
@@ -300,7 +316,7 @@ export interface Workstream {
   proposedClaimIds?: string[]
   suggestedSlices?: WorkstreamSlice[]
   seal?: WorkstreamSeal
-  postSealAmends?: unknown[]
+  postSealAmends?: PostSealAmend[]
 }
 
 export interface Vision {

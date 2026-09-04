@@ -4,7 +4,8 @@ import { findRepoRoot, ledgerRoot, loadLedger } from "../fs/load.js"
 import { listAutomationEvents } from "../automation/load.js"
 import { listAllReviews, listReviewsForTurn } from "../reviews/load.js"
 import { latticeCopyProblems } from "../reviews/lattice-copy.js"
-import { listWorkstreams } from "../workstream/load.js"
+import { listWorkstreams, computeSpecDigest } from "../workstream/load.js"
+import { checkSpecDocDigest } from "../workstream/doc-digest.js"
 import { listAlignWaivers } from "../align/waiver.js"
 import type { AuditFinding, AuditReport, LedgerRootConfig } from "../types.js"
 
@@ -53,6 +54,8 @@ export function loadAuditPolicy(repoRootInput: string): AuditPolicy {
 
 export function auditLedger(repoRootInput: string): AuditReport {
   const ledger = loadLedger(repoRootInput)
+  const repoRoot = findRepoRoot(repoRootInput)
+  const rootDir = ledgerRoot(repoRoot)
   const policy = loadAuditPolicy(repoRootInput)
   const findings: AuditFinding[] = []
   let n = 0
@@ -171,6 +174,53 @@ export function auditLedger(repoRootInput: string): AuditReport {
         "info",
         "shaped-unsealed",
         `workstream ${ws.id} is shaped but not sealed`,
+        { workstreamId: ws.id },
+      )
+    }
+  }
+
+  // Sealed plan digests (PC-019 / SLC-05)
+  for (const ws of listWorkstreams(repoRootInput)) {
+    if (!ws.seal) continue
+    if (ws.specPath) {
+      const doc = checkSpecDocDigest(repoRootInput, ws)
+      if (!doc.ok && doc.status === "missing-expected") {
+        add("error", "spec-doc-digest-missing", doc.message, {
+          workstreamId: ws.id,
+        })
+      } else if (!doc.ok && doc.status === "drift") {
+        add("error", "spec-doc-digest-drift", doc.message, {
+          workstreamId: ws.id,
+        })
+      } else if (!doc.ok) {
+        add("error", "spec-doc-digest-drift", doc.message, {
+          workstreamId: ws.id,
+        })
+      }
+    }
+    const liveDigest = computeSpecDigest(ws)
+    const snapPath = join(rootDir, ws.seal.snapshotPath)
+    if (!existsSync(snapPath)) {
+      add(
+        "error",
+        "seal-digest-drift",
+        `workstream ${ws.id} seal snapshot missing: ${ws.seal.snapshotPath}`,
+        { workstreamId: ws.id },
+      )
+      continue
+    }
+    const snap = readJson<{ specDigest?: string }>(snapPath)
+    const snapDigest = snap.specDigest ?? ""
+    // Compare live + pointer to the immutable snapshot digest — forging
+    // seal.specDigest alone must not greenwash audit.
+    if (
+      liveDigest !== snapDigest ||
+      ws.seal.specDigest !== snapDigest
+    ) {
+      add(
+        "error",
+        "seal-digest-drift",
+        `workstream ${ws.id} live/pointer digest diverges from seal snapshot ${snapDigest.slice(0, 12) || "(missing)"}… without re-seal`,
         { workstreamId: ws.id },
       )
     }

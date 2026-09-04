@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "id": "T-024/AW-07",
+  "reason": "T-024 product is UI Release pack script, publish.yml UI asset steps, README client/server one-liner; scripts/pack-ui-release.mjs and publish.yml sit outside sealed SLC-03 expectedPaths; residual dirty skills/lockfile/docs from prior W-005 slices waived for this turn.",
+  "actor": "human",
+  "treeDigest": "3e6411676a1964a6a66af9dc6cf567478222965d85438710b68f154f71d1b775",
+  "createdAt": "2026-09-04T20:52:32.242Z",
+  "workstreamId": "W-005",
+  "turnId": "T-024"
+}

@@ -1,6 +1,6 @@
 "use client"
 
-import { MessageMarkdown } from "@nessa-ui/react"
+import { MessageMarkdown } from "@nessalabs/ui"
 
 /** Workstream / vision Markdown via Nessa MessageMarkdown (GFM + code). */
 export function SpecDoc({

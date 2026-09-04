@@ -3,7 +3,7 @@
 | Folder | What belongs here |
 | --- | --- |
 | [`architecture/`](./architecture/) | **Contracts** — implement against these |
-| [`workstreams/`](./workstreams/) | **Bet pitches** — title-slug Markdown; JSON in `.spec-ledger/workstreams/` |
+| [`workstreams/`](./workstreams/) | **Specs and supporting notes** — one folder per new workstream; [index](./workstreams/README.md), metadata in `.spec-ledger/workstreams/` |
 | [`compass/`](./compass/) | **Vision / standing prose** — linked from `.spec-ledger/vision.json` |
 | [`research/`](./research/) | Frozen inputs that informed the contracts |
 

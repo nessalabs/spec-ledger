@@ -36,6 +36,7 @@ Turn / workstream list titles:
 | `sl-plan-*` | Before code: vision, shape, seal-side adversary |
 | `sl-dev-*` | Implementation: build, code adversary, verify/close |
 | `sl-learn` | Capture high-signal corrections → learnings/tenets |
+| `sl-security-review` | Security discovery and focused boundary review within existing lanes |
 
 | Skill | Job |
 | --- | --- |
@@ -48,6 +49,7 @@ Turn / workstream list titles:
 | [`sl-dev-break`](./sl-dev-break/SKILL.md) | Code adversary |
 | [`sl-dev-verify`](./sl-dev-verify/SKILL.md) | Turn close + digests |
 | [`sl-learn`](./sl-learn/SKILL.md) | Learnings / tenet promote |
+| [`sl-security-review`](./sl-security-review/SKILL.md) | Security model → abuse-case acceptance → verified boundary findings |
 
 Pipeline: `sl-plan-vision` → `sl-plan-shape` (verticals via `sl-plan-decompose`)
 → `sl-plan-break-spec` → seal →

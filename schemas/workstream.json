@@ -104,7 +104,37 @@
         "specDigest": { "type": "string" },
         "snapshotPath": { "type": "string" },
         "revision": { "type": "integer", "minimum": 1 },
-        "specBreakReviewId": { "type": "string" }
+        "specBreakReviewId": { "type": "string" },
+        "specDocDigest": {
+          "type": "string",
+          "description": "sha256 hex of UTF-8 bytes at specPath when this revision was sealed"
+        }
+      }
+    },
+    "postSealAmends": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "at",
+          "summary",
+          "humanConfirmed",
+          "sealedRevision",
+          "beforeDocDigest",
+          "afterDocDigest"
+        ],
+        "properties": {
+          "at": { "type": "string" },
+          "summary": { "type": "string" },
+          "humanConfirmed": { "type": "boolean" },
+          "sealedRevision": { "type": "integer", "minimum": 1 },
+          "beforeDocDigest": { "type": "string" },
+          "afterDocDigest": { "type": "string" },
+          "turnId": { "type": "string" },
+          "decisionId": { "type": "string" },
+          "commit": { "type": "string" },
+          "actor": { "type": "string" }
+        }
       }
     }
   }

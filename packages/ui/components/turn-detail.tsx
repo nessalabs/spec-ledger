@@ -6,13 +6,13 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@nessa-ui/react"
+} from "@nessalabs/ui"
 import type {
   Turn,
   TurnEpisode,
   VerifyReport,
   Workstream,
-} from "@nessa/spec-ledger-client"
+} from "@nessalabs/spec-ledger-client"
 
 type EpisodeReview = TurnEpisode["reviews"][number]
 import { StaticMermaid } from "@/components/static-mermaid"

@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "T-022/R-02",
+  "turnId": "T-022",
+  "workstreamId": "W-005",
+  "kind": "adversarial",
+  "target": "code",
+  "reviewer": "agent:sl-dev-break",
+  "verdict": "approve",
+  "blocking": false,
+  "treeDigest": "48f55e3b6e8e2daff01e2ead78c1e3cdaa076cd206e9061f8f91722ab7e109ea",
+  "alertOnSeverity": "high",
+  "resolvesReviewId": "T-022/R-01",
+  "resolvesFindingIds": [
+    "T-022/R-01#F-01"
+  ],
+  "summary": "Re-ran SLC-02 pack break killers after prepack/postpack rewrite-workspace-deps.mjs on client/server. npm pack now ships @nessalabs/spec-ledger@0.1.0-alpha.0; source workspace:* restored postpack. All 4 killers green (npm pack cleanliness, pnpm install+import+server bin, all dep fields, CLI shebang). Builder reported 69 tests green.",
+  "plainSummary": "Client and server pack cleanly for consumers whether you use pnpm or npm; monorepo workspace links stay only in the repo source.",
+  "findings": [],
+  "killersCited": [
+    "packages/ledger/src/pack.break.test.ts::npm pack client/server must not ship workspace: or file: deps (SL-012)",
+    "packages/ledger/src/pack.break.test.ts::after pnpm pack install, client and server modules import and run (not package.json-only)",
+    "packages/ledger/src/pack.break.test.ts::pnpm-packed package.json: all dep fields free of workspace:/file:/link:/portal:",
+    "packages/ledger/src/pack.break.test.ts::out-of-intent: packed ledger bin shebang survives and is directly executable via node path"
+  ],
+  "residualRisks": [
+    "Hunt budget: one out-of-intent killer (shebang) — green.",
+    "Rewrite script must stay wired on prepack/postpack; broken postpack could leave source package.json pinned without workspace:*.",
+    "SLC-04 publish.yml path not exercised this turn."
+  ]
+}

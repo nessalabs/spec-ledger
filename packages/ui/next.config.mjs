@@ -2,16 +2,16 @@ import { fileURLToPath } from "node:url"
 import { dirname, join } from "node:path"
 
 const uiRoot = dirname(fileURLToPath(import.meta.url))
-// @nessa-ui/react is file:../../../nessa/packages/react — outside this repo.
+// @nessalabs/ui is file:../../../nessa_ui/packages/react — outside this repo.
 // Turbopack refuses CSS that escapes outputFileTracingRoot, so root must
-// cover both nessa-spec-test and the sibling nessa design-system checkout.
+// cover both spec-ledger and the sibling nessa_ui design-system checkout.
 const tracingRoot = join(uiRoot, "../../..")
 
 const nextConfig = {
   outputFileTracingRoot: tracingRoot,
-  transpilePackages: ["@nessa-ui/react"],
+  transpilePackages: ["@nessalabs/ui"],
   experimental: {
-    optimizePackageImports: ["lucide-react", "@nessa-ui/react"],
+    optimizePackageImports: ["lucide-react", "@nessalabs/ui"],
   },
   allowedDevOrigins: ["127.0.0.1"],
 }

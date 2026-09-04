@@ -9,7 +9,7 @@ const turn: Turn = {
   status: "open",
   openedAt: "2026-01-01T00:00:00.000Z",
   opened: {
-    producedBy: "@nessa/spec-ledger@0.1.0",
+    producedBy: "@nessalabs/spec-ledger@0.1.0",
     baseCommit: "abc",
     dirtyAtOpen: [],
   },
@@ -80,7 +80,7 @@ describe("align approve", () => {
     assert.throws(
       () =>
         assertAlignApproveValid({
-          review: baseReview({ reviewer: "@nessa/spec-ledger@0.1.0" }),
+          review: baseReview({ reviewer: "@nessalabs/spec-ledger@0.1.0" }),
           turn,
           policy: { alignReviewerPrefix: "@nessa" },
         }),

@@ -3,7 +3,7 @@
   "id": "W-002",
   "status": "done",
   "createdAt": "2026-09-03T04:35:00.000Z",
-  "updatedAt": "2026-09-03T04:49:16.472Z",
+  "updatedAt": "2026-09-04T20:15:19.775Z",
   "specPath": "docs/workstreams/p0-p3-runtime-and-dogfood.md",
   "featureIds": [
     "turns",
@@ -14,9 +14,9 @@
   ],
   "primaryFeatureId": "turns",
   "title": "Full builder runtime",
-  "problem": "Builder loop exists but turn check/abandon, automation resume, HTTP context, related pack, episode side collections, audit/CI, and compass/timeline are missing \u2014 product stops at W-001.",
-  "objective": "Context, automation, episodes, audit, and compass \u2014 dogfood end to end.",
-  "appetite": "1\u20132 weeks continuous",
+  "problem": "Builder loop exists but turn check/abandon, automation resume, HTTP context, related pack, episode side collections, audit/CI, and compass/timeline are missing — product stops at W-001.",
+  "objective": "Context, automation, episodes, audit, and compass — dogfood end to end.",
+  "appetite": "1–2 weeks continuous",
   "changeType": "feature",
   "riskLevel": "elevated",
   "trust": {
@@ -121,10 +121,11 @@
     }
   ],
   "seal": {
-    "sealedAt": "2026-09-03T04:47:07.856Z",
+    "sealedAt": "2026-09-04T20:15:19.775Z",
     "sealedBy": "human",
-    "specDigest": "56c03550aa1e92c6de2b20838b3b8dc066a7a9d307ee8c266f6b189cf569cfdd",
-    "snapshotPath": "workstreams/W-002.seals/2.json",
-    "revision": 2
+    "specDigest": "d567874c3d16534a1eef1f02ce12a7e786a2fc5217c0a3ef8463201c7b79f0b2",
+    "snapshotPath": "workstreams/W-002.seals/4.json",
+    "revision": 4,
+    "specDocDigest": "96d0baa385597a0a21f05b1f6d2e64d3eda4e43ee79128072334a3c546323fd5"
   }
 }

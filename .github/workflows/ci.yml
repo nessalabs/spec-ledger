@@ -20,6 +20,8 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm -r build
       - run: pnpm test
+      - name: Packaging must leave dependency manifests unchanged
+        run: git diff --exit-code -- package.json pnpm-lock.yaml packages/ledger/package.json packages/client/package.json packages/server/package.json
       - run: pnpm verify
       - run: pnpm run ledger:audit
       - run: pnpm run ledger:align

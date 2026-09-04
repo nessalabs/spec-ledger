@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "id": "W-005/SR-03",
+  "workstreamId": "W-005",
+  "kind": "adversarial",
+  "target": "spec",
+  "reviewer": "agent:sl-plan-break-spec",
+  "verdict": "request-changes",
+  "blocking": true,
+  "alertOnSeverity": "high",
+  "summary": "Re-break after substantial pre-seal amend folded SLC-05/PC-019 (specDocDigest + postSealAmends + audit + Modifications), sequence SLC-01→05→02→04→03, Spec Ledger UI naming, nessalabs publish org, featureIds+=turns, appetite 3–4d. Related pack: features verify/lattice/turns/client/server/cli; claims SL-001..004/006..008; PC-015..019; docs include consumer-cli + work-model; worktree caution-only. SR-02 highs stay cleared (init table, path B UI asset, pack oracles, claim split, expectedPaths, publish negatives). New alert-threshold gaps on the digest fold-in: (1) W-001..004 all sealed with specPath and no specDocDigest — acceptance/check-seal ‘fail on Markdown drift’ contradicts outOfScope grandfather that only mentions audit warn; (2) pitch check-seal step 2 omits last-expected (seal.specDocDigest else latest afterDocDigest) and ‘pointer’ wording risks rewriting immutable seal.specDocDigest. Soft: audit severity enum error vs review ‘high’; amend CLI negatives; seal-digest-drift not implemented and weasel ‘if not already’ outside PC-019.",
+  "plainSummary": "Seal is blocked: the new sealed-plan digest rules would break existing bets unless grandfather and check-seal ‘last expected’ behavior are pinned.",
+  "supersedesReviewId": "W-005/SR-02",
+  "resolvesFindingIds": [
+    "W-005/SR-02#F-asset-file-deps"
+  ],
+  "residualRisks": [
+    "worktrees.scanned caution-only — not a seal blocker; authority is this checkout",
+    "Graph feature cli.claimIds still empty until PC→SL promote",
+    "UTF-8 / line-ending sensitivity of sha256(utf8 file bytes) — document in killers",
+    "seal-digest-drift is documented in work-model but not implemented; pitch ‘implement if not already’ is outside PC-019 — either add to SLC-05 or leave explicit residual",
+    "## Modifications is human convention only (not audited) — intentional",
+    "Proposed killers (post-amend): K-init-table, K-init-reinit, K-init-no-pass, K-pack-ledger-bin, K-pack-no-workspace, K-ui-asset-no-file-deps, K-publish-yml-triggers, K-version-tag-match, K-seal-specdoc-digest, K-check-seal-doc-last-expected, K-amend-before-after, K-audit-spec-doc-drift-error, K-grandfather-no-digest-warn"
+  ],
+  "findings": [
+    {
+      "id": "F1",
+      "severity": "high",
+      "claimId": "PC-019",
+      "gap": "W-001..W-004 are sealed with specPath set and no seal.specDocDigest / postSealAmends. Whole-bet acceptance and SLC-05 require check-seal + audit to fail on silent Markdown drift, while outOfScope only grandfathers audit to warn until amend/re-seal and never states check-seal behavior for seals lacking an expected doc digest. Shipping SLC-05 as written can break dogfood check-seal/audit on four done workstreams.",
+      "plainImpact": "Turning on plan-doc digests could suddenly fail checks on older sealed workstreams that never got a stamp.",
+      "fixProposal": "Pin grandfather in pitch + PC-019 + acceptance: if neither seal.specDocDigest nor any postSealAmends.afterDocDigest exists, check-seal skips the doc-byte check (JSON seal check unchanged); audit emits warn (not failOn error) until first amend or re-seal backfills. Doc-drift fail applies only when an expected digest exists. Add a fixture citing W-001-shaped state.",
+      "evidencePath": ".spec-ledger/workstreams/W-001.json"
+    },
+    {
+      "id": "F2",
+      "severity": "high",
+      "claimId": "PC-019",
+      "gap": "Pitch SLC-05 step 2 says check-seal recomputes the file digest and ‘mismatch on either → fail’ without naming the compare target. Step 3 says amend ‘updates the current expected doc digest pointer’ — easy to mis-implement as rewriting live seal.specDocDigest (forbidden; seals/N.json + seal fields are immutable; postSealAmends are excluded from sealPayload). PC-019 and SLC-05 acceptance correctly imply last expected = seal.specDocDigest else latest afterDocDigest, but the pitch prose fights that.",
+      "plainImpact": "Builders could make every plan amend permanently fail check-seal or corrupt the seal stamp.",
+      "fixProposal": "Rewrite pitch §2–3: check-seal compares live file sha256 to last expected digest (seal.specDocDigest if no amends, else latest postSealAmends[].afterDocDigest); never mutate seal.specDocDigest after seal; amend only appends postSealAmends. Mirror the same sentence in PC-019 if needed.",
+      "evidencePath": "docs/workstreams/consumer-cli-and-npm-publish.md"
+    },
+    {
+      "id": "F3",
+      "severity": "moderate",
+      "claimId": "PC-019",
+      "gap": "Pitch says audit finding severity ‘high enough to fail ledger:audit when policy requires’, but packages/ledger audit findings use severity error|warn with policy.failOn default [error] — not review severities low|moderate|high. Untestable weasel for the gate that makes silent edits CI-blocking.",
+      "plainImpact": "Silent plan edits might only warn in CI while the team thinks the gate is hard-fail.",
+      "fixProposal": "State: spec-doc-digest-drift findings use audit severity error (fail under default failOn); grandfather-no-digest uses warn. Name both rule ids in SLC-05 acceptance.",
+      "evidencePath": "packages/ledger/src/audit/audit.ts"
+    },
+    {
+      "id": "F4",
+      "severity": "moderate",
+      "claimId": "PC-019",
+      "gap": "workstream amend CLI lacks negatives: refuse unless status is sealed/active/done (post-seal); behavior when file bytes already equal last expected (no-op vs error); how humanConfirmed is set from --by (agents must not forge confirmed amends without a human gate). Required postSealAmends fields are listed but CLI contract is incomplete.",
+      "plainImpact": "Agents could record fake ‘human confirmed’ plan amends or spam empty amend rows.",
+      "fixProposal": "Add SLC-05 negatives: amend refuses if unsealed; refuse or no-op when after digest equals last expected; humanConfirmed true only with explicit flag or documented human --by policy. Unit fixtures for each.",
+      "evidencePath": ".spec-ledger/proposed-claims/PC-019.json"
+    },
+    {
+      "id": "F5",
+      "severity": "moderate",
+      "gap": "Pitch §4 ‘seal-digest-drift — implement if not already’ is weasel: rule is in work-model.md but absent from packages/ledger audit today, and PC-019 / SLC-05 acceptance do not require it. Builders cannot tell if JSON sealPayload drift is in-bet.",
+      "plainImpact": "Half the seal-integrity story could be deferred while still looking done on paper.",
+      "fixProposal": "Either add seal-digest-drift (error on live sealPayload ≠ snapshot without covering amend) to SLC-05/PC-019 acceptance, or move it to outOfScope/rabbitHoles and drop the ‘implement if not already’ line.",
+      "evidencePath": "docs/architecture/work-model.md"
+    },
+    {
+      "id": "F6",
+      "severity": "low",
+      "gap": "Appetite 3–4 days for five verticals including new seal/amend/audit surface remains tight; ## Modifications is convention-only; related worktree caution-only. Not alert-threshold.",
+      "plainImpact": "The schedule may still force shallow digest wiring if every vertical slips.",
+      "fixProposal": "Keep sequence SLC-01→05→02→04→03; treat Modifications as docs convention in killers notes only. Do not block seal on appetite alone once F1–F2 clear.",
+      "evidencePath": ".spec-ledger/workstreams/W-005.json"
+    },
+    {
+      "id": "F-seal",
+      "severity": "low",
+      "gap": "Spec-break must not seal. After highs clear and human confirms, seal with specBreakReviewId W-005/SR-0N (this or follow-on approve).",
+      "plainImpact": "Until a human seals, builders must not implement this bet.",
+      "fixProposal": "Human seals only after approve re-break; agent must not run workstream seal.",
+      "evidencePath": ".spec-ledger/workstreams/W-005.json"
+    }
+  ]
+}

@@ -1,0 +1,129 @@
+{
+  "schemaVersion": 1,
+  "workstreamId": "W-002",
+  "revision": 3,
+  "sealedAt": "2026-09-04T19:53:55.647Z",
+  "sealedBy": "agent:backfill-doc-digest",
+  "specDigest": "56c03550aa1e92c6de2b20838b3b8dc066a7a9d307ee8c266f6b189cf569cfdd",
+  "specDocDigest": "96d0baa385597a0a21f05b1f6d2e64d3eda4e43ee79128072334a3c546323fd5",
+  "body": {
+    "id": "W-002",
+    "featureIds": [
+      "turns",
+      "lattice",
+      "verify",
+      "client",
+      "server"
+    ],
+    "primaryFeatureId": "turns",
+    "title": "P0–P3 runtime + dogfood",
+    "problem": "Builder loop exists but turn check/abandon, automation resume, HTTP context, related pack, episode side collections, audit/CI, and compass/timeline are missing — product stops at W-001.",
+    "objective": "Ship remaining architecture through P3: turn ops + automation + HTTP context + related; themes/proposed-claims/compass/timeline; decisions/sources/attachments/probes/flows + basis; audit policy + CI; dogfood this repo under workstreams.",
+    "appetite": "1–2 weeks continuous",
+    "changeType": "feature",
+    "riskLevel": "elevated",
+    "trust": {
+      "deployTarget": "library-consumer",
+      "userFacing": true,
+      "performanceCritical": false,
+      "securitySensitive": false,
+      "correctnessCritical": true,
+      "requiredEvidence": [
+        "unit",
+        "integration",
+        "e2e"
+      ]
+    },
+    "policy": {
+      "alertOnSeverity": "high",
+      "onAlert": "wait",
+      "alertWaitMinutes": 10,
+      "onAlertTimeout": "move",
+      "onSealedSpecDeviation": "wait",
+      "sealedDeviationWaitMinutes": 10,
+      "onSealedDeviationTimeout": "move",
+      "requireSpecBreak": false,
+      "requireCodeBreak": true,
+      "onAwaitingSeal": "block"
+    },
+    "acceptanceCriteria": [
+      "turn check recomputes facts without writing; turn abandon writes facts with status abandoned",
+      "open stamps treeDigest; refuses dirty unless --allow-dirty",
+      "GET /v1/context returns VerticalContext; client HTTP path works",
+      "automation events resume timeouts on context/open; close refuses blocked events",
+      "spec-ledger related --workstream returns claims/features/turns/docs pack",
+      "decisions/sources/attachments/probes/flows loadable; decision basis stamped on close when present",
+      "spec-ledger audit + policy/audit.json; CI runs verify + audit + test",
+      "Lattice /compass and /timeline render vision/tenets/turns",
+      "proposed-claims dir + list; themes optional; dogfood turn under W-002"
+    ],
+    "outOfScope": [
+      "full RFC 8785 JCS (keep sha256Stable)",
+      "write HTTP endpoints",
+      "compass editing UI",
+      "PR bot / merge queue",
+      "multi-repo federation"
+    ],
+    "proposedClaimIds": [
+      "PC-010",
+      "PC-011",
+      "PC-012"
+    ],
+    "suggestedSlices": [
+      {
+        "id": "SLC-01",
+        "title": "Turn ops + HTTP context + automation + related",
+        "kind": "vertical",
+        "acceptance": [
+          "check/abandon/treeDigest/allow-dirty",
+          "/v1/context",
+          "automation resume",
+          "related pack"
+        ],
+        "evidence": [
+          "unit",
+          "integration"
+        ],
+        "expectedClaimIds": [
+          "SL-001",
+          "SL-003"
+        ]
+      },
+      {
+        "id": "SLC-02",
+        "title": "Episode side collections + decision basis",
+        "kind": "vertical",
+        "acceptance": [
+          "load decisions/sources/attachments/probes/flows",
+          "close stamps collection digests when present"
+        ],
+        "evidence": [
+          "unit",
+          "integration"
+        ],
+        "expectedClaimIds": [
+          "SL-001"
+        ]
+      },
+      {
+        "id": "SLC-03",
+        "title": "Audit + CI + Lattice compass/timeline + dogfood",
+        "kind": "vertical",
+        "acceptance": [
+          "audit CLI + CI workflow",
+          "/compass /timeline",
+          "closed W-002 turn"
+        ],
+        "evidence": [
+          "e2e",
+          "integration"
+        ],
+        "expectedClaimIds": [
+          "SL-005"
+        ]
+      }
+    ]
+  },
+  "backfillOfRevision": 2,
+  "backfillReason": "stamp specDocDigest for sealed specPath (consumer upgrade path)"
+}

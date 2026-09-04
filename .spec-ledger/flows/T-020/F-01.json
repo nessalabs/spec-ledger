@@ -1,0 +1,8 @@
+{
+  "schemaVersion": 1,
+  "turnId": "T-020",
+  "title": "Consumer init skeleton",
+  "after": "Full .spec-ledger skeleton from spec-ledger init; no invented pass",
+  "before": "Thin init; other repos cannot adopt",
+  "id": "T-020/F-01"
+}

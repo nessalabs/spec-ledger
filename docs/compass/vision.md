@@ -23,4 +23,4 @@ A verify verdict is a pure function of ledger + tree + results; episodes and com
 
 - Humans reviewing agent work in Lattice  
 - Coding agents that must not invent pass  
-- Embedders on `@nessa/spec-ledger-client`  
+- Embedders on `@nessalabs/spec-ledger-client`  

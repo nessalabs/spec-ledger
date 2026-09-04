@@ -1,6 +1,6 @@
 "use client"
 
-import type { Workstream } from "@nessa/spec-ledger-client"
+import type { Workstream } from "@nessalabs/spec-ledger-client"
 import {
   PeekLink,
   workstreamPeekMarkdown,

@@ -10,8 +10,8 @@ importers:
 
   packages/client:
     dependencies:
-      '@nessa/spec-ledger':
-        specifier: workspace:*
+      '@nessalabs/spec-ledger':
+        specifier: 0.1.0-alpha.0
         version: link:../ledger
     devDependencies:
       typescript:
@@ -29,8 +29,8 @@ importers:
 
   packages/server:
     dependencies:
-      '@nessa/spec-ledger':
-        specifier: workspace:*
+      '@nessalabs/spec-ledger':
+        specifier: 0.1.0-alpha.0
         version: link:../ledger
     devDependencies:
       '@types/node':

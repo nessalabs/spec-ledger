@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "id": "T-024/R-04",
+  "turnId": "T-024",
+  "workstreamId": "W-005",
+  "kind": "human",
+  "target": "code",
+  "reviewer": "agent:align",
+  "verdict": "approve",
+  "summary": "coverage intent: SLC-03 UI Release asset (README + pack-ui-release + publish UI upload); residual uncovered (scripts outside expectedPaths, skills, lockfile, prior dirt) via T-024/AW-07",
+  "plainSummary": "Consumers can download the Spec Ledger UI Release asset and pair it with published @nessalabs client/server.",
+  "treeDigest": "3e6411676a1964a6a66af9dc6cf567478222965d85438710b68f154f71d1b775",
+  "uncoveredPaths": [
+    ".github/workflows/publish.yml",
+    ".gitignore",
+    "AGENTS.md",
+    "DESIGN.md",
+    "package.json",
+    "pnpm-lock.yaml",
+    "schemas/workstream.json",
+    "scripts/pack-ui-release.mjs",
+    "scripts/rewrite-workspace-deps.mjs",
+    "skills/README.md",
+    "skills/sl-dev-break/SKILL.md",
+    "skills/sl-plan-break-spec/SKILL.md",
+    "skills/sl-plan-shape/SKILL.md",
+    "skills/sl-plan-shape/workstream-template.md",
+    "skills/sl-plan-vision/SKILL.md",
+    "skills/sl-security-review/SKILL.md",
+    "skills/sl-security-review/references/boundary-probes.md",
+    "skills/sl-security-review/references/research.md"
+  ],
+  "coverageSource": "mixed",
+  "waiverIds": [
+    "T-024/AW-07"
+  ]
+}

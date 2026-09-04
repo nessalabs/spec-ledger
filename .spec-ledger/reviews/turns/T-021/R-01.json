@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "id": "T-021/R-01",
+  "turnId": "T-021",
+  "workstreamId": "W-005",
+  "kind": "adversarial",
+  "target": "code",
+  "reviewer": "agent:sl-dev-break",
+  "verdict": "request-changes",
+  "blocking": true,
+  "treeDigest": "dbbc3e3b2b4ad707d3ce9e91a11e11f4161686691ab615ba156f6230c19455b3",
+  "alertOnSeverity": "high",
+  "summary": "SLC-05 killers: 7 green (missing-file refuse seal, stamp on seal+snapshot + amend immutability, latest amend wins, backfill preserves prior seals/N.json, deleted file fails check+audit, CLI amend/check-seal round-trip, hostile .. specPath). Red: (1) audit seal-digest-drift only compares live sealPayload to seal.specDigest — forging seal.specDigest to the new live hash greens ledger:audit while snapshot body drifts (check-seal still fails). (2) lastExpectedDocDigest truthy-checks afterDocDigest so empty string falls through to seal.specDocDigest, erasing a prior real amend — check-seal goes green after file revert.",
+  "plainSummary": "Audit can still pass after a forged seal hash, and an empty amend digest can wipe a real plan-change record so check-seal looks fine.",
+  "findings": [
+    {
+      "id": "F-01",
+      "severity": "high",
+      "claimId": "SL-015",
+      "gap": "auditLedger seal-digest-drift compares only computeSpecDigest(ws) !== ws.seal.specDigest. Pitch / SLC-05 require live sealPayload ≠ seal snapshot body. Mutating title and rewriting seal.specDigest to the new live hash yields audit findings=[] (CI green) while check-seal still fails on stale snapshot.specDigest. Killer: packages/ledger/src/workstream/doc-digest.break.test.ts::audit seal-digest-drift: live≠snapshot body even if seal.specDigest forged to match live",
+      "plainImpact": "Someone could change a sealed plan's JSON and still get a clean audit by rewriting the seal hash, as long as they never ran check-seal.",
+      "fixProposal": "Emit seal-digest-drift when live digest ≠ snapshot.specDigest (or ≠ hash of snapshot.body), not only when live ≠ seal.specDigest. Keep check-seal and audit aligned.",
+      "evidence": {
+        "kind": "test",
+        "citedTest": "packages/ledger/src/workstream/doc-digest.break.test.ts::audit seal-digest-drift: live≠snapshot body even if seal.specDigest forged to match live",
+        "ran": true,
+        "command": "pnpm --filter @nessa/spec-ledger test",
+        "observedOutput": "AssertionError [ERR_ASSERTION]: audit must emit seal-digest-drift when live payload ≠ snapshot body; got []"
+      }
+    },
+    {
+      "id": "F-02",
+      "severity": "high",
+      "claimId": "SL-015",
+      "gap": "lastExpectedDocDigest: if amends.length && last.afterDocDigest (truthy) return it; else seal.specDocDigest. Empty-string afterDocDigest is falsy → falls through past a prior real amend. Attack: amend to v2, append poison amend with afterDocDigest:\"\", revert file to seal bytes → check-seal.ok===true (expected===sealDigest) while priorAmend still on disk. Pitch: if any postSealAmends exist, use latest afterDocDigest (do not soft-skip to seal). Killer: packages/ledger/src/workstream/doc-digest.break.test.ts::out-of-intent: empty afterDocDigest on latest amend must not fall back past prior amend",
+      "plainImpact": "A bad empty amend entry could erase an earlier real plan change so the old sealed doc would look valid again.",
+      "fixProposal": "When postSealAmends is non-empty, always take the latest afterDocDigest (including empty → missing-expected or hard fail). Do not fall back to seal.specDocDigest while amends exist. Optionally schema-minLength≥1 on afterDocDigest.",
+      "evidence": {
+        "kind": "test",
+        "citedTest": "packages/ledger/src/workstream/doc-digest.break.test.ts::out-of-intent: empty afterDocDigest on latest amend must not fall back past prior amend",
+        "ran": true,
+        "command": "pnpm --filter @nessa/spec-ledger test",
+        "observedOutput": "AssertionError [ERR_ASSERTION]: check-seal wrongly green after empty afterDocDigest erased prior amend (expected=f6b6ef61b099 seal=f6b6ef61b099 priorAmend=7a911b828c92) | true !== false"
+      }
+    }
+  ],
+  "killersCited": [
+    "packages/ledger/src/workstream/doc-digest.break.test.ts::missing specPath file refuses seal",
+    "packages/ledger/src/workstream/doc-digest.break.test.ts::seal stamps digest on live seal AND snapshot; amend never mutates seal.specDocDigest",
+    "packages/ledger/src/workstream/doc-digest.break.test.ts::latest amend.afterDocDigest wins over seal.specDocDigest and prior amends",
+    "packages/ledger/src/workstream/doc-digest.break.test.ts::backfill does not mutate prior seals/N.json bytes",
+    "packages/ledger/src/workstream/doc-digest.break.test.ts::audit seal-digest-drift: live≠snapshot body even if seal.specDigest forged to match live",
+    "packages/ledger/src/workstream/doc-digest.break.test.ts::deleted spec file after seal fails check-seal and audit",
+    "packages/ledger/src/workstream/doc-digest.break.test.ts::CLI amend + check-seal round-trip (integration)",
+    "packages/ledger/src/workstream/doc-digest.break.test.ts::out-of-intent: empty afterDocDigest on latest amend must not fall back past prior amend",
+    "packages/ledger/src/workstream/doc-digest.break.test.ts::out-of-intent: hostile specPath with .. refuses seal/read"
+  ],
+  "residualRisks": [
+    "Hunt budget: two out-of-intent killers (correctnessCritical); hostile .. path passed; empty afterDocDigest failed.",
+    "onAlert=wait for high — human/timeout before close.",
+    "F-01: check-seal already catches forged seal.specDigest; gap is audit/CI only."
+  ]
+}

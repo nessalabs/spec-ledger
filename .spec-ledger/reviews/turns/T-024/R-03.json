@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "T-024/R-03",
+  "turnId": "T-024",
+  "workstreamId": "W-005",
+  "kind": "adversarial",
+  "target": "code",
+  "reviewer": "agent:sl-dev-break",
+  "verdict": "approve",
+  "blocking": false,
+  "treeDigest": "3e6411676a1964a6a66af9dc6cf567478222965d85438710b68f154f71d1b775",
+  "alertOnSeverity": "high",
+  "resolvesReviewId": "T-024/R-02",
+  "resolvesFindingIds": [
+    "T-024/R-02#F-01"
+  ],
+  "summary": "Re-ran all 5 SLC-03 / SL-013 ui-release.break killers after README ban rephrase (no npm-install @nessalabs/ui substring). All green: deep shipped-tree walk zero file:/workspace:; README client/server + Release tarball + path-B ban; publish.yml NESSA_UI_ROOT/dist/no --skip-build/contents:write; pack fail-closed; @nessalabs scope + tarball/ledger version. Resolves R-02 F-01.",
+  "plainSummary": "Consumers can follow the README to pair published client and server with the UI Release asset, and the ship checks for that path all passed.",
+  "findings": [],
+  "killersCited": [
+    "packages/ledger/src/ui-release.break.test.ts::shipped tree incl node_modules has zero file:/workspace: protocols",
+    "packages/ledger/src/ui-release.break.test.ts::README documents published client/server + Release UI asset (SLC-03 acceptance)",
+    "packages/ledger/src/ui-release.break.test.ts::publish.yml packs UI Release asset with NESSA_UI_ROOT, dist build, no --skip-build, contents:write upload",
+    "packages/ledger/src/ui-release.break.test.ts::pack-ui-release fails closed when NESSA_UI_ROOT / agent-stream missing",
+    "packages/ledger/src/ui-release.break.test.ts::packaged UI name/deps stay @nessalabs/* and tarball version matches ledger"
+  ],
+  "residualRisks": [
+    "Hunt budget: one out-of-intent killer (@nessa scope + version) — green.",
+    "Builder smoke still skips node_modules in walk; pack assert + breaker deep walk remain the nested oracle."
+  ]
+}

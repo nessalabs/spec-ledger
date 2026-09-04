@@ -1,0 +1,9 @@
+{
+  "id": "b-sl-013",
+  "claimId": "SL-013",
+  "kind": "check",
+  "locator": {
+    "type": "path",
+    "path": "packages/ledger/src/ui-release.smoke.test.ts"
+  }
+}

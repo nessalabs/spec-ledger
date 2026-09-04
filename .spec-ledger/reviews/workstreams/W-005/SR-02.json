@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "id": "W-005/SR-02",
+  "workstreamId": "W-005",
+  "kind": "adversarial",
+  "target": "spec",
+  "reviewer": "agent:sl-plan-break-spec",
+  "verdict": "approve",
+  "blocking": false,
+  "alertOnSeverity": "high",
+  "summary": "Re-break after SR-01 amends. Related pack: features cli/verify/client/server/lattice (cli entryPoints now include package.jsons + publish.yml); claims SL-001..004/007/008; PC-015..018; worktree caution-only. Highs cleared: normative init table + negatives + verify oracle (F1); Lattice path B Release asset only (F2); pack oracles no workspace/file (F3); claim split PC-015..018 (F4); expectedPaths on all slices (F5); publish.yml Release-only + dry-run + tag match + NPM_TOKEN docs with securitySensitive false but acceptance-bound negatives (F6). Version pinned 0.1.0-alpha.0; bet done = workflow+docs+dry-run. Soft residuals only — not alert-threshold.",
+  "plainSummary": "The amended plan is seal-ready: init, pack, Lattice Release asset, and publish rules are clear enough to build.",
+  "resolvesReviewId": "W-005/SR-01",
+  "resolvesFindingIds": [
+    "W-005/SR-01#F1",
+    "W-005/SR-01#F2",
+    "W-005/SR-01#F3",
+    "W-005/SR-01#F4",
+    "W-005/SR-01#F5",
+    "W-005/SR-01#F6",
+    "W-005/SR-01#F7",
+    "W-005/SR-01#F8",
+    "W-005/SR-01#F9",
+    "W-005/SR-01#F10",
+    "W-005/SR-01#F11"
+  ],
+  "residualRisks": [
+    "Lattice asset acceptance bans file:../../../nessa specifically; shipped tree should also drop file:../client (and any file: protocol) when rewriting for the artifact — enforce in SLC-03 killers, not a new high gap",
+    "publish.yml publishes npm packages only; who builds/attaches the Lattice Release asset (workflow upload vs human attach on cut) is rabbit-hole — pick smallest at build time",
+    "Partial-failure rule covers dirs-before-ledger.json; also ensure vision/graph/policy exist before marking init success (ledger.json last already implies that if writers are ordered)",
+    "Graph feature cli.claimIds still empty until promote PC→SL",
+    "worktree scan caution-only — not a seal blocker",
+    "Proposed killers: K-init-table, K-init-reinit, K-init-no-pass, K-pack-ledger-bin, K-pack-no-workspace, K-lattice-asset-no-file-deps, K-publish-yml-triggers, K-version-tag-match"
+  ],
+  "findings": [
+    {
+      "id": "F-seal",
+      "severity": "low",
+      "gap": "Spec-break approve only — human must seal W-005 (specDigest + sealedBy) before sl-dev-build. Agent must not seal.",
+      "plainImpact": "Until a human seals, builders must not treat this bet as approved to implement.",
+      "fixProposal": "Human reads pitch + PC-015..018 + SR-01/SR-02, then seals via workstream seal CLI.",
+      "evidencePath": ".spec-ledger/workstreams/W-005.json"
+    },
+    {
+      "id": "F-asset-file-deps",
+      "severity": "moderate",
+      "claimId": "PC-017",
+      "gap": "PC-017 / SLC-03 call out file:../../../nessa but packages/ui also uses file:../client. A Release asset that only rewrites the nessa path could still ship a broken file: client link. Intent of path B is clear; tighten killer/acceptance wording at build or treat as residual.",
+      "plainImpact": "A Lattice download could still fail outside this monorepo if local file links remain.",
+      "fixProposal": "At seal or first SLC-03 turn: acceptance/killer requires zero file: and workspace: protocols in the shipped asset tree (client/server resolved to npm 0.1.0-alpha.0 or bundled).",
+      "evidencePath": "packages/ui/package.json"
+    }
+  ]
+}

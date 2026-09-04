@@ -7,9 +7,9 @@ import {
   CardHeader,
   CardTitle,
   CodeBlock,
-} from "@nessa-ui/react"
+} from "@nessalabs/ui"
 import { serverClient } from "@/lib/ledger"
-import { HTTP_CONTRACT } from "@nessa/spec-ledger-client"
+import { HTTP_CONTRACT } from "@nessalabs/spec-ledger-client"
 
 const ContractsExplorer = nextDynamic(
   () =>
@@ -48,7 +48,7 @@ export default async function ContractsPage() {
           JSON Schema files under <code className="text-foreground">schemas/</code> are
           the SSOT for claims, bindings, results, reports, and the graph. The HTTP
           API is read-only (SL-003) — embedders use{" "}
-          <code className="text-foreground">@nessa/spec-ledger-client</code>.
+          <code className="text-foreground">@nessalabs/spec-ledger-client</code>.
         </p>
       </header>
 
@@ -94,7 +94,7 @@ export default async function ContractsPage() {
           <CodeBlock
             language="ts"
             mode="dark"
-            code={`import { createSpecLedgerClient } from "@nessa/spec-ledger-client"
+            code={`import { createSpecLedgerClient } from "@nessalabs/spec-ledger-client"
 
 const client = createSpecLedgerClient({
   kind: "http",

@@ -1,4 +1,4 @@
-import type { Turn, VerifyReport } from "@nessa/spec-ledger-client"
+import type { Turn, VerifyReport } from "@nessalabs/spec-ledger-client"
 
 export type DigestFreshness = "current" | "stale" | "unknown"
 
