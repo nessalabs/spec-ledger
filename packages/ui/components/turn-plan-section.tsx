@@ -7,8 +7,8 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@nessa-ui/react"
-import type { Workstream } from "@nessa/spec-ledger-client"
+} from "@nessalabs/ui"
+import type { Workstream } from "@nessalabs/spec-ledger-client"
 import { useDocPane } from "@/components/turn-doc-split"
 
 /** Plan: workstream + slice + doc path with Read → SplitView pane (no inline pitch). */

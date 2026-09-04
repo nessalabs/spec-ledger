@@ -1,0 +1,11 @@
+{
+  "id": "SL-014",
+  "kind": "invariant",
+  "statement": "On GitHub Release published events only, .github/workflows/publish.yml publishes @nessalabs/spec-ledger, @nessalabs/spec-ledger-client, and @nessalabs/spec-ledger-server at version equal to the release tag (0.1.0-alpha.0 line) to the nessalabs npm org; pull_request and push must not publish; workflow_dispatch may dry-run; NPM_TOKEN is required for live publish and documented in the workflow.",
+  "area": "core",
+  "required": true,
+  "links": {
+    "docs": ["docs/workstreams/consumer-cli-and-npm-publish.md", ".github/workflows/publish.yml"],
+    "proposedClaimId": "PC-018"
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "T-023/R-01",
+  "turnId": "T-023",
+  "workstreamId": "W-005",
+  "kind": "adversarial",
+  "target": "code",
+  "reviewer": "agent:sl-dev-break",
+  "verdict": "request-changes",
+  "blocking": true,
+  "treeDigest": "0bb37e8c2d91625f69e0645c38d08adf2c70d82279d3d4861a28d6c21f77c79d",
+  "alertOnSeverity": "high",
+  "summary": "SLC-04 publish.yml killers: 6 green (exclusive release types [published]; on: only release+workflow_dispatch; dry_run default true; version mismatch exit 1; NPM_TOKEN live gate + ci.yml clean; @nessalabs package names and UI not in publish loop). Red: DRY_RUN is `github.event_name == 'workflow_dispatch' && inputs.dry_run || false` — workflow_dispatch with dry_run=false live-publishes without a Release, violating SL-014 / acceptance \"live publish only on release published\". Builder publish.workflow.test.ts also red on flow-style `types: [published]` (expects block list) — smoke theater, not the blocking gap.",
+  "plainSummary": "A manual workflow run can still publish live to npm without cutting a GitHub Release.",
+  "findings": [
+    {
+      "id": "F-01",
+      "severity": "high",
+      "claimId": "SL-014",
+      "gap": "Publish step sets DRY_RUN from `github.event_name == 'workflow_dispatch' && inputs.dry_run || false`. On workflow_dispatch with dry_run=false, DRY_RUN is false and pnpm publish runs without --dry-run (live registry write) despite no release event. SL-014 and SLC-04 acceptance require live publish only on release published; dispatch may dry-run only. Fix: force dry-run whenever event_name != 'release' (e.g. DRY_RUN: ${{ github.event_name != 'release' }}), or refuse/exit 1 if dispatch requests live. Killer: packages/ledger/src/publish.workflow.break.test.ts::live publish only on release: workflow_dispatch must always dry-run (cannot live via dry_run=false).",
+      "plainImpact": "Anyone who can run the publish workflow manually could push packages to npm without a Release.",
+      "fixProposal": "Set DRY_RUN to true for every non-release event (recommended: `github.event_name != 'release'`). Keep dry_run input as documentation-only or refuse with exit 1 when dispatch asks for live. Do not let inputs.dry_run disable dry-run.",
+      "evidence": {
+        "kind": "test",
+        "citedTest": "packages/ledger/src/publish.workflow.break.test.ts::live publish only on release: workflow_dispatch must always dry-run (cannot live via dry_run=false)",
+        "ran": true,
+        "command": "pnpm --filter @nessalabs/spec-ledger exec node --test dist/publish.workflow.break.test.js",
+        "observedOutput": "AssertionError [ERR_ASSERTION]: DRY_RUN must not follow inputs.dry_run (dispatch dry_run=false would live-publish); got: github.event_name == 'workflow_dispatch' && inputs.dry_run || false"
+      }
+    }
+  ],
+  "killersCited": [
+    "packages/ledger/src/publish.workflow.break.test.ts::live publish only on release: workflow_dispatch must always dry-run (cannot live via dry_run=false)",
+    "packages/ledger/src/publish.workflow.break.test.ts::release types are exclusively [published] (no created/edited/prereleased)",
+    "packages/ledger/src/publish.workflow.break.test.ts::on: triggers are only release + workflow_dispatch (no push/pull_request siblings)",
+    "packages/ledger/src/publish.workflow.break.test.ts::dry_run input defaults to true",
+    "packages/ledger/src/publish.workflow.break.test.ts::version mismatch fails closed before publish",
+    "packages/ledger/src/publish.workflow.break.test.ts::NPM_TOKEN required for live publish; ci.yml never publishes",
+    "packages/ledger/src/publish.workflow.break.test.ts::published package names are @nessalabs/* and UI is not in the publish loop"
+  ],
+  "residualRisks": [
+    "Hunt budget: one out-of-intent killer used (UI must not appear in publish loop) — passed.",
+    "onAlert=wait for high — human/timeout before close.",
+    "Builder publish.workflow.test.ts expects block-style release types list and is currently red against flow-style types: [published]; tighten builder smoke when fixing DRY_RUN.",
+    "Partial multi-package publish failure (ledger ok, client fail) left as residual — not separately killed this turn.",
+    "Header comment still omits NPM_TOKEN by name; runtime error string documents it — soft residual."
+  ]
+}

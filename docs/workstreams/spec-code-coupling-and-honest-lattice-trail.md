@@ -45,7 +45,7 @@ Long prose does **not** live in `.spec-ledger`. Seal digests this file via `spec
 
 ## Out of scope
 
-- Running LLMs inside `@nessa/spec-ledger` core  
+- Running LLMs inside `@nessalabs/spec-ledger` core  
 - Align affecting `verify.ok` / `ledgerDigest`  
 - Write/mutate Lattice forms · media player · agent auto-seal · foreign worktree auto-merge  
 - Line-by-line “is this prose justified?” beyond **path coverage**  
@@ -103,3 +103,9 @@ Long prose does **not** live in `.spec-ledger`. Seal digests this file via `spec
 - [ ] This Markdown matches what you want built  
 - [ ] Verticals / out-of-scope / skip rules OK  
 - [ ] Then: `node packages/ledger/dist/cli/main.js workstream seal W-004 --by <you>`
+
+## Modifications
+
+| When | Link | Summary |
+| --- | --- | --- |
+| 2026-09-04 | T-022 | npm package scope in prose: @nessa → @nessalabs |

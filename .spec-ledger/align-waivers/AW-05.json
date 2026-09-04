@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "id": "T-022/AW-05",
+  "reason": "T-022 surface is packable @nessalabs packages and rewrite script; residual dirty UI/skills/.gitignore/.github from parallel slices waived for this turn.",
+  "actor": "human",
+  "treeDigest": "48f55e3b6e8e2daff01e2ead78c1e3cdaa076cd206e9061f8f91722ab7e109ea",
+  "createdAt": "2026-09-04T20:28:37.128Z",
+  "workstreamId": "W-005",
+  "turnId": "T-022"
+}

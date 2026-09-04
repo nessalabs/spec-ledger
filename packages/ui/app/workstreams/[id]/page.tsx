@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { notFound } from "next/navigation"
-import { Badge } from "@nessa-ui/react"
+import { Badge } from "@nessalabs/ui"
 import { liveReport, serverClient } from "@/lib/ledger"
 import { readRepoMarkdown } from "@/lib/spec-md"
 import { PitchDocLink } from "@/components/pitch-doc-link"

@@ -32,7 +32,7 @@ export function StaticMermaidInner({
     let cancelled = false
     setFailed(false)
     ensureMermaid()
-    const renderId = `lattice-mmd-${id}`
+    const renderId = `spec-ledger-mmd-${id}`
     mermaid
       .render(renderId, chart)
       .then((result) => {

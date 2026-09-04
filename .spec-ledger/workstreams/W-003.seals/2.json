@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 1,
+  "workstreamId": "W-003",
+  "revision": 2,
+  "sealedAt": "2026-09-04T19:53:55.647Z",
+  "sealedBy": "agent:backfill-doc-digest",
+  "specDigest": "aeeeb4ca2c78a8c9738edaeb2e8ba569df1e954140f87f303f8e6a11cd6d4389",
+  "specDocDigest": "6d30db20819311d9f16ac7d606cd09b001bfd640ab8601ab9e6e5b93ba4bd51e",
+  "body": {
+    "id": "W-003",
+    "featureIds": [
+      "lattice",
+      "turns",
+      "client"
+    ],
+    "primaryFeatureId": "lattice",
+    "title": "Spec Ledger dogfood UI",
+    "problem": "The UI is a verify dashboard; workstreams, open turns, and episode trails are not the hero — Spec Ledger does not feel like our own tool when opened in the browser.",
+    "objective": "Read-only Spec Ledger UI: home = active bet + open turn + verify badge; /workstreams list+detail; turn pages show reviews/decisions/attachments metadata — dogfood this repo.",
+    "appetite": "1 day",
+    "changeType": "feature",
+    "riskLevel": "moderate",
+    "trust": {
+      "deployTarget": "library-consumer",
+      "userFacing": true,
+      "performanceCritical": false,
+      "securitySensitive": false,
+      "correctnessCritical": false,
+      "requiredEvidence": [
+        "integration",
+        "e2e"
+      ]
+    },
+    "policy": {
+      "alertOnSeverity": "high",
+      "onAlert": "wait",
+      "alertWaitMinutes": 10,
+      "onAlertTimeout": "move",
+      "onSealedSpecDeviation": "wait",
+      "sealedDeviationWaitMinutes": 10,
+      "onSealedDeviationTimeout": "move",
+      "requireSpecBreak": false,
+      "requireCodeBreak": true,
+      "onAwaitingSeal": "block"
+    },
+    "acceptanceCriteria": [
+      "pnpm lattice boots against this repo .spec-ledger",
+      "/ shows workstream pulse + open turn or empty state + live verify badge",
+      "/workstreams and /workstreams/[id] show status, seal, slices, linked turns",
+      "/turns/[id] shows workstream/slice/contextDigest + reviews/decisions/attachments",
+      "Nav includes Workstreams; product chrome says Spec Ledger not Lattice",
+      "Client listWorkstreams/getWorkstream + turn episode helpers; UI uses client only"
+    ],
+    "outOfScope": [
+      "Write/mutate UI",
+      "Media player / upload",
+      "Compass edit",
+      "Spec Ledger UI in GitHub CI",
+      "New design system"
+    ],
+    "proposedClaimIds": [],
+    "suggestedSlices": [
+      {
+        "id": "SLC-01",
+        "title": "Client + workstream routes + home rewrite",
+        "kind": "vertical",
+        "acceptance": [
+          "listWorkstreams/getWorkstream/getTurnEpisode on client+HTTP",
+          "home + /workstreams + turn episode trail",
+          "chrome branded Spec Ledger"
+        ],
+        "evidence": [
+          "integration",
+          "e2e"
+        ],
+        "expectedClaimIds": [
+          "SL-005"
+        ]
+      }
+    ]
+  },
+  "backfillOfRevision": 1,
+  "backfillReason": "stamp specDocDigest for sealed specPath (consumer upgrade path)"
+}

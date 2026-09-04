@@ -1,6 +1,6 @@
 @import "tailwindcss";
-@import "@nessa-ui/react/theme.css";
-@import "@nessa-ui/react/styles.css";
+@import "@nessalabs/ui/theme.css";
+@import "@nessalabs/ui/styles.css";
 
 @custom-variant dark (&:is(.dark *));
 

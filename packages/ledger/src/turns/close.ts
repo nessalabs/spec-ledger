@@ -18,7 +18,7 @@ import type {
   TurnFacts,
 } from "../types.js"
 
-const PRODUCED_BY = "@nessa/spec-ledger@0.1.0"
+const PRODUCED_BY = "@nessalabs/spec-ledger@0.1.0"
 
 function git(repoRoot: string, args: string[]): { ok: boolean; out: string } {
   const r = spawnSync("git", args, { cwd: repoRoot, encoding: "utf8" })

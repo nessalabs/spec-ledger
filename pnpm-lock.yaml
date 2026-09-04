@@ -10,7 +10,7 @@ importers:
 
   packages/client:
     dependencies:
-      '@nessa/spec-ledger':
+      '@nessalabs/spec-ledger':
         specifier: workspace:*
         version: link:../ledger
     devDependencies:
@@ -29,7 +29,7 @@ importers:
 
   packages/server:
     dependencies:
-      '@nessa/spec-ledger':
+      '@nessalabs/spec-ledger':
         specifier: workspace:*
         version: link:../ledger
     devDependencies:

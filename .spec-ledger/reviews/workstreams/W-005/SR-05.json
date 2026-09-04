@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "id": "W-005/SR-05",
+  "workstreamId": "W-005",
+  "kind": "adversarial",
+  "target": "spec",
+  "reviewer": "agent:sl-plan-break-spec",
+  "verdict": "approve",
+  "blocking": false,
+  "alertOnSeverity": "high",
+  "summary": "Re-break after PO amend: remove dogfood grandfather soft-skip; generic consumer rule. Related: features=6 (cli/verify/client/server/lattice/turns), claims=7 (SL-001..004/006..008), PC-015..019, docs=16 (incl. consumer-cli + work-model), worktreeCautions=caution-only string. Pitch + W-005 AC/SLC-05 + PC-019 + outOfScope agree: last expected = latest postSealAmends.afterDocDigest else seal.specDocDigest; sealed+specPath+no expected → check-seal + audit ERROR spec-doc-digest-missing; remediation workstream backfill-doc-digest writes NEW seals/N.json revision with specDocDigest from current bytes (never mutate old); amend requires expected digest already (else point to backfill); no-op refuse + never mutate seal.specDocDigest; seal-digest-drift ERROR. Dogfood W-001..004 already show that upgrade shape (new revisions + specDocDigest). SR-04 F-grandfather-noop cleared — stamp path is backfill CLI, not amend-before===after. Prior SR-02/03 highs on init/UI/pack/publish remain intact. No alert-threshold findings.",
+  "plainSummary": "The digest rules are consumer-generic and fail closed; missing digests need a new seal stamp, and this bet is clear enough to seal.",
+  "resolvesReviewId": "W-005/SR-04",
+  "resolvesFindingIds": [
+    "W-005/SR-04#F-grandfather-noop",
+    "W-005/SR-04#F-seal"
+  ],
+  "supersedesReviewId": "W-005/SR-04",
+  "residualRisks": [
+    "backfill stamps current Markdown bytes as sealed truth without an amend row — intentional upgrade tradeoff; silent drift after a digest exists still fails",
+    "work-model.md seal shape and schemas/workstream.json lack specDocDigest / beforeDocDigest / afterDocDigest until SLC-05 (expectedPaths cover them)",
+    "UTF-8 / line-ending sensitivity of sha256(utf8 file bytes)",
+    "humanConfirmed:true whenever --by is set trusts the caller — process, not a seal blocker",
+    "## Modifications is human convention only (not audited)",
+    "Graph feature cli.claimIds empty until PC→SL promote",
+    "worktree scan caution-only — not a seal blocker",
+    "Proposed killers: K-init-table, K-init-reinit, K-init-no-pass, K-pack-ledger-bin, K-pack-no-workspace, K-ui-asset-no-file-deps, K-publish-yml-triggers, K-version-tag-match, K-seal-specdoc-digest, K-check-seal-doc-last-expected, K-check-seal-doc-missing-error, K-backfill-doc-digest-new-revision, K-amend-requires-expected, K-amend-before-after-noop, K-amend-sealed-only, K-audit-spec-doc-missing-error, K-audit-spec-doc-drift-error, K-audit-seal-digest-drift-error"
+  ],
+  "findings": [
+    {
+      "id": "F-seal",
+      "severity": "low",
+      "gap": "Spec-break approve only — human must seal W-005 (specDigest + sealedBy + seal.specDocDigest on the pitch) before sl-dev-build. Agent must not seal.",
+      "plainImpact": "Until a human seals, builders must not treat this bet as approved to implement.",
+      "fixProposal": "Human reads pitch + PC-015..019 + SR-05, then seals via workstream seal CLI with specBreakReviewId W-005/SR-05.",
+      "evidencePath": ".spec-ledger/workstreams/W-005.json"
+    }
+  ]
+}

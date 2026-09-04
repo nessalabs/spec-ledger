@@ -1,0 +1,115 @@
+# Publishes @nessalabs/spec-ledger{,-client,-server} to the npm registry (nessalabs org).
+# Live publish: GitHub Release published only. PRs / push to main do not publish.
+# Optional: workflow_dispatch with dry_run=true (default) runs npm publish --dry-run.
+name: publish
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "If true, npm publish --dry-run only (no registry write)"
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+  id-token: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      # Spec Ledger UI Release asset vendors @nessalabs/ui from this monorepo.
+      - name: Checkout nessa_ui (for UI Release asset)
+        if: github.event_name == 'release'
+        uses: actions/checkout@v4
+        with:
+          repository: nessalabs/nessa_ui
+          path: nessa_ui
+          token: ${{ secrets.NESSA_UI_CHECKOUT_TOKEN || github.token }}
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          registry-url: https://registry.npmjs.org
+          scope: "@nessalabs"
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm -r build
+      - run: pnpm test
+      - run: pnpm verify
+      - run: pnpm run ledger:audit
+      - name: Resolve version from release tag
+        id: ver
+        run: |
+          if [ "${{ github.event_name }}" = "release" ]; then
+            TAG="${{ github.event.release.tag_name }}"
+          else
+            TAG="v$(node -p "require('./packages/ledger/package.json').version")"
+          fi
+          VER="${TAG#v}"
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+          echo "version=$VER" >> "$GITHUB_OUTPUT"
+          echo "Using version $VER from tag $TAG"
+      - name: Assert package versions match release tag
+        run: |
+          VER="${{ steps.ver.outputs.version }}"
+          for pkg in packages/ledger packages/client packages/server; do
+            PV=$(node -p "require('./$pkg/package.json').version")
+            if [ "$PV" != "$VER" ]; then
+              echo "version mismatch: $pkg is $PV, release wants $VER"
+              exit 1
+            fi
+          done
+      - name: Publish packages
+        env:
+          # Live publish only on GitHub Release. workflow_dispatch always dry-runs
+          # (cannot live-publish even if dry_run=false).
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          set -euo pipefail
+          if [ "${{ github.event_name }}" != "release" ]; then
+            echo "non-release event — forcing dry-run (no registry write)"
+            DRY_RUN=true
+          else
+            DRY_RUN=false
+          fi
+          FLAGS=(--access public --no-git-checks)
+          if [ "${DRY_RUN}" = "true" ]; then
+            FLAGS+=(--dry-run)
+            echo "dry-run: will not write to npm"
+          else
+            if [ -z "${NODE_AUTH_TOKEN:-}" ]; then
+              echo "NPM_TOKEN secret required for live publish"
+              exit 1
+            fi
+          fi
+          # Order: ledger first, then dependents (prepack rewrites workspace deps).
+          for pkg in packages/ledger packages/client packages/server; do
+            echo "publishing $pkg ${FLAGS[*]}"
+            (cd "$pkg" && pnpm publish "${FLAGS[@]}")
+          done
+
+      - name: Build nessa_ui packages (UI Release asset)
+        if: github.event_name == 'release'
+        working-directory: nessa_ui
+        run: |
+          corepack enable
+          pnpm install --frozen-lockfile
+          pnpm --filter @nessalabs/agent-stream --filter @nessalabs/ui build
+      - name: Pack Spec Ledger UI Release asset
+        if: github.event_name == 'release'
+        env:
+          NESSA_UI_ROOT: ${{ github.workspace }}/nessa_ui
+        run: node scripts/pack-ui-release.mjs --out dist-ui-release
+      - name: Upload UI Release asset
+        if: github.event_name == 'release'
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist-ui-release/spec-ledger-ui-*.tgz
+

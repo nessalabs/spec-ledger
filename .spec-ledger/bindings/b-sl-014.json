@@ -1,0 +1,9 @@
+{
+  "id": "b-sl-014",
+  "claimId": "SL-014",
+  "kind": "check",
+  "locator": {
+    "type": "path",
+    "path": ".github/workflows/publish.yml"
+  }
+}

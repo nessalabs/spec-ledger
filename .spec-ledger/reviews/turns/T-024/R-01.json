@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "id": "T-024/R-01",
+  "turnId": "T-024",
+  "workstreamId": "W-005",
+  "kind": "adversarial",
+  "target": "code",
+  "reviewer": "agent:sl-dev-break",
+  "verdict": "request-changes",
+  "blocking": true,
+  "treeDigest": "5da036c4f10b701e04b16162c2446bf95c808be7334cc459533ec918164b5f96",
+  "alertOnSeverity": "high",
+  "summary": "SLC-03 / SL-013 killers: 4 green (deep shipped-tree walk incl node_modules zero file:/workspace:; publish.yml NESSA_UI_ROOT+dist build+no --skip-build+contents:write upload; pack fails closed on missing NESSA_UI_ROOT/agent-stream; packaged @nessalabs scope + tarball version matches ledger). Red: README UI Release section omits @nessalabs/spec-ledger-server — sealed W-005 SLC-03 acceptance requires documenting published client/server + Release UI asset; SL-013 same. Builder smoke only checks client/SPEC_LEDGER_ROOT.",
+  "plainSummary": "The UI Release download path is documented, but the README never tells consumers how published server fits with that asset.",
+  "findings": [
+    {
+      "id": "F-01",
+      "severity": "high",
+      "claimId": "SL-013",
+      "gap": "README ### Spec Ledger UI from a Release asset mentions vendored @nessalabs/spec-ledger-client and the spec-ledger-ui-*.tgz one-liner, but never @nessalabs/spec-ledger-server. Sealed W-005 SLC-03 acceptance: \"README documents one-liner: published client/server + Release Spec Ledger UI asset against a consumer .spec-ledger/\"; SL-013 requires the same published client/server + asset framing. Killer: packages/ledger/src/ui-release.break.test.ts::README documents published client/server + Release UI asset (SLC-03 acceptance).",
+      "plainImpact": "A consumer following only the UI Release section would not know they still need the published server package for the documented client/server + asset path.",
+      "fixProposal": "In README Spec Ledger UI Release section, document published @nessalabs/spec-ledger-client and @nessalabs/spec-ledger-server (npm install from Release) together with downloading the spec-ledger-ui-*.tgz asset and pointing SPEC_LEDGER_ROOT at the consumer ledger. Keep path B: do not instruct npm install of unpublished @nessalabs/ui.",
+      "evidence": {
+        "kind": "test",
+        "citedTest": "packages/ledger/src/ui-release.break.test.ts::README documents published client/server + Release UI asset (SLC-03 acceptance)",
+        "ran": true,
+        "command": "pnpm --filter @nessalabs/spec-ledger build && node --test packages/ledger/dist/ui-release.break.test.js",
+        "observedOutput": "AssertionError [ERR_ASSERTION]: UI section must mention published server (sealed acceptance / SL-013); expected: /@nessalabs\\/spec-ledger-server/"
+      }
+    }
+  ],
+  "killersCited": [
+    "packages/ledger/src/ui-release.break.test.ts::shipped tree incl node_modules has zero file:/workspace: protocols",
+    "packages/ledger/src/ui-release.break.test.ts::README documents published client/server + Release UI asset (SLC-03 acceptance)",
+    "packages/ledger/src/ui-release.break.test.ts::publish.yml packs UI Release asset with NESSA_UI_ROOT, dist build, no --skip-build, contents:write upload",
+    "packages/ledger/src/ui-release.break.test.ts::pack-ui-release fails closed when NESSA_UI_ROOT / agent-stream missing",
+    "packages/ledger/src/ui-release.break.test.ts::packaged UI name/deps stay @nessalabs/* and tarball version matches ledger"
+  ],
+  "residualRisks": [
+    "Hunt budget: one out-of-intent killer used (@nessa scope leftover + tarball/ledger version) — passed.",
+    "Builder smoke walkPackageJson skips node_modules; pack assert + breaker deep walk cover nested package.json — residual if smoke is sole binding evidence later.",
+    "onAlert=wait for high — human/timeout before close."
+  ]
+}

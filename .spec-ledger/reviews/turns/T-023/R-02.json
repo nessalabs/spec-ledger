@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "id": "T-023/R-02",
+  "turnId": "T-023",
+  "workstreamId": "W-005",
+  "kind": "adversarial",
+  "target": "code",
+  "reviewer": "agent:sl-dev-break",
+  "verdict": "approve",
+  "blocking": false,
+  "treeDigest": "2f3d3f1663443b2e55da225548b3597ca6e356652bc1121eed5d99cf32cd2fb4",
+  "alertOnSeverity": "high",
+  "resolvesReviewId": "T-023/R-01",
+  "resolvesFindingIds": [
+    "T-023/R-01#F-01"
+  ],
+  "summary": "Re-ran SLC-04 publish.yml break killers after builder force: non-release events set DRY_RUN=true in the publish step shell (event_name != release); inputs.dry_run no longer gates live publish. All 7 killers green (release-only live, exclusive published types, on: triggers, dry_run default, version mismatch exit, NPM_TOKEN+ci clean, @nessalabs + no UI). Killer oracle updated to accept shell-level force (same invariant).",
+  "plainSummary": "Manual workflow runs can only dry-run; live npm publish happens only when a GitHub Release is published.",
+  "findings": [],
+  "killersCited": [
+    "packages/ledger/src/publish.workflow.break.test.ts::live publish only on release: workflow_dispatch must always dry-run (cannot live via dry_run=false)",
+    "packages/ledger/src/publish.workflow.break.test.ts::release types are exclusively [published] (no created/edited/prereleased)",
+    "packages/ledger/src/publish.workflow.break.test.ts::on: triggers are only release + workflow_dispatch (no push/pull_request siblings)",
+    "packages/ledger/src/publish.workflow.break.test.ts::dry_run input defaults to true",
+    "packages/ledger/src/publish.workflow.break.test.ts::version mismatch fails closed before publish",
+    "packages/ledger/src/publish.workflow.break.test.ts::NPM_TOKEN required for live publish; ci.yml never publishes",
+    "packages/ledger/src/publish.workflow.break.test.ts::published package names are @nessalabs/* and UI is not in the publish loop"
+  ],
+  "residualRisks": [
+    "Hunt budget: one out-of-intent killer (UI not in publish loop) — green.",
+    "Partial multi-package publish failure still residual.",
+    "workflow_dispatch dry_run input is now documentation-only relative to live gate."
+  ]
+}

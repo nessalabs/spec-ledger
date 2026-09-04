@@ -13,7 +13,7 @@
 11. After each vertical implements → [skills/sl-dev-break](skills/sl-dev-break/SKILL.md) **while turn open**; honor `onAlert`. Run the breaker as a **separate subagent** (see [.cursor/rules/review-subagent-models.mdc](.cursor/rules/review-subagent-models.mdc)): default **same model class as the builder** (`inherit`); named models (e.g. Fable) **only when the user asks**. Lattice copy: [skills/references/review-lattice-copy.md](skills/references/review-lattice-copy.md) (`plainSummary` / `plainImpact` required by `schemas/review.json`).
 12. Path coverage before close/push when `requireAlignApprove` → [skills/sl-dev-align](skills/sl-dev-align/SKILL.md) (cheap/Haiku; **ask user for coverage intent** before approve; `--plain-summary` required).
 13. End every turn with [skills/sl-dev-verify](skills/sl-dev-verify/SKILL.md) — `turn close` (refuses without contextDigest / unresolved blocking / align when required).
-14. UI packages must not import `@nessa/spec-ledger` — only `@nessa/spec-ledger-client`.
+14. UI packages must not import `@nessalabs/spec-ledger` — only `@nessalabs/spec-ledger-client`.
 15. Server is read-only (SL-003). Git is the write path. Never hand-edit turn `facts`.
 16. Never put `status: pass` on a binding.
 

@@ -1,0 +1,9 @@
+{
+  "id": "b-sl-015",
+  "claimId": "SL-015",
+  "kind": "check",
+  "locator": {
+    "type": "path",
+    "path": "packages/ledger/src/workstream"
+  }
+}

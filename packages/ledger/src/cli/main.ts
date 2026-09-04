@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { resolve } from "node:path"
-import { initLedger } from "./init.js"
+import { initLedgerDetailed } from "./init.js"
 import { getVerticalContext } from "../context/vertical.js"
 import { loadLedger } from "../fs/load.js"
 import { blastRadius, layerViolations } from "../graph/impact.js"
@@ -11,6 +11,8 @@ import {
   listWorkstreams,
   loadWorkstream,
   sealWorkstream,
+  backfillDocDigest,
+  amendWorkstream,
 } from "../workstream/load.js"
 import {
   listReviewsForTurn,
@@ -60,7 +62,7 @@ Usage:
   spec-ledger layers [--root <dir>]
   spec-ledger context --workstream W-001 --slice SLC-01 [--json] [--root <dir>]
   spec-ledger related --workstream W-001 [--worktrees] [--json] [--root <dir>]
-  spec-ledger workstream list|show|seal|check-seal …
+  spec-ledger workstream list|show|seal|check-seal|amend|backfill-doc-digest …
   spec-ledger turn open|close|check|abandon|list …
   spec-ledger review add|list …
   spec-ledger align check|approve|waiver …
@@ -111,7 +113,8 @@ async function main(): Promise<void> {
 
   if (cmd === "init") {
     const name = argValue(argv, "--name") ?? "project"
-    const path = initLedger(root, name)
+    const { path, warnings } = initLedgerDetailed(root, name)
+    for (const w of warnings) console.warn(`warning: ${w}`)
     console.log(`initialized ${path}`)
     return
   }
@@ -287,6 +290,43 @@ async function main(): Promise<void> {
       const r = checkSeal(root, id)
       console.log(JSON.stringify(r, null, 2))
       process.exit(r.ok ? 0 : 1)
+    }
+    if (sub === "backfill-doc-digest") {
+      const id = argv[2]
+      const by = argValue(argv, "--by")
+      if (!id || !by) {
+        console.error(
+          "usage: spec-ledger workstream backfill-doc-digest <W-id> --by <who>",
+        )
+        process.exit(2)
+      }
+      const ws = backfillDocDigest(root, id, by)
+      console.log(
+        `backfilled ${ws.id} rev ${ws.seal?.revision} specDocDigest ${ws.seal?.specDocDigest?.slice(0, 12)}…`,
+      )
+      return
+    }
+    if (sub === "amend") {
+      const id = argv[2]
+      const by = argValue(argv, "--by")
+      const summary = argValue(argv, "--summary")
+      if (!id || !by || !summary) {
+        console.error(
+          "usage: spec-ledger workstream amend <W-id> --by <who> --summary <text> [--turn T] [--decision D] [--commit sha]",
+        )
+        process.exit(2)
+      }
+      const { amend } = amendWorkstream(root, id, {
+        by,
+        summary,
+        turnId: argValue(argv, "--turn"),
+        decisionId: argValue(argv, "--decision"),
+        commit: argValue(argv, "--commit"),
+      })
+      console.log(
+        `amended ${id} ${amend.beforeDocDigest.slice(0, 12)}… → ${amend.afterDocDigest.slice(0, 12)}…`,
+      )
+      return
     }
     usage()
   }

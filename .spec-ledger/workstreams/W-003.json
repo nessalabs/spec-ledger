@@ -3,7 +3,7 @@
   "id": "W-003",
   "status": "done",
   "createdAt": "2026-09-03T05:06:00.000Z",
-  "updatedAt": "2026-09-03T05:14:17.551Z",
+  "updatedAt": "2026-09-04T20:15:19.776Z",
   "specPath": "docs/workstreams/spec-ledger-dogfood-ui.md",
   "featureIds": [
     "lattice",
@@ -12,8 +12,8 @@
   ],
   "primaryFeatureId": "lattice",
   "title": "Spec Ledger in the browser",
-  "problem": "The UI is a verify dashboard; workstreams, open turns, and episode trails are not the hero \u2014 Spec Ledger does not feel like our own tool when opened in the browser.",
-  "objective": "Home, workstreams, and turn trails as the product \u2014 not a verify dashboard.",
+  "problem": "The UI is a verify dashboard; workstreams, open turns, and episode trails are not the hero — Spec Ledger does not feel like our own tool when opened in the browser.",
+  "objective": "Home, workstreams, and turn trails as the product — not a verify dashboard.",
   "appetite": "1 day",
   "changeType": "feature",
   "riskLevel": "moderate",
@@ -76,10 +76,11 @@
     }
   ],
   "seal": {
-    "sealedAt": "2026-09-03T05:07:07.151Z",
+    "sealedAt": "2026-09-04T20:15:19.776Z",
     "sealedBy": "human",
-    "specDigest": "aeeeb4ca2c78a8c9738edaeb2e8ba569df1e954140f87f303f8e6a11cd6d4389",
-    "snapshotPath": "workstreams/W-003.seals/1.json",
-    "revision": 1
+    "specDigest": "0b0b8dcd801b2c91f11864341eb5c1c602bbce7f73cb43440e8a861c310b9e00",
+    "snapshotPath": "workstreams/W-003.seals/3.json",
+    "revision": 3,
+    "specDocDigest": "6d30db20819311d9f16ac7d606cd09b001bfd640ab8601ab9e6e5b93ba4bd51e"
   }
 }

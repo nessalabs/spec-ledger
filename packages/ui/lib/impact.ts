@@ -1,4 +1,4 @@
-import type { Turn } from "@nessa/spec-ledger-client"
+import type { Turn } from "@nessalabs/spec-ledger-client"
 
 type TurnFileChange = NonNullable<Turn["facts"]>["files"][number]
 

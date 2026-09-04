@@ -1,6 +1,6 @@
 import { cache } from "react"
 import { resolve } from "node:path"
-import { createSpecLedgerClient } from "@nessa/spec-ledger-client"
+import { createSpecLedgerClient } from "@nessalabs/spec-ledger-client"
 
 /** Monorepo root (nessa-spec-test). Override with SPEC_LEDGER_ROOT. */
 export function ledgerRootDir(): string {

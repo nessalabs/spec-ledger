@@ -7,7 +7,7 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@nessa-ui/react"
+} from "@nessalabs/ui"
 import { liveReport, serverClient } from "@/lib/ledger"
 import { TurnSummaryCard } from "@/components/turn-detail"
 import { turnsTouchingClaim } from "@/lib/turns"

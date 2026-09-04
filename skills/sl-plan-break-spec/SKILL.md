@@ -64,6 +64,11 @@ episodes touched**, and optional sibling-worktree **caution** entries
 
 ### 2. Attack the spec (using the pack)
 
+For security-sensitive work or relevant trust boundaries, apply the spec mode
+of [`sl-security-review`](../sl-security-review/SKILL.md). Check that attacker
+prerequisites, enforcing components, and denial/side-effect evidence are explicit.
+Missing security acceptance is a spec gap, not proof of an exploitable defect.
+
 - Contradictions: acceptance vs out-of-scope; trust vs evidence; **proposed vs
   live claims** in the pack; this bet vs prior decisions cited in the pack
 - Untestable or vague acceptance

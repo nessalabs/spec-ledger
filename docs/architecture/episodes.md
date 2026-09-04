@@ -59,7 +59,7 @@ It must also answer:
 6. **Episode records never mint verify outcomes** (no decision/review/probe field
    means “verified” or “pass”).
 7. **No untyped `metadata` bag.** Every association is a typed collection + schema.
-8. **UI imports only `@nessa/spec-ledger-client`**, never core FS APIs.
+8. **UI imports only `@nessalabs/spec-ledger-client`**, never core FS APIs.
 
 ---
 

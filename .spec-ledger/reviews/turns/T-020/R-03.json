@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "T-020/R-03",
+  "turnId": "T-020",
+  "workstreamId": "W-005",
+  "kind": "human",
+  "target": "code",
+  "reviewer": "agent:align",
+  "verdict": "approve",
+  "summary": "user intent: include UI plus docs with init; waiver T-020/AW-03 for skills/.gitignore tooling paths",
+  "plainSummary": "Init CLI, Spec Ledger UI, and docs in this turn are covered by the sealed plan; skills leftovers waived.",
+  "treeDigest": "ac42d9f05f2aeb561a13c9dc3da98cba3eff52572a8d1cf225800728b0968045",
+  "uncoveredPaths": [
+    ".gitignore",
+    "skills/README.md",
+    "skills/sl-dev-break/SKILL.md",
+    "skills/sl-plan-break-spec/SKILL.md",
+    "skills/sl-plan-shape/SKILL.md",
+    "skills/sl-plan-vision/SKILL.md",
+    "skills/sl-security-review/SKILL.md",
+    "skills/sl-security-review/references/boundary-probes.md",
+    "skills/sl-security-review/references/research.md"
+  ],
+  "coverageSource": "mixed",
+  "waiverIds": [
+    "T-020/AW-03"
+  ]
+}

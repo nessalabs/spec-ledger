@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "id": "PC-018",
+  "status": "promoted",
+  "statement": "On GitHub Release published events only, .github/workflows/publish.yml publishes @nessalabs/spec-ledger, @nessalabs/spec-ledger-client, and @nessalabs/spec-ledger-server at version equal to the release tag (0.1.0-alpha.0 line) to the nessalabs npm org/registry; pull_request and push must not publish; workflow_dispatch may dry-run; NPM_TOKEN is required for live publish and documented in the workflow.",
+  "rationale": "Release is the only publish trigger; dry-run proves the path without cutting a release in-bet.",
+  "workstreamId": "W-005",
+  "suggestedLiveId": "SL-014",
+  "requiredEvidence": [
+    "integration"
+  ],
+  "liveId": "SL-014",
+  "updatedAt": "2026-09-04T20:28:55.110Z"
+}

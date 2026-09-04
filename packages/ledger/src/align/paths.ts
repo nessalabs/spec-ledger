@@ -11,6 +11,8 @@ export const DEFAULT_ALIGN_IGNORE: readonly string[] = [
   "dist/**",
   "**/dist/**",
   ".git/**",
+  ".pnpm-store/**",
+  "**/.pnpm-store/**",
 ]
 
 /** Collapse `.` / `..` so prefix matches cannot be smuggled. */

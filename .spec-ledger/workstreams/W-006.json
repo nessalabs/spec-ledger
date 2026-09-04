@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "id": "W-006",
+  "status": "draft",
+  "createdAt": "2026-09-04T19:53:38.977Z",
+  "featureIds": [
+    "verify",
+    "turns",
+    "lattice",
+    "cli",
+    "client",
+    "server"
+  ],
+  "primaryFeatureId": "lattice",
+  "title": "Trustworthy autonomous coding",
+  "specPath": "docs/workstreams/W-006-trustworthy-autonomous-coding/spec.md",
+  "problem": "Evidence freshness, delegated authority, remembered deferrals, and live progress need one simpler workflow.",
+  "objective": "Follow agent work through readable specs, explicit permission, meaningful progress, and current evidence.",
+  "changeType": "feature",
+  "outOfScope": [
+    "Implementation or seal from this draft alone",
+    "Replacing existing W-005 work without reconciling scope",
+    "Multi-user SaaS, a new agent runtime, or generic workflow engine",
+    "Claiming full semantic equivalence between arbitrary prose and code",
+    "Rewriting historical facts or fabricating approvals"
+  ],
+  "shapedBy": "agent:sl-plan-shape",
+  "rabbitHoles": [
+    "First host for direct approval",
+    "Trust and deployment targets",
+    "Freshness budgets",
+    "First-slice appetite",
+    "Reconcile W-005 overlap before building"
+  ],
+  "expectedClaimIds": [
+    "SL-001",
+    "SL-002",
+    "SL-003",
+    "SL-004",
+    "SL-005"
+  ],
+  "proposedClaimIds": [],
+  "updatedAt": "2026-09-04T20:25:34.579619+00:00"
+}

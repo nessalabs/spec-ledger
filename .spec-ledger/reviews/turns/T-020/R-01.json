@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "id": "T-020/R-01",
+  "turnId": "T-020",
+  "workstreamId": "W-005",
+  "kind": "adversarial",
+  "target": "code",
+  "reviewer": "agent:sl-dev-break",
+  "verdict": "request-changes",
+  "blocking": true,
+  "treeDigest": "352a38a329226691504c76088a04ca633fe9d3482e528a62618bb804022f9e60",
+  "alertOnSeverity": "high",
+  "summary": "SLC-01 killers: exact path table, re-init/no-clobber, partial-fail gate, verify honesty, clean subdirectory→git root, CLI re-init exit+no-git warn, vision-fail ordering all green. Red: findRepoRoot returns on nested empty .spec-ledger before walking to parent .git, so init stamps packages/app/.spec-ledger instead of repo-root (pitch: prefer repo root).",
+  "plainSummary": "Init can put the ledger inside a nested leftover folder instead of the real git repo root.",
+  "findings": [
+    {
+      "id": "F-01",
+      "severity": "high",
+      "claimId": "SL-011",
+      "gap": "findRepoRoot short-circuits on exists(.spec-ledger) before walking to .git. A leftover empty packages/app/.spec-ledger (no ledger.json) makes initLedgerDetailed(sub) write ledger.json there — violates sealed negative \"Git: prefer repo root\". Killer: packages/ledger/src/cli/init.break.test.ts::poison: nested empty .spec-ledger must not win over parent .git",
+      "plainImpact": "A monorepo package could get its own ledger while the repo root stayed uninitialized.",
+      "fixProposal": "For init (or findRepoRoot): when choosing a root, prefer an ancestor .git over a nested .spec-ledger that lacks ledger.json. Do not treat an empty/partial .spec-ledger as an initialized repo root.",
+      "evidence": {
+        "kind": "test",
+        "citedTest": "packages/ledger/src/cli/init.break.test.ts::poison: nested empty .spec-ledger must not win over parent .git",
+        "ran": true,
+        "command": "pnpm --filter @nessa/spec-ledger test",
+        "observedOutput": "AssertionError [ERR_ASSERTION]: nested .spec-ledger hijacked init → …/packages/app/.spec-ledger (want repo-root) | + actual …/packages/app/.spec-ledger | - expected …/.spec-ledger"
+      }
+    }
+  ],
+  "killersCited": [
+    "packages/ledger/src/cli/init.break.test.ts::exact normative top-level set — no extras, no missing",
+    "packages/ledger/src/cli/init.break.test.ts::re-init refuse must not clobber existing skeleton",
+    "packages/ledger/src/cli/init.break.test.ts::partial failure before ledger.json must leave re-init gate unset",
+    "packages/ledger/src/cli/init.break.test.ts::verify after init: no invented pass; no binding status/pass fields",
+    "packages/ledger/src/cli/init.break.test.ts::git prefer: init from subdirectory lands at repo-root .spec-ledger",
+    "packages/ledger/src/cli/init.break.test.ts::poison: nested empty .spec-ledger must not win over parent .git",
+    "packages/ledger/src/cli/init.break.test.ts::CLI re-init exits non-zero and prints already initialized",
+    "packages/ledger/src/cli/init.break.test.ts::CLI no-.git prints one-line warning then initializes at cwd",
+    "packages/ledger/src/cli/init.break.test.ts::out-of-intent: vision write failure must not leave ledger.json"
+  ],
+  "residualRisks": [
+    "Hunt budget: one out-of-intent killer used (vision write failure ordering).",
+    "onAlert=wait for high — human/timeout before close."
+  ]
+}

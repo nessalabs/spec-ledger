@@ -5,7 +5,7 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@nessa-ui/react"
+} from "@nessalabs/ui"
 import { serverClient } from "@/lib/ledger"
 
 export const dynamic = "force-dynamic"

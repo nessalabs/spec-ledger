@@ -1,6 +1,6 @@
 "use client"
 
-import type { Claim, EvidenceBinding } from "@nessa/spec-ledger-client"
+import type { Claim, EvidenceBinding } from "@nessalabs/spec-ledger-client"
 import { cn } from "@/lib/cn"
 import { PeekLink, claimPeekMarkdown } from "@/components/peek-link"
 

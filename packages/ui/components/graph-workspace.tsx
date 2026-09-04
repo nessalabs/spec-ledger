@@ -18,8 +18,8 @@ import {
   useAppShell,
   PaneSplitDirection,
   type PaneNode,
-} from "@nessa-ui/react"
-import type { Claim, CodebaseGraph } from "@nessa/spec-ledger-client"
+} from "@nessalabs/ui"
+import type { Claim, CodebaseGraph } from "@nessalabs/spec-ledger-client"
 import { X } from "lucide-react"
 import Link from "next/link"
 import { StaticMermaid } from "@/components/static-mermaid"

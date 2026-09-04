@@ -3,7 +3,7 @@
   "id": "W-001",
   "status": "done",
   "createdAt": "2026-09-03T04:10:00.000Z",
-  "updatedAt": "2026-09-03T04:49:16.470Z",
+  "updatedAt": "2026-09-04T20:15:19.772Z",
   "specPath": "docs/workstreams/builder-episode-loop.md",
   "featureIds": [
     "turns",
@@ -14,7 +14,7 @@
   "title": "Honest builder turns",
   "problem": "turn open does not load a sealed slice or stamp contextDigest; builders start from chat memory; close cannot refuse a missing code-break.",
   "objective": "Open with a sealed plan in hand; close only after a real code review.",
-  "appetite": "2\u20134 days",
+  "appetite": "2–4 days",
   "changeType": "feature",
   "riskLevel": "elevated",
   "trust": {
@@ -67,11 +67,11 @@
   "suggestedSlices": [
     {
       "id": "SLC-01",
-      "title": "Sealed slice \u2192 typed context",
+      "title": "Sealed slice → typed context",
       "kind": "vertical",
       "acceptance": [
         "workstream init/seal/check-seal roundtrip",
-        "CLI context \u2261 getVerticalContext contextDigest",
+        "CLI context ≡ getVerticalContext contextDigest",
         "verify ledgerDigest unchanged when workstreams/vision present"
       ],
       "evidence": [
@@ -85,7 +85,7 @@
     },
     {
       "id": "SLC-02",
-      "title": "Open \u2192 break-while-open \u2192 close refusals",
+      "title": "Open → break-while-open → close refusals",
       "kind": "vertical",
       "acceptance": [
         "unsealed open refused",
@@ -117,10 +117,11 @@
     }
   ],
   "seal": {
-    "sealedAt": "2026-09-03T04:47:07.818Z",
+    "sealedAt": "2026-09-04T20:15:19.772Z",
     "sealedBy": "human",
-    "specDigest": "e4367c69769779d2eaa334239d33cc591cf9afcb3a291da4532038b06108ac6d",
-    "snapshotPath": "workstreams/W-001.seals/2.json",
-    "revision": 2
+    "specDigest": "ab18668da724aa209fd8672e61e8ec16e9706ffcf8368bb7379cb9cbe43f8d06",
+    "snapshotPath": "workstreams/W-001.seals/4.json",
+    "revision": 4,
+    "specDocDigest": "9a05c6133c2fd63c920de1da07ea4d426148beaa43a1f448cf09afc9d26b10b5"
   }
 }

@@ -11,7 +11,7 @@
   "users": [
     "humans reviewing agent work in Lattice",
     "coding agents that must not invent pass",
-    "embedders on @nessa/spec-ledger-client"
+    "embedders on @nessalabs/spec-ledger-client"
   ],
   "specPath": "docs/compass/vision.md",
   "updatedAt": "2026-09-03T07:30:00.000Z",

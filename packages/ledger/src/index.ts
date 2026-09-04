@@ -9,7 +9,7 @@ export {
 } from "./fs/snapshot.js"
 export { verifyLedger } from "./verify/verify.js"
 export { blastRadius, layerViolations } from "./graph/impact.js"
-export { initLedger } from "./cli/init.js"
+export { initLedger, initLedgerDetailed, INIT_EMPTY_DIRS } from "./cli/init.js"
 export {
   openTurn,
   closeTurn,

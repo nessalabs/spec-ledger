@@ -3,7 +3,7 @@ import { join } from "node:path"
 import type { ClaimVerdict, LoadedLedger, Outcome, VerifyReport } from "../types.js"
 import { pathExists, sha256Stable, writeJson } from "../fs/load.js"
 
-const PRODUCED_BY = "@nessa/spec-ledger@0.1.0"
+const PRODUCED_BY = "@nessalabs/spec-ledger@0.1.0"
 
 function gitCommit(repoRoot: string): string | null {
   const r = spawnSync("git", ["rev-parse", "HEAD"], { cwd: repoRoot, encoding: "utf8" })

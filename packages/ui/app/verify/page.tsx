@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Badge, JsonTree } from "@nessa-ui/react"
+import { Badge, JsonTree } from "@nessalabs/ui"
 import { liveReport, serverClient } from "@/lib/ledger"
 import { cn } from "@/lib/cn"
 

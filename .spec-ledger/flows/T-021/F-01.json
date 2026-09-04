@@ -1,0 +1,8 @@
+{
+  "schemaVersion": 1,
+  "turnId": "T-021",
+  "title": "Sealed plan digests",
+  "after": "specDocDigest + amend/backfill + audit catch silent edits",
+  "before": "Pitch Markdown could change after seal with no trail",
+  "id": "T-021/F-01"
+}

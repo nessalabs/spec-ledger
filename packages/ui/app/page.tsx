@@ -5,13 +5,13 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@nessa-ui/react"
+} from "@nessalabs/ui"
 import Link from "next/link"
 import { ledgerSnapshot, serverClient } from "@/lib/ledger"
 import { CompactTurnRow } from "@/components/compact-turn-row"
 import { FreshnessBadge, TurnVerifyBadge } from "@/components/freshness-badge"
 import { turnFreshness } from "@/lib/turns"
-import type { Turn, Workstream } from "@nessa/spec-ledger-client"
+import type { Turn, Workstream } from "@nessalabs/spec-ledger-client"
 
 export const dynamic = "force-dynamic"
 

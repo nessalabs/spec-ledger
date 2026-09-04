@@ -100,6 +100,11 @@ per flag, still capped). Do not burn the turn on an unbounded hunt.
 
 ## Attack menu (domain-agnostic)
 
+When `trust.securitySensitive` or the slice's trust boundary warrants it, use
+[`sl-security-review`](../sl-security-review/SKILL.md) for focused security
+investigation. Keep this skill's hunt budget, separate breaker ownership, and
+run-evidence requirements; unverified hypotheses do not become confirmed findings.
+
 Pick what fits the slice; do not import another repo’s event vocabulary.
 
 1. **Wrong principal** — authz / tenancy / “acting as” mismatch  
@@ -181,7 +186,7 @@ If the killer proves behavior the sealed workstream did not allow:
         "kind": "test",
         "citedTest": "packages/ledger/src/verify/verify.test.ts::partial ingest",
         "ran": true,
-        "command": "pnpm --filter @nessa/spec-ledger test",
+        "command": "pnpm --filter @nessalabs/spec-ledger test",
         "observedOutput": "AssertionError: expected ok === false"
       }
     }

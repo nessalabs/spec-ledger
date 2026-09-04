@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import { SpecLedgerShell } from "@/components/lattice-shell"
+import { SpecLedgerShell } from "@/components/spec-ledger-shell"
 import "./globals.css"
 
 export const metadata: Metadata = {

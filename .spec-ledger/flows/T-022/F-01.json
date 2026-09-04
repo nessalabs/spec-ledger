@@ -1,0 +1,8 @@
+{
+  "schemaVersion": 1,
+  "turnId": "T-022",
+  "title": "Install from npm pack",
+  "after": "pnpm pack tarball installs outside; bin + client/server resolve under @nessalabs",
+  "before": "Only monorepo node path worked",
+  "id": "T-022/F-01"
+}

@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "PC-016",
+  "status": "promoted",
+  "statement": "At version 0.1.0-alpha.0, packed @nessalabs/spec-ledger installs outside this monorepo and exposes bin spec-ledger that runs --help, init, and verify; packed @nessalabs/spec-ledger-client and @nessalabs/spec-ledger-server contain no workspace: or file: dependency protocols and install/resolve against that ledger version.",
+  "rationale": "Consumers need an installable CLI and read-path packages without cloning the workspace.",
+  "workstreamId": "W-005",
+  "suggestedLiveId": "SL-012",
+  "requiredEvidence": [
+    "integration",
+    "e2e"
+  ],
+  "liveId": "SL-012",
+  "updatedAt": "2026-09-04T20:22:40.070Z"
+}

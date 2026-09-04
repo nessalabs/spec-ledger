@@ -1,6 +1,6 @@
 {
-  "name": "@nessa/spec-ledger-server",
-  "version": "0.1.0",
+  "name": "@nessalabs/spec-ledger-server",
+  "version": "0.1.0-alpha.0",
   "description": "Read-only HTTP projection of Spec Ledger (no write endpoints)",
   "type": "module",
   "main": "./dist/index.js",
@@ -8,15 +8,31 @@
   "bin": {
     "spec-ledger-serve": "./dist/main.js"
   },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "tsc -p tsconfig.json",
-    "start": "node dist/main.js"
+    "start": "node dist/main.js",
+    "prepack": "node ../../scripts/rewrite-workspace-deps.mjs apply && pnpm build",
+    "postpack": "node ../../scripts/rewrite-workspace-deps.mjs restore"
   },
   "dependencies": {
-    "@nessa/spec-ledger": "workspace:*"
+    "@nessalabs/spec-ledger": "workspace:*"
   },
   "devDependencies": {
     "@types/node": "^22.13.10",
     "typescript": "^5.8.2"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
   }
 }

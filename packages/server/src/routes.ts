@@ -22,7 +22,7 @@ import {
   loadWorkstream,
   getTurnEpisode,
   HTTP_CONTRACT,
-} from "@nessa/spec-ledger"
+} from "@nessalabs/spec-ledger"
 import { readFileSync, existsSync } from "node:fs"
 import { join } from "node:path"
 

@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "id": "T-020/AW-03",
+  "reason": "T-020 coverage intent is init CLI plus Spec Ledger UI rename and docs; skills markdown and .gitignore (.pnpm-store ignore) are session tooling leftovers outside that product surface.",
+  "actor": "human",
+  "treeDigest": "ac42d9f05f2aeb561a13c9dc3da98cba3eff52572a8d1cf225800728b0968045",
+  "createdAt": "2026-09-04T20:12:35.925Z",
+  "workstreamId": "W-005",
+  "turnId": "T-020"
+}

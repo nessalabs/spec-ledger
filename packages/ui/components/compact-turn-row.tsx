@@ -1,14 +1,14 @@
 "use client"
 
-import { Badge } from "@nessa-ui/react"
-import type { Turn } from "@nessa/spec-ledger-client"
+import { Badge } from "@nessalabs/ui"
+import type { Turn } from "@nessalabs/spec-ledger-client"
 import { PeekLink, turnPeekMarkdown } from "@/components/peek-link"
 import {
   formatWhen,
   humanStatus,
   turnImpactSummary,
 } from "@/lib/impact"
-import type { VerifyReport } from "@nessa/spec-ledger-client"
+import type { VerifyReport } from "@nessalabs/spec-ledger-client"
 import { turnFreshness } from "@/lib/turns"
 
 export function CompactTurnRow({

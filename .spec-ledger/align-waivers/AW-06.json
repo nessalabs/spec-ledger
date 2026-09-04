@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "id": "T-023/AW-06",
+  "reason": "T-023 product surface is publish.yml and ci non-publish; residual dirty tree from prior W-005 slices waived for this turn.",
+  "actor": "human",
+  "treeDigest": "2f3d3f1663443b2e55da225548b3597ca6e356652bc1121eed5d99cf32cd2fb4",
+  "createdAt": "2026-09-04T20:33:14.542Z",
+  "workstreamId": "W-005",
+  "turnId": "T-023"
+}

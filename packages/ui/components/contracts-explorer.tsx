@@ -10,7 +10,7 @@ import {
   JsonTree,
   SegmentedControl,
   SegmentedControlOption,
-} from "@nessa-ui/react"
+} from "@nessalabs/ui"
 
 export function ContractsExplorer({
   schemas,

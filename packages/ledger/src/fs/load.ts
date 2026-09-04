@@ -15,12 +15,25 @@ import type {
 
 const LEDGER_DIR = ".spec-ledger"
 
+/**
+ * Prefer a git checkout root. Only treat `.spec-ledger/` as the root when it
+ * is already initialized (`ledger.json`) and no `.git` exists in ancestors —
+ * an empty nested `.spec-ledger` must not hijack init away from the repo root.
+ */
 export function findRepoRoot(start: string): string {
-  let dir = resolve(start)
+  const startAbs = resolve(start)
+  let dir = startAbs
   for (;;) {
-    if (existsSync(join(dir, ".git")) || existsSync(join(dir, LEDGER_DIR))) return dir
+    if (existsSync(join(dir, ".git"))) return dir
     const parent = dirname(dir)
-    if (parent === dir) return resolve(start)
+    if (parent === dir) break
+    dir = parent
+  }
+  dir = startAbs
+  for (;;) {
+    if (existsSync(join(dir, LEDGER_DIR, "ledger.json"))) return dir
+    const parent = dirname(dir)
+    if (parent === dir) return startAbs
     dir = parent
   }
 }

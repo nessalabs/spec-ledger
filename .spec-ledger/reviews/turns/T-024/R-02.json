@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "T-024/R-02",
+  "turnId": "T-024",
+  "workstreamId": "W-005",
+  "kind": "adversarial",
+  "target": "code",
+  "reviewer": "agent:sl-dev-break",
+  "verdict": "request-changes",
+  "blocking": true,
+  "treeDigest": "912c488037149215444820df6c684360f94faf8bbddc201ebb13ad51963fa270",
+  "alertOnSeverity": "high",
+  "resolvesReviewId": "T-024/R-01",
+  "resolvesFindingIds": [
+    "T-024/R-01#F-01"
+  ],
+  "summary": "Re-ran SLC-03 / SL-013 killers after README client/server fix. Prior R-01 F-01 (missing @nessalabs/spec-ledger-server) cleared. 4 green (deep file:/workspace: walk; publish.yml gates; pack fail-closed; @nessalabs scope+version). Still red: README forbid line contains literal `npm install @nessalabs/ui` which trips killer doesNotMatch oracle (path B: must not instruct npm-install of unpublished ui). Rephrase ban without that substring.",
+  "plainSummary": "The README now names client and server with the UI asset, but the way it bans installing the design system still looks like an install instruction to the check.",
+  "findings": [
+    {
+      "id": "F-01",
+      "severity": "high",
+      "claimId": "SL-013",
+      "gap": "README UI Release section correctly intends to forbid installing unpublished @nessalabs/ui, but the prose `do not `npm install @nessalabs/ui`` still matches killer doesNotMatch /npm\\s+i(?:nstall)?[^\\n]*@nessalabs\\/ui/. Path B / pitch: consumers must not be told to npm-install unpublished @nessalabs/ui. Killer: packages/ledger/src/ui-release.break.test.ts::README documents published client/server + Release UI asset (SLC-03 acceptance).",
+      "plainImpact": "Automated acceptance still fails, so the Release UI docs cannot be treated as done even though client and server are now named.",
+      "fixProposal": "Rephrase the ban so the line does not contain `npm install @nessalabs/ui` or `npm i … @nessalabs/ui` (e.g. \"Do not install unpublished @nessalabs/ui from the npm registry — it is vendored in the Release tarball.\"). Keep client/server + spec-ledger-ui-*.tgz documentation.",
+      "evidence": {
+        "kind": "test",
+        "citedTest": "packages/ledger/src/ui-release.break.test.ts::README documents published client/server + Release UI asset (SLC-03 acceptance)",
+        "ran": true,
+        "command": "pnpm --filter @nessalabs/spec-ledger build && node --test packages/ledger/dist/ui-release.break.test.js",
+        "observedOutput": "AssertionError [ERR_ASSERTION]: must not instruct npm install of unpublished @nessalabs/ui; operator: doesNotMatch; expected: /npm\\s+i(?:nstall)?[^\\n]*@nessalabs\\/ui/"
+      }
+    }
+  ],
+  "killersCited": [
+    "packages/ledger/src/ui-release.break.test.ts::shipped tree incl node_modules has zero file:/workspace: protocols",
+    "packages/ledger/src/ui-release.break.test.ts::README documents published client/server + Release UI asset (SLC-03 acceptance)",
+    "packages/ledger/src/ui-release.break.test.ts::publish.yml packs UI Release asset with NESSA_UI_ROOT, dist build, no --skip-build, contents:write upload",
+    "packages/ledger/src/ui-release.break.test.ts::pack-ui-release fails closed when NESSA_UI_ROOT / agent-stream missing",
+    "packages/ledger/src/ui-release.break.test.ts::packaged UI name/deps stay @nessalabs/* and tarball version matches ledger"
+  ],
+  "residualRisks": [
+    "R-01 server gap resolved by this README edit; only forbid-phrasing oracle remains red.",
+    "Hunt budget: one out-of-intent killer (@nessa scope + version) still green.",
+    "onAlert=wait for high — human/timeout before close."
+  ]
+}

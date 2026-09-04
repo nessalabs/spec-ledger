@@ -132,7 +132,7 @@ describe("KILLERS align/approve — wrong principal / waiver binding", () => {
       () =>
         assertAlignApproveValid({
           review: approve({ reviewer: "agent:rogue" }),
-          turn: turnWith("@nessa/spec-ledger@0.1.0"),
+          turn: turnWith("@nessalabs/spec-ledger@0.1.0"),
           policy: { alignReviewerPrefix: "" },
         }),
       /prefix|must start with/,

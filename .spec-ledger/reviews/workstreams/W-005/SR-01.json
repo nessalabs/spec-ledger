@@ -1,0 +1,115 @@
+{
+  "schemaVersion": 1,
+  "id": "W-005/SR-01",
+  "workstreamId": "W-005",
+  "kind": "adversarial",
+  "target": "spec",
+  "reviewer": "agent:sl-plan-break-spec",
+  "verdict": "request-changes",
+  "blocking": true,
+  "alertOnSeverity": "high",
+  "summary": "Related pack (features cli/verify/client/server/lattice; claims SL-001..004/007/008; PC-015/016; docs consumer-cli + work-model/vision; worktree scan caution-only) shows the bet aims right (full init + installable bin + Release→npm for alpha) but cannot seal yet: skeleton contract is untestable (tenets vs PC-015 drift), UI path is OR-shaped atop private+file:@nessa-ui, workspace:* publishability not acceptance-bound, PC-016 mega-claim fuses SLC-02/03/04, expectedPaths missing under requireAlignApprove, and NPM_TOKEN publish lacks negative/security acceptance despite securitySensitive:false. Graph feature cli has empty claimIds and entryPoints only main+init — understates .github/workflows + client/server/ui pack surface.",
+  "plainSummary": "Seal is blocked: init, Lattice publish, and Release→npm rules are still too vague for a consumer to get a trustworthy install path.",
+  "residualRisks": [
+    "worktrees.scanned caution-only string from related pack — not a seal blocker; authority remains this checkout",
+    "Proposed killers (post-amend): K-init-skeleton-list (fixture dir/file set after init); K-init-no-pass (verify after init invents no claim/binding pass); K-pack-bin (tarball install outside monorepo runs --help/init/verify); K-pack-client-server (no workspace: in packed package.json; install resolves); K-ui-path (chosen publish OR artifact path succeeds without file:../../../nessa); K-release-trigger (workflow yaml on: release only; push/PR job cannot publish); K-version-tag (published version matches Release tag / alpha line)"
+  ],
+  "findings": [
+    {
+      "id": "F1",
+      "severity": "high",
+      "claimId": "PC-015",
+      "gap": "Acceptance and PC-015 say 'contracted full skeleton' / 'stub or empty dirs as documented' but there is no normative, machine-checkable file/dir list. Pitch prose includes tenets; PC-015 and W-005.acceptanceCriteria omit tenets; themes/vision/reviews/proposed-claims/workstreams listed inconsistently. Current initLedger only creates claims/bindings/graph/policy/results/turns — delta is large and untestable without a fixture contract.",
+      "plainImpact": "Two agents could ship different init layouts and both claim the skeleton is done.",
+      "fixProposal": "Add a sealed appendix or attachment: exact paths created (files vs empty dirs vs stubs), including whether tenets/ and vision.json|md are required. Point PC-015 and SLC-01 acceptance at that list; add an integration fixture that asserts the set. Drop weasel 'as contracted/as documented' without the document.",
+      "evidencePath": "packages/ledger/src/cli/init.ts"
+    },
+    {
+      "id": "F2",
+      "severity": "high",
+      "claimId": "PC-016",
+      "gap": "SLC-03/PC-016 accept 'UI publishable OR Release-artifact runnable' while packages/ui is private:true and depends on @nessa-ui/react via file:../../../nessa/packages/react plus client via file:../client. Rabbit hole acknowledges the link but out-of-scope forbids replacing the design system and allows 'document temporary constraint' — so the consumer Lattice objective can forever defer. Related feature lattice + prior UI turns show this is the product surface, not optional polish.",
+      "plainImpact": "Consumers could install the CLI and still have no way to see their ledger in Lattice.",
+      "fixProposal": "Pick one path before seal: (A) publish @nessa/spec-ledger-ui with pinned public @nessa-ui/react (or vendored CSS-only subset) and workspace-stripped client dep; or (B) ship a Release-attached runnable artifact (documented one-liner) and demote npm UI from PC-016. Elevate the chosen path into SLC-03 acceptance; remove the OR. Do not treat 'document rabbit hole' as done.",
+      "evidencePath": "packages/ui/package.json"
+    },
+    {
+      "id": "F3",
+      "severity": "high",
+      "claimId": "PC-016",
+      "gap": "Acceptance mentions publishConfig/files/workspace deps resolved for npm, but client and server package.json use workspace:* and have no files/publishConfig; UI uses file: deps. SLC-02 only packs @nessa/spec-ledger; SLC-03 says 'npm-publishable' without a pack-install oracle. Pack-time workspace stripping is rabbit-hole prose, not acceptance.",
+      "plainImpact": "Published client or server packages could be uninstallable outside this monorepo.",
+      "fixProposal": "Per package in SLC-02/03: after pnpm pack (or documented publish dry-run), packed package.json must contain no workspace: or file: protocol deps; files/exports must include runnable dist (+ bin for ledger/server). Add integration evidence installing client+server tarballs against a packed ledger version.",
+      "evidencePath": "packages/client/package.json"
+    },
+    {
+      "id": "F4",
+      "severity": "high",
+      "claimId": "PC-016",
+      "gap": "PC-016 is a mega-claim: installable bin + client + server + Lattice UI/artifact + Release-only publish trigger. SLC-02, SLC-03, and SLC-04 all cite only PC-016. That fuses mechanism (pack/bin), product surface (Lattice), and CI policy (workflow triggers) — cheap-to-change smell; one failing vertical cannot falsify a clear claim slice.",
+      "plainImpact": "A partial ship could claim the publish story done while one package or the workflow still fails consumers.",
+      "fixProposal": "Split proposed claims before seal: e.g. PC-015 init; PC-016 installable ledger bin (+ optional client/server pack); PC-017 Release→npm trigger + package set / UI artifact. Re-map suggestedSlices proposedClaimIds. Keep each vertical independently fail-able.",
+      "evidencePath": ".spec-ledger/proposed-claims/PC-016.json"
+    },
+    {
+      "id": "F5",
+      "severity": "high",
+      "gap": "policy.requireAlignApprove is true but no suggestedSlices.expectedPaths despite schemas/workstream.json supporting them (W-004 lesson). Related blast spans packages/ledger (cli), client, server, ui, and net-new .github/workflows publish; graph feature cli entryPoints are only main.ts+init.ts with claimIds:[]. Align coverage will be ad-hoc.",
+      "plainImpact": "Path coverage could pass or fail arbitrarily because the sealed plan never named allowed files.",
+      "fixProposal": "Add expectedPaths per slice, e.g. SLC-01 packages/ledger/src/cli/**; SLC-02 packages/ledger/package.json + bin surface; SLC-03 packages/{client,server,ui}/**; SLC-04 .github/workflows/** + docs. Optionally extend graph cli entryPoints / locators for workflow + pack scripts.",
+      "evidencePath": ".spec-ledger/workstreams/W-005.json"
+    },
+    {
+      "id": "F6",
+      "severity": "high",
+      "claimId": "PC-016",
+      "gap": "trust.securitySensitive is false while SLC-04 introduces NPM_TOKEN and publish-on-Release — a supply-chain / secret boundary. Acceptance lacks negatives: push/PR must not publish; tag/version mismatch refuses publish; partial multi-package publish failure behavior; dry-run vs live gates; who may cut the first alpha Release. Related pack includes no prior publish workflow (only ci.yml on push/PR).",
+      "plainImpact": "A mistaken push or tag could publish broken or inconsistent packages to npm.",
+      "fixProposal": "Either set securitySensitive:true with required evidence for workflow negatives, or keep false but put explicit acceptance + killers: workflow on: [release] (and optional workflow_dispatch dry-run) only; no npm publish step on push/PR; version must equal release tag; document NPM_TOKEN least privilege. Name the workflow file path in acceptance.",
+      "evidencePath": ".github/workflows/ci.yml"
+    },
+    {
+      "id": "F7",
+      "severity": "moderate",
+      "claimId": "PC-016",
+      "gap": "Packages are version 0.1.0 today; acceptance allows '0.1.0-alpha.0 or agreed tag' and 'no Release cut unless explicitly creating 0.1.0-alpha'. Weasel 'or agreed' plus undefined 'production Release' vs alpha makes done-ness for SLC-04 unclear (workflow merged + dry-run only? or first alpha publish required?).",
+      "plainImpact": "The team could disagree whether shipping the workflow alone finishes the bet.",
+      "fixProposal": "Pin the alpha version string in acceptance (e.g. 0.1.0-alpha.0). State explicitly: this bet completes with workflow+docs+dry-run evidence; cutting the GitHub Release is optional human action outside acceptance unless chosen.",
+      "evidencePath": "docs/workstreams/consumer-cli-and-npm-publish.md"
+    },
+    {
+      "id": "F8",
+      "severity": "moderate",
+      "claimId": "PC-015",
+      "gap": "Missing init failure modes: re-init on existing ledger.json (today throws); crash mid-write leaving partial tree; init outside a git repo (findRepoRoot falls back to cwd); whether schemas/ must exist for consumer verify/server schema routes (ledger npm files[] is only dist+README — schemas stay in monorepo). No acceptance for these.",
+      "plainImpact": "Init could leave a half-written ledger or a consumer install that cannot load schemas the tools expect.",
+      "fixProposal": "Add SLC-01 negatives: re-init is refused without clobber; specify git requirement; decide schemas strategy (bundle in package, generate stubs, or document monorepo-only) and put it in acceptance/outOfScope explicitly.",
+      "evidencePath": "packages/ledger/src/fs/load.ts"
+    },
+    {
+      "id": "F9",
+      "severity": "moderate",
+      "claimId": "SL-001",
+      "gap": "Bet correctly requires not weakening SL-001/SL-002, but acceptance is aspirational. SLC-01 says verify runs and does not invent pass without a concrete oracle (empty claims → report shape; no binding status:pass; no stub claims with outcomes). expectedClaimIds include SL-001 but not SL-002 though bindings are in the skeleton.",
+      "plainImpact": "Init could add stub files that quietly teach verify to look greener than the empty ledger is.",
+      "fixProposal": "Name the oracle: after init, verify exits with no invented claim pass; bindings dir empty or stubs validate against schemas/binding.json with no status field; cite SL-002 on SLC-01 expectedClaimIds. Killer test in code-break later.",
+      "evidencePath": ".spec-ledger/claims/SL-002.json"
+    },
+    {
+      "id": "F10",
+      "severity": "moderate",
+      "gap": "Appetite 1–2 days for full init rewrite + four publish surfaces + @nessa-ui unblock + new Release workflow is under-scoped relative to rabbit holes. SLC-04 is largely a horizontal CI chore fused into the same bet as product verticals — risk of shipping workflow theater before consumer pack works.",
+      "plainImpact": "The bet may seal a schedule that forces shallow publish wiring and leaves consumers broken.",
+      "fixProposal": "Either extend appetite / cut UI to a follow-on workstream after CLI+client+server pack works, or make SLC-03 explicitly optional/follow-on in outOfScope with objective narrowed. Prefer sequencing: SLC-01→02→04 for ledger bin, then SLC-03.",
+      "evidencePath": ".spec-ledger/workstreams/W-005.json"
+    },
+    {
+      "id": "F11",
+      "severity": "low",
+      "gap": "related.worktreeCautions is caution-only (no structured sibling dirty entries). Graph feature cli.claimIds is empty until PC promote — residual soft risk only.",
+      "plainImpact": "Other checkouts stay a soft warning, and the new CLI feature still has no live claims attached.",
+      "fixProposal": "Copy into residualRisks; on promote, bind SL-011/SL-012 (or splits) to feature cli. Do not block seal on worktrees alone.",
+      "evidencePath": ".spec-ledger/graph/codebase-graph.json"
+    }
+  ]
+}

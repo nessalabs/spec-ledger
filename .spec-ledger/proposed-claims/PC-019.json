@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "PC-019",
+  "status": "promoted",
+  "statement": "When a workstream with specPath is sealed, seal.specDocDigest is the sha256 of the UTF-8 bytes at that path and is never rewritten for that seal revision. Last expected doc digest is latest postSealAmends.afterDocDigest if any, else seal.specDocDigest. If sealed with specPath and no expected digest, check-seal and ledger audit fail (error spec-doc-digest-missing) until workstream backfill-doc-digest writes a new seal revision stamping specDocDigest from current file bytes (upgrade path for any consumer repo). If an expected digest exists and bytes diverge, check-seal fails and audit emits error spec-doc-digest-drift. workstream amend (requires expected digest already) appends typed postSealAmends; refuses no-op; never mutates seal.specDocDigest. Audit also emits error seal-digest-drift when live sealPayload diverges from the seal snapshot without re-seal.",
+  "rationale": "Plan Markdown is human truth in every consumer repo. Missing digests are an upgrade gap fixed by backfill, not a permanent soft-skip. Silent edits after a digest exists must fail closed.",
+  "workstreamId": "W-005",
+  "suggestedLiveId": "SL-015",
+  "requiredEvidence": [
+    "unit",
+    "integration"
+  ],
+  "liveId": "SL-015",
+  "updatedAt": "2026-09-04T20:15:49.076Z"
+}

@@ -6,3 +6,4 @@ dist
 .spec-ledger/results/
 .DS_Store
 packages/ui/package-lock.json
+.pnpm-store/

@@ -47,7 +47,12 @@ Contract: [`docs/architecture/work-model.md`](../../docs/architecture/work-model
    - 3–7 weighing rules (“when X vs Y, prefer…”) including at least one about
      **honesty vs green theater** and one about **cheap next change vs clever now**
      when those conflict
-2. Write `vision.json`. Optional `vision.md` for narrative.
+2. During the initial conversation, if the product is security/privacy sensitive
+   or the user identifies security-intensive work, use
+   [`sl-security-review`](../sl-security-review/SKILL.md) to establish assets,
+   attacker capabilities, and unacceptable outcomes. Reuse answers already given;
+   carry the security model into vision prose and subsequent specs.
+   Write `vision.json`. Optional `vision.md` for narrative.
 3. For each tenet: set `origin: "user"` if they dictated it; if you proposed and
    they agreed → `agent-confirmed` + `confirmedAt`/`confirmedBy`; never leave
    bootstrap tenets as bare `agent-inferred` without saying so.

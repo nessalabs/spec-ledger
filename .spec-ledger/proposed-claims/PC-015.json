@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "PC-015",
+  "status": "promoted",
+  "statement": "spec-ledger init creates exactly the normative .spec-ledger/ path table in docs/workstreams/consumer-cli-and-npm-publish.md (ledger.json last; vision stub; empty claims/bindings/turns/workstreams/proposed-claims/reviews/themes/tenets; graph+policy files; results/.gitkeep). Re-init when ledger.json exists is refused. After init, verify invents no claim outcome pass and no binding contains status or pass (SL-001, SL-002).",
+  "rationale": "Machine-checkable skeleton so skills and consumers share one layout; init must not greenwash verify.",
+  "workstreamId": "W-005",
+  "suggestedLiveId": "SL-011",
+  "requiredEvidence": [
+    "unit",
+    "integration"
+  ],
+  "liveId": "SL-011",
+  "updatedAt": "2026-09-04T20:04:34.266Z"
+}

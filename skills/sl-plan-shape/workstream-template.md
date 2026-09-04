@@ -15,7 +15,7 @@ Paths under repo root. Contract: [`docs/architecture/work-model.md`](../../docs/
   "featureIds": ["verify"],
   "primaryFeatureId": "verify",
   "title": "Short bet title",
-  "specPath": "docs/workstreams/short-bet-title.md",
+  "specPath": "docs/workstreams/W-001-short-bet-title/spec.md",
   "problem": "One-line agent summary (full prose in specPath Markdown)",
   "objective": "One-line agent summary (full prose in specPath Markdown)",
   "appetite": "1–2 days",

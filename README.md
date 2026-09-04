@@ -19,14 +19,44 @@ Work model: [docs/architecture/work-model.md](./docs/architecture/work-model.md)
 
 | Package | Role |
 | --- | --- |
-| [`@nessa/spec-ledger`](packages/ledger) | Core + CLI (`init`, `verify`, `context`, `workstream`, `turn`) |
-| [`@nessa/spec-ledger-client`](packages/client) | **Only** gateway for UIs / embedders |
-| [`@nessa/spec-ledger-server`](packages/server) | Read-only HTTP API (no writes — SL-003) |
-| [`@nessa/spec-ledger-ui`](packages/ui) | Reference Lattice (Next.js + `@nessa-ui/react`, client-only) |
+| [`@nessalabs/spec-ledger`](packages/ledger) | Core + CLI (`init`, `verify`, `context`, `workstream`, `turn`) |
+| [`@nessalabs/spec-ledger-client`](packages/client) | **Only** gateway for UIs / embedders |
+| [`@nessalabs/spec-ledger-server`](packages/server) | Read-only HTTP API (no writes — SL-003) |
+| [`@nessalabs/spec-ledger-ui`](packages/ui) | Spec Ledger UI (Next.js + `@nessalabs/ui`, client-only) |
 
 Schemas live in [`schemas/`](schemas/) (SSOT files, not a package). Evidence
 from any language is a [`results.json`](schemas/results.json) file — reporters
 emit it; the ledger only ingests.
+
+## Consumer install (0.1.0-alpha)
+
+```bash
+npm i -D @nessalabs/spec-ledger@0.1.0-alpha.0
+npx spec-ledger init --name my-project
+npx spec-ledger verify
+```
+
+Publish is on **GitHub Release** only (see `.github/workflows/publish.yml`).
+Set repo secret `NPM_TOKEN` for the **nessalabs** npm org.
+
+### Spec Ledger UI from a Release asset
+
+UI is not an npm package in this alpha — download the `spec-ledger-ui-*.tgz`
+asset from the GitHub Release. Pair it with published
+`@nessalabs/spec-ledger-client` and `@nessalabs/spec-ledger-server` (API) from
+npm, then:
+
+```bash
+npm i -D @nessalabs/spec-ledger-client@0.1.0-alpha.0 @nessalabs/spec-ledger-server@0.1.0-alpha.0
+tar -xzf spec-ledger-ui-0.1.0-alpha.0.tgz
+cd spec-ledger-ui && SPEC_LEDGER_ROOT=/path/to/your/repo npx next start --port 3737
+```
+
+The Release tarball vendors `@nessalabs/ui` (not on the public registry for this
+bet) into the shipped tree — do not pull that design-system package from npm.
+Point `SPEC_LEDGER_ROOT` at any repo with `.spec-ledger/` after `spec-ledger init`.
+Build the asset locally with `node scripts/pack-ui-release.mjs` (needs sibling
+`nessa_ui`, or `NESSA_UI_ROOT`).
 
 ## Quick start
 
@@ -92,10 +122,10 @@ Lattice web UI (nessa-ui): **http://127.0.0.1:3737** via `pnpm lattice`
 
 ## Embed in your product
 
-Depend on **`@nessa/spec-ledger-client`** only:
+Depend on **`@nessalabs/spec-ledger-client`** only:
 
 ```ts
-import { createSpecLedgerClient } from "@nessa/spec-ledger-client"
+import { createSpecLedgerClient } from "@nessalabs/spec-ledger-client"
 
 const client = createSpecLedgerClient({ kind: "http", baseUrl: "http://127.0.0.1:8787/" })
 // or { kind: "inProcess", rootDir: process.cwd() }

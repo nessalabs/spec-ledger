@@ -13,7 +13,7 @@ import {
   SidebarInset,
   SidebarProvider,
   SidebarTrigger,
-} from "@nessa-ui/react"
+} from "@nessalabs/ui"
 import {
   Boxes,
   Compass,
@@ -198,5 +198,3 @@ export function SpecLedgerShell({ children }: { children: React.ReactNode }) {
   )
 }
 
-/** @deprecated Use SpecLedgerShell */
-export const LatticeShell = SpecLedgerShell

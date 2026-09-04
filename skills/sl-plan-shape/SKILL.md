@@ -81,6 +81,10 @@ number each question; give your recommended answer; wait.
    - Security / privacy sensitive?
    - Correctness-critical (money, auth, data loss)?
    - Required evidence: unit / integration / e2e / property / fuzz / load
+   For confirmed security sensitivity or a relevant trust boundary, use
+   [`sl-security-review`](../sl-security-review/SKILL.md): put a compact security
+   model in the spec and map its invariants to each vertical's negative acceptance
+   and required evidence. Reuse discovery answers; label unresolved assumptions.
 7. **Structure (short):** which feature/package owns this; does it widen core or
    compose on top; how does it get deleted; any dependency that points the wrong way?
 8. Expected live claims; gaps → **proposed** claims only
@@ -100,15 +104,18 @@ number each question; give your recommended answer; wait.
 
 ## On-disk artifacts
 
-Prefer CLI when available. Human pitch Markdown under **`docs/workstreams/<title-slug>.md`**
+Prefer CLI when available. Human pitch Markdown under **`docs/workstreams/W-00N-<title-slug>/spec.md`**
 first; then JSON per [workstream-template.md](workstream-template.md) with `specPath`
 pointing at that file (`.spec-ledger` = metadata only):
 
-- Pitch → `docs/workstreams/<title-slug>.md`
+- Pitch → `docs/workstreams/W-00N-<title-slug>/spec.md`
 - Workstream → `.spec-ledger/workstreams/W-00N.json` (`status: shaped` after confirm, `specPath` set)
 - Proposed claim → `.spec-ledger/proposed-claims/PC-00N.json` (`status: "proposed"`)
 
-Pick the next free `W-` / `PC-` id by listing those directories.
+Pick the next free `W-` / `PC-` id by listing those directories. Keep optional
+supporting notes beside `spec.md` and link the main spec from
+[`docs/workstreams/README.md`](../../docs/workstreams/README.md). Preserve existing
+sealed paths unless an explicit recorded migration covers the move.
 
 ## Exit / handoff
 
