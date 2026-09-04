@@ -1,0 +1,9 @@
+{
+  "id": "b-sl-022",
+  "claimId": "SL-022",
+  "kind": "test",
+  "locator": {
+    "type": "command",
+    "command": "node --test packages/ledger/dist/session/evidence.break.test.js"
+  }
+}

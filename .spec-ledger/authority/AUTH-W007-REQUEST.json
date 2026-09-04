@@ -1,0 +1,17 @@
+{
+  "id": "AUTH-W007-REQUEST",
+  "action": "grant",
+  "mode": "request",
+  "workstreamId": "W-007",
+  "featureIds": [
+    "lattice",
+    "verify",
+    "client"
+  ],
+  "source": {
+    "kind": "agent-reported",
+    "reference": "User explicitly requested: first fix workstream evidence UI, then propose customizable skills/workflows with guardrails; overhaul acceptable for experimental project."
+  },
+  "schemaVersion": 1,
+  "createdAt": "2026-09-04T23:12:10.569Z"
+}

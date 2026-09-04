@@ -71,6 +71,7 @@ export interface ClaimVerdict {
   required: boolean
   outcome: Outcome
   bindingIds: string[]
+  checks?: Array<{ bindingId: string; outcome: Outcome; detail?: string }>
   detail?: string
 }
 

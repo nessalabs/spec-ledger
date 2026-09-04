@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "id": "W-007/SR-01",
+  "workstreamId": "W-007",
+  "kind": "adversarial",
+  "target": "spec",
+  "reviewer": "agent:evidence-review",
+  "verdict": "approve",
+  "blocking": false,
+  "summary": "Related pack W-007 links verify/client/lattice and W-006 evidence contracts. Acceptance preserves verifier authority, separates historical results, confines local text artifacts, prohibits remote fetch and read side effects; workflow changes are proposal-only.",
+  "plainSummary": "The plan makes evidence inspectable without turning historical results or untrusted artifacts into proof.",
+  "findings": [],
+  "residualRisks": [
+    "Workflow proposal still requires independent design review; this approval does not authorize a workflow engine.",
+    "The related pack supplied no worktree scan metadata; parallel checkout review is not claimed."
+  ],
+  "revisionDigest": "4bb0a99ac51830d59c924180d7397da0bd166f72ce505d839f74736191cf55a2"
+}

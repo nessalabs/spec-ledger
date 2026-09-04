@@ -110,7 +110,7 @@ export function verifyLedger(ledger: LoadedLedger): VerifyReport {
       problems.push(`claim ${claim.id}: attested (v1 policy: does not satisfy required)`)
     }
 
-    verdicts.push({ claimId: claim.id, required: claim.required, outcome, bindingIds, detail })
+    verdicts.push({ claimId: claim.id, required: claim.required, outcome, bindingIds, detail, checks: checks.map((check, i) => ({ bindingId: bindings[i].id, ...check })) })
   }
 
   const graphCheck = checkGraph(ledger)

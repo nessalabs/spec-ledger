@@ -1,3 +1,5 @@
+import { claimEvidence, attachmentEvidence } from "./evidence.js"
+import { listAttachmentsForTurn } from "../episodes/load.js"
 import { loadLedger } from "../fs/load.js"
 import { loadWorkstream, listWorkstreams, checkSeal, writeWorkstream } from "../workstream/load.js"
 import { evaluateDeferrals, activateDeferralsForWork, assertDeferralsSatisfied } from "../deferrals/index.js"
@@ -88,7 +90,11 @@ export function getSession(root: string, workstreamId?: string) {
       : claims.some(r => r?.outcome === "fail") ? "fail"
       : claims.some(r => r?.outcome === "missing" || r?.outcome === "unbound") ? "missing"
       : claims.some(r => r?.outcome === "attested") ? "attested" : "pass"
-    return { ...c, implemented: update?.progress?.implemented ?? false, evidence, claimIds }
+    const reason = !claimIds.length ? "No claims are mapped to this requirement."
+      : !behavioral ? "Every mapped claim needs a behavioral result; file presence or attestation alone cannot verify this requirement."
+      : claims.some(r => !r) ? "A mapped claim is missing from the current verification report."
+      : claims.filter(r => r?.outcome !== "pass").map(r => r?.detail ?? r?.outcome).join("; ") || null
+    return { ...c, implemented: update?.progress?.implemented ?? false, evidence, reason, claimIds, claims: claimEvidence(ledger, report, claimIds) }
   })
   const reviews = listAllReviews(root).filter(r => r.workstreamId === selected || turns.some(t => t.id === r.turnId))
   const attention = permission.allowed ? [] : [...permission.reasons]
@@ -125,6 +131,10 @@ export function getSession(root: string, workstreamId?: string) {
     session: {
       workstreamId: selected, title: ws.title, goal: ws.objective, specPath: ws.specPath,
       status: ws.status, revision: checkSeal(root, selected).ok ? ws.seal?.revision ?? null : null, revisionDigest, sourceDigest,
+      reviews: reviews.map(r => ({ id: r.id, turnId: r.turnId, target: r.target, verdict: r.verdict,
+        summary: r.plainSummary ?? r.summary, findings: r.findings ?? [], residualRisks: r.residualRisks ?? [],
+        current: r.target === "spec" ? r.revisionDigest === revisionDigest : Boolean(sourceDigest && r.treeDigest === sourceDigest) })),
+      artifacts: turns.flatMap(t => listAttachmentsForTurn(root, t.id)).map(a => attachmentEvidence(root, a)),
       permission, authorityDigest: authorityStateDigest(root), attention, criteria, activity, obligations,
       completion: { eligible: permission.allowed && completionReasons.length === 0, reasons: completionReasons },
       openTurnIds: turns.filter(t => t.status === "open").map(t => t.id),

@@ -96,6 +96,35 @@
           },
           "detail": {
             "type": "string"
+          },
+          "checks": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "bindingId",
+                "outcome"
+              ],
+              "properties": {
+                "bindingId": {
+                  "type": "string"
+                },
+                "outcome": {
+                  "type": "string",
+                  "enum": [
+                    "pass",
+                    "fail",
+                    "missing",
+                    "unbound",
+                    "attested"
+                  ]
+                },
+                "detail": {
+                  "type": "string"
+                }
+              }
+            }
           }
         }
       }

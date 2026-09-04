@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "id": "W-007",
+  "status": "done",
+  "createdAt": "2026-09-04T23:12:10.552Z",
+  "title": "Review evidence in one place",
+  "featureIds": [
+    "lattice",
+    "verify",
+    "client"
+  ],
+  "primaryFeatureId": "lattice",
+  "specPath": "docs/workstreams/W-007-evidence-and-custom-workflows/spec.md",
+  "problem": "Evidence is hidden behind shipped history.",
+  "objective": "Review each requirement with its current evidence and propose customizable engineering workflows.",
+  "changeType": "feature",
+  "shapedBy": "agent:sl-plan-shape",
+  "policy": {
+    "requireSpecBreak": true,
+    "requireCodeBreak": true,
+    "requireAlignApprove": true,
+    "allowExplicitAlignSkip": true,
+    "onAlert": "block",
+    "onSealedSpecDeviation": "block"
+  },
+  "suggestedSlices": [
+    {
+      "id": "SLC-01",
+      "title": "Read evidence beside requirements",
+      "kind": "vertical",
+      "acceptance": [
+        "Workstream evidence explains current verdicts, recorded checks, reviews and safe artifacts; custom workflows have a concrete proposal."
+      ],
+      "expectedPaths": [
+        "packages/ledger/src/**",
+        "packages/client/**",
+        "packages/ui/**",
+        "docs/**"
+      ],
+      "evidence": [
+        "unit",
+        "integration"
+      ],
+      "codeBreakReviewId": "T-033/R-01"
+    }
+  ],
+  "specBreakReviewId": "W-007/SR-02",
+  "updatedAt": "2026-09-04T23:23:12.505Z",
+  "seal": {
+    "sealedAt": "2026-09-04T23:21:15.708Z",
+    "sealedBy": "agent:permission:AUTH-W007-REQUEST",
+    "specDigest": "458b39d5a9248541052ce1e5b7e3d8e8de93e1a9a7215581bc863eb5a63376c8",
+    "snapshotPath": "workstreams/W-007.seals/2.json",
+    "revision": 2,
+    "specDocDigest": "adb9123ba1e3fb5850385c851bff98131c6de545c77b553ea490f1f92f0cfeb6"
+  },
+  "acceptanceClaimIds": {
+    "SLC-01/AC-1": [
+      "SL-022"
+    ]
+  }
+}

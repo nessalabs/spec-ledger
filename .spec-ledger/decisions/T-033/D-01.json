@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "turnId": "T-033",
+  "decision": "Requirements now expose current checks, historical receipts, reviews and readable artifacts; the custom workflow proposal is ready for review.",
+  "rationale": "Agent-reported progress; evidence is evaluated separately.",
+  "progress": {
+    "criterionIds": [
+      "SLC-01/AC-1"
+    ],
+    "implemented": true,
+    "revisionDigest": "32c32600b1812931d9afc956399a9d436fb578a610db51f5aafcef5016c503f9",
+    "sourceDigest": "d7fdea43922377f2d293b60668d4371ce13415328ae4335816359bb73a18bc17",
+    "preview": {
+      "url": "http://127.0.0.1:3737/workstreams/W-006",
+      "label": "Review workstream evidence"
+    }
+  },
+  "id": "T-033/D-01"
+}

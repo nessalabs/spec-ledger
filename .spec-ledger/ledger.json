@@ -23,6 +23,8 @@
   "auditPolicyPath": "policy/audit.json",
   "generatedArtifactPaths": [
     "docs/workstreams/W-006-trustworthy-autonomous-coding/evidence/T-031/browser-check.md",
-    "docs/workstreams/W-006-trustworthy-autonomous-coding/evidence/T-032/browser-check.md"
+    "docs/workstreams/W-006-trustworthy-autonomous-coding/evidence/T-032/browser-check.md",
+    "docs/workstreams/W-007-evidence-and-custom-workflows/evidence/T-033/browser-check.md",
+    "docs/workstreams/W-007-evidence-and-custom-workflows/evidence/T-033/regression-tests.txt"
   ]
 }

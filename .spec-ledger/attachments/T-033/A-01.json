@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "turnId": "T-033",
+  "kind": "log-excerpt",
+  "title": "Workstream evidence browser walkthrough",
+  "path": "docs/workstreams/W-007-evidence-and-custom-workflows/evidence/T-033/browser-check.md",
+  "mediaType": "text/plain",
+  "contentDigest": "442f9031de282834efa5948cb2b4e7e505ed35b281f03b6f1e2697f025ddb2d1",
+  "note": "Manual agent observations, not automated browser CI.",
+  "id": "T-033/A-01"
+}

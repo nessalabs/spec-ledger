@@ -1,3 +1,4 @@
+import { WorkstreamEvidence } from "@/components/workstream-evidence"
 import { presentationCopy } from "@/lib/features"
 import Link from "next/link"
 import { notFound } from "next/navigation"
@@ -23,7 +24,7 @@ export default async function WorkstreamPage({
   } catch {
     notFound()
   }
-  const [turns, report] = await Promise.all([client.getTurns(), liveReport()])
+  const [turns, report, projection] = await Promise.all([client.getTurns(), liveReport(), client.getSession(id)])
   const linked = turns
     .filter((t) => t.intent.workstreamId === id)
     .sort((a, b) =>
@@ -87,7 +88,10 @@ export default async function WorkstreamPage({
         </p>
       )}
 
+      {projection.session && <WorkstreamEvidence session={projection.session} observedAt={projection.observedAt} />}
+
       <section className="space-y-3">
+        <p className="text-xs text-muted-foreground">History describes earlier snapshots. An outdated turn result does not replace the current evidence above.</p>
         <div className="flex items-baseline justify-between gap-2">
           <h2 className="text-sm font-medium">What shipped</h2>
           <p className="text-xs text-muted-foreground">

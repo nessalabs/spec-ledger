@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "id": "T-033/AW-14",
+  "reason": "User requested evidence in the workstream UI; schemas/report.json exposes the same verifier check outcomes to portable consumers. This exact output-schema path was omitted from the slice paths; no other paths or unrelated work are waived.",
+  "actor": "agent:align:user-requested-evidence-ui",
+  "treeDigest": "d7fdea43922377f2d293b60668d4371ce13415328ae4335816359bb73a18bc17",
+  "createdAt": "2026-09-04T23:22:21.953Z",
+  "workstreamId": "W-007",
+  "turnId": "T-033",
+  "paths": [
+    "schemas/report.json"
+  ]
+}

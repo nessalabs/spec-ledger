@@ -64,7 +64,8 @@
       "summary": "Feature/module graph, blast radius, layer policy, and Spec Ledger viewing surface.",
       "claimIds": [
         "SL-004",
-        "SL-021"
+        "SL-021",
+        "SL-022"
       ],
       "entryPoints": [
         "packages/ledger/src/graph/impact.ts",
