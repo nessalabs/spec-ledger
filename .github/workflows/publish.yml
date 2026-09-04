@@ -66,6 +66,19 @@ jobs:
               exit 1
             fi
           done
+      - name: Build nessa_ui packages (UI Release asset)
+        if: github.event_name == 'release'
+        working-directory: nessa_ui
+        run: |
+          corepack enable
+          pnpm install --frozen-lockfile
+          pnpm --filter @nessalabs/agent-stream --filter @nessalabs/ui build
+      - name: Pack Spec Ledger UI Release asset
+        if: github.event_name == 'release'
+        env:
+          NESSA_UI_ROOT: ${{ github.workspace }}/nessa_ui
+        run: node scripts/pack-ui-release.mjs --out dist-ui-release
+
       - name: Publish packages
         env:
           # Live publish only on GitHub Release. workflow_dispatch always dry-runs
@@ -89,24 +102,12 @@ jobs:
               exit 1
             fi
           fi
-          # Order: ledger first, then dependents (prepack rewrites workspace deps).
+          # Order: ledger first, then dependents; manifests already use publishable versions.
           for pkg in packages/ledger packages/client packages/server; do
             echo "publishing $pkg ${FLAGS[*]}"
             (cd "$pkg" && pnpm publish "${FLAGS[@]}")
           done
 
-      - name: Build nessa_ui packages (UI Release asset)
-        if: github.event_name == 'release'
-        working-directory: nessa_ui
-        run: |
-          corepack enable
-          pnpm install --frozen-lockfile
-          pnpm --filter @nessalabs/agent-stream --filter @nessalabs/ui build
-      - name: Pack Spec Ledger UI Release asset
-        if: github.event_name == 'release'
-        env:
-          NESSA_UI_ROOT: ${{ github.workspace }}/nessa_ui
-        run: node scripts/pack-ui-release.mjs --out dist-ui-release
       - name: Upload UI Release asset
         if: github.event_name == 'release'
         uses: softprops/action-gh-release@v2

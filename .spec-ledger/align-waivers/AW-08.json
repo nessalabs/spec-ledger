@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "id": "T-025/AW-08",
+  "reason": "User explicitly requested all five PR 1 fixes, CI regression tests, and updating the PR. This repair crosses existing slices: workflow ordering and CI, .npmrc, publishable client/server manifests, lockfile, and removal of the unsafe rewrite script. Waive the SLC-05-only path restriction for these seven reviewed repair paths; do not waive verification or code review.",
+  "actor": "agent:sl-dev-build",
+  "treeDigest": "e223be9e5034139dbd5048dfcb3997089cf1cba6368dfab47124db669a8a01ed",
+  "createdAt": "2026-09-04T21:15:20.718Z",
+  "workstreamId": "W-005",
+  "turnId": "T-025"
+}

@@ -1,0 +1,8 @@
+{
+  "schemaVersion": 1,
+  "turnId": "T-025",
+  "title": "Release checks and approved specs remain reliable",
+  "before": "CI cannot install, packing can rewrite source manifests, and seal checks can accept obsolete or unrecorded document edits.",
+  "after": "Clean CI runs isolated artifact checks, packaging leaves manifests unchanged, and seal checks enforce the active revision and immutable document pointer.",
+  "id": "T-025/F-01"
+}

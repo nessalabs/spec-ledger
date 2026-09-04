@@ -1,0 +1,8 @@
+{
+  "schemaVersion": 1,
+  "turnId": "T-025",
+  "kind": "user",
+  "ref": "https://github.com/nessalabs/spec-ledger/pull/1",
+  "note": "User authorized all five review fixes, appropriate CI regression tests, and updating PR 1. Scope includes ledger seal checks, package manifests and lockfile, packaging scripts/tests, CI/release workflows, and the documented clarification.",
+  "id": "T-025/S-01"
+}

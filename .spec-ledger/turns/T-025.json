@@ -1,0 +1,226 @@
+{
+  "schemaVersion": 1,
+  "id": "T-025",
+  "status": "closed",
+  "openedAt": "2026-09-04T21:06:14.957Z",
+  "opened": {
+    "producedBy": "@nessalabs/spec-ledger@0.1.0",
+    "baseCommit": "d708f2f5ebd54d2aacffa0851ecc8816ed0cd53a",
+    "treeDigest": "0cd66c776b222cad66ba56ae48d1c3d9aacd021a1aed91295331466a47991aa2",
+    "dirtyAtOpen": [],
+    "contextDigest": "dfd6a0ea163da094cc716fa593e66da56b6a26b1f1196a3ae061c4ef58e4c7e4",
+    "contextWorkstreamId": "W-005",
+    "contextSliceId": "SLC-05",
+    "contextSealRevision": 3,
+    "contextGeneratedAt": "2026-09-04T21:06:14.957Z"
+  },
+  "intent": {
+    "userPrompt": "Fix all five findings from PR 1, add appropriate CI regression tests, and update the existing PR branch.",
+    "restatedGoal": "Fix release checks and preserve approved spec revisions",
+    "changeType": "feature",
+    "riskLevel": "moderate",
+    "workstreamId": "W-005",
+    "sliceId": "SLC-05",
+    "featureIds": [
+      "cli",
+      "verify",
+      "client",
+      "server",
+      "lattice",
+      "turns"
+    ]
+  },
+  "closedAt": "2026-09-04T21:16:11.946Z",
+  "facts": {
+    "producedBy": "@nessalabs/spec-ledger@0.1.0",
+    "commit": "d708f2f5ebd54d2aacffa0851ecc8816ed0cd53a",
+    "files": [
+      {
+        "path": ".github/workflows/ci.yml",
+        "kind": "modified",
+        "additions": 2,
+        "deletions": 0
+      },
+      {
+        "path": ".github/workflows/publish.yml",
+        "kind": "modified",
+        "additions": 14,
+        "deletions": 13
+      },
+      {
+        "path": ".npmrc",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/align-waivers/AW-08.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/decisions/T-025/D-01.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/flows/T-025/F-01.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/turns/T-025/R-01.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/turns/T-025/R-02.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/turns/T-025/R-03.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/turns/T-025/R-04.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/sources/T-025/S-01.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/turns/T-025.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/workstreams/W-005.json",
+        "kind": "modified",
+        "additions": 23,
+        "deletions": 1
+      },
+      {
+        "path": "docs/workstreams/consumer-cli-and-npm-publish.md",
+        "kind": "modified",
+        "additions": 5,
+        "deletions": 2
+      },
+      {
+        "path": "packages/client/package.json",
+        "kind": "modified",
+        "additions": 1,
+        "deletions": 2
+      },
+      {
+        "path": "packages/ledger/src/pack.concurrency.break.test.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/ui-release.break.test.ts",
+        "kind": "modified",
+        "additions": 14,
+        "deletions": 5
+      },
+      {
+        "path": "packages/ledger/src/ui-release.fixture.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/ui-release.smoke.test.ts",
+        "kind": "modified",
+        "additions": 51,
+        "deletions": 7
+      },
+      {
+        "path": "packages/ledger/src/workstream/doc-digest.ts",
+        "kind": "modified",
+        "additions": 30,
+        "deletions": 4
+      },
+      {
+        "path": "packages/ledger/src/workstream/pr1-regressions.break.test.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/server/package.json",
+        "kind": "modified",
+        "additions": 2,
+        "deletions": 3
+      },
+      {
+        "path": "pnpm-lock.yaml",
+        "kind": "modified",
+        "additions": 2,
+        "deletions": 2
+      },
+      {
+        "path": "scripts/rewrite-workspace-deps.mjs",
+        "kind": "deleted",
+        "additions": 0,
+        "deletions": 62
+      }
+    ],
+    "touchedNodeIds": [
+      "ledger-client",
+      "ledger-core",
+      "ledger-server"
+    ],
+    "touchedFeatureIds": [
+      "cli",
+      "lattice",
+      "turns",
+      "verify"
+    ],
+    "touchedClaimIds": [
+      "SL-011",
+      "SL-013",
+      "SL-014",
+      "SL-015"
+    ],
+    "blastRadius": {
+      "direct": [
+        "ledger-server",
+        "ledger-ui"
+      ],
+      "transitive": [
+        "ledger-server",
+        "ledger-ui"
+      ]
+    },
+    "verify": {
+      "ok": true,
+      "ledgerDigest": "35e4d3d1ebdf1e74071441c1087a1ee79fe1ac3b7813f90f8fbf560141eaf15b",
+      "resultsDigest": "ded3eb2608a70a2e28040c5e1e7c4faa49be0d27b4ffc4d3e2a3ffb91bf72fbb",
+      "treeDigest": "e223be9e5034139dbd5048dfcb3997089cf1cba6368dfab47124db669a8a01ed",
+      "producedAt": "2026-09-04T21:16:11.810Z"
+    },
+    "schemaSurfaceChanged": false,
+    "decisionIds": [
+      "T-025/D-01"
+    ],
+    "decisionsDigest": "1d63985d2baca2ccad3ed3bee722005629f331eed9c5d5d2e633c43d9db418ee",
+    "sourcesDigest": "f416d9c7ce8ae788832a6b6e95a4d3eb31b15e9deb47a2f75728de0f0934aadd",
+    "reviewsDigest": "a0819f41d24c531ffa125049f107eeaecc3ef0d39ad4532c417c94cb79038cda",
+    "flowsDigest": "796ea938ec430d9266ea6128764601526061a78ce8794873315ded243b164a2b"
+  }
+}

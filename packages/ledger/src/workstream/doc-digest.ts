@@ -1,7 +1,7 @@
 import { createHash } from "node:crypto"
 import { existsSync, readFileSync } from "node:fs"
 import { join } from "node:path"
-import { findRepoRoot } from "../fs/load.js"
+import { findRepoRoot, ledgerRoot } from "../fs/load.js"
 import type { PostSealAmend, Workstream } from "../types.js"
 
 /** sha256 hex of raw file bytes (UTF-8 path contents as on disk). */
@@ -21,11 +21,14 @@ export function resolveSpecPath(
 }
 
 /**
- * Last expected doc digest: latest amend.afterDocDigest, else seal.specDocDigest.
+ * Last expected doc digest for the active seal revision. Older amendments stay
+ * in history but cannot override the bytes approved by a subsequent seal.
  * Undefined when sealed+specPath still needs backfill.
  */
 export function lastExpectedDocDigest(ws: Workstream): string | undefined {
-  const amends = ws.postSealAmends ?? []
+  const amends = (ws.postSealAmends ?? []).filter(
+    (amend) => amend.sealedRevision === ws.seal?.revision,
+  )
   if (amends.length) {
     // Always prefer the latest amend slot — do not fall through on empty/invalid
     // afterDocDigest (that would erase the amend trail and greenwash check-seal).
@@ -53,7 +56,7 @@ export type DocDigestCheck =
       ok: false
       expected?: string
       actual?: string
-      status: "missing-expected" | "drift" | "missing-file"
+      status: "missing-expected" | "drift" | "missing-file" | "seal-mismatch"
       message: string
     }
 
@@ -67,6 +70,29 @@ export function checkSpecDocDigest(
   }
   if (!ws.specPath) {
     return { ok: true, status: "no-spec-path" }
+  }
+  // The live pointer is mutable metadata. The snapshot owns the original
+  // digest even when an amendment supplies the currently expected doc bytes.
+  try {
+    const repoRoot = findRepoRoot(repoRootInput)
+    const snapshot = JSON.parse(
+      readFileSync(join(ledgerRoot(repoRoot), ws.seal.snapshotPath), "utf8"),
+    ) as { specDocDigest?: string }
+    if (snapshot.specDocDigest !== ws.seal.specDocDigest) {
+      return {
+        ok: false,
+        status: "seal-mismatch",
+        expected: snapshot.specDocDigest,
+        actual: ws.seal.specDocDigest,
+        message: `document seal digest for ${ws.id} differs from its immutable snapshot`,
+      }
+    }
+  } catch (err) {
+    return {
+      ok: false,
+      status: "seal-mismatch",
+      message: `cannot validate document seal snapshot for ${ws.id}: ${err instanceof Error ? err.message : String(err)}`,
+    }
   }
   const expected = lastExpectedDocDigest(ws)
   if (!expected) {

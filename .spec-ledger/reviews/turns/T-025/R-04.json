@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "id": "T-025/R-04",
+  "turnId": "T-025",
+  "workstreamId": "W-005",
+  "kind": "human",
+  "target": "code",
+  "reviewer": "agent:align:packaging",
+  "verdict": "approve",
+  "summary": "User intent explicitly covers all five PR 1 repairs, appropriate CI regression tests, and updating the existing PR. Inspected final diff and align check: seven product paths are covered by the active SLC-05 plan; seven necessary cross-slice paths are explicitly covered by T-025/AW-08 for this tree: CI/publish workflows, .npmrc, client/server manifests, lockfile, and removed rewrite script. New tests and UI fixture support those repairs; document changes record seal semantics and the repair amendment. This approval is path coverage only; separate R-01, R-02, and R-03 provide bounded code reviews.",
+  "plainSummary": "The changed files cover the requested PR repairs and their regression checks.",
+  "treeDigest": "e223be9e5034139dbd5048dfcb3997089cf1cba6368dfab47124db669a8a01ed",
+  "uncoveredPaths": [
+    ".github/workflows/ci.yml",
+    ".github/workflows/publish.yml",
+    ".npmrc",
+    "packages/client/package.json",
+    "packages/server/package.json",
+    "pnpm-lock.yaml",
+    "scripts/rewrite-workspace-deps.mjs"
+  ],
+  "coverageSource": "mixed",
+  "waiverIds": [
+    "T-025/AW-08"
+  ]
+}

@@ -3,7 +3,7 @@
   "id": "W-005",
   "status": "done",
   "createdAt": "2026-09-04T09:01:44.000Z",
-  "updatedAt": "2026-09-04T20:55:12.774Z",
+  "updatedAt": "2026-09-04T21:15:20.554Z",
   "specBreakReviewId": "W-005/SR-05",
   "amendedAfterSpecBreak": [
     "W-005/SR-01",
@@ -250,6 +250,28 @@
       "afterDocDigest": "dd6ee0c3262cad62795db5fb2ef4bd833cd14d4437402906cf6a8aeccc0c347d",
       "actor": "agent:sl-dev-build",
       "turnId": "T-024"
+    },
+    {
+      "at": "2026-09-04T21:11:01.889Z",
+      "summary": "Apply user-authorized PR 1 fixes and clarify revision-scoped document amendments and immutable snapshot checking.",
+      "humanConfirmed": true,
+      "sealedRevision": 3,
+      "beforeDocDigest": "dd6ee0c3262cad62795db5fb2ef4bd833cd14d4437402906cf6a8aeccc0c347d",
+      "afterDocDigest": "4464b7e76bff19b1b78f2ad723b1a5574de1cbf3e924776146c76279fa9f5442",
+      "actor": "agent:sl-dev-build",
+      "turnId": "T-025",
+      "decisionId": "T-025/D-01"
+    },
+    {
+      "at": "2026-09-04T21:15:20.554Z",
+      "summary": "Remove trailing whitespace in the user-authorized PR repair clarification.",
+      "humanConfirmed": true,
+      "sealedRevision": 3,
+      "beforeDocDigest": "4464b7e76bff19b1b78f2ad723b1a5574de1cbf3e924776146c76279fa9f5442",
+      "afterDocDigest": "dfc314c05069e3896aaa88b4a410f40659b50783d07685a3718d560f67b63d7e",
+      "actor": "agent:sl-dev-build",
+      "turnId": "T-025",
+      "decisionId": "T-025/D-01"
     }
   ]
 }

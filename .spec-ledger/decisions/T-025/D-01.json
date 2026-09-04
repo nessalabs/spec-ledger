@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "turnId": "T-025",
+  "decision": "Keep publishable dependency versions in source manifests and apply document amendments only to their seal revision.",
+  "rationale": "PR review reproduced clean-CI failure, manifest corruption during overlapping packs, and two false seal verdicts. User explicitly requested fixing all findings. TN-001 requires honest results; TN-003 favors removing mutable pack machinery. A new seal supersedes earlier amendments, whose history is retained. Use fixture UI packages for default CI and finish real release preparation before registry writes.",
+  "alternativesRejected": [
+    "Shared manifest backup/restore with cross-process locking",
+    "Deleting old amendment history",
+    "Requiring a private sibling checkout for default tests"
+  ],
+  "basis": {
+    "sealRevision": 3,
+    "at": "2026-09-04T21:11:01.888Z"
+  },
+  "id": "T-025/D-01"
+}

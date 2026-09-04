@@ -133,9 +133,10 @@ is unused; audit does not enforce it.
    stamp `seal.specDocDigest = sha256(utf8 file bytes)` (hex) on the live seal
    **and** the immutable seal snapshot. If `specPath` is absent, omit
    `specDocDigest`. Never rewrite `seal.specDocDigest` after that seal
-   revision (amends do not mutate it).
+   revision (amends do not mutate it). Check-seal and audit compare this live
+   pointer with the immutable snapshot even when an amendment is active.
 2. **Last expected doc digest** (same algorithm everywhere):  
-   - If any `postSealAmends` exist, use the latest entry’s `afterDocDigest`.  
+   - If `postSealAmends` exist for the active `seal.revision`, use that revision’s latest `afterDocDigest`; older amendments remain history only.
    - Else if `seal.specDocDigest` is present, use it.  
    - Else: **no expected digest** — incomplete for a sealed workstream that
      has `specPath` (upgrade / pre-feature seals in any repo).
@@ -261,3 +262,5 @@ SLC-01 → SLC-05 → SLC-02 → SLC-04 → SLC-03
 | 2026-09-04 | pre-seal amend (consumer-generic) | Removed dogfood grandfather skip; sealed+specPath with no digest fails until `backfill-doc-digest` (any consumer); retrofit this repo via that path |
 | 2026-09-04 | T-022 | Publish scope is `@nessalabs/*` (not `@nessa/*`) for ledger, client, and server packages |
 | 2026-09-04 | T-024 | SLC-03 UI Release asset: pack-ui-release vendors @nessalabs/ui+client; README client/server one-liner; publish.yml uploads asset |
+
+| 2026-09-04 | T-025 | PR review fixes: scope amendments to their seal revision, validate immutable document pointers, remove mutating pack hooks, and make CI artifact tests self-contained; prepare the real UI asset before publishing. |

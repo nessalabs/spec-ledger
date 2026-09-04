@@ -21,8 +21,7 @@
   },
   "scripts": {
     "build": "tsc -p tsconfig.json",
-    "prepack": "node ../../scripts/rewrite-workspace-deps.mjs apply && pnpm build",
-    "postpack": "node ../../scripts/rewrite-workspace-deps.mjs restore"
+    "prepack": "pnpm build"
   },
   "dependencies": {
     "@nessalabs/spec-ledger": "0.1.0-alpha.0"

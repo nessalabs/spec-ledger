@@ -11,7 +11,7 @@ importers:
   packages/client:
     dependencies:
       '@nessalabs/spec-ledger':
-        specifier: workspace:*
+        specifier: 0.1.0-alpha.0
         version: link:../ledger
     devDependencies:
       typescript:
@@ -30,7 +30,7 @@ importers:
   packages/server:
     dependencies:
       '@nessalabs/spec-ledger':
-        specifier: workspace:*
+        specifier: 0.1.0-alpha.0
         version: link:../ledger
     devDependencies:
       '@types/node':

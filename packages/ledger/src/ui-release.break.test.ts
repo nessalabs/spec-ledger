@@ -15,7 +15,7 @@ import { tmpdir } from "node:os"
 import { join } from "node:path"
 import { spawnSync } from "node:child_process"
 
-const REPO = join(import.meta.dirname, "../../..")
+import { REPO, uiReleaseFixture } from "./ui-release.fixture.js"
 const PACK = join(REPO, "scripts/pack-ui-release.mjs")
 const PUBLISH = join(REPO, ".github/workflows/publish.yml")
 const README = join(REPO, "README.md")
@@ -43,13 +43,14 @@ function readmeUiSection(): string {
 
 describe("UI release break (T-024 SLC-03 / SL-013)", () => {
   it("shipped tree incl node_modules has zero file:/workspace: protocols", () => {
+    const fixture = uiReleaseFixture()
     const out = mkdtempSync(join(tmpdir(), "sl-ui-break-out-"))
     let extract = ""
     try {
       const r = spawnSync(
         "node",
-        [PACK, "--skip-build", "--out", out],
-        { encoding: "utf8", cwd: REPO },
+        [fixture.pack, "--skip-build", "--out", out],
+        { encoding: "utf8", cwd: fixture.root, env: fixture.env },
       )
       assert.equal(r.status, 0, r.stderr || r.stdout)
       const tgz = readdirSync(out).find(
@@ -79,6 +80,7 @@ describe("UI release break (T-024 SLC-03 / SL-013)", () => {
     } finally {
       rmSync(out, { recursive: true, force: true })
       if (extract) rmSync(extract, { recursive: true, force: true })
+      fixture.cleanup()
     }
   })
 
@@ -131,6 +133,11 @@ describe("UI release break (T-024 SLC-03 / SL-013)", () => {
     )
     assert.match(y, /dist-ui-release\/spec-ledger-ui-\*\.tgz/)
     assert.match(y, /Upload UI Release asset/)
+    const build = y.indexOf("- name: Build nessa_ui packages")
+    const pack = y.indexOf("- name: Pack Spec Ledger UI Release asset")
+    const publish = y.indexOf("- name: Publish packages")
+    assert.ok(build >= 0 && build < pack && pack < publish,
+      "build and pack the real release UI before any npm package is published")
   })
 
   it("pack-ui-release fails closed when NESSA_UI_ROOT / agent-stream missing", () => {
@@ -193,13 +200,14 @@ describe("UI release break (T-024 SLC-03 / SL-013)", () => {
 
   // Out-of-intent (builder did not name): leftover @nessa scope / version mismatch
   it("packaged UI name/deps stay @nessalabs/* and tarball version matches ledger", () => {
+    const fixture = uiReleaseFixture()
     const out = mkdtempSync(join(tmpdir(), "sl-ui-break-scope-"))
     let extract = ""
     try {
       const r = spawnSync(
         "node",
-        [PACK, "--skip-build", "--out", out],
-        { encoding: "utf8", cwd: REPO },
+        [fixture.pack, "--skip-build", "--out", out],
+        { encoding: "utf8", cwd: fixture.root, env: fixture.env },
       )
       assert.equal(r.status, 0, r.stderr || r.stdout)
       const ledgerVer = JSON.parse(
@@ -231,6 +239,7 @@ describe("UI release break (T-024 SLC-03 / SL-013)", () => {
     } finally {
       rmSync(out, { recursive: true, force: true })
       if (extract) rmSync(extract, { recursive: true, force: true })
+      fixture.cleanup()
     }
   })
 })
