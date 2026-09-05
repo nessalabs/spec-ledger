@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "requestId": "f4e12bbc-b07f-4075-9bf8-86c8a0f4c468",
+  "operation": "record_review",
+  "inputDigest": "d0e1b4c33a4403b4ba9d2fe99dacde1f5e401bd38813113aba85fa26b2d7c58e",
+  "finishedAt": "2026-09-05T04:21:39.416Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "id": "W-012/SR-02",
+    "workstreamId": "W-012",
+    "target": "spec",
+    "kind": "adversarial",
+    "reviewer": "agent:workflow-editor-breaker",
+    "verdict": "approve",
+    "blocking": false,
+    "plainSummary": "The workflow requirements now link to checks for saving choices safely and keeping required proof in place.",
+    "summary": "Reviewed acceptance mappings added to W012 against SL030 and b-sl-030. All three criteria share the workflow-editor integration binding, which runs independent bridge/domain negative tests, UI draft validation/rendering tests and navigation regressions. These establish enforced outputs, preview freshness and request denial; actual browser editor create/preview/apply, keyboard/narrow width and CLI/MCP lifecycle observation remain necessary supplemental acceptance evidence. Spec narrative and security boundaries unchanged from SR01.",
+    "findings": [],
+    "residualRisks": [
+      "Tool related pack supplied a caution-only worktree note without scan status or entries; no sibling checkout state was used as authority.",
+      "No code has been independently verified at spec review time; cross-origin rejection and unchanged selections require runtime negative tests.",
+      "Saving guidance does not establish agent compliance or launch a host runner; local filesystem writers remain outside the cooperative boundary."
+    ],
+    "supersedesReviewId": "W-012/SR-01",
+    "revisionDigest": "264d7a61233e89fbb09e369f4df2d242ecf732eb37c71c46422961d4251111a2"
+  }
+}

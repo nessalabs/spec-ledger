@@ -68,3 +68,40 @@ test('mobile navigation closes on same-page selection and route change but prese
   mobile=false;open=true;link.props.onClick({});assert.equal(open,true,'desktop navigation stays visible')
  } finally {globalThis.window=oldWindow}
 })
+test('change history is isolated from the live child list and renders without key warnings',()=>{
+ const originalError=console.error,warnings=[]
+ const initial={session:{workstreamId:'W-key',title:'History',criteria:[],evidenceCount:0,completion:{reasons:[]},activity:[{id:'T-1/D-1',summary:'Update',reason:'Changed'}],executionActivity:{association:null}}}
+ const Empty=()=>null
+ const Live=compile('../components/live-workstream-evidence.tsx',{
+  'next/link':{default:({children,href})=>React.createElement('a',{href},children)},
+  '@/components/spec-sections':{SpecSections:({changes})=>changes},
+  '@/components/acceptance-progress':{AcceptanceProgress:Empty},
+  '@/components/workstream-evidence':{WorkstreamEvidence:Empty},
+  '@/components/use-session-observation':{useSessionObservation:()=>({data:initial,state:'connected'})},
+  '@/components/workflow-editor':{WorkflowEditor:Empty},
+  '@/components/workflow-view':{WorkflowDetails:Empty},
+  '@/components/execution-activity':{ExecutionActivityDetails:Empty},
+ }).LiveWorkstreamEvidence
+ try {
+  console.error=(...args)=>warnings.push(args.join(' '))
+  const history=React.createElement('section',null,'Recorded history')
+  const tree=Live({initial,workstreamId:'W-key',history})
+  const holder=nodes(tree,n=>n.props?.changes)[0].props.changes
+  assert.equal(holder.props.children[0].type,'div','server history has a stable wrapper in the sibling list')
+  assert.equal(holder.props.children[0].props.children,history)
+  const html=require('react-dom/server').renderToStaticMarkup(tree)
+  assert.match(html,/Recorded history/);assert.match(html,/Update/)
+  assert.equal(warnings.filter(w=>w.includes('unique')&&w.includes('key')).length,0)
+ } finally { console.error=originalError }
+})
+test('the dedicated workflow page retains editor and process state when live data changes workstream',()=>{
+ const initial={session:{workstreamId:'W-12',status:'done',workflow:{profile:{title:'Chosen workflow'}},criteria:[],executionActivity:{association:null}}}
+ const Live=compile('../components/live-workflow.tsx',{
+  '@/components/use-session-observation':{useSessionObservation:()=>({data:{session:{workstreamId:'W-other'}},state:'disconnected'})},
+  '@/components/workflow-editor':{WorkflowEditor:({workstreamId})=>React.createElement('p',null,`Editor ${workstreamId}`)},
+  '@/components/workflow-view':{WorkflowDetails:({workflow})=>React.createElement('p',null,workflow.profile.title)},
+  '@/components/execution-activity':{ExecutionActivityDetails:()=>null},
+ }).LiveWorkflow
+ const html=require('react-dom/server').renderToStaticMarkup(React.createElement(Live,{initial,workstreamId:'W-12'}))
+ for(const text of ['Editor W-12','Chosen workflow','Disconnected','current process requirements','No agent session'])assert.ok(html.includes(text),text)
+})

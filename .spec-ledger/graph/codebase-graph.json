@@ -75,7 +75,8 @@
         "SL-004",
         "SL-021",
         "SL-022",
-        "SL-029"
+        "SL-029",
+        "SL-030"
       ],
       "entryPoints": [
         "packages/ledger/src/graph/impact.ts",
@@ -116,7 +117,8 @@
       "claimIds": [
         "SL-003",
         "SL-024",
-        "SL-025"
+        "SL-025",
+        "SL-030"
       ],
       "entryPoints": [
         "packages/client/src/index.ts",
@@ -154,7 +156,8 @@
         "SL-011",
         "SL-015",
         "SL-019",
-        "SL-023"
+        "SL-023",
+        "SL-030"
       ],
       "entryPoints": [
         "packages/ledger/src/cli/main.ts",

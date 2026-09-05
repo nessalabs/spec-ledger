@@ -180,7 +180,7 @@ export function DocReaderProvider({ children }: { children: React.ReactNode }) {
           {children}
         </DocReaderLayout>
       ) : (
-        <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain p-6">
+        <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain scroll-pt-28 p-6">
           {children}
         </div>
       )}

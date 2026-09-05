@@ -44,6 +44,7 @@ const WORK: NavItem[] = [
   { href: "/verify", label: "Evidence", hint: "Inspect checks and their results", icon: ShieldCheck },
 ]
 const MORE: NavItem[] = [
+  { href: "/workflows", label: "Workflows", hint: "Choose skills and steps and follow the process", icon: Workflow },
   { href: "/turns", label: "Changes", hint: "What changed, in order", icon: History },
   { href: "/claims", label: "Requirements", hint: "All requirements and supporting checks", icon: Boxes },
   { href: "/compass", label: "Project direction", hint: "Vision and guiding principles", icon: Compass },

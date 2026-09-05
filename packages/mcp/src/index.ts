@@ -11,6 +11,7 @@ const descriptions: Record<OperationName, string> = {
   get_context: "Read sealed context for one workstream slice without executing checks.",
   get_session: "Read current progress, evidence, reviews, and completion blockers.",
   preview_workflow: "Resolve a default or custom local workflow without preserving it.",
+  get_workflow_options: "Read editable workflow defaults, selection and available local skill paths without writing or running anything.",
   get_workflow: "Read the selected workflow, attempts, current typed outputs, and blockers.",
   get_execution: "Read execution association, bounded activity uncertainty, and unavailable recovery controls.",
   record_permission: "Record portable agent-reported permission without authenticating the supplied source.",

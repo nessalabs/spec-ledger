@@ -47,6 +47,8 @@
     "docs/workstreams/W-009-evidence-first-changes/evidence/T-039/browser-check.md",
     "docs/workstreams/W-011-simple-navigation/evidence/T-040/navigation-check.md",
     "docs/workstreams/W-011-simple-navigation/evidence/T-040/pinned-sections-mobile.png",
-    "docs/workstreams/W-011-simple-navigation/evidence/T-040/mobile-specs.png"
+    "docs/workstreams/W-011-simple-navigation/evidence/T-040/mobile-specs.png",
+    "docs/workstreams/W-012-choose-your-workflow/evidence/T-041/browser-check.md",
+    "docs/workstreams/W-012-choose-your-workflow/evidence/T-041/regression-tests.txt"
   ]
 }

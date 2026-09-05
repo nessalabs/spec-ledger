@@ -77,3 +77,13 @@ Acceptance percentage counts criteria with current passing evidence, with agent-
 Profiles, resolved snapshots and small attempt/output records belong in `.spec-ledger/`. Human-readable specs and logs, screenshots and reports stay with `docs/workstreams/<workstream>/evidence/`, referenced with their integrity metadata. Do not duplicate large logs in method receipts.
 
 This protocol constrains cooperative tool calls. A process with unrestricted repository write access can bypass tools; host controls and CI must enforce stronger restrictions where needed. A receipt cannot prove the agent understood a skill, and a reviewer label cannot authenticate a separate human or agent. Keep those claims distinct from the evidence actually available.
+
+## Configure in the website
+
+Open a spec → the Workflows page → Choose workflow. Start from the current selection or defaults; name stages and steps, choose bundled guidance or local skills, and select the results each step must produce. Preview resolves the exact skill text before Apply workflow. Applying requires current permission. A replacement needs a reason and preserves the prior selection; it does not count previous attempts as execution of the replacement.
+
+Export/import a full workflow JSON profile to reuse it in another spec. Paths refer to that project's checkout. Discovery lists bounded local SKILL.md paths in `skills`, `.agents/skills` and `.claude/skills`; enter other project-relative paths explicitly. No installation or agent invocation occurs. Imported profiles remain drafts until the shared resolver validates them.
+
+`get_workflow_options` supplies the editable current/default profile, local path inventory, permission and current digests through CLI or MCP too. Full profiles can reference bundled guidance as `spec-ledger/plan`, `spec-ledger/spec-review`, `spec-ledger/implement`, `spec-ledger/verify`, or `spec-ledger/code-review`. These are guidance identifiers, not commands.
+
+`set_workflow` accepts `expectedConfigurationDigest` from `preview_workflow` to reject changed guidance. The browser requires it, along with source/revision/selection freshness, and dispatches only preview/apply through its loopback, same-origin, token-protected local bridge. The generic projection server remains read-only. Uncertain saves retain their request identity for recovery, including after a refresh in the same browser tab.

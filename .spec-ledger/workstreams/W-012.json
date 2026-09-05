@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "id": "W-012",
+  "status": "done",
+  "title": "Choose how your agent works",
+  "objective": "Choose the steps and skills your agent follows, then inspect their progress and evidence.",
+  "specPath": "docs/workstreams/W-012-choose-your-workflow/spec.md",
+  "featureIds": [
+    "lattice",
+    "cli",
+    "client"
+  ],
+  "policy": {
+    "requireSpecBreak": true,
+    "requireCodeBreak": true,
+    "requireAlignApprove": true
+  },
+  "trust": {
+    "userFacing": true,
+    "securitySensitive": true,
+    "correctnessCritical": true,
+    "requiredEvidence": [
+      "unit",
+      "integration",
+      "e2e"
+    ]
+  },
+  "suggestedSlices": [
+    {
+      "id": "SLC-01",
+      "title": "Choose and follow a custom workflow",
+      "kind": "vertical",
+      "acceptance": [
+        "Create, preview, apply and reuse a workflow with chosen steps and skills; the website and agent tools share the preserved selection.",
+        "Reject unsafe, stale and incomplete workflow changes while preserving permissions, evidence requirements and earlier selections.",
+        "Configure steps with a keyboard on narrow screens and view change history without rendering warnings."
+      ],
+      "expectedPaths": [
+        "packages/ledger/**",
+        "packages/client/**",
+        "packages/mcp/**",
+        "packages/ui/**",
+        "docs/**",
+        "schemas/**"
+      ],
+      "codeBreakReviewId": "T-041/R-01"
+    }
+  ],
+  "specBreakReviewId": "W-012/SR-03",
+  "updatedAt": "2026-09-05T04:44:28.658Z",
+  "seal": {
+    "sealedAt": "2026-09-05T04:39:18.797Z",
+    "sealedBy": "agent:permission:AUTH-W012-REQUEST",
+    "specDigest": "9efc3abc08178e6fb4f73a7946bbeac402d62398d332009563c2b021c4c88fc0",
+    "snapshotPath": "workstreams/W-012.seals/3.json",
+    "revision": 3,
+    "specDocDigest": "c601fe516e7af250935079f935ed00ba80809b11e8944700198370cec8a20fc9"
+  },
+  "acceptanceClaimIds": {
+    "SLC-01/AC-1": [
+      "SL-030"
+    ],
+    "SLC-01/AC-2": [
+      "SL-030"
+    ],
+    "SLC-01/AC-3": [
+      "SL-030"
+    ]
+  }
+}

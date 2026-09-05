@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "id": "W-012/SR-03",
+  "workstreamId": "W-012",
+  "target": "spec",
+  "kind": "adversarial",
+  "reviewer": "agent:workflow-editor-breaker",
+  "verdict": "approve",
+  "blocking": false,
+  "plainSummary": "Workflow setup has its own page, with a clear route back to the spec and its evidence.",
+  "summary": "Reviewed explicit user placement correction: workflow editor, selected steps, process requirements and agent activity now belong to /workflows/[id], index /workflows reachable from navigation, and spec Process details links there. Back-to-spec evidence link keeps context. Existing shared operation, preview freshness, permission, typed outputs and security invariants unchanged. Browser proof must now exercise dedicated route and return to associated spec, including narrow layout. Acceptance mapping remains SL030.",
+  "findings": [],
+  "residualRisks": [
+    "Tool related pack supplied a caution-only worktree note without scan status or entries; no sibling checkout state was used as authority.",
+    "No code has been independently verified at spec review time; cross-origin rejection and unchanged selections require runtime negative tests.",
+    "Saving guidance does not establish agent compliance or launch a host runner; local filesystem writers remain outside the cooperative boundary."
+  ],
+  "supersedesReviewId": "W-012/SR-02",
+  "revisionDigest": "b2165d32650448a8e05d2960af4780b4d50c06844da94733485d36783f7399fc"
+}

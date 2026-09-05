@@ -112,8 +112,10 @@ export function resolveWorkflow(root: string, workstreamId: string, profile?: Wo
           stepIds.add(step.id)
           if (!step.outputs.length || step.outputs.length > 6) throw new Error(`step ${stage.id}/${step.id} requires a finite output contract`)
           const ref = typeof step.skill === "string" ? aliases[step.skill] : step.skill
-          if (!ref) throw new Error(`skill alias is missing: ${String(step.skill)}`)
-          const skill = localSkill(root, typeof step.skill === "string" ? step.skill : step.id, ref)
+          if (!ref && !(typeof step.skill === "string" && step.skill.startsWith("spec-ledger/") && BUNDLED[step.skill.slice(12)])) throw new Error(`skill alias is missing: ${String(step.skill)}`)
+          const bundledId = typeof step.skill === "string" && step.skill.startsWith("spec-ledger/") ? step.skill.slice(12) : null
+          const bundled = bundledId ? BUNDLED[bundledId] : undefined
+          const skill = bundled ? { id: bundledId!, source: "bundled" as const, digest: sha256Stable(bundled.content), content: bundled.content, capabilities: bundled.capabilities, capability: "declared" as const, uncertaintyAcknowledged: false } : localSkill(root, typeof step.skill === "string" ? step.skill : step.id, ref!)
           totalBytes += Buffer.byteLength(skill.content)
           for (const output of step.outputs) {
             if (skill.capability === "declared" && !skill.capabilities.includes(output.kind)) throw new Error(`skill ${skill.id} does not declare ${output.kind}`)
@@ -149,6 +151,13 @@ function validateOrder(stages: ResolvedWorkflowStage[], ws: Workstream): void {
     const review = roles.indexOf("spec-review")
     if (review < 0 || review > implement) throw new Error("policy-required spec review must precede implementation")
   }
+  const required: Array<[WorkflowStageRole, WorkflowOutputKind]> = [["implement", "implementation-report"], ["verify", "check-results"]]
+  if (ws.policy?.requireSpecBreak !== false) required.push(["spec-review", "spec-review"])
+  if (ws.policy?.requireCodeBreak !== false) required.push(["code-review", "code-review"])
+  for (const [role, kind] of required) {
+    if (!stages.some(stage => stage.role === role && stage.steps.some(step => step.outputs.some(output => output.kind === kind)))) throw new Error(`workflow requires ${kind} output in ${role} stage`)
+  }
+  if (roles.indexOf("verify") < implement || (roles.includes("code-review") && roles.indexOf("code-review") < roles.indexOf("verify"))) throw new Error("verification and code review must follow implementation in order")
   if (!roles.includes("verify")) throw new Error("workflow requires a verification stage")
   if (ws.policy?.requireCodeBreak !== false && !roles.includes("code-review")) throw new Error("policy requires a code-review stage")
 }

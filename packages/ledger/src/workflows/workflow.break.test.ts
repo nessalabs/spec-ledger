@@ -128,8 +128,8 @@ function select(root: string, method: WorkflowProfile, extra: Record<string, unk
 
 function minimalStages(firstOutputs: Array<{ kind: "attestation" | "code-review" }>): NonNullable<WorkflowProfile["stages"]> {
   return [
-    { id: "build", title: "Build", role: "implement", steps: [{ id: "work", title: "Work", skill: "team", outputs: firstOutputs }] },
-    { id: "verify", title: "Verify", role: "verify", steps: [{ id: "confirm", title: "Confirm", skill: "team", outputs: [{ kind: "attestation" }] }] },
+    { id: "build", title: "Build", role: "implement", steps: [{ id: "work", title: "Work", skill: "team", outputs: [{ kind: "implementation-report" }, ...firstOutputs] }] },
+    { id: "verify", title: "Verify", role: "verify", steps: [{ id: "confirm", title: "Confirm", skill: "team", outputs: [{ kind: "check-results" }] }] },
   ]
 }
 
@@ -345,7 +345,7 @@ describe("custom workflow adversarial contracts", () => {
         rows: [{ key: "behavior-row", outcome: "pass", sourceDigest: source(root), checkDigest: checkFingerprint(claim, binding) }],
       })
       const stages = minimalStages([])
-      stages[0]!.steps[0]!.outputs = [{ kind: "check-results", criterionIds: ["AC-1", "AC-2"] }]
+      stages[0]!.steps[0]!.outputs = [{ kind: "implementation-report" }, { kind: "check-results", criterionIds: ["AC-1", "AC-2"] }]
       const selected = select(root, profile(stages))
       const attempt = executeOperation(root, "begin_workflow_step", {
         requestId: requestId("begin-check-step"), workstreamId: "W-001", stageId: "build", stepId: "work",
@@ -374,7 +374,7 @@ describe("custom workflow adversarial contracts", () => {
     try {
       const stages = [
         ...minimalStages([{ kind: "attestation" }]),
-        { id: "review", title: "Team review", role: "code-review" as const, steps: [{ id: "challenge", title: "Challenge", skill: "team", outputs: [{ kind: "attestation" as const }] }] },
+        { id: "review", title: "Team review", role: "code-review" as const, steps: [{ id: "challenge", title: "Challenge", skill: "team", outputs: [{ kind: "code-review" as const }] }] },
       ]
       select(root, profile(stages))
       const projection = executeOperation(root, "get_workflow", { workstreamId: "W-001" }) as { stages: Array<{id:string;status:string}> }
@@ -399,3 +399,4 @@ describe("custom workflow adversarial contracts", () => {
     }
   })
 })
+

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "turnId": "T-041",
+  "decision": "Choose skills and steps on a dedicated Workflows page, then follow their process and evidence.",
+  "rationale": "Agent-reported progress; evidence is evaluated separately.",
+  "progress": {
+    "criterionIds": [
+      "SLC-01/AC-1",
+      "SLC-01/AC-2",
+      "SLC-01/AC-3"
+    ],
+    "implemented": true,
+    "revisionDigest": "b2165d32650448a8e05d2960af4780b4d50c06844da94733485d36783f7399fc",
+    "sourceDigest": "251e9c1b4f3b6dedf6ce0ee30a075c05a39a5f998bb2c93dc90c2d829376320c",
+    "preview": {
+      "url": "http://127.0.0.1:3737/workflows/W-012",
+      "label": "Open workflow"
+    }
+  },
+  "id": "T-041/D-01"
+}

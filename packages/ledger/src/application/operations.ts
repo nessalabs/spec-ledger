@@ -1,3 +1,4 @@
+import { workflowOptions } from "../workflows/options.js"
 import { startSavedCheck, getCheckRun, getCheckEvidence, validateCheckStorage } from "../verify/saved-check.js"
 import { randomUUID } from "node:crypto"
 import { dirname, isAbsolute, join, relative, resolve } from "node:path"
@@ -488,6 +489,7 @@ export function setWorkflow(root: string, raw: unknown) {
     assertRevision(root, workstreamId, stringField(input, "expectedRevisionDigest")!)
     assertSource(root, stringField(input, "expectedSourceDigest")!)
     assertPermission(root, workstreamId)
+    if (input.expectedConfigurationDigest && resolveWorkflow(root, workstreamId, input.profile as WorkflowProfile | undefined).snapshotDigest !== input.expectedConfigurationDigest) throw operationError("revision_conflict", "Workflow guidance changed. Preview it again before applying.", false)
     return preserveWorkflow(root, workstreamId, input.profile as WorkflowProfile | undefined,
       stringField(input, "reason", true), stringField(input, "expectedSnapshotDigest", true))
   } })
@@ -575,6 +577,7 @@ export function executeOperation(root: string, operation: OperationName, input: 
       case "get_context": return getContext(root, input)
       case "get_session": return observeSession(root, input)
       case "preview_workflow": return previewWorkflow(root, input)
+      case "get_workflow_options": return workflowOptions(root, validated(root, "get_workflow_options", input).workstreamId as string)
       case "get_workflow": return getWorkflow(root, input)
       case "get_execution": return getExecution(root, input)
       case "record_permission": return submitPermission(root, input)

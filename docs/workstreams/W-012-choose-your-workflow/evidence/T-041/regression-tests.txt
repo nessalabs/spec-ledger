@@ -1,0 +1,17 @@
+✔ section history returns from execution to exact acceptance without hiding the evidence (67.372916ms)
+✔ unknown or obsolete fragments do not strand readers in an invisible section (0.27775ms)
+✔ mobile navigation closes on same-page selection and route change but preserves modified clicks (53.551125ms)
+✔ change history is isolated from the live child list and renders without key warnings (60.060958ms)
+✔ the dedicated workflow page retains editor and process state when live data changes workstream (6.003958ms)
+✔ overview keeps permission and problems visible with direct spec, evidence and history links (281.692167ms)
+✔ approved work does not request approval again and disconnected approval stays disabled (68.971083ms)
+✔ import rejects malformed nested configuration before rendering but retains valid output scopes (38.665083ms)
+✔ workflow editor starts collapsed and does not read or execute anything while rendering (102.664375ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 623.350417
