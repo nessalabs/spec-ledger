@@ -21,7 +21,7 @@ export function AcceptanceProgress({
     return (
       <section className="space-y-2 rounded-xl border border-border p-4" aria-label="Acceptance progress">
         <div className="flex flex-wrap items-baseline justify-between gap-2">
-          <h2 className="font-semibold">{historical ? "Current evidence coverage" : "Acceptance progress"}</h2>
+          <h2 className="font-semibold">Current checks</h2>
           <p className="text-sm font-medium">No acceptance criteria</p>
         </div>
         <div
@@ -41,9 +41,9 @@ export function AcceptanceProgress({
   return (
     <section className="space-y-2 rounded-xl border border-border p-4" aria-label="Acceptance progress">
       <div className="flex flex-wrap items-baseline justify-between gap-2">
-        <h2 className="font-semibold">{historical ? "Current evidence coverage" : "Acceptance progress"}</h2>
+        <h2 className="font-semibold">Current checks</h2>
         <p className="text-lg font-semibold tabular-nums">
-          Evidence {progress.verified}/{progress.total} · {progress.percent}%
+          {progress.verified}/{progress.total} verified · {progress.percent}%
         </p>
       </div>
       <div
@@ -60,23 +60,10 @@ export function AcceptanceProgress({
           style={{ width: `${progress.percent}%` }}
         />
       </div>
-      <p className="text-xs text-muted-foreground">
-        Current implementation reports: {progress.implemented}/{progress.total} · agent reported
-      </p>
-      {historical && <p className="text-sm text-muted-foreground">Recorded as completed earlier. These counts describe evidence on the current code, not how much was originally built.</p>}
-      {unmapped > 0 && <p className="text-sm">{unmapped} criteria have no linked checks. Their verification is unknown.</p>}
-      {remaining.length ? (
-        <div className="space-y-1 text-xs text-muted-foreground">
-          <p>{historical ? "Current verification needs attention:" : "Not ready to complete — still needed:"}</p>
-          <ul className="list-disc space-y-1 pl-5">
-            {remaining.map((reason) => <li key={reason}>{reason}</li>)}
-          </ul>
-        </div>
-      ) : progress.percent === 100 ? (
-        <p className="text-xs text-muted-foreground">
-          Acceptance evidence is complete. Workstream completion is evaluated separately.
-        </p>
-      ) : null}
+      {unmapped > 0 && <p className="text-sm">{unmapped} requirements have no linked checks yet.</p>}
+      {historical && progress.verified < progress.total && <p className="text-sm">Completed earlier; some evidence needs rechecking.</p>}
+      {remaining.length > 0 && <div className="space-y-1 text-sm"><p className="font-medium">{historical ? "Needs rechecking" : "Still needed"}</p><ul className="list-disc space-y-1 pl-5">{remaining.map(reason => <li key={reason}>{reason}</li>)}</ul></div>}
+      <details className="text-xs text-muted-foreground"><summary className="cursor-pointer">About this progress</summary><div className="mt-2 space-y-2"><p>Current implementation reports: {progress.implemented}/{progress.total} · agent reported</p><p>The percentage counts requirements with current passing evidence. Reviews and other completion requirements are checked separately.</p>{historical && <p>This work was completed earlier. These counts describe evidence on the current code.</p>}</div></details>
     </section>
   )
 }

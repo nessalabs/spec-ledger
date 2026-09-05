@@ -15,7 +15,7 @@ async function readEvidence(bindingId: string, signal?: AbortSignal): Promise<Ch
   return data
 }
 
-export function CheckEvidencePanel({ bindingId, initial, defaultOpen = false }: { bindingId: string; initial?: CheckEvidence; defaultOpen?: boolean }) {
+export function CheckEvidencePanel({ bindingId, initial, defaultOpen = false, label = "Inspect test, output and source" }: { bindingId: string; initial?: CheckEvidence; defaultOpen?: boolean; label?: string }) {
   const router = useRouter()
   const [open, setOpen] = useState(defaultOpen)
   const [evidence, setEvidence] = useState<CheckEvidence | null>(initial ?? null)
@@ -102,7 +102,7 @@ export function CheckEvidencePanel({ bindingId, initial, defaultOpen = false }: 
   }
 
   return <details open={open} onToggle={event => setOpen(event.currentTarget.open)} className="rounded-xl border border-border p-4">
-    <summary className="cursor-pointer font-medium">Inspect test, output and source</summary>
+    <summary className="cursor-pointer font-medium">{label}</summary>
     <div className="mt-4 space-y-5">
       {!evidence ? <p role="status">{message || 'Loading saved evidence…'}</p> : <>
         <div className="flex flex-wrap items-center gap-2"><Badge variant="outline">{evidence.test?.level ?? 'Test level not recorded'}</Badge><span className="text-sm">Current evidence: {evidence.currentOutcome}</span></div>

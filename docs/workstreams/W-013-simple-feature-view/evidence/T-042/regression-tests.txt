@@ -1,0 +1,46 @@
+✔ acceptance progress is indeterminate without criteria (1.161166ms)
+✔ acceptance progress separates verified evidence from reported implementation (0.142541ms)
+✔ acceptance progress reaches 100 only when every criterion is verified (0.108167ms)
+✔ passive evidence render keeps authored expectations distinct and escapes test source (8.939958ms)
+✔ actual failures and tampered logs remain visible independently of a described expectation (1.823292ms)
+✔ uncertain HTTP response reconnects with the same request identity (6.980167ms)
+✔ audit cannot relabel another workstream or erase a mapped requirement (2.2175ms)
+✔ audit summary counts and scope must agree with its inspected inventory (0.836666ms)
+✔ a complete audit can acknowledge missing feature evidence (1.232375ms)
+✔ rejects missing, duplicate, rewritten and falsely mapped audit entries (0.305167ms)
+✔ requires explained judgments and readable evidence references (0.222292ms)
+✔ execution copy keeps uncertainty and completion distinct (0.566125ms)
+✔ continuation blockers explain unavailable host controls (0.091833ms)
+✔ policy durations are compact without becoming time estimates (0.088334ms)
+✔ public UI route resolves the original graph feature and retains old inbound links (0.560208ms)
+✔ a consumer feature with the public slug does not hijack the original feature link (0.100459ms)
+✔ historical display copy changes product prose without changing technical references (0.576542ms)
+✔ section history returns from execution to exact acceptance without hiding the evidence (52.46625ms)
+✔ unknown or obsolete fragments do not strand readers in an invisible section (0.156333ms)
+✔ mobile navigation closes on same-page selection and route change but preserves modified clicks (29.796583ms)
+✔ change history is isolated from the live child list and renders without key warnings (33.629708ms)
+✔ the dedicated workflow page retains editor and process state when live data changes workstream (5.068042ms)
+✔ overview keeps permission and problems visible with direct spec, evidence and history links (130.849458ms)
+✔ approved work does not request approval again and disconnected approval stays disabled (41.789333ms)
+✔ simpler progress keeps incomplete and historical limits visible even when all checks pass (4.344125ms)
+✔ failed missing attested and unmapped requirements keep their limitations beside expandable proof (1.767917ms)
+✔ simplified feature observation still exposes disconnection without replacing the requested spec (23.404917ms)
+✔ opening proof reads evidence without posting a command (34.135166ms)
+✔ turn evidence excludes adjacent slice prefixes and preserves failed/missing verdicts (1.832125ms)
+✔ legacy turns require an explicit claim mapping rather than borrowing workstream proof (0.209958ms)
+✔ historical completion is not a current passing verdict (0.289292ms)
+✔ actual Git histories attribute only exact trailers, never close HEAD or prefix/body mentions (336.561792ms)
+✔ rendered change page puts evidence before collapsed commit and documents (67.605708ms)
+✔ import rejects malformed nested configuration before rendering but retains valid output scopes (1.092917ms)
+✔ workflow editor starts collapsed and does not read or execute anything while rendering (46.100583ms)
+✔ workflow statuses keep blocked and not-applicable out of passing task states (0.864875ms)
+✔ workflow digest labels stay recognizable without filling the page (0.097166ms)
+✔ workflow output contracts have plain labels (0.082125ms)
+ℹ tests 38
+ℹ suites 0
+ℹ pass 38
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1017.67825

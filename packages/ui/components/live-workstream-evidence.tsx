@@ -30,7 +30,7 @@ export function LiveWorkstreamEvidence({
           ? "Live updates disconnected · showing the last observation"
           : state === "loading"
             ? "Refreshing live evidence…"
-            : "Live evidence connected"}
+            : "Live"}
         {observed ? ` · ${observed}` : ""}
       </p>
       <AcceptanceProgress

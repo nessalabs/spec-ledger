@@ -39,12 +39,13 @@ type NavItem = {
 }
 
 const WORK: NavItem[] = [
+
   { href: "/", label: "Follow work", hint: "Progress and what needs your attention", icon: LayoutDashboard },
   { href: "/workstreams", label: "Specs", hint: "Read the plans and their requirements", icon: Workflow },
   { href: "/verify", label: "Evidence", hint: "Inspect checks and their results", icon: ShieldCheck },
+  { href: "/workflows", label: "Workflows", hint: "Choose skills and steps and follow the process", icon: Workflow },
 ]
 const MORE: NavItem[] = [
-  { href: "/workflows", label: "Workflows", hint: "Choose skills and steps and follow the process", icon: Workflow },
   { href: "/turns", label: "Changes", hint: "What changed, in order", icon: History },
   { href: "/claims", label: "Requirements", hint: "All requirements and supporting checks", icon: Boxes },
   { href: "/compass", label: "Project direction", hint: "Vision and guiding principles", icon: Compass },

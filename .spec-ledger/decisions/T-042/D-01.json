@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "turnId": "T-042",
+  "decision": "Read the feature outcome and current checks without repeated technical explanations; open proof directly.",
+  "rationale": "Agent-reported progress; evidence is evaluated separately.",
+  "progress": {
+    "criterionIds": [
+      "SLC-01/AC-1",
+      "SLC-01/AC-2"
+    ],
+    "implemented": true,
+    "revisionDigest": "56d0b07291c52a6ea465083ec03b4e4a741992e3b980977ec8c98664549fad13",
+    "sourceDigest": "9881b7b494b232b8822f6737e35b563d44277a21b5056966ec794a7e2c882adf"
+  },
+  "id": "T-042/D-01"
+}

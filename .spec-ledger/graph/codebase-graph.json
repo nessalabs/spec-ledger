@@ -76,7 +76,8 @@
         "SL-021",
         "SL-022",
         "SL-029",
-        "SL-030"
+        "SL-030",
+        "SL-031"
       ],
       "entryPoints": [
         "packages/ledger/src/graph/impact.ts",

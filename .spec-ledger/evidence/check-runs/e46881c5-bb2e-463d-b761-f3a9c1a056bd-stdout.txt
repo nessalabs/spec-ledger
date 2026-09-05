@@ -1,0 +1,33 @@
+✔ section history returns from execution to exact acceptance without hiding the evidence (14.379042ms)
+✔ unknown or obsolete fragments do not strand readers in an invisible section (0.081084ms)
+✔ mobile navigation closes on same-page selection and route change but preserves modified clicks (16.056375ms)
+✔ change history is isolated from the live child list and renders without key warnings (11.780083ms)
+✔ the dedicated workflow page retains editor and process state when live data changes workstream (4.708917ms)
+✖ overview keeps permission and problems visible with direct spec, evidence and history links (46.825166ms)
+✔ approved work does not request approval again and disconnected approval stays disabled (19.785542ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 6
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 177.904125
+
+✖ failing tests:
+
+test at packages/ui/lib/navigation.test.mjs:24:1
+✖ overview keeps permission and problems visible with direct spec, evidence and history links (46.825166ms)
+  AssertionError [ERR_ASSERTION]: /workstreams/W-011#process
+      at TestContext.<anonymous> (file:///Users/nessa/Documents/NessaLabs/spec-ledger/packages/ui/lib/navigation.test.mjs:27:139)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

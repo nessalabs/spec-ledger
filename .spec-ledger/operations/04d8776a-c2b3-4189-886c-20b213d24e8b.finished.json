@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "requestId": "04d8776a-c2b3-4189-886c-20b213d24e8b",
+  "operation": "begin_work",
+  "inputDigest": "ccbdf899e7caed57deb6c978a63cf3826c3486e30f9a7eaea8ab69fcf76320de",
+  "finishedAt": "2026-09-05T04:50:23.009Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "id": "T-042",
+    "status": "open",
+    "openedAt": "2026-09-05T04:50:23.009Z",
+    "opened": {
+      "producedBy": "@nessalabs/spec-ledger@0.1.0",
+      "baseCommit": "c86c0e0a3f33c798614bdca410f83ba78baa5ede",
+      "treeDigest": "138fefafb4be53a10401a5b5069563b7b2eafee27322bced29c37f680f34c7e2",
+      "dirtyAtOpen": [
+        ".spec-ledger/authority/AUTH-W013-REQUEST.json",
+        ".spec-ledger/reviews/workstreams/W-013/SR-01.json",
+        ".spec-ledger/workstreams/W-013.json",
+        ".spec-ledger/workstreams/W-013.seals/1.json",
+        "docs/workstreams/W-013-simple-feature-view/spec.md"
+      ],
+      "contextDigest": "7d0a2295891249b786e0931782b520b214424c5233453f6c52c3fdc5fea5d230",
+      "contextWorkstreamId": "W-013",
+      "contextSliceId": "SLC-01",
+      "contextSealRevision": 1,
+      "contextGeneratedAt": "2026-09-05T04:50:23.009Z"
+    },
+    "intent": {
+      "userPrompt": "Simplify the feature view based on the independent Sol website audit; keep failures and proof visible.",
+      "restatedGoal": "Understand features and inspect proof without extra noise",
+      "changeType": "feature",
+      "riskLevel": "moderate",
+      "workstreamId": "W-013",
+      "sliceId": "SLC-01",
+      "featureIds": [
+        "lattice"
+      ]
+    }
+  }
+}

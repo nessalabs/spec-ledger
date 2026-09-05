@@ -49,6 +49,9 @@
     "docs/workstreams/W-011-simple-navigation/evidence/T-040/pinned-sections-mobile.png",
     "docs/workstreams/W-011-simple-navigation/evidence/T-040/mobile-specs.png",
     "docs/workstreams/W-012-choose-your-workflow/evidence/T-041/browser-check.md",
-    "docs/workstreams/W-012-choose-your-workflow/evidence/T-041/regression-tests.txt"
+    "docs/workstreams/W-012-choose-your-workflow/evidence/T-041/regression-tests.txt",
+    "docs/workstreams/W-013-simple-feature-view/evidence/T-042/audit.md",
+    "docs/workstreams/W-013-simple-feature-view/evidence/T-042/browser-check.md",
+    "docs/workstreams/W-013-simple-feature-view/evidence/T-042/regression-tests.txt"
   ]
 }

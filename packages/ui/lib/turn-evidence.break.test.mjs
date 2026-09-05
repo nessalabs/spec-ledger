@@ -31,7 +31,9 @@ test('legacy turns require an explicit claim mapping rather than borrowing works
 })
 test('historical completion is not a current passing verdict',()=>{
   assert.match(completionLabel('done',false),/earlier.*needs attention/)
-  assert.match(completionLabel('done',true),/current checks satisfied/)
+  assert.equal(completionLabel('done',true),'Complete')
+  assert.notEqual(completionLabel('done',false),'Complete')
+  assert.equal(completionLabel('active',true),null)
   assert.equal(completionLabel('active',false),null)
 })
 test('actual Git histories attribute only exact trailers, never close HEAD or prefix/body mentions',()=>{

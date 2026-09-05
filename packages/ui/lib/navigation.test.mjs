@@ -24,7 +24,7 @@ const session={workstreamId:'W-011',title:'Readable work',goal:'See proof',revis
 test('overview keeps permission and problems visible with direct spec, evidence and history links',()=>{
  const html=home(session)
  for(const text of ['Approve this revision','Deny','A failing check needs attention','Current review missing','Read spec','View evidence']) assert.ok(html.includes(text),text)
- for(const href of ['/workstreams/W-011','/workstreams/W-011#evidence','/workstreams/W-011#changes','/workstreams/W-011#process']) assert.ok(html.includes(href),href)
+ for(const href of ['/workstreams/W-011','/workstreams/W-011#evidence','/workstreams/W-011#changes','/workflows/W-011']) assert.ok(html.includes(href),href)
  assert.ok(!html.includes('Update 4'))
  assert.ok(!html.includes('No preview recorded'))
 })

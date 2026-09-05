@@ -1,0 +1,15 @@
+{
+  "id": "AUTH-W013-REQUEST",
+  "action": "grant",
+  "mode": "request",
+  "workstreamId": "W-013",
+  "featureIds": [
+    "lattice"
+  ],
+  "source": {
+    "kind": "agent-reported",
+    "reference": "User requested removing unnecessary text and simplifying the UI based on GPT5.6 Sol independent website navigation."
+  },
+  "schemaVersion": 1,
+  "createdAt": "2026-09-05T04:50:22.753Z"
+}

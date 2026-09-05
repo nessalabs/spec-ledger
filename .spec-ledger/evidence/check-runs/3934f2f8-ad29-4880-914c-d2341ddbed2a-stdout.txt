@@ -1,0 +1,42 @@
+▶ workflow editor boundary regressions
+  ✔ roundtrips bundled choices and hides symlinked discovery roots (108.746875ms)
+  ✔ rejects attestation substitutes for every mandatory stage output (84.565792ms)
+  ✔ rejects changed skill content and stale amendment identity without replacing the selection (227.133041ms)
+  ✔ rejects oversized and malformed browser actions without writes or execution (187.757834ms)
+  ✔ browser preview and apply share core state, deny foreign requests, and retry once (225.582666ms)
+✔ workflow editor boundary regressions (834.411584ms)
+✔ section history returns from execution to exact acceptance without hiding the evidence (13.227083ms)
+✔ unknown or obsolete fragments do not strand readers in an invisible section (0.073291ms)
+✔ mobile navigation closes on same-page selection and route change but preserves modified clicks (18.4375ms)
+✔ change history is isolated from the live child list and renders without key warnings (17.464084ms)
+✔ the dedicated workflow page retains editor and process state when live data changes workstream (2.526125ms)
+✖ overview keeps permission and problems visible with direct spec, evidence and history links (39.310792ms)
+✔ approved work does not request approval again and disconnected approval stays disabled (24.717584ms)
+✔ import rejects malformed nested configuration before rendering but retains valid output scopes (1.190125ms)
+✔ workflow editor starts collapsed and does not read or execute anything while rendering (34.530791ms)
+ℹ tests 14
+ℹ suites 1
+ℹ pass 13
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 908.064541
+
+✖ failing tests:
+
+test at packages/ui/lib/navigation.test.mjs:24:1
+✖ overview keeps permission and problems visible with direct spec, evidence and history links (39.310792ms)
+  AssertionError [ERR_ASSERTION]: /workstreams/W-011#process
+      at TestContext.<anonymous> (file:///Users/nessa/Documents/NessaLabs/spec-ledger/packages/ui/lib/navigation.test.mjs:27:139)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

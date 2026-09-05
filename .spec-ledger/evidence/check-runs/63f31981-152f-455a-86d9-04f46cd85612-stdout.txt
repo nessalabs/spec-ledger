@@ -1,0 +1,31 @@
+▶ workflow editor boundary regressions
+  ✔ roundtrips bundled choices and hides symlinked discovery roots (99.634208ms)
+  ✔ rejects attestation substitutes for every mandatory stage output (103.366417ms)
+  ✔ rejects changed skill content and stale amendment identity without replacing the selection (257.517125ms)
+  ✔ rejects oversized and malformed browser actions without writes or execution (104.268291ms)
+  ✔ browser preview and apply share core state, deny foreign requests, and retry once (168.135ms)
+✔ workflow editor boundary regressions (733.481208ms)
+▶ custom workflow adversarial contracts
+  ✔ rejects unknown or empty output contracts and policy-breaking stage order before persistence (89.3795ms)
+  ✔ confines workflow persistence when the workflow directory is an escaping symlink (119.468166ms)
+  ✔ preserves selected skill bytes and rejects escaping or oversized replacements (123.014ms)
+  ✔ gives every amendment a new execution identity and excludes prior attempts (226.004833ms)
+  ✔ rejects a current code review that belongs to another workstream (245.766583ms)
+  ✔ does not relabel a review created before the current method attempt as that attempt's output (210.847875ms)
+  ✔ does not satisfy a code-review output while a later blocking review remains unresolved (270.354334ms)
+  ✔ requires behavioral result rows for every scoped criterion and never accepts attestation instead (207.365666ms)
+  ✔ keeps an explicitly configured review stage applicable when project policy does not require one (113.980125ms)
+  ✔ does not make later steps in one ordered stage ready before earlier steps are satisfied (101.775292ms)
+✔ custom workflow adversarial contracts (1708.683834ms)
+✔ default workflow needs no configuration and preserves substantive bundled guidance (4.050917ms)
+✔ custom workflow preserves exact local skill text and rejects unsafe or incompatible skills (4.997208ms)
+✔ cli: follows a custom method through real records and preserves current evidence (4162.13275ms)
+✔ mcp: follows a custom method through real records and preserves current evidence (2305.73375ms)
+ℹ tests 19
+ℹ suites 2
+ℹ pass 19
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6552.212125

@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "requestId": "c3062ad8-03e6-4414-9b47-18fe1a34c38a",
+  "operation": "approve_alignment",
+  "inputDigest": "4be7218c52365db1b9878e0d95e30efb97bf55141e3da1f5dd0c2b1f5c018b7e",
+  "finishedAt": "2026-09-05T05:02:12.110Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "id": "T-042/R-02",
+    "turnId": "T-042",
+    "workstreamId": "W-013",
+    "kind": "human",
+    "target": "code",
+    "reviewer": "agent:align",
+    "verdict": "approve",
+    "summary": "User explicitly requested UI simplification based on Sol navigation. Covered UI presentation, regressions and audit evidence only.",
+    "plainSummary": "Feature screens and their tests match the requested simpler view.",
+    "treeDigest": "9881b7b494b232b8822f6737e35b563d44277a21b5056966ec794a7e2c882adf",
+    "uncoveredPaths": [],
+    "coverageSource": "mixed"
+  }
+}

@@ -9,22 +9,20 @@ const label = (outcome: string) => outcome === "pass" ? "Passing" : outcome === 
 
 export function WorkstreamEvidence({ session, observedAt, expandChecks = false }: { session: Session; observedAt: string; expandChecks?: boolean }) {
   return <section className="space-y-5" aria-label="Verification and evidence">
-    <div className="space-y-2">
-      <h2 className="text-xl font-semibold">Verification and evidence</h2>
-      <p className="text-sm text-muted-foreground">{session.evidenceCount} of {session.criteria.length} requirements have current passing evidence.</p>
-      <p className="text-xs text-muted-foreground">Observed {observedAt} · <a className="underline" href={`/workstreams/${session.workstreamId}`}>Refresh evidence</a></p>
-      <p className="text-xs text-muted-foreground">Checks are evaluated against this checkout. Reading this page does not rerun them. Implementation is reported by the agent.</p>
-      {session.status === "done" && !session.completion.eligible && <p className="rounded-lg border border-amber-600/40 p-3 text-sm">This workstream was completed earlier. Its current evidence or prerequisites need attention.</p>}
-    </div>
+    <div className="flex items-center justify-between"><h2 className="text-lg font-semibold">What proves it</h2><details className="text-xs text-muted-foreground"><summary className="cursor-pointer">Check details</summary><p>Observed {observedAt}. Opening this page does not run tests.</p></details></div>
     {!session.criteria.length && <p className="text-sm">No acceptance criteria are available in this evidence view.</p>}
     {session.criteria.map(criterion => <article id={`acceptance-${encodeURIComponent(criterion.id)}`} key={criterion.id} className="scroll-mt-6 space-y-4 rounded-xl border border-border p-4">
       <div className="flex flex-wrap items-start justify-between gap-2">
         <h3 className="min-w-0 flex-1 text-sm font-medium">{presentationCopy(criterion.text)}</h3>
         <Badge variant={criterion.evidence === "fail" ? "destructive" : "outline"}>{label(criterion.evidence)}</Badge>
       </div>
-      <p className="text-xs text-muted-foreground">{criterion.implemented ? "Implemented · agent reported for this version" : "Implementation not confirmed for this version"}</p>
-      {criterion.reason && <p className="text-sm text-muted-foreground">{criterion.reason}</p>}
+      {criterion.evidence === "fail" && <p className="text-sm text-destructive">A check failed. Inspect the proof below.</p>}
+      {criterion.evidence !== "pass" && criterion.evidence !== "fail" && criterion.claims.length > 0 && <p className="text-sm">{criterion.evidence === "attested" ? "A written observation is available; passing test evidence is still needed." : "Current passing evidence is not available."}</p>}
       {!criterion.claims.length && <p className="text-sm">No checks are mapped to this requirement yet.</p>}
+      {criterion.claims.flatMap(claim => claim.checks).map((check, index, checks) => <CheckEvidencePanel key={check.id} bindingId={check.id} defaultOpen={expandChecks} label={checks.length === 1 ? "View proof" : `View proof ${index + 1} · ${label(check.outcome)}`} />)}
+      <details><summary className="cursor-pointer text-xs text-muted-foreground">Evidence details and history</summary><div className="mt-3 space-y-3">
+      <p className="text-xs text-muted-foreground">{criterion.implemented ? "Implementation recorded · agent reported" : "Implementation not confirmed for this version"}</p>
+      {criterion.reason && <p className="text-sm">{criterion.reason}</p>}
       {criterion.claims.map(claim => <div key={claim.id} className="space-y-2 border-t border-border pt-3">
         <p className="text-sm"><Link className="underline" href={`/claims/${encodeURIComponent(claim.id)}`}>{claim.id}</Link> · {presentationCopy(claim.statement)}</p>
         {claim.reason && <p className="text-sm text-muted-foreground">{claim.reason}</p>}
@@ -35,7 +33,6 @@ export function WorkstreamEvidence({ session, observedAt, expandChecks = false }
             <p>{check.reason ?? (check.outcome === "pass" ? "Current verifier accepts this check." : "No current evidence available.")}</p>
             <div><p className="mb-1 font-medium">What was checked</p><pre className="whitespace-pre-wrap break-words rounded border border-border p-2">{check.definition.command ?? check.definition.path ?? check.definition.resultsKey ?? check.definition.note ?? check.definition.type}</pre></div>
             {check.definition.type === "path" && <p>File presence is structural evidence; it does not prove behavior.</p>}
-            <CheckEvidencePanel bindingId={check.id} />
             {!check.recorded.length && <p>No recorded execution result. A check definition is not a test run.</p>}
             {check.recorded.map((row, index) => <div key={index} className="space-y-1 border-t border-border pt-2">
               <p className="font-medium">Recorded outcome: {row.outcome} · historical observation</p>
@@ -51,6 +48,7 @@ export function WorkstreamEvidence({ session, observedAt, expandChecks = false }
           </div>
         </details>)}
       </div>)}
+      </div></details>
     </article>)}
     <section className="space-y-3"><h3 className="font-medium">Reviews and remaining risks</h3>
       {!session.reviews.length && <p className="text-sm text-muted-foreground">No reviews recorded.</p>}
@@ -67,7 +65,7 @@ export function WorkstreamEvidence({ session, observedAt, expandChecks = false }
       </details>)}
       </div></details>
     </section>
-    <section className="space-y-3"><h3 className="font-medium">Recorded artifacts</h3>
+    <details className="space-y-3"><summary className="cursor-pointer font-medium">Supporting files · {session.artifacts.length}</summary>
       <p className="text-xs text-muted-foreground">These support the workstream history. Matching a file digest does not make a manual observation a current passing test.</p>
       {!session.artifacts.length && <p className="text-sm text-muted-foreground">No artifacts attached yet.</p>}
       {session.artifacts.map(artifact => <details key={artifact.id} className="rounded-lg border border-border p-3">
@@ -79,6 +77,6 @@ export function WorkstreamEvidence({ session, observedAt, expandChecks = false }
           {artifact.text !== null && <pre className="max-h-96 overflow-auto whitespace-pre-wrap break-words rounded border border-border p-3">{artifact.text}</pre>}
         </div>
       </details>)}
-    </section>
+    </details>
   </section>
 }

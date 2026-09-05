@@ -1,0 +1,5 @@
+# Independent GPT-5.6 Sol usability audit
+
+Sol navigated the live website read-only as a new nontechnical user, before reading source or specs. It could explain W-012 but had to reconcile Completed,100%, agent-reported implementation and separate completion language. W-010 exposed a more confusing mix of current passing checks and older completion needing attention. Proof was obscured by duplicate summaries and technical identifiers; workflow configuration was hidden under More.
+
+Changes based on those observations: feature objective beside title; shorter status with current-check count separate from remaining work; direct View proof controls; supporting files and provenance collapsed; a compact Read spec button; Workflows in main navigation; shorter inferred workflow explanation. Failures, missing checks, written-only observations, rechecking and remaining completion requirements stay visible. Skill editing and technical spec content are retained rather than silently reducing their contracts.

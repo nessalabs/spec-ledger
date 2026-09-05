@@ -72,8 +72,8 @@ export function LiveSession({ initial }: { initial: SessionProjection }) {
       <div className="space-y-3 rounded-xl border border-border p-5">
         <Link className="text-xl font-semibold hover:underline" href={`/workstreams/${session.workstreamId}`}>{presentationCopy(session.title)}</Link>
         <p>{presentationCopy(session.goal)}</p>
-        <p className="text-sm text-muted-foreground">Revision {session.revision ?? "not yet sealed"} · {completionLabel(session.status, session.completion.eligible) ?? ( session.permission.allowed ? "Approved to proceed" : "Needs your decision")}</p>
-        <details className="text-xs text-muted-foreground"><summary>Approval details</summary><p>{session.permission.mode ?? "No permission recorded"} · {session.permission.provenance}</p>{session.permission.reasons.map(reason => <p key={reason}>{reason}</p>)}</details>
+        <p className="text-sm text-muted-foreground">{completionLabel(session.status, session.completion.eligible) ?? ( session.permission.allowed ? "Approved to proceed" : "Needs your decision")}</p>
+        <details className="text-xs text-muted-foreground"><summary>Approval details</summary><p>Revision {session.revision ?? "not yet sealed"}</p><p>{session.permission.mode ?? "No permission recorded"} · {session.permission.provenance}</p>{session.permission.reasons.map(reason => <p key={reason}>{reason}</p>)}</details>
         {!session.permission.allowed && !["done", "cancelled"].includes(session.status) && <div className="space-y-2">
           <div className="flex flex-wrap gap-3"><Button disabled={saving || state !== "connected"} onClick={() => void decide("approve")}>{saving ? "Saving…" : "Approve this revision"}</Button><Button variant="outline" disabled={saving || state !== "connected"} onClick={() => void decide("deny")}>Deny</Button></div>
           <p className="text-xs text-muted-foreground">Approving this revision replaces any previous denial for this workstream.</p>
@@ -103,7 +103,7 @@ export function LiveSession({ initial }: { initial: SessionProjection }) {
       {session.preview && <section className="space-y-2"><h2 className="font-semibold">Try it</h2>
         {session.preview ? <><a href={session.preview.url} target="_blank" rel="noopener noreferrer" className="underline">{session.preview.label}</a><p className="text-xs text-muted-foreground">Reported for this source revision. Availability has not been checked.</p></> : <p className="text-sm text-muted-foreground">No preview recorded for the current version.</p>}
       </section>}
-      <Link className="inline-block text-sm underline" href={`/workstreams/${session.workstreamId}#process`}>How the agent is working</Link>
+      <Link className="inline-block text-sm underline" href={`/workflows/${session.workstreamId}`}>Open workflow</Link>
     </>}
   </section>
 }

@@ -36,11 +36,11 @@ export default async function WorkstreamPage({
   const planMarkdown = readRepoMarkdown(specPath)
   const statusLabel =
     ws.status === "done"
-      ? projection.session?.completion.eligible ? "Completed · current checks satisfied" : "Completed earlier · verification needs attention"
+      ? projection.session?.completion.eligible ? "Complete" : "Completed earlier · needs attention"
       : ws.status === "active"
         ? "Active"
         : ws.status === "sealed"
-          ? "Sealed"
+          ? "Ready to start"
           : ws.status
 
   const docs =
@@ -62,9 +62,10 @@ export default async function WorkstreamPage({
           <h1 className="text-2xl font-semibold tracking-tight">{presentationCopy(ws.title)}</h1>
           <Badge variant="outline">{statusLabel}</Badge>
         </div>
+        {ws.objective && <p className="max-w-2xl text-sm text-muted-foreground">{presentationCopy(ws.objective)}</p>}
         <details className="max-w-2xl text-xs text-muted-foreground">
           <summary className="cursor-pointer select-none hover:text-foreground">
-            Ledger notes
+            Version details
             {ws.seal ? ` · sealed rev ${ws.seal.revision}` : " · unsealed"}
           </summary>
           <div className="mt-2 space-y-1 rounded-md border border-border/60 px-3 py-2 font-mono">
@@ -90,7 +91,7 @@ export default async function WorkstreamPage({
 
       {projection.session ? <LiveWorkstreamEvidence initial={projection} workstreamId={id} history={
       <section className="space-y-3">
-        <p className="text-xs text-muted-foreground">History describes earlier snapshots. An outdated turn result does not replace the current evidence above.</p>
+
         <div className="flex items-baseline justify-between gap-2">
           <h2 className="text-sm font-medium">Work history</h2>
           <p className="text-xs text-muted-foreground">
@@ -116,7 +117,7 @@ export default async function WorkstreamPage({
         )}
       </section>
       } /> :       <section className="space-y-3">
-        <p className="text-xs text-muted-foreground">History describes earlier snapshots. An outdated turn result does not replace the current evidence above.</p>
+
         <div className="flex items-baseline justify-between gap-2">
           <h2 className="text-sm font-medium">Work history</h2>
           <p className="text-xs text-muted-foreground">

@@ -193,7 +193,7 @@ export function WorkflowSummary({ workflow, workstreamId }: { workflow: Workflow
     <section className="space-y-3 rounded-xl border border-border p-4" aria-label="Engineering method">
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
-          <h2 className="font-semibold">Engineering method</h2>
+          <h2 className="font-semibold">Workflow steps</h2>
           <p className="text-sm">{workflow.profile.title}</p>
           <p className="text-xs text-muted-foreground">
             {workflow.profile.source === "default" ? "Default" : "Custom"} · method {digestLabel(workflow.profile.snapshotDigest)}
@@ -207,8 +207,8 @@ export function WorkflowSummary({ workflow, workstreamId }: { workflow: Workflow
       {workflow.blockers.length ? (
         <p className="text-sm text-destructive">{workflow.blockers.length} method blocker{workflow.blockers.length === 1 ? "" : "s"}</p>
       ) : null}
-      <Link className="text-sm underline" href={`/workstreams/${encodeURIComponent(workstreamId)}#engineering-method`}>
-        Inspect method, attempts, and evidence
+      <Link className="text-sm underline" href={`/workflows/${encodeURIComponent(workstreamId)}`}>
+        Open workflow
       </Link>
     </section>
   )
@@ -220,16 +220,16 @@ export function WorkflowDetails({ workflow, criteria }: { workflow: Workflow; cr
     <section id="engineering-method" className="scroll-mt-6 space-y-5" aria-label="Engineering method and evidence">
       <div className="space-y-2">
         <div className="flex flex-wrap items-center gap-2">
-          <h2 className="text-xl font-semibold">Engineering method</h2>
+          <h2 className="text-xl font-semibold">Workflow steps</h2>
           <Badge variant="outline">{workflow.profile.source === "default" ? "Default" : "Custom"}</Badge>
           <StatusBadge status={workflow.status} />
         </div>
         <p className="text-sm">{workflow.profile.title}</p>
         <p className="text-xs text-muted-foreground">
-          {workflow.profile.snapshotId ? "This method was explicitly selected. Its recorded attempts and outputs are shown below." : "These steps are inferred from existing records. No method has been explicitly selected and this is not a record of step-by-step execution."}
+          {workflow.profile.snapshotId ? "Your selected workflow." : "Standard workflow · progress inferred from records, not tracked agent activity."}
         </p>
         <details className="rounded-lg border border-border/60 p-3 text-xs">
-          <summary className="cursor-pointer font-medium">Configuration and preserved snapshots</summary>
+          <summary className="cursor-pointer font-medium">Technical details and history</summary>
           <div className="mt-3 space-y-3 text-muted-foreground">
             <p>Profile {workflow.profile.id}</p>
             <p className="break-all">Method digest {workflow.profile.snapshotDigest}</p>

@@ -13,5 +13,5 @@ export function evidenceForTurn(session: Session, turn: Turn): Session {
 }
 
 export function completionLabel(status: string, eligible: boolean) {
-  return status === 'done' ? eligible ? 'Completed · current checks satisfied' : 'Completed earlier · current verification needs attention' : null
+  return status === 'done' ? eligible ? 'Complete' : 'Completed earlier · needs attention' : null
 }

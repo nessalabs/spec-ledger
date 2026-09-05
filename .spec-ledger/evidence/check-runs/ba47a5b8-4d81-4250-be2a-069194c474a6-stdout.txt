@@ -1,0 +1,21 @@
+▶ publish workflow break (SLC-04 / SL-014)
+  ✔ live publish only on release: workflow_dispatch must always dry-run (cannot live via dry_run=false) (0.862667ms)
+  ✔ release types are exclusively [published] (no created/edited/prereleased) (0.537417ms)
+  ✔ on: triggers are only release + workflow_dispatch (no push/pull_request siblings) (0.125ms)
+  ✔ dry_run input defaults to true (0.123584ms)
+  ✔ version mismatch fails closed before publish (0.073584ms)
+  ✔ NPM_TOKEN required for live publish; ci.yml never publishes (0.106166ms)
+  ✔ published package names are @nessalabs/* and UI is not in the publish loop (0.2765ms)
+✔ publish workflow break (SLC-04 / SL-014) (2.618292ms)
+▶ publish workflow (SLC-04)
+  ✔ publish.yml exists with release-only live publish and dry-run dispatch (0.503583ms)
+  ✔ ci.yml does not publish to npm (0.41825ms)
+✔ publish workflow (SLC-04) (1.365375ms)
+ℹ tests 9
+ℹ suites 2
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 43.687666
