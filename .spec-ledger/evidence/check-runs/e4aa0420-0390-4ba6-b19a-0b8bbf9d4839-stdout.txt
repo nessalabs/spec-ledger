@@ -1,0 +1,19 @@
+▶ UI release break (T-024 SLC-03 / SL-013)
+  ✔ shipped tree incl node_modules has zero file:/workspace: protocols (28377.769959ms)
+  ✔ README documents published client/server + Release UI asset (SLC-03 acceptance) (0.240708ms)
+  ✔ publish.yml packs UI Release asset with NESSA_UI_ROOT, dist build, no --skip-build, contents:write upload (0.195375ms)
+  ✔ pack-ui-release fails closed when NESSA_UI_ROOT / agent-stream missing (58.788ms)
+  ✔ packaged UI name/deps stay @nessalabs/* and tarball version matches ledger (23172.597291ms)
+✔ UI release break (T-024 SLC-03 / SL-013) (51610.18725ms)
+▶ UI release asset (SLC-03)
+  ✔ built release boots outside the checkout and reads the consumer ledger (44902.283084ms)
+  ✔ README documents consumer one-liner for Release UI asset (0.261417ms)
+✔ UI release asset (SLC-03) (44903.022167ms)
+ℹ tests 7
+ℹ suites 2
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 51644.835667
