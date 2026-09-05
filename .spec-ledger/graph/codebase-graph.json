@@ -52,7 +52,8 @@
         "SL-016",
         "SL-017",
         "SL-018",
-        "SL-027"
+        "SL-027",
+        "SL-028"
       ],
       "entryPoints": [
         "packages/ledger/src/verify/verify.ts",

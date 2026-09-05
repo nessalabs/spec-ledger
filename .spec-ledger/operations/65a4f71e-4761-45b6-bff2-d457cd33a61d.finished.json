@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "requestId": "65a4f71e-4761-45b6-bff2-d457cd33a61d",
+  "operation": "approve_alignment",
+  "inputDigest": "f1e017d1d5fe889955d680cb2e5cebe07dd5b38bc9892c914bb23bf19dd494f4",
+  "finishedAt": "2026-09-05T03:09:41.826Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "id": "T-039/R-02",
+    "turnId": "T-039",
+    "workstreamId": "W-009",
+    "kind": "human",
+    "target": "code",
+    "reviewer": "agent:align",
+    "verdict": "approve",
+    "summary": "User requested finishing evidence records and fixing syntax highlighting; all nine product paths are covered by the preserved plan.",
+    "plainSummary": "The audit and code presentation fixes stay within the requested work.",
+    "treeDigest": "586407c4b40244f902e776ddb2c675b89ae65abaed86d7952e399ad1e7e66337",
+    "uncoveredPaths": [],
+    "coverageSource": "mixed"
+  }
+}

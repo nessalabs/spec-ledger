@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "W-009",
-  "status": "sealed",
+  "status": "done",
   "title": "See what changed and what proves it works",
   "objective": "Read the outcome and its evidence directly on each change page.",
   "featureIds": [
@@ -35,24 +35,40 @@
         "packages/**",
         "docs/**",
         "skills/**",
-        "schemas/**"
+        "schemas/**",
+        "scripts/**"
       ],
-      "codeBreakReviewId": "T-037/R-01"
+      "codeBreakReviewId": "T-039/R-01"
     }
   ],
-  "specBreakReviewId": "W-009/SR-03",
-  "updatedAt": "2026-09-05T01:59:25.665Z",
+  "specBreakReviewId": "W-009/SR-05",
+  "updatedAt": "2026-09-05T03:09:55.122Z",
   "seal": {
-    "sealedAt": "2026-09-05T01:59:25.665Z",
+    "sealedAt": "2026-09-05T03:03:11.803Z",
     "sealedBy": "agent:permission:AUTH-W009-REQUEST",
-    "specDigest": "e9892c634dcd08cd73bb875555d500f3ab0345d28692a685a5dcd4d32c1748c0",
-    "snapshotPath": "workstreams/W-009.seals/2.json",
-    "revision": 2,
-    "specDocDigest": "989fb5418e9038b062be7b3ba7469e9eecd2dccd45e0e3aa276b883e8ce93f3b"
+    "specDigest": "260e9718e1f2cb939988c1f210702cab78f27b5ccd16ed7c67f872168de437f4",
+    "snapshotPath": "workstreams/W-009.seals/4.json",
+    "revision": 4,
+    "specDocDigest": "b5b1f39a2b9abc8c593cb5e89d1ef26e42541719235b9d183d1ce3c1c6f148f5"
   },
   "acceptanceClaimIds": {
     "SLC-01/AC-1": [
       "SL-026"
+    ],
+    "SLC-01/AC-2": [
+      "SL-028"
     ]
-  }
+  },
+  "postSealAmends": [
+    {
+      "at": "2026-09-05T02:56:56.618Z",
+      "summary": "Finish the audit with exhaustive validated coverage and independently reviewed judgments; fix the reported source highlighting case.",
+      "humanConfirmed": true,
+      "sealedRevision": 2,
+      "beforeDocDigest": "989fb5418e9038b062be7b3ba7469e9eecd2dccd45e0e3aa276b883e8ce93f3b",
+      "afterDocDigest": "b5b1f39a2b9abc8c593cb5e89d1ef26e42541719235b9d183d1ce3c1c6f148f5",
+      "actor": "agent:user-request",
+      "turnId": "T-039"
+    }
+  ]
 }

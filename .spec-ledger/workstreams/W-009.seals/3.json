@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "workstreamId": "W-009",
+  "revision": 3,
+  "sealedAt": "2026-09-05T02:58:37.887Z",
+  "sealedBy": "agent:permission:AUTH-W009-REQUEST",
+  "specDigest": "8c6377a26cb1a20b9c56bb73cb3b7c0c7722aa6607795d33c84bc70f81ac65d5",
+  "specDocDigest": "b5b1f39a2b9abc8c593cb5e89d1ef26e42541719235b9d183d1ce3c1c6f148f5",
+  "body": {
+    "id": "W-009",
+    "featureIds": [
+      "lattice"
+    ],
+    "primaryFeatureId": null,
+    "title": "See what changed and what proves it works",
+    "objective": "Read the outcome and its evidence directly on each change page.",
+    "specPath": "docs/workstreams/W-009-evidence-first-changes/spec.md",
+    "appetite": null,
+    "changeType": null,
+    "riskLevel": null,
+    "trust": {
+      "userFacing": true,
+      "correctnessCritical": true,
+      "requiredEvidence": [
+        "unit",
+        "integration",
+        "e2e"
+      ]
+    },
+    "policy": {
+      "requireSpecBreak": true,
+      "requireCodeBreak": true,
+      "requireAlignApprove": true
+    },
+    "acceptanceCriteria": [],
+    "acceptanceClaimIds": {
+      "SLC-01/AC-1": [
+        "SL-026"
+      ]
+    },
+    "outOfScope": [],
+    "proposedClaimIds": [],
+    "suggestedSlices": [
+      {
+        "id": "SLC-01",
+        "title": "Put outcomes and evidence first on change pages",
+        "kind": "vertical",
+        "acceptance": [
+          "Change pages show scoped evidence and artifacts first, distinguish historical observations, and associate only commits with an exact matching turn trailer. Previously completed workstreams with stale prerequisites are clearly labeled as historical completion needing revalidation.",
+          "Previously completed workstreams are audited against current code and behavioral evidence; missing acceptance mappings are retrofitted only where tests support them, with current change-aware verification and explicit residual gaps."
+        ],
+        "evidence": [],
+        "expectedClaimIds": [],
+        "expectedPaths": [
+          "packages/**",
+          "docs/**",
+          "skills/**",
+          "schemas/**",
+          "scripts/**"
+        ]
+      }
+    ]
+  }
+}

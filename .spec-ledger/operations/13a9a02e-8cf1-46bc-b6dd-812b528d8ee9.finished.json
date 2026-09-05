@@ -1,0 +1,412 @@
+{
+  "schemaVersion": 1,
+  "requestId": "13a9a02e-8cf1-46bc-b6dd-812b528d8ee9",
+  "operation": "run_checks",
+  "inputDigest": "6c745803f439a45615bbcf9be0b616be0dadffb32d3a0d8edcc062b0f2f46a7f",
+  "finishedAt": "2026-09-05T03:09:15.832Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "producedAt": "2026-09-05T03:09:15.821Z",
+    "producedBy": "@nessalabs/spec-ledger@0.1.0",
+    "ok": true,
+    "provenance": {
+      "commit": "a5d5c8507c9f2353044f8f9cb83c66137e6e075f",
+      "ledgerDigest": "5aff6b206282f7f4d1f9eb3bd4f97aa8318c7effc77f2f0f64a6b9daa3270008",
+      "resultsDigest": "eadd049549345f8aba1b5caa76e291341eedd357da20eb5ce4ed420d4bd65d4b",
+      "treeHint": "/Users/nessa/Documents/NessaLabs/spec-ledger",
+      "sourceDigest": "586407c4b40244f902e776ddb2c675b89ae65abaed86d7952e399ad1e7e66337"
+    },
+    "claims": [
+      {
+        "claimId": "SL-001",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "b-sl-001"
+        ],
+        "checks": [
+          {
+            "bindingId": "b-sl-001",
+            "outcome": "pass"
+          }
+        ]
+      },
+      {
+        "claimId": "SL-002",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "b-sl-002"
+        ],
+        "checks": [
+          {
+            "bindingId": "b-sl-002",
+            "outcome": "pass"
+          }
+        ]
+      },
+      {
+        "claimId": "SL-003",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "b-sl-003"
+        ],
+        "checks": [
+          {
+            "bindingId": "b-sl-003",
+            "outcome": "pass"
+          }
+        ]
+      },
+      {
+        "claimId": "SL-004",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "b-sl-004"
+        ],
+        "checks": [
+          {
+            "bindingId": "b-sl-004",
+            "outcome": "pass"
+          }
+        ]
+      },
+      {
+        "claimId": "SL-005",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "b-sl-005"
+        ],
+        "checks": [
+          {
+            "bindingId": "b-sl-005",
+            "outcome": "pass"
+          }
+        ]
+      },
+      {
+        "claimId": "SL-006",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "b-sl-006"
+        ],
+        "checks": [
+          {
+            "bindingId": "b-sl-006",
+            "outcome": "pass"
+          }
+        ]
+      },
+      {
+        "claimId": "SL-007",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "b-sl-007"
+        ],
+        "checks": [
+          {
+            "bindingId": "b-sl-007",
+            "outcome": "pass"
+          }
+        ]
+      },
+      {
+        "claimId": "SL-008",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "b-sl-008"
+        ],
+        "checks": [
+          {
+            "bindingId": "b-sl-008",
+            "outcome": "pass"
+          }
+        ]
+      },
+      {
+        "claimId": "SL-011",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "b-sl-011"
+        ],
+        "checks": [
+          {
+            "bindingId": "b-sl-011",
+            "outcome": "pass",
+            "detail": "exit 0"
+          }
+        ]
+      },
+      {
+        "claimId": "SL-012",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "b-sl-012"
+        ],
+        "checks": [
+          {
+            "bindingId": "b-sl-012",
+            "outcome": "pass",
+            "detail": "exit 0"
+          }
+        ]
+      },
+      {
+        "claimId": "SL-013",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "b-sl-013"
+        ],
+        "checks": [
+          {
+            "bindingId": "b-sl-013",
+            "outcome": "pass",
+            "detail": "exit 0"
+          }
+        ]
+      },
+      {
+        "claimId": "SL-014",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "b-sl-014"
+        ],
+        "checks": [
+          {
+            "bindingId": "b-sl-014",
+            "outcome": "pass",
+            "detail": "exit 0"
+          }
+        ]
+      },
+      {
+        "claimId": "SL-015",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "b-sl-015"
+        ],
+        "checks": [
+          {
+            "bindingId": "b-sl-015",
+            "outcome": "pass",
+            "detail": "exit 0"
+          }
+        ]
+      },
+      {
+        "claimId": "SL-016",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "b-sl-016"
+        ],
+        "checks": [
+          {
+            "bindingId": "b-sl-016",
+            "outcome": "pass",
+            "detail": "exit 0"
+          }
+        ]
+      },
+      {
+        "claimId": "SL-017",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "b-sl-017"
+        ],
+        "checks": [
+          {
+            "bindingId": "b-sl-017",
+            "outcome": "pass",
+            "detail": "exit 0"
+          }
+        ]
+      },
+      {
+        "claimId": "SL-018",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "b-sl-018"
+        ],
+        "checks": [
+          {
+            "bindingId": "b-sl-018",
+            "outcome": "pass",
+            "detail": "exit 0"
+          }
+        ]
+      },
+      {
+        "claimId": "SL-019",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "b-sl-019"
+        ],
+        "checks": [
+          {
+            "bindingId": "b-sl-019",
+            "outcome": "pass",
+            "detail": "exit 0"
+          }
+        ]
+      },
+      {
+        "claimId": "SL-020",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "b-sl-020"
+        ],
+        "checks": [
+          {
+            "bindingId": "b-sl-020",
+            "outcome": "pass",
+            "detail": "exit 0"
+          }
+        ]
+      },
+      {
+        "claimId": "SL-021",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "b-sl-021"
+        ],
+        "checks": [
+          {
+            "bindingId": "b-sl-021",
+            "outcome": "pass",
+            "detail": "exit 0"
+          }
+        ]
+      },
+      {
+        "claimId": "SL-022",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "b-sl-022"
+        ],
+        "checks": [
+          {
+            "bindingId": "b-sl-022",
+            "outcome": "pass",
+            "detail": "exit 0"
+          }
+        ]
+      },
+      {
+        "claimId": "SL-023",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "b-sl-023"
+        ],
+        "checks": [
+          {
+            "bindingId": "b-sl-023",
+            "outcome": "pass",
+            "detail": "exit 0"
+          }
+        ]
+      },
+      {
+        "claimId": "SL-024",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "b-sl-024"
+        ],
+        "checks": [
+          {
+            "bindingId": "b-sl-024",
+            "outcome": "pass",
+            "detail": "exit 0"
+          }
+        ]
+      },
+      {
+        "claimId": "SL-025",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "b-sl-025"
+        ],
+        "checks": [
+          {
+            "bindingId": "b-sl-025",
+            "outcome": "pass",
+            "detail": "exit 0"
+          }
+        ]
+      },
+      {
+        "claimId": "SL-026",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "b-sl-026"
+        ],
+        "checks": [
+          {
+            "bindingId": "b-sl-026",
+            "outcome": "pass",
+            "detail": "exit 0"
+          }
+        ]
+      },
+      {
+        "claimId": "SL-027",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "b-sl-027"
+        ],
+        "checks": [
+          {
+            "bindingId": "b-sl-027",
+            "outcome": "pass",
+            "detail": "exit 0"
+          }
+        ]
+      },
+      {
+        "claimId": "SL-028",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "b-sl-028"
+        ],
+        "checks": [
+          {
+            "bindingId": "b-sl-028",
+            "outcome": "pass",
+            "detail": "exit 0"
+          }
+        ]
+      }
+    ],
+    "graph": {
+      "ok": true,
+      "danglingNodes": [],
+      "missingLocators": [],
+      "freshness": "ok"
+    },
+    "problems": []
+  }
+}

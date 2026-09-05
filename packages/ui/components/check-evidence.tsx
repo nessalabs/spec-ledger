@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { Button, Badge, CodeBlock } from '@nessalabs/ui'
+import { Button, Badge, CodeBlock, preloadCodeHighlighter } from '@nessalabs/ui'
 import type { CheckEvidence, CheckRun } from '@nessalabs/spec-ledger-client'
 
 type StartRequest = { requestId: string; bindingId: string; expectedSourceDigest: string; expectedCheckDigest: string }
@@ -108,7 +108,7 @@ export function CheckEvidencePanel({ bindingId, initial, defaultOpen = false }: 
         <div className="flex flex-wrap items-center gap-2"><Badge variant="outline">{evidence.test?.level ?? 'Test level not recorded'}</Badge><span className="text-sm">Current evidence: {evidence.currentOutcome}</span></div>
         <section><h4 className="font-medium">What this checks</h4><p className="mt-1 text-sm">{evidence.test?.description ?? 'No explanation was recorded. Inspect the test source and assertions below.'}</p></section>
         <div className="grid gap-4 sm:grid-cols-2"><TextBlock title="Input / setup · recorded description" text={evidence.test?.inputs ?? 'Not recorded. The source may define fixtures or multiple scenarios.'}/><TextBlock title="Expected behavior · recorded description" text={evidence.test?.expected ?? 'Not recorded. Read the assertions before interpreting a passing exit status.'}/></div>
-        <section className="space-y-2"><h4 className="font-medium">Test source</h4>{evidence.test?.source?.name && <p className="text-sm">{evidence.test.source.name}</p>}<p className="break-all text-xs text-muted-foreground">{evidence.source.path ?? 'No source reference recorded'}</p>{evidence.source.status === 'available' ? <div className="max-h-[32rem] overflow-auto rounded-lg"><CodeBlock code={evidence.source.text ?? ''} filename={evidence.source.path ?? undefined} mode="dark" lineNumbers wrap /></div> : <p className="text-sm">{evidence.source.reason ?? 'Source is unavailable.'}</p>}</section>
+        <section className="space-y-2"><h4 className="font-medium">Test source</h4>{evidence.test?.source?.name && <p className="text-sm">{evidence.test.source.name}</p>}<p className="break-all text-xs text-muted-foreground">{evidence.source.path ?? 'No source reference recorded'}</p>{evidence.source.status === 'available' ? <div className="max-h-[32rem] overflow-auto rounded-lg"><EvidenceCode code={evidence.source.text ?? ''} filename={evidence.source.path ?? undefined} /></div> : <p className="text-sm">{evidence.source.reason ?? 'Source is unavailable.'}</p>}</section>
         <section className="space-y-2"><h4 className="font-medium">Saved command</h4>{evidence.command ? <CodeBlock code={evidence.command} language="shell" mode="dark" wrap /> : <p className="text-sm">This check is supplied by an external reporter and cannot be run here.</p>}<p className="break-all text-xs text-muted-foreground">Directory: {evidence.cwd}</p><p className="text-xs text-muted-foreground">Run again executes this saved repository command. Opening or refreshing evidence does not execute it.</p>
           <div className="flex flex-wrap gap-2"><Button disabled={starting || active(run) || !evidence.command || !evidence.sourceDigest} onClick={() => void start()}>{starting ? 'Starting…' : active(run) ? 'Running…' : pending.current ? 'Reconnect to request' : 'Run again'}</Button><Button variant="outline" onClick={() => void refresh()}>Refresh evidence</Button></div>
         </section>
@@ -126,4 +126,20 @@ function TextBlock({title, text}: {title: string; text: string}) {
 
 function RunOutput({run}: {run: CheckRun}) {
   return <section className="space-y-3" aria-label="Actual test output"><h4 className="font-medium">Actual run result · {run.state}</h4><p className="text-sm">{run.outcome ?? 'No outcome yet'}{run.exitCode !== undefined ? ` · exit ${run.exitCode}` : ''}{run.durationMs !== undefined ? ` · ${run.durationMs} ms` : ''}</p><p className="text-xs text-muted-foreground">Started {run.startedAt}{run.finishedAt ? ` · Finished ${run.finishedAt}` : ''}</p>{run.reason && <p className="text-sm">{run.reason}</p>}{(['stdout','stderr'] as const).map(key => <section key={key}><h5 className="text-sm font-medium">{key === 'stdout' ? 'Standard output' : 'Error output'}{run[key]?.truncated ? ' · truncated' : ''}</h5><pre className="mt-2 max-h-96 overflow-auto whitespace-pre-wrap break-words rounded-lg bg-muted/30 p-3 text-xs">{run[key]?.status === 'intact' ? run[key]?.text || '(empty)' : active(run) ? 'Output will be available when this run finishes.' : 'Output not captured or its integrity could not be verified.'}</pre></section>)}<details><summary className="cursor-pointer text-xs">Run provenance</summary><p className="mt-2 break-all text-xs">Run: {run.runId}<br/>Source: {run.sourceDigest}<br/>Check: {run.checkDigest}<br/>Directory: {run.cwd}</p><pre className="whitespace-pre-wrap break-words text-xs">{run.command}</pre></details></section>
+}
+
+
+function EvidenceCode({code, filename}: {code: string; filename?: string}) {
+  const extension = filename?.split('.').pop()?.toLowerCase()
+  const language = extension === 'ts' ? 'typescript' : extension === 'tsx' ? 'tsx' : ['js', 'mjs', 'cjs'].includes(extension ?? '') ? 'javascript' : undefined
+  const [loaded, setLoaded] = useState<string | null>(null)
+  const [failed, setFailed] = useState<string | null>(null)
+  useEffect(() => {
+    if (!language) return
+    let cancelled = false
+    void preloadCodeHighlighter([language]).then(() => { if (!cancelled) setLoaded(language) }).catch(() => { if (!cancelled) setFailed(language) })
+    return () => { cancelled = true }
+  }, [language])
+  if (language && loaded !== language && failed !== language) return <p role="status" className="p-3 text-sm text-muted-foreground">Loading syntax highlighting…</p>
+  return <>{failed === language && language && <p role="status" className="text-sm">Syntax highlighting could not load. The original code is shown below.</p>}<CodeBlock code={code} filename={filename} language={language} mode="dark" lineNumbers wrap /></>
 }

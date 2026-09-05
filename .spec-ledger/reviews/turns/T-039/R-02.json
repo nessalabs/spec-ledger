@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "T-039/R-02",
+  "turnId": "T-039",
+  "workstreamId": "W-009",
+  "kind": "human",
+  "target": "code",
+  "reviewer": "agent:align",
+  "verdict": "approve",
+  "summary": "User requested finishing evidence records and fixing syntax highlighting; all nine product paths are covered by the preserved plan.",
+  "plainSummary": "The audit and code presentation fixes stay within the requested work.",
+  "treeDigest": "586407c4b40244f902e776ddb2c675b89ae65abaed86d7952e399ad1e7e66337",
+  "uncoveredPaths": [],
+  "coverageSource": "mixed"
+}

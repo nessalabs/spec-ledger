@@ -41,6 +41,9 @@
     "docs/workstreams/W-009-evidence-first-changes/evidence/T-037/regression-tests.txt",
     "docs/workstreams/W-010-inspect-and-run-checks/evidence/T-038/browser-check.md",
     "docs/workstreams/W-010-inspect-and-run-checks/evidence/T-038/regression-tests.txt",
-    "docs/workstreams/W-010-inspect-and-run-checks/evidence/T-038/syntax-highlighting.png"
+    "docs/workstreams/W-010-inspect-and-run-checks/evidence/T-038/syntax-highlighting.png",
+    "docs/workstreams/W-009-evidence-first-changes/evidence/T-039/completed-workstreams-audit.md",
+    "docs/workstreams/W-009-evidence-first-changes/evidence/T-039/mcp-verification.txt",
+    "docs/workstreams/W-009-evidence-first-changes/evidence/T-039/browser-check.md"
   ]
 }

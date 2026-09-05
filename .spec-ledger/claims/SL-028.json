@@ -1,0 +1,11 @@
+{
+  "id": "SL-028",
+  "kind": "invariant",
+  "statement": "Every earlier requirement has been examined, with its supporting checks or remaining gap clearly recorded.",
+  "required": true,
+  "links": {
+    "docs": [
+      "docs/workstreams/W-009-evidence-first-changes/spec.md"
+    ]
+  }
+}

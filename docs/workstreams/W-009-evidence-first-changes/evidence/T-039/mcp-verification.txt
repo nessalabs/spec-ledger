@@ -1,0 +1,23 @@
+✔ cli: activity preserves evidence and cannot grant recovery authority (3353.140084ms)
+✔ mcp: activity preserves evidence and cannot grant recovery authority (1812.772625ms)
+✔ persistent activity collector recovers after oversized framing and records later signals (1154.296291ms)
+▶ actual CLI and MCP lifecycle parity
+  ✔ completes the same verified lifecycle through both executables (5450.079584ms)
+  ✔ returns the same structured denial and leaves domain state unchanged (628.608917ms)
+  ✔ rejects retries, stale inputs, malformed inputs, and missing evidence with the same contracts (2033.436292ms)
+✔ actual CLI and MCP lifecycle parity (8112.809083ms)
+▶ MCP package
+  ✔ installs and invokes the packed executable (4342.685875ms)
+✔ MCP package (4342.83875ms)
+✔ CLI starts and observes the same saved command with actual output (489.102125ms)
+✔ MCP starts and observes the same saved command with actual output (485.533416ms)
+✔ cli: follows a custom method through real records and preserves current evidence (6602.311ms)
+✔ mcp: follows a custom method through real records and preserves current evidence (4377.7955ms)
+ℹ tests 11
+ℹ suites 2
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 12836.395417
