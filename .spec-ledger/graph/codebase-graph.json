@@ -51,10 +51,13 @@
         "SL-008",
         "SL-016",
         "SL-017",
-        "SL-018"
+        "SL-018",
+        "SL-027"
       ],
       "entryPoints": [
-        "packages/ledger/src/verify/verify.ts"
+        "packages/ledger/src/verify/verify.ts",
+        "packages/ledger/src/verify/saved-check.ts",
+        "packages/ledger/src/verify/local-check.ts"
       ],
       "keywords": [
         "verify",

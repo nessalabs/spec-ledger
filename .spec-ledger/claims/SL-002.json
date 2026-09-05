@@ -1,10 +1,14 @@
 {
   "id": "SL-002",
   "kind": "absence",
-  "statement": "Evidence bindings never carry pass/fail status; outcomes live only on results and reports.",
+  "statement": "A planned test is not proof that a feature works. Only recorded results can show a pass or failure.",
   "area": "core",
   "required": true,
   "links": {
-    "docs": ["DESIGN.md", "schemas/binding.json"]
+    "docs": [
+      "DESIGN.md",
+      "schemas/binding.json",
+      "docs/architecture/claim-contracts.md"
+    ]
   }
 }

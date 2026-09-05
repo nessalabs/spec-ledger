@@ -1,0 +1,27 @@
+{
+  "id": "T-038/R-03",
+  "workstreamId": "W-010",
+  "kind": "adversarial",
+  "target": "code",
+  "reviewer": "agent:turn-evidence-breaker",
+  "verdict": "approve",
+  "blocking": false,
+  "supersedesReviewId": "T-038/R-01",
+  "treeDigest": "1928c529067013cc45fdbdf5153d5496b2f07bd62e5de9a327f1938374c1a746",
+  "plainSummary": "Tests and commands are easier to read, and plain descriptions still link to their exact requirements.",
+  "summary": "Refreshed final code approval after user-requested syntax highlighting, plain claim outcomes, exact-contract documentation links and future-copy guidance. Verified final source digest. Reviewed Nessa CodeBlock API usage for filename language inference, line numbers and escaped string content; claim page keeps inspectable checks first and detailed contract links in collapsed definitions. Independently reran all three UI evidence tests, including escaped source, honest failed/tampered output and uncertain-response request reuse. Prior R01 independent worker and boundary review remains applicable to unchanged core code. SR03 separately confirmed exact preservation and linking of all 24 modified pre-existing technical contracts. Root reports final UI tests/typecheck and highlighted production build/browser passed. Final claim batch is still running; this approval does not claim that pending run passed.",
+  "killersCited": [
+    "packages/ui/lib/check-evidence.test.mjs: passive evidence render keeps authored expectations distinct and escapes test source",
+    "packages/ui/lib/check-evidence.test.mjs: actual failures and tampered logs remain visible independently of a described expectation",
+    "packages/ui/lib/check-evidence.test.mjs: uncertain HTTP response reconnects with the same request identity",
+    "packages/ledger/src/verify/saved-check.break.test.ts: symlinked receipt directory cannot receive check writes outside the checkout"
+  ],
+  "findings": [],
+  "residualRisks": [
+    "Final explicit claim execution must pass before closure; the earlier UI-release timeout under concurrent build load is not treated as passing evidence.",
+    "Saved repository commands are trusted host code, not sandboxed execution.",
+    "Plain summaries abbreviate requirements; linked exact contracts and unchanged checks remain authoritative."
+  ],
+  "schemaVersion": 1,
+  "turnId": "T-038"
+}

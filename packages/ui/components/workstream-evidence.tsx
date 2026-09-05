@@ -1,3 +1,4 @@
+import { CheckEvidencePanel } from "@/components/check-evidence"
 import Link from "next/link"
 import { Badge } from "@nessalabs/ui"
 import type { SessionProjection } from "@nessalabs/spec-ledger-client"
@@ -34,6 +35,7 @@ export function WorkstreamEvidence({ session, observedAt, expandChecks = false }
             <p>{check.reason ?? (check.outcome === "pass" ? "Current verifier accepts this check." : "No current evidence available.")}</p>
             <div><p className="mb-1 font-medium">What was checked</p><pre className="whitespace-pre-wrap break-words rounded border border-border p-2">{check.definition.command ?? check.definition.path ?? check.definition.resultsKey ?? check.definition.note ?? check.definition.type}</pre></div>
             {check.definition.type === "path" && <p>File presence is structural evidence; it does not prove behavior.</p>}
+            <CheckEvidencePanel bindingId={check.id} />
             {!check.recorded.length && <p>No recorded execution result. A check definition is not a test run.</p>}
             {check.recorded.map((row, index) => <div key={index} className="space-y-1 border-t border-border pt-2">
               <p className="font-medium">Recorded outcome: {row.outcome} · historical observation</p>

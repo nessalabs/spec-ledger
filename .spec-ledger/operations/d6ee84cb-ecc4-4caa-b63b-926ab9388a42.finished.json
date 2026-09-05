@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "requestId": "d6ee84cb-ecc4-4caa-b63b-926ab9388a42",
+  "operation": "approve_alignment",
+  "inputDigest": "cb2a6ea4dce9712818c800fd71afe1ea806b8035e3fe10b3b7e04b5d6df4a99a",
+  "finishedAt": "2026-09-05T02:21:35.319Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "id": "T-038/R-02",
+    "turnId": "T-038",
+    "workstreamId": "W-010",
+    "kind": "human",
+    "target": "code",
+    "reviewer": "agent:align",
+    "verdict": "approve",
+    "summary": "User requested test type, source, inputs and actual output with Run again; the preserved plan covers shared core, CLI/MCP, local UI bridge, client/server reads and schemas. All 25 product paths are covered.",
+    "plainSummary": "The requested test inspection and explicit rerun feature covers all changed product files.",
+    "treeDigest": "d0615467064d1e7014d522e61037f387213251c707769410b8af4be9be76fa9c",
+    "uncoveredPaths": [],
+    "coverageSource": "mixed"
+  }
+}

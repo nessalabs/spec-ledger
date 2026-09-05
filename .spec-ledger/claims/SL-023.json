@@ -1,12 +1,13 @@
 {
   "id": "SL-023",
   "kind": "invariant",
-  "statement": "CLI and MCP share validation, permission, persistence and completion gates with equivalent lifecycle outcomes and retry behavior.",
+  "statement": "Get the same checked result whether your agent uses the terminal or its tool connection, including when it retries a request.",
   "required": true,
   "area": "cli",
   "links": {
     "docs": [
-      "docs/workstreams/W-008-shared-agent-workflows/spec.md"
+      "docs/workstreams/W-008-shared-agent-workflows/spec.md",
+      "docs/architecture/claim-contracts.md"
     ]
   }
 }

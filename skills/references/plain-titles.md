@@ -16,6 +16,7 @@ detail in the episode (reviews, decisions, files, `problem`, `userPrompt`).
 | Turn open / builders | `intent.userPrompt` | May stay closer to the ask; hygiene still applies. Prefer aligning with `restatedGoal` when the ask is the title. |
 | Workstreams list | `title` | Short product name for the bet (not jargon soup). |
 | Workstreams list subtitle | `objective` | **One short success line** (≤160 chars). What “done” means in plain language. |
+| Claim lists and requirement pages | `statement` | One plain sentence about observable behavior. Write for someone approving a feature, not implementing it. Keep exact algorithms, file paths, internal identifiers and transport details in linked technical docs and evidence. |
 | Workstream detail | `problem` | May stay sharp / technical — that is the pitch body, not the list blurb. |
 
 ## Do
@@ -45,3 +46,5 @@ Editing `restatedGoal` / workstream `title`+`objective` is allowed (intent / pla
 plane). **Never** hand-edit turn `facts`. Adding turn-scoped `flows/` after close
 is fine when `facts.flowsDigest` was never stamped; if it was, open a new turn
 rather than rewriting closed digests.
+
+Claim example: “See what changed, the evidence for that change, and whether earlier results still apply today.” Avoid “scope current evidence to the recorded turn” or “exact turn trailers” in the visible statement. Preserve the detailed contract in linked documentation when simplifying existing wording.

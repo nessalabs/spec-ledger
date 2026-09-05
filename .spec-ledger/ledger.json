@@ -38,6 +38,9 @@
     "docs/workstreams/W-009-evidence-first-changes/evidence/T-037/completed-workstream-audit.json",
     "docs/workstreams/W-009-evidence-first-changes/evidence/T-037/completed-workstream-audit.md",
     "docs/workstreams/W-009-evidence-first-changes/evidence/T-037/browser-check.md",
-    "docs/workstreams/W-009-evidence-first-changes/evidence/T-037/regression-tests.txt"
+    "docs/workstreams/W-009-evidence-first-changes/evidence/T-037/regression-tests.txt",
+    "docs/workstreams/W-010-inspect-and-run-checks/evidence/T-038/browser-check.md",
+    "docs/workstreams/W-010-inspect-and-run-checks/evidence/T-038/regression-tests.txt",
+    "docs/workstreams/W-010-inspect-and-run-checks/evidence/T-038/syntax-highlighting.png"
   ]
 }

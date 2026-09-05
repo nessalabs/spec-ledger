@@ -5,5 +5,14 @@
   "locator": {
     "type": "command",
     "command": "node --test packages/ledger/dist/cli/init.test.js packages/ledger/dist/cli/init.break.test.js"
+  },
+  "test": {
+    "level": "integration",
+    "description": "Initialize a fresh checkout and try initializing it again.",
+    "source": {
+      "path": "packages/ledger/src/cli/init.break.test.ts"
+    },
+    "inputs": "Disposable empty, existing, partially initialized and unsafe filesystem fixtures.",
+    "expected": "Initialization creates the specified ledger skeleton with ledger.json last; reinitialization is refused and no passing claim or binding status is invented."
   }
 }

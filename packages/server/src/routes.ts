@@ -5,6 +5,7 @@
 import { createServer, type IncomingMessage, type ServerResponse } from "node:http"
 import {
   getSession,
+  getCheckEvidence, getCheckRun,
   permissionStatus,
   listLearnings,
   loadLedger,
@@ -53,6 +54,8 @@ function sendJson(res: ServerResponse, status: number, body: unknown): void {
 
 export function buildRoutes(rootDir: string): Route[] {
   return [
+    { method: "GET", pattern: /^\/v1\/check-evidence$/, paramNames: [], handler: (req,res) => sendJson(res,200,getCheckEvidence(rootDir,new URL(req.url??"/","http://localhost").searchParams.get("bindingId")??"")) },
+    { method: "GET", pattern: /^\/v1\/check-run$/, paramNames: [], handler: (req,res) => sendJson(res,200,getCheckRun(rootDir,new URL(req.url??"/","http://localhost").searchParams.get("runId")??"")) },
     { method: "GET", pattern: /^\/v1\/session$/, paramNames: [], handler: (req, res) => {
       const id = new URL(req.url ?? "/", "http://localhost").searchParams.get("workstream") ?? undefined
       sendJson(res, 200, getSession(rootDir, id))

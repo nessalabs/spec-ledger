@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "requestId": "140164ff-f1de-40b3-b9ff-c99a1a226e40",
+  "operation": "run_saved_check",
+  "inputDigest": "3925c62f6fad5a5dd088b4227da3972ed292033dca1ad1f72a2912aa22a79bfd",
+  "finishedAt": "2026-09-05T02:22:49.042Z",
+  "outcome": "succeeded",
+  "result": {
+    "runId": "3b619d58-42fa-4b77-9281-0888e8cb1d8a",
+    "requestId": "140164ff-f1de-40b3-b9ff-c99a1a226e40",
+    "bindingId": "b-sl-023",
+    "state": "queued",
+    "command": "node --test packages/ledger/dist/application/*.break.test.js packages/mcp/dist/lifecycle.test.js",
+    "cwd": "/Users/nessa/Documents/NessaLabs/spec-ledger",
+    "sourceDigest": "d0615467064d1e7014d522e61037f387213251c707769410b8af4be9be76fa9c",
+    "checkDigest": "68d00dd818e1c861de5c2d1d794e84a537ab75c01a196efd44150f4537802735",
+    "startedAt": "2026-09-05T02:22:49.034Z"
+  }
+}

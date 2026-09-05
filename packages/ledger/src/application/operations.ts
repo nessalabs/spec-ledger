@@ -1,3 +1,4 @@
+import { startSavedCheck, getCheckRun, getCheckEvidence, validateCheckStorage } from "../verify/saved-check.js"
 import { randomUUID } from "node:crypto"
 import { dirname, isAbsolute, join, relative, resolve } from "node:path"
 import { existsSync, readFileSync, realpathSync } from "node:fs"
@@ -446,7 +447,7 @@ export function runChecks(root: string, raw: unknown) {
   const input = mutationInput(root, "run_checks", raw)
   return runMutation({ root, requestId: input.requestId, operation: "run_checks", input, effect: () => {
     assertSource(root, stringField(input, "expectedSourceDigest")!)
-    return checkLedger(root)
+    return checkLedger(root, true)
   } })
 }
 
@@ -583,6 +584,13 @@ export function executeOperation(root: string, operation: OperationName, input: 
       case "record_evidence": return submitEvidence(root, input)
       case "record_review": return submitReview(root, input)
       case "approve_alignment": return approveAlignment(root, input)
+      case "run_saved_check": {
+        const args = mutationInput(root, "run_saved_check", input)
+        validateCheckStorage(root)
+        return runMutation({root, requestId: args.requestId, operation: "run_saved_check", input: args, effect: () => startSavedCheck(root, args as unknown as Parameters<typeof startSavedCheck>[1])})
+      }
+      case "get_check_run": return getCheckRun(root, stringField(validated(root, "get_check_run", input), "runId")!)
+      case "get_check_evidence": return getCheckEvidence(root, stringField(validated(root, "get_check_evidence", input), "bindingId")!)
       case "run_checks": return runChecks(root, input)
       case "finish_turn": return finishTurn(root, input)
       case "complete_work": return completeWork(root, input)

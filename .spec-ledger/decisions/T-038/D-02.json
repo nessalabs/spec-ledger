@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "turnId": "T-038",
+  "decision": "Inspect saved test source, inputs and expected behavior; run it explicitly and read the actual result and logs.",
+  "rationale": "Agent-reported progress; evidence is evaluated separately.",
+  "progress": {
+    "criterionIds": [
+      "SLC-01/AC-1"
+    ],
+    "implemented": true,
+    "revisionDigest": "95d03bfb1a04832d1dc78b034a59d7c5cbc9f77409d00672fae7ed967e03b0b0",
+    "sourceDigest": "d0615467064d1e7014d522e61037f387213251c707769410b8af4be9be76fa9c",
+    "preview": {
+      "url": "http://127.0.0.1:3737/claims/SL-023",
+      "label": "Inspect a real lifecycle check"
+    }
+  },
+  "id": "T-038/D-02"
+}

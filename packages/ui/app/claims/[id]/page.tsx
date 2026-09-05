@@ -1,3 +1,5 @@
+import { RelatedDocsList } from "@/components/turn-doc-split"
+import { CheckEvidencePanel } from "@/components/check-evidence"
 import { featureHref, featureLabel } from "@/lib/features"
 import Link from "next/link"
 import { notFound } from "next/navigation"
@@ -73,6 +75,12 @@ export default async function ClaimPage({
         </p>
       </header>
 
+      <section className="space-y-4" aria-label="Inspect verification evidence">
+        <h2 className="text-xl font-semibold">What proves this requirement?</h2>
+        <p className="text-sm text-muted-foreground">Read the test, its expected behavior and actual run output. A passing command proves only the assertions it contains.</p>
+        {claimBindings.length ? claimBindings.map(binding => <CheckEvidencePanel key={binding.id} bindingId={binding.id} defaultOpen />) : <p>No checks are linked to this requirement yet.</p>}
+      </section>
+      <details className="space-y-4 rounded-xl border border-border p-4"><summary className="cursor-pointer text-sm">Check definitions</summary>
       <Card>
         <CardHeader>
           <CardTitle>Bindings</CardTitle>
@@ -93,6 +101,8 @@ export default async function ClaimPage({
           )}
         </CardContent>
       </Card>
+      <RelatedDocsList docs={(claim.links?.docs ?? []).map(path => ({path, label: path.endsWith("claim-contracts.md") ? "Detailed requirement contracts" : "Requirement documentation"}))} />
+      </details>
 
       {features.length ? (
         <Card>

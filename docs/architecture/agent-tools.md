@@ -23,7 +23,9 @@ The shared surface provides passive planning, context and session reads; explici
 | `set_workflow`, `begin_workflow_step`, `report_workflow_attempt`, `record_workflow_output` | Preserve method choices and record attempts with typed output references |
 | `register_execution`, `configure_execution`, `stop_execution` | Associate existing work with a host session and preserve requested policy or a stop |
 | `record_activity`, `get_execution` | Submit bounded transient signals or read their state and remaining-work guidance |
-| `run_checks` | Execute configured checks explicitly |
+| `get_check_evidence`, `get_check_run` | Inspect saved test source, expectations and actual output without executing |
+| `run_saved_check` | Start one saved check explicitly and return its durable run identity |
+| `run_checks` | Execute configured checks explicitly using the same runner |
 | `finish_turn`, `complete_work` | Evaluate separate turn and workstream completion gates |
 
 The MCP tool names are these operation names. The portable JSON CLI spelling is `spec-ledger operation <name> --file input.json --root /path/to/checkout`. Mutation inputs carry a stable `requestId`; revision/source-sensitive operations also carry the observed digests. Read current state before proposing a new operation. Retry an uncertain request with its original input and identity, not a newly generated ID. An unknown outcome requires reconciliation, not a new request that repeats the effect.

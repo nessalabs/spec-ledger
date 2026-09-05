@@ -5,5 +5,14 @@
   "locator": {
     "type": "command",
     "command": "node --test packages/ledger/dist/workflows/*.test.js packages/mcp/dist/workflow.lifecycle.test.js"
+  },
+  "test": {
+    "level": "integration",
+    "description": "Follow a custom engineering method through real CLI and MCP calls.",
+    "source": {
+      "path": "packages/mcp/src/workflow.lifecycle.test.ts"
+    },
+    "inputs": "A temporary repository with a local skill and custom stages, including an attestation step, evidence checks and reviews.",
+    "expected": "Selected instructions are preserved; typed outputs gate stages; stale evidence or missing reviews prevents completion. CLI and MCP observe the same result."
   }
 }

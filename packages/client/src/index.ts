@@ -6,6 +6,7 @@
  */
 import {
   getSession,
+  getCheckEvidence, getCheckRun, type CheckEvidence, type CheckRun,
   type SessionProjection,
   permissionStatus,
   listLearnings,
@@ -56,6 +57,8 @@ export type LedgerTransport =
   | { kind: "http"; baseUrl: string }
 
 export interface SpecLedgerClient {
+  getCheckEvidence(bindingId: string): Promise<CheckEvidence>
+  getCheckRun(runId: string): Promise<CheckRun>
   getSession(workstreamId?: string): Promise<SessionProjection>
   getPermission(workstreamId:string): Promise<PermissionStatus>
   getLearnings(): Promise<Learning[]>
@@ -97,6 +100,8 @@ async function httpGet<T>(baseUrl: string, path: string): Promise<T> {
 function inProcess(rootDir: string): SpecLedgerClient {
   const load = (): LoadedLedger => loadLedger(rootDir)
   return {
+    async getCheckEvidence(id) { return getCheckEvidence(rootDir,id) },
+    async getCheckRun(id) { return getCheckRun(rootDir,id) },
     async getSession(id) { return getSession(rootDir, id) },
     async getPermission(id) { return permissionStatus(rootDir,id) },
     async getLearnings() { return listLearnings(rootDir) },
@@ -187,6 +192,8 @@ function inProcess(rootDir: string): SpecLedgerClient {
 function http(baseUrl: string): SpecLedgerClient {
   const base = baseUrl.endsWith("/") ? baseUrl : `${baseUrl}/`
   return {
+    getCheckEvidence: (id) => httpGet(base, `v1/check-evidence?bindingId=${encodeURIComponent(id)}`),
+    getCheckRun: (id) => httpGet(base, `v1/check-run?runId=${encodeURIComponent(id)}`),
     getSession: (id) => httpGet(base, `v1/session${id ? `?workstream=${encodeURIComponent(id)}` : ""}`),
     getPermission: (id) => httpGet(base, `v1/permission?workstream=${encodeURIComponent(id)}`),
     getLearnings: () => httpGet(base,"v1/learnings"),
@@ -263,3 +270,5 @@ export type {
 export { HTTP_CONTRACT }
 export { graphDisplayIssue } from "./graph-shape.js"
 export { createLocalApprovalBridge } from "@nessalabs/spec-ledger"
+
+export { createLocalCheckBridge, type CheckEvidence, type CheckRun } from "@nessalabs/spec-ledger"

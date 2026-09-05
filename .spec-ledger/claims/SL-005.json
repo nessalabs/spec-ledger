@@ -1,7 +1,12 @@
 {
   "id": "SL-005",
   "kind": "absence",
-  "statement": "Reference UI must not import ledger core filesystem APIs; it talks only through the client SDK.",
+  "statement": "The website accesses your project through the supported connection, so another interface can use the same information.",
   "area": "ui",
-  "required": true
+  "required": true,
+  "links": {
+    "docs": [
+      "docs/architecture/claim-contracts.md"
+    ]
+  }
 }

@@ -1,10 +1,13 @@
 {
   "id": "SL-001",
   "kind": "invariant",
-  "statement": "A verify verdict is a pure function of ledger files, source tree, and ingested results, and carries digests of those inputs.",
+  "statement": "Verification results identify what was checked and change only when the project, requirements, or evidence changes.",
   "area": "core",
   "required": true,
   "links": {
-    "docs": ["DESIGN.md"]
+    "docs": [
+      "DESIGN.md",
+      "docs/architecture/claim-contracts.md"
+    ]
   }
 }

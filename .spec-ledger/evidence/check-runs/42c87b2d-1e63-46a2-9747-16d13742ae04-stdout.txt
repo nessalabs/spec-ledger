@@ -1,0 +1,17 @@
+▶ evidence freshness adversarial
+  ✔ does not let a closed turn reuse its old waiver or approval after source changes (349.814042ms)
+  ✔ binds code review to source content while excluding declared evidence outputs (65.566333ms)
+  ✔ records current external evidence idempotently and refuses stale or escaping submissions (112.21975ms)
+  ✔ rejects legacy evidence and evidence replayed after source or same-ID check changes (173.069958ms)
+  ✔ retains evidence across ledger metadata and content-preserving commits (175.68475ms)
+  ✔ invalidates results if a successful command changes its own source inputs (247.884834ms)
+  ✔ checks required artifacts even when their declared output path is excluded from source hashing (160.166459ms)
+✔ evidence freshness adversarial (1285.41775ms)
+ℹ tests 7
+ℹ suites 1
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1353.727791

@@ -1,11 +1,14 @@
 {
   "id": "SL-012",
   "kind": "invariant",
-  "statement": "At version 0.1.0-alpha.0, packed @nessalabs/spec-ledger installs outside this monorepo and exposes bin spec-ledger that runs --help, init, and verify; packed @nessalabs/spec-ledger-client and @nessalabs/spec-ledger-server contain no workspace: or file: dependency protocols and install/resolve against that ledger version.",
+  "statement": "Install Spec Ledger in a separate project and use its commands without needing this development repository.",
   "area": "core",
   "required": true,
   "links": {
-    "docs": ["docs/workstreams/consumer-cli-and-npm-publish.md"],
+    "docs": [
+      "docs/workstreams/consumer-cli-and-npm-publish.md",
+      "docs/architecture/claim-contracts.md"
+    ],
     "proposedClaimId": "PC-016"
   }
 }

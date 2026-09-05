@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "requestId": "f99af055-0ac8-465f-9f08-660ccc50a052",
+  "operation": "record_review",
+  "inputDigest": "56213f604a70e7b1a9bc959302ae6b28560b7d5edf810fa7e915d9e793364b5a",
+  "finishedAt": "2026-09-05T02:01:14.944Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "id": "W-010/SR-01",
+    "workstreamId": "W-010",
+    "kind": "adversarial",
+    "target": "spec",
+    "reviewer": "agent:turn-evidence-breaker",
+    "verdict": "approve",
+    "blocking": false,
+    "plainSummary": "The plan lets users rerun saved checks without allowing browser-supplied commands or confusing accepted jobs with passing tests.",
+    "summary": "Reviewed W010 written spec, metadata, security-sensitive local bridge boundary and tool-built related pack (SL001/002/003/017/018/022/023 among related claims). Fixed configured repository cwd, saved binding identity plus displayed source/check digests, shared runner across batch/CLI/MCP/local UI, same-origin loopback token bridge, strict bounded inputs, durable start identity, one execution guard, bounded integrity-checked output and passive polling preserve existing contracts. Clarification added: trusted repository shell code is not sandboxed; guard ownership persists until confirmed owned-child termination; ambiguous crash/orphan guards cannot be stolen by elapsed time or PID reuse. Required tests include real allowed control and denial with no child, stale inputs, retry/crash ambiguity, concurrent batch paths, bounded output and artifact tamper. No blocking spec gaps remain.",
+    "findings": [],
+    "residualRisks": [
+      "Saved repository commands run with host privileges; the local bridge is an intent boundary, not a sandbox for malicious repository code.",
+      "Uncertain worker termination intentionally can leave execution unavailable until explicit safe recovery; no automatic relaunch is authorized.",
+      "Related pack provides a caution-only worktree notice, not verified sibling checkout findings."
+    ],
+    "revisionDigest": "5f2717a300a98039e825da5f9e31cc67e2b5e1ec4bc49fe64a3885af145ac1c3"
+  }
+}

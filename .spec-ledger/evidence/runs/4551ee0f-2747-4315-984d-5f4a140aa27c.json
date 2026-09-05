@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "producedAt": "2026-09-05T02:26:38.970Z",
+  "producer": {
+    "name": "spec-ledger check",
+    "version": "0.1.0"
+  },
+  "rows": [
+    {
+      "key": "command:b-sl-013",
+      "runId": "4551ee0f-2747-4315-984d-5f4a140aa27c",
+      "sourceDigest": "99d51098464b0217847b20081631c3e04c91277c811ff0c4dfea2cad55b80601",
+      "checkDigest": "ddbcfdc1e44e84f08e5ec043570bf327f8cb6e2444fabe7813f1249f5610c5a4",
+      "outcome": "fail",
+      "detail": "Check exceeded the 120 second limit",
+      "durationMs": 120052,
+      "artifacts": [
+        {
+          "path": ".spec-ledger/evidence/check-runs/4551ee0f-2747-4315-984d-5f4a140aa27c-stdout.txt",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "required": true
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/4551ee0f-2747-4315-984d-5f4a140aa27c-stderr.txt",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "required": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "id": "b-sl-027",
+  "claimId": "SL-027",
+  "kind": "test",
+  "locator": {
+    "type": "command",
+    "command": "node --test packages/ledger/dist/verify/saved-check*.test.js packages/mcp/dist/saved-check.test.js packages/ui/lib/check-evidence.test.mjs"
+  },
+  "test": {
+    "level": "integration",
+    "description": "Run saved checks through actual CLI, MCP and local HTTP adapters; attack request boundaries and render the evidence panel.",
+    "source": {
+      "path": "packages/ledger/src/verify/saved-check.break.test.ts",
+      "name": "Independent boundary regressions; the command also runs transport and rendered UI tests."
+    },
+    "inputs": "Temporary repositories, successful and failing commands, stale identities, duplicate requests, overlapping runs, large output and escaped artifact paths.",
+    "expected": "Only the saved command runs in its checkout. Repeated requests reuse a run. Output is bounded and integrity checked. Stale evidence cannot pass; unrelated results survive. UI keeps authored expectations separate from actual logs."
+  }
+}

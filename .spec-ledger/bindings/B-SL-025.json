@@ -5,5 +5,15 @@
   "locator": {
     "type": "command",
     "command": "node --test packages/ledger/dist/execution/*.test.js packages/mcp/dist/execution.lifecycle.test.js"
+  },
+  "test": {
+    "level": "integration",
+    "description": "Check that tool activity stays separate from evidence and cannot authorize automatic recovery.",
+    "source": {
+      "path": "packages/mcp/src/execution.lifecycle.test.ts",
+      "name": "CLI/MCP activity lifecycle and persistent collector cases"
+    },
+    "inputs": "Owned temporary repositories receive registration, tool-start, duplicate, waiting-user and resumed events; policies request continuation and timeouts without a host adapter. Collector input also includes malformed and oversized frames.",
+    "expected": "Duplicate or missing signals do not create passing evidence. Stop remains sticky; host capabilities and automatic continuation remain disabled. Collector recovers after malformed frames and retains bounded later activity."
   }
 }

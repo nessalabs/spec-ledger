@@ -1,12 +1,13 @@
 {
   "id": "SL-019",
   "kind": "invariant",
-  "statement": "Execution permission honors scoped grants, denial, revocation, current revisions and scoped corrections without claiming host authentication.",
+  "statement": "Agents work within your permission and respect your corrections, denials, and withdrawals.",
   "required": true,
   "area": "core",
   "links": {
     "docs": [
-      "docs/workstreams/W-006-trustworthy-autonomous-coding/spec.md"
+      "docs/workstreams/W-006-trustworthy-autonomous-coding/spec.md",
+      "docs/architecture/claim-contracts.md"
     ]
   }
 }

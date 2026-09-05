@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "requestId": "w010-final-presentation-progress",
+  "operation": "record_progress",
+  "inputDigest": "47fc37e6fd0d4ad0444017a93cef3f11b04e1b5ba5362706356d237549f88cb0",
+  "finishedAt": "2026-09-05T02:33:32.663Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "turnId": "T-038",
+    "decision": "Read plain feature requirements, inspect highlighted test code, and rerun a saved check to see its actual output.",
+    "rationale": "Agent-reported progress; evidence is evaluated separately.",
+    "progress": {
+      "criterionIds": [
+        "SLC-01/AC-1"
+      ],
+      "implemented": true,
+      "revisionDigest": "25d1ea56a5b5cf3c61aefe19838a80847ba36ecdb36a4909bd449eec83081533",
+      "sourceDigest": "1928c529067013cc45fdbdf5153d5496b2f07bd62e5de9a327f1938374c1a746",
+      "preview": {
+        "url": "http://127.0.0.1:3737/claims/SL-026",
+        "label": "See the updated requirement and its evidence"
+      }
+    },
+    "id": "T-038/D-04"
+  }
+}

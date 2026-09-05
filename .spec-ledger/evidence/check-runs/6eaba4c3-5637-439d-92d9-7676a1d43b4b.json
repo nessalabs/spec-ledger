@@ -1,0 +1,29 @@
+{
+  "runId": "6eaba4c3-5637-439d-92d9-7676a1d43b4b",
+  "requestId": "batch-6eaba4c3-5637-439d-92d9-7676a1d43b4b",
+  "bindingId": "b-sl-015",
+  "state": "finished",
+  "command": "node --test packages/ledger/dist/workstream/doc-digest.test.js packages/ledger/dist/workstream/doc-digest.break.test.js packages/ledger/dist/workstream/pr1-regressions.break.test.js",
+  "cwd": "/Users/nessa/Documents/NessaLabs/spec-ledger",
+  "sourceDigest": "1928c529067013cc45fdbdf5153d5496b2f07bd62e5de9a327f1938374c1a746",
+  "checkDigest": "50431b8f8e6c2c07e3edb8b3c5bc73becee098c07c6b0c38a50fb148c2d785dc",
+  "startedAt": "2026-09-05T02:32:09.424Z",
+  "finishedAt": "2026-09-05T02:32:09.977Z",
+  "outcome": "pass",
+  "exitCode": 0,
+  "signal": null,
+  "durationMs": 493,
+  "stdout": {
+    "path": ".spec-ledger/evidence/check-runs/6eaba4c3-5637-439d-92d9-7676a1d43b4b-stdout.txt",
+    "capturedBytes": 1911,
+    "sha256": "f19311841bedb2a9e4c010265d9357e3063c96300d9eec7848e8a94b9d4244fe",
+    "truncated": false
+  },
+  "stderr": {
+    "path": ".spec-ledger/evidence/check-runs/6eaba4c3-5637-439d-92d9-7676a1d43b4b-stderr.txt",
+    "capturedBytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "truncated": false
+  },
+  "reason": "exit 0"
+}

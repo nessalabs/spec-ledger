@@ -1,12 +1,13 @@
 {
   "id": "SL-016",
   "kind": "invariant",
-  "statement": "Every required binding contributes to a deterministic verdict; failed reports remain readable through both transports.",
+  "statement": "Show every required check result, and never hide a failure just because another check passes.",
   "required": true,
   "area": "core",
   "links": {
     "docs": [
-      "docs/workstreams/W-006-trustworthy-autonomous-coding/spec.md"
+      "docs/workstreams/W-006-trustworthy-autonomous-coding/spec.md",
+      "docs/architecture/claim-contracts.md"
     ]
   }
 }

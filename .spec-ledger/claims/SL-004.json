@@ -1,7 +1,12 @@
 {
   "id": "SL-004",
   "kind": "invariant",
-  "statement": "Graph node locators that are set must resolve on disk or verify fails.",
+  "statement": "The project map points to files that actually exist.",
   "area": "lattice",
-  "required": true
+  "required": true,
+  "links": {
+    "docs": [
+      "docs/architecture/claim-contracts.md"
+    ]
+  }
 }

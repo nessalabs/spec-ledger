@@ -1,7 +1,13 @@
 {
   "schemaVersion": 1,
   "id": "SL-006",
-  "statement": "Turn open stamps treeDigest and refuses a dirty worktree unless --allow-dirty is set.",
+  "statement": "Starting work records the project as it is and flags existing edits before the agent builds on them.",
   "severity": "medium",
-  "required": true
+  "required": true,
+  "kind": "invariant",
+  "links": {
+    "docs": [
+      "docs/architecture/claim-contracts.md"
+    ]
+  }
 }

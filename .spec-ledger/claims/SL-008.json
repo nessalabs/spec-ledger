@@ -1,7 +1,13 @@
 {
   "schemaVersion": 1,
   "id": "SL-008",
-  "statement": "spec-ledger audit exits non-zero when findings match policy.failOn severities.",
+  "statement": "A project audit stops with a failure when it finds a problem your project rules do not allow.",
   "severity": "medium",
-  "required": true
+  "required": true,
+  "kind": "invariant",
+  "links": {
+    "docs": [
+      "docs/architecture/claim-contracts.md"
+    ]
+  }
 }

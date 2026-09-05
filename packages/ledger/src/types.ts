@@ -31,6 +31,13 @@ export interface EvidenceBinding {
   id: string
   claimId: string
   kind: EvidenceKind
+  test?: {
+    level: "unit" | "integration" | "e2e" | "property" | "other"
+    description?: string
+    source?: { path: string; name?: string }
+    inputs?: string
+    expected?: string
+  }
   locator: {
     type: "results-row" | "command" | "path" | "attestation"
     resultsKey?: string

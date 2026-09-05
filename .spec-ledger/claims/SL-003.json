@@ -1,10 +1,13 @@
 {
   "id": "SL-003",
   "kind": "absence",
-  "statement": "The HTTP server has no write endpoints in v1; git is the write path.",
+  "statement": "The read-only service that supplies project information cannot change your project.",
   "area": "server",
   "required": true,
   "links": {
-    "docs": ["DESIGN.md"]
+    "docs": [
+      "DESIGN.md",
+      "docs/architecture/claim-contracts.md"
+    ]
   }
 }

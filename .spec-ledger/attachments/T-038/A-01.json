@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "turnId": "T-038",
+  "path": "docs/workstreams/W-010-inspect-and-run-checks/evidence/T-038/browser-check.md",
+  "kind": "log-excerpt",
+  "title": "Browser proof: inspect source, run the check, and compare expected with actual output",
+  "mediaType": "text/markdown",
+  "id": "T-038/A-01"
+}

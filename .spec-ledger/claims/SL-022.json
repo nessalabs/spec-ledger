@@ -1,12 +1,13 @@
 {
   "id": "SL-022",
   "kind": "invariant",
-  "statement": "Workstream evidence preserves current versus recorded results, explains missing coverage, and reads only confined integrity-checked text artifacts without executing checks.",
+  "statement": "See the evidence for each requirement, what is missing, and whether an earlier result still applies.",
   "required": true,
   "area": "ui",
   "links": {
     "docs": [
-      "docs/workstreams/W-007-evidence-and-custom-workflows/spec.md"
+      "docs/workstreams/W-007-evidence-and-custom-workflows/spec.md",
+      "docs/architecture/claim-contracts.md"
     ]
   }
 }

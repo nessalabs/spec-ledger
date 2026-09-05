@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "turnId": "T-038",
+  "path": "docs/workstreams/W-010-inspect-and-run-checks/evidence/T-038/regression-tests.txt",
+  "kind": "log-excerpt",
+  "title": "Full regression run: 230 tests passed",
+  "mediaType": "text/plain",
+  "id": "T-038/A-02"
+}

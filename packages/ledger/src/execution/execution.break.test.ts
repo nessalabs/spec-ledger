@@ -267,13 +267,22 @@ describe("execution activity adversarial contracts", () => {
     const crashScript = `
       const { createActivityEmitter } = await import(process.argv[1]);
       const emitter = createActivityEmitter({ root: process.argv[2] });
-      await new Promise(resolve => setTimeout(resolve, 150));
+      const deadline = Date.now() + 5000;
+      let exited = false;
+      while (Date.now() < deadline) {
+        try { process.kill(emitter.pid, 0); }
+        catch (error) { if (error.code === 'ESRCH') { exited = true; break; } throw error; }
+        await new Promise(resolve => setTimeout(resolve, 20));
+      }
+      if (!exited) { emitter.close(); throw new Error('Owned collector did not exit within the deadline'); }
+      // Allow the host to consume the child exit event before checking its closed emitter.
+      await new Promise(resolve => setImmediate(resolve));
       const accepted = emitter.emit('W-001/X-001', { eventId:'after-exit', sessionId:'session-1', sequence:1, kind:'session-start', observedAt:new Date().toISOString() });
       console.log(String(accepted));
       emitter.close();
       await new Promise(resolve => setTimeout(resolve, 50));
     `
-    const crashed = spawnSync(process.execPath, ["--input-type=module", "-e", crashScript, emitterModule, missingRoot], { encoding: "utf8", timeout: 3000 })
+    const crashed = spawnSync(process.execPath, ["--input-type=module", "-e", crashScript, emitterModule, missingRoot], { encoding: "utf8", timeout: 8000 })
     assert.equal(crashed.status, 0, crashed.stderr || crashed.stdout)
     assert.equal(crashed.stdout.trim(), "false")
 

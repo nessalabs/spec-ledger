@@ -1,12 +1,13 @@
 {
   "id": "SL-020",
   "kind": "invariant",
-  "statement": "Deferred requirements remain discoverable, activate durably for affected work, and prevent completion until their response is satisfied.",
+  "statement": "Bring postponed requirements back when the work needs them, and resolve them before calling that work complete.",
   "required": true,
   "area": "core",
   "links": {
     "docs": [
-      "docs/workstreams/W-006-trustworthy-autonomous-coding/spec.md"
+      "docs/workstreams/W-006-trustworthy-autonomous-coding/spec.md",
+      "docs/architecture/claim-contracts.md"
     ]
   }
 }

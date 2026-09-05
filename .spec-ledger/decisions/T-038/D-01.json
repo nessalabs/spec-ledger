@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "turnId": "T-038",
+  "decision": "Show test intent and source beside actual bounded output, and keep Run again an explicit shared operation.",
+  "rationale": "A saved command or exit status cannot explain its assertion coverage. Historical discarded output cannot be reconstructed. Authored expectations must remain distinct from observed results, and uncertain retries must retain their identity.",
+  "basis": {
+    "at": "2026-09-05T02:22:31.966Z",
+    "contextDigest": "52a50a1d0e3dcc24fdf89d88aa98bdb9621af17843e4f04984d25a91d3c6e65a",
+    "sealRevision": 2
+  },
+  "discovery": {
+    "kind": "verification-gap",
+    "reportedVia": "user",
+    "observation": "The claim page exposed only a command binding, leaving the user unable to inspect what was tested or what happened.",
+    "cause": "The runner discarded stdout/stderr and the claim UI showed check intent rather than evidence.",
+    "specRef": "docs/workstreams/W-010-inspect-and-run-checks/spec.md",
+    "regression": "Saved-check core and transport tests, rendered evidence tests and actual browser pass/fail walkthrough."
+  },
+  "id": "T-038/D-01"
+}

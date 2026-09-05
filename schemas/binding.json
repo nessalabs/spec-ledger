@@ -5,30 +5,111 @@
   "description": "Committed intent to check a claim. Never carries pass/fail status.",
   "type": "object",
   "additionalProperties": false,
-  "required": ["id", "claimId", "kind", "locator"],
+  "required": [
+    "id",
+    "claimId",
+    "kind",
+    "locator"
+  ],
   "properties": {
-    "id": { "type": "string", "minLength": 1 },
-    "claimId": { "type": "string" },
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "claimId": {
+      "type": "string"
+    },
     "kind": {
       "type": "string",
-      "enum": ["test", "check", "contract", "proof", "attestation"]
+      "enum": [
+        "test",
+        "check",
+        "contract",
+        "proof",
+        "attestation"
+      ]
     },
     "locator": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["type"],
+      "required": [
+        "type"
+      ],
       "properties": {
         "type": {
           "type": "string",
-          "enum": ["results-row", "command", "path", "attestation"]
+          "enum": [
+            "results-row",
+            "command",
+            "path",
+            "attestation"
+          ]
         },
         "resultsKey": {
           "type": "string",
           "description": "Key matched in an ingested results file (claimId or custom)."
         },
-        "command": { "type": "string", "description": "Shell command for kind=check (coarse)." },
-        "path": { "type": "string", "description": "Path that must exist (graph honesty)." },
-        "note": { "type": "string" }
+        "command": {
+          "type": "string",
+          "description": "Shell command for kind=check (coarse).",
+          "maxLength": 16384
+        },
+        "path": {
+          "type": "string",
+          "description": "Path that must exist (graph honesty)."
+        },
+        "note": {
+          "type": "string"
+        }
+      }
+    },
+    "test": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "level"
+      ],
+      "properties": {
+        "level": {
+          "type": "string",
+          "enum": [
+            "unit",
+            "integration",
+            "e2e",
+            "property",
+            "other"
+          ]
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "source": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "path"
+          ],
+          "properties": {
+            "path": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000
+            },
+            "name": {
+              "type": "string",
+              "maxLength": 500
+            }
+          }
+        },
+        "inputs": {
+          "type": "string",
+          "maxLength": 4000
+        },
+        "expected": {
+          "type": "string",
+          "maxLength": 4000
+        }
       }
     }
   }

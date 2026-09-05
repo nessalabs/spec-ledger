@@ -5,5 +5,15 @@
   "locator": {
     "type": "command",
     "command": "node --test packages/ledger/dist/application/*.break.test.js packages/mcp/dist/lifecycle.test.js"
+  },
+  "test": {
+    "level": "integration",
+    "description": "Run the same work lifecycle through the actual CLI and MCP executables and compare the resulting state. Also attack invalid requests and retry handling.",
+    "source": {
+      "path": "packages/mcp/src/lifecycle.test.ts",
+      "name": "Representative lifecycle assertions; the saved command also runs operation and receipt regressions."
+    },
+    "inputs": "Disposable Git repositories with the same spec and behavior. Submit equivalent permission, begin-work, progress, check, review, close and complete requests through CLI and MCP. Negative cases use denied permissions, stale digests, reused request IDs and missing evidence.",
+    "expected": "Both executables reach the same verified completion state. Equivalent invalid requests return the same error and leave domain state unchanged. An uncertain or duplicate request must not repeat its effect."
   }
 }

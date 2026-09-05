@@ -101,3 +101,6 @@ export { createLocalApprovalBridge, authorityStateDigest } from "./permission/lo
 export * from "./application/index.js"
 export * from "./workflows/index.js"
 export * from "./execution/index.js"
+
+export { getCheckEvidence, getCheckRun, type CheckEvidence, type CheckRun } from "./verify/saved-check.js"
+export { createLocalCheckBridge } from "./verify/local-check.js"

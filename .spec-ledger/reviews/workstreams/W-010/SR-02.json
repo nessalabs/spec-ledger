@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "id": "W-010/SR-02",
+  "workstreamId": "W-010",
+  "kind": "adversarial",
+  "target": "spec",
+  "reviewer": "agent:turn-evidence-breaker",
+  "verdict": "approve",
+  "blocking": false,
+  "plainSummary": "The requirement now points to saved-check behavior tests without treating recorded descriptions as test results.",
+  "summary": "Reviewed mapping-only SLC01/AC1→SL027 and latest document amendment naming optional binding.test metadata. Focused core/MCP/UI tests directly target shared saved execution, bounded output, confinement, passive reads, strict local bridge and UI inspection; final source execution and independent code approval remain separate requirements. Required behavior, fixed root cwd and host/security boundary unchanged. Seven independent saved-check killers reran green including former outside receipt-write regression.",
+  "supersedesReviewId": "W-010/SR-01",
+  "findings": [],
+  "residualRisks": [
+    "Final code review remains pending source freeze and retry-uncertainty UI handling review; spec approval is not code approval."
+  ],
+  "revisionDigest": "95d03bfb1a04832d1dc78b034a59d7c5cbc9f77409d00672fae7ed967e03b0b0"
+}

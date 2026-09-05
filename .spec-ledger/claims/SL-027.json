@@ -1,0 +1,12 @@
+{
+  "id": "SL-027",
+  "statement": "Read what a test checks, run it again, and inspect what actually happened without accidentally running it twice.",
+  "required": true,
+  "links": {
+    "docs": [
+      "docs/workstreams/W-010-inspect-and-run-checks/spec.md",
+      "docs/architecture/claim-contracts.md"
+    ]
+  },
+  "kind": "invariant"
+}
