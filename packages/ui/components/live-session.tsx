@@ -7,6 +7,7 @@ import { ChevronDown } from "lucide-react"
 import type { SessionProjection } from "@nessalabs/spec-ledger-client"
 import { AcceptanceProgress } from "@/components/acceptance-progress"
 import { useSessionObservation } from "@/components/use-session-observation"
+import { WorkflowSummary } from "@/components/workflow-view"
 
 export function LiveSession({ initial }: { initial: SessionProjection }) {
   const [selected, setSelected] = useState(initial.session?.workstreamId ?? "")
@@ -83,17 +84,20 @@ export function LiveSession({ initial }: { initial: SessionProjection }) {
         implemented={session.criteria.filter((criterion) => criterion.implemented).length}
         remaining={session.completion.reasons}
       />
+      <WorkflowSummary workflow={session.workflow} workstreamId={session.workstreamId} />
       <section className="space-y-2"><h2 className="font-semibold">Needs attention</h2>
         {session.attention.length ? <ul className="list-disc space-y-1 pl-5 text-sm">{session.attention.map((item, i) => <li key={i}>{item}</li>)}</ul> : <p className="text-sm text-muted-foreground">No blocking attention items reported.</p>}
       </section>
       <section className="space-y-3"><h2 className="font-semibold">Acceptance</h2>
         <p className="text-sm text-muted-foreground">{session.evidenceCount} of {session.criteria.length} criteria have current passing evidence. Implementation is reported by the agent.</p>
         {!session.criteria.length && <p className="text-sm">No acceptance criteria defined.</p>}
-        <ul className="divide-y divide-border rounded-xl border border-border px-4">{session.criteria.map(c => <li key={c.id} className="space-y-2 py-4">
+        <ul className="divide-y divide-border rounded-xl border border-border px-4">{session.criteria.map(c => {
+          const recordedClaimIds = new Set(c.claims.map((claim) => claim.id))
+          return <li key={c.id} className="space-y-2 py-4">
           <p className="text-sm">{c.text}</p>
           <div className="flex flex-wrap gap-3 text-xs text-muted-foreground"><span>{c.implemented ? "Implemented · agent reported" : "Implementation not confirmed on this version"}</span><span>Evidence: {c.evidence}</span></div>
-          <details className="text-xs text-muted-foreground"><summary>Evidence links</summary><p>{c.id}</p>{c.claimIds.length ? c.claimIds.map(id => <Link className="mr-3 underline" href={`/claims/${encodeURIComponent(id)}`} key={id}>{id}</Link>) : <p>No explicit claim mapping yet.</p>}</details>
-        </li>)}</ul>
+          <details className="text-xs text-muted-foreground"><summary>Evidence links</summary><p>{c.id}</p>{c.claimIds.length ? c.claimIds.map(id => recordedClaimIds.has(id) ? <Link className="mr-3 underline" href={`/claims/${encodeURIComponent(id)}`} key={id}>{id}</Link> : <span className="mr-3" key={id}>{id} · not recorded yet</span>) : <p>No explicit claim mapping yet.</p>}</details>
+        </li>})}</ul>
       </section>
       <section className="space-y-3"><h2 className="font-semibold">Meaningful changes</h2>
         {session.activity.length ? <ul className="space-y-3">{session.activity.map(item => <li key={item.id} className="rounded-lg border border-border p-3 text-sm"><p>{item.summary}</p><details className="mt-2 text-xs text-muted-foreground"><summary>Why · {item.id}</summary><p>{item.reason}</p>{item.discovery && <p>{item.discovery.kind}: {item.discovery.observation}</p>}</details></li>)}</ul> : <p className="text-sm text-muted-foreground">No changes recorded yet.</p>}

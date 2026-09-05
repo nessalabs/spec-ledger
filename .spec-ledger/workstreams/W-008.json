@@ -68,7 +68,8 @@
         "unit",
         "integration",
         "e2e"
-      ]
+      ],
+      "codeBreakReviewId": "T-035/R-01"
     },
     {
       "id": "SLC-03",
@@ -121,7 +122,7 @@
     ]
   },
   "specBreakReviewId": "W-008/SR-01",
-  "updatedAt": "2026-09-05T00:44:21.215Z",
+  "updatedAt": "2026-09-05T01:10:54.303Z",
   "seal": {
     "sealedAt": "2026-09-05T00:11:54.849Z",
     "sealedBy": "agent:permission:AUTH-W008-REQUEST",

@@ -10,6 +10,7 @@ import { listDecisionsForTurn } from "../episodes/load.js"
 import { writeDecision, assertOpenTurn } from "../episodes/write.js"
 import { listAllReviews, codeBreakSatisfied, unresolvedBlockingReviews } from "../reviews/load.js"
 import { computeTreeDigest } from "../git/tree.js"
+import { projectWorkflow } from "../workflows/index.js"
 import type { EpisodeDecision, Workstream } from "../types.js"
 
 export interface ProgressUpdate {
@@ -110,6 +111,8 @@ export function getSession(root: string, workstreamId?: string) {
   if (ws.policy?.requireSpecBreak !== false && !reviews.some(r => r.id === ws.specBreakReviewId && r.target === "spec" && r.verdict === "approve" && (r.revisionDigest === revisionDigest || (!r.revisionDigest && permission.mode === "legacy-seal")))) completionReasons.push("The current spec needs its recorded independent review.")
   if (ws.policy?.requireCodeBreak !== false && (ws.suggestedSlices ?? []).some(s => !reviews.some(r => r.id === s.codeBreakReviewId && codeBreakSatisfied([r], sourceDigest)))) completionReasons.push("Every slice needs a review covering the current source.")
   const reportedPreview = [...current].reverse().find(d => d.progress?.preview)?.progress?.preview
+  const workflow = projectWorkflow(root, selected)
+  if (workflow.profile.snapshotId && workflow.status !== "satisfied") completionReasons.push("The selected workflow still has required current outputs.")
   let latestPreview: ProgressUpdate["preview"]
   if (reportedPreview) {
     try {
@@ -135,7 +138,7 @@ export function getSession(root: string, workstreamId?: string) {
         summary: r.plainSummary ?? r.summary, findings: r.findings ?? [], residualRisks: r.residualRisks ?? [],
         current: r.target === "spec" ? r.revisionDigest === revisionDigest : Boolean(sourceDigest && r.treeDigest === sourceDigest) })),
       artifacts: turns.flatMap(t => listAttachmentsForTurn(root, t.id)).map(a => attachmentEvidence(root, a)),
-      permission, authorityDigest: authorityStateDigest(root), attention, criteria, activity, obligations,
+      permission, authorityDigest: authorityStateDigest(root), attention, criteria, activity, obligations, workflow,
       completion: { eligible: permission.allowed && completionReasons.length === 0, reasons: completionReasons },
       openTurnIds: turns.filter(t => t.status === "open").map(t => t.id),
       evidenceCount: criteria.filter(c => c.evidence === "pass").length,

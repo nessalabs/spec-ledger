@@ -28,6 +28,17 @@ import { closeTurn, abandonTurn, openTurn } from "../turns/close.js"
 import type { EpisodeDecision, Review, TurnIntent } from "../types.js"
 import { checkLedger } from "../verify/execute.js"
 import { loadWorkstream, writeWorkstream } from "../workstream/load.js"
+import {
+  addWorkflowOutput,
+  preserveWorkflow,
+  projectWorkflow,
+  writeWorkflowAttemptReport,
+  resolveWorkflow,
+  selectedWorkflow,
+  startWorkflowStep,
+  type WorkflowOutputKind,
+  type WorkflowProfile,
+} from "../workflows/index.js"
 import { operationError, normalizeOperationError } from "./errors.js"
 import { runMutation } from "./receipts.js"
 import { OPERATION_SCHEMAS, validateOperationInput, type OperationName } from "./schemas.js"
@@ -145,6 +156,16 @@ export function getContext(root: string, raw: unknown) {
 export function observeSession(root: string, raw: unknown = {}) {
   const input = validated(root, "get_session", raw)
   return getSession(root, stringField(input, "workstreamId", true))
+}
+
+export function previewWorkflow(root: string, raw: unknown) {
+  const input = validated(root, "preview_workflow", raw)
+  return resolveWorkflow(root, stringField(input, "workstreamId")!, input.profile as WorkflowProfile | undefined)
+}
+
+export function getWorkflow(root: string, raw: unknown) {
+  const input = validated(root, "get_workflow", raw)
+  return projectWorkflow(root, stringField(input, "workstreamId")!)
 }
 
 export function submitPermission(root: string, raw: unknown) {
@@ -430,12 +451,76 @@ export function completeWork(root: string, raw: unknown) {
   } })
 }
 
+function assertWorkflowSnapshot(root: string, workstreamId: string, expected: string) {
+  const snapshot = selectedWorkflow(root, workstreamId)
+  if (!snapshot || snapshot.snapshotDigest !== expected) {
+    throw operationError("revision_conflict", "workflow snapshot has changed", false, { expected, current: snapshot?.snapshotDigest })
+  }
+  return snapshot
+}
+
+export function setWorkflow(root: string, raw: unknown) {
+  const input = mutationInput(root, "set_workflow", raw)
+  const workstreamId = stringField(input, "workstreamId")!
+  return runMutation({ root, requestId: input.requestId, operation: "set_workflow", input, effect: () => {
+    assertRevision(root, workstreamId, stringField(input, "expectedRevisionDigest")!)
+    assertSource(root, stringField(input, "expectedSourceDigest")!)
+    assertPermission(root, workstreamId)
+    return preserveWorkflow(root, workstreamId, input.profile as WorkflowProfile | undefined,
+      stringField(input, "reason", true), stringField(input, "expectedSnapshotDigest", true))
+  } })
+}
+
+export function beginWorkflowStep(root: string, raw: unknown) {
+  const input = mutationInput(root, "begin_workflow_step", raw)
+  const workstreamId = stringField(input, "workstreamId")!
+  return runMutation({ root, requestId: input.requestId, operation: "begin_workflow_step", input, effect: () => {
+    assertRevision(root, workstreamId, stringField(input, "expectedRevisionDigest")!)
+    assertSource(root, stringField(input, "expectedSourceDigest")!)
+    assertPermission(root, workstreamId)
+    const expectedSnapshotDigest = stringField(input, "expectedSnapshotDigest")!
+    assertWorkflowSnapshot(root, workstreamId, expectedSnapshotDigest)
+    return startWorkflowStep(root, { workstreamId, stageId: stringField(input, "stageId")!, stepId: stringField(input, "stepId")!,
+      attemptId: stringField(input, "attemptId", true), reason: stringField(input, "reason", true), expectedSnapshotDigest })
+  } })
+}
+
+export function reportWorkflowAttempt(root: string, raw: unknown) {
+  const input = mutationInput(root, "report_workflow_attempt", raw)
+  const workstreamId = stringField(input, "workstreamId")!
+  return runMutation({ root, requestId: input.requestId, operation: "report_workflow_attempt", input, effect: () => {
+    assertRevision(root, workstreamId, stringField(input, "expectedRevisionDigest")!)
+    assertSource(root, stringField(input, "expectedSourceDigest")!)
+    assertPermission(root, workstreamId)
+    assertWorkflowSnapshot(root, workstreamId, stringField(input, "expectedSnapshotDigest")!)
+    return writeWorkflowAttemptReport(root, workstreamId, stringField(input, "attemptId")!,
+      stringField(input, "status") as "reported-complete" | "blocked", stringField(input, "reason", true))
+  } })
+}
+
+export function recordWorkflowOutput(root: string, raw: unknown) {
+  const input = mutationInput(root, "record_workflow_output", raw)
+  const workstreamId = stringField(input, "workstreamId")!
+  return runMutation({ root, requestId: input.requestId, operation: "record_workflow_output", input, effect: () => {
+    assertRevision(root, workstreamId, stringField(input, "expectedRevisionDigest")!)
+    assertSource(root, stringField(input, "expectedSourceDigest")!)
+    assertPermission(root, workstreamId)
+    assertWorkflowSnapshot(root, workstreamId, stringField(input, "expectedSnapshotDigest")!)
+    return addWorkflowOutput(root, { workstreamId, attemptId: stringField(input, "attemptId")!,
+      kind: stringField(input, "kind") as WorkflowOutputKind,
+      recordType: stringField(input, "recordType") as "snapshot" | "review" | "decision" | "result",
+      recordIds: stringArray(input, "recordIds")!, criterionIds: stringArray(input, "criterionIds", true) ?? [] })
+  } })
+}
+
 export function executeOperation(root: string, operation: OperationName, input: unknown): unknown {
   try {
     switch (operation) {
       case "plan_work": return planWork(root, input)
       case "get_context": return getContext(root, input)
       case "get_session": return observeSession(root, input)
+      case "preview_workflow": return previewWorkflow(root, input)
+      case "get_workflow": return getWorkflow(root, input)
       case "record_permission": return submitPermission(root, input)
       case "begin_work": return beginWork(root, input)
       case "record_progress": return submitProgress(root, input)
@@ -446,6 +531,10 @@ export function executeOperation(root: string, operation: OperationName, input: 
       case "run_checks": return runChecks(root, input)
       case "finish_turn": return finishTurn(root, input)
       case "complete_work": return completeWork(root, input)
+      case "set_workflow": return setWorkflow(root, input)
+      case "begin_workflow_step": return beginWorkflowStep(root, input)
+      case "report_workflow_attempt": return reportWorkflowAttempt(root, input)
+      case "record_workflow_output": return recordWorkflowOutput(root, input)
     }
   } catch (error) {
     throw normalizeOperationError(error)

@@ -29,6 +29,8 @@
     "docs/workstreams/W-008-shared-agent-workflows/evidence/T-034/browser-baseline.md",
     "docs/workstreams/W-008-shared-agent-workflows/evidence/T-034/mcp-smoke.md",
     "docs/workstreams/W-008-shared-agent-workflows/evidence/T-034/regression-tests.txt",
-    "docs/workstreams/W-008-shared-agent-workflows/evidence/T-034/browser-check.md"
+    "docs/workstreams/W-008-shared-agent-workflows/evidence/T-034/browser-check.md",
+    "docs/workstreams/W-008-shared-agent-workflows/evidence/T-035/browser-check.md",
+    "docs/workstreams/W-008-shared-agent-workflows/evidence/T-035/regression-tests.txt"
   ]
 }

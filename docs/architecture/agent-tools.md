@@ -1,6 +1,6 @@
 # Shared CLI and MCP operations
 
-W-008 implementation contract. Transport wiring and acceptance evidence are recorded with that workstream; the customizable workflow and activity portions follow in its later slices.
+W-008 implementation contract. Transport wiring and acceptance evidence are recorded with that workstream; customizable methods are described in [engineering methods](workflows.md); optional activity follows separately.
 
 ## Ownership
 
@@ -19,6 +19,8 @@ The shared surface provides passive planning, context and session reads; explici
 | `begin_work` | Prepare permitted work and open a turn |
 | `record_progress`, `record_decision` | Record meaningful implementation reports and choices |
 | `record_evidence`, `record_review`, `approve_alignment` | Submit evidence and reviews through their existing contracts |
+| `get_workflow`, `preview_workflow` | Inspect the effective engineering method and missing outputs |
+| `set_workflow`, `begin_workflow_step`, `report_workflow_attempt`, `record_workflow_output` | Preserve method choices and record attempts with typed output references |
 | `run_checks` | Execute configured checks explicitly |
 | `finish_turn`, `complete_work` | Evaluate separate turn and workstream completion gates |
 

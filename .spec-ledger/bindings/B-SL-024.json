@@ -1,0 +1,9 @@
+{
+  "id": "b-sl-024",
+  "claimId": "SL-024",
+  "kind": "test",
+  "locator": {
+    "type": "command",
+    "command": "node --test packages/ledger/dist/workflows/*.test.js packages/mcp/dist/workflow.lifecycle.test.js"
+  }
+}

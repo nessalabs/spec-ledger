@@ -4,6 +4,7 @@ import type { SessionProjection } from "@nessalabs/spec-ledger-client"
 import { AcceptanceProgress } from "@/components/acceptance-progress"
 import { WorkstreamEvidence } from "@/components/workstream-evidence"
 import { useSessionObservation } from "@/components/use-session-observation"
+import { WorkflowDetails } from "@/components/workflow-view"
 
 export function LiveWorkstreamEvidence({
   initial,
@@ -34,6 +35,7 @@ export function LiveWorkstreamEvidence({
         implemented={session.criteria.filter((criterion) => criterion.implemented).length}
         remaining={session.completion.reasons}
       />
+      <WorkflowDetails workflow={session.workflow} criteria={session.criteria} />
       <WorkstreamEvidence session={session} observedAt={data.observedAt} />
     </div>
   )

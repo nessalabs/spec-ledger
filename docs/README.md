@@ -30,3 +30,5 @@ settled decisions. Work-model / episodes = how work and turns work.
 - [research/high-velocity-decisions.md](./research/high-velocity-decisions.md)
 
 On conflict, **architecture + DESIGN** win.
+
+- [Engineering methods](architecture/workflows.md): chosen skills, preserved snapshots, stage attempts and typed output gates.

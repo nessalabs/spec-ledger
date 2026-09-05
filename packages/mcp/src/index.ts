@@ -10,6 +10,8 @@ const descriptions: Record<OperationName, string> = {
   plan_work: "Read the plan, permission, related context, and missing prerequisites without changing files.",
   get_context: "Read sealed context for one workstream slice without executing checks.",
   get_session: "Read current progress, evidence, reviews, and completion blockers.",
+  preview_workflow: "Resolve a default or custom local workflow without preserving it.",
+  get_workflow: "Read the selected workflow, attempts, current typed outputs, and blockers.",
   record_permission: "Record portable agent-reported permission without authenticating the supplied source.",
   begin_work: "Prepare authorized work and open one turn under the current revision.",
   record_progress: "Record revision- and source-bound acceptance progress.",
@@ -20,6 +22,10 @@ const descriptions: Record<OperationName, string> = {
   run_checks: "Explicitly execute configured command checks and persist their report.",
   finish_turn: "Close or abandon an open turn through the shared gates.",
   complete_work: "Mark a workstream done only when every completion gate is satisfied.",
+  set_workflow: "Preserve a default or custom resolved workflow snapshot for the current revision.",
+  begin_workflow_step: "Begin a permitted attempt for the next eligible workflow step.",
+  report_workflow_attempt: "Report an attempt complete or blocked without claiming output satisfaction.",
+  record_workflow_output: "Link a typed current existing record to one workflow attempt.",
 }
 
 /**

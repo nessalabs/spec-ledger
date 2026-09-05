@@ -1,0 +1,12 @@
+{
+  "id": "SL-024",
+  "kind": "invariant",
+  "statement": "Custom workflow satisfaction comes from current typed outputs, and the live UI separates reported progress from inspectable verification.",
+  "required": true,
+  "area": "client",
+  "links": {
+    "docs": [
+      "docs/workstreams/W-008-shared-agent-workflows/spec.md"
+    ]
+  }
+}

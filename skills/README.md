@@ -4,7 +4,7 @@ Prefix: **`sl-`** (Spec Ledger — short, easy to find).
 
 Start with [sl-plan](sl-plan/SKILL.md), [sl-work](sl-work/SKILL.md), and
 [sl-check](sl-check/SKILL.md). These entry points reuse the focused procedures
-below; approval follows the user's revision or delegation choice.
+below; approval follows the user's revision or delegation choice. A [selected engineering method](../docs/architecture/workflows.md) can replace the procedures and skills for individual steps while the shared tools retain permission and evidence gates.
 
 These skills stay **in this repo** for now (ledger pipeline). Do **not** move
 them into [`nessalabs/skills`](https://github.com/nessalabs/skills) yet —

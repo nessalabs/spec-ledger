@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "requestId": "e3d363f8-e33c-4a77-9614-1b8543f2e65e",
+  "operation": "approve_alignment",
+  "inputDigest": "e0bc19583dfa6ab825a5f3cd8e40ca00adb7e5f1d25cdfb44fbbc1ed63f335b0",
+  "finishedAt": "2026-09-05T01:11:25.052Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "id": "T-035/R-02",
+    "turnId": "T-035",
+    "workstreamId": "W-008",
+    "kind": "human",
+    "target": "code",
+    "reviewer": "agent:align",
+    "verdict": "approve",
+    "summary": "The user requested configurable planning, implementation and verification steps with sensible defaults, shared CLI/MCP behavior and a live evidence UI. Changes stay within the sealed slice paths for packages, schemas, docs and skills.",
+    "plainSummary": "The chosen engineering methods and evidence UI match the authorized work.",
+    "treeDigest": "8bb3d984fe7b57d446dd27d32f52f2db3774db4b3eec88ae82640ba83bd11946",
+    "uncoveredPaths": [],
+    "coverageSource": "mixed"
+  }
+}

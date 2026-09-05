@@ -109,10 +109,12 @@
       "name": "Typed client",
       "summary": "Transport-agnostic SDK — only gateway for UIs.",
       "claimIds": [
-        "SL-003"
+        "SL-003",
+        "SL-024"
       ],
       "entryPoints": [
-        "packages/client/src/index.ts"
+        "packages/client/src/index.ts",
+        "packages/ledger/src/workflows/index.ts"
       ],
       "keywords": [
         "client",

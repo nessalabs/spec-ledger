@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "requestId": "w008-methods-verified-progress-0001",
+  "operation": "record_progress",
+  "inputDigest": "c897aa48578622be25f3f077dbd2dbe004369d237791631167ea2c8785ea8523",
+  "finishedAt": "2026-09-05T01:11:25.313Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "turnId": "T-035",
+    "decision": "Custom engineering methods now preserve chosen skills and show current step evidence.",
+    "rationale": "Agent-reported progress; evidence is evaluated separately.",
+    "progress": {
+      "criterionIds": [
+        "SLC-01/AC-1",
+        "SLC-02/AC-1"
+      ],
+      "implemented": true,
+      "revisionDigest": "c5f1a84900d54f247315a70cfc9e05660c9cbc077597fb25b791f57896c6a4f1",
+      "sourceDigest": "8bb3d984fe7b57d446dd27d32f52f2db3774db4b3eec88ae82640ba83bd11946"
+    },
+    "id": "T-035/D-02"
+  }
+}

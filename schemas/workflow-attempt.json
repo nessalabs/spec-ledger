@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nessalabs.dev/spec-ledger/workflow-attempt.schema.json",
+  "title": "Spec Ledger workflow attempt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "id", "workstreamId", "stageId", "stepId", "snapshotDigest", "revisionDigest", "sourceDigest", "startedAt"],
+  "properties": {
+    "schemaVersion": { "const": 1 }, "id": { "type": "string" }, "workstreamId": { "type": "string" }, "stageId": { "type": "string" }, "stepId": { "type": "string" },
+    "snapshotDigest": { "type": "string", "pattern": "^[a-f0-9]{64}$" }, "revisionDigest": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "sourceDigest": { "type": "string", "pattern": "^[a-f0-9]{64}$" }, "startedAt": { "type": "string" }, "reason": { "type": "string" }
+  }
+}

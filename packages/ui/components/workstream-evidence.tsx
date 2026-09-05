@@ -16,7 +16,7 @@ export function WorkstreamEvidence({ session, observedAt }: { session: Session; 
       {session.status === "done" && !session.completion.eligible && <p className="rounded-lg border border-amber-600/40 p-3 text-sm">This workstream was completed earlier. Its current evidence or prerequisites need attention.</p>}
     </div>
     {!session.criteria.length && <p className="text-sm">No acceptance criteria recorded.</p>}
-    {session.criteria.map(criterion => <article key={criterion.id} className="space-y-4 rounded-xl border border-border p-4">
+    {session.criteria.map(criterion => <article id={`acceptance-${encodeURIComponent(criterion.id)}`} key={criterion.id} className="scroll-mt-6 space-y-4 rounded-xl border border-border p-4">
       <div className="flex flex-wrap items-start justify-between gap-2">
         <h3 className="min-w-0 flex-1 text-sm font-medium">{presentationCopy(criterion.text)}</h3>
         <Badge variant={criterion.evidence === "fail" ? "destructive" : "outline"}>{label(criterion.evidence)}</Badge>

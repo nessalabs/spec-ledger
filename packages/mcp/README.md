@@ -53,3 +53,9 @@ ledger state, because the original effect may have completed.
 `record_permission` stores portable `agent-reported` provenance. It records the
 authorization reference supplied by the caller; it does not authenticate that
 reference. Portable `record_review` calls cannot claim `human` provenance.
+
+## Chosen engineering methods
+
+`preview_workflow` resolves a proposed local profile without writing it. `set_workflow` preserves the chosen method under the workstream's existing permission. `get_workflow` returns the same effective stages, skill content, output references and blockers shown in the session UI. `begin_workflow_step`, `report_workflow_attempt` and `record_workflow_output` record attempts without inventing passing evidence.
+
+These names also work with `spec-ledger operation <name> --file input.json`. See the repository's [engineering method contract](../../docs/architecture/workflows.md) for a skill-substitution example, snapshot amendments and the finite output types. Local skill access never installs or executes the skill. A custom method cannot waive permission, stale evidence or required reviews.
