@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "requestId": "c0a33a5f-29df-4b0b-bfd6-245088f1a8ef",
+  "operation": "record_review",
+  "inputDigest": "024005616f7abe97b9102a3d52887973eb2bea71d5cb93f9dab546e52893babe",
+  "finishedAt": "2026-09-05T01:59:03.399Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "id": "W-009/SR-03",
+    "workstreamId": "W-009",
+    "kind": "adversarial",
+    "target": "spec",
+    "reviewer": "agent:turn-evidence-breaker",
+    "verdict": "approve",
+    "blocking": false,
+    "plainSummary": "The interface requirement is linked to tested behavior while the audit keeps its remaining verification gaps explicit.",
+    "summary": "Mapping-only review after W009 SR02 and T037 R01. AC1 maps solely to SL026, whose executed independent UI/Git regressions substantiate scoped evidence, historical completion labels and exact trailer attribution. Acceptance wording and intended scope remain unchanged. AC2 remains unmapped: the audit artifact and review do not prove all historical criteria or justify blanket mapping to component contracts. Related pack refreshed; no new production changes or verification authority.",
+    "supersedesReviewId": "W-009/SR-02",
+    "findings": [],
+    "residualRisks": [
+      "Audit acceptance retains an explicit manual/unmapped evidence gap; this review does not convert that gap to a behavioral pass."
+    ],
+    "revisionDigest": "5795bd40b477f259b8c51119602ac4d81d962befcd0a83f5325458c7011f0333"
+  }
+}

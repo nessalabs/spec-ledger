@@ -1,4 +1,6 @@
 "use client"
+import { completionLabel } from "@/lib/turn-evidence"
+import { presentationCopy } from "@/lib/features"
 
 import { useRef, useState } from "react"
 import Link from "next/link"
@@ -69,9 +71,9 @@ export function LiveSession({ initial }: { initial: SessionProjection }) {
     </header>
     {!session ? <p className="text-muted-foreground">{data.selectionRequired ? "Several workstreams are available. Choose the one you want to follow." : "No active workstream yet. Start with a plan."}</p> : <>
       <div className="space-y-3 rounded-xl border border-border p-5">
-        <Link className="text-xl font-semibold hover:underline" href={`/workstreams/${session.workstreamId}`}>{session.title}</Link>
-        <p>{session.goal}</p>
-        <p className="text-sm text-muted-foreground">Revision {session.revision ?? "not yet sealed"} · {session.status === "done" ? "Complete" : session.permission.allowed ? "Approved to proceed" : "Needs your decision"}</p>
+        <Link className="text-xl font-semibold hover:underline" href={`/workstreams/${session.workstreamId}`}>{presentationCopy(session.title)}</Link>
+        <p>{presentationCopy(session.goal)}</p>
+        <p className="text-sm text-muted-foreground">Revision {session.revision ?? "not yet sealed"} · {completionLabel(session.status, session.completion.eligible) ?? ( session.permission.allowed ? "Approved to proceed" : "Needs your decision")}</p>
         <details className="text-xs text-muted-foreground"><summary>Approval details</summary><p>{session.permission.mode ?? "No permission recorded"} · {session.permission.provenance}</p>{session.permission.reasons.map(reason => <p key={reason}>{reason}</p>)}</details>
         {!session.permission.allowed && !["done", "cancelled"].includes(session.status) && <div className="space-y-2">
           <div className="flex flex-wrap gap-3"><Button disabled={saving || state !== "connected"} onClick={() => void decide("approve")}>{saving ? "Saving…" : "Approve this revision"}</Button><Button variant="outline" disabled={saving || state !== "connected"} onClick={() => void decide("deny")}>Deny</Button></div>
@@ -84,8 +86,10 @@ export function LiveSession({ initial }: { initial: SessionProjection }) {
         verified={session.evidenceCount}
         implemented={session.criteria.filter((criterion) => criterion.implemented).length}
         remaining={session.completion.reasons}
+        historical={session.status === "done"}
+        unmapped={session.criteria.filter(c => !c.claims.length).length}
       />
-      <WorkflowSummary workflow={session.workflow} workstreamId={session.workstreamId} />
+      {session.status === "done" ? <details className="rounded-xl border border-border p-4"><summary>Current method requirements · not a record of the original execution</summary><WorkflowSummary workflow={session.workflow} workstreamId={session.workstreamId} /></details> : <WorkflowSummary workflow={session.workflow} workstreamId={session.workstreamId} />}
       <ExecutionActivitySummary execution={session.executionActivity} workstreamId={session.workstreamId} />
       <section className="space-y-2"><h2 className="font-semibold">Needs attention</h2>
         {session.attention.length ? <ul className="list-disc space-y-1 pl-5 text-sm">{session.attention.map((item, i) => <li key={i}>{item}</li>)}</ul> : <p className="text-sm text-muted-foreground">No blocking attention items reported.</p>}

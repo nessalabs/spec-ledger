@@ -1,9 +1,9 @@
 {
   "id": "b-sl-011",
   "claimId": "SL-011",
-  "kind": "check",
+  "kind": "test",
   "locator": {
-    "type": "path",
-    "path": "packages/ledger/src/cli/init.ts"
+    "type": "command",
+    "command": "node --test packages/ledger/dist/cli/init.test.js packages/ledger/dist/cli/init.break.test.js"
   }
 }

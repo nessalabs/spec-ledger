@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "id": "W-009",
+  "status": "sealed",
+  "title": "See what changed and what proves it works",
+  "objective": "Read the outcome and its evidence directly on each change page.",
+  "featureIds": [
+    "lattice"
+  ],
+  "specPath": "docs/workstreams/W-009-evidence-first-changes/spec.md",
+  "policy": {
+    "requireSpecBreak": true,
+    "requireCodeBreak": true,
+    "requireAlignApprove": true
+  },
+  "trust": {
+    "userFacing": true,
+    "correctnessCritical": true,
+    "requiredEvidence": [
+      "unit",
+      "integration",
+      "e2e"
+    ]
+  },
+  "suggestedSlices": [
+    {
+      "id": "SLC-01",
+      "title": "Put outcomes and evidence first on change pages",
+      "kind": "vertical",
+      "acceptance": [
+        "Change pages show scoped evidence and artifacts first, distinguish historical observations, and associate only commits with an exact matching turn trailer. Previously completed workstreams with stale prerequisites are clearly labeled as historical completion needing revalidation.",
+        "Previously completed workstreams are audited against current code and behavioral evidence; missing acceptance mappings are retrofitted only where tests support them, with current change-aware verification and explicit residual gaps."
+      ],
+      "expectedPaths": [
+        "packages/**",
+        "docs/**",
+        "skills/**",
+        "schemas/**"
+      ],
+      "codeBreakReviewId": "T-037/R-01"
+    }
+  ],
+  "specBreakReviewId": "W-009/SR-03",
+  "updatedAt": "2026-09-05T01:59:25.665Z",
+  "seal": {
+    "sealedAt": "2026-09-05T01:59:25.665Z",
+    "sealedBy": "agent:permission:AUTH-W009-REQUEST",
+    "specDigest": "e9892c634dcd08cd73bb875555d500f3ab0345d28692a685a5dcd4d32c1748c0",
+    "snapshotPath": "workstreams/W-009.seals/2.json",
+    "revision": 2,
+    "specDocDigest": "989fb5418e9038b062be7b3ba7469e9eecd2dccd45e0e3aa276b883e8ce93f3b"
+  },
+  "acceptanceClaimIds": {
+    "SLC-01/AC-1": [
+      "SL-026"
+    ]
+  }
+}

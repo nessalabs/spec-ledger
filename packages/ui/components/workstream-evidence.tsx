@@ -6,7 +6,7 @@ import { presentationCopy } from "@/lib/features"
 type Session = NonNullable<SessionProjection["session"]>
 const label = (outcome: string) => outcome === "pass" ? "Passing" : outcome === "fail" ? "Failed" : outcome === "attested" ? "Attested only" : "Evidence needed"
 
-export function WorkstreamEvidence({ session, observedAt }: { session: Session; observedAt: string }) {
+export function WorkstreamEvidence({ session, observedAt, expandChecks = false }: { session: Session; observedAt: string; expandChecks?: boolean }) {
   return <section className="space-y-5" aria-label="Verification and evidence">
     <div className="space-y-2">
       <h2 className="text-xl font-semibold">Verification and evidence</h2>
@@ -15,7 +15,7 @@ export function WorkstreamEvidence({ session, observedAt }: { session: Session; 
       <p className="text-xs text-muted-foreground">Checks are evaluated against this checkout. Reading this page does not rerun them. Implementation is reported by the agent.</p>
       {session.status === "done" && !session.completion.eligible && <p className="rounded-lg border border-amber-600/40 p-3 text-sm">This workstream was completed earlier. Its current evidence or prerequisites need attention.</p>}
     </div>
-    {!session.criteria.length && <p className="text-sm">No acceptance criteria recorded.</p>}
+    {!session.criteria.length && <p className="text-sm">No acceptance criteria are available in this evidence view.</p>}
     {session.criteria.map(criterion => <article id={`acceptance-${encodeURIComponent(criterion.id)}`} key={criterion.id} className="scroll-mt-6 space-y-4 rounded-xl border border-border p-4">
       <div className="flex flex-wrap items-start justify-between gap-2">
         <h3 className="min-w-0 flex-1 text-sm font-medium">{presentationCopy(criterion.text)}</h3>
@@ -28,7 +28,7 @@ export function WorkstreamEvidence({ session, observedAt }: { session: Session; 
         <p className="text-sm"><Link className="underline" href={`/claims/${encodeURIComponent(claim.id)}`}>{claim.id}</Link> · {presentationCopy(claim.statement)}</p>
         {claim.reason && <p className="text-sm text-muted-foreground">{claim.reason}</p>}
         {!claim.checks.length && <p className="text-xs">No check definitions found.</p>}
-        {claim.checks.map(check => <details key={check.id} className="rounded-lg bg-muted/30 p-3">
+        {claim.checks.map(check => <details open={expandChecks} key={check.id} className="rounded-lg bg-muted/30 p-3">
           <summary className="cursor-pointer text-sm">{label(check.outcome)} · {check.kind} check · {check.id}</summary>
           <div className="mt-3 space-y-3 text-xs">
             <p>{check.reason ?? (check.outcome === "pass" ? "Current verifier accepts this check." : "No current evidence available.")}</p>

@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "turnId": "T-037",
+  "decision": "Evidence-first change pages and completed-workstream audit are implemented. Historical unsupported criteria remain explicit; the audit itself is documented and reviewed rather than falsely treated as automated proof.",
+  "rationale": "Agent-reported progress; evidence is evaluated separately.",
+  "progress": {
+    "criterionIds": [
+      "SLC-01/AC-1",
+      "SLC-01/AC-2"
+    ],
+    "implemented": true,
+    "revisionDigest": "5795bd40b477f259b8c51119602ac4d81d962befcd0a83f5325458c7011f0333",
+    "sourceDigest": "5159553a93564fdf32dd6f9559cb37eea28cba17d5fd53e66bdb4d5148776a40"
+  },
+  "id": "T-037/D-02"
+}

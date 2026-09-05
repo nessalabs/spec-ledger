@@ -1,0 +1,9 @@
+{
+  "id": "b-sl-026",
+  "claimId": "SL-026",
+  "kind": "test",
+  "locator": {
+    "type": "command",
+    "command": "node --test packages/ui/lib/turn-evidence.break.test.mjs"
+  }
+}

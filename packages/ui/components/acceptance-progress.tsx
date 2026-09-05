@@ -5,11 +5,15 @@ export function AcceptanceProgress({
   verified,
   implemented,
   remaining = [],
+  historical = false,
+  unmapped = 0,
 }: {
   total: number
   verified: number
   implemented: number
   remaining?: string[]
+  historical?: boolean
+  unmapped?: number
 }) {
   const progress = acceptanceProgress(total, verified, implemented)
 
@@ -17,7 +21,7 @@ export function AcceptanceProgress({
     return (
       <section className="space-y-2 rounded-xl border border-border p-4" aria-label="Acceptance progress">
         <div className="flex flex-wrap items-baseline justify-between gap-2">
-          <h2 className="font-semibold">Acceptance progress</h2>
+          <h2 className="font-semibold">{historical ? "Current evidence coverage" : "Acceptance progress"}</h2>
           <p className="text-sm font-medium">No acceptance criteria</p>
         </div>
         <div
@@ -37,7 +41,7 @@ export function AcceptanceProgress({
   return (
     <section className="space-y-2 rounded-xl border border-border p-4" aria-label="Acceptance progress">
       <div className="flex flex-wrap items-baseline justify-between gap-2">
-        <h2 className="font-semibold">Acceptance progress</h2>
+        <h2 className="font-semibold">{historical ? "Current evidence coverage" : "Acceptance progress"}</h2>
         <p className="text-lg font-semibold tabular-nums">
           Verified {progress.verified}/{progress.total} · {progress.percent}%
         </p>
@@ -57,11 +61,13 @@ export function AcceptanceProgress({
         />
       </div>
       <p className="text-xs text-muted-foreground">
-        Implemented {progress.implemented}/{progress.total} · agent reported
+        Current implementation reports: {progress.implemented}/{progress.total} · agent reported
       </p>
-      {progress.percent === 100 && remaining.length ? (
+      {historical && <p className="text-sm text-muted-foreground">Recorded as completed earlier. These counts describe evidence on the current code, not how much was originally built.</p>}
+      {unmapped > 0 && <p className="text-sm">{unmapped} criteria have no linked checks. Their verification is unknown.</p>}
+      {remaining.length ? (
         <div className="space-y-1 text-xs text-muted-foreground">
-          <p>Acceptance evidence is complete. The workstream still needs:</p>
+          <p>Current verification still needs:</p>
           <ul className="list-disc space-y-1 pl-5">
             {remaining.map((reason) => <li key={reason}>{reason}</li>)}
           </ul>

@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation"
 import { liveReport, serverClient } from "@/lib/ledger"
-import { readCommit } from "@/lib/git"
+import { readTurnCommit } from "@/lib/git"
 import { readRepoMarkdown, readRepoText } from "@/lib/spec-md"
 import { TurnDetail, type RelatedDoc } from "@/components/turn-detail"
 import { TurnDocSplit } from "@/components/turn-doc-split"
@@ -48,7 +48,8 @@ export default async function TurnPage({
       : undefined
   const planMarkdown = readRepoMarkdown(specPath)
 
-  const commit = readCommit(turn.facts?.commit ?? null)
+  const commit = readTurnCommit(turn.id)
+  const evidence = turn.intent.workstreamId ? await client.getSession(turn.intent.workstreamId).catch(() => null) : null
 
   const docPaths = new Map<string, RelatedDoc>()
   for (const d of STANDING_DOCS) docPaths.set(d.path, d)
@@ -85,6 +86,7 @@ export default async function TurnPage({
     <TurnDocSplit docs={relatedDocs}>
       <TurnDetail
         turn={turn}
+        evidence={evidence}
         report={report}
         episode={episode}
         workstream={workstream}

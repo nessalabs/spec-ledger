@@ -1,0 +1,15 @@
+{
+  "id": "AUTH-W009-REQUEST",
+  "action": "grant",
+  "mode": "request",
+  "workstreamId": "W-009",
+  "featureIds": [
+    "lattice"
+  ],
+  "source": {
+    "kind": "agent-reported",
+    "reference": "User requests fixing turn evidence UI, verifying all older workstreams and retrofitting supported records, accounting for current changes."
+  },
+  "schemaVersion": 1,
+  "createdAt": "2026-09-05T01:46:17.562Z"
+}

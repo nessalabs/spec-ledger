@@ -1,0 +1,17 @@
+{
+  "id": "AUTH-UI-05cc970d-0c16-41a4-aa68-36fb14b025a9",
+  "action": "grant",
+  "mode": "revision",
+  "workstreamId": "W-009",
+  "featureIds": [
+    "lattice"
+  ],
+  "revisionDigest": "07ca9920daef05ca32cb5484ca99f2440f8033f34f1aa12c7377de21c5d79c86",
+  "supersedes": [],
+  "source": {
+    "kind": "agent-reported",
+    "reference": "local-ui:explicit-browser-action; local identity is not authenticated"
+  },
+  "schemaVersion": 1,
+  "createdAt": "2026-09-05T01:45:59.169Z"
+}

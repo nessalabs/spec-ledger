@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "requestId": "w005-retrofit-user-request",
+  "operation": "record_permission",
+  "inputDigest": "7cc259fc809997b02919014658daf803ac7c2e37c4017c32ee0b2e8b64c2dbe9",
+  "finishedAt": "2026-09-05T01:51:14.392Z",
+  "outcome": "succeeded",
+  "result": {
+    "id": "AUTH-W005-RETROFIT",
+    "action": "grant",
+    "mode": "request",
+    "workstreamId": "W-005",
+    "featureIds": [
+      "cli"
+    ],
+    "source": {
+      "kind": "agent-reported",
+      "reference": "User explicitly requested verification and evidence data retrofit for Consumer CLI and all completed workstreams during T037."
+    },
+    "schemaVersion": 1,
+    "createdAt": "2026-09-05T01:51:14.390Z"
+  }
+}

@@ -1,0 +1,372 @@
+{
+  "schemaVersion": 1,
+  "id": "T-037",
+  "status": "closed",
+  "openedAt": "2026-09-05T01:46:40.364Z",
+  "opened": {
+    "producedBy": "@nessalabs/spec-ledger@0.1.0",
+    "baseCommit": "6d71f8164fdaaf9c151573f33011db70ecd5df6d",
+    "treeDigest": "ac6ce49752215858811f2bac2c0429c4da521d8296a68434d8b5f96595034771",
+    "dirtyAtOpen": [
+      ".spec-ledger/authority/AUTH-UI-05cc970d-0c16-41a4-aa68-36fb14b025a9.json",
+      ".spec-ledger/authority/AUTH-W009-REQUEST.json",
+      ".spec-ledger/reviews/workstreams/W-009/SR-01.json",
+      ".spec-ledger/reviews/workstreams/W-009/SR-02.json",
+      ".spec-ledger/workstreams/W-009.json",
+      "docs/workstreams/W-009-evidence-first-changes/spec.md"
+    ],
+    "contextDigest": "1c62c4828c99bd5d3b60a96156cf2f45b5a195d4a850b51c37e1e8df51e79c76",
+    "contextWorkstreamId": "W-009",
+    "contextSliceId": "SLC-01",
+    "contextSealRevision": 1,
+    "contextGeneratedAt": "2026-09-05T01:46:40.364Z"
+  },
+  "intent": {
+    "userPrompt": "Make change pages lead with outcomes and proof. Audit completed workstreams and retrofit supported evidence records, accounting for current changes. Explain historical completion versus current evidence.",
+    "restatedGoal": "See each change and the evidence that it works",
+    "changeType": "fix",
+    "riskLevel": "moderate",
+    "workstreamId": "W-009",
+    "sliceId": "SLC-01",
+    "featureIds": [
+      "lattice"
+    ]
+  },
+  "closedAt": "2026-09-05T01:59:26.002Z",
+  "facts": {
+    "producedBy": "@nessalabs/spec-ledger@0.1.0",
+    "commit": "6d71f8164fdaaf9c151573f33011db70ecd5df6d",
+    "files": [
+      {
+        "path": ".spec-ledger/attachments/T-037/A-01.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/attachments/T-037/A-02.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/attachments/T-037/A-03.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/authority/AUTH-UI-05cc970d-0c16-41a4-aa68-36fb14b025a9.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/authority/AUTH-W005-RETROFIT-ALL.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/authority/AUTH-W005-RETROFIT.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/authority/AUTH-W009-REQUEST.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/bindings/b-sl-011.json",
+        "kind": "modified",
+        "additions": 3,
+        "deletions": 3
+      },
+      {
+        "path": ".spec-ledger/bindings/b-sl-012.json",
+        "kind": "modified",
+        "additions": 3,
+        "deletions": 3
+      },
+      {
+        "path": ".spec-ledger/bindings/b-sl-013.json",
+        "kind": "modified",
+        "additions": 3,
+        "deletions": 3
+      },
+      {
+        "path": ".spec-ledger/bindings/b-sl-014.json",
+        "kind": "modified",
+        "additions": 3,
+        "deletions": 3
+      },
+      {
+        "path": ".spec-ledger/bindings/b-sl-015.json",
+        "kind": "modified",
+        "additions": 3,
+        "deletions": 3
+      },
+      {
+        "path": ".spec-ledger/bindings/B-SL-026.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/claims/SL-026.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/decisions/T-037/D-01.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/decisions/T-037/D-02.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/evidence/runs/05e8a3a2-fb19-4c05-a6d2-607f8377c9fe.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/evidence/runs/e35e855d-01ec-4087-a74d-fc7f31a30c82.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/learnings/LN-005.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/ledger.json",
+        "kind": "modified",
+        "additions": 5,
+        "deletions": 1
+      },
+      {
+        "path": ".spec-ledger/reviews/turns/T-037/R-01.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/turns/T-037/R-02.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/workstreams/W-005/SR-06.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/workstreams/W-009/SR-01.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/workstreams/W-009/SR-02.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/workstreams/W-009/SR-03.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/turns/T-037.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/workstreams/W-005.json",
+        "kind": "modified",
+        "additions": 32,
+        "deletions": 9
+      },
+      {
+        "path": ".spec-ledger/workstreams/W-005.seals/4.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/workstreams/W-009.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/workstreams/W-009.seals/1.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/workstreams/W-009.seals/2.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "docs/workstreams/W-009-evidence-first-changes/evidence/T-037/browser-check.md",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "docs/workstreams/W-009-evidence-first-changes/evidence/T-037/completed-workstream-audit.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "docs/workstreams/W-009-evidence-first-changes/evidence/T-037/completed-workstream-audit.md",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "docs/workstreams/W-009-evidence-first-changes/evidence/T-037/regression-tests.txt",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "docs/workstreams/W-009-evidence-first-changes/spec.md",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ui/app/turns/[id]/page.tsx",
+        "kind": "modified",
+        "additions": 4,
+        "deletions": 2
+      },
+      {
+        "path": "packages/ui/app/workstreams/[id]/page.tsx",
+        "kind": "modified",
+        "additions": 1,
+        "deletions": 1
+      },
+      {
+        "path": "packages/ui/components/acceptance-progress.tsx",
+        "kind": "modified",
+        "additions": 11,
+        "deletions": 5
+      },
+      {
+        "path": "packages/ui/components/live-session.tsx",
+        "kind": "modified",
+        "additions": 8,
+        "deletions": 4
+      },
+      {
+        "path": "packages/ui/components/live-workstream-evidence.tsx",
+        "kind": "modified",
+        "additions": 4,
+        "deletions": 2
+      },
+      {
+        "path": "packages/ui/components/turn-detail.tsx",
+        "kind": "modified",
+        "additions": 11,
+        "deletions": 2
+      },
+      {
+        "path": "packages/ui/components/turn-evidence.tsx",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ui/components/workflow-view.tsx",
+        "kind": "modified",
+        "additions": 5,
+        "deletions": 5
+      },
+      {
+        "path": "packages/ui/components/workstream-evidence.tsx",
+        "kind": "modified",
+        "additions": 3,
+        "deletions": 3
+      },
+      {
+        "path": "packages/ui/lib/git.ts",
+        "kind": "modified",
+        "additions": 9,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ui/lib/turn-evidence.break.test.mjs",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ui/lib/turn-evidence.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      }
+    ],
+    "touchedNodeIds": [
+      "ledger-ui"
+    ],
+    "touchedFeatureIds": [
+      "lattice"
+    ],
+    "touchedClaimIds": [
+      "SL-004",
+      "SL-011",
+      "SL-012",
+      "SL-013",
+      "SL-014",
+      "SL-015",
+      "SL-021",
+      "SL-022",
+      "SL-026"
+    ],
+    "blastRadius": {
+      "direct": [],
+      "transitive": []
+    },
+    "verify": {
+      "ok": true,
+      "ledgerDigest": "8726a0fb53a87532a17e269f2dafbc52aa6828aad3941cfbd93e62dfc8281ce9",
+      "resultsDigest": "a5617cc3cb30ae86d99cf9172446838997305491755e4f534c7ac0165a2cea7c",
+      "treeDigest": "5159553a93564fdf32dd6f9559cb37eea28cba17d5fd53e66bdb4d5148776a40",
+      "producedAt": "2026-09-05T01:59:25.964Z"
+    },
+    "schemaSurfaceChanged": true,
+    "decisionIds": [
+      "T-037/D-01",
+      "T-037/D-02"
+    ],
+    "decisionsDigest": "f479c171ad3b536826aae7606f919761938f4f13fc3b7bca867b1fe84185bd8b",
+    "attachmentsDigest": "0ce77e515b89fcf356d3c0968552f203dee0fd4acfef1fa8c62e64d18a8441c7",
+    "reviewsDigest": "12a1b2c25803f5405471d9da5aa696b273cfb39e635e0a7e56fb89f6704ce768"
+  }
+}

@@ -36,7 +36,7 @@ export default async function WorkstreamPage({
   const planMarkdown = readRepoMarkdown(specPath)
   const statusLabel =
     ws.status === "done"
-      ? "Done"
+      ? projection.session?.completion.eligible ? "Completed · current checks satisfied" : "Completed earlier · verification needs attention"
       : ws.status === "active"
         ? "Active"
         : ws.status === "sealed"

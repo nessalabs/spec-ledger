@@ -1,3 +1,4 @@
+import { TurnEvidence } from "@/components/turn-evidence"
 import { presentationCopy } from "@/lib/features"
 import { featureHref, featureLabel, featureSlug } from "@/lib/features"
 import Link from "next/link"
@@ -10,6 +11,7 @@ import {
   CardTitle,
 } from "@nessalabs/ui"
 import type {
+  SessionProjection,
   Turn,
   TurnEpisode,
   VerifyReport,
@@ -132,6 +134,7 @@ export function TurnSummaryCard({
 
 export function TurnDetail({
   turn,
+  evidence,
   report,
   episode,
   workstream,
@@ -143,6 +146,7 @@ export function TurnDetail({
 }: {
   turn: Turn
   report: VerifyReport | null
+  evidence?: SessionProjection | null
   episode?: TurnEpisode | null
   workstream?: Workstream | null
   commit?: CommitInfo | null
@@ -197,7 +201,7 @@ export function TurnDetail({
           {presentationCopy(turn.intent.restatedGoal)}
         </h1>
         <div className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
-          <span>{humanStatus(turn.status)}</span>
+          <span>{turn.status === "closed" ? "Change recorded" : humanStatus(turn.status)}</span>
           <span aria-hidden>·</span>
           <span>{formatWhen(turn.closedAt ?? turn.openedAt)}</span>
           {turn.intent.changeType ? (
@@ -219,6 +223,8 @@ export function TurnDetail({
           </p>
         ) : null}
       </header>
+
+      {evidence ? <TurnEvidence initial={evidence} turn={turn} /> : <p>No evidence is linked to this change yet.</p>}
 
       {flows.length > 0 ? (
         <section className="space-y-3">
@@ -252,6 +258,8 @@ export function TurnDetail({
         </section>
       ) : null}
 
+      <details className="space-y-4 rounded-lg border border-border p-4">
+        <summary className="cursor-pointer text-sm">Technical details · commits, documents, decisions and files</summary>
       {commit ? (
         <section className="space-y-2">
           <h2 className="text-sm font-medium">Commit</h2>
@@ -388,7 +396,7 @@ export function TurnDetail({
       {(impact.features.length > 0 ||
         impact.nodes.length > 0 ||
         workstream) && (
-        <details className="rounded-lg border border-border/60 px-4 py-3 text-sm" open>
+        <details className="rounded-lg border border-border/60 px-4 py-3 text-sm">
           <summary className="cursor-pointer text-muted-foreground">
             Architecture touch
             {workstream || impact.features.length
@@ -469,6 +477,7 @@ export function TurnDetail({
           </div>
         </details>
       ) : null}
+      </details>
     </div>
   )
 }

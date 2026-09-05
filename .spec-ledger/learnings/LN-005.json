@@ -1,0 +1,13 @@
+{
+  "id": "LN-005",
+  "statement": "Show the feature outcome and its supporting evidence before implementation bookkeeping. Clearly distinguish recorded completion from current verification.",
+  "featureIds": [
+    "lattice"
+  ],
+  "source": {
+    "kind": "user-reported",
+    "reference": "User T037 screenshots: evidence buried on turn pages, wrong previous commit, and Complete contradicted by unmapped or stale checks across older workstreams."
+  },
+  "schemaVersion": 1,
+  "createdAt": "2026-09-05T01:51:14.316Z"
+}

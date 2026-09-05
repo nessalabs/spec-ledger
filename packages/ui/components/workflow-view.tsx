@@ -25,14 +25,14 @@ function StageIndicator({ status }: { status: Stage["status"] }) {
   return null
 }
 
-function StageTask({ stage }: { stage: Stage }) {
+function StageTask({ stage, waiting = false }: { stage: Stage; waiting?: boolean }) {
   const view = workflowStatusView(stage.status)
-  const indicator = <StageIndicator status={stage.status} />
+  const indicator = waiting ? null : <StageIndicator status={stage.status} />
   return (
     <TaskListItem
-      status={view.taskStatus ?? undefined}
+      status={waiting ? "todo" : view.taskStatus ?? undefined}
       icon={view.taskStatus ? undefined : indicator}
-      meta={<StatusBadge status={stage.status} />}
+      meta={waiting ? <Badge variant="outline">Waiting for previous step</Badge> : <StatusBadge status={stage.status} />}
     >
       {stage.title}
     </TaskListItem>
@@ -202,7 +202,7 @@ export function WorkflowSummary({ workflow, workstreamId }: { workflow: Workflow
         <StatusBadge status={workflow.status} />
       </div>
       <TaskList aria-label="Workflow stages" className="rounded-lg bg-muted/20 p-3">
-        {workflow.stages.map((stage) => <StageTask key={stage.id} stage={stage} />)}
+        {workflow.stages.map((stage, index) => <StageTask key={stage.id} stage={stage} waiting={stage.status === "blocked" && workflow.stages.slice(0, index).some(prior => !["satisfied", "not-applicable"].includes(prior.status)) && !stage.steps.some(step => step.attempts.some(attempt => attempt.reportedStatus === "blocked"))} />)}
       </TaskList>
       {workflow.blockers.length ? (
         <p className="text-sm text-destructive">{workflow.blockers.length} method blocker{workflow.blockers.length === 1 ? "" : "s"}</p>

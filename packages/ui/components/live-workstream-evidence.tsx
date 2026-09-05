@@ -35,10 +35,12 @@ export function LiveWorkstreamEvidence({
         verified={session.evidenceCount}
         implemented={session.criteria.filter((criterion) => criterion.implemented).length}
         remaining={session.completion.reasons}
+        historical={session.status === "done"}
+        unmapped={session.criteria.filter(c => !c.claims.length).length}
       />
-      <WorkflowDetails workflow={session.workflow} criteria={session.criteria} />
-      <ExecutionActivityDetails execution={session.executionActivity} />
       <WorkstreamEvidence session={session} observedAt={data.observedAt} />
+      {session.status === "done" ? <details><summary>Current method requirements · not the original execution history</summary><WorkflowDetails workflow={session.workflow} criteria={session.criteria} /></details> : <WorkflowDetails workflow={session.workflow} criteria={session.criteria} />}
+      {session.executionActivity.association ? <ExecutionActivityDetails execution={session.executionActivity} /> : <details><summary>Agent activity · no session registered</summary><ExecutionActivityDetails execution={session.executionActivity} /></details>}
     </div>
   )
 }
