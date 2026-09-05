@@ -1,0 +1,719 @@
+{
+  "schemaVersion": 1,
+  "id": "T-030",
+  "status": "closed",
+  "openedAt": "2026-09-04T22:04:34.483Z",
+  "opened": {
+    "producedBy": "@nessalabs/spec-ledger@0.1.0",
+    "baseCommit": "27f8935ded65daaedb34e30d682ee2647a9f6d3a",
+    "treeDigest": "daa3ec3387cc58e0ded9db9c526a3086c465f6f660fabf3a61356da131a518ae",
+    "dirtyAtOpen": [
+      ".spec-ledger/align-waivers/AW-09.json",
+      ".spec-ledger/align-waivers/AW-10.json",
+      ".spec-ledger/decisions/T-026/D-01.json",
+      ".spec-ledger/decisions/T-029/D-01.json",
+      ".spec-ledger/learnings/LN-004.json",
+      ".spec-ledger/reviews/turns/T-026/R-01.json",
+      ".spec-ledger/reviews/turns/T-026/R-02.json",
+      ".spec-ledger/reviews/turns/T-026/R-03.json",
+      ".spec-ledger/reviews/turns/T-027/R-01.json",
+      ".spec-ledger/reviews/turns/T-027/R-02.json",
+      ".spec-ledger/reviews/turns/T-028/R-01.json",
+      ".spec-ledger/reviews/turns/T-028/R-02.json",
+      ".spec-ledger/reviews/turns/T-029/R-01.json",
+      ".spec-ledger/reviews/turns/T-029/R-02.json",
+      ".spec-ledger/reviews/turns/T-029/R-03.json",
+      ".spec-ledger/reviews/turns/T-029/R-04.json",
+      ".spec-ledger/reviews/workstreams/W-006/SR-01.json",
+      ".spec-ledger/sources/T-026/S-01.json",
+      ".spec-ledger/sources/T-029/S-01.json",
+      ".spec-ledger/turns/T-026.json",
+      ".spec-ledger/turns/T-027.json",
+      ".spec-ledger/turns/T-028.json",
+      ".spec-ledger/turns/T-029.json",
+      ".spec-ledger/workstreams/W-006.json",
+      ".spec-ledger/workstreams/W-006.seals/1.json",
+      "AGENTS.md",
+      "DESIGN.md",
+      "docs/architecture/evidence.md",
+      "docs/architecture/issue-intake.md",
+      "docs/architecture/permission.md",
+      "docs/workstreams/W-006-trustworthy-autonomous-coding/evidence/ui-rail/reported-clipping.png",
+      "docs/workstreams/W-006-trustworthy-autonomous-coding/spec.md",
+      "packages/client/src/index.ts",
+      "packages/ledger/src/align/check.ts",
+      "packages/ledger/src/cli/main.ts",
+      "packages/ledger/src/compass/learnings.ts",
+      "packages/ledger/src/context/vertical.ts",
+      "packages/ledger/src/evidence/fingerprint.break.test.ts",
+      "packages/ledger/src/evidence/fingerprint.ts",
+      "packages/ledger/src/evidence/record.ts",
+      "packages/ledger/src/fs/snapshot.ts",
+      "packages/ledger/src/git/tree.ts",
+      "packages/ledger/src/index.ts",
+      "packages/ledger/src/permission/authority.break.test.ts",
+      "packages/ledger/src/permission/authority.ts",
+      "packages/ledger/src/reviews/load.ts",
+      "packages/ledger/src/turns/close.test.ts",
+      "packages/ledger/src/turns/close.ts",
+      "packages/ledger/src/turns/gates.ts",
+      "packages/ledger/src/types.ts",
+      "packages/ledger/src/verify/aggregation.break.test.ts",
+      "packages/ledger/src/verify/execute.ts",
+      "packages/ledger/src/verify/readonly.break.test.ts",
+      "packages/ledger/src/verify/verify.ts",
+      "packages/ledger/src/workstream/load.ts",
+      "packages/server/src/routes.ts",
+      "packages/ui/app/globals.css",
+      "packages/ui/app/page.tsx",
+      "packages/ui/app/verify/page.tsx",
+      "packages/ui/components/spec-ledger-shell.tsx",
+      "schemas/authority.json",
+      "schemas/learning.json",
+      "schemas/ledger-root.json",
+      "schemas/report.json",
+      "schemas/results.json",
+      "schemas/review.json",
+      "skills/sl-learn/SKILL.md"
+    ],
+    "contextDigest": "50bb7c5cb6b275480aae3c764f41a9a7ee92e41cde2d7d0e420748665adf72ad",
+    "contextWorkstreamId": "W-006",
+    "contextSliceId": "SLC-05",
+    "contextSealRevision": 1,
+    "contextGeneratedAt": "2026-09-04T22:04:34.483Z"
+  },
+  "intent": {
+    "userPrompt": "Bring deferred commitments back when their feature is planned",
+    "restatedGoal": "Bring deferred commitments back when their feature is planned",
+    "changeType": "feature",
+    "riskLevel": "moderate",
+    "workstreamId": "W-006",
+    "sliceId": "SLC-05"
+  },
+  "closedAt": "2026-09-04T22:20:58.772Z",
+  "facts": {
+    "producedBy": "@nessalabs/spec-ledger@0.1.0",
+    "commit": "27f8935ded65daaedb34e30d682ee2647a9f6d3a",
+    "files": [
+      {
+        "path": ".spec-ledger/align-waivers/AW-09.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/align-waivers/AW-10.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/align-waivers/AW-11.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/decisions/T-026/D-01.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/decisions/T-029/D-01.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/learnings/LN-004.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/turns/T-026/R-01.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/turns/T-026/R-02.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/turns/T-026/R-03.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/turns/T-027/R-01.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/turns/T-027/R-02.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/turns/T-028/R-01.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/turns/T-028/R-02.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/turns/T-029/R-01.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/turns/T-029/R-02.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/turns/T-029/R-03.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/turns/T-029/R-04.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/turns/T-030/R-01.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/turns/T-030/R-02.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/turns/T-030/R-03.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/turns/T-030/R-04.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/workstreams/W-006/SR-01.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/sources/T-026/S-01.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/sources/T-029/S-01.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/turns/T-026.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/turns/T-027.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/turns/T-028.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/turns/T-029.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/turns/T-030.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/workstreams/W-006.json",
+        "kind": "modified",
+        "additions": 208,
+        "deletions": 3
+      },
+      {
+        "path": ".spec-ledger/workstreams/W-006.seals/1.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "AGENTS.md",
+        "kind": "modified",
+        "additions": 3,
+        "deletions": 3
+      },
+      {
+        "path": "DESIGN.md",
+        "kind": "modified",
+        "additions": 3,
+        "deletions": 1
+      },
+      {
+        "path": "docs/architecture/deferrals.md",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "docs/architecture/evidence.md",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "docs/architecture/issue-intake.md",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "docs/architecture/permission.md",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "docs/architecture/session.md",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "docs/architecture/work-model.md",
+        "kind": "modified",
+        "additions": 8,
+        "deletions": 0
+      },
+      {
+        "path": "docs/workstreams/W-006-trustworthy-autonomous-coding/evidence/ui-rail/reported-clipping.png",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "docs/workstreams/W-006-trustworthy-autonomous-coding/spec.md",
+        "kind": "modified",
+        "additions": 17,
+        "deletions": 5
+      },
+      {
+        "path": "packages/client/src/index.ts",
+        "kind": "modified",
+        "additions": 26,
+        "deletions": 2
+      },
+      {
+        "path": "packages/ledger/src/align/check.break.test.ts",
+        "kind": "modified",
+        "additions": 2,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/align/check.ts",
+        "kind": "modified",
+        "additions": 0,
+        "deletions": 3
+      },
+      {
+        "path": "packages/ledger/src/cli/main.ts",
+        "kind": "modified",
+        "additions": 116,
+        "deletions": 3
+      },
+      {
+        "path": "packages/ledger/src/compass/learnings.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/context/vertical.ts",
+        "kind": "modified",
+        "additions": 18,
+        "deletions": 18
+      },
+      {
+        "path": "packages/ledger/src/deferrals/deferrals.break.test.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/deferrals/index.test.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/deferrals/index.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/deferrals/portability.test.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/episodes.write.test.ts",
+        "kind": "modified",
+        "additions": 1,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/evidence/fingerprint.break.test.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/evidence/fingerprint.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/evidence/record.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/fs/snapshot.ts",
+        "kind": "modified",
+        "additions": 10,
+        "deletions": 1
+      },
+      {
+        "path": "packages/ledger/src/git/tree.ts",
+        "kind": "modified",
+        "additions": 9,
+        "deletions": 30
+      },
+      {
+        "path": "packages/ledger/src/index.ts",
+        "kind": "modified",
+        "additions": 13,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/permission/authority.break.test.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/permission/authority.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/related/pack.ts",
+        "kind": "modified",
+        "additions": 5,
+        "deletions": 1
+      },
+      {
+        "path": "packages/ledger/src/reviews/load.ts",
+        "kind": "modified",
+        "additions": 5,
+        "deletions": 3
+      },
+      {
+        "path": "packages/ledger/src/session/project.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/session/session.break.test.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/turns/close.test.ts",
+        "kind": "modified",
+        "additions": 2,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/turns/close.ts",
+        "kind": "modified",
+        "additions": 8,
+        "deletions": 4
+      },
+      {
+        "path": "packages/ledger/src/turns/gates.ts",
+        "kind": "modified",
+        "additions": 4,
+        "deletions": 1
+      },
+      {
+        "path": "packages/ledger/src/types.ts",
+        "kind": "modified",
+        "additions": 35,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/verify/aggregation.break.test.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/verify/execute.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/verify/readonly.break.test.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/verify/verify.ts",
+        "kind": "modified",
+        "additions": 54,
+        "deletions": 44
+      },
+      {
+        "path": "packages/ledger/src/workstream/load.ts",
+        "kind": "modified",
+        "additions": 2,
+        "deletions": 0
+      },
+      {
+        "path": "packages/server/src/routes.ts",
+        "kind": "modified",
+        "additions": 22,
+        "deletions": 4
+      },
+      {
+        "path": "packages/ui/app/api/session/route.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ui/app/globals.css",
+        "kind": "modified",
+        "additions": 7,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ui/app/page.tsx",
+        "kind": "modified",
+        "additions": 9,
+        "deletions": 3
+      },
+      {
+        "path": "packages/ui/app/verify/page.tsx",
+        "kind": "modified",
+        "additions": 2,
+        "deletions": 2
+      },
+      {
+        "path": "packages/ui/components/live-session.tsx",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ui/components/spec-ledger-shell.tsx",
+        "kind": "modified",
+        "additions": 1,
+        "deletions": 1
+      },
+      {
+        "path": "schemas/authority.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "schemas/learning.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "schemas/ledger-root.json",
+        "kind": "modified",
+        "additions": 42,
+        "deletions": 9
+      },
+      {
+        "path": "schemas/report.json",
+        "kind": "modified",
+        "additions": 87,
+        "deletions": 19
+      },
+      {
+        "path": "schemas/results.json",
+        "kind": "modified",
+        "additions": 78,
+        "deletions": 11
+      },
+      {
+        "path": "schemas/review.json",
+        "kind": "modified",
+        "additions": 184,
+        "deletions": 46
+      },
+      {
+        "path": "skills/README.md",
+        "kind": "modified",
+        "additions": 4,
+        "deletions": 0
+      },
+      {
+        "path": "skills/sl-check/SKILL.md",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "skills/sl-dev-align/SKILL.md",
+        "kind": "modified",
+        "additions": 2,
+        "deletions": 2
+      },
+      {
+        "path": "skills/sl-dev-build/SKILL.md",
+        "kind": "modified",
+        "additions": 4,
+        "deletions": 3
+      },
+      {
+        "path": "skills/sl-learn/SKILL.md",
+        "kind": "modified",
+        "additions": 6,
+        "deletions": 0
+      },
+      {
+        "path": "skills/sl-plan-break-spec/SKILL.md",
+        "kind": "modified",
+        "additions": 10,
+        "deletions": 17
+      },
+      {
+        "path": "skills/sl-plan-shape/SKILL.md",
+        "kind": "modified",
+        "additions": 1,
+        "deletions": 1
+      },
+      {
+        "path": "skills/sl-plan/SKILL.md",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "skills/sl-work/SKILL.md",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      }
+    ],
+    "touchedNodeIds": [
+      "ledger-client",
+      "ledger-core",
+      "ledger-server",
+      "ledger-ui",
+      "schemas"
+    ],
+    "touchedFeatureIds": [
+      "cli",
+      "client",
+      "lattice",
+      "server",
+      "turns",
+      "verify"
+    ],
+    "touchedClaimIds": [
+      "SL-001",
+      "SL-002",
+      "SL-003",
+      "SL-004",
+      "SL-006",
+      "SL-007",
+      "SL-008",
+      "SL-011",
+      "SL-015"
+    ],
+    "blastRadius": {
+      "direct": [
+        "ledger-client",
+        "ledger-core",
+        "ledger-server",
+        "ledger-ui"
+      ],
+      "transitive": [
+        "ledger-client",
+        "ledger-core",
+        "ledger-server",
+        "ledger-ui"
+      ]
+    },
+    "verify": {
+      "ok": true,
+      "ledgerDigest": "35e4d3d1ebdf1e74071441c1087a1ee79fe1ac3b7813f90f8fbf560141eaf15b",
+      "resultsDigest": "ded3eb2608a70a2e28040c5e1e7c4faa49be0d27b4ffc4d3e2a3ffb91bf72fbb",
+      "treeDigest": "176ce1b2734003743f950d8e7a0db7872dc7069d4302d444b8c18e78174a58be",
+      "producedAt": "2026-09-04T22:20:58.740Z"
+    },
+    "schemaSurfaceChanged": true,
+    "reviewsDigest": "e16269fb71d6d29ba2dd5c60829d2e7a6de4326cc8bf17354d5f53cb9cb82a3b"
+  }
+}

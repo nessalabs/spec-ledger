@@ -1,0 +1,27 @@
+{
+  "id": "T-037/R-01",
+  "workstreamId": "W-009",
+  "kind": "adversarial",
+  "target": "code",
+  "reviewer": "agent:turn-evidence-breaker",
+  "verdict": "approve",
+  "blocking": false,
+  "plainSummary": "Change pages now show their proof first and explain when completed work needs fresh verification.",
+  "summary": "Independent review of W009 UI changes and W005 mapping-only retrofit against final source. Reran five persisted turn-evidence killers: adjacent slice prefixes excluded, fail/missing preserved, legacy unmapped explicit, actual Git trailer histories reject wrong prefixes and prose mentions, React-rendered evidence precedes collapsed technical details. Separately rendered WorkflowSummary to confirm prerequisite waiting never hides a reported-blocked attempt. Independently ran 41 init/publication-configuration/digest regressions. Inspected root final 24-pass explicit verifier output and browser walkthrough artifacts; root reports full 214-test suite and isolated UI build/typecheck passing. W005 SR06 reviewed original-acceptance mappings; current binding executions now behavioral rather than file presence. No historical facts or proof restamped. Review approves implemented scope and honest residual gaps, not verification of every historical criterion.",
+  "treeDigest": "5159553a93564fdf32dd6f9559cb37eea28cba17d5fd53e66bdb4d5148776a40",
+  "killersCited": [
+    "packages/ui/lib/turn-evidence.break.test.mjs: turn evidence excludes adjacent slice prefixes and preserves failed/missing verdicts",
+    "packages/ui/lib/turn-evidence.break.test.mjs: actual Git histories attribute only exact trailers, never close HEAD or prefix/body mentions",
+    "packages/ui/lib/turn-evidence.break.test.mjs: rendered change page puts evidence before collapsed commit and documents",
+    "Rendered WorkflowSummary: waiting prerequisite versus explicit reportedStatus blocked"
+  ],
+  "findings": [],
+  "residualRisks": [
+    "Completed-workstream audit identifies unsupported and superseded historical criteria; those remain gaps and are not proved by the 24 passing standing claims.",
+    "W009 audit acceptance must not be mapped indiscriminately to SL011–025; artifact/review evidence of an audit is distinct from behavioral proof of all audited requirements.",
+    "Publication workflow assertions inspect configuration and do not prove an actual registry publication or GitHub runner execution.",
+    "Legacy turns with top-level acceptance and slice IDs intentionally show no scoped acceptance mapping until an explicit association exists."
+  ],
+  "schemaVersion": 1,
+  "turnId": "T-037"
+}

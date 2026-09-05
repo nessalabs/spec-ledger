@@ -1,3 +1,5 @@
+import { prepareExecutablePlan } from "../permission/authority.js"
+import { activateDeferralsForWork } from "../deferrals/index.js"
 import { spawnSync } from "node:child_process"
 import { existsSync, readdirSync, readFileSync } from "node:fs"
 import { join } from "node:path"
@@ -38,6 +40,11 @@ function mapStatus(code: string): TurnFileKind {
   return "modified"
 }
 
+function isOperationBookkeeping(path: string): boolean {
+  return path === ".spec-ledger/operations" || path.startsWith(".spec-ledger/operations/") ||
+    path === ".spec-ledger/runtime/activity" || path.startsWith(".spec-ledger/runtime/activity/")
+}
+
 /** Changed paths from git. Prefers HEAD diff; falls back to porcelain status. */
 export function collectGitFiles(repoRoot: string): TurnFileChange[] {
   const hasHead = git(repoRoot, ["rev-parse", "--verify", "HEAD"]).ok
@@ -50,7 +57,7 @@ export function collectGitFiles(repoRoot: string): TurnFileChange[] {
         const parts = line.split("\t")
         const code = parts[0] ?? ""
         const path = parts.length >= 3 ? parts[parts.length - 1] : parts[1]
-        if (!code || !path) continue
+        if (!code || !path || isOperationBookkeeping(path)) continue
         byPath.set(path, { path, kind: mapStatus(code), additions: 0, deletions: 0 })
       }
     }
@@ -61,7 +68,7 @@ export function collectGitFiles(repoRoot: string): TurnFileChange[] {
         if (parts.length < 3) continue
         const [a, d] = parts
         const path = parts.slice(2).join("\t")
-        if (!path || path.includes(" -> ")) continue
+        if (!path || path.includes(" -> ") || isOperationBookkeeping(path)) continue
         const cur = byPath.get(path) ?? {
           path,
           kind: "modified" as const,
@@ -81,7 +88,7 @@ export function collectGitFiles(repoRoot: string): TurnFileChange[] {
       const code = line.slice(0, 2).trim() || "??"
       let path = line.slice(3).trim().replace(/^"+|"+$/g, "")
       if (path.includes(" -> ")) path = path.split(" -> ").at(-1)!.trim()
-      if (!path) continue
+      if (!path || isOperationBookkeeping(path)) continue
       if (!byPath.has(path)) {
         byPath.set(path, { path, kind: mapStatus(code), additions: 0, deletions: 0 })
       }
@@ -265,15 +272,17 @@ export function openTurn(
   const sliceId = opts.sliceId ?? intent.sliceId
   const featureIds = opts.featureIds ?? intent.featureIds
 
-  if (workstreamId) {
-    resumeAutomationEvents(ledger.repoRoot, { workstreamId })
-  }
-
   const dirty = dirtyPaths(ledger.repoRoot)
   if (dirty.length && !opts.allowDirty) {
     throw new Error(
       `turn open refused: dirty worktree (${dirty.length} paths). Pass --allow-dirty or commit first.`,
     )
+  }
+
+  if (workstreamId) {
+    prepareExecutablePlan(ledger.repoRoot,workstreamId)
+    activateDeferralsForWork(ledger.repoRoot, workstreamId)
+    resumeAutomationEvents(ledger.repoRoot, { workstreamId })
   }
 
   let opened: Turn["opened"] = {

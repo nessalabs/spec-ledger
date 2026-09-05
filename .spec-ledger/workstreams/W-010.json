@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "id": "W-010",
+  "status": "done",
+  "title": "Inspect a test and run it again",
+  "objective": "Read what a test checks, inspect its source and actual output, and rerun the saved check from the website.",
+  "specPath": "docs/workstreams/W-010-inspect-and-run-checks/spec.md",
+  "featureIds": [
+    "cli",
+    "client",
+    "verify",
+    "lattice"
+  ],
+  "policy": {
+    "requireSpecBreak": true,
+    "requireCodeBreak": true,
+    "requireAlignApprove": true
+  },
+  "trust": {
+    "userFacing": true,
+    "securitySensitive": true,
+    "correctnessCritical": true,
+    "requiredEvidence": [
+      "unit",
+      "integration",
+      "e2e"
+    ]
+  },
+  "suggestedSlices": [
+    {
+      "id": "SLC-01",
+      "title": "Inspect and rerun a saved check with real output",
+      "kind": "vertical",
+      "acceptance": [
+        "CLI, MCP and local UI run the same saved check with bounded inspectable output, current source/check provenance, honest metadata, retry safety and passive read surfaces."
+      ],
+      "expectedPaths": [
+        "packages/**",
+        "schemas/**",
+        "docs/**",
+        "skills/**"
+      ],
+      "codeBreakReviewId": "T-038/R-03"
+    }
+  ],
+  "specBreakReviewId": "W-010/SR-03",
+  "updatedAt": "2026-09-05T02:34:09.135Z",
+  "seal": {
+    "sealedAt": "2026-09-05T02:16:15.428Z",
+    "sealedBy": "agent:permission:AUTH-W010-REQUEST",
+    "specDigest": "c77ac0a2cd2c1941f0ae033ac8d312e3389cd2d1b8373adf7f839500e817225c",
+    "snapshotPath": "workstreams/W-010.seals/2.json",
+    "revision": 2,
+    "specDocDigest": "036cbc5e3e9cf30a48102254d3c73e6fd42857f91cfbc5bab541dfb00aac7c99"
+  },
+  "acceptanceClaimIds": {
+    "SLC-01/AC-1": [
+      "SL-027"
+    ]
+  },
+  "postSealAmends": [
+    {
+      "at": "2026-09-05T02:15:07.156Z",
+      "summary": "Name the shared test metadata fields and link acceptance to behavioral saved-check regressions.",
+      "humanConfirmed": true,
+      "sealedRevision": 1,
+      "beforeDocDigest": "caff47784ff8ba6726b3e6d85954844ffd5a48343e95cf5b3ed8ac7e0d48fc75",
+      "afterDocDigest": "036cbc5e3e9cf30a48102254d3c73e6fd42857f91cfbc5bab541dfb00aac7c99",
+      "actor": "agent:user-request",
+      "turnId": "T-038"
+    },
+    {
+      "at": "2026-09-05T02:27:27.965Z",
+      "summary": "User requested Nessa syntax highlighting and feature-focused claim wording; preserve the precise contracts and checks in linked technical documentation.",
+      "humanConfirmed": true,
+      "sealedRevision": 2,
+      "beforeDocDigest": "036cbc5e3e9cf30a48102254d3c73e6fd42857f91cfbc5bab541dfb00aac7c99",
+      "afterDocDigest": "b3ff97d8a3146193f0637ebc94c92b2720b7b2fb00b13e95d89c016d9bba3bfb",
+      "actor": "agent:user-request",
+      "turnId": "T-038"
+    }
+  ]
+}

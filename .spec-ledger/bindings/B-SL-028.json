@@ -1,0 +1,18 @@
+{
+  "id": "b-sl-028",
+  "claimId": "SL-028",
+  "kind": "test",
+  "locator": {
+    "type": "command",
+    "command": "node scripts/verify-completed-audit.mjs && node --test packages/ui/lib/completed-audit*.test.mjs"
+  },
+  "test": {
+    "level": "integration",
+    "description": "Check that the audit includes every earlier requirement and keeps missing proof visible.",
+    "source": {
+      "path": "scripts/verify-completed-audit.mjs"
+    },
+    "inputs": "The current requirements for the eight earlier workstreams and their recorded audit.",
+    "expected": "Every requirement appears once with unchanged wording, its actual check links, an explained judgment and readable supporting files. An omitted requirement or invented mapping fails."
+  }
+}

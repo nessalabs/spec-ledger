@@ -1,5 +1,7 @@
 "use client"
 
+import { presentationCopy } from "@/lib/features"
+
 import Link from "next/link"
 import * as React from "react"
 import { useDocPane } from "@/components/doc-reader"
@@ -55,7 +57,7 @@ export function turnPeekMarkdown(args: {
   fileBit?: string
 }): string {
   const lines = [
-    `# ${args.goal}`,
+    `# ${presentationCopy(args.goal)}`,
     "",
     `**${args.id}** · ${args.status}${args.when ? ` · ${args.when}` : ""}`,
   ]
@@ -63,7 +65,7 @@ export function turnPeekMarkdown(args: {
     lines.push(
       "",
       `Workstream **${args.workstreamId}**${
-        args.workstreamTitle ? ` — ${args.workstreamTitle}` : ""
+        args.workstreamTitle ? ` — ${presentationCopy(args.workstreamTitle)}` : ""
       }`,
     )
   }
@@ -120,13 +122,13 @@ export function workstreamPeekMarkdown(args: {
   revision?: number
 }): string {
   return [
-    `# ${args.title}`,
+    `# ${presentationCopy(args.title)}`,
     "",
     `**${args.id}** · ${args.status}${
       args.revision != null ? ` · rev ${args.revision}` : ""
     }`,
     "",
-    args.objective,
+    presentationCopy(args.objective),
     "",
     `[Open full workstream](/workstreams/${encodeURIComponent(args.id)})`,
     "",

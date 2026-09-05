@@ -1,9 +1,9 @@
 {
   "id": "b-sl-015",
   "claimId": "SL-015",
-  "kind": "check",
+  "kind": "test",
   "locator": {
-    "type": "path",
-    "path": "packages/ledger/src/workstream"
+    "type": "command",
+    "command": "node --test packages/ledger/dist/workstream/doc-digest.test.js packages/ledger/dist/workstream/doc-digest.break.test.js packages/ledger/dist/workstream/pr1-regressions.break.test.js"
   }
 }

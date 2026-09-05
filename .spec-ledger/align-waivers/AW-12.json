@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "id": "T-031/AW-12",
+  "reason": "AGENTS and DESIGN changes document the explicitly authorized W-006 permission workflow and carry over from SLC-04. The current review covers the complete implementation and both user-reported UI fixes; this waiver records those two documentation paths only.",
+  "actor": "agent:user-request-scope",
+  "treeDigest": "b5d25e66897f1b13e2705e6899e139fd8ed88e49aa2dda65e3f9d1a49db0de88",
+  "createdAt": "2026-09-04T22:31:53.946Z",
+  "workstreamId": "W-006",
+  "turnId": "T-031"
+}

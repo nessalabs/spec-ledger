@@ -1,0 +1,7 @@
+{
+  "schemaVersion": 1,
+  "turnId": "T-026",
+  "kind": "user",
+  "note": "User requested implementation of the proposed W-006 direction and chose portable CLI handoff first. Source is this conversation, agent-reported.",
+  "id": "T-026/S-01"
+}

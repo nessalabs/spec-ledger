@@ -1,0 +1,13 @@
+{
+  "id": "LN-006",
+  "statement": "Write visible requirements as plain feature outcomes for a nontechnical reader. Keep precise implementation contracts in linked technical documentation; use Nessa UI code rendering when the reader chooses to inspect source.",
+  "featureIds": [
+    "lattice"
+  ],
+  "source": {
+    "kind": "user-reported",
+    "reference": "User T038 corrections: code needs Nessa syntax highlighting, and SL claim wording must follow the existing plain-language communication guidance."
+  },
+  "schemaVersion": 1,
+  "createdAt": "2026-09-05T02:29:25.519667+00:00"
+}

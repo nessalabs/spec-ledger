@@ -1,0 +1,18 @@
+# See what changed and the evidence that it works
+
+The user found the turn page prioritizes commits, architecture and generic documents over evidence. This is a correction to the review experience, not new verification authority.
+
+A turn page must lead with its plain-language goal, scoped acceptance outcomes, current check evidence and the artifacts recorded for that turn. Show what was tested and whether it passed without requiring navigation to a different page. Full output and technical metadata may be expanded. Distinguish current workstream checks from historical artifacts: neither a closed turn nor a matching artifact hash proves behavior. Missing, failed, stale or unavailable evidence must remain explicit. Filter criteria to the turn's slice when present; never attribute another slice's proof to this turn. Legacy turns without a slice show relevant claimed checks or an honest missing-mapping state.
+
+Commit metadata belongs in collapsed technical details. Resolve commits using exact SL-Turn trailers, never label the pre-close HEAD as this turn's shipped commit without a matching trailer. No rewriting historical turn facts. Related architecture docs, internal decisions and file lists are secondary collapsed details. Keep client-only UI imports and passive reads.
+
+Acceptance: T-036 shows its activity outcome and actual SL-025 check/run output plus its three recorded artifacts before technical details. Its commit is T-036's matching trailer commit, not T-035. Legacy/missing/failing/stale evidence remains honest. Verify rendered page ordering and actual temporary Git histories, plus browser T-036.
+
+Additional user correction: the Now page must not say unqualified Complete when a previously completed workstream no longer satisfies current prerequisites. Label historical completion with current revalidation status. Unconfirmed current implementation must not be worded as proof it was never built; explain source-bound reports/reviews need renewal. Preserve current evidence verdicts and completion checks without auto-restamping records.
+
+User-authorized extension: audit all completed workstreams and retrofit acceptance-to-claim mappings where existing or added behavioral tests substantiate the original criteria. Re-run against final source after this turn changes. Preserve sealed intent and historical facts; use supported amendments if acceptance changes are required. No retrospective invented reviews or historical pass claims. Record current findings, verification, source-bound implementation and independent review where warranted; explicitly retain unsupported criteria as gaps.
+
+
+## Finish the audit and correct test-source highlighting
+
+For AC2, validate a fresh audit covering every current acceptance item in W-001 through W-008. Each item must preserve its text and current claim links, cite existing inspected sources, and explain whether it has mapped checks, a gap, or a superseding change. A repository validation script and adversarial tests check coverage, duplicate/missing items, changed acceptance and broken references. Independent review checks the judgments. This proves the audit is complete, not that all historical criteria pass. Retain unresolved gaps explicitly. Fix the reported SL-027 highlighting case using the existing Nessa renderer and verify that exact page.

@@ -1,0 +1,530 @@
+{
+  "schemaVersion": 1,
+  "readOnlyAudit": true,
+  "sourceNote": "Audited source and preserved acceptance on 2026-09-04 during W009 changes; no ledger writes performed. Suggested maps are not passing verdicts.",
+  "workstreams": {
+    "W-001": [
+      {
+        "criterionId": "AC-1",
+        "suggestedClaimIds": [],
+        "evidenceSources": [
+          "packages/ledger/src/workstream/doc-digest.test.ts",
+          "packages/ledger/src/workstream/doc-digest.break.test.ts"
+        ],
+        "assessment": "partial-or-unmapped",
+        "gap": "Existing SL-015 overlaps digest preservation but does not fully name seal lifecycle; new scoped claim needed."
+      },
+      {
+        "criterionId": "AC-2",
+        "suggestedClaimIds": [],
+        "evidenceSources": [
+          "packages/ledger/src/context/vertical.test.ts"
+        ],
+        "assessment": "partial-or-unmapped",
+        "gap": "Stable API context tested; exact CLI/API equality not asserted by this test."
+      },
+      {
+        "criterionId": "AC-3",
+        "suggestedClaimIds": [],
+        "evidenceSources": [
+          "packages/ledger/src/turns/close.test.ts"
+        ],
+        "assessment": "partial-or-unmapped",
+        "gap": "Behavior test exists, but SL-006 only describes dirty/tree gate. Add scoped claim before mapping."
+      },
+      {
+        "criterionId": "AC-4",
+        "suggestedClaimIds": [],
+        "evidenceSources": [
+          "packages/ledger/src/turns/close.test.ts"
+        ],
+        "assessment": "partial-or-unmapped",
+        "gap": "Behavior test exists; no standing claim precisely represents review-close gate."
+      },
+      {
+        "criterionId": "AC-5",
+        "suggestedClaimIds": [],
+        "evidenceSources": [],
+        "assessment": "partial-or-unmapped",
+        "gap": "Needs current browser observation of feature and turn detail after this turn UI edits. Legacy Lattice name superseded."
+      },
+      {
+        "criterionId": "AC-6",
+        "suggestedClaimIds": [],
+        "evidenceSources": [
+          "packages/ledger/src/context/vertical.test.ts"
+        ],
+        "assessment": "partial-or-unmapped",
+        "gap": "Existing test calls verifier twice without changing metadata: insufficient assertion of independence. Add mutation-based test."
+      }
+    ],
+    "W-002": [
+      {
+        "criterionId": "AC-1",
+        "suggestedClaimIds": [],
+        "evidenceSources": [
+          "packages/ledger/src/episodes.write.test.ts"
+        ],
+        "assessment": "partial-or-unmapped",
+        "gap": "No direct check-no-write/abandon facts behavior assertion found."
+      },
+      {
+        "criterionId": "AC-2",
+        "suggestedClaimIds": [
+          "SL-006"
+        ],
+        "evidenceSources": [
+          "packages/ledger/src/turns/close.test.ts",
+          "packages/ledger/src/git/tree.test.ts"
+        ],
+        "assessment": "partial-or-unmapped",
+        "gap": "Upgrade SL-006 path binding and add explicit dirty-refusal test if not in latest suite; current named turn test permits dirty."
+      },
+      {
+        "criterionId": "AC-3",
+        "suggestedClaimIds": [
+          "SL-007"
+        ],
+        "evidenceSources": [
+          "packages/ledger/src/context/vertical.test.ts"
+        ],
+        "assessment": "partial-or-unmapped",
+        "gap": "SL-007 binding is only routes.ts existence. Need actual HTTP client context test."
+      },
+      {
+        "criterionId": "AC-4",
+        "suggestedClaimIds": [],
+        "evidenceSources": [
+          "packages/ledger/src/runtime.p0.test.ts",
+          "packages/ledger/src/verify/readonly.break.test.ts"
+        ],
+        "assessment": "partial-or-unmapped",
+        "gap": "Original resume-on-context behavior intentionally superseded by W006 read purity. Do not claim old acceptance passing; record supersession."
+      },
+      {
+        "criterionId": "AC-5",
+        "suggestedClaimIds": [],
+        "evidenceSources": [
+          "packages/ledger/src/runtime.p0.test.ts"
+        ],
+        "assessment": "partial-or-unmapped",
+        "gap": "Related function checked, not CLI shape. No exact standing claim."
+      },
+      {
+        "criterionId": "AC-6",
+        "suggestedClaimIds": [],
+        "evidenceSources": [
+          "packages/ledger/src/episodes.write.test.ts"
+        ],
+        "assessment": "partial-or-unmapped",
+        "gap": "Test runs real side-collection CLI and close; add scoped claim for mapping."
+      },
+      {
+        "criterionId": "AC-7",
+        "suggestedClaimIds": [
+          "SL-008"
+        ],
+        "evidenceSources": [
+          "packages/ledger/src/runtime.p0.test.ts"
+        ],
+        "assessment": "partial-or-unmapped",
+        "gap": "Current test checks audit shape only, not policy nonzero exit. SL-008 path binding insufficient; CI config inspection required."
+      },
+      {
+        "criterionId": "AC-8",
+        "suggestedClaimIds": [],
+        "evidenceSources": [],
+        "assessment": "partial-or-unmapped",
+        "gap": "Needs browser observation; /timeline may now route through turns history. Legacy Lattice label superseded."
+      },
+      {
+        "criterionId": "AC-9",
+        "suggestedClaimIds": [],
+        "evidenceSources": [
+          "packages/ledger/src/runtime.p0.test.ts"
+        ],
+        "assessment": "partial-or-unmapped",
+        "gap": "Dogfood turn metadata can establish historical use; proposals/themes behavior not meaningfully asserted."
+      }
+    ],
+    "W-003": [
+      {
+        "criterionId": "AC-1",
+        "suggestedClaimIds": [],
+        "evidenceSources": [],
+        "assessment": "partial-or-unmapped",
+        "gap": "pnpm lattice script no longer exists; pnpm ui is authorized naming successor. Preserve original spec and explain supersession."
+      },
+      {
+        "criterionId": "AC-2",
+        "suggestedClaimIds": [],
+        "evidenceSources": [],
+        "assessment": "partial-or-unmapped",
+        "gap": "Home was replaced by Follow the work; prior pulse/open-turn/live-badge layout is not current contract. Verify current experience as W008/W009 instead."
+      },
+      {
+        "criterionId": "AC-3",
+        "suggestedClaimIds": [],
+        "evidenceSources": [],
+        "assessment": "partial-or-unmapped",
+        "gap": "Needs browser check of workstream index/detail after current edits."
+      },
+      {
+        "criterionId": "AC-4",
+        "suggestedClaimIds": [],
+        "evidenceSources": [],
+        "assessment": "partial-or-unmapped",
+        "gap": "Needs browser check of turn metadata and artifacts after current edits."
+      },
+      {
+        "criterionId": "AC-5",
+        "suggestedClaimIds": [],
+        "evidenceSources": [],
+        "assessment": "partial-or-unmapped",
+        "gap": "Needs browser check of brand/navigation. Screenshot revealed old Lattice in W004 objective; do not silently rewrite sealed prose."
+      },
+      {
+        "criterionId": "AC-6",
+        "suggestedClaimIds": [
+          "SL-005"
+        ],
+        "evidenceSources": [],
+        "assessment": "partial-or-unmapped",
+        "gap": "SL-005 tests only package path existence currently. Need real client/API episode test and import-boundary test before whole criterion can pass."
+      }
+    ],
+    "W-004": [
+      {
+        "criterionId": "AC-1",
+        "suggestedClaimIds": [],
+        "evidenceSources": [],
+        "assessment": "partial-or-unmapped",
+        "gap": "Document layout intentionally evolved to workstream directories with evidence. Inspect current docs layout; original title-slug exact shape superseded."
+      },
+      {
+        "criterionId": "AC-2",
+        "suggestedClaimIds": [],
+        "evidenceSources": [],
+        "assessment": "partial-or-unmapped",
+        "gap": "Current branding requirement superseded original specLedger typography; verify Spec Ledger chrome in browser."
+      },
+      {
+        "criterionId": "AC-3",
+        "suggestedClaimIds": [],
+        "evidenceSources": [],
+        "assessment": "partial-or-unmapped",
+        "gap": "Turn order explicitly changes under W009 evidence-first request; original plan-first ordering must be labeled superseded, not falsely passed."
+      },
+      {
+        "criterionId": "AC-4",
+        "suggestedClaimIds": [],
+        "evidenceSources": [],
+        "assessment": "partial-or-unmapped",
+        "gap": "Needs current browser assertion of named features/workstream/count."
+      },
+      {
+        "criterionId": "AC-5",
+        "suggestedClaimIds": [],
+        "evidenceSources": [],
+        "assessment": "partial-or-unmapped",
+        "gap": "Needs browser observation of covered totals and statement-first verdict rows."
+      },
+      {
+        "criterionId": "AC-6",
+        "suggestedClaimIds": [],
+        "evidenceSources": [],
+        "assessment": "partial-or-unmapped",
+        "gap": "Needs browser observation of compact claims/features/workstreams/turns rows."
+      },
+      {
+        "criterionId": "AC-7",
+        "suggestedClaimIds": [],
+        "evidenceSources": [
+          "packages/ledger/src/align/check.test.ts",
+          "packages/ledger/src/align/check.break.test.ts"
+        ],
+        "assessment": "partial-or-unmapped",
+        "gap": "Behavior suites exist but no SL-009 claim is present: create scoped coverage claim."
+      },
+      {
+        "criterionId": "AC-8",
+        "suggestedClaimIds": [],
+        "evidenceSources": [
+          "packages/ledger/src/align/approve.test.ts",
+          "packages/ledger/src/align/break.test.ts"
+        ],
+        "assessment": "partial-or-unmapped",
+        "gap": "Behavior suites exist but no SL-010 claim is present: create scoped approval claim."
+      },
+      {
+        "criterionId": "AC-9",
+        "suggestedClaimIds": [],
+        "evidenceSources": [
+          "packages/ledger/src/align/break.test.ts",
+          "packages/ledger/src/align/check.break.test.ts"
+        ],
+        "assessment": "partial-or-unmapped",
+        "gap": "Existing suites cover forged/invalid waiver refs; add direct minimum reason/max-per-turn and waiver audit tests if mapping full criterion."
+      },
+      {
+        "criterionId": "AC-10",
+        "suggestedClaimIds": [],
+        "evidenceSources": [
+          "packages/ledger/src/align/break.test.ts",
+          "packages/ledger/src/align/check.break.test.ts"
+        ],
+        "assessment": "partial-or-unmapped",
+        "gap": "Existing align suites exercise refusal; needs scoped align gate claim."
+      },
+      {
+        "criterionId": "AC-11",
+        "suggestedClaimIds": [],
+        "evidenceSources": [],
+        "assessment": "partial-or-unmapped",
+        "gap": "Inspect/run hook/CI path with negative fixture; static config alone is not full gate execution."
+      },
+      {
+        "criterionId": "AC-12",
+        "suggestedClaimIds": [],
+        "evidenceSources": [],
+        "assessment": "partial-or-unmapped",
+        "gap": "Skill and AGENTS inspection can be recorded as attestation, not behavioral pass. User instructions override old named model choice."
+      }
+    ],
+    "W-005": [
+      {
+        "criterionId": "AC-1",
+        "suggestedClaimIds": [
+          "SL-011"
+        ],
+        "evidenceSources": [
+          "packages/ledger/src/cli/init.test.ts",
+          "packages/ledger/src/cli/init.break.test.ts"
+        ],
+        "assessment": "supported-after-execution",
+        "gap": null
+      },
+      {
+        "criterionId": "AC-2",
+        "suggestedClaimIds": [
+          "SL-011"
+        ],
+        "evidenceSources": [
+          "packages/ledger/src/cli/init.test.ts",
+          "packages/ledger/src/cli/init.break.test.ts"
+        ],
+        "assessment": "supported-after-execution",
+        "gap": null
+      },
+      {
+        "criterionId": "AC-3",
+        "suggestedClaimIds": [
+          "SL-012"
+        ],
+        "evidenceSources": [
+          "packages/ledger/src/pack.smoke.test.ts",
+          "packages/ledger/src/pack.break.test.ts",
+          "packages/ledger/src/pack.concurrency.break.test.ts"
+        ],
+        "assessment": "supported-after-execution",
+        "gap": null
+      },
+      {
+        "criterionId": "AC-4",
+        "suggestedClaimIds": [
+          "SL-012"
+        ],
+        "evidenceSources": [
+          "packages/ledger/src/pack.smoke.test.ts",
+          "packages/ledger/src/pack.break.test.ts"
+        ],
+        "assessment": "supported-after-execution",
+        "gap": null
+      },
+      {
+        "criterionId": "AC-5",
+        "suggestedClaimIds": [
+          "SL-013"
+        ],
+        "evidenceSources": [
+          "packages/ledger/src/ui-release.smoke.test.ts",
+          "packages/ledger/src/ui-release.break.test.ts"
+        ],
+        "assessment": "supported-after-execution",
+        "gap": null
+      },
+      {
+        "criterionId": "AC-6",
+        "suggestedClaimIds": [
+          "SL-014"
+        ],
+        "evidenceSources": [
+          "packages/ledger/src/publish.workflow.test.ts",
+          "packages/ledger/src/publish.workflow.break.test.ts"
+        ],
+        "assessment": "supported-after-execution",
+        "gap": null
+      },
+      {
+        "criterionId": "AC-7",
+        "suggestedClaimIds": [
+          "SL-015"
+        ],
+        "evidenceSources": [
+          "packages/ledger/src/workstream/doc-digest.test.ts",
+          "packages/ledger/src/workstream/doc-digest.break.test.ts",
+          "packages/ledger/src/workstream/pr1-regressions.break.test.ts"
+        ],
+        "assessment": "supported-after-execution",
+        "gap": null
+      },
+      {
+        "criterionId": "AC-8",
+        "suggestedClaimIds": [],
+        "evidenceSources": [],
+        "assessment": "partial-or-unmapped",
+        "gap": "Scope condition: first actual release optional. Do not force a behavioral claim or imply npm publication occurred. Workflow/docs/dry-run evidence belongs AC-6; record scope note."
+      }
+    ],
+    "W-006": [
+      {
+        "criterionId": "SLC-01/AC-1",
+        "suggestedClaimIds": [
+          "SL-016"
+        ],
+        "bindingCommands": [
+          "node --test packages/ledger/dist/verify/aggregation.break.test.js"
+        ],
+        "assessment": "existing-mapping-retain",
+        "gap": "Rerun after final source freeze; old implementation reports/reviews are historical. Do not mark current implementation merely from old done status."
+      },
+      {
+        "criterionId": "SLC-02/AC-1",
+        "suggestedClaimIds": [
+          "SL-017"
+        ],
+        "bindingCommands": [
+          "node --test packages/ledger/dist/verify/readonly.break.test.js"
+        ],
+        "assessment": "existing-mapping-retain",
+        "gap": "Rerun after final source freeze; old implementation reports/reviews are historical. Do not mark current implementation merely from old done status."
+      },
+      {
+        "criterionId": "SLC-03/AC-1",
+        "suggestedClaimIds": [
+          "SL-018"
+        ],
+        "bindingCommands": [
+          "node --test packages/ledger/dist/evidence/fingerprint.break.test.js"
+        ],
+        "assessment": "existing-mapping-retain",
+        "gap": "Rerun after final source freeze; old implementation reports/reviews are historical. Do not mark current implementation merely from old done status."
+      },
+      {
+        "criterionId": "SLC-04/AC-1",
+        "suggestedClaimIds": [
+          "SL-019"
+        ],
+        "bindingCommands": [
+          "node --test packages/ledger/dist/permission/authority.break.test.js"
+        ],
+        "assessment": "existing-mapping-retain",
+        "gap": "Rerun after final source freeze; old implementation reports/reviews are historical. Do not mark current implementation merely from old done status."
+      },
+      {
+        "criterionId": "SLC-05/AC-1",
+        "suggestedClaimIds": [
+          "SL-020"
+        ],
+        "bindingCommands": [
+          "node --test packages/ledger/dist/deferrals/index.test.js packages/ledger/dist/deferrals/deferrals.break.test.js packages/ledger/dist/deferrals/portability.test.js"
+        ],
+        "assessment": "existing-mapping-retain",
+        "gap": "Rerun after final source freeze; old implementation reports/reviews are historical. Do not mark current implementation merely from old done status."
+      },
+      {
+        "criterionId": "SLC-06/AC-1",
+        "suggestedClaimIds": [
+          "SL-021"
+        ],
+        "bindingCommands": [
+          "node --test packages/ledger/dist/session/session.break.test.js packages/ledger/dist/graph/display.test.js packages/ledger/dist/permission/local-ui.break.test.js"
+        ],
+        "assessment": "existing-mapping-retain",
+        "gap": "Rerun after final source freeze; old implementation reports/reviews are historical. Do not mark current implementation merely from old done status."
+      }
+    ],
+    "W-007": [
+      {
+        "criterionId": "SLC-01/AC-1",
+        "suggestedClaimIds": [
+          "SL-022"
+        ],
+        "bindingCommands": [
+          "node --test packages/ledger/dist/session/evidence.break.test.js"
+        ],
+        "assessment": "existing-mapping-retain",
+        "gap": "Rerun after final source freeze; old implementation reports/reviews are historical. Do not mark current implementation merely from old done status."
+      }
+    ],
+    "W-008": [
+      {
+        "criterionId": "SLC-01/AC-1",
+        "suggestedClaimIds": [
+          "SL-023"
+        ],
+        "bindingCommands": [
+          "node --test packages/ledger/dist/application/*.break.test.js packages/mcp/dist/lifecycle.test.js"
+        ],
+        "assessment": "existing-mapping-retain",
+        "gap": "Rerun after final source freeze; old implementation reports/reviews are historical. Do not mark current implementation merely from old done status."
+      },
+      {
+        "criterionId": "SLC-02/AC-1",
+        "suggestedClaimIds": [
+          "SL-024"
+        ],
+        "bindingCommands": [
+          "node --test packages/ledger/dist/workflows/*.test.js packages/mcp/dist/workflow.lifecycle.test.js"
+        ],
+        "assessment": "existing-mapping-retain",
+        "gap": "Rerun after final source freeze; old implementation reports/reviews are historical. Do not mark current implementation merely from old done status."
+      },
+      {
+        "criterionId": "SLC-03/AC-1",
+        "suggestedClaimIds": [
+          "SL-025"
+        ],
+        "bindingCommands": [
+          "node --test packages/ledger/dist/execution/*.test.js packages/mcp/dist/execution.lifecycle.test.js"
+        ],
+        "assessment": "existing-mapping-retain",
+        "gap": "Rerun after final source freeze; old implementation reports/reviews are historical. Do not mark current implementation merely from old done status."
+      }
+    ]
+  },
+  "bindingUpgradeRequired": [
+    "SL-006",
+    "SL-007",
+    "SL-008",
+    "SL-011",
+    "SL-012",
+    "SL-013",
+    "SL-014",
+    "SL-015"
+  ],
+  "globalGaps": [
+    "Most W001-W005 path bindings only establish file existence.",
+    "W001-W005 use top-level AC-N identifiers; do not use suggested slice AC addresses.",
+    "W003/W004 historical UI acceptance and W002 resume-on-read conflict with explicitly requested newer behavior. Preserve history and record supersession.",
+    "All runtime evidence must rerun after upcoming source changes; no blanket progress/review retrofit."
+  ],
+  "targetedRunLog": "/tmp/sl-completed-audit-tests.txt",
+  "targetedRun": {
+    "command": "node --test packages/ledger/dist/cli/init.test.js packages/ledger/dist/cli/init.break.test.js packages/ledger/dist/workstream/doc-digest.test.js packages/ledger/dist/workstream/doc-digest.break.test.js packages/ledger/dist/workstream/pr1-regressions.break.test.js packages/ledger/dist/align/*.test.js packages/ledger/dist/context/vertical.test.js packages/ledger/dist/turns/close.test.js packages/ledger/dist/runtime.p0.test.js packages/ledger/dist/episodes.write.test.js packages/ledger/dist/publish.workflow*.test.js",
+    "tests": 67,
+    "passed": 67,
+    "failed": 0,
+    "limitation": "Executed existing compiled dist. Final source edits/build require root rerun. No pack/UI release build run concurrently."
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "id": "SL-021",
+  "kind": "invariant",
+  "statement": "Show what the agent says it built separately from what has been verified, and check your permission before completing work.",
+  "required": true,
+  "area": "core",
+  "links": {
+    "docs": [
+      "docs/workstreams/W-006-trustworthy-autonomous-coding/spec.md",
+      "docs/architecture/claim-contracts.md"
+    ]
+  }
+}

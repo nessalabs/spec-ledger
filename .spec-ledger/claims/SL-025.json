@@ -1,0 +1,13 @@
+{
+  "id": "SL-025",
+  "kind": "invariant",
+  "statement": "An agent activity signal cannot count as completed work or permission to restart it; uncertain activity stays uncertain.",
+  "required": true,
+  "area": "client",
+  "links": {
+    "docs": [
+      "docs/workstreams/W-008-shared-agent-workflows/spec.md",
+      "docs/architecture/claim-contracts.md"
+    ]
+  }
+}

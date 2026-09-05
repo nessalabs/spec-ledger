@@ -1,0 +1,25 @@
+▶ deferred commitments adversarial
+  ✔ resolves implementation only with current behavior evidence and becomes due after code changes (168.702042ms)
+  ✔ activates idempotently and cannot erase the commitment by removing its feature or decision (270.472834ms)
+  ✔ retrieves old commitments without recent turns and keeps backlog candidates optional (93.062459ms)
+  ✔ refuses hard-requirement dismissal and path-only green evidence (169.205625ms)
+  ✔ requires applicable current authority for revisit and reopens after revocation (218.078125ms)
+  ✔ projects missing references and malformed commitments as unknown (94.169292ms)
+✔ deferred commitments adversarial (1014.578708ms)
+✔ old deferrals appear in planning without activating or making backlog candidates mandatory (93.908916ms)
+✔ activation survives retries, feature removal, and source decision deletion (274.186833ms)
+✔ missing trigger, origin, and claim references remain unknown (112.924542ms)
+✔ hard implementation gates require current behavior evidence and reject re-deferral (220.561ms)
+✔ revisit resolution records real current authority, rejects invented authority and revoked approval (218.279458ms)
+✔ re-deferring a revisit preserves its history and gates the replacement when its feature arrives (296.007291ms)
+✔ malformed text, schema, activation, and resolution records never produce satisfaction (322.756583ms)
+✔ portable work opens a clean delegated plan without treating its own snapshot as dirty user work (781.921ms)
+✔ portable work refuses pre-existing dirty source before creating a delegated snapshot (537.335334ms)
+ℹ tests 15
+ℹ suites 1
+ℹ pass 15
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1591.209625

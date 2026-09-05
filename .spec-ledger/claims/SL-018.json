@@ -1,0 +1,13 @@
+{
+  "id": "SL-018",
+  "kind": "invariant",
+  "statement": "Make it clear when changed code, changed tests, or altered evidence means an earlier check or review needs repeating.",
+  "required": true,
+  "area": "core",
+  "links": {
+    "docs": [
+      "docs/workstreams/W-006-trustworthy-autonomous-coding/spec.md",
+      "docs/architecture/claim-contracts.md"
+    ]
+  }
+}

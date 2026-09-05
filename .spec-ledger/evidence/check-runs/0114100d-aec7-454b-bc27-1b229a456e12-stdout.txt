@@ -1,0 +1,24 @@
+▶ custom workflow adversarial contracts
+  ✔ rejects unknown or empty output contracts and policy-breaking stage order before persistence (108.56275ms)
+  ✔ confines workflow persistence when the workflow directory is an escaping symlink (139.188583ms)
+  ✔ preserves selected skill bytes and rejects escaping or oversized replacements (141.845833ms)
+  ✔ gives every amendment a new execution identity and excludes prior attempts (301.696292ms)
+  ✔ rejects a current code review that belongs to another workstream (542.612375ms)
+  ✔ does not relabel a review created before the current method attempt as that attempt's output (375.384584ms)
+  ✔ does not satisfy a code-review output while a later blocking review remains unresolved (507.915625ms)
+  ✔ requires behavioral result rows for every scoped criterion and never accepts attestation instead (296.364542ms)
+  ✔ keeps an explicitly configured review stage applicable when project policy does not require one (126.744459ms)
+  ✔ does not make later steps in one ordered stage ready before earlier steps are satisfied (124.458125ms)
+✔ custom workflow adversarial contracts (2665.983833ms)
+✔ default workflow needs no configuration and preserves substantive bundled guidance (5.693167ms)
+✔ custom workflow preserves exact local skill text and rejects unsafe or incompatible skills (9.037791ms)
+✔ cli: follows a custom method through real records and preserves current evidence (5483.344792ms)
+✔ mcp: follows a custom method through real records and preserves current evidence (2527.761167ms)
+ℹ tests 14
+ℹ suites 1
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 8151.260625

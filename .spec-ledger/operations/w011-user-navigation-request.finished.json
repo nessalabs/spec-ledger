@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "requestId": "w011-user-navigation-request",
+  "operation": "record_permission",
+  "inputDigest": "eb83ac6f55fcecc72bfa72fe929a5dfb9f606f03ec08b74daf42bbfb6358d8d1",
+  "finishedAt": "2026-09-05T03:24:05.128Z",
+  "outcome": "succeeded",
+  "result": {
+    "id": "AUTH-W011-REQUEST",
+    "action": "grant",
+    "mode": "request",
+    "workstreamId": "W-011",
+    "featureIds": [
+      "lattice"
+    ],
+    "source": {
+      "kind": "agent-reported",
+      "reference": "User requests consolidating website navigation and reducing information overload, with GPT-5.6 Sol navigating and suggesting improvements."
+    },
+    "schemaVersion": 1,
+    "createdAt": "2026-09-05T03:24:05.126Z"
+  }
+}

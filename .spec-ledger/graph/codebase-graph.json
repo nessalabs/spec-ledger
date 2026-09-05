@@ -1,7 +1,7 @@
 {
   "system": {
     "name": "Spec Ledger",
-    "description": "Generic claim-adherence gate + replaceable lattice viewing layer.",
+    "description": "Generic claim-adherence gate + replaceable Spec Ledger UI viewing layer.",
     "revision": "0.1.0",
     "languages": [
       "typescript"
@@ -21,7 +21,7 @@
     {
       "id": "client",
       "name": "Client",
-      "blurb": "Typed SDK — only gateway for UIs"
+      "blurb": "Typed SDK \u2014 only gateway for UIs"
     },
     {
       "id": "server",
@@ -29,24 +29,36 @@
       "blurb": "Read-only HTTP projection"
     },
     {
+      "id": "adapters",
+      "name": "Agent adapters",
+      "blurb": "CLI/MCP transports over shared application operations"
+    },
+    {
       "id": "ui",
       "name": "UI",
-      "blurb": "Reference Lattice — replaceable"
+      "blurb": "Reference Spec Ledger UI \u2014 replaceable"
     }
   ],
   "features": [
     {
       "id": "verify",
       "name": "Claim verification",
-      "summary": "Bindings + ingested results → provenance-bearing report.",
+      "summary": "Bindings + ingested results \u2192 provenance-bearing report.",
       "claimIds": [
         "SL-001",
         "SL-002",
         "SL-003",
-        "SL-008"
+        "SL-008",
+        "SL-016",
+        "SL-017",
+        "SL-018",
+        "SL-027",
+        "SL-028"
       ],
       "entryPoints": [
-        "packages/ledger/src/verify/verify.ts"
+        "packages/ledger/src/verify/verify.ts",
+        "packages/ledger/src/verify/saved-check.ts",
+        "packages/ledger/src/verify/local-check.ts"
       ],
       "keywords": [
         "verify",
@@ -60,7 +72,12 @@
       "name": "Spec Ledger UI",
       "summary": "Feature/module graph, blast radius, layer policy, and Spec Ledger viewing surface.",
       "claimIds": [
-        "SL-004"
+        "SL-004",
+        "SL-021",
+        "SL-022",
+        "SL-029",
+        "SL-030",
+        "SL-031"
       ],
       "entryPoints": [
         "packages/ledger/src/graph/impact.ts",
@@ -81,7 +98,8 @@
       "claimIds": [
         "SL-001",
         "SL-003",
-        "SL-006"
+        "SL-006",
+        "SL-020"
       ],
       "entryPoints": [
         "packages/ledger/src/turns/close.ts"
@@ -96,12 +114,17 @@
     {
       "id": "client",
       "name": "Typed client",
-      "summary": "Transport-agnostic SDK — only gateway for UIs.",
+      "summary": "Transport-agnostic SDK \u2014 only gateway for UIs.",
       "claimIds": [
-        "SL-003"
+        "SL-003",
+        "SL-024",
+        "SL-025",
+        "SL-030"
       ],
       "entryPoints": [
-        "packages/client/src/index.ts"
+        "packages/client/src/index.ts",
+        "packages/ledger/src/workflows/index.ts",
+        "packages/ledger/src/execution/index.ts"
       ],
       "keywords": [
         "client",
@@ -129,10 +152,13 @@
     {
       "id": "cli",
       "name": "Consumer CLI",
-      "summary": "Installable spec-ledger bin: init, verify, turns; npm publish surface.",
+      "summary": "CLI and local MCP adapters over shared work, evidence and completion operations.",
       "claimIds": [
         "SL-011",
-        "SL-015"
+        "SL-015",
+        "SL-019",
+        "SL-023",
+        "SL-030"
       ],
       "entryPoints": [
         "packages/ledger/src/cli/main.ts",
@@ -141,7 +167,8 @@
         "packages/client/package.json",
         "packages/server/package.json",
         "packages/ui/package.json",
-        ".github/workflows/publish.yml"
+        ".github/workflows/publish.yml",
+        "packages/ledger/src/application/index.ts"
       ],
       "keywords": [
         "cli",
@@ -200,7 +227,18 @@
       "featureIds": [
         "lattice"
       ],
-      "purpose": "Spec Ledger UI — presentation only"
+      "purpose": "Spec Ledger UI \u2014 presentation only"
+    },
+    {
+      "id": "ledger-mcp",
+      "name": "@nessalabs/spec-ledger-mcp",
+      "layer": "adapters",
+      "kind": "package",
+      "locator": "packages/mcp",
+      "featureIds": [
+        "cli"
+      ],
+      "purpose": "Local stdio transport for shared work and evidence operations"
     }
   ],
   "edges": [
@@ -227,6 +265,11 @@
     {
       "from": "ledger-ui",
       "to": "ledger-client",
+      "kind": "depends_on"
+    },
+    {
+      "from": "ledger-mcp",
+      "to": "ledger-core",
       "kind": "depends_on"
     }
   ]

@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "id": "T-034/AW-16",
+  "reason": "Restamp the same exact DESIGN.md coverage after the user added acceptance-percentage UI and review-ID integrity was fixed. The original explicit request authorizes the shared CLI/MCP architecture documentation; no additional paths are waived.",
+  "actor": "agent:coverage-of-user-request",
+  "treeDigest": "e5abd70a9c07ed530f2cf0edca2fa0967362ad2a7550d214afcc6719f3310a76",
+  "createdAt": "2026-09-05T00:43:57.681Z",
+  "workstreamId": "W-008",
+  "turnId": "T-034",
+  "paths": [
+    "DESIGN.md"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "id": "AUTH-W012-REQUEST",
+  "action": "grant",
+  "mode": "request",
+  "workstreamId": "W-012",
+  "featureIds": [
+    "lattice",
+    "cli",
+    "client"
+  ],
+  "source": {
+    "kind": "agent-reported",
+    "reference": "User requested implementation of workflow configuration with chosen steps and skills, plus the reported rendering warning and stable section switching."
+  },
+  "schemaVersion": 1,
+  "createdAt": "2026-09-05T04:05:05.936Z"
+}

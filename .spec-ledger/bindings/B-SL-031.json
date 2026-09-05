@@ -1,0 +1,18 @@
+{
+  "id": "b-sl-031",
+  "claimId": "SL-031",
+  "kind": "test",
+  "locator": {
+    "type": "command",
+    "command": "node --test packages/ui/lib/simplicity.break.test.mjs packages/ui/lib/check-evidence.test.mjs packages/ui/lib/navigation*.test.mjs"
+  },
+  "test": {
+    "level": "integration",
+    "description": "Render simple feature views while keeping missing and failed evidence honest and proof accessible.",
+    "source": {
+      "path": "packages/ui/lib/simplicity.break.test.mjs"
+    },
+    "inputs": "Complete, incomplete, historical, failed, missing and unlinked evidence.",
+    "expected": "A clear feature summary and direct proof controls; missing evidence and remaining requirements never imply completion."
+  }
+}

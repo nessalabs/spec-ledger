@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "requestId": "940bb18c-3185-4e91-a3a7-fd13e5dd1b33",
+  "operation": "begin_work",
+  "inputDigest": "62db27de1519eec1a4142a9ea9098a563587d7ddd3412191161e0fb448704fd7",
+  "finishedAt": "2026-09-05T04:06:02.845Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "id": "T-041",
+    "status": "open",
+    "openedAt": "2026-09-05T04:06:02.845Z",
+    "opened": {
+      "producedBy": "@nessalabs/spec-ledger@0.1.0",
+      "baseCommit": "12bc93afe86c72173e33770df4926391fa23317c",
+      "treeDigest": "69fb75fa3691fb43bbd12d40aa4601eebcd27f8031fa072b2d56b4cc041cd03d",
+      "dirtyAtOpen": [
+        ".spec-ledger/authority/AUTH-W012-REQUEST.json",
+        ".spec-ledger/reviews/workstreams/W-012/SR-01.json",
+        ".spec-ledger/workstreams/W-012.json",
+        "docs/workstreams/W-012-choose-your-workflow/spec.md"
+      ],
+      "contextDigest": "873cc783d5dc4c0da830e05eafa3afa1e5a01a4e1ee78275e869c86d65fb9c6d",
+      "contextWorkstreamId": "W-012",
+      "contextSliceId": "SLC-01",
+      "contextSealRevision": 1,
+      "contextGeneratedAt": "2026-09-05T04:06:02.845Z"
+    },
+    "intent": {
+      "userPrompt": "Build workflow configuration in Process details using shared CLI and MCP logic. Let users choose skills and steps, preview and apply their workflow. Fix the rendering warning and keep section navigation steady.",
+      "restatedGoal": "Choose the steps and skills your agent follows",
+      "changeType": "feature",
+      "riskLevel": "moderate",
+      "workstreamId": "W-012",
+      "sliceId": "SLC-01",
+      "featureIds": [
+        "lattice",
+        "cli",
+        "client"
+      ]
+    }
+  }
+}

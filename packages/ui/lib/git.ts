@@ -27,3 +27,12 @@ export function readCommit(sha: string | null | undefined): CommitInfo | null {
     body: (body ?? "").trim(),
   }
 }
+
+/** A turn closes before its final commit; recorded HEAD is not shipment attribution. */
+export function readTurnCommit(turnId: string): CommitInfo | null {
+  if (!/^T-[0-9]+$/.test(turnId)) return null
+  const r = spawnSync('git', ['log', '-1000', '--format=%H%x1f%(trailers:key=SL-Turn,valueonly)%x1e'], { cwd: ledgerRootDir(), encoding: 'utf8', maxBuffer: 2 * 1024 * 1024 })
+  if (r.status !== 0) return null
+  const match = r.stdout.split('\x1e').find(record => record.split('\x1f')[1]?.trim().split(/\r?\n/).includes(turnId))
+  return match ? readCommit(match.split('\x1f')[0]!.trim()) : null
+}

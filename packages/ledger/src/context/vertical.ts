@@ -1,6 +1,8 @@
+import { permissionStatus } from "../permission/authority.js"
+import { applicableLearnings } from "../compass/learnings.js"
 import { existsSync, readdirSync, readFileSync } from "node:fs"
 import { join } from "node:path"
-import { resumeAutomationEvents } from "../automation/load.js"
+import { listAutomationEvents } from "../automation/load.js"
 import { listDecisionsForTurn } from "../episodes/load.js"
 import { listProposedClaims } from "../proposed/load.js"
 import { blastRadius } from "../graph/impact.js"
@@ -37,20 +39,6 @@ function loadTenets(rootDir: string, tenetsDir?: string): Tenet[] {
     .sort()
     .map((f) => readJson<Tenet>(join(dir, f)))
     .filter((t) => t.status === "active")
-}
-
-function stableContextSubset(ctx: Omit<VerticalContext, "contextDigest" | "generatedAt">) {
-  return {
-    sealRevision: ctx.seal.revision,
-    sliceId: ctx.slice.id,
-    visionDigest: ctx.vision ? sha256Stable(ctx.vision) : null,
-    tenetIds: ctx.tenets.map((t) => t.id).sort(),
-    claimIds: ctx.claims.live.map((c) => c.id).sort(),
-    predictedBlastRadius: ctx.graph.predictedBlastRadius,
-    sliceAcceptance: ctx.slice.acceptance,
-    workstreamId: ctx.workstream.id,
-    featureIds: [...ctx.workstream.featureIds].sort(),
-  }
 }
 
 export function getVerticalContext(
@@ -128,10 +116,18 @@ export function getVerticalContext(
       (ws.proposedClaimIds ?? []).includes(p.id) || p.workstreamId === workstreamId,
   )
 
-  const automation = resumeAutomationEvents(repoRoot, { workstreamId })
+  const automation = {
+    open: listAutomationEvents(repoRoot).filter((e) =>
+      (!e.workstreamId || e.workstreamId === workstreamId) &&
+      (e.state === "waiting" || e.state === "blocked")),
+    recent: [],
+  }
 
   const vision = loadVision(rootDir, ledger.config.visionPath)
-  const tenets = loadTenets(rootDir, ledger.config.tenetsDir)
+  const learnings = applicableLearnings(repoRoot,workstreamId,ws.featureIds)
+  const supersededTenets = new Set(learnings.flatMap(l=>l.supersedesTenetIds ?? []))
+  const tenets = loadTenets(rootDir, ledger.config.tenetsDir).filter(t=>
+    !supersededTenets.has(t.id) && (!t.scope || t.scope === "product" || ws.featureIds.includes(t.scope) || ws.featureIds.includes(t.scope.replace(/^feature:/,""))))
 
   const seal = {
     ...ws.seal,
@@ -139,6 +135,9 @@ export function getVerticalContext(
   }
 
   const draft = {
+    obligations: evaluateDeferrals(repoRoot, workstreamId).filter(o => o.affected),
+    permission: permissionStatus(repoRoot,workstreamId),
+    learnings,
     vision,
     tenets,
     workstream: ws,
@@ -167,10 +166,11 @@ export function getVerticalContext(
     },
   }
 
-  const contextDigest = sha256Stable(stableContextSubset(draft))
+  const contextDigest = sha256Stable(draft)
   return {
     ...draft,
     contextDigest,
     generatedAt: new Date().toISOString(),
   }
 }
+import { evaluateDeferrals } from "../deferrals/index.js"

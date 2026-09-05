@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "turnId": "T-034",
+  "kind": "log-excerpt",
+  "title": "Final regression run: 174 passing tests",
+  "path": "docs/workstreams/W-008-shared-agent-workflows/evidence/T-034/regression-tests.txt",
+  "mediaType": "text/plain",
+  "contentDigest": "b259a0403d748010da904881517643f87fe3412a666b5e869aaf7813e0cf072c",
+  "byteLength": 19900,
+  "id": "T-034/A-04"
+}

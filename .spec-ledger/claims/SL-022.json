@@ -1,0 +1,13 @@
+{
+  "id": "SL-022",
+  "kind": "invariant",
+  "statement": "See the evidence for each requirement, what is missing, and whether an earlier result still applies.",
+  "required": true,
+  "area": "ui",
+  "links": {
+    "docs": [
+      "docs/workstreams/W-007-evidence-and-custom-workflows/spec.md",
+      "docs/architecture/claim-contracts.md"
+    ]
+  }
+}

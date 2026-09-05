@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "id": "W-008/SR-01",
+  "workstreamId": "W-008",
+  "kind": "adversarial",
+  "target": "spec",
+  "reviewer": "agent:sl-plan-break-spec:w008",
+  "verdict": "approve",
+  "blocking": false,
+  "alertOnSeverity": "high",
+  "plainSummary": "The plan keeps CLI and MCP behavior aligned while custom methods and activity remain unable to invent permission, evidence, completion, or recovery.",
+  "summary": "Independent review approves W-008 after amendments. The current related pack covers five live features (cli, client, turns, verify, lattice), fifteen live claims including SL-001/003/011/015/017/018/019/020/021/022, three proposed claims PC-020..022, seven prior workstreams, twenty turns, and twenty-eight docs. SLC-01 now requires actual CLI and MCP executables across the lifecycle with matched denial, stale-input, missing-evidence, retry-conflict, idempotency, and no-unintended-side-effect behavior. Started-before-effect and completed-after-effect operation receipts, immutable request digests, unfinished-as-unknown retries, and cross-process serialization bound uncertain execution without unsafe lock stealing. SLC-02 defines a finite typed output registry whose satisfaction is derived from current revision/source-bound records and keeps attestation distinct. SLC-03 keeps activity observational and recovery unavailable without verified host capability. The security model identifies the fixed-checkout, permission/evidence, skill-path, activity-spoofing, and process-control boundaries and requires real-boundary negative evidence. Criteria map to proposed standing claims SL-023..025; live promotion remains builder work.",
+  "findings": [],
+  "residualRisks": [
+    "This is a specification review; implementation parity, browser behavior, protocol behavior, and security denials still require run-backed evidence and independent code-break review in each vertical.",
+    "The related command returned only a caution string for sibling worktrees and no structured scan or skippedReason, so this review makes no claim about unpublished parallel checkout state.",
+    "No supported host recovery or cancellation adapter is promised by this revision; SLC-03 must display those capabilities as unavailable unless a concrete owned adapter is implemented and verified."
+  ],
+  "revisionDigest": "c5f1a84900d54f247315a70cfc9e05660c9cbc077597fb25b791f57896c6a4f1"
+}

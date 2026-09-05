@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "id": "T-027/R-01",
+  "turnId": "T-027",
+  "workstreamId": "W-006",
+  "kind": "adversarial",
+  "target": "code",
+  "reviewer": "agent:sl-dev-break:readonly",
+  "verdict": "approve",
+  "blocking": false,
+  "alertOnSeverity": "high",
+  "treeDigest": "65104238988a09dd2fcf7d936a58e529bfc521f31eb3ce2f811dff030d8e09f8",
+  "plainSummary": "Reading status leaves checks and pending waits untouched, while explicit checks run and save their results.",
+  "summary": "Independent readonly.break.test.ts passed both tests through actual production HTTP routes, HTTP and in-process clients, CLI context, and CLI check/legacy verify. The fixture includes a sentinel command and expired waiting automation event. Full recursive byte snapshots before/after reads prove no command execution, report/result persistence, or timeout transition; required command evidence stays missing until execution. Explicit check and verify execute exactly once each, persist reports, and subsequent reads reuse their recorded outcome without running commands. Reproduced prior verifier from 27f8935 in an isolated temporary dist: readOutcome=pass, commandExecuted=true, reportWritten=true. Final command: node --test packages/ledger/dist/verify/readonly.break.test.js, 2 pass, 0 fail, 0 skip. Breaker owns only new test and review artifacts.",
+  "killersCited": [
+    "packages/ledger/src/verify/readonly.break.test.ts::HTTP and in-process reads never execute checks, persist reports, or resolve expired waits",
+    "packages/ledger/src/verify/readonly.break.test.ts::explicit CLI checks run commands, persist verdicts, and expose the recorded result to reads"
+  ],
+  "findings": [],
+  "residualRisks": [
+    "This approval is bounded to SLC-02 read/write separation. Recorded command results have no source/check freshness guarantee until SLC-03; no freshness claim is made here.",
+    "Filesystem owner and explicit CLI command caller are trusted per the sealed model. This is not a sandbox for untrusted execution.",
+    "Stored-report history versus current evaluation remains intentionally distinct; tests prove no read writes, not that historical evidence is current.",
+    "HTTP tests exercise production buildRoutes with a temporary server; server startup lifecycle is outside this bounded test."
+  ]
+}

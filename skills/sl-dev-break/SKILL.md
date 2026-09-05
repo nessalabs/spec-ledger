@@ -15,7 +15,7 @@ before seal.
 
 Contract: [`docs/architecture/work-model.md`](../../docs/architecture/work-model.md) §3.4;
 review shape: [`episodes.md`](../../docs/architecture/episodes.md) §6.6;
-Lattice copy: [`../references/review-lattice-copy.md`](../references/review-lattice-copy.md).
+Spec Ledger UI copy: [`../references/review-copy.md`](../references/review-copy.md).
 Structure / failure-first:
 [`../references/cheap-to-change.md`](../references/cheap-to-change.md)
 (+ `method` from nessalabs/skills when installed).
@@ -146,8 +146,8 @@ If the killer proves behavior the sealed workstream did not allow:
 3. Add killer tests under breaker ownership; **run** them; capture evidence.
 4. Enforce hunt budget (one out-of-intent killer unless trust expands).
 5. Write review (`request-changes` or `approve` with `killersCited`).
-   Lattice-facing copy is required — follow
-   [`../references/review-lattice-copy.md`](../references/review-lattice-copy.md):
+   Spec Ledger UI-facing copy is required — follow
+   [`../references/review-copy.md`](../references/review-copy.md):
    - review `plainSummary`: **one sentence** of what a human should take away
      (end behavior, not internals).
    - each finding `plainImpact`: **one sentence** of what would happen if this

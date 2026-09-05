@@ -1,0 +1,365 @@
+{
+  "schemaVersion": 1,
+  "id": "T-035",
+  "status": "closed",
+  "openedAt": "2026-09-05T00:49:42.464Z",
+  "opened": {
+    "producedBy": "@nessalabs/spec-ledger@0.1.0",
+    "baseCommit": "c86c6539107ebb19fc9cebf0dcfe11c910660864",
+    "treeDigest": "e5abd70a9c07ed530f2cf0edca2fa0967362ad2a7550d214afcc6719f3310a76",
+    "dirtyAtOpen": [],
+    "contextDigest": "76461b6aea2f8a380f2ab37e0507a6a0780fc8bf2023ce16bff137ff2c594a7b",
+    "contextWorkstreamId": "W-008",
+    "contextSliceId": "SLC-02",
+    "contextSealRevision": 1,
+    "contextGeneratedAt": "2026-09-05T00:49:42.464Z"
+  },
+  "intent": {
+    "userPrompt": "Let users choose local engineering skills and ordered stages, preserve that method, and follow current typed outputs and evidence in the website through CLI or MCP.",
+    "restatedGoal": "Choose engineering steps and see what each one proves",
+    "workstreamId": "W-008",
+    "sliceId": "SLC-02",
+    "featureIds": [
+      "cli",
+      "client",
+      "turns",
+      "verify",
+      "lattice"
+    ],
+    "changeType": "feature",
+    "riskLevel": "high"
+  },
+  "closedAt": "2026-09-05T01:11:25.590Z",
+  "facts": {
+    "producedBy": "@nessalabs/spec-ledger@0.1.0",
+    "commit": "c86c6539107ebb19fc9cebf0dcfe11c910660864",
+    "files": [
+      {
+        "path": ".spec-ledger/attachments/T-035/A-01.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/attachments/T-035/A-02.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/bindings/B-SL-024.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/claims/SL-024.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/decisions/T-035/D-01.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/decisions/T-035/D-02.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/evidence/runs/fbe4d22b-df64-44cb-9d2f-53399d2a6429.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/graph/codebase-graph.json",
+        "kind": "modified",
+        "additions": 4,
+        "deletions": 2
+      },
+      {
+        "path": ".spec-ledger/ledger.json",
+        "kind": "modified",
+        "additions": 3,
+        "deletions": 1
+      },
+      {
+        "path": ".spec-ledger/proposed-claims/PC-021.json",
+        "kind": "modified",
+        "additions": 1,
+        "deletions": 1
+      },
+      {
+        "path": ".spec-ledger/reviews/turns/T-035/R-01.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/turns/T-035/R-02.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/turns/T-035.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/workstreams/W-008.json",
+        "kind": "modified",
+        "additions": 3,
+        "deletions": 2
+      },
+      {
+        "path": "docs/architecture/agent-tools.md",
+        "kind": "modified",
+        "additions": 3,
+        "deletions": 1
+      },
+      {
+        "path": "docs/architecture/workflows.md",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "docs/README.md",
+        "kind": "modified",
+        "additions": 2,
+        "deletions": 0
+      },
+      {
+        "path": "docs/workstreams/W-008-shared-agent-workflows/evidence/T-035/browser-check.md",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "docs/workstreams/W-008-shared-agent-workflows/evidence/T-035/regression-tests.txt",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/application/errors.ts",
+        "kind": "modified",
+        "additions": 2,
+        "deletions": 2
+      },
+      {
+        "path": "packages/ledger/src/application/operations.ts",
+        "kind": "modified",
+        "additions": 89,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/application/schemas.ts",
+        "kind": "modified",
+        "additions": 23,
+        "deletions": 1
+      },
+      {
+        "path": "packages/ledger/src/index.ts",
+        "kind": "modified",
+        "additions": 1,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/session/project.ts",
+        "kind": "modified",
+        "additions": 4,
+        "deletions": 1
+      },
+      {
+        "path": "packages/ledger/src/workflows/index.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/workflows/types.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/workflows/workflow.break.test.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/workflows/workflow.test.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/mcp/README.md",
+        "kind": "modified",
+        "additions": 6,
+        "deletions": 0
+      },
+      {
+        "path": "packages/mcp/src/index.ts",
+        "kind": "modified",
+        "additions": 6,
+        "deletions": 0
+      },
+      {
+        "path": "packages/mcp/src/workflow.lifecycle.test.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ui/components/live-session.tsx",
+        "kind": "modified",
+        "additions": 7,
+        "deletions": 3
+      },
+      {
+        "path": "packages/ui/components/live-workstream-evidence.tsx",
+        "kind": "modified",
+        "additions": 2,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ui/components/workflow-view.tsx",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ui/components/workstream-evidence.tsx",
+        "kind": "modified",
+        "additions": 1,
+        "deletions": 1
+      },
+      {
+        "path": "packages/ui/lib/workflow-presentation.test.mjs",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ui/lib/workflow-presentation.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "schemas/workflow-attempt-report.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "schemas/workflow-attempt.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "schemas/workflow-output-reference.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "schemas/workflow-profile.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "schemas/workflow-snapshot.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "skills/README.md",
+        "kind": "modified",
+        "additions": 1,
+        "deletions": 1
+      },
+      {
+        "path": "skills/sl-check/SKILL.md",
+        "kind": "modified",
+        "additions": 4,
+        "deletions": 2
+      },
+      {
+        "path": "skills/sl-plan/SKILL.md",
+        "kind": "modified",
+        "additions": 2,
+        "deletions": 2
+      },
+      {
+        "path": "skills/sl-work/SKILL.md",
+        "kind": "modified",
+        "additions": 3,
+        "deletions": 1
+      }
+    ],
+    "touchedNodeIds": [
+      "ledger-core",
+      "ledger-mcp",
+      "ledger-ui",
+      "schemas"
+    ],
+    "touchedFeatureIds": [
+      "cli",
+      "client",
+      "lattice",
+      "turns",
+      "verify"
+    ],
+    "touchedClaimIds": [
+      "SL-003",
+      "SL-004",
+      "SL-021",
+      "SL-022",
+      "SL-024"
+    ],
+    "blastRadius": {
+      "direct": [
+        "ledger-client",
+        "ledger-core",
+        "ledger-mcp",
+        "ledger-server"
+      ],
+      "transitive": [
+        "ledger-client",
+        "ledger-core",
+        "ledger-mcp",
+        "ledger-server",
+        "ledger-ui"
+      ]
+    },
+    "verify": {
+      "ok": true,
+      "ledgerDigest": "6123fbbdbceda3eacc71ea9d51fbca665bd6c51e8f2407853cfee0db17f7b138",
+      "resultsDigest": "d9259c196aaf04a90efe905cadc20cbb5d4e81c59d1ba45e0e319bb28da9e2e9",
+      "treeDigest": "8bb3d984fe7b57d446dd27d32f52f2db3774db4b3eec88ae82640ba83bd11946",
+      "producedAt": "2026-09-05T01:11:25.558Z"
+    },
+    "schemaSurfaceChanged": true,
+    "decisionIds": [
+      "T-035/D-01",
+      "T-035/D-02"
+    ],
+    "decisionsDigest": "89685f218ebe69edf96ed194d1f5ce70e1823e42386ad3063b8fb816f5641e4d",
+    "attachmentsDigest": "14c32e706e6540a9cc8f32994a2b51359afb877523738d59df63531cb1238d51",
+    "reviewsDigest": "3c129d6c9c8ee5e296d809806e3c73a1626d098f821d0f077918a23428a88bd0"
+  }
+}

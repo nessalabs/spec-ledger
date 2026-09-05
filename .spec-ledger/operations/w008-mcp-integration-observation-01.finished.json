@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "requestId": "w008-mcp-integration-observation-01",
+  "operation": "record_decision",
+  "inputDigest": "68ab9c8f00f6bc9fd7b586232f91ce133a98b22a7acba6e0d92757447bf48724",
+  "finishedAt": "2026-09-05T00:23:39.588Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "turnId": "T-034",
+    "decision": "The local MCP executable exposes the same current workstream observation.",
+    "rationale": "A real stdio client listed the tools and read W-008 with T-034 open and zero passing requirements. This confirms transport connectivity, not completion of the revamp.",
+    "basis": {
+      "at": "2026-09-05T00:23:39.587Z",
+      "contextDigest": "aaa63c9cd99afe977a474f8a17cb4aaafe7ae07e298330282fbd4f1a3a971304",
+      "sealRevision": 1
+    },
+    "id": "T-034/D-02"
+  }
+}

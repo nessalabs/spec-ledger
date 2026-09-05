@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "T-028/R-01",
+  "turnId": "T-028",
+  "workstreamId": "W-006",
+  "kind": "adversarial",
+  "target": "code",
+  "reviewer": "agent:sl-dev-break:freshness",
+  "verdict": "approve",
+  "blocking": false,
+  "alertOnSeverity": "high",
+  "plainSummary": "Evidence and approvals become stale when source changes, while declared output and metadata updates preserve unchanged evidence.",
+  "summary": "Independent fingerprint.break.test.ts has seven passing tests for stale closed-turn waiver/approval reuse, code-review source binding with declared-output exclusions, idempotent external receipts and stale/traversal denial, missing legacy fingerprints and changed source/untracked/same-ID checks, content-preserving commits/metadata, command-time source mutation, and required artifact tamper/missing/symlink escape. All three owned breaker suites rerun together: node --test packages/ledger/dist/evidence/fingerprint.break.test.js packages/ledger/dist/verify/aggregation.break.test.js packages/ledger/dist/verify/readonly.break.test.js; 13 passed, 0 failed, 0 skipped. Owned older fixtures now explicitly execute checkLedger before fetching historical report, stamp external evidence, and place the read-side-effect sentinel in ledger metadata; original ordering and no-read-write assertions remain intact. Production exclusion inconsistency surfaced during review was corrected before final run. writeReview stamps the current content digest.",
+  "killersCited": [
+    "packages/ledger/src/evidence/fingerprint.break.test.ts::does not let a closed turn reuse its old waiver or approval after source changes",
+    "packages/ledger/src/evidence/fingerprint.break.test.ts::binds code review to source content while excluding declared evidence outputs",
+    "packages/ledger/src/evidence/fingerprint.break.test.ts::records current external evidence idempotently and refuses stale or escaping submissions",
+    "packages/ledger/src/evidence/fingerprint.break.test.ts::rejects legacy evidence and evidence replayed after source or same-ID check changes",
+    "packages/ledger/src/evidence/fingerprint.break.test.ts::retains evidence across ledger metadata and content-preserving commits",
+    "packages/ledger/src/evidence/fingerprint.break.test.ts::invalidates results if a successful command changes its own source inputs",
+    "packages/ledger/src/evidence/fingerprint.break.test.ts::checks required artifacts even when their declared output path is excluded from source hashing"
+  ],
+  "findings": [],
+  "residualRisks": [
+    "Fingerprint correspondence does not authenticate producers or prove behavioral coverage; trusted local caller boundary remains explicit.",
+    "No concurrent-writer stress test was run; evidence receipt retry and conflicting run IDs are covered sequentially.",
+    "Required remote artifacts remain unverified without observable local bytes; this review makes no remote artifact availability claim.",
+    "Permission, deferral, and visible session completion behavior are later slices; this approval covers source/check/artifact freshness and scoped approval invalidation only."
+  ],
+  "treeDigest": "7d73478b08a2a66ae925a726487fc1d744b5738f2e7a2c5b92db3264949e2897"
+}

@@ -39,6 +39,7 @@ export function listWorkstreams(repoRootInput: string): Workstream[] {
 }
 
 export function loadWorkstream(repoRootInput: string, id: string): Workstream {
+  if (!/^W-[0-9]{3,}$/.test(id)) throw new Error("invalid workstream id")
   const path = join(workstreamsDir(repoRootInput), `${id}.json`)
   if (!existsSync(path)) throw new Error(`workstream not found: ${id}`)
   return readJson<Workstream>(path)
@@ -60,6 +61,7 @@ export function sealPayload(ws: Workstream): Record<string, unknown> {
     trust: ws.trust ?? null,
     policy: ws.policy ?? null,
     acceptanceCriteria: ws.acceptanceCriteria ?? [],
+    ...(ws.acceptanceClaimIds ? { acceptanceClaimIds: ws.acceptanceClaimIds } : {}),
     outOfScope: ws.outOfScope ?? [],
     proposedClaimIds: ws.proposedClaimIds ?? [],
     suggestedSlices: (ws.suggestedSlices ?? []).map((s) => ({

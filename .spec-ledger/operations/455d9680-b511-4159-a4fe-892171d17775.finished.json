@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "requestId": "455d9680-b511-4159-a4fe-892171d17775",
+  "operation": "begin_work",
+  "inputDigest": "24f5de7a5817500695e66b8e5c119440d68352271b9f04927aa08700406c0763",
+  "finishedAt": "2026-09-05T04:05:48.888Z",
+  "outcome": "failed",
+  "error": {
+    "code": "prerequisite_missing",
+    "message": "turn open refused: dirty worktree (4 paths). Pass --allow-dirty or commit first.",
+    "retryable": false
+  }
+}

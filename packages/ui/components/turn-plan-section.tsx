@@ -1,5 +1,8 @@
 "use client"
 
+import { presentationCopy } from "@/lib/features"
+
+
 import Link from "next/link"
 import {
   Card,
@@ -38,7 +41,7 @@ export function TurnPlanSection({
         <Card>
           <CardHeader className="gap-1">
             <CardTitle className="text-base">
-              {workstream?.title ?? "Workstream pitch"}
+              {presentationCopy(workstream?.title ?? "Workstream pitch")}
             </CardTitle>
             <CardDescription>
               {workstream ? (
@@ -49,7 +52,7 @@ export function TurnPlanSection({
                   {workstream.id}
                 </Link>
               ) : null}
-              {sliceTitle ? ` · ${sliceTitle}` : ""}
+              {sliceTitle ? ` · ${presentationCopy(sliceTitle)}` : ""}
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-3 text-sm">
@@ -63,7 +66,7 @@ export function TurnPlanSection({
                   onClick={() =>
                     openDoc({
                       path: planPath,
-                      label: workstream?.title ?? "Workstream pitch",
+                      label: presentationCopy(workstream?.title ?? "Workstream pitch"),
                       content: planMarkdown,
                     })
                   }
@@ -79,7 +82,7 @@ export function TurnPlanSection({
                     Before
                   </h3>
                   <p className="leading-relaxed text-foreground/90">
-                    {workstream.problem}
+                    {presentationCopy(workstream.problem)}
                   </p>
                 </div>
                 <div>
@@ -87,7 +90,7 @@ export function TurnPlanSection({
                     After
                   </h3>
                   <p className="leading-relaxed text-foreground/90">
-                    {workstream.objective}
+                    {presentationCopy(workstream.objective)}
                   </p>
                 </div>
               </div>

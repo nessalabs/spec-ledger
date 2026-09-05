@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "producedAt": "2026-09-04T23:22:41.182Z",
+  "producer": {
+    "name": "spec-ledger check",
+    "version": "0.1.0"
+  },
+  "rows": [
+    {
+      "key": "command:b-sl-016",
+      "runId": "06ba748e-9f54-4b2d-ab8f-4e603e6a21d0",
+      "sourceDigest": "d7fdea43922377f2d293b60668d4371ce13415328ae4335816359bb73a18bc17",
+      "checkDigest": "6291872c01537fc319c93051c83950ba21b9c7fb7fc34905bd299a8230c70c2a",
+      "outcome": "pass",
+      "detail": "exit 0"
+    },
+    {
+      "key": "command:b-sl-017",
+      "runId": "06ba748e-9f54-4b2d-ab8f-4e603e6a21d0",
+      "sourceDigest": "d7fdea43922377f2d293b60668d4371ce13415328ae4335816359bb73a18bc17",
+      "checkDigest": "3d375bc7af734ec5f605081dc645324ebaf0730dd496f58c0a7823964e7c1bac",
+      "outcome": "pass",
+      "detail": "exit 0"
+    },
+    {
+      "key": "command:b-sl-018",
+      "runId": "06ba748e-9f54-4b2d-ab8f-4e603e6a21d0",
+      "sourceDigest": "d7fdea43922377f2d293b60668d4371ce13415328ae4335816359bb73a18bc17",
+      "checkDigest": "bfd33bffa573b64eebde85bffb7747fc68f71e0c5b6f33667297c65496aa29a3",
+      "outcome": "pass",
+      "detail": "exit 0"
+    },
+    {
+      "key": "command:b-sl-019",
+      "runId": "06ba748e-9f54-4b2d-ab8f-4e603e6a21d0",
+      "sourceDigest": "d7fdea43922377f2d293b60668d4371ce13415328ae4335816359bb73a18bc17",
+      "checkDigest": "367dd345ae37a4ec3640ff16369b7c4f003b2309ac9612f87b35ba263ae072ff",
+      "outcome": "pass",
+      "detail": "exit 0"
+    },
+    {
+      "key": "command:b-sl-020",
+      "runId": "06ba748e-9f54-4b2d-ab8f-4e603e6a21d0",
+      "sourceDigest": "d7fdea43922377f2d293b60668d4371ce13415328ae4335816359bb73a18bc17",
+      "checkDigest": "ac83c2066741284286f407c449de7dd281bdeaca837779a522674b68438a9649",
+      "outcome": "pass",
+      "detail": "exit 0"
+    },
+    {
+      "key": "command:b-sl-021",
+      "runId": "06ba748e-9f54-4b2d-ab8f-4e603e6a21d0",
+      "sourceDigest": "d7fdea43922377f2d293b60668d4371ce13415328ae4335816359bb73a18bc17",
+      "checkDigest": "fb77363796702ac58c9c8af15fca5958b611bae5b1932ce67f9da51b4e700e03",
+      "outcome": "pass",
+      "detail": "exit 0"
+    },
+    {
+      "key": "command:b-sl-022",
+      "runId": "06ba748e-9f54-4b2d-ab8f-4e603e6a21d0",
+      "sourceDigest": "d7fdea43922377f2d293b60668d4371ce13415328ae4335816359bb73a18bc17",
+      "checkDigest": "535b8800284fabc3cd4c8337819ea98138dc57a75cb5da97ff4f350e3a7349c2",
+      "outcome": "pass",
+      "detail": "exit 0"
+    }
+  ]
+}

@@ -14,21 +14,50 @@
     "claims"
   ],
   "properties": {
-    "schemaVersion": { "type": "integer", "const": 1 },
-    "producedAt": { "type": "string", "format": "date-time" },
-    "producedBy": { "type": "string" },
-    "ok": { "type": "boolean" },
+    "schemaVersion": {
+      "type": "integer",
+      "const": 1
+    },
+    "producedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "producedBy": {
+      "type": "string"
+    },
+    "ok": {
+      "type": "boolean"
+    },
     "provenance": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["ledgerDigest", "resultsDigest", "treeHint"],
+      "required": [
+        "ledgerDigest",
+        "resultsDigest",
+        "treeHint"
+      ],
       "properties": {
-        "commit": { "type": ["string", "null"] },
-        "ledgerDigest": { "type": "string" },
-        "resultsDigest": { "type": "string" },
+        "commit": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "ledgerDigest": {
+          "type": "string"
+        },
+        "resultsDigest": {
+          "type": "string"
+        },
         "treeHint": {
           "type": "string",
           "description": "Repo root path or other hint for consumers recomputing digests."
+        },
+        "sourceDigest": {
+          "type": [
+            "string",
+            "null"
+          ]
         }
       }
     },
@@ -37,16 +66,66 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["claimId", "required", "outcome"],
+        "required": [
+          "claimId",
+          "required",
+          "outcome"
+        ],
         "properties": {
-          "claimId": { "type": "string" },
-          "required": { "type": "boolean" },
+          "claimId": {
+            "type": "string"
+          },
+          "required": {
+            "type": "boolean"
+          },
           "outcome": {
             "type": "string",
-            "enum": ["pass", "fail", "missing", "attested", "unbound"]
+            "enum": [
+              "pass",
+              "fail",
+              "missing",
+              "attested",
+              "unbound"
+            ]
           },
-          "bindingIds": { "type": "array", "items": { "type": "string" } },
-          "detail": { "type": "string" }
+          "bindingIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "detail": {
+            "type": "string"
+          },
+          "checks": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "bindingId",
+                "outcome"
+              ],
+              "properties": {
+                "bindingId": {
+                  "type": "string"
+                },
+                "outcome": {
+                  "type": "string",
+                  "enum": [
+                    "pass",
+                    "fail",
+                    "missing",
+                    "unbound",
+                    "attested"
+                  ]
+                },
+                "detail": {
+                  "type": "string"
+                }
+              }
+            }
+          }
         }
       }
     },
@@ -54,18 +133,36 @@
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "ok": { "type": "boolean" },
-        "danglingNodes": { "type": "array", "items": { "type": "string" } },
-        "missingLocators": { "type": "array", "items": { "type": "string" } },
+        "ok": {
+          "type": "boolean"
+        },
+        "danglingNodes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "missingLocators": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
         "freshness": {
           "type": "string",
-          "enum": ["ok", "stale", "unknown"]
+          "enum": [
+            "ok",
+            "stale",
+            "unknown"
+          ]
         }
       }
     },
     "problems": {
       "type": "array",
-      "items": { "type": "string" }
+      "items": {
+        "type": "string"
+      }
     }
   }
 }

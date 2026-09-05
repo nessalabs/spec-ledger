@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "id": "T-035/R-01",
+  "turnId": "T-035",
+  "workstreamId": "W-008",
+  "kind": "adversarial",
+  "target": "code",
+  "reviewer": "agent:sl-dev-break:w008-slc02",
+  "verdict": "approve",
+  "blocking": false,
+  "alertOnSeverity": "high",
+  "plainSummary": "Custom engineering methods now preserve chosen skills and ordered attempts while accepting only current, scoped evidence under the tested attacks.",
+  "summary": "Approved SLC-02 on the frozen tree after failure-first repairs. Ten independent workflow breakers pass for poisoned contracts and forbidden order, workflow-storage and skill symlink confinement, bounded and immutable skill content, fresh amendment/attempt identity, cross-workstream and historical review rejection, unresolved blocking findings, criterion-to-behavioral-row mapping, attestation separation, explicit custom obligations, and within-stage order. Builder workflow unit tests pass 2/2; actual CLI/MCP tests pass the custom method lifecycle through real records on both executables and the existing lifecycle/negative/package matrix 6/6. UI presentation tests pass 3/3 inside the 9/9 UI set. Manual browser evidence shows an MCP-selected method, a live CLI update, failed current evidence, and disconnected stale observation. The recorded full regression completed 176 ledger + 6 MCP + 9 UI tests with zero failures.",
+  "findings": [],
+  "killersCited": [
+    "packages/ledger/src/workflows/workflow.break.test.ts::rejects unknown or empty output contracts and policy-breaking stage order before persistence",
+    "packages/ledger/src/workflows/workflow.break.test.ts::confines workflow persistence when the workflow directory is an escaping symlink",
+    "packages/ledger/src/workflows/workflow.break.test.ts::preserves selected skill bytes and rejects escaping or oversized replacements",
+    "packages/ledger/src/workflows/workflow.break.test.ts::gives every amendment a new execution identity and excludes prior attempts",
+    "packages/ledger/src/workflows/workflow.break.test.ts::rejects a current code review that belongs to another workstream",
+    "packages/ledger/src/workflows/workflow.break.test.ts::does not relabel a review created before the current method attempt as that attempt output",
+    "packages/ledger/src/workflows/workflow.break.test.ts::does not satisfy a code-review output while a later blocking review remains unresolved",
+    "packages/ledger/src/workflows/workflow.break.test.ts::requires behavioral result rows for every scoped criterion and never accepts attestation instead",
+    "packages/ledger/src/workflows/workflow.break.test.ts::keeps an explicitly configured review stage applicable when project policy does not require one",
+    "packages/ledger/src/workflows/workflow.break.test.ts::does not make later steps in one ordered stage ready before earlier steps are satisfied",
+    "packages/mcp/src/workflow.lifecycle.test.ts::cli follows a custom method through real records and preserves current evidence",
+    "packages/mcp/src/workflow.lifecycle.test.ts::mcp follows a custom method through real records and preserves current evidence",
+    "packages/ui/lib/workflow-presentation.test.mjs::workflow statuses keep blocked and not-applicable out of passing task states",
+    "packages/ui/lib/workflow-presentation.test.mjs::workflow digest labels stay recognizable without filling the page",
+    "packages/ui/lib/workflow-presentation.test.mjs::workflow output contracts have plain labels",
+    "docs/workstreams/W-008-shared-agent-workflows/evidence/T-035/browser-check.md::live custom method update, failed evidence, and disconnected observation"
+  ],
+  "residualRisks": [
+    "Portable skill capability and reviewer attribution remain agent-reported; a trusted host is required for authenticated execution identity.",
+    "The browser verification is a recorded manual observation rather than automated browser CI.",
+    "Optional host activity and recovery controls remain assigned to W-008 SLC-03 and were not graded in this review."
+  ],
+  "treeDigest": "8bb3d984fe7b57d446dd27d32f52f2db3774db4b3eec88ae82640ba83bd11946"
+}

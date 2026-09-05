@@ -1,0 +1,13 @@
+✔ turn evidence excludes adjacent slice prefixes and preserves failed/missing verdicts (0.670292ms)
+✔ legacy turns require an explicit claim mapping rather than borrowing workstream proof (0.076209ms)
+✔ historical completion is not a current passing verdict (0.095833ms)
+✔ actual Git histories attribute only exact trailers, never close HEAD or prefix/body mentions (183.351292ms)
+✔ rendered change page puts evidence before collapsed commit and documents (33.619625ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 355.323625

@@ -1,0 +1,39 @@
+✔ source changes during a saved check cannot produce a passing outcome (285.44275ms)
+✖ large stdout and stderr drain without unbounded capture and retain intact hashes (217.904875ms)
+✔ overlapping new requests are rejected while retry returns the original identity (586.10875ms)
+✔ local malformed and cross-origin actions cause no execution (148.440792ms)
+✔ symlinked receipt directory cannot receive check writes outside the checkout (11.096334ms)
+✔ stale displayed inputs reject before worker creation and never switch to a changed command (86.576958ms)
+✔ nonzero exit retains actual diagnostics and does not pass (201.823167ms)
+✔ timeout terminates the owned command before releasing the guard and records signal (167.644459ms)
+✔ saved command returns promptly, preserves actual output, and retries do not execute again (321.200084ms)
+✔ batch CLI runner records the same bounded logs and preserves unrelated rows (192.585375ms)
+✔ local bridge only runs the displayed saved definition and reads are passive (322.704375ms)
+✔ CLI starts and observes the same saved command with actual output (359.096041ms)
+✔ MCP starts and observes the same saved command with actual output (349.970667ms)
+✔ passive evidence render keeps authored expectations distinct and escapes test source (5.643875ms)
+✔ actual failures and tampered logs remain visible independently of a described expectation (1.273792ms)
+✔ uncertain HTTP response reconnects with the same request identity (3.286833ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 15
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1783.354666
+
+✖ failing tests:
+
+test at packages/ledger/dist/verify/saved-check.break.test.js:28:1
+✖ large stdout and stderr drain without unbounded capture and retain intact hashes (217.904875ms)
+  Error: ENOTEMPTY, Directory not empty: /var/folders/1w/wp9n0wwd22qgrf0zkhb2fk6r0000gn/T/sl-run-break-8Q39UD '/var/folders/1w/wp9n0wwd22qgrf0zkhb2fk6r0000gn/T/sl-run-break-8Q39UD'
+      at rmSync (node:fs:1567:18)
+      at TestContext.<anonymous> (file:///Users/nessa/Documents/NessaLabs/spec-ledger/packages/ledger/dist/verify/saved-check.break.test.js:38:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    errno: 66,
+    code: 'ENOTEMPTY',
+    path: '/var/folders/1w/wp9n0wwd22qgrf0zkhb2fk6r0000gn/T/sl-run-break-8Q39UD',
+    syscall: 'rm'
+  }

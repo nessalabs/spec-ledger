@@ -1,0 +1,226 @@
+{
+  "schemaVersion": 1,
+  "workstreamId": "W-006",
+  "revision": 1,
+  "sealedAt": "2026-09-04T21:24:31.264Z",
+  "sealedBy": "user:conversation-implement-proposed-changes",
+  "specDigest": "25ef47ff7145d35207ad44de857e3fc491ee2376c9afe71ca723b5245936f19a",
+  "specDocDigest": "d1633692de274c1fe2a5eed8c92800e15e1c48de8c821d72e4f2255bc962b8d0",
+  "body": {
+    "id": "W-006",
+    "featureIds": [
+      "verify",
+      "turns",
+      "lattice",
+      "cli",
+      "client",
+      "server"
+    ],
+    "primaryFeatureId": "lattice",
+    "title": "Trustworthy autonomous coding",
+    "problem": "Evidence freshness, delegated authority, remembered deferrals, and live progress need one simpler workflow.",
+    "objective": "Follow agent work through readable specs, explicit permission, meaningful progress, and current evidence.",
+    "specPath": "docs/workstreams/W-006-trustworthy-autonomous-coding/spec.md",
+    "appetite": "Incremental delivery in independently verified verticals; portable local workflow first",
+    "changeType": "feature",
+    "riskLevel": "elevated",
+    "trust": {
+      "deployTarget": "library-consumer",
+      "userFacing": true,
+      "performanceCritical": false,
+      "securitySensitive": true,
+      "correctnessCritical": true,
+      "requiredEvidence": [
+        "unit",
+        "integration",
+        "e2e"
+      ]
+    },
+    "policy": {
+      "alertOnSeverity": "high",
+      "onAlert": "block",
+      "onSealedSpecDeviation": "block",
+      "requireSpecBreak": true,
+      "requireCodeBreak": true,
+      "requireAlignApprove": true,
+      "alignReviewerPrefix": "agent:align",
+      "allowExplicitAlignSkip": true
+    },
+    "acceptanceCriteria": [],
+    "outOfScope": [
+      "Replacing existing W-005 work without reconciling scope",
+      "Multi-user SaaS, a new agent runtime, or generic workflow engine",
+      "Claiming full semantic equivalence between arbitrary prose and code",
+      "Rewriting historical facts or fabricating approvals"
+    ],
+    "proposedClaimIds": [],
+    "suggestedSlices": [
+      {
+        "id": "SLC-01",
+        "title": "Every required check contributes to the verdict",
+        "kind": "vertical",
+        "acceptance": [
+          "AC-05: Fail dominates missing, which dominates attested, which dominates pass; order never changes the result. Duplicate result keys are rejected. Empty ledgers show no requirements checked."
+        ],
+        "evidence": [
+          "unit",
+          "integration"
+        ],
+        "expectedClaimIds": [
+          "SL-001",
+          "SL-002",
+          "SL-003",
+          "SL-004",
+          "SL-005"
+        ],
+        "expectedPaths": [
+          "packages/ledger/src/verify/**",
+          "packages/ledger/src/types.ts",
+          "packages/client/**",
+          "packages/server/**",
+          "packages/ui/**",
+          "schemas/**",
+          "docs/**",
+          "packages/ledger/src/cli/**"
+        ]
+      },
+      {
+        "id": "SLC-02",
+        "title": "Reads cannot run checks or change ledger state",
+        "kind": "vertical",
+        "acceptance": [
+          "AC-06: CLI execution and report persistence are explicit; client/server/context reads do not run commands, write reports, or resume automation."
+        ],
+        "evidence": [
+          "unit",
+          "integration"
+        ],
+        "expectedClaimIds": [
+          "SL-001",
+          "SL-002",
+          "SL-003",
+          "SL-004",
+          "SL-005"
+        ],
+        "expectedPaths": [
+          "packages/ledger/src/**",
+          "packages/client/**",
+          "packages/server/**",
+          "packages/ui/**",
+          "schemas/**",
+          "docs/**"
+        ]
+      },
+      {
+        "id": "SLC-03",
+        "title": "Evidence and approvals match the current source",
+        "kind": "vertical",
+        "acceptance": [
+          "AC-06/09: Relevant dirty and untracked content changes invalidate results and reviews; metadata-only changes and content-preserving commits do not. Artifact references are confined and integrity checked."
+        ],
+        "evidence": [
+          "unit",
+          "integration"
+        ],
+        "expectedClaimIds": [
+          "SL-001",
+          "SL-002",
+          "SL-003",
+          "SL-004",
+          "SL-005"
+        ],
+        "expectedPaths": [
+          "packages/ledger/src/**",
+          "packages/client/**",
+          "packages/server/**",
+          "schemas/**",
+          "docs/**"
+        ]
+      },
+      {
+        "id": "SLC-04",
+        "title": "Proceed under explicit permission and scoped corrections",
+        "kind": "vertical",
+        "acceptance": [
+          "AC-01/02: Revision approval, request and standing delegation are distinct; denial/revocation blocks affected work. Corrections are scoped, provenance is honest, context hashes content."
+        ],
+        "evidence": [
+          "unit",
+          "integration"
+        ],
+        "expectedClaimIds": [
+          "SL-001",
+          "SL-002",
+          "SL-003",
+          "SL-004",
+          "SL-005"
+        ],
+        "expectedPaths": [
+          "packages/ledger/src/**",
+          "packages/client/**",
+          "packages/server/**",
+          "schemas/**",
+          "skills/**",
+          "docs/**",
+          "DESIGN.md",
+          "AGENTS.md"
+        ]
+      },
+      {
+        "id": "SLC-05",
+        "title": "Deferred work returns when its feature is planned",
+        "kind": "vertical",
+        "acceptance": [
+          "AC-03/04: Old unresolved linked deferrals appear independent of recent history; activation is persistent and idempotent, unknown inputs stay unknown, completion requires a valid response. Backlog projects drafts and deferrals."
+        ],
+        "evidence": [
+          "unit",
+          "integration"
+        ],
+        "expectedClaimIds": [
+          "SL-001",
+          "SL-002",
+          "SL-003",
+          "SL-004",
+          "SL-005"
+        ],
+        "expectedPaths": [
+          "packages/ledger/src/**",
+          "packages/client/**",
+          "packages/server/**",
+          "schemas/**",
+          "skills/**",
+          "docs/**"
+        ]
+      },
+      {
+        "id": "SLC-06",
+        "title": "Follow work through one clear session",
+        "kind": "vertical",
+        "acceptance": [
+          "AC-07/08: CLI and read-only session projection show permission, acceptance/evidence, attention, meaningful changes, and preview. Polling reports disconnects; portable approval handoff is labeled honestly until a host bridge is selected."
+        ],
+        "evidence": [
+          "unit",
+          "integration"
+        ],
+        "expectedClaimIds": [
+          "SL-001",
+          "SL-002",
+          "SL-003",
+          "SL-004",
+          "SL-005"
+        ],
+        "expectedPaths": [
+          "packages/ledger/src/**",
+          "packages/client/**",
+          "packages/server/**",
+          "packages/ui/**",
+          "schemas/**",
+          "skills/**",
+          "docs/**"
+        ]
+      }
+    ]
+  }
+}

@@ -1,11 +1,15 @@
 {
   "id": "SL-013",
   "kind": "invariant",
-  "statement": "Spec Ledger UI for consumers is delivered as a GitHub Release asset (not an npm @nessalabs/spec-ledger-ui package in this bet); the shipped tree has zero file: or workspace: dependency protocols; README documents a one-liner to view a consumer .spec-ledger/ using published client/server plus that asset.",
+  "statement": "Open the Spec Ledger website for your own project using the downloadable release and its setup instructions.",
   "area": "ui",
   "required": true,
   "links": {
-    "docs": ["README.md", "docs/workstreams/consumer-cli-and-npm-publish.md"],
+    "docs": [
+      "README.md",
+      "docs/workstreams/consumer-cli-and-npm-publish.md",
+      "docs/architecture/claim-contracts.md"
+    ],
     "proposedClaimId": "PC-017"
   }
 }

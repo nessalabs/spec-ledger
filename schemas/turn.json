@@ -65,7 +65,7 @@
         },
         "flows": {
           "type": "array",
-          "description": "Optional before/after Mermaid for Lattice review. Narrative only — not verify truth.",
+          "description": "Optional before/after Mermaid for Spec Ledger UI review. Narrative only — not verify truth.",
           "items": {
             "type": "object",
             "additionalProperties": false,

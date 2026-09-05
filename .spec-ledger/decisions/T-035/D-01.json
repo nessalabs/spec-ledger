@@ -1,0 +1,7 @@
+{
+  "schemaVersion": 1,
+  "turnId": "T-035",
+  "decision": "Let users choose engineering steps while keeping the evidence contracts fixed.",
+  "rationale": "The shared workflow evaluator owns stage prerequisites and typed output currentness. Profiles replace guidance, not permission or proof. Preserve local skill text in immutable snapshots; retry attempts refer to existing evidence records. CLI and MCP call the same operations, and the UI only renders the shared projection.",
+  "id": "T-035/D-01"
+}

@@ -1,0 +1,7 @@
+{
+  "schemaVersion": 1,
+  "turnId": "T-036",
+  "decision": "Treat host activity as a best-effort observation, separate from proof and permission.",
+  "rationale": "Associate activity with existing turns and preserve bounded runtime signals outside source fingerprints. Hooks cannot grant liveness, cancellation or resume capabilities. Show current missing outcomes and optional continuation policy, but keep unsupported controls unavailable and never infer idleness from silence.",
+  "id": "T-036/D-01"
+}

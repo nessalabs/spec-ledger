@@ -4,15 +4,48 @@
   "title": "LedgerRootConfig",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schemaVersion", "name"],
+  "required": [
+    "schemaVersion",
+    "name"
+  ],
   "properties": {
-    "schemaVersion": { "type": "integer", "const": 1 },
-    "name": { "type": "string" },
-    "claimsDir": { "type": "string", "default": "claims" },
-    "bindingsDir": { "type": "string", "default": "bindings" },
-    "graphPath": { "type": "string", "default": "graph/codebase-graph.json" },
-    "policyPath": { "type": "string", "default": "policy/layers.json" },
-    "resultsPath": { "type": "string", "default": "results/last.json" },
-    "reportPath": { "type": "string", "default": "results/report.json" }
+    "schemaVersion": {
+      "type": "integer",
+      "const": 1
+    },
+    "name": {
+      "type": "string"
+    },
+    "claimsDir": {
+      "type": "string",
+      "default": "claims"
+    },
+    "bindingsDir": {
+      "type": "string",
+      "default": "bindings"
+    },
+    "graphPath": {
+      "type": "string",
+      "default": "graph/codebase-graph.json"
+    },
+    "policyPath": {
+      "type": "string",
+      "default": "policy/layers.json"
+    },
+    "resultsPath": {
+      "type": "string",
+      "default": "results/last.json"
+    },
+    "reportPath": {
+      "type": "string",
+      "default": "results/report.json"
+    },
+    "generatedArtifactPaths": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Explicit run artifact files excluded from source fingerprints; artifacts are independently hashed. Must be workstream evidence files, not source code."
+    }
   }
 }

@@ -1,0 +1,9 @@
+{
+  "id": "b-sl-021",
+  "claimId": "SL-021",
+  "kind": "test",
+  "locator": {
+    "type": "command",
+    "command": "node --test packages/ledger/dist/session/session.break.test.js packages/ledger/dist/graph/display.test.js packages/ledger/dist/permission/local-ui.break.test.js"
+  }
+}

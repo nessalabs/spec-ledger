@@ -1,0 +1,12 @@
+▶ read-only projection adversarial
+  ✔ HTTP and in-process reads never execute checks, persist reports, or resolve expired waits (294.9495ms)
+  ✔ explicit CLI checks run commands, persist verdicts, and expose the recorded result to reads (436.236708ms)
+✔ read-only projection adversarial (731.625875ms)
+ℹ tests 2
+ℹ suites 1
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 783.469375

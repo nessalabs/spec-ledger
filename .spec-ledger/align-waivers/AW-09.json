@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "id": "T-028/AW-09",
+  "reason": "W006 implementation is explicitly authorized. Two UI files are unchanged carry-over from reviewed T026/SLC01 empty-ledger display, pending the combined implementation commit. Waive only this cross-slice path mismatch, not evidence or review freshness.",
+  "actor": "agent:sl-dev-build",
+  "treeDigest": "7d73478b08a2a66ae925a726487fc1d744b5738f2e7a2c5b92db3264949e2897",
+  "createdAt": "2026-09-04T21:39:40.371Z",
+  "workstreamId": "W-006",
+  "turnId": "T-028"
+}

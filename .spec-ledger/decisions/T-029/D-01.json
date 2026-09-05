@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "turnId": "T-029",
+  "decision": "Fix the mobile rail offset as a code defect; record discovery without changing intended layout behavior.",
+  "rationale": "At a 655px viewport the sidebar is fixed with width56 while the main region begins at x0. Reserve collapsed-rail space below48rem. The user can report bugs in the active conversation; only changed/missing requirements need a spec amendment. Repeated issue categories are candidates for reviewed process improvements, not automatic global instructions.",
+  "discovery": {
+    "kind": "code-defect",
+    "reportedVia": "user",
+    "observation": "Turn content is hidden under the collapsed navigation rail in a narrow panel.",
+    "cause": "The library fixes its mobile icon rail but the consuming shell does not offset the main region.",
+    "specRef": "W-006/AC-07",
+    "regression": "Browser check at narrow width: main left edge must be at or after rail right edge; expanded/desktop and reader layout remain usable."
+  },
+  "basis": {
+    "sealRevision": 1,
+    "at": "2026-09-04T21:52:31.945Z"
+  },
+  "id": "T-029/D-01"
+}

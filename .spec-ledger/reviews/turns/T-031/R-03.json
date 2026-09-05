@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "id": "T-031/R-03",
+  "turnId": "T-031",
+  "workstreamId": "W-006",
+  "kind": "human",
+  "target": "code",
+  "reviewer": "agent:align",
+  "verdict": "approve",
+  "summary": "User authorized all W-006 slices, chose portable CLI handoff, and added rail clipping and incomplete graph fixes.",
+  "plainSummary": "The complete implementation and reported UI fixes match the requested scope.",
+  "treeDigest": "b5d25e66897f1b13e2705e6899e139fd8ed88e49aa2dda65e3f9d1a49db0de88",
+  "uncoveredPaths": [
+    "AGENTS.md",
+    "DESIGN.md"
+  ],
+  "coverageSource": "mixed",
+  "waiverIds": [
+    "T-031/AW-12"
+  ]
+}

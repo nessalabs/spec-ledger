@@ -1,11 +1,14 @@
 {
   "id": "SL-015",
   "kind": "invariant",
-  "statement": "When a workstream with specPath is sealed, seal.specDocDigest is the sha256 of the UTF-8 bytes at that path and is never rewritten for that seal revision. Last expected doc digest is latest postSealAmends.afterDocDigest if any, else seal.specDocDigest. If sealed with specPath and no expected digest, check-seal and ledger audit fail until workstream backfill-doc-digest. If bytes diverge, check-seal and audit fail until workstream amend. Audit also fails seal-digest-drift when live sealPayload diverges from the seal without re-seal.",
+  "statement": "Changes to an agreed spec must be recorded, so an agent cannot silently replace what was approved.",
   "area": "core",
   "required": true,
   "links": {
-    "docs": ["docs/workstreams/consumer-cli-and-npm-publish.md"],
+    "docs": [
+      "docs/workstreams/consumer-cli-and-npm-publish.md",
+      "docs/architecture/claim-contracts.md"
+    ],
     "proposedClaimId": "PC-019"
   }
 }

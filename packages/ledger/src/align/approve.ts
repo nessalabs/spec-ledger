@@ -85,7 +85,7 @@ export function assertAlignApproveValid(args: {
     throw new Error("align approve refused: uncoveredPaths array required")
   }
   if (!review.plainSummary?.trim()) {
-    throw new Error("align approve refused: plainSummary required (one Lattice sentence)")
+    throw new Error("align approve refused: plainSummary required (one Spec Ledger UI sentence)")
   }
   if (review.plainSummary.length > 280) {
     throw new Error("align approve refused: plainSummary must be <= 280 characters")

@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "id": "T-034/R-04",
+  "turnId": "T-034",
+  "workstreamId": "W-008",
+  "kind": "human",
+  "target": "code",
+  "reviewer": "agent:align",
+  "verdict": "approve",
+  "summary": "User requested the shared tools and live evidence revamp, then explicitly added acceptance percentage; DESIGN.md is covered by the exact-path waiver.",
+  "plainSummary": "The shared CLI/MCP tools and acceptance progress display match the authorized work.",
+  "treeDigest": "e5abd70a9c07ed530f2cf0edca2fa0967362ad2a7550d214afcc6719f3310a76",
+  "uncoveredPaths": [
+    "DESIGN.md"
+  ],
+  "coverageSource": "mixed",
+  "waiverIds": [
+    "T-034/AW-16"
+  ]
+}

@@ -1,0 +1,15 @@
+✔ section history returns from execution to exact acceptance without hiding the evidence (11.197042ms)
+✔ unknown or obsolete fragments do not strand readers in an invisible section (0.066625ms)
+✔ mobile navigation closes on same-page selection and route change but preserves modified clicks (12.181542ms)
+✔ change history is isolated from the live child list and renders without key warnings (11.933834ms)
+✔ the dedicated workflow page retains editor and process state when live data changes workstream (4.42325ms)
+✔ overview keeps permission and problems visible with direct spec, evidence and history links (37.707208ms)
+✔ approved work does not request approval again and disconnected approval stays disabled (19.024334ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 165.425

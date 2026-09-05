@@ -15,12 +15,11 @@ export default async function ClaimsPage() {
     <div className="mx-auto flex max-w-5xl flex-col gap-8">
       <header className="flex flex-col gap-2">
         <p className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
-          Claims
+          Requirements
         </p>
         <h1 className="text-2xl font-semibold tracking-tight">What must stay true</h1>
         <p className="max-w-2xl text-sm text-muted-foreground">
-          Standing truths and their live verify outcome. ⌘/Ctrl-click to peek;
-          plain click opens the claim.
+          Open a requirement to see what was tested and inspect the results.
         </p>
       </header>
 

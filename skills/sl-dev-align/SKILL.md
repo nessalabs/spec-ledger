@@ -2,7 +2,7 @@
 name: sl-dev-align
 description: >-
   Spec Ledger (sl-dev): cheap/Haiku-class path-coverage align check + approve.
-  Ask the user for coverage intent before writing align approve JSON. Use before
+  Establish user coverage intent before writing align approve JSON. Use before
   turn close / push when policy.requireAlignApprove. Triggers: align, coverage,
   sl-dev-align, path covered.
 ---
@@ -22,7 +22,7 @@ Haiku-class** model. Does **not** affect `verify.ok`.
 
 ## Hard rules
 
-1. **Ask the user for coverage intent** before writing approve JSON. Do not invent why paths are in-scope.
+1. Establish the user's coverage intent before writing approve JSON. An explicit request or accepted scope already in the conversation satisfies this; ask only when the intended coverage is missing or ambiguous. Do not invent why paths are in-scope.
 2. Run `spec-ledger align check --turn T-…` (or `pnpm ledger:align`).
 3. Approve only when `uncoveredPaths` is empty **or** `waiverIds` references a written waiver.
 4. Reviewer must start with `policy.alignReviewerPrefix` (default `agent:align`) and must **not** equal turn `opened.producedBy`.
@@ -43,8 +43,8 @@ node packages/ledger/dist/cli/main.js align waiver --turn T-016 --actor human \
   --reason "…… at least forty characters explaining the skip ……"
 ```
 
-Lattice copy rules:
-[`../references/review-lattice-copy.md`](../references/review-lattice-copy.md).
+Spec Ledger UI copy rules:
+[`../references/review-copy.md`](../references/review-copy.md).
 
 ## Stop
 

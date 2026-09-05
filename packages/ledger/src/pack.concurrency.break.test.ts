@@ -2,7 +2,7 @@ import { describe, it } from "node:test"
 import assert from "node:assert/strict"
 import { cpSync, existsSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, realpathSync, rmSync, writeFileSync } from "node:fs"
 import { tmpdir } from "node:os"
-import { join } from "node:path"
+import { dirname, join } from "node:path"
 import { spawn, spawnSync } from "node:child_process"
 import { createRequire } from "node:module"
 
@@ -23,7 +23,10 @@ function fixture(): string {
 
 function command(cmd: string, args: string[], cwd: string) {
   return new Promise<{ code: number | null; output: string }>((resolve, reject) => {
-    const child = spawn(cmd, args, { cwd, env: process.env })
+    const child = spawn(cmd, args, {
+      cwd,
+      env: { ...process.env, PNPM_CONFIG_VERIFY_DEPS_BEFORE_RUN: "false" },
+    })
     let output = ""
     child.stdout.on("data", (data) => { output += data })
     child.stderr.on("data", (data) => { output += data })
@@ -60,6 +63,17 @@ describe("pack concurrency and failure isolation", () => {
       mkdirSync(ledgerOut)
       sync("npm", ["pack", "--ignore-scripts", "--pack-destination", ledgerOut], join(root, "packages/ledger"))
       tarballs.push(join(ledgerOut, readdirSync(ledgerOut).find((p) => p.endsWith(".tgz"))!))
+
+      // The consumer install is deliberately offline. Supply the exact Zod
+      // package already installed for this checkout rather than depending on
+      // npm's ambient cache to contain the ledger's runtime dependency.
+      const dependencyOut = join(root, "dependency-out")
+      mkdirSync(dependencyOut)
+      const repoRequire = createRequire(join(REPO, "packages/ledger/package.json"))
+      const zodDir = dirname(repoRequire.resolve("zod/package.json"))
+      sync("npm", ["pack", "--ignore-scripts", "--pack-destination", dependencyOut], zodDir)
+      tarballs.push(join(dependencyOut, readdirSync(dependencyOut).find((p) => p.endsWith(".tgz"))!))
+
       for (const name of ["client", "server"]) {
         const dir = join(root, "packages", name)
         const path = join(dir, "package.json")

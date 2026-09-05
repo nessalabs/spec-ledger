@@ -1,7 +1,8 @@
+import { readFileSync } from "node:fs"
+import { sourceFingerprint, checkFingerprint, localArtifactPath, contentHash } from "../evidence/fingerprint.js"
 import { spawnSync } from "node:child_process"
-import { join } from "node:path"
 import type { ClaimVerdict, LoadedLedger, Outcome, VerifyReport } from "../types.js"
-import { pathExists, sha256Stable, writeJson } from "../fs/load.js"
+import { pathExists, sha256Stable } from "../fs/load.js"
 
 const PRODUCED_BY = "@nessalabs/spec-ledger@0.1.0"
 
@@ -11,19 +12,9 @@ function gitCommit(repoRoot: string): string | null {
   return r.stdout.trim() || null
 }
 
-function runCommand(repoRoot: string, command: string): { ok: boolean; detail: string } {
-  const r = spawnSync(command, {
-    cwd: repoRoot,
-    encoding: "utf8",
-    shell: true,
-    env: process.env,
-  })
-  const detail = (r.stderr || r.stdout || "").trim().slice(0, 500)
-  return { ok: r.status === 0, detail: detail || `exit ${r.status}` }
-}
-
 export function verifyLedger(ledger: LoadedLedger): VerifyReport {
   const problems: string[] = []
+  const sourceDigest = sourceFingerprint(ledger.repoRoot, ledger.config.generatedArtifactPaths)
   const claimById = new Map(ledger.claims.map((c) => [c.id, c]))
   const bindingsByClaim = new Map<string, typeof ledger.bindings>()
 
@@ -36,9 +27,26 @@ export function verifyLedger(ledger: LoadedLedger): VerifyReport {
     bindingsByClaim.set(b.claimId, list)
   }
 
-  const resultsByKey = new Map(
-    (ledger.results?.rows ?? []).map((row) => [row.key, row] as const),
-  )
+  const resultsByKey = new Map<string, NonNullable<LoadedLedger["results"]>["rows"][number]>()
+  const duplicateKeys = new Set<string>()
+  for (const row of ledger.results?.rows ?? []) {
+    if (resultsByKey.has(row.key)) duplicateKeys.add(row.key)
+    resultsByKey.set(row.key, row)
+  }
+  for (const key of [...duplicateKeys].sort()) problems.push(`duplicate results key ${key}`)
+
+  const evaluateRow = (row: NonNullable<LoadedLedger["results"]>["rows"][number], claim: LoadedLedger["claims"][number], binding: LoadedLedger["bindings"][number]): {outcome: Outcome; detail?: string} => {
+    if (!sourceDigest || !row.sourceDigest || !row.checkDigest) return {outcome:"missing",detail:"evidence freshness unknown; check requires source and check fingerprints"}
+    if (row.sourceDigest !== sourceDigest || row.checkDigest !== checkFingerprint(claim,binding)) return {outcome:"missing",detail:"evidence is stale for the current source or check"}
+    for (const artifact of row.artifacts ?? []) {
+      if (!artifact.required) continue
+      try {
+        if (!artifact.path) throw new Error("required remote artifact has no locally observable copy")
+        if (contentHash(readFileSync(localArtifactPath(ledger.repoRoot,artifact.path))) !== artifact.sha256) throw new Error("artifact hash mismatch")
+      } catch { return {outcome:"missing",detail:"required evidence artifact is missing, inaccessible, or changed"} }
+    }
+    return {outcome:row.outcome,detail:row.detail}
+  }
 
   const verdicts: ClaimVerdict[] = []
 
@@ -58,38 +66,41 @@ export function verifyLedger(ledger: LoadedLedger): VerifyReport {
       continue
     }
 
-    let outcome: Outcome = "missing"
-    let detail: string | undefined
-    const bindingIds = bindings.map((b) => b.id)
-
-    for (const b of bindings) {
+    const checks = bindings.map((b): { outcome: Outcome; detail?: string } => {
       if (b.locator.type === "results-row") {
         const key = b.locator.resultsKey ?? claim.id
+        if (duplicateKeys.has(key)) return { outcome: "fail", detail: `duplicate results key ${key}` }
         const row = resultsByKey.get(key)
-        if (!row) {
-          outcome = "missing"
-          detail = `no results row for key ${key}`
-          continue
+        if (!row) return { outcome: "missing", detail: `no results row for key ${key}` }
+        if (!["pass", "fail", "missing", "attested"].includes(row.outcome)) {
+          return { outcome: "missing", detail: `invalid outcome for key ${key}` }
         }
-        outcome = row.outcome === "attested" ? "attested" : row.outcome
-        detail = row.detail
-        if (outcome === "fail") break
-        if (outcome === "pass") break
-      } else if (b.locator.type === "command" && b.locator.command) {
-        const r = runCommand(ledger.repoRoot, b.locator.command)
-        outcome = r.ok ? "pass" : "fail"
-        detail = r.detail
-        if (outcome === "fail") break
-      } else if (b.locator.type === "path" && b.locator.path) {
-        const ok = pathExists(ledger.repoRoot, b.locator.path)
-        outcome = ok ? "pass" : "fail"
-        detail = ok ? undefined : `missing path ${b.locator.path}`
-        if (outcome === "fail") break
-      } else if (b.locator.type === "attestation") {
-        outcome = "attested"
-        detail = b.locator.note ?? "attestation binding (never counts as pass)"
+        return evaluateRow(row, claim, b)
       }
-    }
+      if (b.locator.type === "command" && b.locator.command) {
+        const key = `command:${b.id}`
+        if (duplicateKeys.has(key)) return { outcome: "fail", detail: `duplicate results key ${key}` }
+        const row = resultsByKey.get(key)
+        return row && ["pass", "fail", "missing", "attested"].includes(row.outcome)
+          ? evaluateRow(row, claim, b)
+          : { outcome: "missing", detail: `command ${b.id} has no recorded result; run spec-ledger check` }
+      }
+      if (b.locator.type === "path" && b.locator.path) {
+        const ok = pathExists(ledger.repoRoot, b.locator.path)
+        return { outcome: ok ? "pass" : "fail", detail: ok ? undefined : `missing path ${b.locator.path}` }
+      }
+      if (b.locator.type === "attestation") {
+        return { outcome: "attested", detail: b.locator.note ?? "attestation binding (never counts as pass)" }
+      }
+      return { outcome: "missing", detail: `binding ${b.id} has no usable locator` }
+    })
+    const rank: Record<Outcome, number> = { pass: 0, attested: 1, missing: 2, unbound: 2, fail: 3 }
+    const outcome = checks.reduce<Outcome>((worst, check) =>
+      rank[check.outcome] > rank[worst] ? check.outcome : worst, "pass")
+    const detail = checks.map((check, i) => check.outcome !== "pass"
+      ? `${bindings[i].id}: ${check.detail ?? check.outcome}` : undefined)
+      .filter(Boolean).sort().join("; ") || undefined
+    const bindingIds = bindings.map((b) => b.id)
 
     if (claim.required && (outcome === "missing" || outcome === "fail")) {
       problems.push(`claim ${claim.id}: ${outcome}${detail ? ` — ${detail}` : ""}`)
@@ -99,7 +110,7 @@ export function verifyLedger(ledger: LoadedLedger): VerifyReport {
       problems.push(`claim ${claim.id}: attested (v1 policy: does not satisfy required)`)
     }
 
-    verdicts.push({ claimId: claim.id, required: claim.required, outcome, bindingIds, detail })
+    verdicts.push({ claimId: claim.id, required: claim.required, outcome, bindingIds, detail, checks: checks.map((check, i) => ({ bindingId: bindings[i].id, ...check })) })
   }
 
   const graphCheck = checkGraph(ledger)
@@ -126,6 +137,7 @@ export function verifyLedger(ledger: LoadedLedger): VerifyReport {
       ledgerDigest,
       resultsDigest,
       treeHint: ledger.repoRoot,
+      sourceDigest,
     },
     claims: verdicts,
     graph: {
@@ -137,8 +149,6 @@ export function verifyLedger(ledger: LoadedLedger): VerifyReport {
     problems,
   }
 
-  const reportPath = join(ledger.rootDir, ledger.config.reportPath ?? "results/report.json")
-  writeJson(reportPath, report)
   return report
 }
 

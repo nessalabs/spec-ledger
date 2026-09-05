@@ -1,0 +1,18 @@
+{
+  "id": "b-sl-029",
+  "claimId": "SL-029",
+  "kind": "test",
+  "locator": {
+    "type": "command",
+    "command": "node --test packages/ui/lib/navigation*.test.mjs"
+  },
+  "test": {
+    "level": "integration",
+    "description": "Navigate between spec sections and keep approval and evidence problems visible on the overview.",
+    "source": {
+      "path": "packages/ui/lib/navigation.break.test.mjs"
+    },
+    "inputs": "Existing process and evidence deep links, browser history changes, denied permission and failing evidence.",
+    "expected": "The matching section becomes visible, links remain reachable, and approvals or failures are not hidden by the shorter overview."
+  }
+}

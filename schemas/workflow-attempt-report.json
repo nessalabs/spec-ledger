@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nessalabs.dev/spec-ledger/workflow-attempt-report.schema.json",
+  "title": "Spec Ledger workflow attempt report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "attemptId", "status", "reportedAt"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "attemptId": { "type": "string" },
+    "status": { "enum": ["reported-complete", "blocked"] },
+    "reason": { "type": "string", "minLength": 1, "maxLength": 1000 },
+    "reportedAt": { "type": "string" }
+  }
+}

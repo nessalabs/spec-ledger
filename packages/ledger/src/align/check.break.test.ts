@@ -29,6 +29,8 @@ function git(dir: string, args: string[]): string {
 function fixture(): string {
   const dir = mkdtempSync(join(tmpdir(), "sl-align-killer-"))
   cpSync(join(REPO, ".spec-ledger"), join(dir, ".spec-ledger"), { recursive: true })
+  // Keep sealed spec documents available so permission validation reaches the align gate.
+  cpSync(join(REPO, "docs/workstreams"), join(dir, "docs/workstreams"), { recursive: true })
   for (const sub of ["turns", "align-waivers", "reviews/turns"]) {
     rmSync(join(dir, ".spec-ledger", sub), { recursive: true, force: true })
     mkdirSync(join(dir, ".spec-ledger", sub), { recursive: true })

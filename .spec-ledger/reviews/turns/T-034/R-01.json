@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "id": "T-034/R-01",
+  "turnId": "T-034",
+  "workstreamId": "W-008",
+  "kind": "adversarial",
+  "target": "code",
+  "reviewer": "agent:sl-dev-break:w008-slc01",
+  "verdict": "request-changes",
+  "blocking": true,
+  "alertOnSeverity": "high",
+  "plainSummary": "Agents could still record decisions and approvals after permission ends, including an approval labeled as human.",
+  "summary": "The shared operation boundary suite ran seven adversarial cases against the current tree: four passed and three failed. Invalid slices are rejected before seal/turn/activation/automation effects; caller-supplied roots are rejected; progress honors permission; and stale revision/source inputs leave domain records unchanged. Decision and code-review writes omit the current permission check, and the portable review operation accepts caller-supplied kind:human/reviewer labels that can satisfy the code-review gate. Receipt killers remain green separately; actual MCP lifecycle coverage is still pending.",
+  "findings": [
+    {
+      "id": "F-01",
+      "severity": "high",
+      "claimId": "SL-023",
+      "gap": "packages/ledger/src/application/operations.ts submitDecision checks revision and source but not permissionStatus before writeDecision. The breaker removed all authority from an open workstream turn; executeOperation(record_decision) succeeded instead of returning permission_denied and persisted a decision.",
+      "plainImpact": "An agent could keep recording consequential decisions after its permission has ended.",
+      "fixProposal": "Inside the serialized record_decision effect, require current applicable permission for the turn's workstream before calling writeDecision; retain revision/source checks and leave no decision on denial.",
+      "evidence": {
+        "kind": "test",
+        "citedTest": "packages/ledger/src/application/operations.break.test.ts::denies record_decision without current permission and creates no domain record",
+        "ran": true,
+        "command": "node --test packages/ledger/dist/application/operations.break.test.js",
+        "observedOutput": "FAIL denies record_decision without current permission and creates no domain record: AssertionError: operation unexpectedly succeeded"
+      }
+    },
+    {
+      "id": "F-02",
+      "severity": "high",
+      "claimId": "SL-023",
+      "gap": "packages/ledger/src/application/operations.ts submitReview validates source and open-turn state but not current permission before writeReview and the slice codeBreakReviewId update. The breaker removed all authority; executeOperation(record_review) still saved an approval and updated plan metadata.",
+      "plainImpact": "A review submitted after permission ends could still clear the code-review checkpoint.",
+      "fixProposal": "Inside the serialized code-review effect, require current applicable permission for the turn's workstream before writing the review or updating codeBreakReviewId; denial must leave both paths unchanged.",
+      "evidence": {
+        "kind": "test",
+        "citedTest": "packages/ledger/src/application/operations.break.test.ts::denies record_review without current permission and creates no domain record",
+        "ran": true,
+        "command": "node --test packages/ledger/dist/application/operations.break.test.js",
+        "observedOutput": "FAIL denies record_review without current permission and creates no domain record: AssertionError: operation unexpectedly succeeded"
+      }
+    },
+    {
+      "id": "F-03",
+      "severity": "high",
+      "claimId": "SL-023",
+      "gap": "The portable shared record_review operation accepts review.kind=human and reviewer=human:project-owner from untrusted operation input. writeReview preserves those fields, and isCodeBreakApprove accepts non-discussion human approvals with killersCited, so caller labels can be displayed and evaluated as a human review without host-authenticated provenance. Historical human review records are outside this finding.",
+      "plainImpact": "An agent could label its own portable review as human-approved and clear the review gate.",
+      "fixProposal": "Reject kind:human on the portable CLI/MCP review operation and treat reviewer text only as agent-reported attribution; preserve loading of existing historical human records and reserve verified human writes for a bounded host adapter.",
+      "evidence": {
+        "kind": "test",
+        "citedTest": "packages/ledger/src/application/operations.break.test.ts::does not accept portable review fields that claim human provenance",
+        "ran": true,
+        "command": "node --test packages/ledger/dist/application/operations.break.test.js",
+        "observedOutput": "FAIL does not accept portable review fields that claim human provenance: AssertionError: operation unexpectedly succeeded"
+      }
+    }
+  ],
+  "residualRisks": [
+    "The operation hunt is not complete: actual MCP lifecycle, explicit check execution, completion, and CLI/MCP parity remain for separate run-backed coverage.",
+    "Portable reviewer labels remain agent-reported attribution even after kind:human is rejected; stronger reviewer identity requires a host that can attest execution identity.",
+    "Receipt concurrency, corrupt replay, unfinished retry, failed completion publication, and unknown-lock killers pass in the separate receipt suite."
+  ],
+  "treeDigest": "15914e969cf8580352ee941671fab4de8bd23aa0188583ee3a7df579c5968aba"
+}

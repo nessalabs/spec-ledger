@@ -1,6 +1,7 @@
-import { existsSync, mkdirSync, readdirSync, readFileSync, statSync } from "node:fs"
+import { computeTreeDigest } from "../git/tree.js"
+import { existsSync, mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from "node:fs"
 import { join } from "node:path"
-import { findRepoRoot, ledgerRoot, writeJson } from "../fs/load.js"
+import { findRepoRoot, ledgerRoot } from "../fs/load.js"
 import { assertReviewLatticeCopy } from "./lattice-copy.js"
 import type { LedgerRootConfig, Review } from "../types.js"
 
@@ -60,11 +61,22 @@ export function listAllReviews(repoRootInput: string): Review[] {
 
 export function writeReview(repoRootInput: string, review: Review): Review {
   if (!review.turnId) throw new Error("review.turnId required for turn reviews")
+  if (review.target !== "spec" && review.kind === "adversarial") review = {...review, treeDigest: computeTreeDigest(findRepoRoot(repoRootInput))}
   assertReviewLatticeCopy(review)
-  const dir = turnReviewsDir(repoRootInput, review.turnId)
+  const dir = turnReviewsDir(repoRootInput, review.turnId!)
   mkdirSync(dir, { recursive: true })
   const fileStem = review.id.includes("/") ? review.id.split("/").at(-1)! : review.id
-  writeJson(join(dir, `${fileStem}.json`), review)
+  try {
+    writeFileSync(join(dir, `${fileStem}.json`), `${JSON.stringify(review, null, 2)}\n`, {
+      encoding: "utf8",
+      flag: "wx",
+    })
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code === "EEXIST") {
+      throw new Error(`review id already exists: ${review.id}`)
+    }
+    throw error
+  }
   return review
 }
 
@@ -75,8 +87,8 @@ export function isCodeBreakApprove(review: Review): boolean {
   return Array.isArray(review.killersCited) && review.killersCited.length > 0
 }
 
-export function codeBreakSatisfied(reviews: Review[]): boolean {
-  return reviews.some(isCodeBreakApprove)
+export function codeBreakSatisfied(reviews: Review[], treeDigest?: string): boolean {
+  return reviews.some(r => isCodeBreakApprove(r) && (!treeDigest || r.treeDigest === treeDigest))
 }
 
 export function unresolvedBlockingReviews(reviews: Review[]): Review[] {

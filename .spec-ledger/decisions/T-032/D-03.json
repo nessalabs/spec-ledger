@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "turnId": "T-032",
+  "decision": "Direct approval works in the local UI; progress, evidence, deferrals, permission and Spec Ledger UI naming are implemented.",
+  "rationale": "Agent-reported progress; evidence is evaluated separately.",
+  "progress": {
+    "criterionIds": [
+      "SLC-01/AC-1",
+      "SLC-02/AC-1",
+      "SLC-03/AC-1",
+      "SLC-04/AC-1",
+      "SLC-05/AC-1",
+      "SLC-06/AC-1"
+    ],
+    "implemented": true,
+    "revisionDigest": "d962229471858dbcd00332dd759c43d2f34f1117086ec303a5d9eda1e390b283",
+    "sourceDigest": "08a3836ed83dfdc3780d94f773a8b39146127774ebd38dfc55b4ea17dc5818e4",
+    "preview": {
+      "url": "http://127.0.0.1:3737/",
+      "label": "Open Spec Ledger UI"
+    }
+  },
+  "id": "T-032/D-03"
+}

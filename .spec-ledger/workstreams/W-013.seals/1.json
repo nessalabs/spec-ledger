@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "workstreamId": "W-013",
+  "revision": 1,
+  "sealedAt": "2026-09-05T04:50:22.761Z",
+  "sealedBy": "agent:permission:AUTH-W013-REQUEST",
+  "specDigest": "5d4a4d90142000fcb5032a0447984d8fa056dbcba7107d2f080b5652f020808e",
+  "specDocDigest": "18a062154ba0c1d0b70079c0f93b8f9a3eb15c8a7c651cf242cc199385b2d7e7",
+  "body": {
+    "id": "W-013",
+    "featureIds": [
+      "lattice"
+    ],
+    "primaryFeatureId": null,
+    "title": "Understand a feature at a glance",
+    "objective": "See what a feature does, what is ready, and the proof without wading through technical detail.",
+    "specPath": "docs/workstreams/W-013-simple-feature-view/spec.md",
+    "appetite": null,
+    "changeType": null,
+    "riskLevel": null,
+    "trust": {
+      "userFacing": true,
+      "requiredEvidence": [
+        "unit",
+        "e2e"
+      ]
+    },
+    "policy": {
+      "requireSpecBreak": true,
+      "requireCodeBreak": true,
+      "requireAlignApprove": true
+    },
+    "acceptanceCriteria": [],
+    "acceptanceClaimIds": {
+      "SLC-01/AC-1": [
+        "SL-031"
+      ],
+      "SLC-01/AC-2": [
+        "SL-031"
+      ]
+    },
+    "outOfScope": [],
+    "proposedClaimIds": [],
+    "suggestedSlices": [
+      {
+        "id": "SLC-01",
+        "title": "Simplify feature and evidence screens",
+        "kind": "vertical",
+        "acceptance": [
+          "Read the outcome, current progress and proof without repeated explanations or internal labels.",
+          "Keep problems, historical completion and evidence limitations honest and directly inspectable."
+        ],
+        "evidence": [],
+        "expectedClaimIds": [],
+        "expectedPaths": [
+          "packages/ui/**",
+          "docs/**"
+        ]
+      }
+    ]
+  }
+}

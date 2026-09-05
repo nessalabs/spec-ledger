@@ -1,0 +1,24 @@
+✔ source changes during a saved check cannot produce a passing outcome (371.506ms)
+✔ large stdout and stderr drain without unbounded capture and retain intact hashes (373.390334ms)
+✔ overlapping new requests are rejected while retry returns the original identity (698.281417ms)
+✔ local malformed and cross-origin actions cause no execution (172.279041ms)
+✔ symlinked receipt directory cannot receive check writes outside the checkout (14.8375ms)
+✔ stale displayed inputs reject before worker creation and never switch to a changed command (112.930542ms)
+✔ nonzero exit retains actual diagnostics and does not pass (286.899375ms)
+✔ timeout terminates the owned command before releasing the guard and records signal (177.217833ms)
+✔ saved command returns promptly, preserves actual output, and retries do not execute again (402.142917ms)
+✔ batch CLI runner records the same bounded logs and preserves unrelated rows (324.5795ms)
+✔ local bridge only runs the displayed saved definition and reads are passive (451.738209ms)
+✔ CLI starts and observes the same saved command with actual output (503.559875ms)
+✔ MCP starts and observes the same saved command with actual output (523.466541ms)
+✔ passive evidence render keeps authored expectations distinct and escapes test source (5.5325ms)
+✔ actual failures and tampered logs remain visible independently of a described expectation (1.726167ms)
+✔ uncertain HTTP response reconnects with the same request identity (2.853125ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 16
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2291.750459

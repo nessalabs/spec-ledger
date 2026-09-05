@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "T-029/R-02",
+  "turnId": "T-029",
+  "workstreamId": "W-006",
+  "kind": "adversarial",
+  "target": "code",
+  "reviewer": "agent:sl-dev-break:permission",
+  "verdict": "approve",
+  "blocking": false,
+  "alertOnSeverity": "high",
+  "resolvesReviewId": "T-029/R-01",
+  "plainSummary": "Work respects scoped permission and corrections, and delegated revisions require a real current spec review.",
+  "summary": "Independent authority.break.test.ts now8/8 passing. The unchanged fabricated-review killer originally failed and now passes. Added current-review positive control and stale-review denial after acceptance amendment before a fresh reviewed revision is allowed. Tests cover raw API deny followed by plan rename, CLI work --no-context denial, manual revision/request/standing mode separation, revoked request preventing broad fallback, unrelated requests unaffected, feature exclusions, immutable authority retries, host-provenance spoof refusal, scoped corrections, inferred guidance exclusion, supersession, and same-ID content hashing. Command: node --test packages/ledger/dist/permission/authority.break.test.js;8 passed0 failed0 skipped. Root owns all production changes; breaker owns new test and review records. Revision review validation resolves T029/R01 F01.",
+  "killersCited": [
+    "packages/ledger/src/permission/authority.break.test.ts::enforces explicit feature exclusions and immutable authority retries",
+    "packages/ledger/src/permission/authority.break.test.ts::requires a real current spec review before snapshotting a revised delegated plan",
+    "packages/ledger/src/permission/authority.break.test.ts::raw denial records prevent the same standing delegation from restarting renamed work",
+    "packages/ledger/src/permission/authority.break.test.ts::refuses denied work through CLI even when context collection is explicitly skipped",
+    "packages/ledger/src/permission/authority.break.test.ts::distinguishes revision/request/standing authority and revocation without broader fallback",
+    "packages/ledger/src/permission/authority.break.test.ts::requires revision reapproval after acceptance changes and never invents host consent",
+    "packages/ledger/src/permission/authority.break.test.ts::does not accept a fabricated spec-review reference when a delegated plan requires review",
+    "packages/ledger/src/permission/authority.break.test.ts::applies corrections only in scope, excludes inferred preferences, and hashes same-ID content"
+  ],
+  "findings": [],
+  "residualRisks": [
+    "Portable authority remains agent-reported and trusted-local-caller input, not authenticated user consent. A malicious checkout writer is out of scope.",
+    "Semantic scope correctness cannot be proven from feature IDs; the granted explicit limits are enforced, with semantic judgments attributed separately.",
+    "Review tests cover fresh/missing/stale approvals and actual CLI work denial; no UI approval bridge exists or is claimed.",
+    "No concurrent authority-writer stress test was run; identical/conflicting ID retries were exercised sequentially."
+  ],
+  "treeDigest": "752ec94a7030de3dff9dc2ef2525a04d0505585b51e827a98c9962d8da522193"
+}

@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "id": "T-029/AW-10",
+  "reason": "User explicitly requested the narrow-panel UI bug fix during permission work; two UI verdict pages carry earlier SLC-01 work. These four UI paths are bounded carryover covered by W-006 SLC-06, not an exemption from evidence or permission checks.",
+  "actor": "agent:user-request-scope",
+  "treeDigest": "daa3ec3387cc58e0ded9db9c526a3086c465f6f660fabf3a61356da131a518ae",
+  "createdAt": "2026-09-04T22:02:09.443Z",
+  "workstreamId": "W-006",
+  "turnId": "T-029"
+}

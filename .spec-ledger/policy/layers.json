@@ -1,10 +1,37 @@
 {
-  "layers": ["schemas", "core", "client", "server", "ui"],
+  "layers": [
+    "schemas",
+    "core",
+    "client",
+    "server",
+    "adapters",
+    "ui"
+  ],
   "allow": {
-    "schemas": ["schemas"],
-    "core": ["core", "schemas"],
-    "client": ["client", "schemas"],
-    "server": ["server", "core", "schemas"],
-    "ui": ["ui", "client"]
+    "schemas": [
+      "schemas"
+    ],
+    "core": [
+      "core",
+      "schemas"
+    ],
+    "client": [
+      "client",
+      "schemas"
+    ],
+    "server": [
+      "server",
+      "core",
+      "schemas"
+    ],
+    "ui": [
+      "ui",
+      "client"
+    ],
+    "adapters": [
+      "adapters",
+      "core",
+      "schemas"
+    ]
   }
 }

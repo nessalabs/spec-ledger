@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "id": "PC-021",
+  "status": "accepted",
+  "workstreamId": "W-008",
+  "suggestedLiveId": "SL-024",
+  "statement": "Custom workflow satisfaction comes from current typed outputs, and the live UI separates reported progress from inspectable verification.",
+  "requiredEvidence": [
+    "unit",
+    "integration",
+    "e2e"
+  ]
+}

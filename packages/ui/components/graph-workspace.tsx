@@ -1,5 +1,8 @@
 "use client"
 
+import { featureHref, featureLabel, featureSummary, featureSlug } from "@/lib/features"
+
+
 import * as React from "react"
 import {
   AppShell,
@@ -200,17 +203,17 @@ function GraphMain({
               <li key={f.id} className="px-3 py-2">
                 <div className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
                   <Link
-                    href={`/features/${encodeURIComponent(f.id)}`}
+                    href={featureHref(f.id, graph?.features)}
                     className="text-sm font-medium text-foreground no-underline hover:underline"
                   >
-                    {f.name}
+                    {featureLabel(f.id, f.name)}
                   </Link>
                   <span className="font-mono text-[10px] text-muted-foreground">
-                    {f.id}
+                    {featureSlug(f.id)}
                   </span>
                 </div>
                 <p className="mt-0.5 line-clamp-1 text-xs text-muted-foreground">
-                  {f.summary}
+                  {featureSummary(f.id, f.summary)}
                 </p>
                 {f.claimIds?.length ? (
                   <div className="mt-1 flex flex-wrap gap-1">

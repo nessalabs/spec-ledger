@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "requestId": "w010-user-request-permission",
+  "operation": "record_permission",
+  "inputDigest": "0bd7879a78b5eb068291118e21dd6c2ec9140dfa837b0a7c06dc3556299b4c2c",
+  "finishedAt": "2026-09-05T02:01:38.312Z",
+  "outcome": "succeeded",
+  "result": {
+    "id": "AUTH-W010-REQUEST",
+    "action": "grant",
+    "mode": "request",
+    "workstreamId": "W-010",
+    "featureIds": [
+      "cli",
+      "client",
+      "verify",
+      "lattice"
+    ],
+    "source": {
+      "kind": "agent-reported",
+      "reference": "User requests test source/input/expected/actual output/logs and explicit Run again button for saved check in correct directory."
+    },
+    "schemaVersion": 1,
+    "createdAt": "2026-09-05T02:01:38.310Z"
+  }
+}

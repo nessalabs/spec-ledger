@@ -1,10 +1,10 @@
 import type { Review } from "../types.js"
 
-/** Schema / Lattice rules for plainSummary + finding plainImpact. */
+/** Schema / Spec Ledger UI rules for plainSummary + finding plainImpact. */
 export function latticeCopyProblems(review: Review): string[] {
   const problems: string[] = []
   if (!review.plainSummary?.trim()) {
-    problems.push("plainSummary required (one Lattice sentence)")
+    problems.push("plainSummary required (one Spec Ledger UI sentence)")
   } else if (review.plainSummary.length > 280) {
     problems.push("plainSummary must be <= 280 characters")
   }
@@ -22,7 +22,7 @@ export function assertReviewLatticeCopy(review: Review): void {
   const problems = latticeCopyProblems(review)
   if (problems.length) {
     throw new Error(
-      `review ${review.id} Lattice copy invalid: ${problems.join("; ")}`,
+      `review ${review.id} Spec Ledger UI copy invalid: ${problems.join("; ")}`,
     )
   }
 }

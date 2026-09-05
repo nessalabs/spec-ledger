@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "requestId": "w009-finish-audit-and-highlight",
+  "operation": "begin_work",
+  "inputDigest": "e38d76c3ef1cfa276c06562492f6c5832ee8a39e9e027223de7f3919b5031561",
+  "finishedAt": "2026-09-05T02:55:47.534Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "id": "T-039",
+    "status": "open",
+    "openedAt": "2026-09-05T02:55:47.534Z",
+    "opened": {
+      "producedBy": "@nessalabs/spec-ledger@0.1.0",
+      "baseCommit": "a5d5c8507c9f2353044f8f9cb83c66137e6e075f",
+      "treeDigest": "1928c529067013cc45fdbdf5153d5496b2f07bd62e5de9a327f1938374c1a746",
+      "dirtyAtOpen": [],
+      "contextDigest": "626235e204fa103471915737dc0cb78e5b3580ab5e25ff3bf811f92b39eac101",
+      "contextWorkstreamId": "W-009",
+      "contextSliceId": "SLC-01",
+      "contextSealRevision": 2,
+      "contextGeneratedAt": "2026-09-05T02:55:47.534Z"
+    },
+    "intent": {
+      "userPrompt": "Finish the evidence audit and make test code readable",
+      "restatedGoal": "Finish the evidence audit and make test code readable",
+      "changeType": "feature",
+      "riskLevel": "moderate",
+      "workstreamId": "W-009",
+      "sliceId": "SLC-01",
+      "featureIds": [
+        "lattice"
+      ]
+    }
+  }
+}

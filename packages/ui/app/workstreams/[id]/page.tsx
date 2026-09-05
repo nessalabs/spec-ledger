@@ -1,3 +1,5 @@
+import { LiveWorkstreamEvidence } from "@/components/live-workstream-evidence"
+import { presentationCopy } from "@/lib/features"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import { Badge } from "@nessalabs/ui"
@@ -22,7 +24,7 @@ export default async function WorkstreamPage({
   } catch {
     notFound()
   }
-  const [turns, report] = await Promise.all([client.getTurns(), liveReport()])
+  const [turns, report, projection] = await Promise.all([client.getTurns(), liveReport(), client.getSession(id)])
   const linked = turns
     .filter((t) => t.intent.workstreamId === id)
     .sort((a, b) =>
@@ -34,16 +36,16 @@ export default async function WorkstreamPage({
   const planMarkdown = readRepoMarkdown(specPath)
   const statusLabel =
     ws.status === "done"
-      ? "Done"
+      ? projection.session?.completion.eligible ? "Complete" : "Completed earlier · needs attention"
       : ws.status === "active"
         ? "Active"
         : ws.status === "sealed"
-          ? "Sealed"
+          ? "Ready to start"
           : ws.status
 
   const docs =
     specPath && planMarkdown
-      ? [{ path: specPath, label: ws.title, content: planMarkdown }]
+      ? [{ path: specPath, label: presentationCopy(ws.title), content: planMarkdown }]
       : []
 
   const body = (
@@ -51,18 +53,19 @@ export default async function WorkstreamPage({
       <header className="flex flex-col gap-3">
         <p className="text-[10px] uppercase tracking-wider text-muted-foreground">
           <Link href="/workstreams" className="no-underline hover:underline">
-            Workstreams
+            Specs
           </Link>
           {" / "}
           {ws.id}
         </p>
         <div className="flex flex-wrap items-center gap-2">
-          <h1 className="text-2xl font-semibold tracking-tight">{ws.title}</h1>
+          <h1 className="text-2xl font-semibold tracking-tight">{presentationCopy(ws.title)}</h1>
           <Badge variant="outline">{statusLabel}</Badge>
         </div>
+        {ws.objective && <p className="max-w-2xl text-sm text-muted-foreground">{presentationCopy(ws.objective)}</p>}
         <details className="max-w-2xl text-xs text-muted-foreground">
           <summary className="cursor-pointer select-none hover:text-foreground">
-            Ledger notes
+            Version details
             {ws.seal ? ` · sealed rev ${ws.seal.revision}` : " · unsealed"}
           </summary>
           <div className="mt-2 space-y-1 rounded-md border border-border/60 px-3 py-2 font-mono">
@@ -79,18 +82,20 @@ export default async function WorkstreamPage({
       </header>
 
       {specPath && planMarkdown ? (
-        <PitchDocLink path={specPath} title="Sealed pitch" />
+        <PitchDocLink path={specPath} title="Read the spec" />
       ) : (
         <p className="max-w-2xl text-sm leading-relaxed text-muted-foreground">
-          {ws.objective}
+          {presentationCopy(ws.objective)}
         </p>
       )}
 
+      {projection.session ? <LiveWorkstreamEvidence initial={projection} workstreamId={id} history={
       <section className="space-y-3">
+
         <div className="flex items-baseline justify-between gap-2">
-          <h2 className="text-sm font-medium">What shipped</h2>
+          <h2 className="text-sm font-medium">Work history</h2>
           <p className="text-xs text-muted-foreground">
-            {linked.length} change{linked.length === 1 ? "" : "s"}
+            {linked.length} turn{linked.length === 1 ? "" : "s"}
           </p>
         </div>
         {linked.length === 0 ? (
@@ -105,12 +110,39 @@ export default async function WorkstreamPage({
                 turn={t}
                 report={report}
                 compact
-                workstreamTitle={ws.title}
+                workstreamTitle={presentationCopy(ws.title)}
               />
             ))}
           </div>
         )}
       </section>
+      } /> :       <section className="space-y-3">
+
+        <div className="flex items-baseline justify-between gap-2">
+          <h2 className="text-sm font-medium">Work history</h2>
+          <p className="text-xs text-muted-foreground">
+            {linked.length} turn{linked.length === 1 ? "" : "s"}
+          </p>
+        </div>
+        {linked.length === 0 ? (
+          <p className="text-sm text-muted-foreground">
+            No turns under this workstream yet.
+          </p>
+        ) : (
+          <div className="flex flex-col gap-1.5">
+            {linked.map((t) => (
+              <TurnSummaryCard
+                key={t.id}
+                turn={t}
+                report={report}
+                compact
+                workstreamTitle={presentationCopy(ws.title)}
+              />
+            ))}
+          </div>
+        )}
+      </section>}
+
     </div>
   )
 

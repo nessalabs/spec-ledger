@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "workstreamId": "W-012",
+  "revision": 1,
+  "sealedAt": "2026-09-05T04:06:02.621Z",
+  "sealedBy": "agent:permission:AUTH-W012-REQUEST",
+  "specDigest": "e9b57b5a0f764a3dfbddaf7268c6058e5d11d5aa547469fdbff44dedbd19dfaa",
+  "specDocDigest": "d7ce4c54bf109d3724971c34e28095300d366d0014d05489978aa85ca4e70c35",
+  "body": {
+    "id": "W-012",
+    "featureIds": [
+      "lattice",
+      "cli",
+      "client"
+    ],
+    "primaryFeatureId": null,
+    "title": "Choose how your agent works",
+    "objective": "Choose the steps and skills your agent follows, then inspect their progress and evidence.",
+    "specPath": "docs/workstreams/W-012-choose-your-workflow/spec.md",
+    "appetite": null,
+    "changeType": null,
+    "riskLevel": null,
+    "trust": {
+      "userFacing": true,
+      "securitySensitive": true,
+      "correctnessCritical": true,
+      "requiredEvidence": [
+        "unit",
+        "integration",
+        "e2e"
+      ]
+    },
+    "policy": {
+      "requireSpecBreak": true,
+      "requireCodeBreak": true,
+      "requireAlignApprove": true
+    },
+    "acceptanceCriteria": [],
+    "outOfScope": [],
+    "proposedClaimIds": [],
+    "suggestedSlices": [
+      {
+        "id": "SLC-01",
+        "title": "Choose and follow a custom workflow",
+        "kind": "vertical",
+        "acceptance": [
+          "Create, preview, apply and reuse a workflow with chosen steps and skills; the website and agent tools share the preserved selection.",
+          "Reject unsafe, stale and incomplete workflow changes while preserving permissions, evidence requirements and earlier selections.",
+          "Configure steps with a keyboard on narrow screens and view change history without rendering warnings."
+        ],
+        "evidence": [],
+        "expectedClaimIds": [],
+        "expectedPaths": [
+          "packages/ledger/**",
+          "packages/client/**",
+          "packages/mcp/**",
+          "packages/ui/**",
+          "docs/**",
+          "schemas/**"
+        ]
+      }
+    ]
+  }
+}

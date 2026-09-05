@@ -1,0 +1,138 @@
+{
+  "schemaVersion": 1,
+  "producedAt": "2026-09-05T01:57:18.473Z",
+  "producer": {
+    "name": "spec-ledger check",
+    "version": "0.1.0"
+  },
+  "rows": [
+    {
+      "key": "command:b-sl-023",
+      "runId": "05e8a3a2-fb19-4c05-a6d2-607f8377c9fe",
+      "sourceDigest": "5159553a93564fdf32dd6f9559cb37eea28cba17d5fd53e66bdb4d5148776a40",
+      "checkDigest": "39d2d51c602bf0bc78ab377446544b2019b8a06b7f9e7c67bde03b4bb8165ecc",
+      "outcome": "pass",
+      "detail": "exit 0"
+    },
+    {
+      "key": "command:b-sl-024",
+      "runId": "05e8a3a2-fb19-4c05-a6d2-607f8377c9fe",
+      "sourceDigest": "5159553a93564fdf32dd6f9559cb37eea28cba17d5fd53e66bdb4d5148776a40",
+      "checkDigest": "12a9c7671a3e0c7ce75c223d23595028c279d3c60cfa2c045728bca1810f14cc",
+      "outcome": "pass",
+      "detail": "exit 0"
+    },
+    {
+      "key": "command:b-sl-025",
+      "runId": "05e8a3a2-fb19-4c05-a6d2-607f8377c9fe",
+      "sourceDigest": "5159553a93564fdf32dd6f9559cb37eea28cba17d5fd53e66bdb4d5148776a40",
+      "checkDigest": "5bcda63f17a5d271649b337f3a0c4595acaf6e490035caedc302680dc3ac06d6",
+      "outcome": "pass",
+      "detail": "exit 0"
+    },
+    {
+      "key": "command:b-sl-026",
+      "runId": "05e8a3a2-fb19-4c05-a6d2-607f8377c9fe",
+      "sourceDigest": "5159553a93564fdf32dd6f9559cb37eea28cba17d5fd53e66bdb4d5148776a40",
+      "checkDigest": "a88a483a1daeb8b0b06051f1835ce6a7db1c5d3dcd010f252cc0e75ef3ce419b",
+      "outcome": "pass",
+      "detail": "exit 0"
+    },
+    {
+      "key": "command:b-sl-011",
+      "runId": "05e8a3a2-fb19-4c05-a6d2-607f8377c9fe",
+      "sourceDigest": "5159553a93564fdf32dd6f9559cb37eea28cba17d5fd53e66bdb4d5148776a40",
+      "checkDigest": "95cce2053d6132c6ad17dd9547e82afdfd0554e7405c5ee6e1935f1a56a39813",
+      "outcome": "pass",
+      "detail": "exit 0"
+    },
+    {
+      "key": "command:b-sl-012",
+      "runId": "05e8a3a2-fb19-4c05-a6d2-607f8377c9fe",
+      "sourceDigest": "5159553a93564fdf32dd6f9559cb37eea28cba17d5fd53e66bdb4d5148776a40",
+      "checkDigest": "73fb6c65bb82cb5b4ec1a4289bf3c01c9dcf07db8b3e57161bf10b4d15f6640e",
+      "outcome": "pass",
+      "detail": "exit 0"
+    },
+    {
+      "key": "command:b-sl-013",
+      "runId": "05e8a3a2-fb19-4c05-a6d2-607f8377c9fe",
+      "sourceDigest": "5159553a93564fdf32dd6f9559cb37eea28cba17d5fd53e66bdb4d5148776a40",
+      "checkDigest": "ddbcfdc1e44e84f08e5ec043570bf327f8cb6e2444fabe7813f1249f5610c5a4",
+      "outcome": "pass",
+      "detail": "exit 0"
+    },
+    {
+      "key": "command:b-sl-014",
+      "runId": "05e8a3a2-fb19-4c05-a6d2-607f8377c9fe",
+      "sourceDigest": "5159553a93564fdf32dd6f9559cb37eea28cba17d5fd53e66bdb4d5148776a40",
+      "checkDigest": "82f03d90770a9d4e940d08884cdb50fdfc3c1c758a12b9a61e80b5411476c898",
+      "outcome": "pass",
+      "detail": "exit 0"
+    },
+    {
+      "key": "command:b-sl-015",
+      "runId": "05e8a3a2-fb19-4c05-a6d2-607f8377c9fe",
+      "sourceDigest": "5159553a93564fdf32dd6f9559cb37eea28cba17d5fd53e66bdb4d5148776a40",
+      "checkDigest": "d534b3fe183a439555610f59e2b65941565814130c5b576a6649128643d4437e",
+      "outcome": "pass",
+      "detail": "exit 0"
+    },
+    {
+      "key": "command:b-sl-016",
+      "runId": "05e8a3a2-fb19-4c05-a6d2-607f8377c9fe",
+      "sourceDigest": "5159553a93564fdf32dd6f9559cb37eea28cba17d5fd53e66bdb4d5148776a40",
+      "checkDigest": "6291872c01537fc319c93051c83950ba21b9c7fb7fc34905bd299a8230c70c2a",
+      "outcome": "pass",
+      "detail": "exit 0"
+    },
+    {
+      "key": "command:b-sl-017",
+      "runId": "05e8a3a2-fb19-4c05-a6d2-607f8377c9fe",
+      "sourceDigest": "5159553a93564fdf32dd6f9559cb37eea28cba17d5fd53e66bdb4d5148776a40",
+      "checkDigest": "3d375bc7af734ec5f605081dc645324ebaf0730dd496f58c0a7823964e7c1bac",
+      "outcome": "pass",
+      "detail": "exit 0"
+    },
+    {
+      "key": "command:b-sl-018",
+      "runId": "05e8a3a2-fb19-4c05-a6d2-607f8377c9fe",
+      "sourceDigest": "5159553a93564fdf32dd6f9559cb37eea28cba17d5fd53e66bdb4d5148776a40",
+      "checkDigest": "bfd33bffa573b64eebde85bffb7747fc68f71e0c5b6f33667297c65496aa29a3",
+      "outcome": "pass",
+      "detail": "exit 0"
+    },
+    {
+      "key": "command:b-sl-019",
+      "runId": "05e8a3a2-fb19-4c05-a6d2-607f8377c9fe",
+      "sourceDigest": "5159553a93564fdf32dd6f9559cb37eea28cba17d5fd53e66bdb4d5148776a40",
+      "checkDigest": "367dd345ae37a4ec3640ff16369b7c4f003b2309ac9612f87b35ba263ae072ff",
+      "outcome": "pass",
+      "detail": "exit 0"
+    },
+    {
+      "key": "command:b-sl-020",
+      "runId": "05e8a3a2-fb19-4c05-a6d2-607f8377c9fe",
+      "sourceDigest": "5159553a93564fdf32dd6f9559cb37eea28cba17d5fd53e66bdb4d5148776a40",
+      "checkDigest": "ac83c2066741284286f407c449de7dd281bdeaca837779a522674b68438a9649",
+      "outcome": "pass",
+      "detail": "exit 0"
+    },
+    {
+      "key": "command:b-sl-021",
+      "runId": "05e8a3a2-fb19-4c05-a6d2-607f8377c9fe",
+      "sourceDigest": "5159553a93564fdf32dd6f9559cb37eea28cba17d5fd53e66bdb4d5148776a40",
+      "checkDigest": "fb77363796702ac58c9c8af15fca5958b611bae5b1932ce67f9da51b4e700e03",
+      "outcome": "pass",
+      "detail": "exit 0"
+    },
+    {
+      "key": "command:b-sl-022",
+      "runId": "05e8a3a2-fb19-4c05-a6d2-607f8377c9fe",
+      "sourceDigest": "5159553a93564fdf32dd6f9559cb37eea28cba17d5fd53e66bdb4d5148776a40",
+      "checkDigest": "535b8800284fabc3cd4c8337819ea98138dc57a75cb5da97ff4f350e3a7349c2",
+      "outcome": "pass",
+      "detail": "exit 0"
+    }
+  ]
+}

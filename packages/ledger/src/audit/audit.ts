@@ -21,7 +21,7 @@ export interface AuditPolicy {
     closedWorkstreamRequiresCodeBreak?: boolean
     blockedAutomationMustResolve?: boolean
     approveNeedsKillers?: boolean
-    /** Fail when review JSON lacks Lattice plainSummary / finding plainImpact. */
+    /** Fail when review JSON lacks Spec Ledger UI plainSummary / finding plainImpact. */
     reviewsNeedLatticeCopy?: boolean
   }
 }

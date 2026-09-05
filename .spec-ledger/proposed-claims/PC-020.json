@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "id": "PC-020",
+  "status": "accepted",
+  "workstreamId": "W-008",
+  "suggestedLiveId": "SL-023",
+  "statement": "CLI and MCP share validation, permission, persistence and completion gates with equivalent lifecycle outcomes and retry behavior.",
+  "requiredEvidence": [
+    "unit",
+    "integration",
+    "e2e"
+  ],
+  "liveId": "SL-023"
+}

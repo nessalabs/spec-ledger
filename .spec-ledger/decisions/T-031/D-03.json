@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "turnId": "T-031",
+  "decision": "The six planned capabilities are implemented, with behavioral checks and a verified session walkthrough.",
+  "rationale": "Agent-reported progress; evidence is evaluated separately.",
+  "progress": {
+    "criterionIds": [
+      "SLC-01/AC-1",
+      "SLC-02/AC-1",
+      "SLC-03/AC-1",
+      "SLC-04/AC-1",
+      "SLC-05/AC-1",
+      "SLC-06/AC-1"
+    ],
+    "implemented": true,
+    "revisionDigest": "f8c6f8bfb42b36a27288d6e1841ccc5417c0972c6db15d936e3092bff2f23cab",
+    "sourceDigest": "b5d25e66897f1b13e2705e6899e139fd8ed88e49aa2dda65e3f9d1a49db0de88",
+    "preview": {
+      "url": "http://127.0.0.1:3737/",
+      "label": "Try this Spec Ledger checkout"
+    }
+  },
+  "id": "T-031/D-03"
+}

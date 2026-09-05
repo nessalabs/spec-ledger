@@ -2,6 +2,10 @@
 
 Prefix: **`sl-`** (Spec Ledger — short, easy to find).
 
+Start with [sl-plan](sl-plan/SKILL.md), [sl-work](sl-work/SKILL.md), and
+[sl-check](sl-check/SKILL.md). These entry points reuse the focused procedures
+below; approval follows the user's revision or delegation choice. A [selected engineering method](../docs/architecture/workflows.md) can replace the procedures and skills for individual steps while the shared tools retain permission and evidence gates.
+
 These skills stay **in this repo** for now (ledger pipeline). Do **not** move
 them into [`nessalabs/skills`](https://github.com/nessalabs/skills) yet —
 consolidation later if other Nessa products adopt the ledger.
@@ -22,11 +26,11 @@ Install separately when available (plugin / `npx skills add nessalabs/skills`):
 companion pack is not installed.
 
 When writing any review JSON, also apply
-[`references/review-lattice-copy.md`](./references/review-lattice-copy.md)
+[`references/review-copy.md`](./references/review-copy.md)
 (`plainSummary` / `plainImpact`; schema `schemas/review.json`).
 
 Turn / workstream list titles:
-[`references/lattice-plain-titles.md`](./references/lattice-plain-titles.md)
+[`references/plain-titles.md`](./references/plain-titles.md)
 (`restatedGoal`, workstream `title` + `objective`).
 
 ## Lanes

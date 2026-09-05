@@ -1,0 +1,9 @@
+{
+  "id": "b-sl-019",
+  "claimId": "SL-019",
+  "kind": "test",
+  "locator": {
+    "type": "command",
+    "command": "node --test packages/ledger/dist/permission/authority.break.test.js"
+  }
+}

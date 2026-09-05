@@ -1,0 +1,20 @@
+{
+  "id": "AUTH-W006-REQUEST",
+  "action": "grant",
+  "mode": "request",
+  "workstreamId": "W-006",
+  "featureIds": [
+    "verify",
+    "turns",
+    "lattice",
+    "cli",
+    "client",
+    "server"
+  ],
+  "source": {
+    "kind": "agent-reported",
+    "reference": "User request: now implement your proposed new changes; portable CLI handoff first; two UI bug fixes in same session."
+  },
+  "schemaVersion": 1,
+  "createdAt": "2026-09-04T22:27:47.484Z"
+}

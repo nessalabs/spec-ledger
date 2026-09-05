@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "requestId": "t039-audit-meaning",
+  "operation": "record_decision",
+  "inputDigest": "3201148d82990e32955070b296a3a4fbc9c9c59a1efae3c04b228d603ef1ef79",
+  "finishedAt": "2026-09-05T03:09:41.355Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "turnId": "T-039",
+    "decision": "Complete the audit only when every earlier requirement has a reviewed assessment and inspected sources; preserve all remaining gaps.",
+    "rationale": "Passing claim checks did not establish complete workstream acceptance. A separate validated inventory makes this distinction inspectable.",
+    "basis": {
+      "at": "2026-09-05T03:09:41.355Z",
+      "contextDigest": "626235e204fa103471915737dc0cb78e5b3580ab5e25ff3bf811f92b39eac101",
+      "sealRevision": 4
+    },
+    "discovery": {
+      "kind": "verification-gap",
+      "reportedVia": "user",
+      "observation": "The user saw partial acceptance and missing implementation records after a summary said all claims passed.",
+      "regression": "The inventory rejects omitted requirements, unsupported mappings, missing sources and contradictory totals."
+    },
+    "id": "T-039/D-02"
+  }
+}

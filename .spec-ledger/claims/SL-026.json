@@ -1,0 +1,12 @@
+{
+  "id": "SL-026",
+  "statement": "See what changed, the evidence for that change, and whether earlier results still apply today.",
+  "required": true,
+  "links": {
+    "docs": [
+      "docs/workstreams/W-009-evidence-first-changes/spec.md",
+      "docs/architecture/claim-contracts.md"
+    ]
+  },
+  "kind": "invariant"
+}

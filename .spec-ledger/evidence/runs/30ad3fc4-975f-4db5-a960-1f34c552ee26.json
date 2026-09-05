@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "producedAt": "2026-09-04T22:30:48.579Z",
+  "producer": {
+    "name": "spec-ledger check",
+    "version": "0.1.0"
+  },
+  "rows": [
+    {
+      "key": "command:b-sl-016",
+      "runId": "30ad3fc4-975f-4db5-a960-1f34c552ee26",
+      "sourceDigest": "b5d25e66897f1b13e2705e6899e139fd8ed88e49aa2dda65e3f9d1a49db0de88",
+      "checkDigest": "6291872c01537fc319c93051c83950ba21b9c7fb7fc34905bd299a8230c70c2a",
+      "outcome": "pass",
+      "detail": "exit 0"
+    },
+    {
+      "key": "command:b-sl-017",
+      "runId": "30ad3fc4-975f-4db5-a960-1f34c552ee26",
+      "sourceDigest": "b5d25e66897f1b13e2705e6899e139fd8ed88e49aa2dda65e3f9d1a49db0de88",
+      "checkDigest": "3d375bc7af734ec5f605081dc645324ebaf0730dd496f58c0a7823964e7c1bac",
+      "outcome": "pass",
+      "detail": "exit 0"
+    },
+    {
+      "key": "command:b-sl-018",
+      "runId": "30ad3fc4-975f-4db5-a960-1f34c552ee26",
+      "sourceDigest": "b5d25e66897f1b13e2705e6899e139fd8ed88e49aa2dda65e3f9d1a49db0de88",
+      "checkDigest": "bfd33bffa573b64eebde85bffb7747fc68f71e0c5b6f33667297c65496aa29a3",
+      "outcome": "pass",
+      "detail": "exit 0"
+    },
+    {
+      "key": "command:b-sl-019",
+      "runId": "30ad3fc4-975f-4db5-a960-1f34c552ee26",
+      "sourceDigest": "b5d25e66897f1b13e2705e6899e139fd8ed88e49aa2dda65e3f9d1a49db0de88",
+      "checkDigest": "367dd345ae37a4ec3640ff16369b7c4f003b2309ac9612f87b35ba263ae072ff",
+      "outcome": "pass",
+      "detail": "exit 0"
+    },
+    {
+      "key": "command:b-sl-020",
+      "runId": "30ad3fc4-975f-4db5-a960-1f34c552ee26",
+      "sourceDigest": "b5d25e66897f1b13e2705e6899e139fd8ed88e49aa2dda65e3f9d1a49db0de88",
+      "checkDigest": "ac83c2066741284286f407c449de7dd281bdeaca837779a522674b68438a9649",
+      "outcome": "pass",
+      "detail": "exit 0"
+    },
+    {
+      "key": "command:b-sl-021",
+      "runId": "30ad3fc4-975f-4db5-a960-1f34c552ee26",
+      "sourceDigest": "b5d25e66897f1b13e2705e6899e139fd8ed88e49aa2dda65e3f9d1a49db0de88",
+      "checkDigest": "94490258ce98d1822c7c65f69c68cacf0cac02313bbbbac55d13e65d98cd2d02",
+      "outcome": "pass",
+      "detail": "exit 0"
+    }
+  ]
+}

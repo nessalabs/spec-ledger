@@ -1,0 +1,18 @@
+{
+  "id": "b-sl-030",
+  "claimId": "SL-030",
+  "kind": "test",
+  "locator": {
+    "type": "command",
+    "command": "node --test packages/ledger/dist/workflows/editor*.test.js packages/ui/lib/workflow-editor.test.mjs packages/ui/lib/navigation*.test.mjs"
+  },
+  "test": {
+    "level": "integration",
+    "description": "Choose a workflow through the real local action bridge and inspect its shared preserved selection; reject stale or unsafe changes.",
+    "source": {
+      "path": "packages/ledger/src/workflows/editor.break.test.ts"
+    },
+    "inputs": "Default and custom stages, local skills, changed guidance, stale selection, malformed and unauthorized browser requests.",
+    "expected": "Authorized preview/apply preserves the chosen steps and guidance once; rejected requests leave the selection unchanged and required evidence gates remain in place."
+  }
+}

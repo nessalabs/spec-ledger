@@ -33,7 +33,7 @@ const base: Review = {
 describe("review Lattice copy", () => {
   it("rejects missing plainSummary and plainImpact", () => {
     assert.deepEqual(latticeCopyProblems({ ...base, plainSummary: "" }), [
-      "plainSummary required (one Lattice sentence)",
+      "plainSummary required (one Spec Ledger UI sentence)",
     ])
     assert.deepEqual(
       latticeCopyProblems({

@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "turnId": "T-036",
+  "decision": "Shared CLI/MCP tools, custom methods and bounded activity are implemented and exercised by current behavioral checks.",
+  "rationale": "Agent-reported progress; evidence is evaluated separately.",
+  "progress": {
+    "criterionIds": [
+      "SLC-01/AC-1",
+      "SLC-02/AC-1",
+      "SLC-03/AC-1"
+    ],
+    "implemented": true,
+    "revisionDigest": "c5f1a84900d54f247315a70cfc9e05660c9cbc077597fb25b791f57896c6a4f1",
+    "sourceDigest": "c390c53c50687b8544f4e50b66dd46eb7cb3f19ded073adc91ff82ecce1e42ad"
+  },
+  "id": "T-036/D-02"
+}

@@ -1,10 +1,10 @@
 # Trustworthy autonomous coding
 
-**W-006 · Draft product spec · September 4, 2026**
+**W-006 · Implementation direction · September 4, 2026**
 
 Spec Ledger helps people supervise agent-written software through readable specs, explicit permission, meaningful progress, and evidence tied to the code being reviewed.
 
-This consolidates the agreed direction. It proposes changes to the current workflow; it does not seal this workstream, authorize implementation, or rewrite standing policy. [Initial review evidence](review-notes.md) is separate because the implementation is changing in parallel.
+The user authorized implementation of this direction on September 4, 2026, after the PR 1 fixes, and selected a portable CLI approval handoff first. This authority is reported from the conversation; it is not a host-verified consent token. Implementation preserves standing seal history and explicitly revises policy when delegated execution becomes available. [Initial review evidence](review-notes.md) is separate because the implementation is changing in parallel.
 
 ## The product
 
@@ -176,7 +176,7 @@ These are the canonical draft criteria. W-006 JSON holds indexing metadata; do n
 | AC-05 | Pass-plus-fail cannot pass in either order; missing/duplicate results remain honest and failures render through every supported client. | Aggregation tests and failure-to-UI scenario. |
 | AC-06 | Changed source/checks stale prior evidence and approvals; harmless metadata churn does not; reads perform no effectful operations. | Mutation, replay, and read-side-effect tests. |
 | AC-07 | The session accurately displays mixed acceptance states, meaningful updates, due obligations, preview availability, and disconnects. | Browser walkthrough answering the five product questions. |
-| AC-08 | A portable CLI and one supported host complete the same plan/work/check flow with compatible records and revision-bound decisions. | Consumer smoke test and host contract tests. |
+| AC-08 | The portable CLI completes plan/work/check with revision-bound decisions. The local Spec Ledger UI host records approve/deny directly, only while a decision is needed; other hosts can retain the explicit CLI handoff. | Consumer smoke test and host contract tests. |
 | AC-09 | Ledger records reference run-specific artifacts without duplicate authoritative results; artifacts are traceable to criteria and input revisions, and missing/tampered required evidence cannot appear current. | Artifact capture/reference/integrity tests, including evidence-output exclusion and large-artifact links. |
 
 Independent review should target meaningful failure modes, scaled to the actual trust profile. Use the existing engineering guidance for small boundaries, failure-first design, and inexpensive future changes. Preserve independent adversarial review; automate deterministic scope checks rather than adding repeated manual ceremony.
@@ -190,7 +190,7 @@ Then deliver bounded verticals in this order:
 1. Current evidence, side-effect-free reads, review/coverage freshness, and artifact provenance—separate changes within AC-06 and AC-09.
 2. Permission and correction context—AC-01 and AC-02.
 3. Related-spec deferrals and local backlog discovery—AC-03 and AC-04.
-4. The session view and one real host integration—AC-07 and AC-08.
+4. The session view and portable CLI approval handoff—AC-07 and AC-08.
 
 Ship the portable CLI/local path first. Add an external planning adapter only after the user chooses a provider. Consolidate skills around plan/work/check when the shared runtime operations exist, retaining focused breaker/security/learning procedures and compatibility aliases.
 
@@ -198,4 +198,20 @@ Keep the existing ledger/client/server/UI package boundaries and Git-backed reco
 
 This proposal needs no new task hierarchy, generic workflow engine, event store, agent runtime, SaaS platform, or automatic architecture extraction. The local backlog and session are projections. Deferred commitments extend decisions; `related` supplies their discovery. Add only the permission and evidence contracts needed for explicit guarantees.
 
-Before shaping implementation, settle the first slice's appetite and trust targets. Choose a host and refresh budgets before the UI/adapter work. Existing seal policy, including TN-002, requires an explicit revision to admit delegated execution; this draft does not silently change it.
+Implementation uses the library-consumer trust profile and portable CLI choice recorded below. Existing seal policy, including TN-002, requires an explicit revision to admit delegated execution; this draft does not silently change it.
+
+## Implementation decisions
+
+- Preserve the existing library-consumer quality bar: correctness-sensitive verification and permission boundaries; unit, integration, and consumer evidence. No new performance SLO or production deployment is implied.
+- Deliver the six indexed verticals independently, starting with AC-05. The first vertical changes aggregation only; read-side effects and evidence freshness follow separately.
+- AC-05 aggregates every binding, with fail before missing/unbound before attested before pass. Duplicate result keys are errors even if the duplicate outcomes agree. Bindings without an executable locator remain missing.
+- Portable CLI remains available. The user subsequently selected the local Spec Ledger UI host for direct approval: a same-origin, token-protected endpoint accepts only typed approve/deny operations for the observed spec revision and permission-state digest, bounds request size, rejects stale state, and makes retries idempotent. It invokes the shared permission writer, never arbitrary shell text. The projection server remains read-only. Local browser records do not authenticate a human identity. Poll every five seconds; show failed observations as disconnected.
+- Historical records remain immutable. New authority is agent-reported unless a future trusted host supplies it; local files are not authentication against a malicious writer. Commands execute only on explicit CLI check operations; reads never execute bindings.
+
+### Security boundary
+
+The local CLI caller and checkout owner are trusted to authorize writes and explicit command execution. Ledger text, command output, artifact references, external task descriptions, and HTTP inputs are untrusted data. The ledger does not authenticate a hostile filesystem owner or prove an agent-reported instruction came from a human. Core eligibility checks enforce explicit scope, denial, and revocation; UI cannot upgrade provenance. Read-only HTTP and client operations execute no binding commands and persist no state. Local artifact access rejects traversal, absolute escapes, and symlink escapes from the checkout; hashes cover retained bytes. Negative integration tests exercise these boundaries before shipping their slices.
+
+## User-requested UI refinement
+
+The local host shows approved status without repeated approval prompts, uses Nessa UI menu controls for session selection, and removes the duplicate Specs and history overview. Dedicated navigation retains specs and history. Current product labels use Spec Ledger UI; historical ledger identifiers and records remain intact, with friendly public route aliases. This amendment follows user screenshots of the current UI and their explicit request for direct approval.

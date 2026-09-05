@@ -1,0 +1,40 @@
+✔ passive evidence render keeps authored expectations distinct and escapes test source (5.113583ms)
+✔ actual failures and tampered logs remain visible independently of a described expectation (1.528ms)
+✔ uncertain HTTP response reconnects with the same request identity (4.696875ms)
+✔ section history returns from execution to exact acceptance without hiding the evidence (13.149834ms)
+✔ unknown or obsolete fragments do not strand readers in an invisible section (0.067834ms)
+✔ mobile navigation closes on same-page selection and route change but preserves modified clicks (12.580166ms)
+✔ change history is isolated from the live child list and renders without key warnings (14.417625ms)
+✔ the dedicated workflow page retains editor and process state when live data changes workstream (2.417ms)
+✖ overview keeps permission and problems visible with direct spec, evidence and history links (45.624708ms)
+✔ approved work does not request approval again and disconnected approval stays disabled (16.921291ms)
+✔ simpler progress keeps incomplete and historical limits visible even when all checks pass (0.922291ms)
+✔ failed missing attested and unmapped requirements keep their limitations beside expandable proof (1.058208ms)
+✔ simplified feature observation still exposes disconnection without replacing the requested spec (4.903334ms)
+✔ opening proof reads evidence without posting a command (13.68925ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 13
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 207.601458
+
+✖ failing tests:
+
+test at packages/ui/lib/navigation.test.mjs:24:1
+✖ overview keeps permission and problems visible with direct spec, evidence and history links (45.624708ms)
+  AssertionError [ERR_ASSERTION]: /workstreams/W-011#process
+      at TestContext.<anonymous> (file:///Users/nessa/Documents/NessaLabs/spec-ledger/packages/ui/lib/navigation.test.mjs:27:139)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

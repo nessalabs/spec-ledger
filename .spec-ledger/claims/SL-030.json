@@ -1,0 +1,9 @@
+{
+  "id": "SL-030",
+  "kind": "invariant",
+  "statement": "Choose the steps and skills your agent follows while keeping required reviews and evidence in place.",
+  "required": true,
+  "links": [
+    "docs/workstreams/W-012-choose-your-workflow/spec.md"
+  ]
+}

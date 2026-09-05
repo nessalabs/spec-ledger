@@ -1,0 +1,382 @@
+{
+  "schemaVersion": 1,
+  "requestId": "c3523e59-82ba-4071-b4bf-dfa48a5b64c0",
+  "operation": "run_checks",
+  "inputDigest": "1c59d2979c722c84873d637e3c9aba8d27cd4bb655430c6863d4e4a230476dc1",
+  "finishedAt": "2026-09-05T01:57:18.500Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "producedAt": "2026-09-05T01:57:18.492Z",
+    "producedBy": "@nessalabs/spec-ledger@0.1.0",
+    "ok": true,
+    "provenance": {
+      "commit": "6d71f8164fdaaf9c151573f33011db70ecd5df6d",
+      "ledgerDigest": "8726a0fb53a87532a17e269f2dafbc52aa6828aad3941cfbd93e62dfc8281ce9",
+      "resultsDigest": "a5617cc3cb30ae86d99cf9172446838997305491755e4f534c7ac0165a2cea7c",
+      "treeHint": "/Users/nessa/Documents/NessaLabs/spec-ledger",
+      "sourceDigest": "5159553a93564fdf32dd6f9559cb37eea28cba17d5fd53e66bdb4d5148776a40"
+    },
+    "claims": [
+      {
+        "claimId": "SL-001",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "b-sl-001"
+        ],
+        "checks": [
+          {
+            "bindingId": "b-sl-001",
+            "outcome": "pass"
+          }
+        ]
+      },
+      {
+        "claimId": "SL-002",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "b-sl-002"
+        ],
+        "checks": [
+          {
+            "bindingId": "b-sl-002",
+            "outcome": "pass"
+          }
+        ]
+      },
+      {
+        "claimId": "SL-003",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "b-sl-003"
+        ],
+        "checks": [
+          {
+            "bindingId": "b-sl-003",
+            "outcome": "pass"
+          }
+        ]
+      },
+      {
+        "claimId": "SL-004",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "b-sl-004"
+        ],
+        "checks": [
+          {
+            "bindingId": "b-sl-004",
+            "outcome": "pass"
+          }
+        ]
+      },
+      {
+        "claimId": "SL-005",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "b-sl-005"
+        ],
+        "checks": [
+          {
+            "bindingId": "b-sl-005",
+            "outcome": "pass"
+          }
+        ]
+      },
+      {
+        "claimId": "SL-006",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "b-sl-006"
+        ],
+        "checks": [
+          {
+            "bindingId": "b-sl-006",
+            "outcome": "pass"
+          }
+        ]
+      },
+      {
+        "claimId": "SL-007",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "b-sl-007"
+        ],
+        "checks": [
+          {
+            "bindingId": "b-sl-007",
+            "outcome": "pass"
+          }
+        ]
+      },
+      {
+        "claimId": "SL-008",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "b-sl-008"
+        ],
+        "checks": [
+          {
+            "bindingId": "b-sl-008",
+            "outcome": "pass"
+          }
+        ]
+      },
+      {
+        "claimId": "SL-011",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "b-sl-011"
+        ],
+        "checks": [
+          {
+            "bindingId": "b-sl-011",
+            "outcome": "pass",
+            "detail": "exit 0"
+          }
+        ]
+      },
+      {
+        "claimId": "SL-012",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "b-sl-012"
+        ],
+        "checks": [
+          {
+            "bindingId": "b-sl-012",
+            "outcome": "pass",
+            "detail": "exit 0"
+          }
+        ]
+      },
+      {
+        "claimId": "SL-013",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "b-sl-013"
+        ],
+        "checks": [
+          {
+            "bindingId": "b-sl-013",
+            "outcome": "pass",
+            "detail": "exit 0"
+          }
+        ]
+      },
+      {
+        "claimId": "SL-014",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "b-sl-014"
+        ],
+        "checks": [
+          {
+            "bindingId": "b-sl-014",
+            "outcome": "pass",
+            "detail": "exit 0"
+          }
+        ]
+      },
+      {
+        "claimId": "SL-015",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "b-sl-015"
+        ],
+        "checks": [
+          {
+            "bindingId": "b-sl-015",
+            "outcome": "pass",
+            "detail": "exit 0"
+          }
+        ]
+      },
+      {
+        "claimId": "SL-016",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "b-sl-016"
+        ],
+        "checks": [
+          {
+            "bindingId": "b-sl-016",
+            "outcome": "pass",
+            "detail": "exit 0"
+          }
+        ]
+      },
+      {
+        "claimId": "SL-017",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "b-sl-017"
+        ],
+        "checks": [
+          {
+            "bindingId": "b-sl-017",
+            "outcome": "pass",
+            "detail": "exit 0"
+          }
+        ]
+      },
+      {
+        "claimId": "SL-018",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "b-sl-018"
+        ],
+        "checks": [
+          {
+            "bindingId": "b-sl-018",
+            "outcome": "pass",
+            "detail": "exit 0"
+          }
+        ]
+      },
+      {
+        "claimId": "SL-019",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "b-sl-019"
+        ],
+        "checks": [
+          {
+            "bindingId": "b-sl-019",
+            "outcome": "pass",
+            "detail": "exit 0"
+          }
+        ]
+      },
+      {
+        "claimId": "SL-020",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "b-sl-020"
+        ],
+        "checks": [
+          {
+            "bindingId": "b-sl-020",
+            "outcome": "pass",
+            "detail": "exit 0"
+          }
+        ]
+      },
+      {
+        "claimId": "SL-021",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "b-sl-021"
+        ],
+        "checks": [
+          {
+            "bindingId": "b-sl-021",
+            "outcome": "pass",
+            "detail": "exit 0"
+          }
+        ]
+      },
+      {
+        "claimId": "SL-022",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "b-sl-022"
+        ],
+        "checks": [
+          {
+            "bindingId": "b-sl-022",
+            "outcome": "pass",
+            "detail": "exit 0"
+          }
+        ]
+      },
+      {
+        "claimId": "SL-023",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "b-sl-023"
+        ],
+        "checks": [
+          {
+            "bindingId": "b-sl-023",
+            "outcome": "pass",
+            "detail": "exit 0"
+          }
+        ]
+      },
+      {
+        "claimId": "SL-024",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "b-sl-024"
+        ],
+        "checks": [
+          {
+            "bindingId": "b-sl-024",
+            "outcome": "pass",
+            "detail": "exit 0"
+          }
+        ]
+      },
+      {
+        "claimId": "SL-025",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "b-sl-025"
+        ],
+        "checks": [
+          {
+            "bindingId": "b-sl-025",
+            "outcome": "pass",
+            "detail": "exit 0"
+          }
+        ]
+      },
+      {
+        "claimId": "SL-026",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "b-sl-026"
+        ],
+        "checks": [
+          {
+            "bindingId": "b-sl-026",
+            "outcome": "pass",
+            "detail": "exit 0"
+          }
+        ]
+      }
+    ],
+    "graph": {
+      "ok": true,
+      "danglingNodes": [],
+      "missingLocators": [],
+      "freshness": "ok"
+    },
+    "problems": []
+  }
+}

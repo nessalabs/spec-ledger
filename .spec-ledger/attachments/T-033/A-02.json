@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "turnId": "T-033",
+  "kind": "log-excerpt",
+  "title": "Full regression test output",
+  "path": "docs/workstreams/W-007-evidence-and-custom-workflows/evidence/T-033/regression-tests.txt",
+  "mediaType": "text/plain",
+  "contentDigest": "179363282dab03c75025a5d11c7535d3528cab181afc1cb400ba3d247ca66ddc",
+  "note": "Actual output of the full pnpm test command.",
+  "id": "T-033/A-02"
+}

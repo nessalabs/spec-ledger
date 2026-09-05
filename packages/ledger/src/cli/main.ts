@@ -1,11 +1,15 @@
 #!/usr/bin/env node
+import { readFileSync } from "node:fs"
+import { backlog, evaluateDeferrals, recordDeferredDecision, recordDeferralResolution } from "../deferrals/index.js"
+import { permissionStatus, planRevision, type Authority } from "../permission/authority.js"
+import { listLearnings, recordLearning, type Learning } from "../compass/learnings.js"
 import { resolve } from "node:path"
 import { initLedgerDetailed } from "./init.js"
-import { getVerticalContext } from "../context/vertical.js"
 import { loadLedger } from "../fs/load.js"
 import { blastRadius, layerViolations } from "../graph/impact.js"
-import { openTurn, closeTurn, checkTurn, abandonTurn, listTurns } from "../turns/close.js"
-import { verifyLedger } from "../verify/verify.js"
+import { openTurn, checkTurn, listTurns } from "../turns/close.js"
+import { sourceFingerprint, checkFingerprint } from "../evidence/fingerprint.js"
+import type { EvidenceInput } from "../evidence/record.js"
 import {
   checkSeal,
   listWorkstreams,
@@ -14,11 +18,7 @@ import {
   backfillDocDigest,
   amendWorkstream,
 } from "../workstream/load.js"
-import {
-  listReviewsForTurn,
-  nextReviewId,
-  writeReview,
-} from "../reviews/load.js"
+import { listReviewsForTurn } from "../reviews/load.js"
 import { getRelatedPack } from "../related/pack.js"
 import { listAutomationEvents } from "../automation/load.js"
 import { auditLedger } from "../audit/audit.js"
@@ -26,7 +26,6 @@ import { listProposedClaims, listThemes } from "../proposed/load.js"
 import {
   assertOpenTurn,
   writeAttachment,
-  writeDecision,
   writeFlow,
   writeProbe,
   writeSource,
@@ -39,17 +38,33 @@ import {
   listSourcesForTurn,
 } from "../episodes/load.js"
 import { alignCheck } from "../align/check.js"
-import {
-  assertAlignApproveValid,
-  alignPolicy,
-} from "../align/approve.js"
+import { alignPolicy } from "../align/approve.js"
 import {
   listAlignWaivers,
-  listAlignWaiversForTurn,
   writeAlignWaiver,
 } from "../align/waiver.js"
 import { computeTreeDigest } from "../git/tree.js"
 import type { EpisodeAttachment, Review, TurnIntent } from "../types.js"
+import {
+  OPERATION_NAMES,
+  executeOperation,
+  newRequestId,
+  normalizeOperationError,
+  planWork,
+  getContext,
+  observeSession,
+  submitPermission,
+  beginWork,
+  submitProgress,
+  submitDecision,
+  submitEvidence,
+  submitReview,
+  approveAlignment,
+  runChecks,
+  finishTurn,
+  completeWork,
+  type OperationName,
+} from "../application/index.js"
 
 function usage(): never {
   console.log(`spec-ledger — claim adherence ledger
@@ -64,11 +79,21 @@ Usage:
   spec-ledger related --workstream W-001 [--worktrees] [--json] [--root <dir>]
   spec-ledger workstream list|show|seal|check-seal|amend|backfill-doc-digest …
   spec-ledger turn open|close|check|abandon|list …
+  spec-ledger plan --workstream W-…
+  spec-ledger work --workstream W-… --slice SLC-… --goal "…"
+  spec-ledger check | fingerprint | evidence record --file <json>
+  spec-ledger permission status|approve|deny|delegate|revoke|record …
+  spec-ledger learning list|record --file <json>
   spec-ledger review add|list …
+  spec-ledger session | complete --workstream W-…
+  spec-ledger progress --file <json>
+  spec-ledger backlog [--workstream W-…] | obligations --workstream W-…
+  spec-ledger defer | resolve-deferral --file <json>
   spec-ledger align check|approve|waiver …
   spec-ledger automation list [--root <dir>]
   spec-ledger themes list | proposed-claims list [--root <dir>]
   spec-ledger decision|source|attachment|probe|flow add|list --turn T-…
+  spec-ledger operation <name> --file <json> [--root <dir>]
 
 Truth lives in .spec-ledger/ + source tree + ingested results.
 Turn facts are written only by \`turn close\` / \`turn abandon\` (git + verify).
@@ -88,7 +113,7 @@ function hasFlag(args: string[], flag: string): boolean {
   return args.includes(flag)
 }
 
-/** Lattice headline — required on every review JSON (`schemas/review.json`). */
+/** Spec Ledger UI headline — required on every review JSON (`schemas/review.json`). */
 function requirePlainSummary(argv: string[]): string {
   const plainSummary = argValue(argv, "--plain-summary")
   if (!plainSummary?.trim()) {
@@ -106,10 +131,28 @@ function requirePlainSummary(argv: string[]): string {
 
 async function main(): Promise<void> {
   const argv = process.argv.slice(2)
+  if (argv[0] === "work") argv.splice(0,1,"turn","open")
   const cmd = argv[0]
   if (!cmd || cmd === "-h" || cmd === "--help") usage()
 
   const root = resolve(argValue(argv, "--root") ?? process.cwd())
+
+  if (cmd === "operation") {
+    const operation = argv[1] as OperationName | undefined
+    const file = argValue(argv, "--file")
+    if (!operation || !OPERATION_NAMES.includes(operation) || !file) {
+      throw new Error("operation requires a known name and --file <json>")
+    }
+    const input = JSON.parse(readFileSync(resolve(file), "utf8"))
+    try {
+      console.log(JSON.stringify({ ok: true, operation, result: executeOperation(root, operation, input) }, null, 2))
+      return
+    } catch (error) {
+      const normalized = normalizeOperationError(error)
+      console.log(JSON.stringify({ ok: false, operation, error: normalized.toJSON() }, null, 2))
+      process.exit(1)
+    }
+  }
 
   if (cmd === "init") {
     const name = argValue(argv, "--name") ?? "project"
@@ -119,9 +162,113 @@ async function main(): Promise<void> {
     return
   }
 
-  if (cmd === "verify") {
+  if (cmd === "review" && argv[1] === "spec") {
+    const file=argValue(argv,"--file")
+    if (!file) throw new Error("review spec requires --file")
+    const review = JSON.parse(readFileSync(resolve(file),"utf8")) as Review
+    if (!review.workstreamId) throw new Error("spec review requires workstreamId")
+    console.log(JSON.stringify(submitReview(root,{requestId:argValue(argv,"--request-id") ?? newRequestId(),target:"spec",workstreamId:review.workstreamId,
+      expectedRevisionDigest:planRevision(root,loadWorkstream(root,review.workstreamId)),review}),null,2));return
+  }
+  if (cmd === "plan") {
+    const id=argValue(argv,"--workstream")
+    if (!id) throw new Error("plan requires --workstream")
+    console.log(JSON.stringify(planWork(root,{workstreamId:id}),null,2))
+    return
+  }
+  if (cmd === "session") {
+    console.log(JSON.stringify(observeSession(root, {workstreamId:argValue(argv, "--workstream")}), null, 2)); return
+  }
+  if (cmd === "complete") {
+    const id = argValue(argv, "--workstream")
+    if (!id) throw new Error("complete requires --workstream")
+    const session=observeSession(root,{workstreamId:id}).session!
+    console.log(JSON.stringify(completeWork(root,{requestId:argValue(argv,"--request-id") ?? newRequestId(),workstreamId:id,
+      expectedRevisionDigest:session.revisionDigest,expectedSourceDigest:session.sourceDigest}), null, 2)); return
+  }
+  if (cmd === "backlog") {
+    const id = argValue(argv, "--workstream")
+    console.log(JSON.stringify(id ? backlog(root, id) : backlog(root), null, 2)); return
+  }
+  if (cmd === "obligations") {
+    const id = argValue(argv, "--workstream")
+    if (!id) throw new Error("obligations requires --workstream")
+    console.log(JSON.stringify(evaluateDeferrals(root, id), null, 2)); return
+  }
+  if (cmd === "defer" || cmd === "resolve-deferral") {
+    const file = argValue(argv, "--file")
+    if (!file) throw new Error(`${cmd} requires --file JSON decision`)
+    const input = JSON.parse(readFileSync(resolve(file), "utf8"))
+    console.log(JSON.stringify(cmd === "defer" ? recordDeferredDecision(root, input) : recordDeferralResolution(root, input), null, 2)); return
+  }
+  if (cmd === "progress") {
+    const file = argValue(argv, "--file")
+    if (!file) throw new Error("progress requires --file JSON with turnId, summary, criterionIds, implemented, and optional preview")
+    const input=JSON.parse(readFileSync(resolve(file), "utf8"))
+    const turn=loadLedger(root).turns.find(t=>t.id===input.turnId)
+    if (!turn?.intent.workstreamId) throw new Error("progress requires a workstream turn")
+    const session=observeSession(root,{workstreamId:turn.intent.workstreamId}).session!
+    console.log(JSON.stringify(submitProgress(root,{...input,requestId:input.requestId ?? argValue(argv,"--request-id") ?? newRequestId(),
+      expectedRevisionDigest:input.expectedRevisionDigest ?? session.revisionDigest,expectedSourceDigest:input.expectedSourceDigest ?? session.sourceDigest}), null, 2)); return
+  }
+  if (cmd === "permission") {
+    const id=argValue(argv,"--workstream")
+    if (argv[1] === "status") {
+      if (!id) throw new Error("permission status requires --workstream")
+      console.log(JSON.stringify(permissionStatus(root,id),null,2)); return
+    }
+    if (argv[1] === "record") {
+      const file=argValue(argv,"--file")
+      if (!file) throw new Error("permission record requires --file")
+      console.log(JSON.stringify(submitPermission(root,{requestId:argValue(argv,"--request-id") ?? newRequestId(),authority:JSON.parse(readFileSync(resolve(file),"utf8")) as Authority}),null,2)); return
+    }
+    const reference=argValue(argv,"--source")
+    if (!reference) throw new Error("permission action requires --source with the authorizing instruction")
+    const source={kind:"agent-reported" as const,reference}
+    const action=argv[1]
+    if (action === "revoke") {
+      console.log(JSON.stringify(submitPermission(root,{requestId:argValue(argv,"--request-id") ?? newRequestId(),authority:{action:"revoke",targetId:argValue(argv,"--id"),source}}),null,2)); return
+    }
+    const ws=id ? loadWorkstream(root,id) : undefined
+    if (action === "approve" || action === "deny") {
+      if (!ws || !id) throw new Error("approval/denial requires --workstream")
+      const revisionDigest=argValue(argv,"--revision")
+      if (revisionDigest !== planRevision(root,ws)) throw new Error("use the exact revision from permission status")
+      const targetId=action === "deny" ? permissionStatus(root,id).authorityId : undefined
+      console.log(JSON.stringify(submitPermission(root,{requestId:argValue(argv,"--request-id") ?? newRequestId(),authority:{action:action==="deny" ? "deny" : "grant",mode:action==="approve" ? "revision" : undefined,
+        workstreamId:id,revisionDigest,featureIds:ws.featureIds,targetId,source,
+        supersedes:argValue(argv,"--supersedes")?.split(",")}}),null,2)); return
+    }
+    if (action === "delegate") {
+      const featureIds=argValue(argv,"--features")?.split(",") ?? ws?.featureIds
+      console.log(JSON.stringify(submitPermission(root,{requestId:argValue(argv,"--request-id") ?? newRequestId(),authority:{action:"grant",mode:id ? "request" : "standing",workstreamId:id,featureIds,
+        excludeFeatureIds:argValue(argv,"--exclude-features")?.split(","),source}}),null,2)); return
+    }
+    throw new Error("unknown permission action")
+  }
+  if (cmd === "learning") {
+    if (argv[1] === "list") { console.log(JSON.stringify(listLearnings(root),null,2));return }
+    const file=argValue(argv,"--file")
+    if (argv[1] !== "record" || !file) throw new Error("learning record requires --file")
+    console.log(JSON.stringify(recordLearning(root,JSON.parse(readFileSync(resolve(file),"utf8")) as Learning),null,2)); return
+  }
+
+  if (cmd === "fingerprint") {
     const ledger = loadLedger(root)
-    const report = verifyLedger(ledger)
+    console.log(JSON.stringify({sourceDigest:sourceFingerprint(ledger.repoRoot,ledger.config.generatedArtifactPaths),
+      checks:ledger.bindings.map(binding=>({bindingId:binding.id,checkDigest:ledger.claims.find(c=>c.id===binding.claimId) ? checkFingerprint(ledger.claims.find(c=>c.id===binding.claimId)!,binding) : null}))},null,2))
+    return
+  }
+  if (cmd === "evidence" && argv[1] === "record") {
+    const file = argValue(argv,"--file")
+    if (!file) throw new Error("usage: spec-ledger evidence record --file <runner-evidence.json>")
+    const evidence=JSON.parse(readFileSync(resolve(file),"utf8")) as EvidenceInput
+    console.log(JSON.stringify(submitEvidence(root,{requestId:argValue(argv,"--request-id") ?? newRequestId(),evidence}),null,2))
+    return
+  }
+
+  if (cmd === "verify" || cmd === "check") {
+    const report = runChecks(root,{requestId:argValue(argv,"--request-id") ?? newRequestId(),expectedSourceDigest:sourceFingerprint(loadLedger(root).repoRoot,loadLedger(root).config.generatedArtifactPaths)})
     const pass = report.claims.filter((c) => c.outcome === "pass").length
     const fail = report.claims.filter((c) => c.outcome === "fail").length
     const missing = report.claims.filter(
@@ -130,6 +277,7 @@ async function main(): Promise<void> {
     const attested = report.claims.filter((c) => c.outcome === "attested").length
 
     console.log(`spec-ledger verify ${report.ok ? "OK" : "FAIL"}`)
+    if (report.claims.length === 0) console.log("  No requirements checked")
     console.log(
       `  claims: ${pass} pass, ${fail} fail, ${missing} missing/unbound, ${attested} attested`,
     )
@@ -228,7 +376,7 @@ async function main(): Promise<void> {
       console.error("usage: spec-ledger context --workstream W-001 --slice SLC-01 [--json]")
       process.exit(2)
     }
-    const ctx = getVerticalContext(root, ws, slice)
+    const ctx = getContext(root, {workstreamId:ws,sliceId:slice})
     if (hasFlag(argv, "--json")) {
       console.log(JSON.stringify(ctx, null, 2))
     } else {
@@ -376,15 +524,27 @@ async function main(): Promise<void> {
         sliceId,
         featureIds,
       }
-      const turn = openTurn(root, intent, {
-        idHint: id,
-        workstreamId,
-        sliceId,
-        featureIds,
-        noContext: hasFlag(argv, "--no-context"),
-        noContextReason: argValue(argv, "--no-context-reason"),
-        allowDirty: hasFlag(argv, "--allow-dirty"),
-      })
+      const turn = workstreamId
+        ? beginWork(root, {
+            requestId: argValue(argv,"--request-id") ?? newRequestId(),
+            workstreamId,
+            sliceId,
+            goal,
+            prompt,
+            turnId:id,
+            featureIds,
+            changeType:intent.changeType,
+            riskLevel:intent.riskLevel,
+            noContext:hasFlag(argv,"--no-context"),
+            noContextReason:argValue(argv,"--no-context-reason"),
+            allowDirty:hasFlag(argv,"--allow-dirty"),
+            expectedRevisionDigest:planRevision(root,loadWorkstream(root,workstreamId)),
+          })
+        : openTurn(root, intent, {
+            idHint: id,
+            featureIds,
+            allowDirty: hasFlag(argv, "--allow-dirty"),
+          })
       console.log(`opened ${turn.id}`)
       if (turn.opened?.contextDigest) {
         console.log(`  contextDigest: ${turn.opened.contextDigest.slice(0, 12)}…`)
@@ -408,7 +568,10 @@ async function main(): Promise<void> {
 
     if (sub === "abandon") {
       const id = argValue(argv, "--id")
-      const turn = abandonTurn(root, id)
+      const target=id ?? loadLedger(root).turns.find(t=>t.status==="open")?.id
+      if (!target) throw new Error("no open turn to abandon")
+      const turn = finishTurn(root,{requestId:argValue(argv,"--request-id") ?? newRequestId(),turnId:target,action:"abandon",
+        expectedSourceDigest:sourceFingerprint(loadLedger(root).repoRoot,loadLedger(root).config.generatedArtifactPaths)})
       console.log(`abandoned ${turn.id}`)
       console.log(`  files: ${turn.facts?.files.length ?? 0}`)
       return
@@ -416,7 +579,10 @@ async function main(): Promise<void> {
 
     if (sub === "close") {
       const id = argValue(argv, "--id")
-      const turn = closeTurn(root, id)
+      const target=id ?? loadLedger(root).turns.find(t=>t.status==="open")?.id ?? loadLedger(root).turns.at(-1)?.id
+      if (!target) throw new Error("no turn to close")
+      const turn = finishTurn(root,{requestId:argValue(argv,"--request-id") ?? newRequestId(),turnId:target,action:"close",
+        expectedSourceDigest:sourceFingerprint(loadLedger(root).repoRoot,loadLedger(root).config.generatedArtifactPaths)})
       console.log(`closed ${turn.id}`)
       console.log(`  files: ${turn.facts?.files.length ?? 0}`)
       console.log(`  verify: ${turn.facts?.verify.ok ? "OK" : "FAIL"}`)
@@ -463,10 +629,8 @@ async function main(): Promise<void> {
         console.error("approve requires --killers <id1,id2>")
         process.exit(2)
       }
-      const id = nextReviewId(root, turnId)
-      const review: Review = {
+      const review: Omit<Review,"id"> & {id?:string} = {
         schemaVersion: 1,
-        id,
         turnId,
         kind: "adversarial",
         target: "code",
@@ -477,8 +641,9 @@ async function main(): Promise<void> {
         ...(killersCited ? { killersCited } : {}),
         ...(hasFlag(argv, "--blocking") ? { blocking: true } : {}),
       }
-      writeReview(root, review)
-      console.log(`wrote ${id}`)
+      const written=submitReview(root,{requestId:argValue(argv,"--request-id") ?? newRequestId(),target:"code",turnId,
+        expectedSourceDigest:sourceFingerprint(loadLedger(root).repoRoot,loadLedger(root).config.generatedArtifactPaths),review})
+      console.log(`wrote ${written.id}`)
       return
     }
     usage()
@@ -586,41 +751,14 @@ async function main(): Promise<void> {
         console.error(`turn not found: ${turnId}`)
         process.exit(1)
       }
-      const report = alignCheck(root, { turnId })
-      const workstreamId = turn.intent.workstreamId
-      const policy = workstreamId
-        ? alignPolicy(loadWorkstream(root, workstreamId))
-        : { alignReviewerPrefix: "agent:align" }
       const waiverIdsRaw = argValue(argv, "--waiver-ids")
       const waiverIds = waiverIdsRaw
         ? waiverIdsRaw.split(",").map((s) => s.trim()).filter(Boolean)
         : undefined
-      const id = nextReviewId(root, turnId)
-      const review: Review = {
-        schemaVersion: 1,
-        id,
-        turnId,
-        ...(workstreamId ? { workstreamId } : {}),
-        kind: "human",
-        target: "code",
-        reviewer,
-        verdict: "approve",
-        summary,
-        plainSummary,
-        treeDigest: report.treeDigest,
-        uncoveredPaths: report.coverage.uncoveredPaths,
-        coverageSource: report.coverage.coverageSource,
-        ...(waiverIds?.length ? { waiverIds } : {}),
-      }
-      assertAlignApproveValid({
-        review,
-        turn,
-        policy,
-        waivers: listAlignWaiversForTurn(root, turnId),
-      })
-      writeReview(root, review)
-      console.log(`wrote align approve ${id}`)
-      console.log(`  treeDigest: ${report.treeDigest.slice(0, 12)}…`)
+      const review=approveAlignment(root,{requestId:argValue(argv,"--request-id") ?? newRequestId(),turnId,reviewer,summary,plainSummary,waiverIds,
+        expectedSourceDigest:sourceFingerprint(loadLedger(root).repoRoot,loadLedger(root).config.generatedArtifactPaths)})
+      console.log(`wrote align approve ${review.id}`)
+      console.log(`  treeDigest: ${review.treeDigest?.slice(0, 12)}…`)
       console.log(`  coverageSource: ${review.coverageSource}`)
       console.log(`  uncovered: ${review.uncoveredPaths?.length ?? 0}`)
       return
@@ -661,16 +799,11 @@ async function main(): Promise<void> {
         )
         process.exit(2)
       }
-      const d = writeDecision(root, {
-        turnId,
-        decision,
-        rationale,
-        basis: {
-          at: new Date().toISOString(),
-          contextDigest: undefined,
-          sealRevision: undefined,
-        },
-      })
+      const workstreamId=loadLedger(root).turns.find(t=>t.id===turnId)?.intent.workstreamId
+      if (!workstreamId) throw new Error("decision requires a workstream turn")
+      const d = submitDecision(root, {requestId:argValue(argv,"--request-id") ?? newRequestId(),turnId,decision,rationale,
+        expectedRevisionDigest:planRevision(root,loadWorkstream(root,workstreamId)),
+        expectedSourceDigest:sourceFingerprint(loadLedger(root).repoRoot,loadLedger(root).config.generatedArtifactPaths)})
       console.log(`wrote ${d.id}`)
       return
     }

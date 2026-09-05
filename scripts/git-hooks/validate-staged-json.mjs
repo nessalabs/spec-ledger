@@ -2,7 +2,7 @@
 /**
  * Lightweight staged JSON checks for Spec Ledger paths.
  * Full AJV against schemas/*.json can replace this once ajv is a dependency;
- * until then we enforce required keys + types so Lattice query FKs stay present.
+ * until then we enforce required keys + types so Spec Ledger UI query FKs stay present.
  */
 import { readFileSync } from "node:fs"
 import { join, dirname } from "node:path"
@@ -64,7 +64,7 @@ function checkReview(file, data) {
   if (typeof data.summary !== "string" || !data.summary.trim())
     ok = fail(file, "summary required") || ok
   if (typeof data.plainSummary !== "string" || !data.plainSummary.trim())
-    ok = fail(file, "plainSummary required (one Lattice sentence)") || ok
+    ok = fail(file, "plainSummary required (one Spec Ledger UI sentence)") || ok
   else if (data.plainSummary.length > 280)
     ok = fail(file, "plainSummary must be <= 280 characters") || ok
   const findings = Array.isArray(data.findings) ? data.findings : []
@@ -73,7 +73,7 @@ function checkReview(file, data) {
     if (typeof f.gap !== "string" || !f.gap.trim())
       ok = fail(file, `finding ${fid}: gap required`) || ok
     if (typeof f.plainImpact !== "string" || !f.plainImpact.trim())
-      ok = fail(file, `finding ${fid}: plainImpact required (one Lattice sentence)`) || ok
+      ok = fail(file, `finding ${fid}: plainImpact required (one Spec Ledger UI sentence)`) || ok
     else if (f.plainImpact.length > 280)
       ok = fail(file, `finding ${fid}: plainImpact must be <= 280 characters`) || ok
     if (data.kind === "adversarial" && data.target === "code" && !f.evidence)

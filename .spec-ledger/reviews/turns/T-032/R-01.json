@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "T-032/R-01",
+  "turnId": "T-032",
+  "workstreamId": "W-006",
+  "kind": "adversarial",
+  "target": "code",
+  "reviewer": "agent:sl-dev-break:w006-final",
+  "verdict": "approve",
+  "blocking": false,
+  "alertOnSeverity": "high",
+  "plainSummary": "All six slices and the local approval boundary pass current checks, with approvals saved separately from evidence.",
+  "summary": "Final current-source independent review across all six W006 slices and user-directed local approval/branding changes. Reran all mapped behavioral suites plus local-ui.break and UI route/presentation helpers:50tests pass0fail0skip. Prior independent reviews cover aggregation, read effects, source/check/artifact freshness, scoped authority, durable deferrals and honest session completion. New local UI tests exercise real Request→Response bridge: cross-origin/rebinding/token rejection with byte-identical ledger, strict MIME/JSON/size/key validation, stale spec and authority state, immutable retry IDs/conflicts, revoked old-request retry returning current blocked state, intentional fresh denial replacement, and Next-normalized localhost URL versus external127.0.0.1 Host positive control with port mismatch denial. Source-reviewed UI disabled dropdown while saving, observation epoch guards,8s deadlines and retained requestID for uncertain retries; no authenticated identity implied. UI helpers pass legacy route aliases, consumer slug collision and historical prose-only normalization without modifying persisted facts. Root full-suite log reports140coretests passed, and reviewer separately ran3currentUIhelpers. Read T032 browser-check.md: actual Next fixture approval persisted, UI showed saved/allowed and hid buttons, reload retained grant while failed/missing evidence stayed unchanged; Nessa menu opened. Root additionally reports historical title normalization verified in browser. Those browser observations are attributed to root; this reviewer independently ran runtime/security regressions and inspected UI source. Generic projection server remainsGET-only; narrow Next host adapter performs bounded permission writes.",
+  "killersCited": [
+    "packages/ledger/src/verify/aggregation.break.test.ts",
+    "packages/ledger/src/verify/readonly.break.test.ts",
+    "packages/ledger/src/evidence/fingerprint.break.test.ts",
+    "packages/ledger/src/permission/authority.break.test.ts",
+    "packages/ledger/src/permission/local-ui.break.test.ts",
+    "packages/ledger/src/deferrals/index.test.ts",
+    "packages/ledger/src/deferrals/deferrals.break.test.ts",
+    "packages/ledger/src/deferrals/portability.test.ts",
+    "packages/ledger/src/session/session.break.test.ts",
+    "packages/ledger/src/graph/display.test.ts",
+    "packages/ui/lib/features.test.mjs"
+  ],
+  "findings": [],
+  "residualRisks": [
+    "Local browser consent records retain agent-reported provenance; hostile local processes or filesystem owners are not authenticated or excluded by this model.",
+    "Browser persistence/layout observations are root manual evidence, not an independently repeated browser campaign or automated UI CI. Only documented655px layout observations are claimed.",
+    "UI async-race fixes were source-reviewed; no controlled browser response-reordering test was run.",
+    "No concurrent-process authority/evidence writer stress test, arbitrary-prose equivalence proof, or external planning provider integration is claimed."
+  ],
+  "treeDigest": "08a3836ed83dfdc3780d94f773a8b39146127774ebd38dfc55b4ea17dc5818e4"
+}

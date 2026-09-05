@@ -1,0 +1,18 @@
+{
+  "id": "b-sl-026",
+  "claimId": "SL-026",
+  "kind": "test",
+  "locator": {
+    "type": "command",
+    "command": "node --test packages/ui/lib/turn-evidence.break.test.mjs"
+  },
+  "test": {
+    "level": "integration",
+    "description": "Render the change page and test evidence scoping against real Git histories.",
+    "source": {
+      "path": "packages/ui/lib/turn-evidence.break.test.mjs"
+    },
+    "inputs": "Multiple slices and claims, failed/missing evidence, legacy turns and temporary commits with matching, adjacent or prose-only turn identifiers.",
+    "expected": "Evidence appears before collapsed technical details; only scoped criteria appear; commits require the exact trailer; historical completion is not presented as current proof."
+  }
+}

@@ -3,8 +3,8 @@
   "id": "W-005",
   "status": "done",
   "createdAt": "2026-09-04T09:01:44.000Z",
-  "updatedAt": "2026-09-04T21:15:20.554Z",
-  "specBreakReviewId": "W-005/SR-05",
+  "updatedAt": "2026-09-05T01:52:16.555Z",
+  "specBreakReviewId": "W-005/SR-06",
   "amendedAfterSpecBreak": [
     "W-005/SR-01",
     "W-005/SR-02",
@@ -233,12 +233,12 @@
   "shapedBy": "agent:sl-plan-shape",
   "attachmentIds": [],
   "seal": {
-    "sealedAt": "2026-09-04T20:22:15.178Z",
-    "sealedBy": "human",
-    "specDigest": "f9a9249a87956d65ddedec2aa9e2cc32164c5162d34055f0c7f3c6472f2041a3",
-    "snapshotPath": "workstreams/W-005.seals/3.json",
-    "revision": 3,
-    "specDocDigest": "9ab5deb8f129b131b1cc7e51efc9d4cf0d3560e6a4e8377309b32c6b6953b816"
+    "sealedAt": "2026-09-05T01:52:16.555Z",
+    "sealedBy": "agent:permission:AUTH-W005-RETROFIT-ALL",
+    "specDigest": "abd069cfa545524851f5b13d177f511d503db5cf65aebb687bf6f3a96c2ecd59",
+    "snapshotPath": "workstreams/W-005.seals/4.json",
+    "revision": 4,
+    "specDocDigest": "dfc314c05069e3896aaa88b4a410f40659b50783d07685a3718d560f67b63d7e"
   },
   "postSealAmends": [
     {
@@ -273,5 +273,28 @@
       "turnId": "T-025",
       "decisionId": "T-025/D-01"
     }
-  ]
+  ],
+  "acceptanceClaimIds": {
+    "AC-1": [
+      "SL-011"
+    ],
+    "AC-2": [
+      "SL-011"
+    ],
+    "AC-3": [
+      "SL-012"
+    ],
+    "AC-4": [
+      "SL-012"
+    ],
+    "AC-5": [
+      "SL-013"
+    ],
+    "AC-6": [
+      "SL-014"
+    ],
+    "AC-7": [
+      "SL-015"
+    ]
+  }
 }

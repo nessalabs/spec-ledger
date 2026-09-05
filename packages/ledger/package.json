@@ -4,7 +4,8 @@
   "description": "Claim-adherence ledger: verify specs/ADRs/invariants against ingested evidence",
   "type": "module",
   "bin": {
-    "spec-ledger": "./dist/cli/main.js"
+    "spec-ledger": "./dist/cli/main.js",
+    "spec-ledger-activity": "./dist/cli/activity-collector.js"
   },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -30,6 +31,9 @@
   },
   "engines": {
     "node": ">=20"
+  },
+  "dependencies": {
+    "zod": "^4.2.0"
   },
   "devDependencies": {
     "@types/node": "^22.13.10",

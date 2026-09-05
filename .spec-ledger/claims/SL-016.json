@@ -1,0 +1,13 @@
+{
+  "id": "SL-016",
+  "kind": "invariant",
+  "statement": "Show every required check result, and never hide a failure just because another check passes.",
+  "required": true,
+  "area": "core",
+  "links": {
+    "docs": [
+      "docs/workstreams/W-006-trustworthy-autonomous-coding/spec.md",
+      "docs/architecture/claim-contracts.md"
+    ]
+  }
+}

@@ -1,0 +1,2148 @@
+{
+  "schemaVersion": 1,
+  "requestId": "70a348c7-7d69-4953-9f30-218f8e2ed6c8",
+  "operation": "finish_turn",
+  "inputDigest": "70887ddc324e4ecbb2ef32f8ff68e1b800b27fe03f7c7c2abab302db30b7a8d1",
+  "finishedAt": "2026-09-05T03:56:34.560Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "id": "T-040",
+    "status": "closed",
+    "openedAt": "2026-09-05T03:25:20.635Z",
+    "opened": {
+      "producedBy": "@nessalabs/spec-ledger@0.1.0",
+      "baseCommit": "0d403e92c35186ae6507181fba4902a00b55a6c0",
+      "treeDigest": "55e42d5f4adb32ab023b25bfeab5d30e00ba41b243cde48b457b7ecf56068706",
+      "dirtyAtOpen": [
+        ".spec-ledger/authority/AUTH-W011-REQUEST.json",
+        ".spec-ledger/reviews/workstreams/W-011/SR-01.json",
+        ".spec-ledger/workstreams/W-011.json",
+        ".spec-ledger/workstreams/W-011.seals/1.json",
+        "docs/workstreams/W-011-simple-navigation/spec.md"
+      ],
+      "contextDigest": "b5b08d13ec949cd8892203ab6e44be6593e015b7f69a4f2e4ce205ddac1b2029",
+      "contextWorkstreamId": "W-011",
+      "contextSliceId": "SLC-01",
+      "contextSealRevision": 1,
+      "contextGeneratedAt": "2026-09-05T03:25:20.635Z"
+    },
+    "intent": {
+      "userPrompt": "Find the spec, progress and proof easily",
+      "restatedGoal": "Find the spec, progress and proof easily",
+      "changeType": "feature",
+      "riskLevel": "moderate",
+      "workstreamId": "W-011",
+      "sliceId": "SLC-01",
+      "featureIds": [
+        "lattice"
+      ]
+    },
+    "closedAt": "2026-09-05T03:56:34.560Z",
+    "facts": {
+      "producedBy": "@nessalabs/spec-ledger@0.1.0",
+      "commit": "0d403e92c35186ae6507181fba4902a00b55a6c0",
+      "files": [
+        {
+          "path": ".spec-ledger/align-waivers/AW-17.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/attachments/T-040/A-01.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/attachments/T-040/A-02.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/authority/AUTH-W011-REQUEST.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/bindings/B-SL-029.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/claims/SL-029.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/decisions/T-040/D-01.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/decisions/T-040/D-02.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/0114100d-aec7-454b-bc27-1b229a456e12-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/0114100d-aec7-454b-bc27-1b229a456e12-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/0114100d-aec7-454b-bc27-1b229a456e12.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/039f3091-fdfd-4a8d-a6a5-1d7c1a1f293e-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/039f3091-fdfd-4a8d-a6a5-1d7c1a1f293e-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/039f3091-fdfd-4a8d-a6a5-1d7c1a1f293e.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/0932dd47-4f47-40c8-8b7b-63c4eae78b85-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/0932dd47-4f47-40c8-8b7b-63c4eae78b85-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/0932dd47-4f47-40c8-8b7b-63c4eae78b85.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/0e2d6f05-f842-46f3-9a72-0412ab1de771-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/0e2d6f05-f842-46f3-9a72-0412ab1de771-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/0e2d6f05-f842-46f3-9a72-0412ab1de771.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/0edb6696-af1a-4e93-a0a7-68d65971fc3b-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/0edb6696-af1a-4e93-a0a7-68d65971fc3b-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/0edb6696-af1a-4e93-a0a7-68d65971fc3b.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/0fe5cb3c-6566-4d5b-88d9-9a67c51c29f5-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/0fe5cb3c-6566-4d5b-88d9-9a67c51c29f5-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/0fe5cb3c-6566-4d5b-88d9-9a67c51c29f5.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/1209c5ba-b338-43b2-9741-9e05f69eb9d3-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/1209c5ba-b338-43b2-9741-9e05f69eb9d3-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/1209c5ba-b338-43b2-9741-9e05f69eb9d3.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/12902ea3-1e12-4ec5-ae05-f058e4a59398-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/12902ea3-1e12-4ec5-ae05-f058e4a59398-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/12902ea3-1e12-4ec5-ae05-f058e4a59398.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/170568cc-273a-4242-b026-7f8d55546030-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/170568cc-273a-4242-b026-7f8d55546030-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/170568cc-273a-4242-b026-7f8d55546030.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/1b71d323-bf5a-412f-9e90-0f42ca14bd2d-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/1b71d323-bf5a-412f-9e90-0f42ca14bd2d-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/1b71d323-bf5a-412f-9e90-0f42ca14bd2d.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/28fe718e-f65b-454f-a9b9-bb602204118b-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/28fe718e-f65b-454f-a9b9-bb602204118b-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/28fe718e-f65b-454f-a9b9-bb602204118b.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/2a008fc0-a43d-405c-9064-586665d38ea1-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/2a008fc0-a43d-405c-9064-586665d38ea1-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/2a008fc0-a43d-405c-9064-586665d38ea1.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/2ab60574-58af-40ba-a1c9-a85455cc8a04-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/2ab60574-58af-40ba-a1c9-a85455cc8a04-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/2ab60574-58af-40ba-a1c9-a85455cc8a04.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/2c2dd8fe-1be5-4866-8909-a7ffb6ac8236-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/2c2dd8fe-1be5-4866-8909-a7ffb6ac8236-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/2c2dd8fe-1be5-4866-8909-a7ffb6ac8236.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/3147cec3-df43-4bee-957c-eab0d381625d-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/3147cec3-df43-4bee-957c-eab0d381625d-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/3147cec3-df43-4bee-957c-eab0d381625d.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/32e29ff4-d709-4e24-af84-286a4c83430d-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/32e29ff4-d709-4e24-af84-286a4c83430d-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/32e29ff4-d709-4e24-af84-286a4c83430d.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/3d3ac195-9e43-42a6-a44c-4c6fe3a024e0-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/3d3ac195-9e43-42a6-a44c-4c6fe3a024e0-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/3d3ac195-9e43-42a6-a44c-4c6fe3a024e0.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/409eb691-506c-4cb1-9a5f-641f3704be28-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/409eb691-506c-4cb1-9a5f-641f3704be28-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/409eb691-506c-4cb1-9a5f-641f3704be28.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/461f82b4-4111-488f-876a-c1f00159811f-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/461f82b4-4111-488f-876a-c1f00159811f-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/461f82b4-4111-488f-876a-c1f00159811f.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/4b9128a9-bc07-46fd-98dd-14ff91f939cd-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/4b9128a9-bc07-46fd-98dd-14ff91f939cd-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/4b9128a9-bc07-46fd-98dd-14ff91f939cd.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/520b9e8d-0633-4cf1-9446-bc2a5047a8c2-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/520b9e8d-0633-4cf1-9446-bc2a5047a8c2-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/520b9e8d-0633-4cf1-9446-bc2a5047a8c2.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/52fe2569-62f9-4fa4-93e0-023cc9d904e5-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/52fe2569-62f9-4fa4-93e0-023cc9d904e5-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/52fe2569-62f9-4fa4-93e0-023cc9d904e5.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/542c7d2c-72f0-4136-882d-95a68324e298-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/542c7d2c-72f0-4136-882d-95a68324e298-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/542c7d2c-72f0-4136-882d-95a68324e298.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/5c8b72bc-a026-40c0-8a5b-550f27c50eb1-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/5c8b72bc-a026-40c0-8a5b-550f27c50eb1-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/5c8b72bc-a026-40c0-8a5b-550f27c50eb1.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/62736b36-e276-4368-8163-94379b98cd6f-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/62736b36-e276-4368-8163-94379b98cd6f-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/62736b36-e276-4368-8163-94379b98cd6f.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/65f07686-2037-4bca-9f86-03a5dfe2a421-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/65f07686-2037-4bca-9f86-03a5dfe2a421-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/65f07686-2037-4bca-9f86-03a5dfe2a421.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/6a490843-e93c-42d2-bc4d-7eebb1c31520-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/6a490843-e93c-42d2-bc4d-7eebb1c31520-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/6a490843-e93c-42d2-bc4d-7eebb1c31520.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/6b920aee-19db-4ed8-aeba-489268befbef-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/6b920aee-19db-4ed8-aeba-489268befbef-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/6b920aee-19db-4ed8-aeba-489268befbef.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/6bc578b6-3bf5-45da-89a6-ee49b3a0b176-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/6bc578b6-3bf5-45da-89a6-ee49b3a0b176-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/6bc578b6-3bf5-45da-89a6-ee49b3a0b176.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/6e7ad202-3996-4b82-b5f2-d0906a6bb1e4-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/6e7ad202-3996-4b82-b5f2-d0906a6bb1e4-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/6e7ad202-3996-4b82-b5f2-d0906a6bb1e4.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/727610af-f8eb-4f57-aaaf-d11e4596aabf-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/727610af-f8eb-4f57-aaaf-d11e4596aabf-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/727610af-f8eb-4f57-aaaf-d11e4596aabf.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/78e90a90-a307-424e-bc24-d890a3ba134c-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/78e90a90-a307-424e-bc24-d890a3ba134c-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/78e90a90-a307-424e-bc24-d890a3ba134c.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/79117245-36b3-43eb-a116-0ccab4fbeb5f-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/79117245-36b3-43eb-a116-0ccab4fbeb5f-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/79117245-36b3-43eb-a116-0ccab4fbeb5f.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/7c4dc4cc-8ce1-4560-af26-f84d0788a033-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/7c4dc4cc-8ce1-4560-af26-f84d0788a033-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/7c4dc4cc-8ce1-4560-af26-f84d0788a033.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/80afbeac-cea8-4566-9790-8dcd52616920-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/80afbeac-cea8-4566-9790-8dcd52616920-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/80afbeac-cea8-4566-9790-8dcd52616920.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/8f316877-cfd2-43ac-b50d-27ac96b27982-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/8f316877-cfd2-43ac-b50d-27ac96b27982-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/8f316877-cfd2-43ac-b50d-27ac96b27982.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/92c24a81-061c-45ed-bcf0-becab26963d0-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/92c24a81-061c-45ed-bcf0-becab26963d0-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/92c24a81-061c-45ed-bcf0-becab26963d0.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/93dd72d6-15fb-4081-bbce-f94894cabb22-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/93dd72d6-15fb-4081-bbce-f94894cabb22-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/93dd72d6-15fb-4081-bbce-f94894cabb22.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/94af52be-92ea-48aa-a7c6-feff78ab14e2-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/94af52be-92ea-48aa-a7c6-feff78ab14e2-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/94af52be-92ea-48aa-a7c6-feff78ab14e2.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/9c3e9a2f-779d-4d08-abbd-a5f00001623d-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/9c3e9a2f-779d-4d08-abbd-a5f00001623d-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/9c3e9a2f-779d-4d08-abbd-a5f00001623d.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/9da500ec-222c-40bc-9b50-d13cbe33318f-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/9da500ec-222c-40bc-9b50-d13cbe33318f-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/9da500ec-222c-40bc-9b50-d13cbe33318f.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/9e79db11-6297-4683-9cf2-a678fdeb320a-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/9e79db11-6297-4683-9cf2-a678fdeb320a-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/9e79db11-6297-4683-9cf2-a678fdeb320a.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/9f6f0886-cd38-4da8-9dd7-e56c08e9d942-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/9f6f0886-cd38-4da8-9dd7-e56c08e9d942-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/9f6f0886-cd38-4da8-9dd7-e56c08e9d942.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/a4a95120-99c5-434d-866d-7b2d34b1f058-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/a4a95120-99c5-434d-866d-7b2d34b1f058-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/a4a95120-99c5-434d-866d-7b2d34b1f058.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/ae6a57c9-2b7e-422c-b7f6-4473b9fa198f-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/ae6a57c9-2b7e-422c-b7f6-4473b9fa198f-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/ae6a57c9-2b7e-422c-b7f6-4473b9fa198f.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/af742997-4a41-4efb-a92e-5195b2b8f4c0-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/af742997-4a41-4efb-a92e-5195b2b8f4c0-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/af742997-4a41-4efb-a92e-5195b2b8f4c0.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/b3d0026f-2df0-4eaf-9c9f-649be9e623e1-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/b3d0026f-2df0-4eaf-9c9f-649be9e623e1-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/b3d0026f-2df0-4eaf-9c9f-649be9e623e1.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/b3f8df26-3786-4515-b035-c50c8af1ed3d-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/b3f8df26-3786-4515-b035-c50c8af1ed3d-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/b3f8df26-3786-4515-b035-c50c8af1ed3d.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/b86d1e52-2984-41bd-ba5f-c50cdeacc558-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/b86d1e52-2984-41bd-ba5f-c50cdeacc558-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/b86d1e52-2984-41bd-ba5f-c50cdeacc558.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/ba8fcec8-869a-44ae-81ed-234b0b529d43-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/ba8fcec8-869a-44ae-81ed-234b0b529d43-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/ba8fcec8-869a-44ae-81ed-234b0b529d43.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/bbb799ce-ee73-4201-8124-4192ab6bd78e-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/bbb799ce-ee73-4201-8124-4192ab6bd78e-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/bbb799ce-ee73-4201-8124-4192ab6bd78e.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/bd1bd6bf-a5ae-4af0-bf29-91cb9421450a-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/bd1bd6bf-a5ae-4af0-bf29-91cb9421450a-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/bd1bd6bf-a5ae-4af0-bf29-91cb9421450a.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/c19df2fa-a14e-4e4b-9b54-89a45f3120cb-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/c19df2fa-a14e-4e4b-9b54-89a45f3120cb-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/c19df2fa-a14e-4e4b-9b54-89a45f3120cb.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/c4cca957-bac1-4a89-9bf0-2bcfbec8d439-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/c4cca957-bac1-4a89-9bf0-2bcfbec8d439-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/c4cca957-bac1-4a89-9bf0-2bcfbec8d439.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/c6280bbd-3ddc-4a9a-b394-d4a0e3f4e4f0-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/c6280bbd-3ddc-4a9a-b394-d4a0e3f4e4f0-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/c6280bbd-3ddc-4a9a-b394-d4a0e3f4e4f0.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/c7ee6a04-b8ba-40b4-a8f0-194171011a0c-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/c7ee6a04-b8ba-40b4-a8f0-194171011a0c-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/c7ee6a04-b8ba-40b4-a8f0-194171011a0c.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/c86bcf3c-2c5c-4a32-9caa-220b78225c9b-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/c86bcf3c-2c5c-4a32-9caa-220b78225c9b-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/c86bcf3c-2c5c-4a32-9caa-220b78225c9b.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/c9638710-088c-4fc6-8f21-cd39fb01b944-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/c9638710-088c-4fc6-8f21-cd39fb01b944-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/c9638710-088c-4fc6-8f21-cd39fb01b944.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/d06a0832-8722-4a7e-ae8c-ccc9e75388ae-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/d06a0832-8722-4a7e-ae8c-ccc9e75388ae-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/d06a0832-8722-4a7e-ae8c-ccc9e75388ae.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/d437d833-6e78-4004-96ea-0ab980aa37d6-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/d437d833-6e78-4004-96ea-0ab980aa37d6-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/d437d833-6e78-4004-96ea-0ab980aa37d6.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/d5302131-ba8a-4930-96d9-aa4cca74827e-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/d5302131-ba8a-4930-96d9-aa4cca74827e-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/d5302131-ba8a-4930-96d9-aa4cca74827e.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/da83ab6f-7138-4b1f-9062-548b68da6554-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/da83ab6f-7138-4b1f-9062-548b68da6554-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/da83ab6f-7138-4b1f-9062-548b68da6554.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/dcc4abb6-2ca4-4a0c-8391-f3b96b1c81dc-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/dcc4abb6-2ca4-4a0c-8391-f3b96b1c81dc-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/dcc4abb6-2ca4-4a0c-8391-f3b96b1c81dc.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/e00ec844-dff9-499d-a4d8-32894ea0f306-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/e00ec844-dff9-499d-a4d8-32894ea0f306-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/e00ec844-dff9-499d-a4d8-32894ea0f306.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/e4211d42-43c4-49f0-a5eb-92c52078906b-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/e4211d42-43c4-49f0-a5eb-92c52078906b-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/e4211d42-43c4-49f0-a5eb-92c52078906b.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/e5410dbd-6f9d-4c44-beaf-09fd2d2c11bd-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/e5410dbd-6f9d-4c44-beaf-09fd2d2c11bd-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/e5410dbd-6f9d-4c44-beaf-09fd2d2c11bd.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/ea83f25e-f48a-4328-a2ab-d1115758f12e-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/ea83f25e-f48a-4328-a2ab-d1115758f12e-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/ea83f25e-f48a-4328-a2ab-d1115758f12e.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/eb45380b-6eae-4589-a37c-23cd6975e2b3-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/eb45380b-6eae-4589-a37c-23cd6975e2b3-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/eb45380b-6eae-4589-a37c-23cd6975e2b3.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/ee7b0a1e-9805-4447-83d0-27ab1809befb-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/ee7b0a1e-9805-4447-83d0-27ab1809befb-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/ee7b0a1e-9805-4447-83d0-27ab1809befb.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/f0223a1b-7c61-4fa9-904a-6695a89b3b0d-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/f0223a1b-7c61-4fa9-904a-6695a89b3b0d-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/f0223a1b-7c61-4fa9-904a-6695a89b3b0d.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/f0c980e3-fce0-4ea3-b536-8605b192ac55-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/f0c980e3-fce0-4ea3-b536-8605b192ac55-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/f0c980e3-fce0-4ea3-b536-8605b192ac55.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/f1910ea0-0ae7-496e-b04d-376a93238efd-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/f1910ea0-0ae7-496e-b04d-376a93238efd-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/f1910ea0-0ae7-496e-b04d-376a93238efd.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/f3836caa-3be7-4074-ab2c-2a0cbd7bb13f-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/f3836caa-3be7-4074-ab2c-2a0cbd7bb13f-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/f3836caa-3be7-4074-ab2c-2a0cbd7bb13f.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/f434975b-ce5b-4197-b4be-cc978c3dd9c7-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/f434975b-ce5b-4197-b4be-cc978c3dd9c7-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/f434975b-ce5b-4197-b4be-cc978c3dd9c7.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/f595c518-66db-4b2c-aa86-f685bb79b40e-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/f595c518-66db-4b2c-aa86-f685bb79b40e-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/f595c518-66db-4b2c-aa86-f685bb79b40e.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/f82b437f-f2f4-4628-995f-24af0097708c-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/f82b437f-f2f4-4628-995f-24af0097708c-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/f82b437f-f2f4-4628-995f-24af0097708c.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/0114100d-aec7-454b-bc27-1b229a456e12.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/039f3091-fdfd-4a8d-a6a5-1d7c1a1f293e.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/0932dd47-4f47-40c8-8b7b-63c4eae78b85.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/0e2d6f05-f842-46f3-9a72-0412ab1de771.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/0edb6696-af1a-4e93-a0a7-68d65971fc3b.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/0fe5cb3c-6566-4d5b-88d9-9a67c51c29f5.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/1209c5ba-b338-43b2-9741-9e05f69eb9d3.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/12902ea3-1e12-4ec5-ae05-f058e4a59398.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/170568cc-273a-4242-b026-7f8d55546030.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/1b71d323-bf5a-412f-9e90-0f42ca14bd2d.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/28fe718e-f65b-454f-a9b9-bb602204118b.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/2a008fc0-a43d-405c-9064-586665d38ea1.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/2ab60574-58af-40ba-a1c9-a85455cc8a04.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/2c2dd8fe-1be5-4866-8909-a7ffb6ac8236.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/3147cec3-df43-4bee-957c-eab0d381625d.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/32e29ff4-d709-4e24-af84-286a4c83430d.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/3d3ac195-9e43-42a6-a44c-4c6fe3a024e0.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/409eb691-506c-4cb1-9a5f-641f3704be28.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/461f82b4-4111-488f-876a-c1f00159811f.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/4b9128a9-bc07-46fd-98dd-14ff91f939cd.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/520b9e8d-0633-4cf1-9446-bc2a5047a8c2.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/52fe2569-62f9-4fa4-93e0-023cc9d904e5.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/542c7d2c-72f0-4136-882d-95a68324e298.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/5c8b72bc-a026-40c0-8a5b-550f27c50eb1.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/62736b36-e276-4368-8163-94379b98cd6f.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/65f07686-2037-4bca-9f86-03a5dfe2a421.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/6a490843-e93c-42d2-bc4d-7eebb1c31520.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/6b920aee-19db-4ed8-aeba-489268befbef.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/6bc578b6-3bf5-45da-89a6-ee49b3a0b176.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/6e7ad202-3996-4b82-b5f2-d0906a6bb1e4.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/727610af-f8eb-4f57-aaaf-d11e4596aabf.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/78e90a90-a307-424e-bc24-d890a3ba134c.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/79117245-36b3-43eb-a116-0ccab4fbeb5f.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/7c4dc4cc-8ce1-4560-af26-f84d0788a033.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/80afbeac-cea8-4566-9790-8dcd52616920.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/8f316877-cfd2-43ac-b50d-27ac96b27982.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/92c24a81-061c-45ed-bcf0-becab26963d0.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/93dd72d6-15fb-4081-bbce-f94894cabb22.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/94af52be-92ea-48aa-a7c6-feff78ab14e2.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/9c3e9a2f-779d-4d08-abbd-a5f00001623d.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/9da500ec-222c-40bc-9b50-d13cbe33318f.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/9e79db11-6297-4683-9cf2-a678fdeb320a.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/9f6f0886-cd38-4da8-9dd7-e56c08e9d942.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/a4a95120-99c5-434d-866d-7b2d34b1f058.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/ae6a57c9-2b7e-422c-b7f6-4473b9fa198f.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/af742997-4a41-4efb-a92e-5195b2b8f4c0.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/b3d0026f-2df0-4eaf-9c9f-649be9e623e1.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/b3f8df26-3786-4515-b035-c50c8af1ed3d.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/b86d1e52-2984-41bd-ba5f-c50cdeacc558.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/ba8fcec8-869a-44ae-81ed-234b0b529d43.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/bbb799ce-ee73-4201-8124-4192ab6bd78e.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/bd1bd6bf-a5ae-4af0-bf29-91cb9421450a.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/c19df2fa-a14e-4e4b-9b54-89a45f3120cb.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/c4cca957-bac1-4a89-9bf0-2bcfbec8d439.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/c6280bbd-3ddc-4a9a-b394-d4a0e3f4e4f0.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/c7ee6a04-b8ba-40b4-a8f0-194171011a0c.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/c86bcf3c-2c5c-4a32-9caa-220b78225c9b.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/c9638710-088c-4fc6-8f21-cd39fb01b944.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/d06a0832-8722-4a7e-ae8c-ccc9e75388ae.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/d437d833-6e78-4004-96ea-0ab980aa37d6.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/d5302131-ba8a-4930-96d9-aa4cca74827e.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/da83ab6f-7138-4b1f-9062-548b68da6554.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/dcc4abb6-2ca4-4a0c-8391-f3b96b1c81dc.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/e00ec844-dff9-499d-a4d8-32894ea0f306.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/e4211d42-43c4-49f0-a5eb-92c52078906b.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/e5410dbd-6f9d-4c44-beaf-09fd2d2c11bd.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/ea83f25e-f48a-4328-a2ab-d1115758f12e.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/eb45380b-6eae-4589-a37c-23cd6975e2b3.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/ee7b0a1e-9805-4447-83d0-27ab1809befb.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/f0223a1b-7c61-4fa9-904a-6695a89b3b0d.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/f0c980e3-fce0-4ea3-b536-8605b192ac55.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/f1910ea0-0ae7-496e-b04d-376a93238efd.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/f3836caa-3be7-4074-ab2c-2a0cbd7bb13f.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/f434975b-ce5b-4197-b4be-cc978c3dd9c7.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/f595c518-66db-4b2c-aa86-f685bb79b40e.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/f82b437f-f2f4-4628-995f-24af0097708c.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/graph/codebase-graph.json",
+          "kind": "modified",
+          "additions": 3,
+          "deletions": 2
+        },
+        {
+          "path": ".spec-ledger/ledger.json",
+          "kind": "modified",
+          "additions": 5,
+          "deletions": 2
+        },
+        {
+          "path": ".spec-ledger/reviews/turns/T-040/R-01.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/reviews/turns/T-040/R-02.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/reviews/workstreams/W-011/SR-01.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/reviews/workstreams/W-011/SR-02.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/turns/T-040.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/workstreams/W-011.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/workstreams/W-011.seals/1.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/workstreams/W-011.seals/2.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": "docs/workstreams/W-011-simple-navigation/evidence/T-040/mobile-specs.png",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": "docs/workstreams/W-011-simple-navigation/evidence/T-040/navigation-check.md",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": "docs/workstreams/W-011-simple-navigation/evidence/T-040/pinned-sections-mobile.png",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": "docs/workstreams/W-011-simple-navigation/spec.md",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": "packages/ledger/src/verify/saved-check.break.test.ts",
+          "kind": "modified",
+          "additions": 4,
+          "deletions": 2
+        },
+        {
+          "path": "packages/ui/app/claims/page.tsx",
+          "kind": "modified",
+          "additions": 2,
+          "deletions": 3
+        },
+        {
+          "path": "packages/ui/app/page.tsx",
+          "kind": "modified",
+          "additions": 3,
+          "deletions": 2
+        },
+        {
+          "path": "packages/ui/app/turns/page.tsx",
+          "kind": "modified",
+          "additions": 2,
+          "deletions": 3
+        },
+        {
+          "path": "packages/ui/app/verify/page.tsx",
+          "kind": "modified",
+          "additions": 4,
+          "deletions": 5
+        },
+        {
+          "path": "packages/ui/app/workstreams/[id]/page.tsx",
+          "kind": "modified",
+          "additions": 30,
+          "deletions": 6
+        },
+        {
+          "path": "packages/ui/app/workstreams/page.tsx",
+          "kind": "modified",
+          "additions": 3,
+          "deletions": 4
+        },
+        {
+          "path": "packages/ui/components/acceptance-progress.tsx",
+          "kind": "modified",
+          "additions": 2,
+          "deletions": 2
+        },
+        {
+          "path": "packages/ui/components/live-session.tsx",
+          "kind": "modified",
+          "additions": 18,
+          "deletions": 25
+        },
+        {
+          "path": "packages/ui/components/live-workstream-evidence.tsx",
+          "kind": "modified",
+          "additions": 10,
+          "deletions": 3
+        },
+        {
+          "path": "packages/ui/components/pitch-doc-link.tsx",
+          "kind": "modified",
+          "additions": 1,
+          "deletions": 1
+        },
+        {
+          "path": "packages/ui/components/spec-ledger-shell.tsx",
+          "kind": "modified",
+          "additions": 37,
+          "deletions": 17
+        },
+        {
+          "path": "packages/ui/components/spec-sections.tsx",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": "packages/ui/components/workflow-view.tsx",
+          "kind": "modified",
+          "additions": 1,
+          "deletions": 1
+        },
+        {
+          "path": "packages/ui/lib/navigation.break.test.mjs",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": "packages/ui/lib/navigation.test.mjs",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": "packages/ui/lib/spec-sections.ts",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        }
+      ],
+      "touchedNodeIds": [
+        "ledger-core",
+        "ledger-ui"
+      ],
+      "touchedFeatureIds": [
+        "cli",
+        "lattice",
+        "turns",
+        "verify"
+      ],
+      "touchedClaimIds": [
+        "SL-004",
+        "SL-021",
+        "SL-022",
+        "SL-029"
+      ],
+      "blastRadius": {
+        "direct": [
+          "ledger-mcp",
+          "ledger-server"
+        ],
+        "transitive": [
+          "ledger-mcp",
+          "ledger-server"
+        ]
+      },
+      "verify": {
+        "ok": true,
+        "ledgerDigest": "3524b6a6264c1e078e13be434854cf20611ed8eaca891d1af706e745604ba3d4",
+        "resultsDigest": "70d0b251160ae092c053e1a8770e0100b2e2c55d2fe520f0e755c7d0c42a3296",
+        "treeDigest": "4ef07d00a4fe8da540580c59235fb3f0d46cb9b44911338718d9f21dd7f58f5d",
+        "producedAt": "2026-09-05T03:56:34.522Z"
+      },
+      "schemaSurfaceChanged": true,
+      "decisionIds": [
+        "T-040/D-01",
+        "T-040/D-02"
+      ],
+      "decisionsDigest": "4f6097ea4df712a89d86ddaa331262d56cb46806619a030601abe751e343d08a",
+      "attachmentsDigest": "557e5047c6be3f7d3d322cd876b7f0abb5fe01e93ca4a72baaa1f038d87073ed",
+      "reviewsDigest": "17166e937c1a8b996c7ff7b9f126b5ddf435153ab59f598a2f94ec9bb00ad917"
+    }
+  }
+}

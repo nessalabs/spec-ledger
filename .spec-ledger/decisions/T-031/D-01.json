@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "turnId": "T-031",
+  "decision": "Map each W-006 acceptance slice to behavioral regression checks and preserve manual browser observations as evidence.",
+  "rationale": "File existence does not establish these new behaviors. This adds verification links without relaxing the requested acceptance.",
+  "discovery": {
+    "kind": "verification-gap",
+    "reportedVia": "review",
+    "observation": "W-006 had no explicit acceptance-to-claim mapping.",
+    "specRef": "W-006",
+    "regression": "Six behavioral suites now run through check and CI."
+  },
+  "id": "T-031/D-01"
+}

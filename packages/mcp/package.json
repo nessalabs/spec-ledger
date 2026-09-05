@@ -1,0 +1,42 @@
+{
+  "name": "@nessalabs/spec-ledger-mcp",
+  "version": "0.1.0-alpha.0",
+  "description": "Local stdio MCP adapter for Spec Ledger application operations",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "spec-ledger-mcp": "./dist/main.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "pnpm --filter @nessalabs/spec-ledger build && pnpm build && node --test 'dist/**/*.test.js'",
+    "prepack": "pnpm build"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/server": "2.0.0",
+    "@nessalabs/spec-ledger": "0.1.0-alpha.0"
+  },
+  "devDependencies": {
+    "@modelcontextprotocol/client": "2.0.0",
+    "@types/node": "^22.13.10",
+    "typescript": "^5.8.2"
+  }
+}

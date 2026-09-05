@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "turnId": "T-031",
+  "decision": "Reject incomplete graph display data before rendering the graph workspace.",
+  "rationale": "The temporary session fixture omitted graph.layers and system; the existing viewer assumed both were present.",
+  "discovery": {
+    "kind": "code-defect",
+    "reportedVia": "user",
+    "observation": "Graph route crashed with graph.layers is not iterable.",
+    "cause": "Incomplete graph fixture exposed an unchecked display boundary.",
+    "specRef": "W-006/SLC-06",
+    "regression": "graph/display.test.ts covers missing layers, malformed entries and valid empty graphs; browser confirms incomplete notice."
+  },
+  "id": "T-031/D-02"
+}

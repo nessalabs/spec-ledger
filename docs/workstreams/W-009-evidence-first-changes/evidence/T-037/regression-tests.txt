@@ -1,0 +1,422 @@
+
+> nessa-spec-test@ test /Users/nessa/Documents/NessaLabs/spec-ledger
+> pnpm --filter @nessalabs/spec-ledger test && pnpm --filter @nessalabs/spec-ledger-mcp test && node --test packages/ui/lib/*.test.mjs
+
+
+> @nessalabs/spec-ledger@0.1.0-alpha.0 test /Users/nessa/Documents/NessaLabs/spec-ledger/packages/ledger
+> pnpm build && node --test 'dist/**/*.test.js'
+
+
+> @nessalabs/spec-ledger@0.1.0-alpha.0 build /Users/nessa/Documents/NessaLabs/spec-ledger/packages/ledger
+> tsc -p tsconfig.json
+
+▶ align approve
+  ✔ accepts valid align approve (0.697583ms)
+  ✔ refuses uncovered without waiverIds (1.06725ms)
+  ✔ refuses wrong reviewer prefix (0.137833ms)
+  ✔ refuses reviewer equal to producer (0.087167ms)
+  ✔ refuses missing Lattice plainSummary (0.0915ms)
+✔ align approve (2.955166ms)
+▶ KILLERS align/paths — poison input
+  ✔ dot-dot segments must not smuggle paths into exempt or covered sets (2.076333ms)
+✔ KILLERS align/paths — poison input (2.541625ms)
+▶ KILLERS align/approve — wrong principal / waiver binding
+  ✔ approve with uncoveredPaths + waiverIds pointing at NO existing waiver must not satisfy (0.322958ms)
+  ✔ close gate must refuse hand-written approve whose reviewer equals turn producer (2.636125ms)
+  ✔ empty alignReviewerPrefix must not accept any reviewer (0.110416ms)
+✔ KILLERS align/approve — wrong principal / waiver binding (3.222084ms)
+▶ KILLERS align/check — closed-turn blind spots (pnpm ledger:align / pre-push)
+  ✔ new DIRTY uncovered product path after turn close must fail align check (1206.724584ms)
+  ✔ COMMITTED uncovered product path after turn close (clean tree, CI) must fail align check (1261.660916ms)
+  ✔ post-close digest fallback must not accept a waiver whose treeDigest never matched any tree (1036.83075ms)
+✔ KILLERS align/check — closed-turn blind spots (pnpm ledger:align / pre-push) (3505.956084ms)
+▶ KILLERS turns/gates — close gate bypass
+  ✔ close must refuse when baseCommit is unresolvable and committed product paths are uncovered (943.884458ms)
+✔ KILLERS turns/gates — close gate bypass (944.023542ms)
+▶ align paths
+  ✔ matches locator prefixes and /** globs (1.646333ms)
+✔ align paths (2.404042ms)
+▶ align coverage
+  ✔ covers via graph feature locators (2.417583ms)
+  ✔ covers via expectedPaths when graph misses (0.241459ms)
+  ✔ locatorsForFeatures unions node locators (0.073125ms)
+✔ align coverage (2.897ms)
+▶ shared operation boundary adversarial cases
+  ✔ rejects an invalid slice through the actual CLI before sealing, opening, activating, or resuming (293.180166ms)
+  ✔ rejects a caller-supplied root field and cannot touch that checkout (343.888ms)
+  ✔ denies record_progress without current permission and creates no domain record (295.884208ms)
+  ✔ denies record_decision without current permission and creates no domain record (304.851083ms)
+  ✔ denies record_review without current permission and creates no domain record (280.715166ms)
+  ✔ stale revision and source inputs leave decisions and reviews unchanged (491.020083ms)
+  ✔ does not accept portable review fields that claim human provenance (211.63525ms)
+  ✔ does not let a code review claim a workstream other than its turn (257.379875ms)
+  ✔ replaces a caller-supplied review tree digest with the current source digest (280.767875ms)
+  ✔ rejects a different request that reuses an existing review ID and preserves the first review (429.779125ms)
+✔ shared operation boundary adversarial cases (3190.388125ms)
+▶ operation receipt adversarial cases
+  ✔ runs one effect for concurrent identical requests and replays its result (146.080083ms)
+  ✔ serializes different request IDs and rejects reuse with changed input (149.002458ms)
+  ✔ never treats a corrupt finished receipt as a successful replay (19.260041ms)
+  ✔ does not repeat an effect when only its started receipt remains (18.3065ms)
+  ✔ reports unknown when completion publication fails after the effect and never reruns it (24.316125ms)
+  ✔ reports an unknown lock as busy without stealing it or running effects (6.718458ms)
+✔ operation receipt adversarial cases (365.724792ms)
+▶ sl-dev-break init (T-020 / SLC-01)
+  ✔ exact normative top-level set — no extras, no missing (52.638583ms)
+  ✔ re-init refuse must not clobber existing skeleton (33.3425ms)
+  ✔ partial failure before ledger.json must leave re-init gate unset (32.20575ms)
+  ✔ verify after init: no invented pass; no binding status/pass fields (83.878583ms)
+  ✔ git prefer: init from subdirectory lands at repo-root .spec-ledger (45.744333ms)
+  ✔ poison: nested empty .spec-ledger must not win over parent .git (44.933625ms)
+  ✔ CLI re-init exits non-zero and prints already initialized (298.684125ms)
+  ✔ CLI no-.git prints one-line warning then initializes at cwd (139.236ms)
+  ✔ out-of-intent: vision write failure must not leave ledger.json (44.47575ms)
+✔ sl-dev-break init (T-020 / SLC-01) (776.380209ms)
+▶ spec-ledger init (SLC-01)
+  ✔ creates the normative skeleton and writes ledger.json last-safe (62.1095ms)
+  ✔ refuses re-init when ledger.json exists (34.527125ms)
+  ✔ warns when no .git is present (2.286417ms)
+  ✔ verify after init invents no claim pass and bindings stay empty (81.26275ms)
+  ✔ does not leave ledger.json if only dirs were created (gate file last) (63.199917ms)
+✔ spec-ledger init (SLC-01) (244.553583ms)
+✔ vision/workstreams do not change verify ledgerDigest (168.747083ms)
+✔ seal + contextDigest stable across calls (468.824208ms)
+▶ deferred commitments adversarial
+  ✔ resolves implementation only with current behavior evidence and becomes due after code changes (361.619ms)
+  ✔ activates idempotently and cannot erase the commitment by removing its feature or decision (521.276334ms)
+  ✔ retrieves old commitments without recent turns and keeps backlog candidates optional (157.257042ms)
+  ✔ refuses hard-requirement dismissal and path-only green evidence (295.878709ms)
+  ✔ requires applicable current authority for revisit and reopens after revocation (511.178084ms)
+  ✔ projects missing references and malformed commitments as unknown (124.383833ms)
+✔ deferred commitments adversarial (1972.783084ms)
+✔ old deferrals appear in planning without activating or making backlog candidates mandatory (166.160375ms)
+✔ activation survives retries, feature removal, and source decision deletion (564.244375ms)
+✔ missing trigger, origin, and claim references remain unknown (194.257958ms)
+✔ hard implementation gates require current behavior evidence and reject re-deferral (404.115875ms)
+✔ revisit resolution records real current authority, rejects invented authority and revoked approval (485.31975ms)
+✔ re-deferring a revisit preserves its history and gates the replacement when its feature arrives (483.179125ms)
+✔ malformed text, schema, activation, and resolution records never produce satisfaction (615.73625ms)
+✔ portable work opens a clean delegated plan without treating its own snapshot as dirty user work (1252.390209ms)
+✔ portable work refuses pre-existing dirty source before creating a delegated snapshot (702.05325ms)
+✔ episode write CLIs leave digests on close (2082.700459ms)
+▶ evidence freshness adversarial
+  ✔ does not let a closed turn reuse its old waiver or approval after source changes (550.568208ms)
+  ✔ binds code review to source content while excluding declared evidence outputs (120.823166ms)
+  ✔ records current external evidence idempotently and refuses stale or escaping submissions (215.938791ms)
+  ✔ rejects legacy evidence and evidence replayed after source or same-ID check changes (518.531666ms)
+  ✔ retains evidence across ledger metadata and content-preserving commits (397.746833ms)
+  ✔ invalidates results if a successful command changes its own source inputs (117.279209ms)
+  ✔ checks required artifacts even when their declared output path is excluded from source hashing (280.017459ms)
+✔ evidence freshness adversarial (2201.988917ms)
+▶ execution activity adversarial contracts
+  ✔ does not let a delayed finish close a newer start for the same invocation (341.452333ms)
+  ✔ preserves a waiting report after its event falls out of the retained activity window (1337.583667ms)
+  ✔ does not let a delayed start resurrect an invocation already finished at a newer sequence (320.571625ms)
+  ✔ uses sequence rather than caller timestamps to leave a reported waiting state (370.970125ms)
+  ✔ bounds retained invocation state as well as event history and surfaces overflow as uncertainty (2311.799208ms)
+  ✔ does not corrupt accepted activity and reports rejected delivery when local callers overlap (912.091334ms)
+  ✔ reads the requested registration exactly and keeps a stop sticky across later activity and registrations (680.243333ms)
+  ✔ rejects forged sessions and private payload fields without changing source or evidence (295.130667ms)
+  ✔ confines both durable execution and transient activity storage against escaping symlinks (466.006125ms)
+  ✔ records from a linked worktree and installs the activity ignore in shared git metadata (379.291958ms)
+  ✔ never turns agent-requested continuation or timeout settings into verified host capability (313.514792ms)
+  ✔ keeps collector failure and invalid emitter buffers from crashing the host process (492.441959ms)
+✔ execution activity adversarial contracts (8222.495209ms)
+▶ KILLERS git/tree — treeDigest drift
+  ✔ treeDigest must change when a dirty file's CONTENT changes (same path set) (273.481333ms)
+  ✔ changedPathsSince must fail closed when baseCommit cannot be resolved (289.61075ms)
+✔ KILLERS git/tree — treeDigest drift (563.733417ms)
+✔ graph display rejects the incomplete session fixture instead of iterating missing layers (1.60225ms)
+✔ RFC 8785 JCS key order (0.919375ms)
+✔ sha256Stable is stable under key permutation (0.596333ms)
+▶ pack break (T-022 SLC-02)
+  ✔ npm pack client/server must not ship workspace: or file: deps (SL-012) (3446.043333ms)
+  ✔ after pnpm pack install, client and server modules import and run (not package.json-only) (11806.954291ms)
+  ✔ pnpm-packed package.json: all dep fields free of workspace:/file:/link:/portal: (1784.753792ms)
+  ✔ out-of-intent: packed ledger bin shebang survives and is directly executable via node path (2514.953917ms)
+✔ pack break (T-022 SLC-02) (19553.749334ms)
+▶ pack concurrency and failure isolation
+  ✔ overlapping npm packs preserve manifests and produce installable tarballs (8210.83475ms)
+  ✔ a failed prepack build does not rewrite the source manifest (1632.376208ms)
+  ✔ client and server resolve this checkout's ledger during development (1.448791ms)
+✔ pack concurrency and failure isolation (9845.474584ms)
+▶ pack installable packages (SLC-02)
+  ✔ packs ledger/client/server without workspace: or file: and bin runs outside monorepo (12480.552041ms)
+✔ pack installable packages (SLC-02) (12481.181416ms)
+▶ delegated authority adversarial
+  ✔ enforces explicit feature exclusions and immutable authority retries (11.997292ms)
+  ✔ requires a real current spec review before snapshotting a revised delegated plan (15.801625ms)
+  ✔ raw denial records prevent the same standing delegation from restarting renamed work (5.753542ms)
+  ✔ refuses denied work through CLI even when context collection is explicitly skipped (138.796792ms)
+  ✔ distinguishes revision/request/standing authority and revocation without broader fallback (11.129166ms)
+  ✔ requires revision reapproval after acceptance changes and never invents host consent (6.975167ms)
+  ✔ does not accept a fabricated spec-review reference when a delegated plan requires review (12.144875ms)
+  ✔ applies corrections only in scope, excludes inferred preferences, and hashes same-ID content (167.540208ms)
+✔ delegated authority adversarial (371.203208ms)
+▶ local UI approval boundary adversarial
+  ✔ supports Next-normalized loopback URLs while binding origin to the external Host and port (29.144167ms)
+  ✔ denies cross-origin and rebinding requests without ledger effects (14.047667ms)
+  ✔ rejects unsupported methods, bodies, arbitrary commands, and oversized input before mutation (6.737125ms)
+  ✔ rejects stale revision and authority state instead of silently approving new work (13.501041ms)
+  ✔ retries exactly once, rejects request ID reuse, and reports revocation after an old retry (13.11075ms)
+  ✔ supports intentional denial replacement only against the newly observed state (27.130416ms)
+✔ local UI approval boundary adversarial (104.598875ms)
+▶ publish workflow break (SLC-04 / SL-014)
+  ✔ live publish only on release: workflow_dispatch must always dry-run (cannot live via dry_run=false) (3.00775ms)
+  ✔ release types are exclusively [published] (no created/edited/prereleased) (1.218708ms)
+  ✔ on: triggers are only release + workflow_dispatch (no push/pull_request siblings) (0.28775ms)
+  ✔ dry_run input defaults to true (0.26075ms)
+  ✔ version mismatch fails closed before publish (0.146333ms)
+  ✔ NPM_TOKEN required for live publish; ci.yml never publishes (0.258792ms)
+  ✔ published package names are @nessalabs/* and UI is not in the publish loop (0.686333ms)
+✔ publish workflow break (SLC-04 / SL-014) (6.74025ms)
+▶ publish workflow (SLC-04)
+  ✔ publish.yml exists with release-only live publish and dry-run dispatch (0.532416ms)
+  ✔ ci.yml does not publish to npm (0.529375ms)
+✔ publish workflow (SLC-04) (1.471459ms)
+✔ turn review IDs are immutable (90.237917ms)
+▶ review Lattice copy
+  ✔ rejects missing plainSummary and plainImpact (1.00725ms)
+  ✔ writeReview refuses without Lattice copy (57.576084ms)
+  ✔ audit fails on review missing Lattice copy (45.901666ms)
+✔ review Lattice copy (105.435333ms)
+▶ dogfood reviews vs schemas/review.json
+  ✔ every on-disk review has Lattice copy and code-break evidence rules (10.641875ms)
+✔ dogfood reviews vs schemas/review.json (11.035916ms)
+✔ automation wait timeout resolves on resume (155.962875ms)
+✔ related pack + compass + audit load for dogfood repo (203.655791ms)
+▶ workstream evidence adversarial
+  ✔ keeps stale pass historical and unmapped criteria missing (538.519584ms)
+  ✔ exposes duplicate rows without choosing a winning pass and shows each missing check (231.881625ms)
+  ✔ does not execute a command or write records while showing evidence (238.313333ms)
+  ✔ displays only bounded digest-matching confined text and never outside symlink contents (205.248291ms)
+  ✔ keeps review findings and distinguishes current spec review from stale code review (641.062708ms)
+  ✔ explains why file-presence checks do not prove a behavioral requirement (260.726416ms)
+  ✔ attributes a timestamp only when the immutable receipt contains that exact row (813.46075ms)
+✔ workstream evidence adversarial (2930.142625ms)
+▶ session projection adversarial
+  ✔ serves identical session state through both clients without writes (609.154333ms)
+  ✔ rechecks revoked permission before completing otherwise finished work (482.934291ms)
+  ✔ permits completion after implementation, current evidence, and turn closure all satisfy policy (1079.06775ms)
+  ✔ does not turn agent progress into proof and stales progress/preview after source changes (855.898375ms)
+✔ session projection adversarial (3028.219333ms)
+▶ turns
+  ✔ open then close writes tool facts (541.41825ms)
+  ✔ maps ledger paths to claim ids (170.580041ms)
+  ✔ workstream open stamps contextDigest; unsealed refused (1425.608333ms)
+  ✔ close refuses missing code-break; approve+killers allows (2231.734292ms)
+✔ turns (4370.011167ms)
+▶ UI release break (T-024 SLC-03 / SL-013)
+  ✔ shipped tree incl node_modules has zero file:/workspace: protocols (34210.355458ms)
+  ✔ README documents published client/server + Release UI asset (SLC-03 acceptance) (0.250625ms)
+  ✔ publish.yml packs UI Release asset with NESSA_UI_ROOT, dist build, no --skip-build, contents:write upload (0.226125ms)
+  ✔ pack-ui-release fails closed when NESSA_UI_ROOT / agent-stream missing (57.6085ms)
+  ✔ packaged UI name/deps stay @nessalabs/* and tarball version matches ledger (23757.159542ms)
+✔ UI release break (T-024 SLC-03 / SL-013) (58026.387708ms)
+▶ UI release asset (SLC-03)
+  ✔ built release boots outside the checkout and reads the consumer ledger (49054.609209ms)
+  ✔ README documents consumer one-liner for Release UI asset (0.250125ms)
+✔ UI release asset (SLC-03) (49055.345542ms)
+▶ all-check aggregation adversarial
+  ✔ is invariant under every ordering of mixed evidence kinds (8990.291791ms)
+  ✔ rejects agreeing duplicates and unused duplicates without silently choosing a row (139.252209ms)
+  ✔ cannot hide a malformed locator or invalid result outcome behind a passing check (123.014709ms)
+  ✔ delivers failed reports and snapshots through actual HTTP and in-process clients (360.336584ms)
+✔ all-check aggregation adversarial (9613.738334ms)
+▶ read-only projection adversarial
+  ✔ HTTP and in-process reads never execute checks, persist reports, or resolve expired waits (721.799125ms)
+  ✔ explicit CLI checks run commands, persist verdicts, and expose the recorded result to reads (810.433167ms)
+✔ read-only projection adversarial (1533.000291ms)
+▶ spec-ledger verify
+  ✔ fails required unbound claims and passes path bindings (39.888667ms)
+  ✔ never treats attested as pass for required claims (45.641709ms)
+  ✔ computes blast radius from reverse edges (2.886208ms)
+✔ spec-ledger verify (89.277125ms)
+▶ custom workflow adversarial contracts
+  ✔ rejects unknown or empty output contracts and policy-breaking stage order before persistence (191.46375ms)
+  ✔ confines workflow persistence when the workflow directory is an escaping symlink (248.599ms)
+  ✔ preserves selected skill bytes and rejects escaping or oversized replacements (209.307292ms)
+  ✔ gives every amendment a new execution identity and excludes prior attempts (467.658959ms)
+  ✔ rejects a current code review that belongs to another workstream (452.876ms)
+  ✔ does not relabel a review created before the current method attempt as that attempt's output (488.545541ms)
+  ✔ does not satisfy a code-review output while a later blocking review remains unresolved (625.541875ms)
+  ✔ requires behavioral result rows for every scoped criterion and never accepts attestation instead (405.882667ms)
+  ✔ keeps an explicitly configured review stage applicable when project policy does not require one (207.429208ms)
+  ✔ does not make later steps in one ordered stage ready before earlier steps are satisfied (207.66ms)
+✔ custom workflow adversarial contracts (3506.237834ms)
+✔ default workflow needs no configuration and preserves substantive bundled guidance (14.461375ms)
+✔ custom workflow preserves exact local skill text and rejects unsafe or incompatible skills (4.911958ms)
+▶ sl-dev-break sealed plan digests (T-021 / SLC-05)
+  ✔ missing specPath file refuses seal (34.132209ms)
+  ✔ seal stamps digest on live seal AND snapshot; amend never mutates seal.specDocDigest (42.841708ms)
+  ✔ latest amend.afterDocDigest wins over seal.specDocDigest and prior amends (46.056667ms)
+  ✔ backfill does not mutate prior seals/N.json bytes (39.749666ms)
+  ✔ audit seal-digest-drift: live≠snapshot body even if seal.specDigest forged to match live (31.404958ms)
+  ✔ deleted spec file after seal fails check-seal and audit (27.393625ms)
+  ✔ CLI amend + check-seal round-trip (integration) (453.917375ms)
+  ✔ out-of-intent: empty afterDocDigest on latest amend must not fall back past prior amend (33.045167ms)
+  ✔ out-of-intent: hostile specPath with .. refuses seal/read (32.686ms)
+✔ sl-dev-break sealed plan digests (T-021 / SLC-05) (742.1255ms)
+▶ sealed plan digests (SLC-05)
+  ✔ seal stamps specDocDigest; check-seal fails on silent edit; amend restores (50.8665ms)
+  ✔ missing expected digest fails until backfill (29.556375ms)
+  ✔ amend refuses no-op and requires backfill first (28.397917ms)
+  ✔ seal-digest-drift when live payload diverges (32.096167ms)
+✔ sealed plan digests (SLC-05) (142.095084ms)
+▶ PR #1 seal integrity regressions (T-025)
+  ✔ resealing an amended document accepts the newly sealed bytes (44.655625ms)
+  ✔ reverting to a prior revision amendment fails both seal check and audit (36.624041ms)
+  ✔ a current amendment works after resealing but cannot hide a corrupted seal pointer (34.596125ms)
+  ✔ check-seal rejects rewriting only the live document digest (26.938458ms)
+  ✔ audit rejects rewriting only the live document digest (29.631208ms)
+✔ PR #1 seal integrity regressions (T-025) (173.115542ms)
+ℹ tests 188
+ℹ suites 36
+ℹ pass 188
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 61651.980667
+
+> @nessalabs/spec-ledger-mcp@0.1.0-alpha.0 test /Users/nessa/Documents/NessaLabs/spec-ledger/packages/mcp
+> pnpm --filter @nessalabs/spec-ledger build && pnpm build && node --test 'dist/**/*.test.js'
+
+
+> @nessalabs/spec-ledger@0.1.0-alpha.0 build /Users/nessa/Documents/NessaLabs/spec-ledger/packages/ledger
+> tsc -p tsconfig.json
+
+
+> @nessalabs/spec-ledger-mcp@0.1.0-alpha.0 build /Users/nessa/Documents/NessaLabs/spec-ledger/packages/mcp
+> tsc -p tsconfig.json
+
+✔ cli: activity preserves evidence and cannot grant recovery authority (2539.215459ms)
+✔ mcp: activity preserves evidence and cannot grant recovery authority (1424.926208ms)
+✔ persistent activity collector recovers after oversized framing and records later signals (754.834292ms)
+▶ actual CLI and MCP lifecycle parity
+  ✔ completes the same verified lifecycle through both executables (3412.751584ms)
+  ✔ returns the same structured denial and leaves domain state unchanged (420.613292ms)
+  ✔ rejects retries, stale inputs, malformed inputs, and missing evidence with the same contracts (1637.350625ms)
+✔ actual CLI and MCP lifecycle parity (5471.399625ms)
+▶ MCP package
+  ✔ installs and invokes the packed executable (2128.752792ms)
+✔ MCP package (2128.90925ms)
+✔ cli: follows a custom method through real records and preserves current evidence (5096.233292ms)
+✔ mcp: follows a custom method through real records and preserves current evidence (3539.313208ms)
+ℹ tests 9
+ℹ suites 2
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 8737.08925
+✔ acceptance progress is indeterminate without criteria (0.667916ms)
+✔ acceptance progress separates verified evidence from reported implementation (0.076416ms)
+✔ acceptance progress reaches 100 only when every criterion is verified (0.065792ms)
+✔ execution copy keeps uncertainty and completion distinct (0.347833ms)
+✔ continuation blockers explain unavailable host controls (0.058416ms)
+✔ policy durations are compact without becoming time estimates (0.055708ms)
+✔ public UI route resolves the original graph feature and retains old inbound links (0.475792ms)
+✔ a consumer feature with the public slug does not hijack the original feature link (0.081583ms)
+✔ historical display copy changes product prose without changing technical references (0.761916ms)
+✔ turn evidence excludes adjacent slice prefixes and preserves failed/missing verdicts (0.744083ms)
+✔ legacy turns require an explicit claim mapping rather than borrowing workstream proof (0.076792ms)
+✔ historical completion is not a current passing verdict (0.10375ms)
+✔ actual Git histories attribute only exact trailers, never close HEAD or prefix/body mentions (225.041541ms)
+✔ rendered change page puts evidence before collapsed commit and documents (29.827667ms)
+✔ workflow statuses keep blocked and not-applicable out of passing task states (0.667667ms)
+✔ workflow digest labels stay recognizable without filling the page (0.068542ms)
+✔ workflow output contracts have plain labels (0.049959ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 17
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 436.84175
+
+Isolated UI build:
+
+> @nessalabs/spec-ledger-ui@0.1.0 build /Users/nessa/Documents/NessaLabs/spec-ledger/packages/ui
+> next build
+
+   ▲ Next.js 15.5.25
+   - Experiments (use with caution):
+     · optimizePackageImports
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully in 13.7s
+   Linting and checking validity of types ...
+
+   We detected TypeScript in your project and reconfigured your tsconfig.json file for you.
+   The following suggested values were added to your tsconfig.json. These values can be changed to fit your project's needs:
+
+   	- include was updated to add '.next-build/types/**/*.ts'
+
+   Collecting page data ...
+   Generating static pages (0/4) ...
+   Generating static pages (1/4) 
+   Generating static pages (2/4) 
+   Generating static pages (3/4) 
+ ✓ Generating static pages (4/4)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                                 Size  First Load JS
+┌ ƒ /                                    3.85 kB         789 kB
+├ ○ /_not-found                          1.01 kB         111 kB
+├ ƒ /api/approval                          145 B         110 kB
+├ ƒ /api/repo-file                         145 B         110 kB
+├ ƒ /api/session                           145 B         110 kB
+├ ƒ /claims                              1.17 kB         117 kB
+├ ƒ /claims/[id]                           256 B         787 kB
+├ ƒ /compass                               185 B         775 kB
+├ ƒ /contracts                           1.27 kB         776 kB
+├ ƒ /features                              256 B         787 kB
+├ ƒ /features/[id]                         256 B         787 kB
+├ ƒ /graph                               4.53 kB         782 kB
+├ ƒ /nodes/[id]                            256 B         787 kB
+├ ○ /timeline                              145 B         110 kB
+├ ƒ /turns                                 256 B         787 kB
+├ ƒ /turns/[id]                            241 B         787 kB
+├ ƒ /verify                                200 B         778 kB
+├ ƒ /workstreams                           864 B         117 kB
+└ ƒ /workstreams/[id]                     1.2 kB         795 kB
++ First Load JS shared by all             110 kB
+  ├ chunks/31255-2e48f83e850421e0.js     46.1 kB
+  ├ chunks/4bd1b696-bad92808725a934a.js  54.2 kB
+  └ other shared chunks (total)          9.57 kB
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
+
+Post-ordering UI verification:
+✔ acceptance progress is indeterminate without criteria (1.362375ms)
+✔ acceptance progress separates verified evidence from reported implementation (0.129958ms)
+✔ acceptance progress reaches 100 only when every criterion is verified (0.113291ms)
+✔ execution copy keeps uncertainty and completion distinct (0.493458ms)
+✔ continuation blockers explain unavailable host controls (0.083791ms)
+✔ policy durations are compact without becoming time estimates (0.078459ms)
+✔ public UI route resolves the original graph feature and retains old inbound links (0.860125ms)
+✔ a consumer feature with the public slug does not hijack the original feature link (0.35375ms)
+✔ historical display copy changes product prose without changing technical references (1.09175ms)
+✔ turn evidence excludes adjacent slice prefixes and preserves failed/missing verdicts (0.903917ms)
+✔ legacy turns require an explicit claim mapping rather than borrowing workstream proof (0.107875ms)
+✔ historical completion is not a current passing verdict (0.156084ms)
+✔ actual Git histories attribute only exact trailers, never close HEAD or prefix/body mentions (236.216042ms)
+✔ rendered change page puts evidence before collapsed commit and documents (41.437917ms)
+✔ workflow statuses keep blocked and not-applicable out of passing task states (1.101917ms)
+✔ workflow digest labels stay recognizable without filling the page (0.18625ms)
+✔ workflow output contracts have plain labels (0.189791ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 17
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 506.417542

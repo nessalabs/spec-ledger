@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "turnId": "T-034",
+  "decision": "CLI and MCP now share work operations, with current behavioral checks passing.",
+  "rationale": "Agent-reported progress; evidence is evaluated separately.",
+  "progress": {
+    "criterionIds": [
+      "SLC-01/AC-1"
+    ],
+    "implemented": true,
+    "revisionDigest": "c5f1a84900d54f247315a70cfc9e05660c9cbc077597fb25b791f57896c6a4f1",
+    "sourceDigest": "4991707ac7b32c34ae2297305a8826703f5fba6493bd353ba0bde9ed06fe5d0d"
+  },
+  "id": "T-034/D-05"
+}

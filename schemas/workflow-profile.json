@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nessalabs.dev/spec-ledger/workflow-profile.schema.json",
+  "title": "Spec Ledger workflow profile",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "title"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,79}$" },
+    "title": { "type": "string", "minLength": 1, "maxLength": 200 },
+    "extends": { "const": "spec-ledger/default" },
+    "skills": { "type": "object", "maxProperties": 30, "additionalProperties": { "$ref": "#/$defs/skill" } },
+    "stages": { "type": "array", "minItems": 1, "maxItems": 20, "items": { "$ref": "#/$defs/stage" } }
+  },
+  "$defs": {
+    "outputKind": { "enum": ["spec-revision", "spec-review", "implementation-report", "check-results", "code-review", "attestation"] },
+    "skill": {
+      "type": "object", "additionalProperties": false, "required": ["path"],
+      "properties": {
+        "path": { "type": "string", "minLength": 1, "maxLength": 1000 },
+        "capabilities": { "type": "array", "maxItems": 6, "items": { "$ref": "#/$defs/outputKind" }, "uniqueItems": true },
+        "acknowledgeUncertain": { "type": "boolean" }
+      }
+    },
+    "output": {
+      "type": "object", "additionalProperties": false, "required": ["kind"],
+      "properties": { "kind": { "$ref": "#/$defs/outputKind" }, "criterionIds": { "type": "array", "maxItems": 200, "items": { "type": "string", "minLength": 1, "maxLength": 500 }, "uniqueItems": true } }
+    },
+    "step": {
+      "type": "object", "additionalProperties": false, "required": ["id", "title", "skill", "outputs"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,79}$" }, "title": { "type": "string", "minLength": 1, "maxLength": 200 },
+        "skill": { "oneOf": [{ "type": "string", "minLength": 1, "maxLength": 80 }, { "$ref": "#/$defs/skill" }] },
+        "outputs": { "type": "array", "minItems": 1, "maxItems": 6, "items": { "$ref": "#/$defs/output" } }
+      }
+    },
+    "stage": {
+      "type": "object", "additionalProperties": false, "required": ["id", "title", "role", "steps"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,79}$" }, "title": { "type": "string", "minLength": 1, "maxLength": 200 },
+        "role": { "enum": ["plan", "spec-review", "implement", "verify", "code-review"] },
+        "steps": { "type": "array", "minItems": 1, "maxItems": 20, "items": { "$ref": "#/$defs/step" } }
+      }
+    }
+  }
+}

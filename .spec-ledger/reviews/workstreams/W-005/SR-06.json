@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "id": "W-005/SR-06",
+  "workstreamId": "W-005",
+  "kind": "adversarial",
+  "target": "spec",
+  "reviewer": "agent:turn-evidence-breaker",
+  "verdict": "approve",
+  "blocking": false,
+  "plainSummary": "The added links connect consumer requirements to real checks while leaving release publication unclaimed.",
+  "summary": "Independently reviewed mapping-only W005 AC1-7 retrofit, unchanged acceptance prose and retained revision-3 snapshot. Related pack read. SL011 matches init/no-invented-pass AC1-2; SL012 matches packed install/dependency AC3-4; SL013 matches asset and consumer README AC5; SL014 matches workflow constraints AC6; SL015 matches digest/amend AC7. Bindings upgraded from file existence to executable suites. Ran init, publish workflow and digest regressions successfully; pack/UI release suites inspected pending final shared check execution. No historical verification inferred. AC8 remains an explicit optional-release scope condition.",
+  "findings": [],
+  "residualRisks": [
+    "Workflow assertions inspect publication configuration; they do not establish an actual successful registry publication or GitHub runner execution.",
+    "Final source-bound results remain required; this mapping review is not a current code-completion review."
+  ],
+  "revisionDigest": "aa5bb2609b3d832adfea9cd515060acd4a59f214ec5b8cb91c45c7099323c373"
+}

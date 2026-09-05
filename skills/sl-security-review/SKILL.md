@@ -74,7 +74,7 @@ For an implementing vertical, the separate `sl-dev-break` agent uses this
 method while the turn is open; it owns killers and review evidence. The builder
 owns fixes. Preserve the existing alert, resolution, align, and close policies.
 Use `sl-dev-break`'s review schema and
-[Lattice copy](../references/review-lattice-copy.md): `plainSummary` and each
+[Spec Ledger UI copy](../references/review-copy.md): `plainSummary` and each
 finding's `plainImpact` are required. Keep unrun candidates in residual risks
 or investigation notes, not fabricated run-backed code findings.
 

@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "T-036/R-02",
+  "turnId": "T-036",
+  "workstreamId": "W-008",
+  "kind": "human",
+  "target": "code",
+  "reviewer": "agent:align",
+  "verdict": "approve",
+  "summary": "User authorized all W-008 slices including shared CLI/MCP, configurable methods, activity and live evidence UI. All changed product paths are covered by the preserved slice scope.",
+  "plainSummary": "The shared tools, workflow activity and UI changes are covered by the approved workstream.",
+  "treeDigest": "c390c53c50687b8544f4e50b66dd46eb7cb3f19ded073adc91ff82ecce1e42ad",
+  "uncoveredPaths": [],
+  "coverageSource": "mixed"
+}

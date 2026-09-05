@@ -1,0 +1,13 @@
+✔ section history returns from execution to exact acceptance without hiding the evidence (12.068125ms)
+✔ unknown or obsolete fragments do not strand readers in an invisible section (0.067833ms)
+✔ mobile navigation closes on same-page selection and route change but preserves modified clicks (15.335875ms)
+✔ overview keeps permission and problems visible with direct spec, evidence and history links (43.713417ms)
+✔ approved work does not request approval again and disconnected approval stays disabled (22.581375ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 190.393625

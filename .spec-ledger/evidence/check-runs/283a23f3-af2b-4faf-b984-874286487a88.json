@@ -1,0 +1,11 @@
+{
+  "runId": "283a23f3-af2b-4faf-b984-874286487a88",
+  "requestId": "batch-283a23f3-af2b-4faf-b984-874286487a88",
+  "bindingId": "b-sl-013",
+  "state": "running",
+  "command": "node --test packages/ledger/dist/ui-release.smoke.test.js packages/ledger/dist/ui-release.break.test.js",
+  "cwd": "/Users/nessa/Documents/NessaLabs/spec-ledger",
+  "sourceDigest": "9881b7b494b232b8822f6737e35b563d44277a21b5056966ec794a7e2c882adf",
+  "checkDigest": "e54c95bda62e7aea19ec1f2ef4b46aacddd16fc084c9138d15d353fa36901ca9",
+  "startedAt": "2026-09-05T04:57:06.263Z"
+}

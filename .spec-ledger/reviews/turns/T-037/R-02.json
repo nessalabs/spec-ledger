@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "T-037/R-02",
+  "turnId": "T-037",
+  "workstreamId": "W-009",
+  "kind": "human",
+  "target": "code",
+  "reviewer": "agent:align",
+  "verdict": "approve",
+  "summary": "User requested shared UI clarity, completed-workstream evidence audit and supported metadata retrofit. Changed product paths are within W009 packages/docs scope.",
+  "plainSummary": "The evidence-first UI and test-backed legacy data retrofit are covered by the user-requested repair.",
+  "treeDigest": "5159553a93564fdf32dd6f9559cb37eea28cba17d5fd53e66bdb4d5148776a40",
+  "uncoveredPaths": [],
+  "coverageSource": "mixed"
+}

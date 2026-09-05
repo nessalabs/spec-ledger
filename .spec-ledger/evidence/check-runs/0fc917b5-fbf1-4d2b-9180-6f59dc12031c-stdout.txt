@@ -1,0 +1,22 @@
+▶ pack break (T-022 SLC-02)
+  ✔ npm pack client/server must not ship workspace: or file: deps (SL-012) (1960.75275ms)
+  ✔ after pnpm pack install, client and server modules import and run (not package.json-only) (7190.650209ms)
+  ✔ pnpm-packed package.json: all dep fields free of workspace:/file:/link:/portal: (1966.545625ms)
+  ✔ out-of-intent: packed ledger bin shebang survives and is directly executable via node path (2071.01975ms)
+✔ pack break (T-022 SLC-02) (13189.542875ms)
+▶ pack concurrency and failure isolation
+  ✔ overlapping npm packs preserve manifests and produce installable tarballs (2739.8895ms)
+  ✔ a failed prepack build does not rewrite the source manifest (1681.786208ms)
+  ✔ client and server resolve this checkout's ledger during development (0.845458ms)
+✔ pack concurrency and failure isolation (4423.059458ms)
+▶ pack installable packages (SLC-02)
+  ✔ packs ledger/client/server without workspace: or file: and bin runs outside monorepo (6201.234292ms)
+✔ pack installable packages (SLC-02) (6201.587416ms)
+ℹ tests 8
+ℹ suites 3
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 13224.473542

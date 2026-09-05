@@ -1,7 +1,13 @@
 {
   "schemaVersion": 1,
   "id": "SL-007",
-  "statement": "GET /v1/context returns VerticalContext with a stable contextDigest for a sealed workstream slice.",
+  "statement": "An agent can retrieve the agreed plan for the part it is working on and identify the version it received.",
   "severity": "high",
-  "required": true
+  "required": true,
+  "kind": "invariant",
+  "links": {
+    "docs": [
+      "docs/architecture/claim-contracts.md"
+    ]
+  }
 }

@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "T-033/R-01",
+  "turnId": "T-033",
+  "workstreamId": "W-007",
+  "kind": "adversarial",
+  "target": "code",
+  "reviewer": "agent:evidence-review",
+  "verdict": "approve",
+  "blocking": false,
+  "summary": "Independent 7 evidence regressions plus 4 existing session regressions passed through real projection/client paths. Reviewed escaped inline UI, shared verifier check outcomes, current vs historical observations and mandatory policy prerequisites in customizable-workflow proposal. Related spec context W-007 retained. No production changes by breaker.",
+  "plainSummary": "Evidence is inspectable without disguising stale checks, unsafe artifacts or agent reports as current proof.",
+  "killersCited": [
+    "session/evidence.break.test.ts::stale pass and unmapped criteria",
+    "session/evidence.break.test.ts::duplicate and missing rows",
+    "session/evidence.break.test.ts::read-only command evidence",
+    "session/evidence.break.test.ts::confined bounded digest-matching artifacts",
+    "session/evidence.break.test.ts::review freshness",
+    "session/evidence.break.test.ts::path-only coverage explanation",
+    "session/evidence.break.test.ts::exact-row receipt attribution",
+    "session/session.break.test.ts::identical HTTP and in-process read-only state"
+  ],
+  "findings": [],
+  "residualRisks": [
+    "UI walkthrough is manually recorded by the builder in evidence/T-033/browser-check.md; no automated browser CI is claimed.",
+    "The workflow document is a proposal only; no custom workflow runtime was implemented or verified.",
+    "Artifact confinement checks ordinary and symlink escapes; concurrent hostile filesystem mutation is outside this bounded review."
+  ],
+  "treeDigest": "d7fdea43922377f2d293b60668d4371ce13415328ae4335816359bb73a18bc17"
+}

@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "id": "T-033/R-02",
+  "turnId": "T-033",
+  "workstreamId": "W-007",
+  "kind": "human",
+  "target": "code",
+  "reviewer": "agent:align:evidence-review",
+  "verdict": "approve",
+  "summary": "User asked for the evidence UI first and a customizable workflow proposal; expected paths cover implementation and docs, with exact report schema waiver for shared verifier output.",
+  "plainSummary": "The evidence UI and proposal changes stay within the requested scope.",
+  "treeDigest": "d7fdea43922377f2d293b60668d4371ce13415328ae4335816359bb73a18bc17",
+  "uncoveredPaths": [
+    "schemas/report.json"
+  ],
+  "coverageSource": "mixed",
+  "waiverIds": [
+    "T-033/AW-14"
+  ]
+}

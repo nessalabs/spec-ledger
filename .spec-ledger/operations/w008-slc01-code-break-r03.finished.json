@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "requestId": "w008-slc01-code-break-r03",
+  "operation": "record_review",
+  "inputDigest": "67df09c2e71194268cef9711f732b425d02ac7a6820f5ce08d33fb570da6b3a8",
+  "finishedAt": "2026-09-05T00:44:21.215Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "id": "T-034/R-03",
+    "turnId": "T-034",
+    "workstreamId": "W-008",
+    "kind": "adversarial",
+    "target": "code",
+    "reviewer": "agent:sl-dev-break:w008-slc01",
+    "verdict": "approve",
+    "blocking": false,
+    "alertOnSeverity": "high",
+    "resolvesReviewId": "T-034/R-01",
+    "supersedesReviewId": "T-034/R-02",
+    "resolvesFindingIds": [
+      "T-034/R-01#F-01",
+      "T-034/R-01#F-02",
+      "T-034/R-01#F-03"
+    ],
+    "plainSummary": "The shared CLI and MCP work loop now preserves permission, immutable review history, retry safety, equivalent lifecycle outcomes, and clear verified progress under the tested attacks.",
+    "summary": "Final SLC-01 approval on the combined frozen source. The unchanged operation breakers pass 10/10, including all R-01 permission and provenance fixes, wrong-workstream rejection, current tree stamping, and a different-request collision on an existing review ID that must return idempotency_conflict while preserving the first review bytes and pointer. Receipt breakers pass 6/6, and the core immutable-writer test passes 1/1. Actual CLI/MCP executable lifecycle, equivalent denial/no-effects, retry/stale/malformed/missing-evidence, and packed installation pass 4/4. The UI acceptance-progress tests pass 3/3, separating verified from reported counts, keeping empty criteria indeterminate, and reaching 100 only when every criterion is verified; root also confirmed the home-page progress bar in a production build. R-02 remains historical for its earlier tree digest and is superseded by this current-tree review.",
+    "findings": [],
+    "killersCited": [
+      "packages/ledger/src/application/operations.break.test.ts::rejects an invalid slice through the actual CLI before sealing, opening, activating, or resuming",
+      "packages/ledger/src/application/operations.break.test.ts::rejects a caller-supplied root field and cannot touch that checkout",
+      "packages/ledger/src/application/operations.break.test.ts::denies record_progress without current permission and creates no domain record",
+      "packages/ledger/src/application/operations.break.test.ts::denies record_decision without current permission and creates no domain record",
+      "packages/ledger/src/application/operations.break.test.ts::denies record_review without current permission and creates no domain record",
+      "packages/ledger/src/application/operations.break.test.ts::stale revision and source inputs leave decisions and reviews unchanged",
+      "packages/ledger/src/application/operations.break.test.ts::does not accept portable review fields that claim human provenance",
+      "packages/ledger/src/application/operations.break.test.ts::does not let a code review claim a workstream other than its turn",
+      "packages/ledger/src/application/operations.break.test.ts::replaces a caller-supplied review tree digest with the current source digest",
+      "packages/ledger/src/application/operations.break.test.ts::rejects a different request that reuses an existing review ID and preserves the first review",
+      "packages/ledger/src/application/receipts.break.test.ts::runs one effect for concurrent identical requests and replays its result",
+      "packages/ledger/src/application/receipts.break.test.ts::serializes different request IDs and rejects reuse with changed input",
+      "packages/ledger/src/application/receipts.break.test.ts::never treats a corrupt finished receipt as a successful replay",
+      "packages/ledger/src/application/receipts.break.test.ts::does not repeat an effect when only its started receipt remains",
+      "packages/ledger/src/application/receipts.break.test.ts::reports unknown when completion publication fails after the effect and never reruns it",
+      "packages/ledger/src/application/receipts.break.test.ts::reports an unknown lock as busy without stealing it or running effects",
+      "packages/ledger/src/reviews/immutable.test.ts::turn review IDs are immutable",
+      "packages/mcp/src/lifecycle.test.ts::completes the same verified lifecycle through both executables",
+      "packages/mcp/src/lifecycle.test.ts::returns the same structured denial and leaves domain state unchanged",
+      "packages/mcp/src/lifecycle.test.ts::rejects retries, stale inputs, malformed inputs, and missing evidence with the same contracts",
+      "packages/mcp/src/lifecycle.test.ts::installs and invokes the packed executable",
+      "packages/ui/lib/acceptance-progress.test.mjs::acceptance progress is indeterminate without criteria",
+      "packages/ui/lib/acceptance-progress.test.mjs::acceptance progress separates verified evidence from reported implementation",
+      "packages/ui/lib/acceptance-progress.test.mjs::acceptance progress reaches 100 only when every criterion is verified"
+    ],
+    "residualRisks": [
+      "Portable reviewer labels remain agent-reported attribution; authenticated human identity still depends on a trusted host boundary.",
+      "The receipt protocol coordinates participating application callers and does not claim atomicity against arbitrary direct filesystem edits.",
+      "Activity, recovery, and customizable workflow profiles remain assigned to later W-008 slices and were not graded in SLC-01."
+    ],
+    "treeDigest": "e5abd70a9c07ed530f2cf0edca2fa0967362ad2a7550d214afcc6719f3310a76"
+  }
+}

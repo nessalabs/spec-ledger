@@ -1,0 +1,9 @@
+{
+  "id": "b-sl-016",
+  "claimId": "SL-016",
+  "kind": "test",
+  "locator": {
+    "type": "command",
+    "command": "node --test packages/ledger/dist/verify/aggregation.break.test.js"
+  }
+}

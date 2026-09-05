@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "T-027/R-02",
+  "turnId": "T-027",
+  "workstreamId": "W-006",
+  "kind": "human",
+  "target": "code",
+  "reviewer": "agent:align",
+  "verdict": "approve",
+  "summary": "W006 implementation authorized; all paths covered by sealed SLC02. Independent review R01 passed.",
+  "plainSummary": "The read-only status and explicit check operations stay within the requested workflow changes.",
+  "treeDigest": "65104238988a09dd2fcf7d936a58e529bfc521f31eb3ce2f811dff030d8e09f8",
+  "uncoveredPaths": [],
+  "coverageSource": "mixed"
+}

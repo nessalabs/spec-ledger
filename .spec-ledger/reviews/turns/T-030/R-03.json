@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "T-030/R-03",
+  "turnId": "T-030",
+  "workstreamId": "W-006",
+  "kind": "adversarial",
+  "target": "code",
+  "reviewer": "agent:sl-dev-break:deferrals",
+  "verdict": "approve",
+  "blocking": false,
+  "alertOnSeverity": "high",
+  "resolvesReviewId": "T-030/R-01",
+  "plainSummary": "Deferred commitments persist, require the promised response, and show malformed records as unknown.",
+  "summary": "Independent deferrals.break.test.ts6/6 passing after unchanged malformed-record killer was repaired in production by the implementation agent. Evidence covers current behavioral-result positive control and stale-source reopening; idempotent activation and feature-removal/deleted-decision persistence; discovery of old decisions with no surviving turn and many newer turns; unaffected-work isolation; hard requirement no path-only pass or dismissal; revisit authority scope/revocation; missing and malformed references returning unknown. Command: node --test packages/ledger/dist/deferrals/deferrals.break.test.js. Breaker owns tests/reviews only. Scope excludes root ongoing session/UI projection; their separate tests exist but are not this approval. Refreshed after root lifecycle/CLI/client integration: reran unchanged six deferral killers plus four session API tests, 10/10 pass, no skips. Session API tests exercise actual HTTP routes and in-process client JSON parity with full fixture byte equality, revoked completion refusal, successful allowed completion, open-turn refusal, progress/evidence separation, stale progress/preview and labeled portable handoff. This remains the SLC05 approval; root will record SLC06 separately. No browser acceptance claim is made.",
+  "killersCited": [
+    "packages/ledger/src/deferrals/deferrals.break.test.ts::resolves implementation only with current behavior evidence and becomes due after code changes",
+    "packages/ledger/src/deferrals/deferrals.break.test.ts::activates idempotently and cannot erase the commitment by removing its feature or decision",
+    "packages/ledger/src/deferrals/deferrals.break.test.ts::retrieves old commitments without recent turns and keeps backlog candidates optional",
+    "packages/ledger/src/deferrals/deferrals.break.test.ts::refuses hard-requirement dismissal and path-only green evidence",
+    "packages/ledger/src/deferrals/deferrals.break.test.ts::requires applicable current authority for revisit and reopens after revocation",
+    "packages/ledger/src/deferrals/deferrals.break.test.ts::projects missing references and malformed commitments as unknown"
+  ],
+  "findings": [],
+  "residualRisks": [
+    "Bounded deferral evaluator/storage/gate API tests; full CLI lifecycle integration is being validated separately by root.",
+    "No external issue adapter is configured; discovery explicitly reports local-only scope.",
+    "Concurrent activation stress and arbitrary malformed JSON syntax were not tested; valid JSON with invalid field types is covered.",
+    "Root session and browser changes remain outside this bounded deferrals review.",
+    "Session API parity is tested, but mixed-state UI and extra viewport/toggle coverage require separate SLC06 browser evidence."
+  ],
+  "supersedesReviewId": "T-030/R-02",
+  "treeDigest": "176ce1b2734003743f950d8e7a0db7872dc7069d4302d444b8c18e78174a58be"
+}

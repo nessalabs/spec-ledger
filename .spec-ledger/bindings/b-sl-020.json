@@ -1,0 +1,9 @@
+{
+  "id": "b-sl-020",
+  "claimId": "SL-020",
+  "kind": "test",
+  "locator": {
+    "type": "command",
+    "command": "node --test packages/ledger/dist/deferrals/index.test.js packages/ledger/dist/deferrals/deferrals.break.test.js packages/ledger/dist/deferrals/portability.test.js"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "schemaVersion": 1,
+  "turnId": "T-034",
+  "decision": "Show a clear percentage of acceptance criteria verified in the website.",
+  "rationale": "The user requested an at-a-glance indication of how far work has progressed. The next UI slice will derive the percentage from current passing criteria, show the count and agent-reported implementation separately, and retain completion blockers.",
+  "id": "T-034/D-06"
+}

@@ -26,8 +26,8 @@ open → implement → [`sl-dev-break`](../sl-dev-break/SKILL.md) → **this ski
 1. Ensure code-break ran (or typed waiver) while turn was open.
    Accept only `request-changes` (then resolved) or `approve` with non-empty
    `killersCited` and run `evidence` on findings — not bare paths, not `comment`.
-   Reviews must include Lattice copy (`plainSummary` / finding `plainImpact`) —
-   [`../references/review-lattice-copy.md`](../references/review-lattice-copy.md).
+   Reviews must include Spec Ledger UI copy (`plainSummary` / finding `plainImpact`) —
+   [`../references/review-copy.md`](../references/review-copy.md).
 2. Clear blocking findings via a resolving review (`resolvesReviewId` /
    `resolvesFindingIds`) — do not mutate the original adversarial review.
    Builder fixes **prod** only; do not rewrite breaker killers to go green.
@@ -38,7 +38,7 @@ pnpm exec spec-ledger turn close [--id T-00N] [--slice SLC-01]
 ```
 
 Close **refuses** if: missing `opened.contextDigest` on a workstream turn,
-`requireCodeBreak` unmet, unresolved blocking reviews, reviews missing Lattice
+`requireCodeBreak` unmet, unresolved blocking reviews, reviews missing Spec Ledger UI
 `plainSummary` / finding `plainImpact`, or `blocked` automation events.
 Exit code must be `0`.
 
@@ -49,7 +49,7 @@ pnpm test && pnpm verify && pnpm ledger:audit
 ```
 
 `pnpm verify` stays claims-only. `pnpm ledger:audit` (policy
-`reviewsNeedLatticeCopy`) fails when any on-disk review lacks Lattice copy.
+`reviewsNeedLatticeCopy`) fails when any on-disk review lacks Spec Ledger UI copy.
 ## Commit messages
 
 While the turn is open, every commit (especially the closing one) should carry
@@ -60,7 +60,7 @@ trailers so git navigation joins back to the ledger — see
 SL-Turn: T-00N
 SL-Workstream: W-001   # when applicable
 SL-Slice: SLC-01
-SL-Features: turns,lattice
+SL-Features: turns,verify
 SL-Claims: SL-005
 ```
 
@@ -73,7 +73,7 @@ id is the durable join. `facts.headCommit` is best-effort and may go missing
 after rebase without failing `verify.ok`.
 
 When a review finding changes the design, record a decision with
-`addressesFindingIds` (and optional review `messages[]`) so Lattice can show
+`addressesFindingIds` (and optional review `messages[]`) so Spec Ledger UI can show
 finding → choice → files.
 ## Exit
 

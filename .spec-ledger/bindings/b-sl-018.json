@@ -1,0 +1,9 @@
+{
+  "id": "b-sl-018",
+  "claimId": "SL-018",
+  "kind": "test",
+  "locator": {
+    "type": "command",
+    "command": "node --test packages/ledger/dist/evidence/fingerprint.break.test.js"
+  }
+}

@@ -1,0 +1,135 @@
+{
+  "schemaVersion": 1,
+  "id": "W-008",
+  "status": "done",
+  "createdAt": "2026-09-05T00:05:59.832Z",
+  "title": "Guide agents and follow verified work",
+  "featureIds": [
+    "cli",
+    "client",
+    "turns",
+    "verify",
+    "lattice"
+  ],
+  "primaryFeatureId": "client",
+  "specPath": "docs/workstreams/W-008-shared-agent-workflows/spec.md",
+  "problem": "Agents need interchangeable tools and configurable methods; users need current progress and evidence together.",
+  "objective": "Use CLI or MCP to follow a chosen engineering method and inspect its progress and evidence in one place.",
+  "changeType": "feature",
+  "shapedBy": "agent:sl-plan-shape",
+  "policy": {
+    "requireSpecBreak": true,
+    "requireCodeBreak": true,
+    "requireAlignApprove": true,
+    "allowExplicitAlignSkip": true,
+    "onAlert": "block",
+    "onSealedSpecDeviation": "block",
+    "alertOnSeverity": "high"
+  },
+  "suggestedSlices": [
+    {
+      "id": "SLC-01",
+      "title": "Use CLI and MCP for the same work",
+      "kind": "vertical",
+      "acceptance": [
+        "A real CLI and MCP work loop has equivalent validation, effects and evidence gates and appears in the existing session view."
+      ],
+      "expectedPaths": [
+        "packages/**",
+        "schemas/**",
+        "scripts/**",
+        ".github/**",
+        "docs/**",
+        "skills/**",
+        "package.json",
+        "pnpm-workspace.yaml",
+        "pnpm-lock.yaml"
+      ],
+      "evidence": [
+        "unit",
+        "integration"
+      ],
+      "codeBreakReviewId": "T-036/R-01"
+    },
+    {
+      "id": "SLC-02",
+      "title": "Follow a chosen method and inspect its evidence",
+      "kind": "vertical",
+      "acceptance": [
+        "Default and custom local methods preserve snapshots, enforce typed output gates and show live progress and inspectable evidence in the UI."
+      ],
+      "expectedPaths": [
+        "packages/**",
+        "schemas/**",
+        "docs/**",
+        "skills/**"
+      ],
+      "evidence": [
+        "unit",
+        "integration",
+        "e2e"
+      ],
+      "codeBreakReviewId": "T-036/R-01"
+    },
+    {
+      "id": "SLC-03",
+      "title": "Track activity without inventing completion",
+      "kind": "vertical",
+      "acceptance": [
+        "Execution associations and bounded activity handle missing and duplicated signals honestly; optional recovery readiness honors policy and available host capabilities."
+      ],
+      "expectedPaths": [
+        "packages/**",
+        "schemas/**",
+        "docs/**",
+        "skills/**",
+        ".gitignore"
+      ],
+      "evidence": [
+        "unit",
+        "integration",
+        "e2e"
+      ],
+      "codeBreakReviewId": "T-036/R-01"
+    }
+  ],
+  "riskLevel": "high",
+  "trust": {
+    "deployTarget": "library-consumer",
+    "userFacing": true,
+    "securitySensitive": true,
+    "correctnessCritical": true,
+    "performanceCritical": false,
+    "requiredEvidence": [
+      "unit",
+      "integration",
+      "e2e"
+    ]
+  },
+  "proposedClaimIds": [
+    "PC-020",
+    "PC-021",
+    "PC-022"
+  ],
+  "acceptanceClaimIds": {
+    "SLC-01/AC-1": [
+      "SL-023"
+    ],
+    "SLC-02/AC-1": [
+      "SL-024"
+    ],
+    "SLC-03/AC-1": [
+      "SL-025"
+    ]
+  },
+  "specBreakReviewId": "W-008/SR-01",
+  "updatedAt": "2026-09-05T01:37:46.459Z",
+  "seal": {
+    "sealedAt": "2026-09-05T00:11:54.849Z",
+    "sealedBy": "agent:permission:AUTH-W008-REQUEST",
+    "specDigest": "6179218d28186191d67907b31ba2fe3adcb91099ef22e06a54ddaca1ebc6b3a9",
+    "snapshotPath": "workstreams/W-008.seals/1.json",
+    "revision": 1,
+    "specDocDigest": "7c479e9d5ef9742fd1ebcf176091e94389c35cd73e2e729aa3ab843bd118e2da"
+  }
+}

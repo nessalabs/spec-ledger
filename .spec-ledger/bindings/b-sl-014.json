@@ -1,9 +1,9 @@
 {
   "id": "b-sl-014",
   "claimId": "SL-014",
-  "kind": "check",
+  "kind": "test",
   "locator": {
-    "type": "path",
-    "path": ".github/workflows/publish.yml"
+    "type": "command",
+    "command": "node --test packages/ledger/dist/publish.workflow.test.js packages/ledger/dist/publish.workflow.break.test.js"
   }
 }

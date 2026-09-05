@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "workstreamId": "W-010",
+  "revision": 2,
+  "sealedAt": "2026-09-05T02:16:15.428Z",
+  "sealedBy": "agent:permission:AUTH-W010-REQUEST",
+  "specDigest": "c77ac0a2cd2c1941f0ae033ac8d312e3389cd2d1b8373adf7f839500e817225c",
+  "specDocDigest": "036cbc5e3e9cf30a48102254d3c73e6fd42857f91cfbc5bab541dfb00aac7c99",
+  "body": {
+    "id": "W-010",
+    "featureIds": [
+      "cli",
+      "client",
+      "verify",
+      "lattice"
+    ],
+    "primaryFeatureId": null,
+    "title": "Inspect a test and run it again",
+    "objective": "Read what a test checks, inspect its source and actual output, and rerun the saved check from the website.",
+    "specPath": "docs/workstreams/W-010-inspect-and-run-checks/spec.md",
+    "appetite": null,
+    "changeType": null,
+    "riskLevel": null,
+    "trust": {
+      "userFacing": true,
+      "securitySensitive": true,
+      "correctnessCritical": true,
+      "requiredEvidence": [
+        "unit",
+        "integration",
+        "e2e"
+      ]
+    },
+    "policy": {
+      "requireSpecBreak": true,
+      "requireCodeBreak": true,
+      "requireAlignApprove": true
+    },
+    "acceptanceCriteria": [],
+    "acceptanceClaimIds": {
+      "SLC-01/AC-1": [
+        "SL-027"
+      ]
+    },
+    "outOfScope": [],
+    "proposedClaimIds": [],
+    "suggestedSlices": [
+      {
+        "id": "SLC-01",
+        "title": "Inspect and rerun a saved check with real output",
+        "kind": "vertical",
+        "acceptance": [
+          "CLI, MCP and local UI run the same saved check with bounded inspectable output, current source/check provenance, honest metadata, retry safety and passive read surfaces."
+        ],
+        "evidence": [],
+        "expectedClaimIds": [],
+        "expectedPaths": [
+          "packages/**",
+          "schemas/**",
+          "docs/**",
+          "skills/**"
+        ]
+      }
+    ]
+  }
+}

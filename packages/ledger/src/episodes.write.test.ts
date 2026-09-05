@@ -15,6 +15,7 @@ test("episode write CLIs leave digests on close", () => {
   const dir = mkdtempSync(join(tmpdir(), "sl-ep-"))
   try {
     cpSync(join(REPO, ".spec-ledger"), join(dir, ".spec-ledger"), { recursive: true })
+    cpSync(join(REPO, "docs"), join(dir, "docs"), { recursive: true })
     rmSync(join(dir, ".spec-ledger/turns"), { recursive: true, force: true })
     mkdirSync(join(dir, ".spec-ledger/turns"), { recursive: true })
     spawnSync("git", ["init"], { cwd: dir })

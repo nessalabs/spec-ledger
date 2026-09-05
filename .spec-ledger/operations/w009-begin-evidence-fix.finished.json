@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "requestId": "w009-begin-evidence-fix",
+  "operation": "begin_work",
+  "inputDigest": "9b9237e00b10adb6f5dc2c53e76fa85c64f114f5671ba2f19da24ba358a7a36f",
+  "finishedAt": "2026-09-05T01:46:40.364Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "id": "T-037",
+    "status": "open",
+    "openedAt": "2026-09-05T01:46:40.364Z",
+    "opened": {
+      "producedBy": "@nessalabs/spec-ledger@0.1.0",
+      "baseCommit": "6d71f8164fdaaf9c151573f33011db70ecd5df6d",
+      "treeDigest": "ac6ce49752215858811f2bac2c0429c4da521d8296a68434d8b5f96595034771",
+      "dirtyAtOpen": [
+        ".spec-ledger/authority/AUTH-UI-05cc970d-0c16-41a4-aa68-36fb14b025a9.json",
+        ".spec-ledger/authority/AUTH-W009-REQUEST.json",
+        ".spec-ledger/reviews/workstreams/W-009/SR-01.json",
+        ".spec-ledger/reviews/workstreams/W-009/SR-02.json",
+        ".spec-ledger/workstreams/W-009.json",
+        "docs/workstreams/W-009-evidence-first-changes/spec.md"
+      ],
+      "contextDigest": "1c62c4828c99bd5d3b60a96156cf2f45b5a195d4a850b51c37e1e8df51e79c76",
+      "contextWorkstreamId": "W-009",
+      "contextSliceId": "SLC-01",
+      "contextSealRevision": 1,
+      "contextGeneratedAt": "2026-09-05T01:46:40.364Z"
+    },
+    "intent": {
+      "userPrompt": "Make change pages lead with outcomes and proof. Audit completed workstreams and retrofit supported evidence records, accounting for current changes. Explain historical completion versus current evidence.",
+      "restatedGoal": "See each change and the evidence that it works",
+      "changeType": "fix",
+      "riskLevel": "moderate",
+      "workstreamId": "W-009",
+      "sliceId": "SLC-01",
+      "featureIds": [
+        "lattice"
+      ]
+    }
+  }
+}

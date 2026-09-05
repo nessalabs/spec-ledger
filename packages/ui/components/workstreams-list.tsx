@@ -1,5 +1,8 @@
 "use client"
 
+import { presentationCopy } from "@/lib/features"
+
+
 import type { Workstream } from "@nessalabs/spec-ledger-client"
 import {
   PeekLink,
@@ -39,10 +42,10 @@ export function WorkstreamsList({ workstreams }: { workstreams: Workstream[] }) 
               </span>
               <span className="min-w-0">
                 <span className="line-clamp-1 text-sm font-medium text-foreground">
-                  {w.title}
+                  {presentationCopy(w.title)}
                 </span>
                 <span className="mt-0.5 line-clamp-2 block text-[11px] text-muted-foreground">
-                  {blurb}
+                  {presentationCopy(blurb)}
                 </span>
               </span>
               <span className="shrink-0 text-[11px] capitalize text-muted-foreground">

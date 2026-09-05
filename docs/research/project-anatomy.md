@@ -77,7 +77,7 @@ Software projects add durable *product* structure that outlives any one project/
 | **Product / system** | The ongoing thing being changed | Repo, deployable |
 | **Capability / feature** | User-valuable slice of the product | “Draft messages”, “Verify claims” |
 | **Module / package / node** | Engineering unit of structure | `packages/ledger` |
-| **Boundary / context** | Where language & model stay consistent (DDD) | Claims vs Lattice |
+| **Boundary / context** | Where language & model stay consistent (DDD) | Claims vs Spec Ledger UI |
 | **Standing obligation** | What must remain true | Spec, ADR, invariant, protocol |
 | **Contract surface** | Published language between parts | Schema, API, event |
 | **Evidence** | Machine-checkable proof | Tests, checks, results files |
@@ -171,7 +171,7 @@ EPISODE (temporary)
 3. **Claims stay standing truth** — never “owned by” a turn.
 4. **Verticals** (workstream suggested slices) replace Shape Up “scopes in the
    ledger” — e2e-checkable, not a fake WBS. See work-model.
-5. **Keep two clocks explicit** in Lattice labels: *scoped to* (intent) vs *touched* (facts).
+5. **Keep two clocks explicit** in Spec Ledger UI labels: *scoped to* (intent) vs *touched* (facts).
 
 ---
 

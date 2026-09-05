@@ -2,6 +2,7 @@ export type * from "./types.js"
 export { loadLedger, findRepoRoot, ledgerRoot, sha256Stable, jcsCanonicalize, LEDGER_DIR } from "./fs/load.js"
 export {
   snapshotLedger,
+  readStoredReport,
   listSchemaFiles,
   readSchemaFile,
   HTTP_CONTRACT,
@@ -84,3 +85,25 @@ export {
   nextAlignWaiverId,
   type AlignWaiver,
 } from "./align/waiver.js"
+
+export { checkLedger } from "./verify/execute.js"
+
+export { sourceFingerprint, checkFingerprint, localArtifactPath, contentHash } from "./evidence/fingerprint.js"
+
+export { recordEvidence, type EvidenceInput } from "./evidence/record.js"
+
+export { listAuthorities, recordSpecReview, recordAuthority, permissionStatus, planRevision, prepareExecutablePlan, type Authority, type PermissionStatus } from "./permission/authority.js"
+export { listLearnings, applicableLearnings, recordLearning, type Learning } from "./compass/learnings.js"
+export { getSession, recordProgress, acceptanceItems, completeWorkstream } from "./session/project.js"
+export type { SessionProjection, ProgressUpdate } from "./session/project.js"
+export * from "./deferrals/index.js"
+export { createLocalApprovalBridge, authorityStateDigest } from "./permission/local-ui.js"
+export * from "./application/index.js"
+export * from "./workflows/index.js"
+export * from "./execution/index.js"
+
+export { getCheckEvidence, getCheckRun, type CheckEvidence, type CheckRun } from "./verify/saved-check.js"
+export { createLocalCheckBridge } from "./verify/local-check.js"
+
+export { createLocalWorkflowBridge } from "./workflows/local-ui.js"
+export type { WorkflowOptions } from "./workflows/options.js"

@@ -1,0 +1,9 @@
+{
+  "id": "b-sl-017",
+  "claimId": "SL-017",
+  "kind": "test",
+  "locator": {
+    "type": "command",
+    "command": "node --test packages/ledger/dist/verify/readonly.break.test.js"
+  }
+}

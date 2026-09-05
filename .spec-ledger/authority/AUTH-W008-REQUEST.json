@@ -1,0 +1,19 @@
+{
+  "id": "AUTH-W008-REQUEST",
+  "action": "grant",
+  "mode": "request",
+  "workstreamId": "W-008",
+  "featureIds": [
+    "cli",
+    "client",
+    "turns",
+    "verify",
+    "lattice"
+  ],
+  "source": {
+    "kind": "agent-reported",
+    "reference": "User requested implementation of the shared CLI/MCP revamp, customizable workflows and live verification UI, using Sol 5.6 medium subagents to finish end to end."
+  },
+  "schemaVersion": 1,
+  "createdAt": "2026-09-05T00:11:54.834Z"
+}

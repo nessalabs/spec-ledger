@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "turnId": "T-040",
+  "decision": "Put progress, specs and evidence first; keep section links and the spec name pinned while reading.",
+  "rationale": "The user found the full stack of internal records hard to navigate. GPT-5.6 Sol confirmed duplicated evidence and too many destinations in the live website. Engineering details remain available in a separate section without implying a host runner is active.",
+  "basis": {
+    "at": "2026-09-05T03:53:54.609Z",
+    "contextDigest": "b5b08d13ec949cd8892203ab6e44be6593e015b7f69a4f2e4ce205ddac1b2029",
+    "sealRevision": 2
+  },
+  "discovery": {
+    "kind": "workflow-gap",
+    "reportedVia": "user",
+    "observation": "Users could not navigate the website easily despite the underlying evidence being available.",
+    "regression": "Browser walkthrough and navigation regressions cover deep links, history, mobile drawer dismissal, keyboard selection and visible permission/failure states."
+  },
+  "id": "T-040/D-02"
+}

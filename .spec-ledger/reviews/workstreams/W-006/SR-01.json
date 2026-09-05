@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "id": "W-006/SR-01",
+  "workstreamId": "W-006",
+  "kind": "adversarial",
+  "target": "spec",
+  "reviewer": "agent:sl-plan-break-spec:w006",
+  "verdict": "approve",
+  "blocking": false,
+  "alertOnSeverity": "high",
+  "plainSummary": "The first change has clear checks for honest results, with explicit boundaries for later permission and evidence work.",
+  "summary": "Independent spec review approves SLC-01/AC-05 for implementation after seal; later slices were screened for concrete blockers, not exhaustively designed or verified. Ran node packages/ledger/dist/cli/main.js related --workstream W-006 --worktrees --json: six features, ten live claims, twenty prior turns, seventeen docs, no proposed claims, and caution-only worktree output. Read DESIGN.md, work-model.md, W-006 metadata/spec, security-review guidance, verifier, results schema, server routes, and both client transports. Current verifier breaks on the first passing results row and overwrites duplicate row keys; HTTP snapshot/report failures are transport errors to the client. AC-05 and Implementation decisions now specify all-binding aggregation, duplicate rejection even with equal outcomes, malformed locators remaining missing, and failure propagation to UI. This is an independently fail-able slice without needing autonomy or freshness changes. The latest spec records portable CLI handoff and local trusted-caller security assumptions; no high-severity specification blockers remain in reviewed scope.",
+  "residualRisks": [
+    "This is a specification review, not run-backed implementation approval; no product or test code was changed and no killer tests were run.",
+    "Related pack returned worktreeCautions: worktree scan is caution-only; authority is this checkout. It provides no structured sibling scan or skippedReason, so no claim is made about other checkout state.",
+    "SLC-01 breaker should permute pass/fail/missing/attested across mixed binding kinds, reject duplicate result keys in either order, preserve required-unbound behavior, and exercise failed snapshot/report transport plus empty-ledger UI copy.",
+    "Later read-boundary tests must assert command and persistent-state side effects are absent across client, HTTP, snapshot, context, and verification projections, with a positive explicit CLI execution control.",
+    "Later freshness/artifact review must challenge dirty and untracked source, changes during execution, output exclusions, symlink escapes, tampered bytes, and content-preserving commits.",
+    "Later permission/deferral review must challenge denied-revision fallback to broader delegation, revocation/restart, idempotent activation, unknown references, re-deferral of hard requirements, and affected-only completion gates. Local agent-reported authority remains provenance rather than authentication.",
+    "The delivery list still mentions one real host integration, but AC-08 and Implementation decisions explicitly defer direct host integration; align that wording before the final session slice."
+  ],
+  "findings": []
+}
