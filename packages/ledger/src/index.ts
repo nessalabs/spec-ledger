@@ -98,3 +98,4 @@ export { getSession, recordProgress, acceptanceItems, completeWorkstream } from 
 export type { SessionProjection, ProgressUpdate } from "./session/project.js"
 export * from "./deferrals/index.js"
 export { createLocalApprovalBridge, authorityStateDigest } from "./permission/local-ui.js"
+export * from "./application/index.js"

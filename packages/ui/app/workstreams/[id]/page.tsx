@@ -1,4 +1,4 @@
-import { WorkstreamEvidence } from "@/components/workstream-evidence"
+import { LiveWorkstreamEvidence } from "@/components/live-workstream-evidence"
 import { presentationCopy } from "@/lib/features"
 import Link from "next/link"
 import { notFound } from "next/navigation"
@@ -88,14 +88,16 @@ export default async function WorkstreamPage({
         </p>
       )}
 
-      {projection.session && <WorkstreamEvidence session={projection.session} observedAt={projection.observedAt} />}
+      {projection.session && (
+        <LiveWorkstreamEvidence initial={projection} workstreamId={id} />
+      )}
 
       <section className="space-y-3">
         <p className="text-xs text-muted-foreground">History describes earlier snapshots. An outdated turn result does not replace the current evidence above.</p>
         <div className="flex items-baseline justify-between gap-2">
-          <h2 className="text-sm font-medium">What shipped</h2>
+          <h2 className="text-sm font-medium">Work history</h2>
           <p className="text-xs text-muted-foreground">
-            {linked.length} change{linked.length === 1 ? "" : "s"}
+            {linked.length} turn{linked.length === 1 ? "" : "s"}
           </p>
         </div>
         {linked.length === 0 ? (

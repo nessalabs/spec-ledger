@@ -59,7 +59,7 @@ jobs:
       - name: Assert package versions match release tag
         run: |
           VER="${{ steps.ver.outputs.version }}"
-          for pkg in packages/ledger packages/client packages/server; do
+          for pkg in packages/ledger packages/client packages/server packages/mcp; do
             PV=$(node -p "require('./$pkg/package.json').version")
             if [ "$PV" != "$VER" ]; then
               echo "version mismatch: $pkg is $PV, release wants $VER"
@@ -103,7 +103,7 @@ jobs:
             fi
           fi
           # Order: ledger first, then dependents; manifests already use publishable versions.
-          for pkg in packages/ledger packages/client packages/server; do
+          for pkg in packages/ledger packages/client packages/server packages/mcp; do
             echo "publishing $pkg ${FLAGS[*]}"
             (cd "$pkg" && pnpm publish "${FLAGS[@]}")
           done
@@ -113,4 +113,3 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: dist-ui-release/spec-ledger-ui-*.tgz
-

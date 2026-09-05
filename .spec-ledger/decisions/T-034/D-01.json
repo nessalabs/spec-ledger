@@ -1,0 +1,7 @@
+{
+  "schemaVersion": 1,
+  "turnId": "T-034",
+  "decision": "Keep CLI and MCP as adapters over shared application operations.",
+  "rationale": "The user explicitly requested equivalent internal logic across both surfaces. Shared validation, permission, persistence and request receipts prevent transport-specific gate behavior; the generic HTTP server stays read-only.",
+  "id": "T-034/D-01"
+}

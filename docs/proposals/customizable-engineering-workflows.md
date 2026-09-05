@@ -1,6 +1,6 @@
 # Choose the engineering method; preserve the evidence contract
 
-Proposal for discussion — not an implemented feature or an instruction to agents.
+Proposal for implementation — the CLI/MCP boundary below reflects the agreed direction. Proposed operations and configuration are not yet supported interfaces or instructions to agents.
 
 ## Recommendation
 
@@ -112,7 +112,7 @@ A configured independent review requires an observable separate reviewer executi
 
 ## Execution without building another agent runtime
 
-The core resolves the profile, computes prerequisites and validates submitted observations. The host runs agents and skills. CLI, MCP and host adapters call the same operations:
+Keep the existing CLI and add MCP as another surface over the same application operations. Do not replace the CLI, wrap it in shell commands from MCP, or implement a second workflow engine. The core resolves the profile, computes prerequisites and validates submitted observations. The host runs agents and skills. CLI, MCP and host adapters call the same operations:
 
 1. `resolve` returns the effective snapshot and missing capabilities.
 2. `next` returns eligible stages, instructions and missing outputs; it does not run commands.
@@ -121,6 +121,36 @@ The core resolves the profile, computes prerequisites and validates submitted ob
 5. `evaluate` derives checkpoint readiness from those outputs.
 
 These are proposed semantic operations, not five mandatory new commands. Fit them into the current plan/work/check tools where possible. Keep check execution an explicit operation. Loading a profile or skill must not install software, execute shell text or contact an external service.
+
+### One implementation, two surfaces
+
+```text
+CLI arguments ──→ CLI adapter ──┐
+                               ├─→ shared application operations ─→ ledger / evidence
+MCP tool input → MCP adapter ──┘
+```
+
+The shared operations own input validation, permission checks, revision and source checks, prerequisites, persistence, idempotency and structured results/errors. Adapters only parse their transport input, supply the configured checkout and available host capabilities, invoke an operation, and format its result. Extract any business logic currently inside CLI handlers into that shared layer before exposing it through MCP. Reuse existing operations where they already exist; avoid a speculative generic dispatcher.
+
+Equivalent CLI and MCP requests against equivalent state must have the same effects and gate outcomes. CLI text and exit codes may differ from MCP result envelopes, but neither adapter may bypass a gate, invent permission, mark evidence passing, or silently run additional work. Both use the same retry identities for operations that support retries. Switching surfaces must not create duplicate receipts or lose the reason an operation was blocked.
+
+MCP is an explicit local tool adapter, initially over stdio with a checkout configured at startup. It does not turn the existing read-only HTTP projection into a write server. Tool input cannot select an arbitrary filesystem root. Reads remain passive; command execution and ledger mutations are separately named explicit operations. An agent-supplied identity or approval string retains agent-reported provenance; exposing an operation through MCP does not authenticate the user.
+
+Keep the portable CLI useful for humans, scripts and hosts without MCP. Document semantic operation mappings rather than maintaining separate CLI and MCP workflow instructions. Add parity tests for permission denial, stale revisions, missing evidence, successful writes and retry conflicts, plus transport tests for the actual MCP executable.
+
+### Optional activity and continuation
+
+Task registration associates an existing workstream revision and execution attempt with a host/session reference. It is an execution association, not a second product backlog or an independently editable completion flag. Completion comes from the existing acceptance, evidence, review, permission and unresolved-obligation gates. The CLI and MCP expose the same registration, activity and remaining-work evaluation logic.
+
+Continuation is separately opted into by the user, with a minimum nudge interval, retry limit and expiry. Default behavior observes activity without nudging or terminating anything. A continuation prompt identifies the registered task and spec revision, reports the current missing outcomes, and asks the existing agent to continue within its permission. Re-evaluate gates and permission immediately before dispatch. Verified completion, revoked permission, explicit user stop, expiry or exhausted retries prevents further nudges; waiting for user input or approval suspends them. Deduplicate dispatch attempts and reconcile an uncertain delivery before retrying.
+
+Host hooks can submit tool-start, tool-finish/failure, session and waiting-state signals on a best-effort basis. Use native asynchronous hooks where supported and a bounded local collection path; telemetry delivery must not wait on a remote service or block tool execution. Do not spawn a background process for every event. Signals need stable invocation/session IDs and ordering information so duplicates and delayed events can be reconciled. Do not collect tool arguments, output or private reasoning by default. Keep transient activity in ignored local runtime storage, outside source/evidence fingerprints; keep durable user policy and consequential recovery decisions in the ledger.
+
+Missing events mean unknown activity. An unfinished invocation can be a long command, a dropped finish event or a crash. Quiet time alone neither proves idleness nor permits a nudge. A host adapter must confirm the current session state before resuming it. A fast local stop hook may return remaining-work guidance when opted in and supported, with a bounded loop; if local evaluation is unavailable, let the stop proceed and reconcile later.
+
+Users may separately configure a tool-duration warning threshold and an enforced timeout. Enforcement requires a supported host cancellation API or a process handle owned by the adapter, explicit permission for cancellation, and confirmation that the same invocation is still running. Prefer cooperative cancellation, allow a grace period, and require separate opt-in for forced termination of an owned process group. Never kill an arbitrary PID inferred from a hook or terminate the whole agent to cancel one tool. Confirm termination before nudging; if cancellation or remote side effects remain uncertain, surface that state and reconcile partial work instead of assuming a safe retry.
+
+MCP alone is not a universal host liveness, cancellation or session-resume API. Advertise these capabilities only when an adapter implements them. Without one, return remaining-work guidance for the agent or user to act on; do not claim crash recovery is available. Keep any optional watcher outside the core gate evaluator. Keel RT can be evaluated later for durable timers if needed; MCP does not require a DAG engine or an agent runtime.
 
 Mandatory prerequisites come from policy and permission, independently of stage order. Moving implementation before a required spec review cannot bypass that review: reject an impossible ordering before execution. A repair attempt returns to implementation and repeats affected required stages; it does not restart unrelated work or erase failed observations.
 
@@ -170,11 +200,13 @@ Likewise, checking that a receipt exists does not prove a review was insightful.
 
 ## Migration and deletion plan
 
-1. Keep the current workflow as a generated default profile; existing repositories require no new configuration.
-2. Add skill replacement and snapshot resolution. Preserve current gates and receipts; compare old and resolved behavior in tests.
-3. Replace hard-coded stage orchestration with a small shared evaluator. Retain old commands as adapters to the same operations.
-4. Add custom ordered stages only after substitution works through CLI and UI. Migrate review and verification requirements into policy; keep typed core invariants.
-5. Consolidate the many `sl-plan-*`/`sl-dev-*` wrappers into a few entry skills and reusable method modules. Remove duplicated policy prose; skills point to the effective policy and ask tools for prerequisites.
+1. Extract any CLI-only application logic into shared operations and add the MCP surface with parity tests. Preserve existing CLI behavior and the read-only HTTP boundary. Establish this seam before adding custom workflow syntax or host recovery.
+2. Keep the current workflow as a generated default profile; existing repositories require no new configuration.
+3. Add skill replacement and snapshot resolution. Preserve current gates and receipts; compare old and resolved behavior in tests.
+4. Replace hard-coded stage orchestration with a small shared evaluator. Retain old commands as adapters to the same operations.
+5. Add custom ordered stages only after substitution works through CLI and UI. Migrate review and verification requirements into policy; keep typed core invariants.
+6. Add optional activity collection and host continuation incrementally, advertising only implemented capabilities. Verify dropped/duplicate events, uncertain dispatch, explicit stop and timeout cancellation before enabling recovery for any host.
+7. Consolidate the many `sl-plan-*`/`sl-dev-*` wrappers into a few entry skills and reusable method modules. Remove duplicated policy prose; skills point to the effective policy and ask tools for prerequisites.
 
 No need to rewrite the verifier, authority ledger, deferral triggers or all history. Rewrite orchestration where it is hard-coded. Keep the old parser only for a bounded migration period, with fixtures proving history still renders correctly. Do not carry two competing workflow engines indefinitely.
 
@@ -188,6 +220,9 @@ No need to rewrite the verifier, authority ledger, deferral triggers or all hist
 - Policy weakening requires attributed explicit authority; existing denials and due obligations still apply.
 - Restart and retry produce no duplicate decisions or falsely completed stages.
 - CLI and UI show the same effective workflow, readiness, evidence and outstanding obligations.
+- Equivalent CLI and MCP inputs produce equivalent effects, structured errors and gate outcomes, including retry conflicts. Neither surface can choose a different permission or evidence rule.
+- Activity collection is bounded and best effort; missing or reordered events never establish verified completion or authorize cancellation.
+- Continuation and enforced tool timeouts are off by default. Unsupported host controls remain visibly unavailable; explicit stop and revoked permission prevent dispatch.
 
 ## Decisions to validate with real use
 

@@ -29,9 +29,14 @@
       "blurb": "Read-only HTTP projection"
     },
     {
+      "id": "adapters",
+      "name": "Agent adapters",
+      "blurb": "CLI/MCP transports over shared application operations"
+    },
+    {
       "id": "ui",
       "name": "UI",
-      "blurb": "Reference Lattice — replaceable"
+      "blurb": "Reference Spec Ledger UI — replaceable"
     }
   ],
   "features": [
@@ -135,11 +140,12 @@
     {
       "id": "cli",
       "name": "Consumer CLI",
-      "summary": "Installable spec-ledger bin: init, verify, turns; npm publish surface.",
+      "summary": "CLI and local MCP adapters over shared work, evidence and completion operations.",
       "claimIds": [
         "SL-011",
         "SL-015",
-        "SL-019"
+        "SL-019",
+        "SL-023"
       ],
       "entryPoints": [
         "packages/ledger/src/cli/main.ts",
@@ -148,7 +154,8 @@
         "packages/client/package.json",
         "packages/server/package.json",
         "packages/ui/package.json",
-        ".github/workflows/publish.yml"
+        ".github/workflows/publish.yml",
+        "packages/ledger/src/application/index.ts"
       ],
       "keywords": [
         "cli",
@@ -208,6 +215,17 @@
         "lattice"
       ],
       "purpose": "Spec Ledger UI — presentation only"
+    },
+    {
+      "id": "ledger-mcp",
+      "name": "@nessalabs/spec-ledger-mcp",
+      "layer": "adapters",
+      "kind": "package",
+      "locator": "packages/mcp",
+      "featureIds": [
+        "cli"
+      ],
+      "purpose": "Local stdio transport for shared work and evidence operations"
     }
   ],
   "edges": [
@@ -234,6 +252,11 @@
     {
       "from": "ledger-ui",
       "to": "ledger-client",
+      "kind": "depends_on"
+    },
+    {
+      "from": "ledger-mcp",
+      "to": "ledger-core",
       "kind": "depends_on"
     }
   ]

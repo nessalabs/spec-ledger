@@ -1,0 +1,12 @@
+{
+  "id": "SL-023",
+  "kind": "invariant",
+  "statement": "CLI and MCP share validation, permission, persistence and completion gates with equivalent lifecycle outcomes and retry behavior.",
+  "required": true,
+  "area": "cli",
+  "links": {
+    "docs": [
+      "docs/workstreams/W-008-shared-agent-workflows/spec.md"
+    ]
+  }
+}

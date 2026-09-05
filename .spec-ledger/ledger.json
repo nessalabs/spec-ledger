@@ -25,6 +25,10 @@
     "docs/workstreams/W-006-trustworthy-autonomous-coding/evidence/T-031/browser-check.md",
     "docs/workstreams/W-006-trustworthy-autonomous-coding/evidence/T-032/browser-check.md",
     "docs/workstreams/W-007-evidence-and-custom-workflows/evidence/T-033/browser-check.md",
-    "docs/workstreams/W-007-evidence-and-custom-workflows/evidence/T-033/regression-tests.txt"
+    "docs/workstreams/W-007-evidence-and-custom-workflows/evidence/T-033/regression-tests.txt",
+    "docs/workstreams/W-008-shared-agent-workflows/evidence/T-034/browser-baseline.md",
+    "docs/workstreams/W-008-shared-agent-workflows/evidence/T-034/mcp-smoke.md",
+    "docs/workstreams/W-008-shared-agent-workflows/evidence/T-034/regression-tests.txt",
+    "docs/workstreams/W-008-shared-agent-workflows/evidence/T-034/browser-check.md"
   ]
 }

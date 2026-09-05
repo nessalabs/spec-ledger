@@ -33,6 +33,7 @@ results) and carries digests of those inputs; nothing else may produce `pass`.**
 | Server is GET-only | Git is the write path; no “mark verified” button |
 | Client is the only UI/embed gateway | Spec Ledger UI stays replaceable; no FS imports from UI |
 | Core in `@nessalabs/spec-ledger`; thin client/server/ui | One implementable core; satellites stay small |
+| CLI and MCP share application operations | Transport differences cannot change permission, evidence or completion semantics; [agent tools](docs/architecture/agent-tools.md) |
 | Schemas as files under `schemas/` | SSOT without a schema package |
 | Name `@nessalabs/spec-ledger*` / `.spec-ledger/` | Avoid npm/`@ledger` collisions |
 | Workstreams + verticals, not `tasks/` | Shape Up: no fake WBS; one turn = one e2e-checkable slice |
@@ -70,6 +71,7 @@ reference claim IDs; claims/evidence must not import graph algorithms.
 | Git + `.spec-ledger/` + source tree | **Yes** — write path |
 | Ingested results files | **Yes** — produced by verify run |
 | `spec-ledger` CLI | Computes report; does not invent pass |
+| Local MCP adapter | Calls the same explicit operations as CLI; does not own gates or invoke agents |
 | HTTP server | **Read-only** projection |
 | Client SDK | Transport (in-process \| HTTP) |
 | Reference UI (`packages/ui`) | Presentation only |

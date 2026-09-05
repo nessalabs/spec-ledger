@@ -192,7 +192,7 @@ cpSync(join(root, "packages/ui"), app, {
   recursive: true,
   filter: (src) => {
     const base = src.split("/").pop()
-    return base !== "node_modules" && base !== ".next" && base !== ".git"
+    return base !== "node_modules" && base !== ".next" && base !== ".next-build" && base !== ".git"
   },
 })
 

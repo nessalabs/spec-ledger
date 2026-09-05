@@ -8,6 +8,10 @@ function git(repoRoot: string, args: string[]): { ok: boolean; out: string } {
   return { ok: r.status === 0, out: (r.stdout || "").replace(/\n$/, "") }
 }
 
+function isOperationBookkeeping(path: string): boolean {
+  return path === ".spec-ledger/operations" || path.startsWith(".spec-ledger/operations/")
+}
+
 /** Current product content; commits and ledger-only metadata do not invalidate it. */
 export function computeTreeDigest(repoRoot: string): string {
   const configPath = join(repoRoot,".spec-ledger/ledger.json")
@@ -28,7 +32,7 @@ export function dirtyPaths(repoRoot: string): string[] {
       if (path.includes(" -> ")) path = path.split(" -> ").at(-1)!.trim()
       return path
     })
-    .filter(Boolean)
+    .filter((path) => Boolean(path) && !isOperationBookkeeping(path))
     .sort()
 }
 
@@ -54,6 +58,6 @@ export function changedPathsSince(
       `changedPathsSince refused: git diff ${baseCommit}...HEAD failed`,
     )
   }
-  const committed = names.out.split("\n").filter(Boolean)
+  const committed = names.out.split("\n").filter((path) => Boolean(path) && !isOperationBookkeeping(path))
   return [...new Set([...committed, ...dirty])].sort()
 }

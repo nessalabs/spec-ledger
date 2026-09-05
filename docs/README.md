@@ -23,6 +23,7 @@ settled decisions. Work-model / episodes = how work and turns work.
 3. **[DESIGN.md](../DESIGN.md)** — claims, bindings, verify, package cut, settled decisions
 4. **Skills** under [`skills/`](../skills/) — see [`skills/README.md`](../skills/README.md) (`sl-plan-*`, `sl-dev-*`, `sl-learn`)
 5. **Git hooks** — [`scripts/git-hooks/`](../scripts/git-hooks/) (`pnpm hooks:install`)
+6. **[Shared agent tools](./architecture/agent-tools.md)** — CLI/MCP ownership, execution and retry contracts
 ## Research (consumed)
 
 - [research/project-anatomy.md](./research/project-anatomy.md)

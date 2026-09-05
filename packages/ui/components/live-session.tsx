@@ -1,54 +1,30 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import { useRef, useState } from "react"
 import Link from "next/link"
 import { Button, DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuRadioGroup, DropdownMenuRadioItem } from "@nessalabs/ui"
 import { ChevronDown } from "lucide-react"
 import type { SessionProjection } from "@nessalabs/spec-ledger-client"
+import { AcceptanceProgress } from "@/components/acceptance-progress"
+import { useSessionObservation } from "@/components/use-session-observation"
 
 export function LiveSession({ initial }: { initial: SessionProjection }) {
-  const [data, setData] = useState(initial)
   const [selected, setSelected] = useState(initial.session?.workstreamId ?? "")
-  const [state, setState] = useState<"connected" | "loading" | "disconnected">("connected")
-  const [observed, setObserved] = useState("")
   const [saving, setSaving] = useState(false)
   const [decisionMessage, setDecisionMessage] = useState("")
-  const observationEpoch = useRef(0)
   const pendingDecision = useRef<{ key: string; requestId: string } | null>(null)
-
-  useEffect(() => {
-    let cancelled = false
-    let timer: ReturnType<typeof setTimeout>
-    let controller: AbortController | undefined
-    async function observe() {
-      const epoch = observationEpoch.current
-      controller = new AbortController()
-      const timeout = setTimeout(() => controller?.abort(), 8000)
-      try {
-        const response = await fetch(`/api/session${selected ? `?workstream=${encodeURIComponent(selected)}` : ""}`, {
-          cache: "no-store", signal: controller.signal,
-        })
-        if (!response.ok) throw new Error("Observation failed")
-        const next: SessionProjection = await response.json()
-        if (!cancelled && epoch === observationEpoch.current) {
-          setData(next); setState("connected"); setObserved(new Date(next.observedAt).toLocaleTimeString())
-        }
-      } catch {
-        if (!cancelled && epoch === observationEpoch.current) setState("disconnected")
-      } finally {
-        clearTimeout(timeout)
-        if (!cancelled) timer = setTimeout(observe, 5000)
-      }
-    }
-    setState("loading")
-    void observe()
-    return () => { cancelled = true; clearTimeout(timer); controller?.abort() }
-  }, [selected])
+  const {
+    data,
+    state,
+    observed,
+    replaceData,
+    invalidateObservation,
+  } = useSessionObservation(initial, selected || undefined)
 
   const session = selected && data.session?.workstreamId !== selected ? null : data.session
   async function decide(action: "approve" | "deny") {
     if (!session || saving) return
-    observationEpoch.current++
+    invalidateObservation()
     setSaving(true); setDecisionMessage("")
     const key = `${action}/${session.workstreamId}/${session.revisionDigest}/${session.authorityDigest}`
     if (pendingDecision.current?.key !== key) pendingDecision.current = { key, requestId: crypto.randomUUID() }
@@ -66,11 +42,11 @@ export function LiveSession({ initial }: { initial: SessionProjection }) {
       const observation = await fetch(`/api/session?workstream=${encodeURIComponent(session.workstreamId)}`, { cache: "no-store", signal: AbortSignal.timeout(8000) })
       if (!observation.ok) throw new Error("Decision saved, but the current state could not be refreshed.")
       const next: SessionProjection = await observation.json()
-      setData(next); setState("connected"); setObserved(new Date(next.observedAt).toLocaleTimeString())
+      replaceData(next)
       setDecisionMessage(action === "approve" && next.session?.permission.allowed ? "Approval saved." : action === "deny" && !next.session?.permission.allowed ? "Denial saved." : "Decision saved. The current state has changed; review it before continuing.")
       pendingDecision.current = null
     } catch (error) { setDecisionMessage(error instanceof Error ? error.message : "Decision could not be saved.") }
-    finally { observationEpoch.current++; setSaving(false) }
+    finally { invalidateObservation(); setSaving(false) }
   }
   return <section className="space-y-6" aria-label="Live session">
     <header className="space-y-2">
@@ -101,6 +77,12 @@ export function LiveSession({ initial }: { initial: SessionProjection }) {
         </div>}
         {decisionMessage && <p role="status" className="text-sm">{decisionMessage}</p>}
       </div>
+      <AcceptanceProgress
+        total={session.criteria.length}
+        verified={session.evidenceCount}
+        implemented={session.criteria.filter((criterion) => criterion.implemented).length}
+        remaining={session.completion.reasons}
+      />
       <section className="space-y-2"><h2 className="font-semibold">Needs attention</h2>
         {session.attention.length ? <ul className="list-disc space-y-1 pl-5 text-sm">{session.attention.map((item, i) => <li key={i}>{item}</li>)}</ul> : <p className="text-sm text-muted-foreground">No blocking attention items reported.</p>}
       </section>

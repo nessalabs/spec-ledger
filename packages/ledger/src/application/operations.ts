@@ -1,0 +1,457 @@
+import { randomUUID } from "node:crypto"
+import { dirname, isAbsolute, join, relative, resolve } from "node:path"
+import { existsSync, readFileSync, realpathSync } from "node:fs"
+import { alignCheck } from "../align/check.js"
+import { assertAlignApproveValid, alignPolicy } from "../align/approve.js"
+import { listAlignWaiversForTurn } from "../align/waiver.js"
+import { getVerticalContext } from "../context/vertical.js"
+import { writeDecision } from "../episodes/write.js"
+import { recordEvidence, type EvidenceInput } from "../evidence/record.js"
+import { sourceFingerprint } from "../evidence/fingerprint.js"
+import { findRepoRoot, loadLedger } from "../fs/load.js"
+import {
+  permissionStatus,
+  planRevision,
+  recordAuthority,
+  recordSpecReview,
+  type Authority,
+} from "../permission/authority.js"
+import { getRelatedPack } from "../related/pack.js"
+import { listAllReviews, nextReviewId, writeReview } from "../reviews/load.js"
+import {
+  completeWorkstream,
+  getSession,
+  recordProgress,
+  type ProgressUpdate,
+} from "../session/project.js"
+import { closeTurn, abandonTurn, openTurn } from "../turns/close.js"
+import type { EpisodeDecision, Review, TurnIntent } from "../types.js"
+import { checkLedger } from "../verify/execute.js"
+import { loadWorkstream, writeWorkstream } from "../workstream/load.js"
+import { operationError, normalizeOperationError } from "./errors.js"
+import { runMutation } from "./receipts.js"
+import { OPERATION_SCHEMAS, validateOperationInput, type OperationName } from "./schemas.js"
+
+export type { OperationName } from "./schemas.js"
+
+export function newRequestId(): string {
+  return randomUUID()
+}
+
+function assertObject(value: unknown): asserts value is Record<string, unknown> {
+  if (!value || typeof value !== "object" || Array.isArray(value)) {
+    throw operationError("invalid_input", "operation input must be an object")
+  }
+}
+
+/** Validate configured ledger paths before any core loader can follow them. */
+function assertCheckoutConfiguration(root: string): void {
+  const repoRoot = findRepoRoot(root)
+  const ledgerDir = realpathSync(join(repoRoot, ".spec-ledger"))
+  const config = JSON.parse(readFileSync(join(ledgerDir, "ledger.json"), "utf8")) as Record<string, unknown>
+  for (const [key, value] of Object.entries(config)) {
+    if (!/(?:Dir|Path)$/.test(key) || typeof value !== "string") continue
+    if (!value || isAbsolute(value) || value.replace(/\\/g, "/").split("/").includes("..")) {
+      throw operationError("invalid_input", `configured ${key} must stay inside .spec-ledger`)
+    }
+    const target = resolve(ledgerDir, value)
+    const lexical = relative(ledgerDir, target)
+    if (!lexical || lexical === ".." || lexical.startsWith(`..${process.platform === "win32" ? "\\" : "/"}`) || isAbsolute(lexical)) {
+      throw operationError("invalid_input", `configured ${key} escapes .spec-ledger`)
+    }
+    let existing = target
+    while (!existsSync(existing) && existing !== ledgerDir) existing = dirname(existing)
+    const physical = relative(ledgerDir, realpathSync(existing))
+    if (physical === ".." || physical.startsWith(`..${process.platform === "win32" ? "\\" : "/"}`) || isAbsolute(physical)) {
+      throw operationError("invalid_input", `configured ${key} escapes .spec-ledger through a symlink`)
+    }
+  }
+}
+
+function validated(root: string, name: OperationName, raw: unknown): Record<string, unknown> {
+  assertCheckoutConfiguration(root)
+  return validateOperationInput(name, raw)
+}
+
+function stringField(input: Record<string, unknown>, key: string, optional = false): string | undefined {
+  const value = input[key]
+  if (value === undefined && optional) return undefined
+  if (typeof value !== "string" || !value.trim()) {
+    throw operationError("invalid_input", `${key} must be a nonempty string`)
+  }
+  return value
+}
+
+function stringArray(input: Record<string, unknown>, key: string, optional = false): string[] | undefined {
+  const value = input[key]
+  if (value === undefined && optional) return undefined
+  if (!Array.isArray(value) || value.some((item) => typeof item !== "string" || !item)) {
+    throw operationError("invalid_input", `${key} must be an array of nonempty strings`)
+  }
+  return value as string[]
+}
+
+function assertRevision(root: string, workstreamId: string, expected?: string): string {
+  const current = planRevision(root, loadWorkstream(root, workstreamId))
+  if (expected !== current) {
+    throw operationError("revision_conflict", "workstream revision has changed", false, {
+      expected,
+      current,
+    })
+  }
+  return current
+}
+
+function assertSource(root: string, expected?: string): string {
+  const current = sourceFingerprint(root, loadLedger(root).config.generatedArtifactPaths)
+  if (!current || expected !== current) {
+    throw operationError("source_conflict", "source content has changed", false, {
+      expected,
+      current,
+    })
+  }
+  return current
+}
+
+function assertPermission(root: string, workstreamId: string): void {
+  const permission = permissionStatus(root, workstreamId)
+  if (!permission.allowed) {
+    throw operationError("permission_denied", "work is not authorized", false, permission)
+  }
+}
+
+export function planWork(root: string, raw: unknown) {
+  const input = validated(root, "plan_work", raw)
+  const workstreamId = stringField(input, "workstreamId")!
+  const permission = permissionStatus(root, workstreamId)
+  return {
+    workstream: loadWorkstream(root, workstreamId),
+    related: getRelatedPack(root, workstreamId),
+    permission,
+    nextAction: permission.allowed ? "work" : "permission",
+    missingPrerequisites: permission.allowed ? [] : permission.reasons,
+  }
+}
+
+export function getContext(root: string, raw: unknown) {
+  const input = validated(root, "get_context", raw)
+  return getVerticalContext(
+    root,
+    stringField(input, "workstreamId")!,
+    stringField(input, "sliceId")!,
+  )
+}
+
+export function observeSession(root: string, raw: unknown = {}) {
+  const input = validated(root, "get_session", raw)
+  return getSession(root, stringField(input, "workstreamId", true))
+}
+
+export function submitPermission(root: string, raw: unknown) {
+  const input = mutationInput(root, "record_permission", raw)
+  const authority = input.authority
+  assertObject(authority)
+  return runMutation({
+    root,
+    requestId: input.requestId,
+    operation: "record_permission",
+    input,
+    effect: () => recordAuthority(root, authority as unknown as Authority),
+  })
+}
+
+function mutationInput(root: string, name: OperationName, raw: unknown): Record<string, unknown> & { requestId: string } {
+  const input = validated(root, name, raw)
+  const requestId = stringField(input, "requestId")!
+  return { ...input, requestId }
+}
+
+export function beginWork(root: string, raw: unknown) {
+  const input = mutationInput(root, "begin_work", raw)
+  const workstreamId = stringField(input, "workstreamId")!
+  const noContext = input.noContext === true
+  if (input.noContext !== undefined && typeof input.noContext !== "boolean") {
+    throw operationError("invalid_input", "noContext must be a boolean")
+  }
+  const sliceId = stringField(input, "sliceId", noContext)
+  const noContextReason = stringField(input, "noContextReason", !noContext)
+  if (noContext && !noContextReason) {
+    throw operationError("invalid_input", "noContext requires noContextReason")
+  }
+  const goal = stringField(input, "goal")!
+  const expectedRevisionDigest = stringField(input, "expectedRevisionDigest")!
+  const workstream = loadWorkstream(root, workstreamId)
+  const requestedFeatureIds = stringArray(input, "featureIds", true)
+  if (requestedFeatureIds?.some((id) => !workstream.featureIds.includes(id))) {
+    throw operationError("invalid_input", "featureIds must belong to the workstream")
+  }
+  const featureIds = requestedFeatureIds ?? workstream.featureIds
+  const changeType = stringField(input, "changeType", true) ?? workstream.changeType ?? "feature"
+  const riskLevel = stringField(input, "riskLevel", true) ?? workstream.riskLevel ?? "moderate"
+  if (!["feature", "refactor", "fix", "migration", "chore", "docs"].includes(changeType)) {
+    throw operationError("invalid_input", "invalid changeType")
+  }
+  if (!["low", "moderate", "elevated", "high"].includes(riskLevel)) {
+    throw operationError("invalid_input", "invalid riskLevel")
+  }
+  if (sliceId && !(workstream.suggestedSlices ?? []).some((slice) => slice.id === sliceId)) {
+    throw operationError("invalid_input", `slice ${sliceId} not found on ${workstreamId}`)
+  }
+  if (input.allowDirty !== undefined && typeof input.allowDirty !== "boolean") {
+    throw operationError("invalid_input", "allowDirty must be a boolean")
+  }
+  const receiptInput = { ...input }
+  return runMutation({ root, requestId: input.requestId, operation: "begin_work", input: receiptInput, effect: () => {
+    assertRevision(root, workstreamId, expectedRevisionDigest)
+    assertPermission(root, workstreamId)
+    const intent: TurnIntent = {
+      userPrompt: stringField(input, "prompt", true) ?? goal,
+      restatedGoal: goal,
+      changeType: changeType as TurnIntent["changeType"],
+      riskLevel: riskLevel as TurnIntent["riskLevel"],
+      workstreamId,
+      sliceId,
+      featureIds,
+    }
+    return openTurn(root, intent, {
+      idHint: stringField(input, "turnId", true),
+      workstreamId,
+      sliceId,
+      featureIds,
+      noContext,
+      noContextReason,
+      allowDirty: input.allowDirty === true,
+    })
+  } })
+}
+
+function workstreamForTurn(root: string, turnId: string): string {
+  const turn = loadLedger(root).turns.find((candidate) => candidate.id === turnId)
+  if (!turn) throw operationError("not_found", `turn not found: ${turnId}`)
+  if (!turn.intent.workstreamId) throw operationError("invalid_input", "turn has no workstream")
+  return turn.intent.workstreamId
+}
+
+export function submitProgress(root: string, raw: unknown) {
+  const input = mutationInput(root, "record_progress", raw)
+  const turnId = stringField(input, "turnId")!
+  const workstreamId = workstreamForTurn(root, turnId)
+  if (typeof input.implemented !== "boolean") {
+    throw operationError("invalid_input", "implemented must be a boolean")
+  }
+  return runMutation({ root, requestId: input.requestId, operation: "record_progress", input, effect: () => {
+    assertRevision(root, workstreamId, stringField(input, "expectedRevisionDigest")!)
+    assertSource(root, stringField(input, "expectedSourceDigest")!)
+    assertPermission(root, workstreamId)
+    return recordProgress(root, {
+      turnId,
+      summary: stringField(input, "summary")!,
+      criterionIds: stringArray(input, "criterionIds")!,
+      implemented: input.implemented as boolean,
+      preview: input.preview as ProgressUpdate["preview"],
+    })
+  } })
+}
+
+export function submitDecision(root: string, raw: unknown) {
+  const input = mutationInput(root, "record_decision", raw)
+  const turnId = stringField(input, "turnId")!
+  const workstreamId = workstreamForTurn(root, turnId)
+  if (input.discovery !== undefined) {
+    assertObject(input.discovery)
+    const kind = stringField(input.discovery, "kind")
+    const reportedVia = stringField(input.discovery, "reportedVia")
+    stringField(input.discovery, "observation")
+    if (!["code-defect", "spec-gap", "spec-conflict", "verification-gap", "workflow-gap"].includes(kind!)) {
+      throw operationError("invalid_input", "invalid discovery kind")
+    }
+    if (!["user", "test", "review", "runtime"].includes(reportedVia!)) {
+      throw operationError("invalid_input", "invalid discovery reportedVia")
+    }
+  }
+  stringArray(input, "alternativesRejected", true)
+  stringArray(input, "addressesFindingIds", true)
+  return runMutation({ root, requestId: input.requestId, operation: "record_decision", input, effect: () => {
+    assertRevision(root, workstreamId, stringField(input, "expectedRevisionDigest")!)
+    assertSource(root, stringField(input, "expectedSourceDigest")!)
+    assertPermission(root, workstreamId)
+    const turn = loadLedger(root).turns.find((candidate) => candidate.id === turnId)!
+    return writeDecision(root, {
+      turnId,
+      decision: stringField(input, "decision")!,
+      rationale: stringField(input, "rationale")!,
+      basis: {
+        at: new Date().toISOString(),
+        contextDigest: turn.opened?.contextDigest,
+        sealRevision: loadWorkstream(root, workstreamId).seal?.revision,
+      },
+      discovery: input.discovery as EpisodeDecision["discovery"],
+      alternativesRejected: input.alternativesRejected as string[] | undefined,
+      addressesFindingIds: input.addressesFindingIds as string[] | undefined,
+    })
+  } })
+}
+
+export function submitEvidence(root: string, raw: unknown) {
+  const input = mutationInput(root, "record_evidence", raw)
+  const evidence = input.evidence
+  assertObject(evidence)
+  return runMutation({ root, requestId: input.requestId, operation: "record_evidence", input, effect: () =>
+    recordEvidence(root, evidence as unknown as EvidenceInput),
+  })
+}
+
+export function submitReview(root: string, raw: unknown) {
+  const input = mutationInput(root, "record_review", raw)
+  const target = stringField(input, "target")!
+  const reviewInput = input.review
+  assertObject(reviewInput)
+  if (reviewInput.kind === "human") {
+    throw operationError("invalid_input", "record_review cannot claim human review provenance")
+  }
+  return runMutation({ root, requestId: input.requestId, operation: "record_review", input, effect: () => {
+    if (target === "spec") {
+      const workstreamId = stringField(input, "workstreamId")!
+      assertRevision(root, workstreamId, stringField(input, "expectedRevisionDigest")!)
+      const review = reviewInput
+      if (review.workstreamId !== undefined && review.workstreamId !== workstreamId) {
+        throw operationError("invalid_input", "spec review workstreamId must match the operation target")
+      }
+      const sequence = listAllReviews(root)
+        .filter((candidate) => candidate.workstreamId === workstreamId && candidate.target === "spec")
+        .reduce((max, candidate) => Math.max(max, Number(candidate.id.split("-").at(-1)) || 0), 0) + 1
+      const id = (review.id as string | undefined) ?? `${workstreamId}/SR-${String(sequence).padStart(2, "0")}`
+      const written = recordSpecReview(root, { ...review, schemaVersion: 1, id, workstreamId, target: "spec" } as unknown as Review)
+      if (written.verdict === "approve") {
+        const workstream = loadWorkstream(root, workstreamId)
+        writeWorkstream(root, { ...workstream, specBreakReviewId: written.id, updatedAt: new Date().toISOString() })
+      }
+      return written
+    }
+    if (target !== "code") throw operationError("invalid_input", "review target must be spec or code")
+    const turnId = stringField(input, "turnId")!
+    assertSource(root, stringField(input, "expectedSourceDigest")!)
+    const turn = loadLedger(root).turns.find((candidate) => candidate.id === turnId)
+    if (!turn) throw operationError("not_found", `turn not found: ${turnId}`)
+    if (turn.status !== "open") throw operationError("prerequisite_missing", `turn ${turnId} is not open`)
+    if (!turn.intent.workstreamId) throw operationError("invalid_input", "turn has no workstream")
+    assertPermission(root, turn.intent.workstreamId)
+    const review = reviewInput
+    if (review.workstreamId !== undefined && review.workstreamId !== turn.intent.workstreamId) {
+      throw operationError("invalid_input", "code review workstreamId must match its turn")
+    }
+    const verdict = stringField(review, "verdict") as Review["verdict"]
+    const killersCited = stringArray(review, "killersCited", true)
+    if (verdict === "approve" && !killersCited?.length) {
+      throw operationError("invalid_input", "code review approval requires killersCited")
+    }
+    const written = writeReview(root, {
+      ...review,
+      schemaVersion: 1,
+      id: (review.id as string | undefined) ?? nextReviewId(root, turnId),
+      turnId,
+      kind: (review.kind as Review["kind"] | undefined) ?? "adversarial",
+      target: "code",
+    } as unknown as Review)
+    if (written.verdict === "approve" && turn.intent.workstreamId && turn.intent.sliceId) {
+      const workstream = loadWorkstream(root, turn.intent.workstreamId)
+      writeWorkstream(root, {
+        ...workstream,
+        suggestedSlices: (workstream.suggestedSlices ?? []).map((slice) =>
+          slice.id === turn.intent.sliceId ? { ...slice, codeBreakReviewId: written.id } : slice,
+        ),
+        updatedAt: new Date().toISOString(),
+      })
+    }
+    return written
+  } })
+}
+
+export function approveAlignment(root: string, raw: unknown) {
+  const input = mutationInput(root, "approve_alignment", raw)
+  const turnId = stringField(input, "turnId")!
+  return runMutation({ root, requestId: input.requestId, operation: "approve_alignment", input, effect: () => {
+    const expectedSourceDigest = stringField(input, "expectedSourceDigest")!
+    assertSource(root, expectedSourceDigest)
+    const turn = loadLedger(root).turns.find((candidate) => candidate.id === turnId)
+    if (!turn) throw operationError("not_found", `turn not found: ${turnId}`)
+    const report = alignCheck(root, { turnId })
+    const workstreamId = turn.intent.workstreamId
+    if (workstreamId) assertPermission(root, workstreamId)
+    const policy = workstreamId ? alignPolicy(loadWorkstream(root, workstreamId)) : { alignReviewerPrefix: "agent:align" }
+    const review: Review = {
+      schemaVersion: 1,
+      id: nextReviewId(root, turnId),
+      turnId,
+      ...(workstreamId ? { workstreamId } : {}),
+      kind: "human",
+      target: "code",
+      reviewer: stringField(input, "reviewer", true) ?? "agent:align",
+      verdict: "approve",
+      summary: stringField(input, "summary", true) ?? "align: path coverage OK",
+      plainSummary: stringField(input, "plainSummary")!,
+      treeDigest: report.treeDigest,
+      uncoveredPaths: report.coverage.uncoveredPaths,
+      coverageSource: report.coverage.coverageSource,
+      waiverIds: stringArray(input, "waiverIds", true),
+    }
+    assertAlignApproveValid({ review, turn, policy, waivers: listAlignWaiversForTurn(root, turnId) })
+    return writeReview(root, review)
+  } })
+}
+
+export function runChecks(root: string, raw: unknown) {
+  const input = mutationInput(root, "run_checks", raw)
+  return runMutation({ root, requestId: input.requestId, operation: "run_checks", input, effect: () => {
+    assertSource(root, stringField(input, "expectedSourceDigest")!)
+    return checkLedger(root)
+  } })
+}
+
+export function finishTurn(root: string, raw: unknown) {
+  const input = mutationInput(root, "finish_turn", raw)
+  const turnId = stringField(input, "turnId")!
+  const action = stringField(input, "action")!
+  return runMutation({ root, requestId: input.requestId, operation: "finish_turn", input, effect: () => {
+    assertSource(root, stringField(input, "expectedSourceDigest")!)
+    if (action === "close") return closeTurn(root, turnId)
+    if (action === "abandon") return abandonTurn(root, turnId)
+    throw operationError("invalid_input", "finish action must be close or abandon")
+  } })
+}
+
+export function completeWork(root: string, raw: unknown) {
+  const input = mutationInput(root, "complete_work", raw)
+  const workstreamId = stringField(input, "workstreamId")!
+  return runMutation({ root, requestId: input.requestId, operation: "complete_work", input, effect: () => {
+    assertRevision(root, workstreamId, stringField(input, "expectedRevisionDigest")!)
+    assertSource(root, stringField(input, "expectedSourceDigest")!)
+    return completeWorkstream(root, workstreamId)
+  } })
+}
+
+export function executeOperation(root: string, operation: OperationName, input: unknown): unknown {
+  try {
+    switch (operation) {
+      case "plan_work": return planWork(root, input)
+      case "get_context": return getContext(root, input)
+      case "get_session": return observeSession(root, input)
+      case "record_permission": return submitPermission(root, input)
+      case "begin_work": return beginWork(root, input)
+      case "record_progress": return submitProgress(root, input)
+      case "record_decision": return submitDecision(root, input)
+      case "record_evidence": return submitEvidence(root, input)
+      case "record_review": return submitReview(root, input)
+      case "approve_alignment": return approveAlignment(root, input)
+      case "run_checks": return runChecks(root, input)
+      case "finish_turn": return finishTurn(root, input)
+      case "complete_work": return completeWork(root, input)
+    }
+  } catch (error) {
+    throw normalizeOperationError(error)
+  }
+}
+
+export const OPERATION_NAMES: readonly OperationName[] = [
+  ...(Object.keys(OPERATION_SCHEMAS) as OperationName[]),
+]

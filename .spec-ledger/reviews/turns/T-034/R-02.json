@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "T-034/R-02",
+  "turnId": "T-034",
+  "workstreamId": "W-008",
+  "kind": "adversarial",
+  "target": "code",
+  "reviewer": "agent:sl-dev-break:w008-slc01",
+  "verdict": "approve",
+  "blocking": false,
+  "alertOnSeverity": "high",
+  "resolvesReviewId": "T-034/R-01",
+  "resolvesFindingIds": [
+    "T-034/R-01#F-01",
+    "T-034/R-01#F-02",
+    "T-034/R-01#F-03"
+  ],
+  "plainSummary": "The shared CLI and MCP work loop now preserves permission, review provenance, retry safety, and equivalent lifecycle outcomes under the tested attacks.",
+  "summary": "R-01 is resolved on the frozen SLC-01 tree. The unchanged operation killers pass 9/9: invalid slices and roots fail before effects; progress, decisions, and reviews require current permission; stale revisions and sources leave domain state unchanged; portable reviews cannot claim human provenance or another turn’s workstream; and caller tree digests are replaced with the current source digest. Receipt killers pass 6/6 across same/different process request races, conflicting reuse, corrupt and unfinished receipts, completion-publication failure, and unknown lock ownership. The actual executable suite passes 4/4 for full CLI/MCP lifecycle parity, equivalent denial with no effects, retry/stale/malformed/missing-evidence negatives, and packed executable installation.",
+  "findings": [],
+  "killersCited": [
+    "packages/ledger/src/application/operations.break.test.ts::rejects an invalid slice through the actual CLI before sealing, opening, activating, or resuming",
+    "packages/ledger/src/application/operations.break.test.ts::rejects a caller-supplied root field and cannot touch that checkout",
+    "packages/ledger/src/application/operations.break.test.ts::denies record_progress without current permission and creates no domain record",
+    "packages/ledger/src/application/operations.break.test.ts::denies record_decision without current permission and creates no domain record",
+    "packages/ledger/src/application/operations.break.test.ts::denies record_review without current permission and creates no domain record",
+    "packages/ledger/src/application/operations.break.test.ts::stale revision and source inputs leave decisions and reviews unchanged",
+    "packages/ledger/src/application/operations.break.test.ts::does not accept portable review fields that claim human provenance",
+    "packages/ledger/src/application/operations.break.test.ts::does not let a code review claim a workstream other than its turn",
+    "packages/ledger/src/application/operations.break.test.ts::replaces a caller-supplied review tree digest with the current source digest",
+    "packages/ledger/src/application/receipts.break.test.ts::runs one effect for concurrent identical requests and replays its result",
+    "packages/ledger/src/application/receipts.break.test.ts::serializes different request IDs and rejects reuse with changed input",
+    "packages/ledger/src/application/receipts.break.test.ts::never treats a corrupt finished receipt as a successful replay",
+    "packages/ledger/src/application/receipts.break.test.ts::does not repeat an effect when only its started receipt remains",
+    "packages/ledger/src/application/receipts.break.test.ts::reports unknown when completion publication fails after the effect and never reruns it",
+    "packages/ledger/src/application/receipts.break.test.ts::reports an unknown lock as busy without stealing it or running effects",
+    "packages/mcp/src/lifecycle.test.ts::completes the same verified lifecycle through both executables",
+    "packages/mcp/src/lifecycle.test.ts::returns the same structured denial and leaves domain state unchanged",
+    "packages/mcp/src/lifecycle.test.ts::rejects retries, stale inputs, malformed inputs, and missing evidence with the same contracts",
+    "packages/mcp/src/lifecycle.test.ts::installs and invokes the packed executable"
+  ],
+  "residualRisks": [
+    "Portable reviewer labels remain agent-reported attribution; authenticated human identity still depends on a trusted host boundary.",
+    "The receipt protocol coordinates participating application callers and does not claim atomicity against arbitrary direct filesystem edits.",
+    "Activity, recovery, and customizable workflow profiles remain assigned to later W-008 slices and were not graded in SLC-01."
+  ],
+  "treeDigest": "4991707ac7b32c34ae2297305a8826703f5fba6493bd353ba0bde9ed06fe5d0d"
+}

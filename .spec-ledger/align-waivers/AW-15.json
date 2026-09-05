@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "id": "T-034/AW-15",
+  "reason": "The user explicitly requested the shared CLI/MCP architecture revamp and end-to-end UI integration. DESIGN.md documents this authorized boundary change but sits outside the slice docs/** pattern.",
+  "actor": "agent:coverage-of-user-request",
+  "treeDigest": "4991707ac7b32c34ae2297305a8826703f5fba6493bd353ba0bde9ed06fe5d0d",
+  "createdAt": "2026-09-05T00:37:49.715Z",
+  "workstreamId": "W-008",
+  "turnId": "T-034",
+  "paths": [
+    "DESIGN.md"
+  ]
+}

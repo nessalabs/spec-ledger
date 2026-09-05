@@ -1,0 +1,7 @@
+{
+  "schemaVersion": 1,
+  "turnId": "T-034",
+  "decision": "Require the real review gates in CLI and MCP lifecycle verification.",
+  "rationale": "The initial integration fixture disabled required reviews and therefore did not establish the requested end-to-end contract. The strict fixture must record spec, code and alignment reviews before close and completion; separate adversarial tests exercise rejected writes.",
+  "id": "T-034/D-03"
+}

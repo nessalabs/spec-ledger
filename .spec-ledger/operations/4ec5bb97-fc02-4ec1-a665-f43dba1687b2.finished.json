@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "requestId": "4ec5bb97-fc02-4ec1-a665-f43dba1687b2",
+  "operation": "approve_alignment",
+  "inputDigest": "2d6211f8351128678a0235787cd7a23e336295c4a508f4a4d8cdca23a250ef3c",
+  "finishedAt": "2026-09-05T00:39:04.730Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "id": "T-034/R-02",
+    "turnId": "T-034",
+    "workstreamId": "W-008",
+    "kind": "human",
+    "target": "code",
+    "reviewer": "agent:align",
+    "verdict": "approve",
+    "summary": "User scope includes shared CLI/MCP logic, packaging, live evidence and architecture documentation; DESIGN.md is covered by the recorded exact-path waiver.",
+    "plainSummary": "The shared CLI, MCP and live evidence changes are covered by the requested revamp.",
+    "treeDigest": "4991707ac7b32c34ae2297305a8826703f5fba6493bd353ba0bde9ed06fe5d0d",
+    "uncoveredPaths": [
+      "DESIGN.md"
+    ],
+    "coverageSource": "mixed",
+    "waiverIds": [
+      "T-034/AW-15"
+    ]
+  }
+}

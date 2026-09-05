@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "turnId": "T-034",
+  "decision": "The shared CLI/MCP work loop and live acceptance progress display are verified.",
+  "rationale": "Agent-reported progress; evidence is evaluated separately.",
+  "progress": {
+    "criterionIds": [
+      "SLC-01/AC-1"
+    ],
+    "implemented": true,
+    "revisionDigest": "c5f1a84900d54f247315a70cfc9e05660c9cbc077597fb25b791f57896c6a4f1",
+    "sourceDigest": "e5abd70a9c07ed530f2cf0edca2fa0967362ad2a7550d214afcc6719f3310a76"
+  },
+  "id": "T-034/D-07"
+}

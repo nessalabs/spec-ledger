@@ -5,7 +5,7 @@
   "packageManager": "pnpm@9.15.0",
   "scripts": {
     "build": "pnpm -r run build",
-    "test": "pnpm --filter @nessalabs/spec-ledger test && node --test packages/ui/lib/*.test.mjs",
+    "test": "pnpm --filter @nessalabs/spec-ledger test && pnpm --filter @nessalabs/spec-ledger-mcp test && node --test packages/ui/lib/*.test.mjs",
     "verify": "node packages/ledger/dist/cli/main.js verify --root .",
     "ledger:audit": "node packages/ledger/dist/cli/main.js audit --root .",
     "ledger:align": "node packages/ledger/dist/cli/main.js align check --root .",
