@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "requestId": "w008-t036-code-review-r01-final",
+  "operation": "record_review",
+  "inputDigest": "293237f44694d65a3ccbccabbc516ebf861fad26e032f68d1b61c82fb848f9f4",
+  "finishedAt": "2026-09-05T01:37:02.545Z",
+  "outcome": "failed",
+  "error": {
+    "code": "source_conflict",
+    "message": "source content has changed",
+    "retryable": false,
+    "details": {
+      "expected": "0206c83e37395c3c9683a8c6a93d694ef0913010d4e3f9551af706d7ac9a2b8d",
+      "current": "c390c53c50687b8544f4e50b66dd46eb7cb3f19ded073adc91ff82ecce1e42ad"
+    }
+  }
+}

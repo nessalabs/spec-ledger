@@ -12,6 +12,7 @@ const descriptions: Record<OperationName, string> = {
   get_session: "Read current progress, evidence, reviews, and completion blockers.",
   preview_workflow: "Resolve a default or custom local workflow without preserving it.",
   get_workflow: "Read the selected workflow, attempts, current typed outputs, and blockers.",
+  get_execution: "Read execution association, bounded activity uncertainty, and unavailable recovery controls.",
   record_permission: "Record portable agent-reported permission without authenticating the supplied source.",
   begin_work: "Prepare authorized work and open one turn under the current revision.",
   record_progress: "Record revision- and source-bound acceptance progress.",
@@ -26,6 +27,10 @@ const descriptions: Record<OperationName, string> = {
   begin_workflow_step: "Begin a permitted attempt for the next eligible workflow step.",
   report_workflow_attempt: "Report an attempt complete or blocked without claiming output satisfaction.",
   record_workflow_output: "Link a typed current existing record to one workflow attempt.",
+  register_execution: "Associate an existing open turn and current workflow attempt with an agent-reported host session.",
+  configure_execution: "Record agent-reported continuation requests and timeout display policy without enabling host controls.",
+  stop_execution: "Record an explicit stop for an execution association with portable provenance.",
+  record_activity: "Submit one bounded best-effort activity signal without creating a durable operation receipt.",
 }
 
 /**

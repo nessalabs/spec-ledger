@@ -11,6 +11,8 @@ Read the effective method through `get_workflow`. For an explicitly selected met
 
 Record user-relevant behavior and decisions rather than tool chatter. Use `spec-ledger progress --file ...` for implementation updates and optional previews; see [session](../../docs/architecture/session.md). Progress is agent-reported, not proof. Use `spec-ledger defer --file ...` for conditional commitments; see [deferrals](../../docs/architecture/deferrals.md).
 
+When the host supports activity hooks, associate this turn with its session through `register_execution` and use the persistent collector for bounded best-effort events. Read `get_execution` for in-flight observations and remaining-work guidance. Quiet time is not proof of idleness. Never treat an activity event or requested continuation policy as permission to resume or cancel; see [task activity](../../docs/architecture/execution-activity.md).
+
 For bugs reported during work, use [issue intake](../../docs/architecture/issue-intake.md): repair code defects against existing intent; amend specs for missing or conflicting intent. Link observation, cause when known, and regression evidence. Use [sl-learn](../sl-learn/SKILL.md) for supported corrections without promoting a single incident into a global rule.
 
 After each vertical, follow the selected review procedure while the turn is open and satisfy the applicable independence policy; [sl-dev-break](../sl-dev-break/SKILL.md) is the default procedure. Then use [sl-check](../sl-check/SKILL.md). Honor permission limits and deviation policy at each meaningful scope change.

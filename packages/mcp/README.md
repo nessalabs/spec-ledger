@@ -59,3 +59,9 @@ reference. Portable `record_review` calls cannot claim `human` provenance.
 `preview_workflow` resolves a proposed local profile without writing it. `set_workflow` preserves the chosen method under the workstream's existing permission. `get_workflow` returns the same effective stages, skill content, output references and blockers shown in the session UI. `begin_workflow_step`, `report_workflow_attempt` and `record_workflow_output` record attempts without inventing passing evidence.
 
 These names also work with `spec-ledger operation <name> --file input.json`. See the repository's [engineering method contract](../../docs/architecture/workflows.md) for a skill-substitution example, snapshot amendments and the finite output types. Local skill access never installs or executes the skill. A custom method cannot waive permission, stale evidence or required reviews.
+
+## Activity observations
+
+`register_execution` associates an existing turn with a host session reference. `record_activity` accepts bounded transient signals, and `get_execution` returns their state and remaining-work guidance. `configure_execution` preserves requested policy; `stop_execution` records a stop. Portable inputs remain agent reported and cannot advertise verified host control.
+
+For host hooks, the companion `spec-ledger-activity` executable is a persistent local JSONL collector. Keep one process and bounded pipe buffering; do not start a process for each event or wait for collector processing inside a hook. There is no host resume/cancellation adapter in this release. See [task activity](../../docs/architecture/execution-activity.md) for signal semantics and enforcement limits.

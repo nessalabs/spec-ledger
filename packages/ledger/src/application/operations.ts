@@ -39,6 +39,15 @@ import {
   type WorkflowOutputKind,
   type WorkflowProfile,
 } from "../workflows/index.js"
+import {
+  writeExecutionPolicy,
+  findExecutionAssociation,
+  recordActivity as ingestActivity,
+  registerExecutionAssociation,
+  writeExecutionStop,
+  type ActivityEvent,
+  projectExecution,
+} from "../execution/index.js"
 import { operationError, normalizeOperationError } from "./errors.js"
 import { runMutation } from "./receipts.js"
 import { OPERATION_SCHEMAS, validateOperationInput, type OperationName } from "./schemas.js"
@@ -166,6 +175,18 @@ export function previewWorkflow(root: string, raw: unknown) {
 export function getWorkflow(root: string, raw: unknown) {
   const input = validated(root, "get_workflow", raw)
   return projectWorkflow(root, stringField(input, "workstreamId")!)
+}
+
+export function getExecution(root: string, raw: unknown) {
+  const input = validated(root, "get_execution", raw)
+  const registrationId = stringField(input, "registrationId", true)
+  const requestedWorkstream = stringField(input, "workstreamId", true)
+  const association = registrationId ? findExecutionAssociation(root, registrationId) : undefined
+  const workstreamId = requestedWorkstream ?? association?.workstreamId
+  if (!workstreamId) throw operationError("invalid_input", "get_execution requires registrationId or workstreamId")
+  if (association && requestedWorkstream && association.workstreamId !== requestedWorkstream) throw operationError("invalid_input", "registrationId does not belong to workstreamId")
+  const session = observeSession(root, { workstreamId }).session!
+  return registrationId ? projectExecution(root, workstreamId, { eligible: session.completion.eligible, reasons: session.completion.reasons, remaining: session.executionActivity.continuation.guidance }, registrationId) : session.executionActivity
 }
 
 export function submitPermission(root: string, raw: unknown) {
@@ -513,6 +534,39 @@ export function recordWorkflowOutput(root: string, raw: unknown) {
   } })
 }
 
+export function registerExecution(root: string, raw: unknown) {
+  const input = mutationInput(root, "register_execution", raw); const workstreamId = stringField(input, "workstreamId")!
+  return runMutation({ root, requestId: input.requestId, operation: "register_execution", input, effect: () => {
+    assertRevision(root, workstreamId, stringField(input, "expectedRevisionDigest")!); assertSource(root, stringField(input, "expectedSourceDigest")!); assertPermission(root, workstreamId)
+    return registerExecutionAssociation(root, { workstreamId, turnId: stringField(input, "turnId")!, workflowAttemptId: stringField(input, "workflowAttemptId", true), hostSessionRef: stringField(input, "hostSessionRef")! })
+  } })
+}
+
+export function configureExecution(root: string, raw: unknown) {
+  const input = mutationInput(root, "configure_execution", raw); const registrationId = stringField(input, "registrationId")!; const association = findExecutionAssociation(root, registrationId)
+  if (!association) throw operationError("not_found", "execution registration not found")
+  return runMutation({ root, requestId: input.requestId, operation: "configure_execution", input, effect: () => {
+    assertRevision(root, association.workstreamId, stringField(input, "expectedRevisionDigest")!); assertSource(root, stringField(input, "expectedSourceDigest")!); assertPermission(root, association.workstreamId)
+    return writeExecutionPolicy(root, registrationId, { continuation: input.continuation as never, timeout: input.timeout as never, source: input.source as never })
+  } })
+}
+
+export function stopExecution(root: string, raw: unknown) {
+  const input = mutationInput(root, "stop_execution", raw); const registrationId = stringField(input, "registrationId")!; const association = findExecutionAssociation(root, registrationId)
+  if (!association) throw operationError("not_found", "execution registration not found")
+  return runMutation({ root, requestId: input.requestId, operation: "stop_execution", input, effect: () => {
+    assertRevision(root, association.workstreamId, stringField(input, "expectedRevisionDigest")!); assertSource(root, stringField(input, "expectedSourceDigest")!)
+    return writeExecutionStop(root, registrationId, stringField(input, "reason")!, input.source as never)
+  } })
+}
+
+/** Transient, bounded telemetry intentionally does not create durable operation receipts. */
+export function recordExecutionActivity(root: string, raw: unknown) {
+  const input = validated(root, "record_activity", raw)
+  try { return ingestActivity(root, stringField(input, "registrationId")!, input.event as ActivityEvent) }
+  catch (error) { if (error instanceof Error && /activity collector is busy/.test(error.message)) throw operationError("operation_busy", error.message, true); throw error }
+}
+
 export function executeOperation(root: string, operation: OperationName, input: unknown): unknown {
   try {
     switch (operation) {
@@ -521,6 +575,7 @@ export function executeOperation(root: string, operation: OperationName, input: 
       case "get_session": return observeSession(root, input)
       case "preview_workflow": return previewWorkflow(root, input)
       case "get_workflow": return getWorkflow(root, input)
+      case "get_execution": return getExecution(root, input)
       case "record_permission": return submitPermission(root, input)
       case "begin_work": return beginWork(root, input)
       case "record_progress": return submitProgress(root, input)
@@ -535,6 +590,10 @@ export function executeOperation(root: string, operation: OperationName, input: 
       case "begin_workflow_step": return beginWorkflowStep(root, input)
       case "report_workflow_attempt": return reportWorkflowAttempt(root, input)
       case "record_workflow_output": return recordWorkflowOutput(root, input)
+      case "register_execution": return registerExecution(root, input)
+      case "configure_execution": return configureExecution(root, input)
+      case "stop_execution": return stopExecution(root, input)
+      case "record_activity": return recordExecutionActivity(root, input)
     }
   } catch (error) {
     throw normalizeOperationError(error)

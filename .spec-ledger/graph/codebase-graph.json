@@ -21,7 +21,7 @@
     {
       "id": "client",
       "name": "Client",
-      "blurb": "Typed SDK — only gateway for UIs"
+      "blurb": "Typed SDK \u2014 only gateway for UIs"
     },
     {
       "id": "server",
@@ -36,14 +36,14 @@
     {
       "id": "ui",
       "name": "UI",
-      "blurb": "Reference Spec Ledger UI — replaceable"
+      "blurb": "Reference Spec Ledger UI \u2014 replaceable"
     }
   ],
   "features": [
     {
       "id": "verify",
       "name": "Claim verification",
-      "summary": "Bindings + ingested results → provenance-bearing report.",
+      "summary": "Bindings + ingested results \u2192 provenance-bearing report.",
       "claimIds": [
         "SL-001",
         "SL-002",
@@ -107,14 +107,16 @@
     {
       "id": "client",
       "name": "Typed client",
-      "summary": "Transport-agnostic SDK — only gateway for UIs.",
+      "summary": "Transport-agnostic SDK \u2014 only gateway for UIs.",
       "claimIds": [
         "SL-003",
-        "SL-024"
+        "SL-024",
+        "SL-025"
       ],
       "entryPoints": [
         "packages/client/src/index.ts",
-        "packages/ledger/src/workflows/index.ts"
+        "packages/ledger/src/workflows/index.ts",
+        "packages/ledger/src/execution/index.ts"
       ],
       "keywords": [
         "client",
@@ -216,7 +218,7 @@
       "featureIds": [
         "lattice"
       ],
-      "purpose": "Spec Ledger UI — presentation only"
+      "purpose": "Spec Ledger UI \u2014 presentation only"
     },
     {
       "id": "ledger-mcp",

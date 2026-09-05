@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "turnId": "T-036",
+  "kind": "log-excerpt",
+  "title": "Full regression: 209 passing tests and 23 verified claims",
+  "path": "docs/workstreams/W-008-shared-agent-workflows/evidence/T-036/regression-tests.txt",
+  "mediaType": "text/plain",
+  "contentDigest": "03993238dfe3200dc2a8dcdecb7b357d26491de5d7115810586ef201485c4b37",
+  "byteLength": 26819,
+  "id": "T-036/A-02"
+}

@@ -41,7 +41,8 @@ function mapStatus(code: string): TurnFileKind {
 }
 
 function isOperationBookkeeping(path: string): boolean {
-  return path === ".spec-ledger/operations" || path.startsWith(".spec-ledger/operations/")
+  return path === ".spec-ledger/operations" || path.startsWith(".spec-ledger/operations/") ||
+    path === ".spec-ledger/runtime/activity" || path.startsWith(".spec-ledger/runtime/activity/")
 }
 
 /** Changed paths from git. Prefers HEAD diff; falls back to porcelain status. */

@@ -56,7 +56,7 @@ export function normalizeOperationError(error: unknown): OperationError {
   if (/permission|authorized|approval|denial|revok/i.test(message)) {
     return operationError("permission_denied", message)
   }
-  if (/(review id|workflow record id) already exists/i.test(message)) {
+  if (/(review id|workflow record id) already exists|activity event id already belongs/i.test(message)) {
     return operationError("idempotency_conflict", message)
   }
   if (/required|requires|must |refused|blocking|missing|shape at least/i.test(message)) {

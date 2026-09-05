@@ -17,6 +17,8 @@ const workflowProfile = z.object({
     }).strict()).min(1).max(20),
   }).strict()).min(1).max(20).optional(),
 }).strict()
+const provenance = z.object({ kind: z.literal("agent-reported"), reference: z.string().min(1).max(1000) }).strict()
+const opaqueId = z.string().regex(/^[A-Za-z0-9][A-Za-z0-9._:@-]{0,159}$/)
 
 export const OPERATION_SCHEMAS = {
   plan_work: z.object({ workstreamId: id }).strict(),
@@ -24,6 +26,7 @@ export const OPERATION_SCHEMAS = {
   get_session: z.object({ workstreamId: id.optional() }).strict(),
   preview_workflow: z.object({ workstreamId: id, profile: workflowProfile.optional() }).strict(),
   get_workflow: z.object({ workstreamId: id }).strict(),
+  get_execution: z.object({ registrationId: z.string().min(1).max(200).optional(), workstreamId: id.optional() }).strict(),
   record_permission: z.object({ requestId, authority: record }).strict(),
   begin_work: z.object({
     requestId, workstreamId: id, sliceId: id.optional(), goal: z.string().min(1).max(1000),
@@ -71,6 +74,19 @@ export const OPERATION_SCHEMAS = {
   record_workflow_output: z.object({ requestId, workstreamId: id, attemptId: id, kind: outputKind,
     recordType: z.enum(["snapshot", "review", "decision", "result"]), recordIds: stringList.min(1), criterionIds: stringList.optional(),
     expectedRevisionDigest: digest, expectedSourceDigest: digest, expectedSnapshotDigest: digest }).strict(),
+  register_execution: z.object({ requestId, workstreamId: id, turnId: id, workflowAttemptId: id.optional(), hostSessionRef: opaqueId,
+    expectedRevisionDigest: digest, expectedSourceDigest: digest }).strict(),
+  configure_execution: z.object({ requestId, registrationId: z.string().min(1).max(200),
+    continuation: z.object({ requested: z.boolean().optional(), minIntervalMs: z.number().int().min(60000).max(86400000).optional(), retryLimit: z.number().int().min(0).max(10).optional(), expiresAt: z.string().datetime().nullable().optional() }).strict().optional(),
+    timeout: z.object({ warningAfterMs: z.number().int().min(1000).max(86400000).nullable().optional(), enforceAfterMs: z.number().int().min(1000).max(86400000).nullable().optional() }).strict().optional(),
+    source: provenance, expectedRevisionDigest: digest, expectedSourceDigest: digest }).strict(),
+  stop_execution: z.object({ requestId, registrationId: z.string().min(1).max(200), reason: z.string().min(1).max(1000), source: provenance,
+    expectedRevisionDigest: digest, expectedSourceDigest: digest }).strict(),
+  record_activity: z.object({ registrationId: z.string().min(1).max(200), event: z.object({
+    eventId: opaqueId, sessionId: opaqueId, sequence: z.number().int().nonnegative().max(Number.MAX_SAFE_INTEGER),
+    kind: z.enum(["session-start", "session-stop", "tool-start", "tool-finish", "tool-failure", "waiting-user", "resumed"]),
+    observedAt: z.string().datetime(), invocationId: opaqueId.optional(), toolName: z.string().min(1).max(200).optional(), reason: z.string().min(1).max(1000).optional(),
+  }).strict() }).strict(),
 } as const
 
 export type OperationName = keyof typeof OPERATION_SCHEMAS

@@ -1,0 +1,12 @@
+{
+  "id": "SL-025",
+  "kind": "invariant",
+  "statement": "Best-effort execution activity cannot mint completion or recovery authority; unknown host state and absent capabilities prevent automatic recovery.",
+  "required": true,
+  "area": "client",
+  "links": {
+    "docs": [
+      "docs/workstreams/W-008-shared-agent-workflows/spec.md"
+    ]
+  }
+}

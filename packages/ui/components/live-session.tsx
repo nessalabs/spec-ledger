@@ -8,6 +8,7 @@ import type { SessionProjection } from "@nessalabs/spec-ledger-client"
 import { AcceptanceProgress } from "@/components/acceptance-progress"
 import { useSessionObservation } from "@/components/use-session-observation"
 import { WorkflowSummary } from "@/components/workflow-view"
+import { ExecutionActivitySummary } from "@/components/execution-activity"
 
 export function LiveSession({ initial }: { initial: SessionProjection }) {
   const [selected, setSelected] = useState(initial.session?.workstreamId ?? "")
@@ -85,6 +86,7 @@ export function LiveSession({ initial }: { initial: SessionProjection }) {
         remaining={session.completion.reasons}
       />
       <WorkflowSummary workflow={session.workflow} workstreamId={session.workstreamId} />
+      <ExecutionActivitySummary execution={session.executionActivity} workstreamId={session.workstreamId} />
       <section className="space-y-2"><h2 className="font-semibold">Needs attention</h2>
         {session.attention.length ? <ul className="list-disc space-y-1 pl-5 text-sm">{session.attention.map((item, i) => <li key={i}>{item}</li>)}</ul> : <p className="text-sm text-muted-foreground">No blocking attention items reported.</p>}
       </section>

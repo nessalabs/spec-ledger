@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "PC-022",
-  "status": "proposed",
+  "status": "accepted",
   "workstreamId": "W-008",
   "suggestedLiveId": "SL-025",
   "statement": "Best-effort execution activity cannot mint completion or recovery authority; unknown host state and absent capabilities prevent automatic recovery.",

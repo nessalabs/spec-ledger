@@ -5,6 +5,7 @@ import { AcceptanceProgress } from "@/components/acceptance-progress"
 import { WorkstreamEvidence } from "@/components/workstream-evidence"
 import { useSessionObservation } from "@/components/use-session-observation"
 import { WorkflowDetails } from "@/components/workflow-view"
+import { ExecutionActivityDetails } from "@/components/execution-activity"
 
 export function LiveWorkstreamEvidence({
   initial,
@@ -36,6 +37,7 @@ export function LiveWorkstreamEvidence({
         remaining={session.completion.reasons}
       />
       <WorkflowDetails workflow={session.workflow} criteria={session.criteria} />
+      <ExecutionActivityDetails execution={session.executionActivity} />
       <WorkstreamEvidence session={session} observedAt={data.observedAt} />
     </div>
   )

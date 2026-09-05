@@ -7,3 +7,4 @@ dist
 .DS_Store
 packages/ui/package-lock.json
 .pnpm-store/
+.spec-ledger/runtime/activity/

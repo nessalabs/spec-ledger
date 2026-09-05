@@ -1,0 +1,9 @@
+{
+  "id": "b-sl-025",
+  "claimId": "SL-025",
+  "kind": "test",
+  "locator": {
+    "type": "command",
+    "command": "node --test packages/ledger/dist/execution/*.test.js packages/mcp/dist/execution.lifecycle.test.js"
+  }
+}

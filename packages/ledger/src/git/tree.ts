@@ -9,7 +9,8 @@ function git(repoRoot: string, args: string[]): { ok: boolean; out: string } {
 }
 
 function isOperationBookkeeping(path: string): boolean {
-  return path === ".spec-ledger/operations" || path.startsWith(".spec-ledger/operations/")
+  return path === ".spec-ledger/operations" || path.startsWith(".spec-ledger/operations/") ||
+    path === ".spec-ledger/runtime/activity" || path.startsWith(".spec-ledger/runtime/activity/")
 }
 
 /** Current product content; commits and ledger-only metadata do not invalidate it. */
