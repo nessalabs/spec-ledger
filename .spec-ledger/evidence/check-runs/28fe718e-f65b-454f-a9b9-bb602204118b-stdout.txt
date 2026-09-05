@@ -1,0 +1,14 @@
+Audit inventory checked: 51 criteria in 8 workstreams. Gaps remain explicitly recorded; this does not prove all historical features pass.
+✔ audit cannot relabel another workstream or erase a mapped requirement (0.416917ms)
+✔ audit summary counts and scope must agree with its inspected inventory (0.319875ms)
+✔ a complete audit can acknowledge missing feature evidence (0.5445ms)
+✔ rejects missing, duplicate, rewritten and falsely mapped audit entries (0.121833ms)
+✔ requires explained judgments and readable evidence references (0.065625ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 73.634792

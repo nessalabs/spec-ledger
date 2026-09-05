@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "requestId": "w011-navigation-complete",
+  "operation": "complete_work",
+  "inputDigest": "7252f1779bc819f142319248ef2fbdc596a7eac8fad3c86ddd2e5f500469e5bd",
+  "finishedAt": "2026-09-05T03:56:34.979Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "id": "W-011",
+    "status": "done",
+    "title": "Find the spec, progress and proof easily",
+    "objective": "Navigate between the spec, current progress and evidence without wading through internal details.",
+    "specPath": "docs/workstreams/W-011-simple-navigation/spec.md",
+    "featureIds": [
+      "lattice"
+    ],
+    "policy": {
+      "requireSpecBreak": true,
+      "requireCodeBreak": true,
+      "requireAlignApprove": true
+    },
+    "trust": {
+      "userFacing": true,
+      "correctnessCritical": true,
+      "requiredEvidence": [
+        "unit",
+        "integration",
+        "e2e"
+      ]
+    },
+    "suggestedSlices": [
+      {
+        "id": "SLC-01",
+        "title": "Navigate work and inspect its proof",
+        "kind": "vertical",
+        "acceptance": [
+          "Open the selected spec and its evidence from a focused overview, with three main navigation choices and reachable secondary pages on keyboard and narrow screens.",
+          "Switch between evidence, history and process without losing deep links or browser history; preserve permission, evidence freshness and explicit test execution."
+        ],
+        "expectedPaths": [
+          "packages/ui/**",
+          "docs/**"
+        ],
+        "codeBreakReviewId": "T-040/R-01"
+      }
+    ],
+    "specBreakReviewId": "W-011/SR-02",
+    "updatedAt": "2026-09-05T03:56:34.978Z",
+    "seal": {
+      "sealedAt": "2026-09-05T03:31:38.364Z",
+      "sealedBy": "agent:permission:AUTH-W011-REQUEST",
+      "specDigest": "178afb4a37c09a50d17645a8834206bee3db11537a08b89546a27a5f710759c3",
+      "snapshotPath": "workstreams/W-011.seals/2.json",
+      "revision": 2,
+      "specDocDigest": "a451b321d106746918efcaad96ae13ed336811394c26e55db0b6b2ae730608a2"
+    },
+    "acceptanceClaimIds": {
+      "SLC-01/AC-1": [
+        "SL-029"
+      ],
+      "SLC-01/AC-2": [
+        "SL-029"
+      ]
+    }
+  }
+}

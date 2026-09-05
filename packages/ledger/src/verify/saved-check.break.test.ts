@@ -1,7 +1,7 @@
 import {randomUUID} from 'node:crypto'
 import {test} from 'node:test'
 import assert from 'node:assert/strict'
-import {mkdtempSync,writeFileSync,rmSync,symlinkSync,readdirSync,mkdirSync} from 'node:fs'
+import {existsSync,mkdtempSync,writeFileSync,rmSync,symlinkSync,readdirSync,mkdirSync} from 'node:fs'
 import {tmpdir} from 'node:os'
 import {join} from 'node:path'
 import {initLedger} from '../cli/init.js'
@@ -11,7 +11,9 @@ import {getCheckEvidence,getCheckRun,executeSavedRun,type CheckRun} from './save
 import {createLocalCheckBridge} from './local-check.js'
 function fixture(script="console.log('ok')") {const root=mkdtempSync(join(tmpdir(),'sl-run-break-'));initLedger(root,'breaker');writeFileSync(join(root,'check.cjs'),script);writeJson(join(root,'.spec-ledger/claims/C.json'),{id:'C',statement:'check',required:true});writeJson(join(root,'.spec-ledger/bindings/B.json'),{id:'B',claimId:'C',kind:'test',locator:{type:'command',command:'node check.cjs'}});return root}
 function input(root:string,id='breaker-request-1'){const e=getCheckEvidence(root,'B');return{requestId:id,bindingId:'B',expectedSourceDigest:e.sourceDigest!,expectedCheckDigest:e.checkDigest}}
-async function finish(root:string,id:string){for(let i=0;i<200;i++){const r=getCheckRun(root,id);if(['finished','unknown'].includes(r.state))return r;await new Promise(r=>setTimeout(r,25))}throw Error('worker did not finish')}
+async function finish(root:string,id:string){for(let i=0;i<200;i++){const r=getCheckRun(root,id);// A finished receipt is published before the report and operation receipt.
+// Wait for the owned execution guard to release before deleting the fixture.
+if(r.state==='unknown'||(r.state==='finished'&&!existsSync(join(root,'.spec-ledger/evidence/check-runs/.execution-lock'))))return r;await new Promise(r=>setTimeout(r,25))}throw Error('worker did not finish')}
 test('source changes during a saved check cannot produce a passing outcome',async()=>{const root=fixture("require('fs').writeFileSync('changed.txt','changed');console.log('ok')");try{const r=executeOperation(root,'run_saved_check',input(root)) as CheckRun;assert.equal((await finish(root,r.runId)).outcome,'missing');assert.notEqual(getCheckEvidence(root,'B').currentOutcome,'pass')}finally{rmSync(root,{recursive:true,force:true})}})
 test('large stdout and stderr drain without unbounded capture and retain intact hashes',async()=>{const root=fixture("process.stdout.write('x'.repeat(200000));process.stderr.write('y'.repeat(200000))");try{const r=executeOperation(root,'run_saved_check',input(root)) as CheckRun,c=await finish(root,r.runId);assert.equal(c.outcome,'pass');for(const o of[c.stdout,c.stderr]){assert.equal(o?.status,'intact');assert.equal(o?.truncated,true);assert.ok(Buffer.byteLength(o!.text!)<=32768)}}finally{rmSync(root,{recursive:true,force:true})}})
 test('overlapping new requests are rejected while retry returns the original identity',async()=>{const root=fixture("setTimeout(()=>console.log('finished'),350)");try{const i=input(root),r=executeOperation(root,'run_saved_check',i) as CheckRun;assert.equal((executeOperation(root,'run_saved_check',i) as CheckRun).runId,r.runId);assert.throws(()=>executeOperation(root,'run_saved_check',{...i,requestId:'second-request-1'}),/owns this checkout|busy/);await finish(root,r.runId);assert.equal(getCheckEvidence(root,'B').runs.length,1)}finally{rmSync(root,{recursive:true,force:true})}})

@@ -74,7 +74,8 @@
       "claimIds": [
         "SL-004",
         "SL-021",
-        "SL-022"
+        "SL-022",
+        "SL-029"
       ],
       "entryPoints": [
         "packages/ledger/src/graph/impact.ts",

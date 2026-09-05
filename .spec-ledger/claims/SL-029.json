@@ -1,0 +1,9 @@
+{
+  "id": "SL-029",
+  "statement": "Find the spec, current progress and supporting evidence without losing your place.",
+  "kind": "invariant",
+  "required": true,
+  "links": [
+    "docs/workstreams/W-011-simple-navigation/spec.md"
+  ]
+}

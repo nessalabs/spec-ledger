@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "id": "T-040/AW-17",
+  "reason": "The navigation verification exposed an unrelated temporary-folder cleanup race. Include only the breaker test wait for the worker guard to release; production behavior and all assertions remain unchanged.",
+  "actor": "agent:align",
+  "treeDigest": "4ef07d00a4fe8da540580c59235fb3f0d46cb9b44911338718d9f21dd7f58f5d",
+  "createdAt": "2026-09-05T03:54:12.122Z",
+  "workstreamId": "W-011",
+  "turnId": "T-040"
+}

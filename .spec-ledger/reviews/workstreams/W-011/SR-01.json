@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "id": "W-011/SR-01",
+  "workstreamId": "W-011",
+  "kind": "adversarial",
+  "target": "spec",
+  "reviewer": "agent:navigation-breaker",
+  "verdict": "approve",
+  "blocking": false,
+  "plainSummary": "The plan makes the spec and its evidence easier to find while preserving approvals and honest results.",
+  "summary": "Reviewed W011 against the tool-built related pack (feature lattice; SL004, SL021, SL022; T033–T039) and linked W009/W010 specs plus architecture/workflows.md. Three primary destinations with reachable secondary pages, hash/back-forward restoration, keyboard/narrow navigation, and passive evidence reads are testable as one UI composition slice. Existing source/freshness, missing proof, explicit rerun and permission behaviors are preserved. No new runner or core engine implied. No blocking written-spec contradictions found. Verify the precise old evidence/method/activity anchors, direct reload and browser history in code review, and preserve errors/attention when reducing overview cards.",
+  "findings": [],
+  "residualRisks": [
+    "The related command returned a caution-only worktree notice rather than a sibling-worktree scan; no authority was inferred from other checkouts.",
+    "Actual narrow-screen and keyboard behavior still requires a live browser walkthrough; navigation labels alone do not prove usability."
+  ],
+  "revisionDigest": "9eb3068387ea775617cec73bf53660250c24515636da5c53aa58ebe4f7324346"
+}

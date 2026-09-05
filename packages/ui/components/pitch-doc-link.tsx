@@ -15,7 +15,7 @@ export function PitchDocLink({
 
   return (
     <section className="space-y-2">
-      <h2 className="text-sm font-medium">Pitch</h2>
+      <h2 className="text-sm font-medium">Spec</h2>
       <div className="flex flex-wrap items-center gap-3 rounded-lg border border-border px-3 py-2.5">
         <div className="min-w-0 flex-1">
           {title ? (

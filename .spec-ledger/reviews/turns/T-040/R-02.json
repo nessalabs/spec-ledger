@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "T-040/R-02",
+  "turnId": "T-040",
+  "workstreamId": "W-011",
+  "kind": "human",
+  "target": "code",
+  "reviewer": "agent:align",
+  "verdict": "approve",
+  "summary": "User requested website consolidation, Sol navigation review, and pinned spec section links. UI and docs paths are covered; the documented waiver covers only the test fixture cleanup exposed during verification.",
+  "plainSummary": "The navigation changes stay within the requested website cleanup, with one documented test cleanup repair.",
+  "treeDigest": "4ef07d00a4fe8da540580c59235fb3f0d46cb9b44911338718d9f21dd7f58f5d",
+  "uncoveredPaths": [],
+  "coverageSource": "mixed"
+}

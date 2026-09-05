@@ -1,0 +1,25 @@
+▶ execution activity adversarial contracts
+  ✔ does not let a delayed finish close a newer start for the same invocation (130.918375ms)
+  ✔ preserves a waiting report after its event falls out of the retained activity window (549.867042ms)
+  ✔ does not let a delayed start resurrect an invocation already finished at a newer sequence (131.510125ms)
+  ✔ uses sequence rather than caller timestamps to leave a reported waiting state (117.26475ms)
+  ✔ bounds retained invocation state as well as event history and surfaces overflow as uncertainty (811.986041ms)
+  ✔ does not corrupt accepted activity and reports rejected delivery when local callers overlap (254.958209ms)
+  ✔ reads the requested registration exactly and keeps a stop sticky across later activity and registrations (301.416666ms)
+  ✔ rejects forged sessions and private payload fields without changing source or evidence (150.859542ms)
+  ✔ confines both durable execution and transient activity storage against escaping symlinks (220.592083ms)
+  ✔ records from a linked worktree and installs the activity ignore in shared git metadata (178.064416ms)
+  ✔ never turns agent-requested continuation or timeout settings into verified host capability (136.820083ms)
+  ✔ keeps collector failure and invalid emitter buffers from crashing the host process (240.993375ms)
+✔ execution activity adversarial contracts (3226.164541ms)
+✔ cli: activity preserves evidence and cannot grant recovery authority (2585.339042ms)
+✔ mcp: activity preserves evidence and cannot grant recovery authority (1194.13475ms)
+✔ persistent activity collector recovers after oversized framing and records later signals (649.457375ms)
+ℹ tests 15
+ℹ suites 1
+ℹ pass 15
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4517.216333

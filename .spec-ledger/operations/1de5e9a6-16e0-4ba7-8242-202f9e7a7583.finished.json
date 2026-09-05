@@ -1,0 +1,448 @@
+{
+  "schemaVersion": 1,
+  "requestId": "1de5e9a6-16e0-4ba7-8242-202f9e7a7583",
+  "operation": "run_checks",
+  "inputDigest": "8cd4887729c6084f5af3a4c5bcbadb8b2fc2927eda9aa3aac3bdb12842357e7c",
+  "finishedAt": "2026-09-05T03:44:47.583Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "producedAt": "2026-09-05T03:44:47.570Z",
+    "producedBy": "@nessalabs/spec-ledger@0.1.0",
+    "ok": false,
+    "provenance": {
+      "commit": "0d403e92c35186ae6507181fba4902a00b55a6c0",
+      "ledgerDigest": "3cae3d3eda0b12855b5ebbc9af33323468104c325a9911706debc6a623fcf3e6",
+      "resultsDigest": "c5761fe1e28c226db0ffc9ba8ec81dcc5b8f2858d9654ef8d231f55b0221d7a3",
+      "treeHint": "/Users/nessa/Documents/NessaLabs/spec-ledger",
+      "sourceDigest": "3a7e964e3e6b1a028c994a4cc0794412d71b00b6334c90ea94ccf615779dc669"
+    },
+    "claims": [
+      {
+        "claimId": "SL-001",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "b-sl-001"
+        ],
+        "checks": [
+          {
+            "bindingId": "b-sl-001",
+            "outcome": "pass"
+          }
+        ]
+      },
+      {
+        "claimId": "SL-002",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "b-sl-002"
+        ],
+        "checks": [
+          {
+            "bindingId": "b-sl-002",
+            "outcome": "pass"
+          }
+        ]
+      },
+      {
+        "claimId": "SL-003",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "b-sl-003"
+        ],
+        "checks": [
+          {
+            "bindingId": "b-sl-003",
+            "outcome": "pass"
+          }
+        ]
+      },
+      {
+        "claimId": "SL-004",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "b-sl-004"
+        ],
+        "checks": [
+          {
+            "bindingId": "b-sl-004",
+            "outcome": "pass"
+          }
+        ]
+      },
+      {
+        "claimId": "SL-005",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "b-sl-005"
+        ],
+        "checks": [
+          {
+            "bindingId": "b-sl-005",
+            "outcome": "pass"
+          }
+        ]
+      },
+      {
+        "claimId": "SL-006",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "b-sl-006"
+        ],
+        "checks": [
+          {
+            "bindingId": "b-sl-006",
+            "outcome": "pass"
+          }
+        ]
+      },
+      {
+        "claimId": "SL-007",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "b-sl-007"
+        ],
+        "checks": [
+          {
+            "bindingId": "b-sl-007",
+            "outcome": "pass"
+          }
+        ]
+      },
+      {
+        "claimId": "SL-008",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "b-sl-008"
+        ],
+        "checks": [
+          {
+            "bindingId": "b-sl-008",
+            "outcome": "pass"
+          }
+        ]
+      },
+      {
+        "claimId": "SL-011",
+        "required": true,
+        "outcome": "missing",
+        "bindingIds": [
+          "b-sl-011"
+        ],
+        "detail": "b-sl-011: evidence is stale for the current source or check",
+        "checks": [
+          {
+            "bindingId": "b-sl-011",
+            "outcome": "missing",
+            "detail": "evidence is stale for the current source or check"
+          }
+        ]
+      },
+      {
+        "claimId": "SL-012",
+        "required": true,
+        "outcome": "missing",
+        "bindingIds": [
+          "b-sl-012"
+        ],
+        "detail": "b-sl-012: evidence is stale for the current source or check",
+        "checks": [
+          {
+            "bindingId": "b-sl-012",
+            "outcome": "missing",
+            "detail": "evidence is stale for the current source or check"
+          }
+        ]
+      },
+      {
+        "claimId": "SL-013",
+        "required": true,
+        "outcome": "missing",
+        "bindingIds": [
+          "b-sl-013"
+        ],
+        "detail": "b-sl-013: evidence is stale for the current source or check",
+        "checks": [
+          {
+            "bindingId": "b-sl-013",
+            "outcome": "missing",
+            "detail": "evidence is stale for the current source or check"
+          }
+        ]
+      },
+      {
+        "claimId": "SL-014",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "b-sl-014"
+        ],
+        "checks": [
+          {
+            "bindingId": "b-sl-014",
+            "outcome": "pass",
+            "detail": "exit 0"
+          }
+        ]
+      },
+      {
+        "claimId": "SL-015",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "b-sl-015"
+        ],
+        "checks": [
+          {
+            "bindingId": "b-sl-015",
+            "outcome": "pass",
+            "detail": "exit 0"
+          }
+        ]
+      },
+      {
+        "claimId": "SL-016",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "b-sl-016"
+        ],
+        "checks": [
+          {
+            "bindingId": "b-sl-016",
+            "outcome": "pass",
+            "detail": "exit 0"
+          }
+        ]
+      },
+      {
+        "claimId": "SL-017",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "b-sl-017"
+        ],
+        "checks": [
+          {
+            "bindingId": "b-sl-017",
+            "outcome": "pass",
+            "detail": "exit 0"
+          }
+        ]
+      },
+      {
+        "claimId": "SL-018",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "b-sl-018"
+        ],
+        "checks": [
+          {
+            "bindingId": "b-sl-018",
+            "outcome": "pass",
+            "detail": "exit 0"
+          }
+        ]
+      },
+      {
+        "claimId": "SL-019",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "b-sl-019"
+        ],
+        "checks": [
+          {
+            "bindingId": "b-sl-019",
+            "outcome": "pass",
+            "detail": "exit 0"
+          }
+        ]
+      },
+      {
+        "claimId": "SL-020",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "b-sl-020"
+        ],
+        "checks": [
+          {
+            "bindingId": "b-sl-020",
+            "outcome": "pass",
+            "detail": "exit 0"
+          }
+        ]
+      },
+      {
+        "claimId": "SL-021",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "b-sl-021"
+        ],
+        "checks": [
+          {
+            "bindingId": "b-sl-021",
+            "outcome": "pass",
+            "detail": "exit 0"
+          }
+        ]
+      },
+      {
+        "claimId": "SL-022",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "b-sl-022"
+        ],
+        "checks": [
+          {
+            "bindingId": "b-sl-022",
+            "outcome": "pass",
+            "detail": "exit 0"
+          }
+        ]
+      },
+      {
+        "claimId": "SL-023",
+        "required": true,
+        "outcome": "missing",
+        "bindingIds": [
+          "b-sl-023"
+        ],
+        "detail": "b-sl-023: evidence is stale for the current source or check",
+        "checks": [
+          {
+            "bindingId": "b-sl-023",
+            "outcome": "missing",
+            "detail": "evidence is stale for the current source or check"
+          }
+        ]
+      },
+      {
+        "claimId": "SL-024",
+        "required": true,
+        "outcome": "missing",
+        "bindingIds": [
+          "b-sl-024"
+        ],
+        "detail": "b-sl-024: evidence is stale for the current source or check",
+        "checks": [
+          {
+            "bindingId": "b-sl-024",
+            "outcome": "missing",
+            "detail": "evidence is stale for the current source or check"
+          }
+        ]
+      },
+      {
+        "claimId": "SL-025",
+        "required": true,
+        "outcome": "missing",
+        "bindingIds": [
+          "b-sl-025"
+        ],
+        "detail": "b-sl-025: evidence is stale for the current source or check",
+        "checks": [
+          {
+            "bindingId": "b-sl-025",
+            "outcome": "missing",
+            "detail": "evidence is stale for the current source or check"
+          }
+        ]
+      },
+      {
+        "claimId": "SL-026",
+        "required": true,
+        "outcome": "missing",
+        "bindingIds": [
+          "b-sl-026"
+        ],
+        "detail": "b-sl-026: evidence is stale for the current source or check",
+        "checks": [
+          {
+            "bindingId": "b-sl-026",
+            "outcome": "missing",
+            "detail": "evidence is stale for the current source or check"
+          }
+        ]
+      },
+      {
+        "claimId": "SL-027",
+        "required": true,
+        "outcome": "missing",
+        "bindingIds": [
+          "b-sl-027"
+        ],
+        "detail": "b-sl-027: evidence is stale for the current source or check",
+        "checks": [
+          {
+            "bindingId": "b-sl-027",
+            "outcome": "missing",
+            "detail": "evidence is stale for the current source or check"
+          }
+        ]
+      },
+      {
+        "claimId": "SL-028",
+        "required": true,
+        "outcome": "missing",
+        "bindingIds": [
+          "b-sl-028"
+        ],
+        "detail": "b-sl-028: evidence is stale for the current source or check",
+        "checks": [
+          {
+            "bindingId": "b-sl-028",
+            "outcome": "missing",
+            "detail": "evidence is stale for the current source or check"
+          }
+        ]
+      },
+      {
+        "claimId": "SL-029",
+        "required": true,
+        "outcome": "missing",
+        "bindingIds": [
+          "b-sl-029"
+        ],
+        "detail": "b-sl-029: evidence is stale for the current source or check",
+        "checks": [
+          {
+            "bindingId": "b-sl-029",
+            "outcome": "missing",
+            "detail": "evidence is stale for the current source or check"
+          }
+        ]
+      }
+    ],
+    "graph": {
+      "ok": true,
+      "danglingNodes": [],
+      "missingLocators": [],
+      "freshness": "ok"
+    },
+    "problems": [
+      "claim SL-011: missing — b-sl-011: evidence is stale for the current source or check",
+      "claim SL-012: missing — b-sl-012: evidence is stale for the current source or check",
+      "claim SL-013: missing — b-sl-013: evidence is stale for the current source or check",
+      "claim SL-023: missing — b-sl-023: evidence is stale for the current source or check",
+      "claim SL-024: missing — b-sl-024: evidence is stale for the current source or check",
+      "claim SL-025: missing — b-sl-025: evidence is stale for the current source or check",
+      "claim SL-026: missing — b-sl-026: evidence is stale for the current source or check",
+      "claim SL-027: missing — b-sl-027: evidence is stale for the current source or check",
+      "claim SL-028: missing — b-sl-028: evidence is stale for the current source or check",
+      "claim SL-029: missing — b-sl-029: evidence is stale for the current source or check"
+    ]
+  }
+}

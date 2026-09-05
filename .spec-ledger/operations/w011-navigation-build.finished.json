@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "requestId": "w011-navigation-build",
+  "operation": "begin_work",
+  "inputDigest": "eb7e4b0ba3872bc8d5772d3f93924d97bfef487c18639053dc69d23afb0fa25c",
+  "finishedAt": "2026-09-05T03:25:20.635Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "id": "T-040",
+    "status": "open",
+    "openedAt": "2026-09-05T03:25:20.635Z",
+    "opened": {
+      "producedBy": "@nessalabs/spec-ledger@0.1.0",
+      "baseCommit": "0d403e92c35186ae6507181fba4902a00b55a6c0",
+      "treeDigest": "55e42d5f4adb32ab023b25bfeab5d30e00ba41b243cde48b457b7ecf56068706",
+      "dirtyAtOpen": [
+        ".spec-ledger/authority/AUTH-W011-REQUEST.json",
+        ".spec-ledger/reviews/workstreams/W-011/SR-01.json",
+        ".spec-ledger/workstreams/W-011.json",
+        ".spec-ledger/workstreams/W-011.seals/1.json",
+        "docs/workstreams/W-011-simple-navigation/spec.md"
+      ],
+      "contextDigest": "b5b08d13ec949cd8892203ab6e44be6593e015b7f69a4f2e4ce205ddac1b2029",
+      "contextWorkstreamId": "W-011",
+      "contextSliceId": "SLC-01",
+      "contextSealRevision": 1,
+      "contextGeneratedAt": "2026-09-05T03:25:20.635Z"
+    },
+    "intent": {
+      "userPrompt": "Find the spec, progress and proof easily",
+      "restatedGoal": "Find the spec, progress and proof easily",
+      "changeType": "feature",
+      "riskLevel": "moderate",
+      "workstreamId": "W-011",
+      "sliceId": "SLC-01",
+      "featureIds": [
+        "lattice"
+      ]
+    }
+  }
+}

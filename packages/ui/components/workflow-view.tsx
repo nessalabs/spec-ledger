@@ -226,7 +226,7 @@ export function WorkflowDetails({ workflow, criteria }: { workflow: Workflow; cr
         </div>
         <p className="text-sm">{workflow.profile.title}</p>
         <p className="text-xs text-muted-foreground">
-          This page observes the preserved method. Preview or select a local configuration through the portable CLI or the matching MCP tools.
+          {workflow.profile.snapshotId ? "This method was explicitly selected. Its recorded attempts and outputs are shown below." : "These steps are inferred from existing records. No method has been explicitly selected and this is not a record of step-by-step execution."}
         </p>
         <details className="rounded-lg border border-border/60 p-3 text-xs">
           <summary className="cursor-pointer font-medium">Configuration and preserved snapshots</summary>

@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "turnId": "T-040",
+  "decision": "Use three main destinations, open the spec and evidence directly, and switch sections without losing your place.",
+  "rationale": "Agent-reported progress; evidence is evaluated separately.",
+  "progress": {
+    "criterionIds": [
+      "SLC-01/AC-1",
+      "SLC-01/AC-2"
+    ],
+    "implemented": true,
+    "revisionDigest": "d02bd25855b0b970891f807c8c63f1922c1e8bd65fe4d6a67da2457fc9f86c5b",
+    "sourceDigest": "4ef07d00a4fe8da540580c59235fb3f0d46cb9b44911338718d9f21dd7f58f5d"
+  },
+  "id": "T-040/D-01"
+}

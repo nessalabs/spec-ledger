@@ -43,7 +43,7 @@ export function AcceptanceProgress({
       <div className="flex flex-wrap items-baseline justify-between gap-2">
         <h2 className="font-semibold">{historical ? "Current evidence coverage" : "Acceptance progress"}</h2>
         <p className="text-lg font-semibold tabular-nums">
-          Verified {progress.verified}/{progress.total} · {progress.percent}%
+          Evidence {progress.verified}/{progress.total} · {progress.percent}%
         </p>
       </div>
       <div
@@ -67,7 +67,7 @@ export function AcceptanceProgress({
       {unmapped > 0 && <p className="text-sm">{unmapped} criteria have no linked checks. Their verification is unknown.</p>}
       {remaining.length ? (
         <div className="space-y-1 text-xs text-muted-foreground">
-          <p>Current verification still needs:</p>
+          <p>{historical ? "Current verification needs attention:" : "Not ready to complete — still needed:"}</p>
           <ul className="list-disc space-y-1 pl-5">
             {remaining.map((reason) => <li key={reason}>{reason}</li>)}
           </ul>

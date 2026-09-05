@@ -33,17 +33,16 @@ export default async function VerifyPage() {
     <div className="mx-auto flex max-w-5xl flex-col gap-6">
       <header className="flex flex-col gap-2">
         <p className="text-[10px] uppercase tracking-wider text-muted-foreground">
-          Verify
+          Evidence
         </p>
         <div className="flex flex-wrap items-center gap-3">
-          <h1 className="text-2xl font-semibold tracking-tight">What still holds</h1>
+          <h1 className="text-2xl font-semibold tracking-tight">Evidence</h1>
           <Badge variant={report.claims.length === 0 && report.ok ? "outline" : report.ok ? "default" : "destructive"}>
             {report.claims.length === 0 && report.ok ? "No requirements checked" : report.ok ? "OK" : "FAIL"}
           </Badge>
         </div>
         <p className="max-w-2xl text-sm text-muted-foreground">
-          Live check of standing claims. Digests below are what CI pastes — not the
-          story; the statements are.
+          See which requirements have current supporting evidence. Open one to inspect its tests, output and remaining gaps. Reading this page does not run tests.
         </p>
       </header>
 
@@ -70,7 +69,7 @@ export default async function VerifyPage() {
       </section>
 
       <section className="space-y-2">
-        <h2 className="text-sm font-medium">Claims</h2>
+        <h2 className="text-sm font-medium">Requirements</h2>
         <ul className="divide-y divide-border rounded-lg border border-border">
           {report.claims.map((c) => {
             const claim = claimById.get(c.claimId)

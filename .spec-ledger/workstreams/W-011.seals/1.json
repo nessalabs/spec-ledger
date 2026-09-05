@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "workstreamId": "W-011",
+  "revision": 1,
+  "sealedAt": "2026-09-05T03:25:20.453Z",
+  "sealedBy": "agent:permission:AUTH-W011-REQUEST",
+  "specDigest": "7354475d5ea9c7a5dfcae5fbcee50fc608b86d7cd57b40b3915206847213b170",
+  "specDocDigest": "a451b321d106746918efcaad96ae13ed336811394c26e55db0b6b2ae730608a2",
+  "body": {
+    "id": "W-011",
+    "featureIds": [
+      "lattice"
+    ],
+    "primaryFeatureId": null,
+    "title": "Find the spec, progress and proof easily",
+    "objective": "Navigate between the spec, current progress and evidence without wading through internal details.",
+    "specPath": "docs/workstreams/W-011-simple-navigation/spec.md",
+    "appetite": null,
+    "changeType": null,
+    "riskLevel": null,
+    "trust": {
+      "userFacing": true,
+      "correctnessCritical": true,
+      "requiredEvidence": [
+        "unit",
+        "integration",
+        "e2e"
+      ]
+    },
+    "policy": {
+      "requireSpecBreak": true,
+      "requireCodeBreak": true,
+      "requireAlignApprove": true
+    },
+    "acceptanceCriteria": [],
+    "outOfScope": [],
+    "proposedClaimIds": [],
+    "suggestedSlices": [
+      {
+        "id": "SLC-01",
+        "title": "Navigate work and inspect its proof",
+        "kind": "vertical",
+        "acceptance": [
+          "Open the selected spec and its evidence from a focused overview, with three main navigation choices and reachable secondary pages on keyboard and narrow screens.",
+          "Switch between evidence, history and process without losing deep links or browser history; preserve permission, evidence freshness and explicit test execution."
+        ],
+        "evidence": [],
+        "expectedClaimIds": [],
+        "expectedPaths": [
+          "packages/ui/**",
+          "docs/**"
+        ]
+      }
+    ]
+  }
+}

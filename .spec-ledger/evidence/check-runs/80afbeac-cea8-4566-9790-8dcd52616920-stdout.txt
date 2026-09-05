@@ -1,0 +1,14 @@
+▶ all-check aggregation adversarial
+  ✔ is invariant under every ordering of mixed evidence kinds (3842.242625ms)
+  ✔ rejects agreeing duplicates and unused duplicates without silently choosing a row (65.791958ms)
+  ✔ cannot hide a malformed locator or invalid result outcome behind a passing check (78.894459ms)
+  ✔ delivers failed reports and snapshots through actual HTTP and in-process clients (208.883125ms)
+✔ all-check aggregation adversarial (4196.351042ms)
+ℹ tests 4
+ℹ suites 1
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4242.846917

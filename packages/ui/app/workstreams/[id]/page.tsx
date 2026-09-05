@@ -53,7 +53,7 @@ export default async function WorkstreamPage({
       <header className="flex flex-col gap-3">
         <p className="text-[10px] uppercase tracking-wider text-muted-foreground">
           <Link href="/workstreams" className="no-underline hover:underline">
-            Workstreams
+            Specs
           </Link>
           {" / "}
           {ws.id}
@@ -81,17 +81,14 @@ export default async function WorkstreamPage({
       </header>
 
       {specPath && planMarkdown ? (
-        <PitchDocLink path={specPath} title="Sealed pitch" />
+        <PitchDocLink path={specPath} title="Read the spec" />
       ) : (
         <p className="max-w-2xl text-sm leading-relaxed text-muted-foreground">
           {presentationCopy(ws.objective)}
         </p>
       )}
 
-      {projection.session && (
-        <LiveWorkstreamEvidence initial={projection} workstreamId={id} />
-      )}
-
+      {projection.session ? <LiveWorkstreamEvidence initial={projection} workstreamId={id} history={
       <section className="space-y-3">
         <p className="text-xs text-muted-foreground">History describes earlier snapshots. An outdated turn result does not replace the current evidence above.</p>
         <div className="flex items-baseline justify-between gap-2">
@@ -118,6 +115,33 @@ export default async function WorkstreamPage({
           </div>
         )}
       </section>
+      } /> :       <section className="space-y-3">
+        <p className="text-xs text-muted-foreground">History describes earlier snapshots. An outdated turn result does not replace the current evidence above.</p>
+        <div className="flex items-baseline justify-between gap-2">
+          <h2 className="text-sm font-medium">Work history</h2>
+          <p className="text-xs text-muted-foreground">
+            {linked.length} turn{linked.length === 1 ? "" : "s"}
+          </p>
+        </div>
+        {linked.length === 0 ? (
+          <p className="text-sm text-muted-foreground">
+            No turns under this workstream yet.
+          </p>
+        ) : (
+          <div className="flex flex-col gap-1.5">
+            {linked.map((t) => (
+              <TurnSummaryCard
+                key={t.id}
+                turn={t}
+                report={report}
+                compact
+                workstreamTitle={presentationCopy(ws.title)}
+              />
+            ))}
+          </div>
+        )}
+      </section>}
+
     </div>
   )
 
