@@ -36,6 +36,7 @@ export default async function FeaturePage({
   const nodes =
     graph?.nodes.filter((n) => n.featureIds?.includes(feature.id)) ?? []
   const linkedClaims = claims.filter((c) => feature.claimIds?.includes(c.id))
+  const outcomeById = new Map(report.claims.map((c) => [c.claimId, c.outcome]))
 
   return (
     <div className="mx-auto flex max-w-5xl flex-col gap-8">
@@ -68,18 +69,33 @@ export default async function FeaturePage({
 
       <Card>
         <CardHeader>
-          <CardTitle>Claims</CardTitle>
-          <CardDescription>Standing truth this feature is bound to.</CardDescription>
+          <CardTitle>Requirements</CardTitle>
+          <CardDescription>
+            Standing truth this feature is bound to. Open one to inspect its proof.
+          </CardDescription>
         </CardHeader>
-        <CardContent className="flex flex-wrap gap-2">
+        <CardContent>
           {linkedClaims.length === 0 ? (
             <p className="text-sm text-muted-foreground">No claim links.</p>
           ) : (
-            linkedClaims.map((c) => (
-              <Link key={c.id} href={`/claims/${encodeURIComponent(c.id)}`}>
-                <Badge className="font-mono">{c.id}</Badge>
-              </Link>
-            ))
+            <ul className="space-y-1.5">
+              {linkedClaims.map((c) => (
+                <li key={c.id} className="flex gap-2 text-sm">
+                  <span aria-hidden className="text-muted-foreground">
+                    ·
+                  </span>
+                  <Link
+                    href={`/claims/${encodeURIComponent(c.id)}`}
+                    className="min-w-0 flex-1 leading-snug text-foreground no-underline hover:underline"
+                  >
+                    {c.statement}
+                  </Link>
+                  <span className="shrink-0 text-xs capitalize text-muted-foreground">
+                    {outcomeById.get(c.id) ?? ""}
+                  </span>
+                </li>
+              ))}
+            </ul>
           )}
         </CardContent>
       </Card>

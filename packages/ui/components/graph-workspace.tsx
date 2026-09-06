@@ -2,7 +2,6 @@
 
 import { featureHref, featureLabel, featureSummary, featureSlug } from "@/lib/features"
 
-
 import * as React from "react"
 import {
   AppShell,
@@ -16,7 +15,6 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-  PopoverSurface,
   createAppShellLayout,
   useAppShell,
   PaneSplitDirection,
@@ -195,7 +193,7 @@ function GraphMain({
           <div className="border-b border-border px-3 py-2">
             <h2 className="text-sm font-medium">Features</h2>
             <p className="text-[11px] text-muted-foreground">
-              Hover a claim id; click to open a pane.
+              Open a requirement to read it beside the map.
             </p>
           </div>
           <ul className="divide-y divide-border">
@@ -216,16 +214,22 @@ function GraphMain({
                   {featureSummary(f.id, f.summary)}
                 </p>
                 {f.claimIds?.length ? (
-                  <div className="mt-1 flex flex-wrap gap-1">
+                  <ul className="mt-1.5 space-y-0.5">
                     {f.claimIds.map((id) => (
-                      <ClaimChip
-                        key={id}
-                        claim={claimById.get(id)}
-                        claimId={id}
-                        onOpen={() => onOpenClaim(id)}
-                      />
+                      <li key={id} className="flex gap-1.5 text-xs">
+                        <span aria-hidden className="text-muted-foreground">
+                          ·
+                        </span>
+                        <button
+                          type="button"
+                          onClick={() => onOpenClaim(id)}
+                          className="min-w-0 flex-1 rounded text-start leading-snug text-muted-foreground outline-none hover:text-foreground hover:underline focus-visible:ring-2 focus-visible:ring-ring"
+                        >
+                          {claimById.get(id)?.statement ?? id}
+                        </button>
+                      </li>
                     ))}
-                  </div>
+                  </ul>
                 ) : null}
               </li>
             ))}
@@ -291,45 +295,6 @@ function GraphMain({
         </CardContent>
       </Card>
     </div>
-  )
-}
-
-function ClaimChip({
-  claimId,
-  claim,
-  onOpen,
-}: {
-  claimId: string
-  claim?: Claim
-  onOpen: () => void
-}) {
-  return (
-    <span className="group relative inline-flex">
-      <button
-        type="button"
-        onClick={onOpen}
-        className="rounded-full outline-none focus-visible:ring-2 focus-visible:ring-ring"
-      >
-        <Badge variant="secondary" className="cursor-pointer font-mono hover:bg-accent">
-          {claimId}
-        </Badge>
-      </button>
-      <PopoverSurface
-        className="pointer-events-none absolute start-0 top-full z-20 mt-2 hidden w-72 p-3 group-hover:block"
-        elevation="xl"
-      >
-        <p className="font-mono text-[10px] text-muted-foreground">{claimId}</p>
-        <p className="mt-1 text-xs leading-relaxed">
-          {claim?.statement ?? "Claim not loaded in this ledger."}
-        </p>
-        {claim ? (
-          <p className="mt-2 text-[10px] text-muted-foreground">
-            {claim.kind}
-            {claim.required ? " · required" : ""} · click to open pane
-          </p>
-        ) : null}
-      </PopoverSurface>
-    </span>
   )
 }
 

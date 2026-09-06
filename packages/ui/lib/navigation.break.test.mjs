@@ -51,7 +51,7 @@ test('mobile navigation closes on same-page selection and route change but prese
  const ui=new Proxy({useSidebar:()=>({setOpen})},{get:(target,key)=>target[key]??((props)=>React.createElement('div',props,props.children))})
  const Link=props=>React.createElement('a',props,props.children)
  globalThis.window={matchMedia:()=>({matches:mobile,addEventListener(){},removeEventListener(){}})}
- const Shell=compile('../components/spec-ledger-shell.tsx',{'react':{...React,useState:()=>[open,setOpen],useEffect:fn=>effects.push(fn)},'next/link':{default:Link},'next/navigation':{usePathname:()=>pathname},'@nessalabs/ui':ui,'lucide-react':new Proxy({},{get:()=>()=>null}),'@/lib/cn':{cn:(...values)=>values.join(' ')},'@/components/doc-reader':{DocReaderProvider:({children})=>children}}).SpecLedgerShell
+ const Shell=compile('../components/spec-ledger-shell.tsx',{'react':{...React,useState:()=>[open,setOpen],useEffect:fn=>effects.push(fn)},'next/link':{default:Link},'next/navigation':{usePathname:()=>pathname},'@nessalabs/ui':ui,'lucide-react':new Proxy({},{get:()=>()=>null}),'@/lib/cn':{cn:(...values)=>values.join(' ')},'@/components/doc-reader':{DocReaderProvider:({children})=>children},'@/components/theme-toggle':{ThemeToggle:()=>null}}).SpecLedgerShell
  const expand=node=>{
   if(!node||typeof node!=='object')return node
   if(typeof node.type==='function')return expand(node.type(node.props))
@@ -64,7 +64,7 @@ test('mobile navigation closes on same-page selection and route change but prese
   assert.ok(link,'real sidebar spec link is reachable')
   link.props.onClick({});assert.equal(open,false,'same-page link closes overlay even when pathname does not change')
   for(const key of ['metaKey','ctrlKey','shiftKey','altKey']){open=true;link.props.onClick({[key]:true});assert.equal(open,true,key)}
-  open=true;pathname='/verify';effects=[];expand(Shell({children:'page'}));effects.at(-1)();assert.equal(open,false,'route changes dismiss mobile navigation')
+  open=true;pathname='/claims';effects=[];expand(Shell({children:'page'}));effects.at(-1)();assert.equal(open,false,'route changes dismiss mobile navigation')
   mobile=false;open=true;link.props.onClick({});assert.equal(open,true,'desktop navigation stays visible')
  } finally {globalThis.window=oldWindow}
 })

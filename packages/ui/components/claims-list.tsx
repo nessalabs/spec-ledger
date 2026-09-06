@@ -5,10 +5,10 @@ import { cn } from "@/lib/cn"
 import { PeekLink, claimPeekMarkdown } from "@/components/peek-link"
 
 const outcomeClass: Record<string, string> = {
-  pass: "text-emerald-400",
-  fail: "text-red-400",
-  missing: "text-amber-400",
-  unbound: "text-amber-400",
+  pass: "text-emerald-600 dark:text-emerald-400",
+  fail: "text-red-600 dark:text-red-400",
+  missing: "text-amber-600 dark:text-amber-400",
+  unbound: "text-amber-600 dark:text-amber-400",
   attested: "text-muted-foreground",
 }
 
@@ -52,16 +52,14 @@ export function ClaimsList({
               peekLabel={claim.id}
               peekContent={peek}
               title="⌘/Ctrl-click to peek beside the list"
-              className="grid gap-1 px-3 py-2.5 no-underline transition-colors hover:bg-muted/40 sm:grid-cols-[5.5rem_minmax(0,1fr)_auto] sm:items-baseline sm:gap-3"
+              className="grid gap-1 px-3 py-2.5 no-underline transition-colors hover:bg-muted/40 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-baseline sm:gap-3"
             >
-              <span className="font-mono text-xs font-semibold text-foreground">
-                {claim.id}
-              </span>
               <span className="min-w-0">
-                <span className="line-clamp-2 text-sm leading-snug text-foreground/90">
+                <span className="line-clamp-2 text-sm leading-snug text-foreground">
                   {claim.statement}
                 </span>
                 <span className="mt-0.5 flex flex-wrap items-center gap-x-2 gap-y-0.5 text-[11px] text-muted-foreground">
+                  <span className="font-mono">{claim.id}</span>
                   <span>{claim.kind}</span>
                   {claim.required ? <span>required</span> : <span>optional</span>}
                   <span>

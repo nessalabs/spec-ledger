@@ -20,10 +20,7 @@ export default async function CompassPage() {
   return (
     <div className="mx-auto flex max-w-5xl flex-col gap-8">
       <header className="flex flex-col gap-2">
-        <p className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
-          Compass
-        </p>
-        <h1 className="text-2xl font-semibold tracking-tight">Vision & weighing rules</h1>
+        <h1 className="text-2xl font-semibold tracking-tight">Direction</h1>
         <p className="max-w-2xl text-sm text-muted-foreground">
           Not verify truth — standing north star, tenets, and themes that shape workstreams.
         </p>
