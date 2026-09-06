@@ -33,3 +33,11 @@ jobs:
       - run: pnpm verify
       - run: pnpm run ledger:audit
       - run: pnpm run ledger:align
+      - name: Preserve verification diagnostics on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: verification-diagnostics
+          path: .spec-ledger/evidence/check-runs/
+          include-hidden-files: true
+          retention-days: 7
