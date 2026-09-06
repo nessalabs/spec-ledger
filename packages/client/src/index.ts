@@ -8,6 +8,7 @@ import {
   getSession,
   getCheckEvidence, getCheckRun, type CheckEvidence, type CheckRun,
   type SessionProjection,
+  type CompletionChecklistItem,
   permissionStatus,
   listLearnings,
   type PermissionStatus,
@@ -246,6 +247,7 @@ export function createSpecLedgerClient(transport: LedgerTransport): SpecLedgerCl
 
 export type {
   SessionProjection,
+  CompletionChecklistItem,
   PermissionStatus,
   Learning,
   Claim,

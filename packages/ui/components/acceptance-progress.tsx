@@ -1,10 +1,24 @@
 import { acceptanceProgress } from "@/lib/acceptance-progress"
+import { Check, CircleDashed, Loader } from "lucide-react"
+import type { CompletionChecklistItem } from "@nessalabs/spec-ledger-client"
+
+/** Done, actively moving, or not started — never a stand-in for a passing check. */
+function ChecklistMark({ state }: { state: CompletionChecklistItem["state"] }) {
+  if (state === "done") {
+    return <Check className="size-4 shrink-0 translate-y-0.5 text-emerald-600 dark:text-emerald-400" aria-label="Done" />
+  }
+  if (state === "in-progress") {
+    return <Loader className="size-4 shrink-0 translate-y-0.5 text-amber-600 dark:text-amber-400" aria-label="In progress" />
+  }
+  return <CircleDashed className="size-4 shrink-0 translate-y-0.5 text-muted-foreground" aria-label="Not started" />
+}
 
 export function AcceptanceProgress({
   total,
   verified,
   implemented,
   remaining = [],
+  checklist = [],
   historical = false,
   unmapped = 0,
 }: {
@@ -12,6 +26,7 @@ export function AcceptanceProgress({
   verified: number
   implemented: number
   remaining?: string[]
+  checklist?: CompletionChecklistItem[]
   historical?: boolean
   unmapped?: number
 }) {
@@ -62,7 +77,28 @@ export function AcceptanceProgress({
       </div>
       {unmapped > 0 && <p className="text-sm">{unmapped} requirements have no linked checks yet.</p>}
       {historical && progress.verified < progress.total && <p className="text-sm">Completed earlier; some evidence needs rechecking.</p>}
-      {remaining.length > 0 && <div className="space-y-1 text-sm"><p className="font-medium">{historical ? "Needs rechecking" : "Still needed"}</p><ul className="list-disc space-y-1 pl-5">{remaining.map(reason => <li key={reason}>{reason}</li>)}</ul></div>}
+      {checklist.length > 0 && (
+        <div className="space-y-1.5 text-sm">
+          <p className="font-medium">{historical ? "Needs rechecking" : "Completion checklist"}</p>
+          <ul className="space-y-1">
+            {checklist.map(item => (
+              <li key={item.id} className="flex items-baseline gap-2">
+                <ChecklistMark state={item.state} />
+                <span className={item.state === "done" ? "text-muted-foreground" : undefined}>
+                  {item.label}
+                  {item.total ? <span className="text-muted-foreground"> · {item.done ?? 0}/{item.total}</span> : null}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+      {checklist.length === 0 && remaining.length > 0 && (
+        <div className="space-y-1 text-sm">
+          <p className="font-medium">{historical ? "Needs rechecking" : "Still needed"}</p>
+          <ul className="list-disc space-y-1 pl-5">{remaining.map(reason => <li key={reason}>{reason}</li>)}</ul>
+        </div>
+      )}
       <details className="text-xs text-muted-foreground"><summary className="cursor-pointer">About this progress</summary><div className="mt-2 space-y-2"><p>Current implementation reports: {progress.implemented}/{progress.total} · agent reported</p><p>The percentage counts requirements with current passing evidence. Reviews and other completion requirements are checked separately.</p>{historical && <p>This work was completed earlier. These counts describe evidence on the current code.</p>}</div></details>
     </section>
   )
