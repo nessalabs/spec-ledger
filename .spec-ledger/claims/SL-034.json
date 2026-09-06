@@ -1,0 +1,12 @@
+{
+  "id": "SL-034",
+  "kind": "invariant",
+  "statement": "Concurrent work receives generated UUID identities; migration preserves both histories and never fabricates current evidence.",
+  "required": true,
+  "area": "core",
+  "links": {
+    "docs": [
+      "docs/workstreams/W-015-concurrent-identities/spec.md"
+    ]
+  }
+}

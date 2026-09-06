@@ -1,0 +1,16 @@
+{
+  "id": "B-SL-034",
+  "claimId": "SL-034",
+  "kind": "test",
+  "locator": {
+    "type": "command",
+    "command": "node --test packages/ledger/dist/identity/*.test.js"
+  },
+  "test": {
+    "level": "integration",
+    "description": "Concurrent creation, generated UUID references, migration recovery and data integrity.",
+    "source": {
+      "path": "packages/ledger/src/identity/identity.break.test.ts"
+    }
+  }
+}
