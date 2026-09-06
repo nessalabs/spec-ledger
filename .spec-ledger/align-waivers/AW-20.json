@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "id": "T-048/AW-20",
+  "reason": "User explicitly requested fixing PR 2 CI; .github/workflows/ci.yml must configure the job Git subprocesses to prevent automatic background maintenance racing disposable repository cleanup throughout the suite.",
+  "actor": "agent:user-request",
+  "treeDigest": "5da35595ece444f4b6f1b69c56ed2c89b4583ea26e1b065be4f37c6e42f8395e",
+  "createdAt": "2026-09-06T07:21:19.717Z",
+  "workstreamId": "W-014",
+  "turnId": "T-048"
+}

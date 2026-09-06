@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "requestId": "2e7e1028-e702-4c8e-8e26-61a7b3175667",
+  "operation": "run_saved_check",
+  "inputDigest": "1537f152ca84543fd036e30cefdcc9a10d47e8bc1f05f696e5c228f0a94acfae",
+  "finishedAt": "2026-09-06T07:24:16.297Z",
+  "outcome": "succeeded",
+  "result": {
+    "runId": "962a15b1-bb27-4f9d-80eb-bfea5c20eab3",
+    "previousRunId": "69ac60a2-7b60-4145-8cd9-3e7f3c9abcc0",
+    "requestId": "2e7e1028-e702-4c8e-8e26-61a7b3175667",
+    "bindingId": "b-sl-031",
+    "state": "queued",
+    "command": "node --test packages/ui/lib/simplicity.break.test.mjs packages/ui/lib/check-evidence.test.mjs packages/ui/lib/navigation*.test.mjs",
+    "cwd": "/Users/nessa/Documents/NessaLabs/spec-ledger-workflow-library",
+    "sourceDigest": "5da35595ece444f4b6f1b69c56ed2c89b4583ea26e1b065be4f37c6e42f8395e",
+    "checkDigest": "ad6edf9e87d22aee7de15141511eb984af665529f056aa6252b2a0aeb1a05443",
+    "startedAt": "2026-09-06T07:24:16.295Z"
+  }
+}

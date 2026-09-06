@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "requestId": "2f4585ea-9e3c-49a9-8e5a-93f94f5d6796",
+  "operation": "begin_work",
+  "inputDigest": "5b836ed560b748560d89c1a73977d9076fd86c33a8b121551c4976d7e9b03903",
+  "finishedAt": "2026-09-06T07:20:38.436Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "id": "T-048",
+    "status": "open",
+    "openedAt": "2026-09-06T07:20:38.435Z",
+    "opened": {
+      "producedBy": "@nessalabs/spec-ledger@0.1.0",
+      "baseCommit": "02c5e66ace1b78237a1479e258732a59f5b52922",
+      "treeDigest": "47c70dc12fd9b447502a27da1f458a75ef70d5808408f28750350788a4b46a2e",
+      "dirtyAtOpen": [],
+      "contextDigest": "2356afec317817ccf3ca3b02eaa9e500d0b7bdda4381f1dd1b39afbbd89784a2",
+      "contextWorkstreamId": "W-014",
+      "contextSliceId": "SLC-02",
+      "contextSealRevision": 1,
+      "contextGeneratedAt": "2026-09-06T07:20:38.435Z"
+    },
+    "intent": {
+      "userPrompt": "Continue fixing PR 2 CI after the Linux rerun exposed detached Git maintenance in another disposable repository.",
+      "restatedGoal": "Keep CI fixture cleanup deterministic",
+      "changeType": "fix",
+      "riskLevel": "moderate",
+      "workstreamId": "W-014",
+      "sliceId": "SLC-02",
+      "featureIds": [
+        "client",
+        "cli",
+        "lattice"
+      ]
+    }
+  }
+}
