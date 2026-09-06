@@ -1,0 +1,31 @@
+✔ visual breaker: digest mismatch, remote paths, type mismatch and escaping symlinks never expose image bytes (1.6625ms)
+✔ visual breaker: per-image and shared image budgets are enforced across attachments (3.582875ms)
+✔ visual breaker: truncated image headers cannot be offered as valid previews (1.117083ms)
+✔ visual breaker: exhausted image budget still preserves bounded text findings (0.612041ms)
+✔ passive evidence render keeps authored expectations distinct and escapes test source (4.315042ms)
+✔ actual failures and tampered logs remain visible independently of a described expectation (3.374708ms)
+✔ uncertain HTTP response reconnects with the same request identity (6.137583ms)
+✔ section history returns from execution to exact acceptance without hiding the evidence (11.48575ms)
+✔ unknown or obsolete fragments do not strand readers in an invisible section (0.066875ms)
+✔ mobile navigation closes on same-page selection and route change but preserves modified clicks (12.482917ms)
+✔ change history is isolated from the live child list and renders without key warnings (14.803417ms)
+✔ the in-page workflow retains its picker and process state when live data changes workstream (3.047625ms)
+✔ a deleted library name stays visible with its preserved version while switching is pending (6.796916ms)
+✔ workflow definition has one library route and the old per-spec route no longer resolves (0.189ms)
+✔ overview keeps permission and problems visible with direct spec, evidence and history links (37.400125ms)
+✔ approved work does not request approval again and disconnected approval stays disabled (23.817292ms)
+✔ simpler progress keeps incomplete and historical limits visible even when all checks pass (0.885542ms)
+✔ failed missing attested and unmapped requirements keep honest statuses on expandable requirements (1.491583ms)
+✔ simplified feature observation still exposes disconnection without replacing the requested spec (3.075084ms)
+✔ opening proof reads evidence without posting a command (12.079083ms)
+✔ requirement expansion mounts proof only on demand and screenshot labels never imply current pass (3.128167ms)
+✔ passing run metadata stays collapsed while output failures and historical warnings remain visible (20.873084ms)
+✔ completion keeps finished planning ahead of implementation and never changes supplied states or counts (0.69525ms)
+ℹ tests 23
+ℹ suites 0
+ℹ pass 23
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 219.74175

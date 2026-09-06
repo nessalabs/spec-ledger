@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "requestId": "702ee23c-777b-430d-9054-16b12ff29e26",
+  "operation": "begin_work",
+  "inputDigest": "c138830a8e3aaee18b48d15df8282502fd66a23ced6f96f41dc31cccba4450b6",
+  "finishedAt": "2026-09-06T19:40:12.601Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "id": "39199b39-0b2c-42c4-be3c-69d4ba0218b0",
+    "status": "open",
+    "openedAt": "2026-09-06T19:40:12.600Z",
+    "opened": {
+      "producedBy": "@nessalabs/spec-ledger@0.1.0",
+      "baseCommit": "96d9c801e01d4c91f1e132f6e33c9b1fed0f4cb3",
+      "treeDigest": "ea0a0e8870dd50e96418ccd075fb141ca46bf3b87725051142dcb5a17ab518b9",
+      "dirtyAtOpen": [],
+      "contextDigest": "3faf65edbc06a3b52548a44bdb72e2a8abe2057adfa7119bf94c514c7998bf9f",
+      "contextWorkstreamId": "eab32d2d-6c3c-84df-b831-9bcc13fd0152",
+      "contextSliceId": "596b8830-61c6-887a-b6c3-9ae0561f2761",
+      "contextSealRevision": 1,
+      "contextGeneratedAt": "2026-09-06T19:40:12.600Z"
+    },
+    "intent": {
+      "userPrompt": "Finish the authorized UUID integration and PR validation by fixing the clean CI build ordering failure.",
+      "restatedGoal": "Build the integrated packages in dependency order",
+      "changeType": "feature",
+      "riskLevel": "moderate",
+      "workstreamId": "eab32d2d-6c3c-84df-b831-9bcc13fd0152",
+      "sliceId": "596b8830-61c6-887a-b6c3-9ae0561f2761",
+      "featureIds": [
+        "turns",
+        "lattice",
+        "cli",
+        "verify"
+      ]
+    }
+  }
+}

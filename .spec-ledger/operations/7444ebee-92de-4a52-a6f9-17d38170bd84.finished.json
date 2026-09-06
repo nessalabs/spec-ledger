@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "requestId": "7444ebee-92de-4a52-a6f9-17d38170bd84",
+  "operation": "record_screenshot",
+  "inputDigest": "264f99744bc25871a70650de6e60338efd915480a7359073be8380a5c8413931",
+  "finishedAt": "2026-09-06T19:43:27.779Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "id": "226de682-c8ca-4816-93b1-b2c8d82983bd",
+    "turnId": "39199b39-0b2c-42c4-be3c-69d4ba0218b0",
+    "kind": "image",
+    "title": "Integrated workflow library",
+    "path": ".spec-ledger/evidence/screenshots/uuid-workflows-ci.jpg",
+    "mediaType": "image/jpeg",
+    "byteLength": 38085,
+    "contentDigest": "dedf4d8301cbc0d8162c3958fe4edb7582d0c0206a574a9843ff257ffab80bfa",
+    "visualEvidence": {
+      "sliceId": "596b8830-61c6-887a-b6c3-9ae0561f2761",
+      "surface": "Integrated workflow library",
+      "sourceDigest": "9d4c0e34e115ee35470af36b48c14d4361be62816c786c1d309e882732f05438",
+      "revisionDigest": "8e73475305d4952bb9e2aa6318ae4742b205dd92e1a86f81e32751928ff7bdc2",
+      "recordedAt": "2026-09-06T19:43:27.779Z"
+    },
+    "note": "Recorded visual coverage; image adequacy is assessed in review."
+  }
+}

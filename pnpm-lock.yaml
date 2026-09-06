@@ -53,6 +53,12 @@ importers:
       '@modelcontextprotocol/client':
         specifier: 2.0.0
         version: 2.0.0
+      '@nessalabs/spec-ledger-client':
+        specifier: workspace:*
+        version: link:../client
+      '@nessalabs/spec-ledger-server':
+        specifier: workspace:*
+        version: link:../server
       '@types/node':
         specifier: ^22.13.10
         version: 22.20.1
