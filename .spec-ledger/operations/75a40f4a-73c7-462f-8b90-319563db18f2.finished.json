@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "requestId": "75a40f4a-73c7-462f-8b90-319563db18f2",
+  "operation": "begin_work",
+  "inputDigest": "ff6259744bdc6e4d3b0fa64b418ad75de585e455fac302d85578119b77bb0ae3",
+  "finishedAt": "2026-09-06T08:05:13.725Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "id": "T-051",
+    "status": "open",
+    "openedAt": "2026-09-06T08:05:13.725Z",
+    "opened": {
+      "producedBy": "@nessalabs/spec-ledger@0.1.0",
+      "baseCommit": "31d980d9a545ff03a1383bc486441324ebf4b6f4",
+      "treeDigest": "c9761aa9bd002b5641166c9d2928d4d7841c2172254d871d2f2c429c3f0a1739",
+      "dirtyAtOpen": [],
+      "contextDigest": "059b739f8553561d8a20a00557d2f371fc9a8f6b5315928702b84b98c8620e82",
+      "contextWorkstreamId": "W-014",
+      "contextSliceId": "SLC-02",
+      "contextSealRevision": 1,
+      "contextGeneratedAt": "2026-09-06T08:05:13.725Z"
+    },
+    "intent": {
+      "userPrompt": "Fix the remaining PR 2 CI packaging failure and verify the entire job passes.",
+      "restatedGoal": "Stop the packaged test server after each run",
+      "changeType": "fix",
+      "riskLevel": "moderate",
+      "workstreamId": "W-014",
+      "sliceId": "SLC-02",
+      "featureIds": [
+        "client",
+        "cli",
+        "lattice"
+      ]
+    }
+  }
+}

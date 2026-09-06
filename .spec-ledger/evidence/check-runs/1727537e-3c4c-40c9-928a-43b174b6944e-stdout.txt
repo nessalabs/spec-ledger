@@ -1,0 +1,65 @@
+TAP version 13
+# Subtest: delegated authority adversarial
+    # Subtest: enforces explicit feature exclusions and immutable authority retries
+    ok 1 - enforces explicit feature exclusions and immutable authority retries
+      ---
+      duration_ms: 6.444916
+      type: 'test'
+      ...
+    # Subtest: requires a real current spec review before snapshotting a revised delegated plan
+    ok 2 - requires a real current spec review before snapshotting a revised delegated plan
+      ---
+      duration_ms: 5.235208
+      type: 'test'
+      ...
+    # Subtest: raw denial records prevent the same standing delegation from restarting renamed work
+    ok 3 - raw denial records prevent the same standing delegation from restarting renamed work
+      ---
+      duration_ms: 2.730875
+      type: 'test'
+      ...
+    # Subtest: refuses denied work through CLI even when context collection is explicitly skipped
+    ok 4 - refuses denied work through CLI even when context collection is explicitly skipped
+      ---
+      duration_ms: 66.152458
+      type: 'test'
+      ...
+    # Subtest: distinguishes revision/request/standing authority and revocation without broader fallback
+    ok 5 - distinguishes revision/request/standing authority and revocation without broader fallback
+      ---
+      duration_ms: 5.510333
+      type: 'test'
+      ...
+    # Subtest: requires revision reapproval after acceptance changes and never invents host consent
+    ok 6 - requires revision reapproval after acceptance changes and never invents host consent
+      ---
+      duration_ms: 2.495625
+      type: 'test'
+      ...
+    # Subtest: does not accept a fabricated spec-review reference when a delegated plan requires review
+    ok 7 - does not accept a fabricated spec-review reference when a delegated plan requires review
+      ---
+      duration_ms: 2.72825
+      type: 'test'
+      ...
+    # Subtest: applies corrections only in scope, excludes inferred preferences, and hashes same-ID content
+    ok 8 - applies corrections only in scope, excludes inferred preferences, and hashes same-ID content
+      ---
+      duration_ms: 53.314
+      type: 'test'
+      ...
+    1..8
+ok 1 - delegated authority adversarial
+  ---
+  duration_ms: 145.123791
+  type: 'suite'
+  ...
+1..1
+# tests 8
+# suites 1
+# pass 8
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 182.53575

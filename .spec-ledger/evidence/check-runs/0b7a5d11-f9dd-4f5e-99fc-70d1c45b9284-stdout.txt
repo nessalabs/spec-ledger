@@ -1,0 +1,158 @@
+TAP version 13
+# Subtest: shared operation boundary adversarial cases
+    # Subtest: rejects an invalid slice through the actual CLI before sealing, opening, activating, or resuming
+    ok 1 - rejects an invalid slice through the actual CLI before sealing, opening, activating, or resuming
+      ---
+      duration_ms: 140.500584
+      type: 'test'
+      ...
+    # Subtest: rejects a caller-supplied root field and cannot touch that checkout
+    ok 2 - rejects a caller-supplied root field and cannot touch that checkout
+      ---
+      duration_ms: 117.25825
+      type: 'test'
+      ...
+    # Subtest: denies record_progress without current permission and creates no domain record
+    ok 3 - denies record_progress without current permission and creates no domain record
+      ---
+      duration_ms: 92.79525
+      type: 'test'
+      ...
+    # Subtest: denies record_decision without current permission and creates no domain record
+    ok 4 - denies record_decision without current permission and creates no domain record
+      ---
+      duration_ms: 108.533083
+      type: 'test'
+      ...
+    # Subtest: denies record_review without current permission and creates no domain record
+    ok 5 - denies record_review without current permission and creates no domain record
+      ---
+      duration_ms: 94.4665
+      type: 'test'
+      ...
+    # Subtest: stale revision and source inputs leave decisions and reviews unchanged
+    ok 6 - stale revision and source inputs leave decisions and reviews unchanged
+      ---
+      duration_ms: 150.66325
+      type: 'test'
+      ...
+    # Subtest: does not accept portable review fields that claim human provenance
+    ok 7 - does not accept portable review fields that claim human provenance
+      ---
+      duration_ms: 74.447208
+      type: 'test'
+      ...
+    # Subtest: does not let a code review claim a workstream other than its turn
+    ok 8 - does not let a code review claim a workstream other than its turn
+      ---
+      duration_ms: 87.25025
+      type: 'test'
+      ...
+    # Subtest: replaces a caller-supplied review tree digest with the current source digest
+    ok 9 - replaces a caller-supplied review tree digest with the current source digest
+      ---
+      duration_ms: 103.63325
+      type: 'test'
+      ...
+    # Subtest: rejects a different request that reuses an existing review ID and preserves the first review
+    ok 10 - rejects a different request that reuses an existing review ID and preserves the first review
+      ---
+      duration_ms: 138.714333
+      type: 'test'
+      ...
+    1..10
+ok 1 - shared operation boundary adversarial cases
+  ---
+  duration_ms: 1108.856
+  type: 'suite'
+  ...
+# Subtest: operation receipt adversarial cases
+    # Subtest: runs one effect for concurrent identical requests and replays its result
+    ok 1 - runs one effect for concurrent identical requests and replays its result
+      ---
+      duration_ms: 68.153334
+      type: 'test'
+      ...
+    # Subtest: serializes different request IDs and rejects reuse with changed input
+    ok 2 - serializes different request IDs and rejects reuse with changed input
+      ---
+      duration_ms: 73.104875
+      type: 'test'
+      ...
+    # Subtest: never treats a corrupt finished receipt as a successful replay
+    ok 3 - never treats a corrupt finished receipt as a successful replay
+      ---
+      duration_ms: 13.236958
+      type: 'test'
+      ...
+    # Subtest: does not repeat an effect when only its started receipt remains
+    ok 4 - does not repeat an effect when only its started receipt remains
+      ---
+      duration_ms: 13.131042
+      type: 'test'
+      ...
+    # Subtest: reports unknown when completion publication fails after the effect and never reruns it
+    ok 5 - reports unknown when completion publication fails after the effect and never reruns it
+      ---
+      duration_ms: 14.830042
+      type: 'test'
+      ...
+    # Subtest: reports an unknown lock as busy without stealing it or running effects
+    ok 6 - reports an unknown lock as busy without stealing it or running effects
+      ---
+      duration_ms: 2.512375
+      type: 'test'
+      ...
+    1..6
+ok 2 - operation receipt adversarial cases
+  ---
+  duration_ms: 185.460708
+  type: 'suite'
+  ...
+# Subtest: actual CLI and MCP lifecycle parity
+    # Subtest: completes the same verified lifecycle through both executables
+    ok 1 - completes the same verified lifecycle through both executables
+      ---
+      duration_ms: 2697.796958
+      type: 'test'
+      ...
+    # Subtest: returns the same structured denial and leaves domain state unchanged
+    ok 2 - returns the same structured denial and leaves domain state unchanged
+      ---
+      duration_ms: 272.691209
+      type: 'test'
+      ...
+    # Subtest: rejects retries, stale inputs, malformed inputs, and missing evidence with the same contracts
+    ok 3 - rejects retries, stale inputs, malformed inputs, and missing evidence with the same contracts
+      ---
+      duration_ms: 1101.769958
+      type: 'test'
+      ...
+    1..3
+ok 3 - actual CLI and MCP lifecycle parity
+  ---
+  duration_ms: 4072.699708
+  type: 'suite'
+  ...
+# Subtest: MCP package
+    # Subtest: installs and invokes the packed executable
+    ok 1 - installs and invokes the packed executable
+      ---
+      duration_ms: 1293.89825
+      type: 'test'
+      ...
+    1..1
+ok 4 - MCP package
+  ---
+  duration_ms: 1294.046916
+  type: 'suite'
+  ...
+1..4
+# tests 20
+# suites 4
+# pass 20
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 5453.022208
