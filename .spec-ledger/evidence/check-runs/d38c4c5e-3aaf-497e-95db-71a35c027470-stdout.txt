@@ -1,0 +1,66 @@
+TAP version 13
+# Subtest: UI release break (T-024 SLC-03 / SL-013)
+    # Subtest: shipped tree incl node_modules has zero file:/workspace: protocols
+    ok 1 - shipped tree incl node_modules has zero file:/workspace: protocols
+      ---
+      duration_ms: 52138.037584
+      type: 'test'
+      ...
+    # Subtest: README documents published client/server + Release UI asset (SLC-03 acceptance)
+    ok 2 - README documents published client/server + Release UI asset (SLC-03 acceptance)
+      ---
+      duration_ms: 0.520792
+      type: 'test'
+      ...
+    # Subtest: publish.yml packs UI Release asset with NESSA_UI_ROOT, dist build, no --skip-build, contents:write upload
+    ok 3 - publish.yml packs UI Release asset with NESSA_UI_ROOT, dist build, no --skip-build, contents:write upload
+      ---
+      duration_ms: 0.517708
+      type: 'test'
+      ...
+    # Subtest: pack-ui-release fails closed when NESSA_UI_ROOT / agent-stream missing
+    ok 4 - pack-ui-release fails closed when NESSA_UI_ROOT / agent-stream missing
+      ---
+      duration_ms: 98.564916
+      type: 'test'
+      ...
+    # Subtest: packaged UI name/deps stay @nessalabs/* and tarball version matches ledger
+    ok 5 - packaged UI name/deps stay @nessalabs/* and tarball version matches ledger
+      ---
+      duration_ms: 53126.146416
+      type: 'test'
+      ...
+    1..5
+ok 1 - UI release break (T-024 SLC-03 / SL-013)
+  ---
+  duration_ms: 105364.700208
+  type: 'suite'
+  ...
+# Subtest: UI release asset (SLC-03)
+    # Subtest: built release boots outside the checkout and reads the consumer ledger
+    ok 1 - built release boots outside the checkout and reads the consumer ledger
+      ---
+      duration_ms: 93362.003541
+      type: 'test'
+      ...
+    # Subtest: README documents consumer one-liner for Release UI asset
+    ok 2 - README documents consumer one-liner for Release UI asset
+      ---
+      duration_ms: 0.633625
+      type: 'test'
+      ...
+    1..2
+ok 2 - UI release asset (SLC-03)
+  ---
+  duration_ms: 93363.441792
+  type: 'suite'
+  ...
+1..2
+# tests 7
+# suites 2
+# pass 7
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 105403.776208

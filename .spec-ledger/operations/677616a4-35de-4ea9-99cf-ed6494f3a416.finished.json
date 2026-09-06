@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "requestId": "677616a4-35de-4ea9-99cf-ed6494f3a416",
+  "operation": "begin_work",
+  "inputDigest": "5dcf5e149912730dd4dd0347841feed7e78774ed0611444c7557b6a262b4928c",
+  "finishedAt": "2026-09-06T05:34:59.063Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "id": "T-043",
+    "status": "open",
+    "openedAt": "2026-09-06T05:34:59.063Z",
+    "opened": {
+      "producedBy": "@nessalabs/spec-ledger@0.1.0",
+      "baseCommit": "406b7d15a74b666ad801014b850b62f0d55bef0d",
+      "treeDigest": "a576b9cb015e62e5a2792cf1931455b89d7de34fdccc5e3de7dc00f1bc4feccc",
+      "dirtyAtOpen": [
+        ".spec-ledger/authority/AUTH-4e179164-47e5-4ea9-88b2-0858b32fec25.json",
+        ".spec-ledger/bindings/b-sl-032.json",
+        ".spec-ledger/bindings/b-sl-033.json",
+        ".spec-ledger/bindings/b-sl-034.json",
+        ".spec-ledger/claims/SL-032.json",
+        ".spec-ledger/claims/SL-033.json",
+        ".spec-ledger/claims/SL-034.json",
+        ".spec-ledger/reviews/workstreams/W-014/SR-01.json",
+        ".spec-ledger/workstreams/W-014.json"
+      ],
+      "contextDigest": "aaa683ddc4bc35404b629b82eec95b2bce890bbb2888ac9337eb02644507e6d5",
+      "contextWorkstreamId": "W-014",
+      "contextSliceId": "SLC-02",
+      "contextSealRevision": 1,
+      "contextGeneratedAt": "2026-09-06T05:34:59.063Z"
+    },
+    "intent": {
+      "userPrompt": "Continue building the saved workflow library and the workflow picker described in W-014.",
+      "restatedGoal": "Manage saved workflows safely from the library",
+      "changeType": "feature",
+      "riskLevel": "moderate",
+      "workstreamId": "W-014",
+      "sliceId": "SLC-02",
+      "featureIds": [
+        "client",
+        "cli",
+        "lattice"
+      ]
+    }
+  }
+}

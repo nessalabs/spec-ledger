@@ -284,11 +284,11 @@
       }
      ],
      "assessment": "gap",
-     "rationale": "Compass renders vision, tenets and themes from getCompass. Timeline explicitly redirects to /turns. A browser observation of populated compass and redirected turn history is missing; the original route no longer renders its own timeline.",
+     "rationale": "Compass renders vision, tenets and themes from getCompass. The /timeline route redirects to /turns via the redirects() table in next.config.mjs. A browser observation of populated compass and redirected turn history is missing; the original route no longer renders its own timeline.",
      "suggestedClaimIds": [],
      "evidenceSources": [
       "packages/ui/app/compass/page.tsx",
-      "packages/ui/app/timeline/page.tsx"
+      "packages/ui/next.config.mjs"
      ],
      "savedChecks": [],
      "nextAction": "Keep this gap visible; add the named missing behavioral or browser verification and a precise claim before mapping."
@@ -458,7 +458,7 @@
       }
      ],
      "assessment": "superseded",
-     "rationale": "W006 explicitly assigns main prose to docs/workstreams/W-\u2026/spec.md and artifacts to evidence/<run-id>/. This later directory contract supersedes the original flat title-slug shape; the preserved requirement is not silently changed or passed.",
+     "rationale": "W006 explicitly assigns main prose to docs/workstreams/W-…/spec.md and artifacts to evidence/<run-id>/. This later directory contract supersedes the original flat title-slug shape; the preserved requirement is not silently changed or passed.",
      "suggestedClaimIds": [],
      "evidenceSources": [
       "docs/workstreams/W-006-trustworthy-autonomous-coding/spec.md"
@@ -468,7 +468,7 @@
     },
     {
      "id": "AC-2",
-     "text": "Sidebar wordmark is specLedger (bold 'spec', regular 'Ledger'); no 'Bets \u2192 turns \u2192 claims' subtitle under the brand",
+     "text": "Sidebar wordmark is specLedger (bold 'spec', regular 'Ledger'); no 'Bets → turns → claims' subtitle under the brand",
      "mappedClaimIds": [],
      "currentEvidence": [
       {
@@ -487,7 +487,7 @@
     },
     {
      "id": "AC-3",
-     "text": "Turn detail leads with plan loaded from workstream specPath Markdown (before/after + ask), before\u2192after diagram or flows, commit subject/body, related docs; FileDiffCard lists product files; build artifacts (.next, node_modules) excluded from impact lists",
+     "text": "Turn detail leads with plan loaded from workstream specPath Markdown (before/after + ask), before→after diagram or flows, commit subject/body, related docs; FileDiffCard lists product files; build artifacts (.next, node_modules) excluded from impact lists",
      "mappedClaimIds": [],
      "currentEvidence": [
       {
@@ -535,10 +535,11 @@
       }
      ],
      "assessment": "gap",
-     "rationale": "Verify renders Required covered as requiredPass/required.length and puts claim.statement ahead of secondary id/kind/detail. This is inspected implementation support; no focused current rendered assertion is attached to this criterion.",
+     "rationale": "The evidence page renders Required covered as requiredPass/required.length, and ClaimsList puts claim.statement ahead of secondary id/kind/detail. This is inspected implementation support; no focused current rendered assertion is attached to this criterion.",
      "suggestedClaimIds": [],
      "evidenceSources": [
-      "packages/ui/app/verify/page.tsx"
+      "packages/ui/app/claims/page.tsx",
+      "packages/ui/components/claims-list.tsx"
      ],
      "savedChecks": [],
      "nextAction": "Keep this gap visible; add the named missing behavioral or browser verification and a precise claim before mapping."

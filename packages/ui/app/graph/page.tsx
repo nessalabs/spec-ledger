@@ -32,14 +32,11 @@ export default async function GraphPage() {
   return (
     <div className="mx-auto flex h-full max-w-6xl flex-col gap-4">
       <header className="flex shrink-0 flex-col gap-2">
-        <p className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
-          Graph
-        </p>
-        <h1 className="text-2xl font-semibold tracking-tight">Structure</h1>
+        <h1 className="text-2xl font-semibold tracking-tight">Code map</h1>
         <p className="max-w-2xl text-sm text-muted-foreground">
           Features, packages, and edges from{" "}
-          <code className="text-foreground">.spec-ledger/graph/</code>. Hover claim
-          ids for statements; click to open a split pane.
+          <code className="text-foreground">.spec-ledger/graph/</code>. Open a
+          requirement to read it in a split pane beside the map.
         </p>
       </header>
 

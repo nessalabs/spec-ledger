@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "id": "PC-025",
+  "status": "proposed",
+  "workstreamId": "W-014",
+  "suggestedLiveId": "SL-034",
+  "statement": "A saved way of working is refused, with the reason named, when it does not fit the spec choosing it or when someone else changed it first, and nothing is stored.",
+  "requiredEvidence": [
+    "unit",
+    "integration"
+  ]
+}

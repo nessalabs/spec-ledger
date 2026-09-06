@@ -31,6 +31,31 @@ detail in the episode (reviews, decisions, files, `problem`, `userPrompt`).
 - “Render bet pitch Markdown via MessageMarkdown instead of SpecDoc half-parser”
 - Stuffing acceptance, claim ids, or package paths into `restatedGoal`
 
+## Spec documents (`docs/workstreams/W-0NN-*/spec.md`)
+
+The pitch is read by the person deciding whether to approve the bet, not only by
+the agent building it. Write the whole document in plain English — the same bar
+as `objective` and claim `statement`, applied to every heading and every row.
+
+| Do | Don't |
+| --- | --- |
+| “Picking a saved workflow copies it — it does not stay linked to it.” | “Selection records `profileId` + the digest it copied.” |
+| “The shared read-only service can only answer questions; it can never change anything.” | “Server stays GET-only (SL-003); git remains the write path.” |
+| “Editing a saved workflow does not change any spec that already adopted it.” | “`preserveWorkflow` writes an immutable digest-bearing snapshot.” |
+| “What ‘done’ means”, “Not doing”, “Things that could go wrong” | “Acceptance criteria”, “Out of scope”, “Rabbit holes” |
+
+Rules:
+
+- **Name the consequence, not the mechanism.** Say what a person gains or loses.
+  Function names, field names, file paths, digests, claim ids and HTTP verbs
+  belong in linked technical docs and in the ledger JSON — not in the pitch.
+- **Every decision states its “or else”.** A decision the reader cannot argue
+  with is not a decision; say what breaks if it goes the other way.
+- **Spell out an id the first time** it earns a mention, or leave it out.
+- **Plain headings.** Prefer a question or an outcome over a process noun.
+- The workstream JSON keeps the precise wording (`problem`, `expectedPaths`,
+  policy). The Markdown is the human half of the same record.
+
 ## Before → after (turn-scoped)
 
 Spec Ledger UI shows **Before → after** only from that turn’s `flows/` (or nested

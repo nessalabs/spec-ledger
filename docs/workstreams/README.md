@@ -6,6 +6,7 @@ Start here to find a spec. Each new workstream has one folder containing its mai
 
 | Workstream | Main spec | Supporting material |
 | --- | --- | --- |
+| W-014 · Name a workflow once and reuse it | [Read the spec](W-014-named-workflows/spec.md) | Shaped; not yet sealed |
 | W-008 · Guide agents and follow verified work | [Read the spec](W-008-shared-agent-workflows/spec.md) | [Shared CLI/MCP and workflow proposal](../proposals/customizable-engineering-workflows.md) |
 | W-007 · Review evidence in one place | [Read the spec](W-007-evidence-and-custom-workflows/spec.md) | Evidence beside the spec |
 | W-006 · Trustworthy autonomous coding | [Read the proposal](W-006-trustworthy-autonomous-coding/spec.md) | [Initial review evidence](W-006-trustworthy-autonomous-coding/review-notes.md) — historical observations, not another spec |

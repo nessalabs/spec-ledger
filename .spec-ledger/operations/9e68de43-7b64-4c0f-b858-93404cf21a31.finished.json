@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "requestId": "9e68de43-7b64-4c0f-b858-93404cf21a31",
+  "operation": "begin_work",
+  "inputDigest": "f1216767987fc3b44f6200bb975c75ff459866a205399164993c5f81226431df",
+  "finishedAt": "2026-09-06T07:55:57.072Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "id": "T-050",
+    "status": "open",
+    "openedAt": "2026-09-06T07:55:57.072Z",
+    "opened": {
+      "producedBy": "@nessalabs/spec-ledger@0.1.0",
+      "baseCommit": "ff328279b317b2c9b25e3ae64ac3e0228c9db4c1",
+      "treeDigest": "8ac1d48125ccee06b9671056a4b75a10d9bfc6b8cb4ac4f619b908109541e401",
+      "dirtyAtOpen": [],
+      "contextDigest": "042c55441f4aa51f3e3edf1c1ddc4ae8e3599e305b2cbe20a242ddfea821e3df",
+      "contextWorkstreamId": "W-014",
+      "contextSliceId": "SLC-02",
+      "contextSealRevision": 1,
+      "contextGeneratedAt": "2026-09-06T07:55:57.072Z"
+    },
+    "intent": {
+      "userPrompt": "Fix the remaining PR 2 CI failure and verify the entire job passes.",
+      "restatedGoal": "Make repeated packaging verification reliable",
+      "changeType": "fix",
+      "riskLevel": "moderate",
+      "workstreamId": "W-014",
+      "sliceId": "SLC-02",
+      "featureIds": [
+        "client",
+        "cli",
+        "lattice"
+      ]
+    }
+  }
+}

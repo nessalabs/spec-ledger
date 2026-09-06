@@ -39,7 +39,7 @@ test('failed missing attested and unmapped requirements keep their limitations b
 test('simplified feature observation still exposes disconnection without replacing the requested spec',()=>{
  const initial={session:{workstreamId:'W-one',title:'Feature',criteria:[],evidenceCount:0,completion:{reasons:[]},activity:[]}}
  const Empty=()=>null
- const Live=load('../components/live-workstream-evidence.tsx',{'next/link':{default:Empty},'@/components/spec-sections':{SpecSections:Empty},'@/components/acceptance-progress':{AcceptanceProgress:Empty},'@/components/workstream-evidence':{WorkstreamEvidence:Empty},'@/components/use-session-observation':{useSessionObservation:()=>({data:{session:{workstreamId:'W-other'}},state:'disconnected',observed:'old observation'})}}).LiveWorkstreamEvidence
+ const Live=load('../components/live-workstream-evidence.tsx',{'next/link':{default:Empty},'@/components/live-workflow':{LiveWorkflow:Empty},'@/components/spec-sections':{SpecSections:Empty},'@/components/acceptance-progress':{AcceptanceProgress:Empty},'@/components/workstream-evidence':{WorkstreamEvidence:Empty},'@/components/use-session-observation':{useSessionObservation:()=>({data:{session:{workstreamId:'W-other'}},state:'disconnected',observed:'old observation'})}}).LiveWorkstreamEvidence
  assert.match(text(Live({initial,workstreamId:'W-one'}),true),/disconnected.*last observation/)
 })
 
@@ -56,4 +56,15 @@ test('opening proof reads evidence without posting a command',async()=>{
   assert.equal(requests[0].options.method,undefined)
   cleanups.forEach(fn=>fn?.())
  }finally{globalThis.fetch=originalFetch}
+})
+
+test('completion keeps finished planning ahead of implementation and never changes supplied states or counts',()=>{
+ const checklist=[{id:'turn',label:'Close turn',state:'not-started'},{id:'criteria',label:'Build criteria',state:'in-progress'},{id:'spec-review',label:'Review plan',state:'done'},{id:'seal',label:'Preserve plan',state:'done'},{id:'code-review',label:'Review code',state:'not-started'},{id:'workflow',label:'Complete workflow',state:'not-started'}]
+ const original=structuredClone(checklist)
+ const tree=Progress({total:17,verified:3,implemented:4,checklist})
+ const rows=nodes(tree,n=>n.type==='li')
+ assert.deepEqual(rows.map(n=>text(n).replace(/\s+/g,' ').trim()),['Preserve plan','Review plan','Build criteria','Review code','Complete workflow','Close turn'])
+ assert.deepEqual(checklist,original)
+ assert.match(text(tree),/3\s*\/\s*17\s+verified/)
+ assert.deepEqual(rows.map(n=>nodes(n,x=>x.props?.state)[0].props.state),['done','done','in-progress','not-started','not-started','not-started'])
 })

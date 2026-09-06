@@ -1,0 +1,59 @@
+TAP version 13
+# Subtest: evidence freshness adversarial
+    # Subtest: does not let a closed turn reuse its old waiver or approval after source changes
+    ok 1 - does not let a closed turn reuse its old waiver or approval after source changes
+      ---
+      duration_ms: 157.940917
+      type: 'test'
+      ...
+    # Subtest: binds code review to source content while excluding declared evidence outputs
+    ok 2 - binds code review to source content while excluding declared evidence outputs
+      ---
+      duration_ms: 32.560541
+      type: 'test'
+      ...
+    # Subtest: records current external evidence idempotently and refuses stale or escaping submissions
+    ok 3 - records current external evidence idempotently and refuses stale or escaping submissions
+      ---
+      duration_ms: 60.673541
+      type: 'test'
+      ...
+    # Subtest: rejects legacy evidence and evidence replayed after source or same-ID check changes
+    ok 4 - rejects legacy evidence and evidence replayed after source or same-ID check changes
+      ---
+      duration_ms: 107.7195
+      type: 'test'
+      ...
+    # Subtest: retains evidence across ledger metadata and content-preserving commits
+    ok 5 - retains evidence across ledger metadata and content-preserving commits
+      ---
+      duration_ms: 104.962209
+      type: 'test'
+      ...
+    # Subtest: invalidates results if a successful command changes its own source inputs
+    ok 6 - invalidates results if a successful command changes its own source inputs
+      ---
+      duration_ms: 103.098375
+      type: 'test'
+      ...
+    # Subtest: checks required artifacts even when their declared output path is excluded from source hashing
+    ok 7 - checks required artifacts even when their declared output path is excluded from source hashing
+      ---
+      duration_ms: 75.230958
+      type: 'test'
+      ...
+    1..7
+ok 1 - evidence freshness adversarial
+  ---
+  duration_ms: 642.736959
+  type: 'suite'
+  ...
+1..1
+# tests 7
+# suites 1
+# pass 7
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 677.20225

@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "id": "T-049/AW-21",
+  "reason": "User requested fixing PR 2 CI; root dependency manifests need the lucide-react runtime used by UI SSR tests. Clean CI reached these tests after core passed and reported that missing package.",
+  "actor": "agent:user-request",
+  "treeDigest": "8ac1d48125ccee06b9671056a4b75a10d9bfc6b8cb4ac4f619b908109541e401",
+  "createdAt": "2026-09-06T07:28:29.441Z",
+  "workstreamId": "W-014",
+  "turnId": "T-049"
+}

@@ -1,0 +1,14 @@
+{
+  "statement": "New workflow should open a dedicated builder using the Nessa UI workflow component.",
+  "workstreamId": "W-014",
+  "featureIds": [
+    "lattice"
+  ],
+  "source": {
+    "kind": "user-reported",
+    "reference": "User correction: new workflow should take us to workflow builder with our nessa ui workflow like thing."
+  },
+  "id": "LN-f2d4e484-4fef-4200-8595-c572c1658f43",
+  "schemaVersion": 1,
+  "createdAt": "2026-09-06T06:10:52.413Z"
+}

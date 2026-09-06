@@ -1,0 +1,26 @@
+▶ sl-dev-break init (T-020 / SLC-01)
+  ✔ exact normative top-level set — no extras, no missing (17.347542ms)
+  ✔ re-init refuse must not clobber existing skeleton (14.937625ms)
+  ✔ partial failure before ledger.json must leave re-init gate unset (13.666583ms)
+  ✔ verify after init: no invented pass; no binding status/pass fields (29.34275ms)
+  ✔ git prefer: init from subdirectory lands at repo-root .spec-ledger (12.0475ms)
+  ✔ poison: nested empty .spec-ledger must not win over parent .git (11.49725ms)
+  ✔ CLI re-init exits non-zero and prints already initialized (112.164917ms)
+  ✔ CLI no-.git prints one-line warning then initializes at cwd (52.571292ms)
+  ✔ out-of-intent: vision write failure must not leave ledger.json (12.668458ms)
+✔ sl-dev-break init (T-020 / SLC-01) (276.877875ms)
+▶ spec-ledger init (SLC-01)
+  ✔ creates the normative skeleton and writes ledger.json last-safe (17.223125ms)
+  ✔ refuses re-init when ledger.json exists (15.1845ms)
+  ✔ warns when no .git is present (0.921167ms)
+  ✔ verify after init invents no claim pass and bindings stay empty (30.273459ms)
+  ✔ does not leave ledger.json if only dirs were created (gate file last) (12.297125ms)
+✔ spec-ledger init (SLC-01) (76.38775ms)
+ℹ tests 14
+ℹ suites 2
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 312.516625

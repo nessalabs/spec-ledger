@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "requestId": "a1abb507-4133-4be3-aeee-54aca5c7ac73",
+  "operation": "run_saved_check",
+  "inputDigest": "f8d5c51818a06412e3e57714be97ab4a8ca9d6aae8aac4fdbe3859f32b710ce1",
+  "finishedAt": "2026-09-06T07:29:43.861Z",
+  "outcome": "succeeded",
+  "result": {
+    "runId": "12763c15-0949-400c-bdb2-9e2b9f39bae5",
+    "previousRunId": "adb35996-2a91-4969-b3bd-7b5c8c2bf065",
+    "requestId": "a1abb507-4133-4be3-aeee-54aca5c7ac73",
+    "bindingId": "b-sl-018",
+    "state": "queued",
+    "command": "node --test packages/ledger/dist/evidence/fingerprint.break.test.js",
+    "cwd": "/Users/nessa/Documents/NessaLabs/spec-ledger-workflow-library",
+    "sourceDigest": "8ac1d48125ccee06b9671056a4b75a10d9bfc6b8cb4ac4f619b908109541e401",
+    "checkDigest": "6121197e81da707447abdecef2a551ca545151bc83b858caed1657af520eb02d",
+    "startedAt": "2026-09-06T07:29:43.858Z"
+  }
+}

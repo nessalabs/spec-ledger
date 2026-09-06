@@ -8,6 +8,7 @@ import {
   getSession,
   getCheckEvidence, getCheckRun, type CheckEvidence, type CheckRun,
   type SessionProjection,
+  type CompletionChecklistItem,
   permissionStatus,
   listLearnings,
   type PermissionStatus,
@@ -246,6 +247,7 @@ export function createSpecLedgerClient(transport: LedgerTransport): SpecLedgerCl
 
 export type {
   SessionProjection,
+  CompletionChecklistItem,
   PermissionStatus,
   Learning,
   Claim,
@@ -273,4 +275,4 @@ export { createLocalApprovalBridge } from "@nessalabs/spec-ledger"
 
 export { createLocalCheckBridge, type CheckEvidence, type CheckRun } from "@nessalabs/spec-ledger"
 
-export { createLocalWorkflowBridge, type WorkflowOptions, type WorkflowProfile, type WorkflowProfileStage, type WorkflowProfileStep, type WorkflowOutputKind, type WorkflowStageRole, type WorkflowSnapshot } from "@nessalabs/spec-ledger"
+export { createLocalWorkflowBridge, type LibraryOptions, type SavedWorkflowProfile, type WorkflowLibraryEntry, type WorkflowOptions, type WorkflowProfile, type WorkflowProfileStage, type WorkflowProfileStep, type WorkflowOutputKind, type WorkflowStageRole, type WorkflowSnapshot } from "@nessalabs/spec-ledger"

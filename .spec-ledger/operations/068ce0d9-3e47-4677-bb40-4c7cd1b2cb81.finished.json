@@ -1,0 +1,683 @@
+{
+  "schemaVersion": 1,
+  "requestId": "068ce0d9-3e47-4677-bb40-4c7cd1b2cb81",
+  "operation": "finish_turn",
+  "inputDigest": "d9a98895d7175c2593f35e559583e8e621e8b5d9fd8bd4d2307be878b5734324",
+  "finishedAt": "2026-09-06T07:59:50.359Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "id": "T-050",
+    "status": "closed",
+    "openedAt": "2026-09-06T07:55:57.072Z",
+    "opened": {
+      "producedBy": "@nessalabs/spec-ledger@0.1.0",
+      "baseCommit": "ff328279b317b2c9b25e3ae64ac3e0228c9db4c1",
+      "treeDigest": "8ac1d48125ccee06b9671056a4b75a10d9bfc6b8cb4ac4f619b908109541e401",
+      "dirtyAtOpen": [],
+      "contextDigest": "042c55441f4aa51f3e3edf1c1ddc4ae8e3599e305b2cbe20a242ddfea821e3df",
+      "contextWorkstreamId": "W-014",
+      "contextSliceId": "SLC-02",
+      "contextSealRevision": 1,
+      "contextGeneratedAt": "2026-09-06T07:55:57.072Z"
+    },
+    "intent": {
+      "userPrompt": "Fix the remaining PR 2 CI failure and verify the entire job passes.",
+      "restatedGoal": "Make repeated packaging verification reliable",
+      "changeType": "fix",
+      "riskLevel": "moderate",
+      "workstreamId": "W-014",
+      "sliceId": "SLC-02",
+      "featureIds": [
+        "client",
+        "cli",
+        "lattice"
+      ]
+    },
+    "closedAt": "2026-09-06T07:59:50.358Z",
+    "facts": {
+      "producedBy": "@nessalabs/spec-ledger@0.1.0",
+      "commit": "ff328279b317b2c9b25e3ae64ac3e0228c9db4c1",
+      "files": [
+        {
+          "path": ".github/workflows/ci.yml",
+          "kind": "modified",
+          "additions": 8,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/align-waivers/AW-22.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/decisions/T-050/D-01.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/056692ca-f90b-4334-b0bb-6684bbb125e8-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/056692ca-f90b-4334-b0bb-6684bbb125e8-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/056692ca-f90b-4334-b0bb-6684bbb125e8.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/05e770a5-e1b3-40c6-8552-a3754cfe27c4-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/05e770a5-e1b3-40c6-8552-a3754cfe27c4-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/05e770a5-e1b3-40c6-8552-a3754cfe27c4.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/1870226d-b7de-4de2-acf6-8c9ef57674b0-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/1870226d-b7de-4de2-acf6-8c9ef57674b0-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/1870226d-b7de-4de2-acf6-8c9ef57674b0.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/1e0fc998-49f6-4bb0-8bf4-ede7c7f259a1-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/1e0fc998-49f6-4bb0-8bf4-ede7c7f259a1-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/1e0fc998-49f6-4bb0-8bf4-ede7c7f259a1.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/237afb8d-e987-4cb0-8c28-7a084b79bd27-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/237afb8d-e987-4cb0-8c28-7a084b79bd27-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/237afb8d-e987-4cb0-8c28-7a084b79bd27.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/24887af4-a808-48e4-b393-74ede27d4138-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/24887af4-a808-48e4-b393-74ede27d4138-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/24887af4-a808-48e4-b393-74ede27d4138.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/2ff66831-e9ec-4595-b895-294e6dc3ebfb-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/2ff66831-e9ec-4595-b895-294e6dc3ebfb-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/2ff66831-e9ec-4595-b895-294e6dc3ebfb.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/32324f13-5390-4429-be28-340aff95c488-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/32324f13-5390-4429-be28-340aff95c488-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/32324f13-5390-4429-be28-340aff95c488.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/3c8be1c4-666a-4184-acd7-16e35d971298-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/3c8be1c4-666a-4184-acd7-16e35d971298-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/3c8be1c4-666a-4184-acd7-16e35d971298.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/3d2cd749-ba8c-4d2d-a1f5-8cc4af36ee00-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/3d2cd749-ba8c-4d2d-a1f5-8cc4af36ee00-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/3d2cd749-ba8c-4d2d-a1f5-8cc4af36ee00.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/5a8cef58-fa12-4256-bbbb-88b17e37aaf7-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/5a8cef58-fa12-4256-bbbb-88b17e37aaf7-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/5a8cef58-fa12-4256-bbbb-88b17e37aaf7.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/6288fe3f-acde-4b37-b2de-ecf026d82c41-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/6288fe3f-acde-4b37-b2de-ecf026d82c41-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/6288fe3f-acde-4b37-b2de-ecf026d82c41.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/6919823c-3c78-491a-b36d-d12e787046b6-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/6919823c-3c78-491a-b36d-d12e787046b6-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/6919823c-3c78-491a-b36d-d12e787046b6.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/7377bfa0-300a-44f5-869c-ddf1d8dfdf81-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/7377bfa0-300a-44f5-869c-ddf1d8dfdf81-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/7377bfa0-300a-44f5-869c-ddf1d8dfdf81.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/95b432a3-2c2c-4563-8f2b-060da6d93165-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/95b432a3-2c2c-4563-8f2b-060da6d93165-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/95b432a3-2c2c-4563-8f2b-060da6d93165.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/9ee42c49-f380-4bc5-8b3e-b642d6ec02f8-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/9ee42c49-f380-4bc5-8b3e-b642d6ec02f8-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/9ee42c49-f380-4bc5-8b3e-b642d6ec02f8.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/a1d75096-f22b-4101-aa29-c838514fa360-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/a1d75096-f22b-4101-aa29-c838514fa360-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/a1d75096-f22b-4101-aa29-c838514fa360.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/aa0705cc-5e0f-4d9e-ac50-bfda1f31f354-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/aa0705cc-5e0f-4d9e-ac50-bfda1f31f354-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/aa0705cc-5e0f-4d9e-ac50-bfda1f31f354.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/aa1628ed-a55d-4420-b8f9-8b6f3476b1f0-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/aa1628ed-a55d-4420-b8f9-8b6f3476b1f0-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/aa1628ed-a55d-4420-b8f9-8b6f3476b1f0.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/b24ecfc4-c31f-4c95-9709-0e3feca9c022-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/b24ecfc4-c31f-4c95-9709-0e3feca9c022-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/b24ecfc4-c31f-4c95-9709-0e3feca9c022.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/e7f1fbd5-0509-4d3c-9250-a41cfbabf4c8-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/e7f1fbd5-0509-4d3c-9250-a41cfbabf4c8-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/e7f1fbd5-0509-4d3c-9250-a41cfbabf4c8.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/e96bfb3e-cc83-4c54-9725-0ef68abfbd57-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/e96bfb3e-cc83-4c54-9725-0ef68abfbd57-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/e96bfb3e-cc83-4c54-9725-0ef68abfbd57.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/f85592ce-6950-4cd7-bb83-8ff0cf8bf538-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/f85592ce-6950-4cd7-bb83-8ff0cf8bf538-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/f85592ce-6950-4cd7-bb83-8ff0cf8bf538.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/fe59bd59-8688-4872-99c4-da86d87a298c-stderr.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/fe59bd59-8688-4872-99c4-da86d87a298c-stdout.txt",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/fe59bd59-8688-4872-99c4-da86d87a298c.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/056692ca-f90b-4334-b0bb-6684bbb125e8.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/05e770a5-e1b3-40c6-8552-a3754cfe27c4.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/1870226d-b7de-4de2-acf6-8c9ef57674b0.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/1e0fc998-49f6-4bb0-8bf4-ede7c7f259a1.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/237afb8d-e987-4cb0-8c28-7a084b79bd27.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/24887af4-a808-48e4-b393-74ede27d4138.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/2ff66831-e9ec-4595-b895-294e6dc3ebfb.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/32324f13-5390-4429-be28-340aff95c488.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/3c8be1c4-666a-4184-acd7-16e35d971298.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/3d2cd749-ba8c-4d2d-a1f5-8cc4af36ee00.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/5a8cef58-fa12-4256-bbbb-88b17e37aaf7.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/6288fe3f-acde-4b37-b2de-ecf026d82c41.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/6919823c-3c78-491a-b36d-d12e787046b6.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/7377bfa0-300a-44f5-869c-ddf1d8dfdf81.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/95b432a3-2c2c-4563-8f2b-060da6d93165.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/9ee42c49-f380-4bc5-8b3e-b642d6ec02f8.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/a1d75096-f22b-4101-aa29-c838514fa360.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/aa0705cc-5e0f-4d9e-ac50-bfda1f31f354.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/aa1628ed-a55d-4420-b8f9-8b6f3476b1f0.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/b24ecfc4-c31f-4c95-9709-0e3feca9c022.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/e7f1fbd5-0509-4d3c-9250-a41cfbabf4c8.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/e96bfb3e-cc83-4c54-9725-0ef68abfbd57.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/f85592ce-6950-4cd7-bb83-8ff0cf8bf538.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/evidence/runs/fe59bd59-8688-4872-99c4-da86d87a298c.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/reviews/turns/T-050/R-01.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/reviews/turns/T-050/R-02.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/turns/T-050.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/workstreams/W-014.json",
+          "kind": "modified",
+          "additions": 4,
+          "deletions": 4
+        }
+      ],
+      "touchedNodeIds": [],
+      "touchedFeatureIds": [],
+      "touchedClaimIds": [],
+      "blastRadius": {
+        "direct": [],
+        "transitive": []
+      },
+      "verify": {
+        "ok": true,
+        "ledgerDigest": "32c985682c27c3449b2e9a945229faaa505e0ba6c2e25bfbbcde817ac5d68e49",
+        "resultsDigest": "c423d2bf36ccc27f6d0429fe1e85dface63dc2195f376e6093e05eeab2269714",
+        "treeDigest": "c9761aa9bd002b5641166c9d2928d4d7841c2172254d871d2f2c429c3f0a1739",
+        "producedAt": "2026-09-06T07:59:50.268Z"
+      },
+      "schemaSurfaceChanged": false,
+      "decisionIds": [
+        "T-050/D-01"
+      ],
+      "decisionsDigest": "08c5b142a0582134e7eeee79389d2cfa513964dbc6b064e637646a4a39e17592",
+      "reviewsDigest": "f292fb39c6a863bd2dccd46fd487dded5ab9cc62102dbde00040f67b7802255c"
+    }
+  }
+}

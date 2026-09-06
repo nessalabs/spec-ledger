@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "id": "T-049/R-01",
+  "turnId": "T-049",
+  "workstreamId": "W-014",
+  "kind": "human",
+  "target": "code",
+  "reviewer": "agent:align",
+  "verdict": "approve",
+  "summary": "align: path coverage OK",
+  "plainSummary": "The root test dependency update is covered by the explicit CI repair request.",
+  "treeDigest": "8ac1d48125ccee06b9671056a4b75a10d9bfc6b8cb4ac4f619b908109541e401",
+  "uncoveredPaths": [
+    "package.json",
+    "pnpm-lock.yaml"
+  ],
+  "coverageSource": "mixed",
+  "waiverIds": [
+    "T-049/AW-21"
+  ]
+}

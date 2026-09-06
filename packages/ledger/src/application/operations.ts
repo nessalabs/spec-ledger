@@ -1,4 +1,5 @@
-import { workflowOptions } from "../workflows/options.js"
+import { validateLibraryProfile, profileAsProfile, workflowLibrary, workflowDefault, readWorkflowProfile, saveWorkflowProfile, updateWorkflowProfile, deleteWorkflowProfile, setDefaultWorkflowProfile } from "../workflows/index.js"
+import { libraryOptions, workflowOptions } from "../workflows/options.js"
 import { startSavedCheck, getCheckRun, getCheckEvidence, validateCheckStorage } from "../verify/saved-check.js"
 import { randomUUID } from "node:crypto"
 import { dirname, isAbsolute, join, relative, resolve } from "node:path"
@@ -169,9 +170,17 @@ export function observeSession(root: string, raw: unknown = {}) {
   return getSession(root, stringField(input, "workstreamId", true))
 }
 
+function workflowChoice(root: string, input: Record<string, unknown>) {
+  if (input.profileId !== undefined && input.profile !== undefined) throw operationError("invalid_input", "Choose a saved workflow or an authored profile, not both")
+  if (!input.profileId || input.profileId === "spec-ledger/default") return { profile: input.profile as WorkflowProfile | undefined, origin: undefined }
+  const record = readWorkflowProfile(root, input.profileId as string)
+  return { profile: profileAsProfile(record), origin: { source: "library" as const, profileDigest: record.digest } }
+}
+
 export function previewWorkflow(root: string, raw: unknown) {
   const input = validated(root, "preview_workflow", raw)
-  return resolveWorkflow(root, stringField(input, "workstreamId")!, input.profile as WorkflowProfile | undefined)
+  const choice = workflowChoice(root, input)
+  return resolveWorkflow(root, stringField(input, "workstreamId")!, choice.profile, choice.origin)
 }
 
 export function getWorkflow(root: string, raw: unknown) {
@@ -489,9 +498,10 @@ export function setWorkflow(root: string, raw: unknown) {
     assertRevision(root, workstreamId, stringField(input, "expectedRevisionDigest")!)
     assertSource(root, stringField(input, "expectedSourceDigest")!)
     assertPermission(root, workstreamId)
-    if (input.expectedConfigurationDigest && resolveWorkflow(root, workstreamId, input.profile as WorkflowProfile | undefined).snapshotDigest !== input.expectedConfigurationDigest) throw operationError("revision_conflict", "Workflow guidance changed. Preview it again before applying.", false)
-    return preserveWorkflow(root, workstreamId, input.profile as WorkflowProfile | undefined,
-      stringField(input, "reason", true), stringField(input, "expectedSnapshotDigest", true))
+    const choice = workflowChoice(root, input)
+    if (input.expectedConfigurationDigest && resolveWorkflow(root, workstreamId, choice.profile, choice.origin).snapshotDigest !== input.expectedConfigurationDigest) throw operationError("revision_conflict", "Workflow guidance changed. Preview it again before applying.", false)
+    return preserveWorkflow(root, workstreamId, choice.profile,
+      stringField(input, "reason", true), stringField(input, "expectedSnapshotDigest", true), choice.origin)
   } })
 }
 
@@ -570,9 +580,43 @@ export function recordExecutionActivity(root: string, raw: unknown) {
   catch (error) { if (error instanceof Error && /activity collector is busy/.test(error.message)) throw operationError("operation_busy", error.message, true); throw error }
 }
 
+/** Library writes compose the existing serialized, retry-safe operation boundary. */
+function mutateWorkflowLibrary(root: string, operation: OperationName, raw: unknown) {
+  const input = mutationInput(root, operation, raw)
+  return runMutation({ root, requestId: input.requestId, operation, input, effect: () => {
+    const actor = stringField(input, "actor")!, reason = stringField(input, "reason")!
+    let value: unknown
+    if (operation === "set_default_workflow_profile") {
+      if (workflowDefault(root).digest !== input.expectedDigest) throw operationError("revision_conflict", "Default workflow has changed")
+      setDefaultWorkflowProfile(root, input.profileId as string | null)
+      value = workflowDefault(root)
+    } else if (operation === "save_workflow_profile") {
+      value = saveWorkflowProfile(root, input.profile as WorkflowProfile)
+    } else {
+      const id = operation === "update_workflow_profile" ? (input.profile as WorkflowProfile).id : input.profileId as string
+      if (readWorkflowProfile(root, id).digest !== input.expectedDigest) throw operationError("revision_conflict", "Saved workflow has changed")
+      if (operation === "update_workflow_profile") value = updateWorkflowProfile(root, input.profile as WorkflowProfile, input.expectedDigest as string)
+      else { deleteWorkflowProfile(root, id, input.expectedDigest as string); value = { deleted: id } }
+    }
+    // The finished operation receipt preserves actor/reason with the actual effect.
+    return JSON.parse(JSON.stringify({ actor, reason, value }))
+  } })
+}
+
 export function executeOperation(root: string, operation: OperationName, input: unknown): unknown {
   try {
     switch (operation) {
+      case "get_workflow_library_options": validated(root, operation, input); return libraryOptions(root)
+      case "preview_workflow_profile": return validateLibraryProfile(root, validated(root, operation, input).profile as WorkflowProfile)
+      case "list_workflow_profiles": {
+        const args = validated(root, operation, input)
+        return { entries: workflowLibrary(root, args.workstreamId as string | undefined), default: workflowDefault(root) }
+      }
+      case "get_workflow_profile": return readWorkflowProfile(root, validated(root, operation, input).profileId as string)
+      case "save_workflow_profile":
+      case "update_workflow_profile":
+      case "delete_workflow_profile":
+      case "set_default_workflow_profile": return mutateWorkflowLibrary(root, operation, input)
       case "plan_work": return planWork(root, input)
       case "get_context": return getContext(root, input)
       case "get_session": return observeSession(root, input)

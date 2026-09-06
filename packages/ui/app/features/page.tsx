@@ -17,10 +17,7 @@ export default async function FeaturesPage() {
   return (
     <div className="mx-auto flex max-w-5xl flex-col gap-6">
       <header className="flex flex-col gap-1.5">
-        <p className="text-[10px] uppercase tracking-wider text-muted-foreground">
-          Features
-        </p>
-        <h1 className="text-2xl font-semibold tracking-tight">Capabilities</h1>
+        <h1 className="text-2xl font-semibold tracking-tight">Features</h1>
         <p className="max-w-2xl text-sm text-muted-foreground">
           Product surfaces in the graph. Open one for history; recent changes below.
         </p>

@@ -3,17 +3,23 @@
 import * as React from "react"
 import mermaid from "mermaid"
 
-let initialized = false
+type MermaidTheme = "dark" | "default"
 
-function ensureMermaid() {
-  if (initialized) return
-  mermaid.initialize({
-    startOnLoad: false,
-    securityLevel: "strict",
-    theme: "dark",
-    flowchart: { htmlLabels: false },
-  })
-  initialized = true
+const documentTheme = (): MermaidTheme =>
+  document.documentElement.classList.contains("dark") ? "dark" : "default"
+
+/** Re-render diagrams when the reader switches between light and dark. */
+function useDocumentTheme() {
+  const [theme, setTheme] = React.useState(documentTheme)
+  React.useEffect(() => {
+    const observer = new MutationObserver(() => setTheme(documentTheme()))
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    })
+    return () => observer.disconnect()
+  }, [])
+  return theme
 }
 
 /** Actual Mermaid render — imported only via dynamic() from static-mermaid.tsx. */
@@ -27,15 +33,20 @@ export function StaticMermaidInner({
   const [svg, setSvg] = React.useState<string | null>(null)
   const [failed, setFailed] = React.useState(false)
   const id = React.useId().replace(/:/g, "")
+  const theme = useDocumentTheme()
 
   React.useEffect(() => {
     let cancelled = false
     setFailed(false)
-    ensureMermaid()
-    const renderId = `spec-ledger-mmd-${id}`
+    mermaid.initialize({
+      startOnLoad: false,
+      securityLevel: "strict",
+      theme,
+      flowchart: { htmlLabels: false },
+    })
     mermaid
-      .render(renderId, chart)
-      .then((result) => {
+      .render(`spec-ledger-mmd-${id}`, chart)
+      .then(result => {
         if (!cancelled) setSvg(result.svg)
       })
       .catch(() => {
@@ -47,7 +58,7 @@ export function StaticMermaidInner({
     return () => {
       cancelled = true
     }
-  }, [chart, id])
+  }, [chart, id, theme])
 
   if (failed) {
     return (
@@ -58,10 +69,13 @@ export function StaticMermaidInner({
   }
 
   if (!svg) {
-    return <div className={className} aria-hidden style={{ minHeight: "8rem" }} />
+    return (
+      <div
+        aria-hidden
+        className="min-h-32 animate-pulse rounded-md bg-muted/40"
+      />
+    )
   }
 
-  return (
-    <div className={className} dangerouslySetInnerHTML={{ __html: svg }} />
-  )
+  return <div className={className} dangerouslySetInnerHTML={{ __html: svg }} />
 }

@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "id": "PC-023",
+  "status": "proposed",
+  "workstreamId": "W-014",
+  "suggestedLiveId": "SL-032",
+  "statement": "A way of working saved under a name in the project can be applied to any spec by name, and that spec records which saved workflow and which version it copied.",
+  "requiredEvidence": [
+    "unit",
+    "integration"
+  ]
+}

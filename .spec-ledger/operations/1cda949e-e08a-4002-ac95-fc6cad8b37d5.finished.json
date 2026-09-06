@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "requestId": "1cda949e-e08a-4002-ac95-fc6cad8b37d5",
+  "operation": "begin_work",
+  "inputDigest": "453af0464c00b2ae65813d6ce5308a50c41067d174f0264f17540501896b1be5",
+  "finishedAt": "2026-09-06T07:07:13.627Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "id": "T-047",
+    "status": "open",
+    "openedAt": "2026-09-06T07:07:13.627Z",
+    "opened": {
+      "producedBy": "@nessalabs/spec-ledger@0.1.0",
+      "baseCommit": "56d6ab11d684d654f6d09cbed531238823a72229",
+      "treeDigest": "47c70dc12fd9b447502a27da1f458a75ef70d5808408f28750350788a4b46a2e",
+      "dirtyAtOpen": [
+        ".spec-ledger/align-waivers/AW-18.json",
+        ".spec-ledger/decisions/T-046/D-01.json",
+        ".spec-ledger/evidence/check-runs/10ac0b8a-ce00-4aec-a173-9bc53753ce8b-stderr.txt",
+        ".spec-ledger/evidence/check-runs/10ac0b8a-ce00-4aec-a173-9bc53753ce8b-stdout.txt",
+        ".spec-ledger/evidence/check-runs/10ac0b8a-ce00-4aec-a173-9bc53753ce8b.json",
+        ".spec-ledger/evidence/runs/10ac0b8a-ce00-4aec-a173-9bc53753ce8b.json",
+        ".spec-ledger/turns/T-045.json",
+        ".spec-ledger/turns/T-046.json",
+        "package.json",
+        "packages/ledger/src/episodes.write.test.ts",
+        "packages/ledger/src/pack.concurrency.break.test.ts",
+        "pnpm-lock.yaml"
+      ],
+      "contextDigest": "c36624835a24befc1c471c1af87121c3eeafabbf6def1ba1d7bafb15bf4b3163",
+      "contextWorkstreamId": "W-014",
+      "contextSliceId": "SLC-02",
+      "contextSealRevision": 1,
+      "contextGeneratedAt": "2026-09-06T07:07:13.627Z"
+    },
+    "intent": {
+      "userPrompt": "Finish fixing PR 2 CI by validating the episode cleanup, hardlinked package fixture, and clean-install test dependencies.",
+      "restatedGoal": "Verify the CI fixture repairs",
+      "changeType": "fix",
+      "riskLevel": "moderate",
+      "workstreamId": "W-014",
+      "sliceId": "SLC-02",
+      "featureIds": [
+        "client",
+        "cli",
+        "lattice"
+      ]
+    }
+  }
+}

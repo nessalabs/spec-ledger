@@ -106,7 +106,14 @@ number each question; give your recommended answer; wait.
 
 Prefer CLI when available. Human pitch Markdown under **`docs/workstreams/W-00N-<title-slug>/spec.md`**
 first; then JSON per [workstream-template.md](workstream-template.md) with `specPath`
-pointing at that file (`.spec-ledger` = metadata only):
+pointing at that file (`.spec-ledger` = metadata only).
+
+Write the pitch in **plain English** — it is what the human reads before
+approving the bet. Follow the spec-document rules in
+[`../references/plain-titles.md`](../references/plain-titles.md): name the
+consequence rather than the mechanism, give every decision its “or else”, and
+keep field names, digests, claim ids and HTTP verbs in the JSON and linked
+technical docs instead of the pitch.
 
 - Pitch → `docs/workstreams/W-00N-<title-slug>/spec.md`
 - Workstream → `.spec-ledger/workstreams/W-00N.json` (`status: shaped` after confirm, `specPath` set)

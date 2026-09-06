@@ -9,12 +9,15 @@ const label = (outcome: string) => outcome === "pass" ? "Passing" : outcome === 
 
 export function WorkstreamEvidence({ session, observedAt, expandChecks = false }: { session: Session; observedAt: string; expandChecks?: boolean }) {
   return <section className="space-y-5" aria-label="Verification and evidence">
-    <div className="flex items-center justify-between"><h2 className="text-lg font-semibold">What proves it</h2><details className="text-xs text-muted-foreground"><summary className="cursor-pointer">Check details</summary><p>Observed {observedAt}. Opening this page does not run tests.</p></details></div>
+    <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
+      <h2 className="text-lg font-semibold">What proves it</h2>
+      <details className="min-w-0 text-xs text-muted-foreground"><summary className="cursor-pointer">Check details</summary><p>Observed {observedAt}. Opening this page does not run tests.</p></details>
+    </div>
     {!session.criteria.length && <p className="text-sm">No acceptance criteria are available in this evidence view.</p>}
     {session.criteria.map(criterion => <article id={`acceptance-${encodeURIComponent(criterion.id)}`} key={criterion.id} className="scroll-mt-6 space-y-4 rounded-xl border border-border p-4">
       <div className="flex flex-wrap items-start justify-between gap-2">
-        <h3 className="min-w-0 flex-1 text-sm font-medium">{presentationCopy(criterion.text)}</h3>
-        <Badge variant={criterion.evidence === "fail" ? "destructive" : "outline"}>{label(criterion.evidence)}</Badge>
+        <h3 className="min-w-48 flex-1 text-sm font-medium">{presentationCopy(criterion.text)}</h3>
+        <Badge className="shrink-0" variant={criterion.evidence === "fail" ? "destructive" : "outline"}>{label(criterion.evidence)}</Badge>
       </div>
       {criterion.evidence === "fail" && <p className="text-sm text-destructive">A check failed. Inspect the proof below.</p>}
       {criterion.evidence !== "pass" && criterion.evidence !== "fail" && criterion.claims.length > 0 && <p className="text-sm">{criterion.evidence === "attested" ? "A written observation is available; passing test evidence is still needed." : "Current passing evidence is not available."}</p>}

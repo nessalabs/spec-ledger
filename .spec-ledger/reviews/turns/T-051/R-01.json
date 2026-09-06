@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "T-051/R-01",
+  "turnId": "T-051",
+  "workstreamId": "W-014",
+  "kind": "human",
+  "target": "code",
+  "reviewer": "agent:align:user-scoped-ci-fix",
+  "verdict": "approve",
+  "summary": "The changed packaging test lies within the existing packages/ledger/** coverage and directly repairs the user-reported CI failure.",
+  "plainSummary": "The fix only changes how the packaging test starts and stops its server.",
+  "treeDigest": "146ff75db0913f1707bed73a6c57d9f6ca8a12f778c83ce3505aeb633f92ed6d",
+  "uncoveredPaths": [],
+  "coverageSource": "mixed"
+}

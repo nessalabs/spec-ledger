@@ -1,0 +1,112 @@
+TAP version 13
+# Subtest: library operations preserve actor/reason, retry identity and independent pointer conflicts
+ok 1 - library operations preserve actor/reason, retry identity and independent pointer conflicts
+  ---
+  duration_ms: 149.99475
+  type: 'test'
+  ...
+# Subtest: local library route denies unsafe requests before mutation and accepts a valid save
+ok 2 - local library route denies unsafe requests before mutation and accepts a valid save
+  ---
+  duration_ms: 45.756417
+  type: 'test'
+  ...
+# Subtest: library refuses symlinked profile storage without touching external files
+ok 3 - library refuses symlinked profile storage without touching external files
+  ---
+  duration_ms: 57.6295
+  type: 'test'
+  ...
+# Subtest: a refused delete with an unsafe default pointer preserves the saved workflow
+ok 4 - a refused delete with an unsafe default pointer preserves the saved workflow
+  ---
+  duration_ms: 68.225625
+  type: 'test'
+  ...
+# Subtest: local library poison and cross-site requests cannot create profiles
+ok 5 - local library poison and cross-site requests cannot create profiles
+  ---
+  duration_ms: 63.24475
+  type: 'test'
+  ...
+# Subtest: a saved workflow applies to a spec whose requirements are numbered differently
+ok 6 - a saved workflow applies to a spec whose requirements are numbered differently
+  ---
+  duration_ms: 37.286625
+  type: 'test'
+  ...
+# Subtest: saving is create-only and refuses a workflow carrying another spec's requirement numbers
+ok 7 - saving is create-only and refuses a workflow carrying another spec's requirement numbers
+  ---
+  duration_ms: 84.272541
+  type: 'test'
+  ...
+# Subtest: adoption is refused when the workflow lacks a review stage the spec requires
+ok 8 - adoption is refused when the workflow lacks a review stage the spec requires
+  ---
+  duration_ms: 122.183125
+  type: 'test'
+  ...
+# Subtest: editing or deleting a saved workflow leaves an adopted spec running unchanged
+ok 9 - editing or deleting a saved workflow leaves an adopted spec running unchanged
+  ---
+  duration_ms: 62.987375
+  type: 'test'
+  ...
+# Subtest: editing and deleting require the version the caller read
+ok 10 - editing and deleting require the version the caller read
+  ---
+  duration_ms: 21.517208
+  type: 'test'
+  ...
+# Subtest: the normal workflow falls back to the bundled one when it is deleted
+ok 11 - the normal workflow falls back to the bundled one when it is deleted
+  ---
+  duration_ms: 11.801375
+  type: 'test'
+  ...
+# Subtest: a corrupt saved workflow is refused rather than silently adopted
+ok 12 - a corrupt saved workflow is refused rather than silently adopted
+  ---
+  duration_ms: 9.264375
+  type: 'test'
+  ...
+# Subtest: adopting a saved copy of the bundled workflow gates exactly like the bundled workflow
+ok 13 - adopting a saved copy of the bundled workflow gates exactly like the bundled workflow
+  ---
+  duration_ms: 87.203542
+  type: 'test'
+  ...
+# Subtest: a review stage somebody deliberately added still counts when policy is lax
+ok 14 - a review stage somebody deliberately added still counts when policy is lax
+  ---
+  duration_ms: 10.545416
+  type: 'test'
+  ...
+# Subtest: switching an adopted workflow needs a reason and the snapshot the caller saw
+ok 15 - switching an adopted workflow needs a reason and the snapshot the caller saw
+  ---
+  duration_ms: 12.647333
+  type: 'test'
+  ...
+# Subtest: a saved workflow whose skill file is gone is refused with its path, and listed as unusable
+ok 16 - a saved workflow whose skill file is gone is refused with its path, and listed as unusable
+  ---
+  duration_ms: 9.624916
+  type: 'test'
+  ...
+# Subtest: a hand-written workflow is untouched by library coverage binding
+ok 17 - a hand-written workflow is untouched by library coverage binding
+  ---
+  duration_ms: 7.493083
+  type: 'test'
+  ...
+1..17
+# tests 17
+# suites 0
+# pass 17
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 587.57925

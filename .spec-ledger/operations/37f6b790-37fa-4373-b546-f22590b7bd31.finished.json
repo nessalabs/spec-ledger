@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "requestId": "37f6b790-37fa-4373-b546-f22590b7bd31",
+  "operation": "approve_alignment",
+  "inputDigest": "8b8c5750330e6a8ea43308a415563a21b605264247086d45a0e99ac88436721a",
+  "finishedAt": "2026-09-06T06:22:49.487Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "id": "T-044/R-02",
+    "turnId": "T-044",
+    "workstreamId": "W-014",
+    "kind": "human",
+    "target": "code",
+    "reviewer": "agent:align",
+    "verdict": "approve",
+    "summary": "User requested saved workflow management and in-spec selection, then explicitly clarified full-view Nessa UI canvas with drawers and workflow-ordered completion checklist. All product paths are covered by W-014 features and expected paths.",
+    "plainSummary": "Workflow library, drawer builder, picker and checklist changes are covered by the requested scope.",
+    "treeDigest": "c8f4868ff34987197994875b18ee719a82f3fb07a5e32fe907182a2ef6f6b448",
+    "uncoveredPaths": [],
+    "coverageSource": "mixed"
+  }
+}

@@ -1,0 +1,32 @@
+▶ sl-dev-break sealed plan digests (T-021 / SLC-05)
+  ✔ missing specPath file refuses seal (29.747833ms)
+  ✔ seal stamps digest on live seal AND snapshot; amend never mutates seal.specDocDigest (21.703583ms)
+  ✔ latest amend.afterDocDigest wins over seal.specDocDigest and prior amends (21.796375ms)
+  ✔ backfill does not mutate prior seals/N.json bytes (24.930459ms)
+  ✔ audit seal-digest-drift: live≠snapshot body even if seal.specDigest forged to match live (20.561708ms)
+  ✔ deleted spec file after seal fails check-seal and audit (20.120208ms)
+  ✔ CLI amend + check-seal round-trip (integration) (301.51275ms)
+  ✔ out-of-intent: empty afterDocDigest on latest amend must not fall back past prior amend (17.850291ms)
+  ✔ out-of-intent: hostile specPath with .. refuses seal/read (15.87325ms)
+✔ sl-dev-break sealed plan digests (T-021 / SLC-05) (474.905875ms)
+▶ sealed plan digests (SLC-05)
+  ✔ seal stamps specDocDigest; check-seal fails on silent edit; amend restores (30.437542ms)
+  ✔ missing expected digest fails until backfill (21.12375ms)
+  ✔ amend refuses no-op and requires backfill first (20.145166ms)
+  ✔ seal-digest-drift when live payload diverges (24.684167ms)
+✔ sealed plan digests (SLC-05) (96.938792ms)
+▶ PR #1 seal integrity regressions (T-025)
+  ✔ resealing an amended document accepts the newly sealed bytes (34.683125ms)
+  ✔ reverting to a prior revision amendment fails both seal check and audit (23.20725ms)
+  ✔ a current amendment works after resealing but cannot hide a corrupted seal pointer (24.145792ms)
+  ✔ check-seal rejects rewriting only the live document digest (23.207666ms)
+  ✔ audit rejects rewriting only the live document digest (21.953084ms)
+✔ PR #1 seal integrity regressions (T-025) (127.844209ms)
+ℹ tests 18
+ℹ suites 3
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 517.664042

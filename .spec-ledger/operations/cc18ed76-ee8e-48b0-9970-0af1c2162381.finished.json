@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "requestId": "cc18ed76-ee8e-48b0-9970-0af1c2162381",
+  "operation": "record_review",
+  "inputDigest": "6f52a8e19db71961fa5753b7964f0a599aeca967e8a622567b076ed9a50066d3",
+  "finishedAt": "2026-09-06T06:22:16.694Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "turnId": "T-044",
+    "kind": "adversarial",
+    "target": "code",
+    "reviewer": "agent:sl-dev-break:workflow-ui",
+    "verdict": "approve",
+    "summary": "Reviewed current W-014 implementation across SLC-01, SLC-02 and SLC-03 including the dedicated full-view canvas and drawer corrections D-01/D-02 and checklist ordering D-03. Independent run: node --test packages/ui/lib/*.test.mjs, 44 pass; library.break, library-storage.break, library-operations and MCP library.boundary.break compiled tests, 19 pass. Killers cover portable adoption, immutable adopted evidence after edits/deletes, stale versions, pointer confinement, cross-site poison, exact request recovery after lost response/reload, denied recovery storage preventing writes, deleted provenance, route separation, selected-stage drawer open/close, disabled canvas edits, conflict visibility inside preview and checklist state/count preservation. No confirmed blockers. Builder browser evidence separately documents real desktop/mobile and disposable save/default/adopt/edit/delete flows; test harness uses controlled UI primitives for interaction logic. Bounded hunt; no load tests.",
+    "plainSummary": "Saved workflows, the full-view builder and ordered completion checklist pass the boundary and interaction attack tests.",
+    "killersCited": [
+      "packages/ui/lib/workflow-editor.test.mjs::canvas opens only the selected stage drawer and closing restores the full canvas without mutating or executing",
+      "packages/ui/lib/workflow-api.break.test.mjs::lost reply survives reload and retry preserves the exact operation instead of accepting another edit",
+      "packages/ui/lib/workflow-api.break.test.mjs::a browser unable to persist recovery must not send an unrecoverable write",
+      "packages/ui/lib/navigation.break.test.mjs::a deleted library name stays visible with its preserved version while switching is pending",
+      "packages/ui/lib/navigation.break.test.mjs::workflow definition has one library route and the old per-spec route no longer resolves",
+      "packages/ui/lib/simplicity.break.test.mjs::completion keeps finished planning ahead of implementation and never changes supplied states or counts",
+      "packages/ledger/src/workflows/library.break.test.ts::editing or deleting a saved workflow leaves an adopted spec running unchanged",
+      "packages/ledger/src/workflows/library.break.test.ts::a saved workflow applies to a spec whose requirements are numbered differently",
+      "packages/ledger/src/workflows/library-storage.break.test.ts::a refused delete with an unsafe default pointer preserves the saved workflow",
+      "packages/ledger/src/workflows/library-storage.break.test.ts::local library poison and cross-site requests cannot create profiles",
+      "packages/mcp/src/library.boundary.break.test.ts::cli boundary: library retries and stale versions cannot overwrite current choices",
+      "packages/mcp/src/library.boundary.break.test.ts::mcp boundary: library retries and stale versions cannot overwrite current choices"
+    ],
+    "id": "T-044/R-01",
+    "treeDigest": "c8f4868ff34987197994875b18ee719a82f3fb07a5e32fe907182a2ef6f6b448"
+  }
+}

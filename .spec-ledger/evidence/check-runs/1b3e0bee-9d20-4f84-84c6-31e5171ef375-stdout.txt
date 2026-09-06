@@ -1,0 +1,106 @@
+TAP version 13
+# Subtest: source changes during a saved check cannot produce a passing outcome
+ok 1 - source changes during a saved check cannot produce a passing outcome
+  ---
+  duration_ms: 253.016125
+  type: 'test'
+  ...
+# Subtest: large stdout and stderr drain without unbounded capture and retain intact hashes
+ok 2 - large stdout and stderr drain without unbounded capture and retain intact hashes
+  ---
+  duration_ms: 206.252125
+  type: 'test'
+  ...
+# Subtest: overlapping new requests are rejected while retry returns the original identity
+ok 3 - overlapping new requests are rejected while retry returns the original identity
+  ---
+  duration_ms: 615.045333
+  type: 'test'
+  ...
+# Subtest: local malformed and cross-origin actions cause no execution
+ok 4 - local malformed and cross-origin actions cause no execution
+  ---
+  duration_ms: 127.156042
+  type: 'test'
+  ...
+# Subtest: symlinked receipt directory cannot receive check writes outside the checkout
+ok 5 - symlinked receipt directory cannot receive check writes outside the checkout
+  ---
+  duration_ms: 9.879125
+  type: 'test'
+  ...
+# Subtest: stale displayed inputs reject before worker creation and never switch to a changed command
+ok 6 - stale displayed inputs reject before worker creation and never switch to a changed command
+  ---
+  duration_ms: 76.82975
+  type: 'test'
+  ...
+# Subtest: nonzero exit retains actual diagnostics and does not pass
+ok 7 - nonzero exit retains actual diagnostics and does not pass
+  ---
+  duration_ms: 219.826958
+  type: 'test'
+  ...
+# Subtest: timeout terminates the owned command before releasing the guard and records signal
+ok 8 - timeout terminates the owned command before releasing the guard and records signal
+  ---
+  duration_ms: 161.257791
+  type: 'test'
+  ...
+# Subtest: saved command returns promptly, preserves actual output, and retries do not execute again
+ok 9 - saved command returns promptly, preserves actual output, and retries do not execute again
+  ---
+  duration_ms: 275.845833
+  type: 'test'
+  ...
+# Subtest: batch CLI runner records the same bounded logs and preserves unrelated rows
+ok 10 - batch CLI runner records the same bounded logs and preserves unrelated rows
+  ---
+  duration_ms: 176.88875
+  type: 'test'
+  ...
+# Subtest: local bridge only runs the displayed saved definition and reads are passive
+ok 11 - local bridge only runs the displayed saved definition and reads are passive
+  ---
+  duration_ms: 283.815583
+  type: 'test'
+  ...
+# Subtest: CLI starts and observes the same saved command with actual output
+ok 12 - CLI starts and observes the same saved command with actual output
+  ---
+  duration_ms: 312.258166
+  type: 'test'
+  ...
+# Subtest: MCP starts and observes the same saved command with actual output
+ok 13 - MCP starts and observes the same saved command with actual output
+  ---
+  duration_ms: 327.561875
+  type: 'test'
+  ...
+# Subtest: passive evidence render keeps authored expectations distinct and escapes test source
+ok 14 - passive evidence render keeps authored expectations distinct and escapes test source
+  ---
+  duration_ms: 5.538708
+  type: 'test'
+  ...
+# Subtest: actual failures and tampered logs remain visible independently of a described expectation
+ok 15 - actual failures and tampered logs remain visible independently of a described expectation
+  ---
+  duration_ms: 1.322542
+  type: 'test'
+  ...
+# Subtest: uncertain HTTP response reconnects with the same request identity
+ok 16 - uncertain HTTP response reconnects with the same request identity
+  ---
+  duration_ms: 3.0345
+  type: 'test'
+  ...
+1..16
+# tests 16
+# suites 0
+# pass 16
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1731.714958

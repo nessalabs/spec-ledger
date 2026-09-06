@@ -1,0 +1,31 @@
+{
+  "kind": "adversarial",
+  "target": "code",
+  "reviewer": "agent:sl-dev-break:library",
+  "verdict": "approve",
+  "blocking": false,
+  "resolvesReviewId": "T-043/R-01",
+  "resolvesFindingIds": [
+    "F-01"
+  ],
+  "summary": "Five independent boundary tests pass. The unsafe-pointer partial-delete killer failed before the builder preflight fix and passes unchanged afterward. CLI and stdio MCP exercise library options, validation preview, named provenance and target coverage, retries, duplicate save, stale edit/delete/default, and default deletion fallback; local bridge poison and origin attacks leave no profiles; symlink confinement preserves external files.",
+  "plainSummary": "Saved workflows now survive rejected deletes, and the library passes the boundary attack tests.",
+  "killersCited": [
+    "packages/ledger/src/workflows/library-storage.break.test.ts::library refuses symlinked profile storage without touching external files",
+    "packages/ledger/src/workflows/library-storage.break.test.ts::a refused delete with an unsafe default pointer preserves the saved workflow",
+    "packages/ledger/src/workflows/library-storage.break.test.ts::local library poison and cross-site requests cannot create profiles",
+    "packages/mcp/src/library.boundary.break.test.ts::cli boundary: library retries and stale versions cannot overwrite current choices",
+    "packages/mcp/src/library.boundary.break.test.ts::mcp boundary: library retries and stale versions cannot overwrite current choices"
+  ],
+  "findings": [],
+  "alertOnSeverity": "high",
+  "residualRisks": [
+    "Bounded SLC-02 review; SLC-03 browser library and picker flows require their own review.",
+    "One out-of-intent partial-failure killer used; no performance/load hunt because performanceCritical is false.",
+    "Final run: node --test packages/ledger/dist/workflows/library-storage.break.test.js packages/mcp/dist/library.boundary.break.test.js; 5 pass, 0 fail."
+  ],
+  "schemaVersion": 1,
+  "id": "T-043/R-02",
+  "turnId": "T-043",
+  "treeDigest": "ba844f3d36db65f90547ba661e8265b694f58d7536aa4e035c153b435b814854"
+}

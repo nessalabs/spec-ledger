@@ -5,7 +5,7 @@
   "description": "Reference Spec Ledger UI — local approval host and presentation; @nessalabs/ui + @nessalabs/spec-ledger-client",
   "type": "module",
   "scripts": {
-    "dev": "next dev --turbopack --hostname 127.0.0.1 --port 3737",
+    "dev": "next dev --hostname 127.0.0.1 --port 3737",
     "build": "next build",
     "start": "next start --hostname 127.0.0.1 --port 3737",
     "typecheck": "tsc -p tsconfig.json --noEmit"

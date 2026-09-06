@@ -7,6 +7,14 @@ import {
 } from "@nessalabs/spec-ledger"
 
 const descriptions: Record<OperationName, string> = {
+  get_workflow_library_options: "Read the portable bundled template and local skill inventory.",
+  preview_workflow_profile: "Validate a reusable workflow with the shared engine without saving it.",
+  list_workflow_profiles: "List saved workflows, their compatibility with a spec, and the versioned project default.",
+  get_workflow_profile: "Read a saved workflow and its version.",
+  save_workflow_profile: "Create a named workflow with actor and reason in the operations trail.",
+  update_workflow_profile: "Edit a saved workflow only at the expected version; adopted copies remain unchanged.",
+  delete_workflow_profile: "Delete a saved workflow at the expected version without changing adopted copies.",
+  set_default_workflow_profile: "Change the project default only at the expected pointer version.",
   plan_work: "Read the plan, permission, related context, and missing prerequisites without changing files.",
   get_context: "Read sealed context for one workstream slice without executing checks.",
   get_session: "Read current progress, evidence, reviews, and completion blockers.",

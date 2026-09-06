@@ -1,0 +1,9 @@
+{
+  "id": "SL-033",
+  "kind": "invariant",
+  "statement": "Changing, renaming or removing a saved way of working leaves every spec that already adopted it running the steps it copied, with its progress and evidence unchanged.",
+  "required": true,
+  "links": [
+    "docs/workstreams/W-014-named-workflows/spec.md"
+  ]
+}
