@@ -8,6 +8,9 @@ importers:
 
   .:
     devDependencies:
+      lucide-react:
+        specifier: 0.468.0
+        version: 0.468.0(react@19.1.1)
       react:
         specifier: 19.1.1
         version: 19.1.1
@@ -105,6 +108,11 @@ packages:
   jose@6.2.11:
     resolution: {integrity: sha512-A5NPn7g8EAzGU3IzRs+Yiq8K5n3ypYS75M5+KKiVHdUexfpWK1kP4ZMq7QnTGDoMj6TJ1dtcEJjW60yZDXS4hg==}
 
+  lucide-react@0.468.0:
+    resolution: {integrity: sha512-6koYRhnM2N0GGZIdXzSeiNwguv1gt/FAjZOiPl76roBi3xKEXa4WmfpxgQwTTL4KipXjefrnf3oV4IsYhi4JFA==}
+    peerDependencies:
+      react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0-rc
+
   path-key@3.1.1:
     resolution: {integrity: sha512-ojmeN0qd+y0jszEtoY48r0Peq5dwMEkIlCOu6Q5f41lfkswXuKtYrhgoTpLnyIcHm24Uhqx+5Tqm2InSwLhE6Q==}
     engines: {node: '>=8'}
@@ -189,6 +197,10 @@ snapshots:
   isexe@2.0.0: {}
 
   jose@6.2.11: {}
+
+  lucide-react@0.468.0(react@19.1.1):
+    dependencies:
+      react: 19.1.1
 
   path-key@3.1.1: {}
 

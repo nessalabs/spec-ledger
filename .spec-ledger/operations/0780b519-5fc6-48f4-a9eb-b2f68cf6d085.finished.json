@@ -1,0 +1,259 @@
+{
+  "schemaVersion": 1,
+  "requestId": "0780b519-5fc6-48f4-a9eb-b2f68cf6d085",
+  "operation": "complete_work",
+  "inputDigest": "5b73bd27156c99c6c04b464ddcbae3765f9717d59f05459df9935d1ef0130fbe",
+  "finishedAt": "2026-09-06T07:31:12.083Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "id": "W-014",
+    "status": "done",
+    "createdAt": "2026-09-05T22:40:00.000Z",
+    "featureIds": [
+      "client",
+      "cli",
+      "lattice"
+    ],
+    "primaryFeatureId": "client",
+    "title": "Name a workflow once and reuse it",
+    "specPath": "docs/workstreams/W-014-named-workflows/spec.md",
+    "problem": "A WorkflowProfile exists only as the bundled spec-ledger/default or as a custom profile embedded in one workstream snapshot, so there is nothing to select. Reuse is manual JSON export/import and there is no repo default. Portability is blocked by two per-workstream couplings: resolveWorkflow validates output.criterionIds against criterionIds(ws), which is positional per workstream, and validateOrder derives required stages from the target workstream's policy. profile.source is a closed default|custom union that roleApplicable and workflowOptions branch on, so a third source would silently change stage gating.",
+    "objective": "Save a workflow under a name, pick which one is normal, and choose it for a spec instead of rebuilding the steps every time.",
+    "appetite": "3-4 days",
+    "changeType": "feature",
+    "riskLevel": "moderate",
+    "trust": {
+      "deployTarget": "library",
+      "userFacing": true,
+      "performanceCritical": false,
+      "securitySensitive": true,
+      "correctnessCritical": true,
+      "requiredEvidence": [
+        "unit",
+        "integration",
+        "e2e"
+      ]
+    },
+    "policy": {
+      "alertOnSeverity": "high",
+      "onAlert": "wait",
+      "alertWaitMinutes": 10,
+      "onAlertTimeout": "move",
+      "onSealedSpecDeviation": "wait",
+      "sealedDeviationWaitMinutes": 10,
+      "onSealedDeviationTimeout": "move",
+      "requireSpecBreak": true,
+      "requireCodeBreak": true,
+      "requireAlignApprove": true
+    },
+    "outOfScope": [
+      "Branching or conditional workflows",
+      "Different normal workflows per feature or per person",
+      "Sharing profiles between repositories or any registry",
+      "A new repo-scoped permission concept",
+      "Migrating workflows already embedded in existing snapshots",
+      "Launching agents from the UI"
+    ],
+    "rabbitHoles": [
+      "Migrating existing embedded custom snapshots - the library is additive and old snapshots stay readable",
+      "Letting a library edit mutate a running spec as a side effect",
+      "Moving /workflows without updating the navigation test inside both b-sl-029 and b-sl-030 while SL-029 and SL-030 stay true",
+      "Re-implementing workflow validation rules inside packages/ui",
+      "Reusing editable() to save a profile without stripping the source spec's criterionIds - that reintroduces the portability bug",
+      "Sealing before SL-032/SL-033/SL-034 are promoted: acceptanceClaimIds is inside sealPayload, so a later fix drifts the seal digest"
+    ],
+    "expectedClaimIds": [
+      "SL-023",
+      "SL-024",
+      "SL-029",
+      "SL-030"
+    ],
+    "proposedClaimIds": [
+      "PC-023",
+      "PC-024",
+      "PC-025"
+    ],
+    "suggestedSlices": [
+      {
+        "id": "SLC-01",
+        "title": "Save one workflow and use it on another spec",
+        "kind": "vertical",
+        "acceptance": [
+          "Saving the workflow a spec is using, then adopting it by name on a second spec, produces a working workflow there without retyping steps, and records the saved workflow's id and version.",
+          "Saving a workflow is create-only: an id that already exists is refused and nothing is overwritten.",
+          "Requirement coverage is attached from the adopting spec, so a workflow saved from a spec with different acceptance criteria still applies cleanly.",
+          "Adopting a workflow that lacks a review stage the target spec requires is refused naming the missing stage, and nothing is stored.",
+          "Adopting a workflow whose skill file is missing, unreadable, outside the checkout or oversized is refused naming the path, and nothing is stored.",
+          "After editing or deleting the saved workflow, the adopting spec's stage statuses and evidence currency are unchanged.",
+          "A stage the spec's policy does not require stays applicable when the workflow marks it required, and adopting a saved copy of the bundled workflow gives the same stage statuses as adopting nothing."
+        ],
+        "evidence": [
+          "unit",
+          "integration"
+        ],
+        "expectedClaimIds": [
+          "SL-023"
+        ],
+        "expectedPaths": [
+          "packages/ledger/**",
+          "packages/client/**",
+          "packages/mcp/**",
+          "schemas/**",
+          "docs/**"
+        ],
+        "notes": "Stage applicability becomes stage.required ?? policy(role); profile.source stops feeding roleApplicable and becomes provenance only. packages/ledger/src/workflows/workflow.break.test.ts:372 (bound to required claim SL-024) changes with SL-024's statement intact. N-3: saving strips output.criterionIds at the editable() boundary; adoption attaches the adopting spec's criterionIds to every implementation-report and check-results output by kind, mirroring defaultStages, and never overwrites criteria an author wrote by hand.",
+        "codeBreakReviewId": "T-049/R-02"
+      },
+      {
+        "id": "SLC-02",
+        "title": "Manage the saved workflows",
+        "kind": "vertical",
+        "acceptance": [
+          "The list shows every saved workflow and marks which ones a chosen spec can use, and why the others cannot.",
+          "Two workflows cannot share an id; renaming changes title only and leaves adopted provenance intact.",
+          "Editing, deleting or changing the default requires the caller's expected version and is refused as a conflict when it has moved, changing nothing.",
+          "Deleting an adopted workflow is allowed and leaves those specs running, still showing its name marked deleted; deleting the default falls back to the bundled workflow.",
+          "Terminal and agent tools behave identically, and the local UI route refuses malformed, oversized and cross-site requests.",
+          "Every library change is recorded in the operations trail with its actor and reason."
+        ],
+        "evidence": [
+          "unit",
+          "integration",
+          "e2e"
+        ],
+        "expectedClaimIds": [
+          "SL-023"
+        ],
+        "expectedPaths": [
+          "packages/ledger/**",
+          "packages/client/**",
+          "packages/mcp/**",
+          "schemas/**",
+          "docs/**",
+          "packages/ui/**"
+        ],
+        "notes": "Default pointer lives in the workflows store, not schemas/ledger-root.json, which is additionalProperties:false. Reserve the pointer path so a profile whose id is 'default' cannot collide with it. N-5: .spec-ledger/** is in DEFAULT_ALIGN_IGNORE and excluded from sourceFingerprint, so align check will not surface library edits.",
+        "codeBreakReviewId": "T-049/R-02"
+      },
+      {
+        "id": "SLC-03",
+        "title": "Choose a workflow where the work is",
+        "kind": "vertical",
+        "acceptance": [
+          "A spec's workflow is readable and switchable beside its evidence and changes without a separate page, and switching records the reason preserveWorkflow already requires.",
+          "Defining a workflow is reachable only from the library screen, and switching a spec's workflow never requires restating its steps.",
+          "The editor shows stages and steps in run order with required results, rejects exactly what the engine rejects, and never offers a shape the engine cannot run.",
+          "A spec shows the name and version of the saved workflow it adopted, and marks it deleted when that workflow is gone."
+        ],
+        "evidence": [
+          "unit",
+          "integration",
+          "e2e"
+        ],
+        "expectedClaimIds": [
+          "SL-029",
+          "SL-030"
+        ],
+        "expectedPaths": [
+          "packages/ui/**",
+          "packages/client/**",
+          "docs/**"
+        ],
+        "notes": "Editor guard rails come from the client's exported validation or preview round-trip, never a second copy of the rules in packages/ui. N-9: the route change touches packages/ui/lib/navigation.test.mjs:27, which is inside BOTH b-sl-029 and b-sl-030; the rewritten test must assert the new in-page workflow join and that /workflows/<W-id> no longer resolves. N-7: packages/ui/components/workflow-view.tsx:199,224 render a two-value default|custom badge.",
+        "codeBreakReviewId": "T-049/R-02"
+      }
+    ],
+    "acceptanceClaimIds": {
+      "SLC-01/AC-1": [
+        "SL-032"
+      ],
+      "SLC-01/AC-2": [
+        "SL-032"
+      ],
+      "SLC-01/AC-3": [
+        "SL-034"
+      ],
+      "SLC-01/AC-4": [
+        "SL-034"
+      ],
+      "SLC-01/AC-5": [
+        "SL-033"
+      ],
+      "SLC-01/AC-6": [
+        "SL-033"
+      ],
+      "SLC-01/AC-7": [
+        "SL-032"
+      ],
+      "SLC-02/AC-1": [
+        "SL-032"
+      ],
+      "SLC-02/AC-2": [
+        "SL-032"
+      ],
+      "SLC-02/AC-3": [
+        "SL-034"
+      ],
+      "SLC-02/AC-4": [
+        "SL-033"
+      ],
+      "SLC-02/AC-5": [
+        "SL-023"
+      ],
+      "SLC-02/AC-6": [
+        "SL-034"
+      ],
+      "SLC-03/AC-1": [
+        "SL-029"
+      ],
+      "SLC-03/AC-2": [
+        "SL-032"
+      ],
+      "SLC-03/AC-3": [
+        "SL-030"
+      ],
+      "SLC-03/AC-4": [
+        "SL-033"
+      ]
+    },
+    "updatedAt": "2026-09-06T07:31:12.083Z",
+    "residualRisks": [
+      "Library edits live under .spec-ledger/, which align check ignores and the source fingerprint excludes, so they never appear in turn path coverage.",
+      "trust.requiredEvidence is advisory; no code enforces the e2e requirement."
+    ],
+    "specBreakReviewId": "W-014/SR-03",
+    "seal": {
+      "sealedAt": "2026-09-06T05:34:58.907Z",
+      "sealedBy": "agent:permission:AUTH-4e179164-47e5-4ea9-88b2-0858b32fec25",
+      "specDigest": "52c99d6542e20d41fc948b4c067f8d7b61ee9174ed15aca63881dc5a9fbc4512",
+      "snapshotPath": "workstreams/W-014.seals/1.json",
+      "revision": 1,
+      "specDocDigest": "26a3a61bc6f7f971e65f650884d1ac3c290629dbc49e00c7ce40a3d461f7ca15"
+    },
+    "postSealAmends": [
+      {
+        "at": "2026-09-06T06:11:06.443Z",
+        "summary": "User requested a dedicated Nessa UI workflow canvas builder for New workflow and Edit; execution stays linear.",
+        "humanConfirmed": true,
+        "sealedRevision": 1,
+        "beforeDocDigest": "26a3a61bc6f7f971e65f650884d1ac3c290629dbc49e00c7ce40a3d461f7ca15",
+        "afterDocDigest": "c4223e8b319f15c7a1f9eec0aea10043845a463c6107839ac757c0a8e69b7d9e",
+        "actor": "agent:user-request",
+        "turnId": "T-044",
+        "decisionId": "T-044/D-01"
+      },
+      {
+        "at": "2026-09-06T06:14:15.887Z",
+        "summary": "User clarified full-view canvas with stage details opened in a Nessa UI drawer.",
+        "humanConfirmed": true,
+        "sealedRevision": 1,
+        "beforeDocDigest": "c4223e8b319f15c7a1f9eec0aea10043845a463c6107839ac757c0a8e69b7d9e",
+        "afterDocDigest": "ef4d9e376dbb85f984a37951dc90becef462506f8e10a12b3b4d8411c7a1b5a6",
+        "actor": "agent:user-request",
+        "turnId": "T-044",
+        "decisionId": "T-044/D-02"
+      }
+    ]
+  }
+}
