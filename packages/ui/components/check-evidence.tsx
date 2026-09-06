@@ -15,7 +15,7 @@ async function readEvidence(bindingId: string, signal?: AbortSignal): Promise<Ch
   return data
 }
 
-export function CheckEvidencePanel({ bindingId, initial, defaultOpen = false, label = "Inspect test, output and source" }: { bindingId: string; initial?: CheckEvidence; defaultOpen?: boolean; label?: string }) {
+export function CheckEvidencePanel({ bindingId, initial, defaultOpen = false, label = "Inspect test, output and source", embedded = false }: { bindingId: string; initial?: CheckEvidence; defaultOpen?: boolean; label?: string; embedded?: boolean }) {
   const router = useRouter()
   const [open, setOpen] = useState(defaultOpen)
   const [evidence, setEvidence] = useState<CheckEvidence | null>(initial ?? null)
@@ -101,23 +101,24 @@ export function CheckEvidencePanel({ bindingId, initial, defaultOpen = false, la
     } finally { startingRef.current = false; setStarting(false) }
   }
 
-  return <details open={open} onToggle={event => setOpen(event.currentTarget.open)} className="rounded-xl border border-border p-4">
-    <summary className="cursor-pointer font-medium">{label}</summary>
+  const Container = embedded ? "div" : "details"
+  return <Container open={embedded ? undefined : open} onToggle={event => { if ("open" in event.currentTarget) setOpen(event.currentTarget.open) }} className={embedded ? "space-y-4" : "rounded-xl border border-border p-4"}>
+    {!embedded && <summary className="cursor-pointer font-medium">{label}</summary>}
     <div className="mt-4 space-y-5">
       {!evidence ? <p role="status">{message || 'Loading saved evidence…'}</p> : <>
         <div className="flex flex-wrap items-center gap-2"><Badge variant="outline">{evidence.test?.level ?? 'Test level not recorded'}</Badge><span className="text-sm">Current evidence: {evidence.currentOutcome}</span></div>
-        <section><h4 className="font-medium">What this checks</h4><p className="mt-1 text-sm">{evidence.test?.description ?? 'No explanation was recorded. Inspect the test source and assertions below.'}</p></section>
-        <div className="grid gap-4 sm:grid-cols-2"><TextBlock title="Input / setup · recorded description" text={evidence.test?.inputs ?? 'Not recorded. The source may define fixtures or multiple scenarios.'}/><TextBlock title="Expected behavior · recorded description" text={evidence.test?.expected ?? 'Not recorded. Read the assertions before interpreting a passing exit status.'}/></div>
-        <section className="space-y-2"><h4 className="font-medium">Test source</h4>{evidence.test?.source?.name && <p className="text-sm">{evidence.test.source.name}</p>}<p className="break-all text-xs text-muted-foreground">{evidence.source.path ?? 'No source reference recorded'}</p>{evidence.source.status === 'available' ? <div className="max-h-[32rem] overflow-auto rounded-lg"><EvidenceCode code={evidence.source.text ?? ''} filename={evidence.source.path ?? undefined} /></div> : <p className="text-sm">{evidence.source.reason ?? 'Source is unavailable.'}</p>}</section>
-        <section className="space-y-2"><h4 className="font-medium">Saved command</h4>{evidence.command ? <CodeBlock code={evidence.command} language="shell" mode="dark" wrap /> : <p className="text-sm">This check is supplied by an external reporter and cannot be run here.</p>}<p className="break-all text-xs text-muted-foreground">Directory: {evidence.cwd}</p><p className="text-xs text-muted-foreground">Run again executes this saved repository command. Opening or refreshing evidence does not execute it.</p>
-          <div className="flex flex-wrap gap-2"><Button disabled={starting || active(run) || !evidence.command || !evidence.sourceDigest} onClick={() => void start()}>{starting ? 'Starting…' : active(run) ? 'Running…' : pending.current ? 'Reconnect to request' : 'Run again'}</Button><Button variant="outline" onClick={() => void refresh()}>Refresh evidence</Button></div>
-        </section>
+<div className="flex flex-wrap items-start justify-between gap-3"><div className="min-w-0 flex-1"><h4 className="font-medium">{evidence.test?.description ?? "Recorded check"}</h4></div>          <div className="flex flex-wrap gap-2"><Button size="sm" variant="outline" disabled={starting || active(run) || !evidence.command || !evidence.sourceDigest} onClick={() => void start()}>{starting ? 'Starting…' : active(run) ? 'Running…' : pending.current ? 'Reconnect to request' : 'Run again'}</Button><Button size="sm" variant="ghost" onClick={() => void refresh()}>Refresh evidence</Button></div></div>
+
         {message && <p role="status" className="text-sm">{message}</p>}
-        {run ? <><p className="text-sm text-muted-foreground">{run.sourceDigest !== evidence.sourceDigest || run.checkDigest !== evidence.checkDigest ? "Historical run: its source or check differs from the current version. This result does not verify the current version." : "This run used the source and check identities shown above."}</p><RunOutput run={run}/></> : <p className="text-sm">No detailed run output was captured. Older exit-status records do not contain logs; a new run can capture them.</p>}
+        {run ? <><p className="text-sm text-muted-foreground">{run.sourceDigest !== evidence.sourceDigest || run.checkDigest !== evidence.checkDigest ? "Historical run: its source or check differs from the current version. This result does not verify the current version." : null}</p><RunOutput run={run}/></> : <p className="text-sm">No detailed run output was captured. Older exit-status records do not contain logs; a new run can capture them.</p>}
+        <details className="border-t border-border pt-3"><summary className="cursor-pointer text-sm text-muted-foreground">Test code and command</summary><div className="mt-4 space-y-4">        <div className="grid gap-4 sm:grid-cols-2"><TextBlock title="Input / setup · recorded description" text={evidence.test?.inputs ?? 'Not recorded. The source may define fixtures or multiple scenarios.'}/><TextBlock title="Expected behavior · recorded description" text={evidence.test?.expected ?? 'Not recorded. Read the assertions before interpreting a passing exit status.'}/></div>        <section className="space-y-2"><h4 className="font-medium">Test source</h4>{evidence.test?.source?.name && <p className="text-sm">{evidence.test.source.name}</p>}<p className="break-all text-xs text-muted-foreground">{evidence.source.path ?? 'No source reference recorded'}</p>{evidence.source.status === 'available' ? <div className="max-h-[32rem] overflow-auto rounded-lg"><EvidenceCode code={evidence.source.text ?? ''} filename={evidence.source.path ?? undefined} /></div> : <p className="text-sm">{evidence.source.reason ?? 'Source is unavailable.'}</p>}</section>
+        <section className="space-y-2"><h4 className="font-medium">Saved command</h4>{evidence.command ? <CodeBlock code={evidence.command} language="shell" mode="dark" wrap /> : <p className="text-sm">This check is supplied by an external reporter and cannot be run here.</p>}<p className="break-all text-xs text-muted-foreground">Directory: {evidence.cwd}</p><p className="text-xs text-muted-foreground">Run again executes this saved repository command. Opening or refreshing evidence does not execute it.</p>
+        </section>
+</div></details>
         <details><summary className="cursor-pointer text-xs text-muted-foreground">Source and check identities</summary><p className="mt-2 break-all text-xs">Current source: {evidence.sourceDigest ?? 'Unavailable'}<br/>Check: {evidence.checkDigest}<br/>Test source: {evidence.source.sha256 ?? 'Not recorded'}</p></details>
       </>}
     </div>
-  </details>
+  </Container>
 }
 
 function TextBlock({title, text}: {title: string; text: string}) {
@@ -125,7 +126,7 @@ function TextBlock({title, text}: {title: string; text: string}) {
 }
 
 function RunOutput({run}: {run: CheckRun}) {
-  return <section className="space-y-3" aria-label="Actual test output"><h4 className="font-medium">Actual run result · {run.state}</h4><p className="text-sm">{run.outcome ?? 'No outcome yet'}{run.exitCode !== undefined ? ` · exit ${run.exitCode}` : ''}{run.durationMs !== undefined ? ` · ${run.durationMs} ms` : ''}</p><p className="text-xs text-muted-foreground">Started {run.startedAt}{run.finishedAt ? ` · Finished ${run.finishedAt}` : ''}</p>{run.reason && <p className="text-sm">{run.reason}</p>}{(['stdout','stderr'] as const).map(key => <section key={key}><h5 className="text-sm font-medium">{key === 'stdout' ? 'Standard output' : 'Error output'}{run[key]?.truncated ? ' · truncated' : ''}</h5><pre className="mt-2 max-h-96 overflow-auto whitespace-pre-wrap break-words rounded-lg bg-muted/30 p-3 text-xs">{run[key]?.status === 'intact' ? run[key]?.text || '(empty)' : active(run) ? 'Output will be available when this run finishes.' : 'Output not captured or its integrity could not be verified.'}</pre></section>)}<details><summary className="cursor-pointer text-xs">Run provenance</summary><p className="mt-2 break-all text-xs">Run: {run.runId}<br/>Source: {run.sourceDigest}<br/>Check: {run.checkDigest}<br/>Directory: {run.cwd}</p><pre className="whitespace-pre-wrap break-words text-xs">{run.command}</pre></details></section>
+  return <section className="space-y-3" aria-label="Actual test output"><h4 className="font-medium">Actual run result · {run.state}</h4><p className="text-sm">{run.outcome ?? 'No outcome yet'}{run.exitCode !== undefined ? ` · exit ${run.exitCode}` : ''}{run.durationMs !== undefined ? ` · ${run.durationMs} ms` : ''}</p>{run.reason && run.outcome !== "pass" && <p className="text-sm">{run.reason}</p>}{(['stdout','stderr'] as const).map(key => <section key={key}><h5 className="text-sm font-medium">{key === 'stdout' ? 'Standard output' : 'Error output'}{run[key]?.truncated ? ' · truncated' : ''}</h5><pre className="mt-2 max-h-96 overflow-auto whitespace-pre-wrap break-words rounded-lg bg-muted/30 p-3 text-xs">{run[key]?.status === 'intact' ? run[key]?.text || '(empty)' : active(run) ? 'Output will be available when this run finishes.' : 'Output not captured or its integrity could not be verified.'}</pre></section>)}<details><summary className="cursor-pointer text-xs">Run provenance</summary><p className="text-xs text-muted-foreground">Started {run.startedAt}{run.finishedAt ? ` · Finished ${run.finishedAt}` : ''}</p><p className="mt-2 break-all text-xs">Run: {run.runId}<br/>Source: {run.sourceDigest}<br/>Check: {run.checkDigest}<br/>Directory: {run.cwd}</p><pre className="whitespace-pre-wrap break-words text-xs">{run.command}</pre></details></section>
 }
 
 

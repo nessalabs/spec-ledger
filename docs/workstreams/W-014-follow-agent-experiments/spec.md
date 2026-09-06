@@ -29,3 +29,11 @@ Scheduling or running experiments, executing evidence URLs, automatic git change
 ## Evidence
 
 Unit and integration tests exercise storage and application/CLI paths, duplicate and invalid writes, projections, and GET transport. UI typecheck/build and browser inspection cover numeric and qualitative/empty displays. Independent spec and code breakers are required. Existing repository build/test/verify/audit/align checks run before close.
+
+## Evidence presentation follow-up (user requested)
+
+The user confirmed the layout and explicitly requested implementation: one expandable requirement card, green passing status with text, test descriptions and actual captured output first, source/command collapsed below, and a compact Run again action. Include the existing labeled UI demo screenshot as previewable evidence. Keep failed/missing/attested and historical evidence honest. No invented individual test outcomes: display recorded test-run output, preserving skip/fail/unknown statuses.
+
+Use existing UI/client boundaries and attachment metadata. Allow bounded, digest-checked local PNG/JPEG previews through the existing session projection; deny remote URLs, escaping paths, unsupported/invalid image types and changed bytes. Screenshot previews are supporting observations, never verifier pass. Attach the existing demo to the new follow-up turn, with honest historical capture labeling. No writes to closed turn facts. Workstream-level visual evidence should be prominent beside requirements; no invented requirement association. Preserve passive reads, guarded run retries, reconnect behavior and output integrity. Browser checks cover keyboard expansion, result-first layout, screenshot enlargement, narrow screens, failures and missing output.
+
+This is one follow-up vertical in the existing local/library feature, with its existing trust and review policy. It composes on session artifact projection and evidence UI; no image hosting service, remote fetch, test runner replacement or UUID migration.

@@ -1,3 +1,5 @@
+import { EvidenceCard } from "@/components/evidence-card"
+import { VisualEvidence } from "@/components/visual-evidence"
 import { CheckEvidencePanel } from "@/components/check-evidence"
 import Link from "next/link"
 import { Badge } from "@nessalabs/ui"
@@ -11,15 +13,15 @@ export function WorkstreamEvidence({ session, observedAt, expandChecks = false }
   return <section className="space-y-5" aria-label="Verification and evidence">
     <div className="flex items-center justify-between"><h2 className="text-lg font-semibold">What proves it</h2><details className="text-xs text-muted-foreground"><summary className="cursor-pointer">Check details</summary><p>Observed {observedAt}. Opening this page does not run tests.</p></details></div>
     {!session.criteria.length && <p className="text-sm">No acceptance criteria are available in this evidence view.</p>}
-    {session.criteria.map(criterion => <article id={`acceptance-${encodeURIComponent(criterion.id)}`} key={criterion.id} className="scroll-mt-6 space-y-4 rounded-xl border border-border p-4">
-      <div className="flex flex-wrap items-start justify-between gap-2">
-        <h3 className="min-w-0 flex-1 text-sm font-medium">{presentationCopy(criterion.text)}</h3>
-        <Badge variant={criterion.evidence === "fail" ? "destructive" : "outline"}>{label(criterion.evidence)}</Badge>
-      </div>
+    {session.artifacts.some(a => a.imageDataUrl) && <section aria-label="Visual evidence" className="space-y-3"><h3 className="text-sm font-medium">Visual evidence</h3><div className="grid gap-3 sm:grid-cols-2">{session.artifacts.filter(a => a.imageDataUrl).map(a => <VisualEvidence key={a.id} src={a.imageDataUrl!} title={a.title} note={a.note} />)}</div></section>}
+    {session.criteria.map(criterion => <EvidenceCard id={`acceptance-${encodeURIComponent(criterion.id)}`} key={criterion.id} defaultOpen={expandChecks} heading={<span className="inline-flex w-[calc(100%-1.5rem)] flex-wrap items-start justify-between gap-2">
+        <span className="min-w-0 flex-1 text-sm font-medium">{presentationCopy(criterion.text)}</span>
+        <span className={`shrink-0 rounded-full px-2 py-0.5 text-xs font-medium ${criterion.evidence === "pass" ? "bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-200" : criterion.evidence === "fail" ? "bg-red-100 text-red-800 dark:bg-red-950 dark:text-red-200" : "bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-200"}`}>{criterion.evidence === "pass" ? "✓ " : criterion.evidence === "fail" ? "✕ " : ""}{label(criterion.evidence)}</span>
+      </span>}>
       {criterion.evidence === "fail" && <p className="text-sm text-destructive">A check failed. Inspect the proof below.</p>}
       {criterion.evidence !== "pass" && criterion.evidence !== "fail" && criterion.claims.length > 0 && <p className="text-sm">{criterion.evidence === "attested" ? "A written observation is available; passing test evidence is still needed." : "Current passing evidence is not available."}</p>}
       {!criterion.claims.length && <p className="text-sm">No checks are mapped to this requirement yet.</p>}
-      {criterion.claims.flatMap(claim => claim.checks).map((check, index, checks) => <CheckEvidencePanel key={check.id} bindingId={check.id} defaultOpen={expandChecks} label={checks.length === 1 ? "View proof" : `View proof ${index + 1} · ${label(check.outcome)}`} />)}
+      {criterion.claims.flatMap(claim => claim.checks).map((check, index, checks) => <CheckEvidencePanel key={check.id} bindingId={check.id} defaultOpen embedded label={checks.length === 1 ? "Test results" : `Test results ${index + 1} · ${label(check.outcome)}`} />)}
       <details><summary className="cursor-pointer text-xs text-muted-foreground">Evidence details and history</summary><div className="mt-3 space-y-3">
       <p className="text-xs text-muted-foreground">{criterion.implemented ? "Implementation recorded · agent reported" : "Implementation not confirmed for this version"}</p>
       {criterion.reason && <p className="text-sm">{criterion.reason}</p>}
@@ -49,7 +51,7 @@ export function WorkstreamEvidence({ session, observedAt, expandChecks = false }
         </details>)}
       </div>)}
       </div></details>
-    </article>)}
+    </EvidenceCard>)}
     <section className="space-y-3"><h3 className="font-medium">Reviews and remaining risks</h3>
       {!session.reviews.length && <p className="text-sm text-muted-foreground">No reviews recorded.</p>}
       <details><summary className="cursor-pointer text-sm">{session.reviews.filter(r => r.current).length} current · {session.reviews.filter(r => !r.current).length} historical reviews — read findings and risks</summary><div className="mt-3 space-y-2">

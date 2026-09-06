@@ -1,0 +1,17 @@
+{
+  "action": "grant",
+  "mode": "request",
+  "workstreamId": "W-014",
+  "featureIds": [
+    "turns",
+    "lattice",
+    "cli"
+  ],
+  "source": {
+    "kind": "agent-reported",
+    "reference": "User confirmed expandable result-first evidence cards, screenshot preview, compact Run again and collapsed source details, then explicitly said: fix that please."
+  },
+  "id": "AUTH-0c01cde4-b0d5-4d92-bc01-a1b602937a3a",
+  "schemaVersion": 1,
+  "createdAt": "2026-09-06T17:37:39.895Z"
+}

@@ -139,7 +139,7 @@ export function getSession(root: string, workstreamId?: string) {
       reviews: reviews.map(r => ({ id: r.id, turnId: r.turnId, target: r.target, verdict: r.verdict,
         summary: r.plainSummary ?? r.summary, findings: r.findings ?? [], residualRisks: r.residualRisks ?? [],
         current: r.target === "spec" ? r.revisionDigest === revisionDigest : Boolean(sourceDigest && r.treeDigest === sourceDigest) })),
-      artifacts: turns.flatMap(t => listAttachmentsForTurn(root, t.id)).map(a => attachmentEvidence(root, a)),
+      artifacts: (() => { const budget = { remaining: 2 * 1024 * 1024 }; return turns.flatMap(t => listAttachmentsForTurn(root, t.id)).map(a => attachmentEvidence(root, a, budget)) })(),
       permission, authorityDigest: authorityStateDigest(root), attention, criteria, activity, obligations, workflow, executionActivity,
       completion: { eligible: permission.allowed && completionReasons.length === 0, reasons: completionReasons },
       openTurnIds: turns.filter(t => t.status === "open").map(t => t.id),

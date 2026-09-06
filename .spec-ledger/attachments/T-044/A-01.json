@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "turnId": "T-044",
+  "kind": "image",
+  "path": "docs/workstreams/W-014-follow-agent-experiments/evidence/T-043/experiments-overview.png",
+  "mediaType": "image/png",
+  "title": "Experiments UI — saved demo screenshot",
+  "contentDigest": "707b4a700fd98e453184f7bb9e9bcbcab726751f8870dfe98203a8cf302d50ea",
+  "byteLength": 218596,
+  "note": "Captured during the earlier experiment UI validation using a labeled demonstration fixture. This is historical visual evidence, not a screenshot of the current evidence-card layout.",
+  "id": "T-044/A-01"
+}

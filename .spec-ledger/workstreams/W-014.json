@@ -59,18 +59,40 @@
         "docs/**",
         "skills/**"
       ],
-      "codeBreakReviewId": "T-043/R-02"
+      "codeBreakReviewId": "T-044/R-02"
+    },
+    {
+      "id": "SLC-02",
+      "title": "Read test results and visual evidence first",
+      "kind": "vertical",
+      "acceptance": [
+        "Expand a requirement card to see test descriptions and captured results before collapsed source and command details, with clear status colors and a compact Run again action.",
+        "Inspect an integrity-checked local screenshot as visual evidence without treating it as a passing test; unavailable or changed images remain explicit."
+      ],
+      "evidence": [
+        "unit",
+        "integration",
+        "e2e"
+      ],
+      "expectedPaths": [
+        "packages/ui/**",
+        "packages/ledger/**",
+        "packages/client/**",
+        "docs/**",
+        "schemas/**"
+      ],
+      "codeBreakReviewId": "T-044/R-02"
     }
   ],
-  "specBreakReviewId": "W-014/SR-02",
-  "updatedAt": "2026-09-06T08:10:42.845Z",
+  "specBreakReviewId": "W-014/SR-03",
+  "updatedAt": "2026-09-06T17:49:17.849Z",
   "seal": {
-    "sealedAt": "2026-09-06T07:51:25.216Z",
-    "sealedBy": "agent:permission:AUTH-21ac919a-880c-411d-a3b0-3534b8634dc3",
-    "specDigest": "3f5503739b08f6b62be9b4d503bbcbc02b5f3fc26928af93eedd1626e93c4d47",
-    "snapshotPath": "workstreams/W-014.seals/2.json",
-    "revision": 2,
-    "specDocDigest": "e94f99159c92232d20dd21d3f3690c6fda0c31ab749e7d514bb4e61316bb5c0c"
+    "sealedAt": "2026-09-06T17:38:45.359Z",
+    "sealedBy": "agent:permission:AUTH-0c01cde4-b0d5-4d92-bc01-a1b602937a3a",
+    "specDigest": "6d9e3982b39a28eb31635092296084da009bc22efc9d68a11001aef54599ff3a",
+    "snapshotPath": "workstreams/W-014.seals/3.json",
+    "revision": 3,
+    "specDocDigest": "1ccb0be430d2f727532117aebe9bd072e2c87bd924f35774b003d7264eb57062"
   },
   "acceptanceClaimIds": {
     "SLC-01/AC-1": [
@@ -81,6 +103,23 @@
     ],
     "SLC-01/AC-3": [
       "SL-032"
+    ],
+    "SLC-02/AC-1": [
+      "SL-031"
+    ],
+    "SLC-02/AC-2": [
+      "SL-031"
     ]
-  }
+  },
+  "postSealAmends": [
+    {
+      "at": "2026-09-06T17:37:39.808Z",
+      "summary": "User requested result-first evidence cards and previewable UI screenshots.",
+      "humanConfirmed": true,
+      "sealedRevision": 2,
+      "beforeDocDigest": "e94f99159c92232d20dd21d3f3690c6fda0c31ab749e7d514bb4e61316bb5c0c",
+      "afterDocDigest": "1ccb0be430d2f727532117aebe9bd072e2c87bd924f35774b003d7264eb57062",
+      "actor": "agent"
+    }
+  ]
 }

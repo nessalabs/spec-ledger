@@ -41,7 +41,7 @@ test('uncertain HTTP response reconnects with the same request identity', async(
  const module={exports:{}}
  new Function('require','module','exports',compiled)(id=>id==='react'?hooks:id==='next/navigation'?{useRouter:()=>({refresh(){}})}:id==='@nessalabs/ui'?{Button:'button',Badge:'span',CodeBlock:'pre'}:require(id),module,module.exports)
  const render=()=>{index=0;refIndex=0;return module.exports.CheckEvidencePanel({bindingId:'test',initial:evidence,defaultOpen:true})}
- function button(node){if(!node||typeof node!=='object')return null;if(node.type==='button'&&node.props.variant!=='outline')return node;for(const child of [node.props?.children].flat(Infinity)){const found=button(child);if(found)return found}return null}
+ function button(node){if(!node||typeof node!=='object')return null;if(node.type==='button'&&['Run again','Reconnect to request'].includes(node.props.children))return node;for(const child of [node.props?.children].flat(Infinity)){const found=button(child);if(found)return found}return null}
  const original=globalThis.fetch;const requests=[]
  globalThis.fetch=async(url,options)=>{
   if(options?.method==='POST'){requests.push(JSON.parse(options.body));return{ok:false,status:409,json:async()=>({code:'execution_unknown',error:'Accepted request has an unknown outcome'})}}
