@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "requestId": "3f69402d-176d-4880-b40d-78a0b290cba1",
+  "operation": "record_screenshot",
+  "inputDigest": "4dc03c4d4b66f6a3db40e530a602b23e12e1960b515f60669906ffc4a62f0666",
+  "finishedAt": "2026-09-06T20:36:11.718Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "id": "7efec9d7-8083-48c2-976f-51c70cc652a8",
+    "turnId": "e05efbb1-6f8f-4c55-9bca-f6698478b753",
+    "kind": "image",
+    "title": "Change details and evidence",
+    "path": ".spec-ledger/evidence/screenshots/titles-change.png",
+    "mediaType": "image/png",
+    "byteLength": 123033,
+    "contentDigest": "5934dccd5efdc377067118a2498561ea3533c13a6cd40b93917d4ef1356fe885",
+    "visualEvidence": {
+      "sliceId": "596b8830-61c6-887a-b6c3-9ae0561f2761",
+      "surface": "Change details and evidence",
+      "sourceDigest": "2c81a42393bbb2b7cf47f690a1f7bdcfeb50ce2595229ef12512d1a4c4855801",
+      "revisionDigest": "4cc7f69286eb0f9161f84f0f1945fb6adbbad39ef04f13ac00f2b7c8e8f48937",
+      "recordedAt": "2026-09-06T20:36:11.718Z"
+    },
+    "note": "Recorded visual coverage; image adequacy is assessed in review."
+  }
+}

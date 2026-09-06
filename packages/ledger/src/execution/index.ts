@@ -1,3 +1,4 @@
+import { assertEntityId, createEntityId } from "../identity/index.js"
 import { existsSync, mkdirSync, readFileSync, readdirSync, realpathSync, renameSync, rmSync, statSync, writeFileSync } from "node:fs"
 import { dirname, isAbsolute, join, relative, resolve } from "node:path"
 import { randomUUID } from "node:crypto"
@@ -59,13 +60,13 @@ export function registerExecutionAssociation(root:string,args:{workstreamId:stri
   const ws=loadWorkstream(root,args.workstreamId);const turn=loadLedger(root).turns.find(t=>t.id===args.turnId)
   if(!turn||turn.status!=="open"||turn.intent.workstreamId!==args.workstreamId)throw new Error("execution registration requires an existing open workstream turn")
   if(args.workflowAttemptId){const snapshot=selectedWorkflow(root,args.workstreamId);const attempt=listWorkflowAttempts(root,args.workstreamId).find(a=>a.id===args.workflowAttemptId);if(!snapshot||!attempt||attempt.snapshotDigest!==snapshot.snapshotDigest)throw new Error("execution registration requires a current workflow attempt")}
-  const existing=listJson<ExecutionAssociation>(join(durableBase(root),"registrations",args.workstreamId));const registrationId=`${args.workstreamId}/X-${String(existing.length+1).padStart(3,"0")}`
+  const registrationId=createEntityId()
   const association:ExecutionAssociation={schemaVersion:1,registrationId,workstreamId:args.workstreamId,turnId:args.turnId,workflowAttemptId:args.workflowAttemptId??null,hostSessionRef:args.hostSessionRef,revisionDigest:planRevision(root,ws),sourceDigest:computeTreeDigest(root),registeredAt:new Date().toISOString(),provenance:"agent-reported"}
   immutable(join(durableBase(root),"registrations",args.workstreamId,`${registrationId.split("/").at(-1)}.json`),association);return association
 }
 
 export function listExecutionAssociations(root:string,workstreamId:string):ExecutionAssociation[]{return listJson(join(durableBase(root),"registrations",workstreamId))}
-export function findExecutionAssociation(root:string,registrationId:string):ExecutionAssociation|undefined { const [ws]=registrationId.split("/");return ws?listExecutionAssociations(root,ws).find(a=>a.registrationId===registrationId):undefined }
+export function findExecutionAssociation(root:string,registrationId:string):ExecutionAssociation|undefined { assertEntityId(registrationId); const dir=join(durableBase(root),"registrations"); return existsSync(dir)?readdirSync(dir).flatMap(ws=>listExecutionAssociations(root,ws)).find(a=>a.registrationId===registrationId):undefined }
 
 export function writeExecutionPolicy(root:string,registrationId:string,input:{continuation?:Partial<ExecutionPolicy["continuation"]>;timeout?:Partial<ExecutionPolicy["timeout"]>;source:ExecutionPolicy["source"]}):ExecutionPolicy {
   const association=findExecutionAssociation(root,registrationId);if(!association)throw new Error("execution registration not found")

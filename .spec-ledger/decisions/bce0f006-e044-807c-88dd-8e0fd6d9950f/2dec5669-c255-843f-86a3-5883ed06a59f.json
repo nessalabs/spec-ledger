@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "turnId": "bce0f006-e044-807c-88dd-8e0fd6d9950f",
+  "decision": "Agents can attach optional iterative goals to existing tasks, record and inspect experiments through shared tools, and follow honest progress in the UI. All requested behavior is implemented and validated.",
+  "rationale": "Agent-reported progress; evidence is evaluated separately.",
+  "progress": {
+    "criterionIds": [
+      "04932de5-9225-81d4-b42c-c13f79e6c5be/AC-1",
+      "04932de5-9225-81d4-b42c-c13f79e6c5be/AC-2",
+      "04932de5-9225-81d4-b42c-c13f79e6c5be/AC-3"
+    ],
+    "implemented": true,
+    "revisionDigest": "e989316f67069fb323d4d54a782daee28d4c0154c1ff575ff2b7cf693127c71a",
+    "sourceDigest": "355cfbbe5d071cb88cb23e745b845f66d7193bc0b33a53ea10d8194b84d63087"
+  },
+  "id": "2dec5669-c255-843f-86a3-5883ed06a59f",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/decisions/T-043/D-02.json",
+        "id": "T-043/D-02",
+        "sha256": "b28e8d701c82e4239e9b7262af3c8d92716c8b895a9a16ab824db2450f02a928"
+      }
+    },
+    "historical": true
+  },
+  "sequence": 2
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "turnId": "eb02e4af-5c85-89fa-8aad-70f0444297f7",
+  "decision": "Implemented and exercised the reusable workflow library, shared management operations, per-spec picker, full-view Nessa UI canvas with drawer editing, preserved adopted copies, and workflow-ordered completion checklist. Independent tests and saved evidence are evaluated separately.",
+  "rationale": "Agent-reported progress; evidence is evaluated separately.",
+  "progress": {
+    "criterionIds": [
+      "11519a1a-0d18-889b-8422-9bb8accc4483/AC-1",
+      "11519a1a-0d18-889b-8422-9bb8accc4483/AC-2",
+      "11519a1a-0d18-889b-8422-9bb8accc4483/AC-3",
+      "11519a1a-0d18-889b-8422-9bb8accc4483/AC-4",
+      "11519a1a-0d18-889b-8422-9bb8accc4483/AC-5",
+      "11519a1a-0d18-889b-8422-9bb8accc4483/AC-6",
+      "11519a1a-0d18-889b-8422-9bb8accc4483/AC-7",
+      "ef669c8c-b701-85d9-b2da-638757fed84e/AC-1",
+      "ef669c8c-b701-85d9-b2da-638757fed84e/AC-2",
+      "ef669c8c-b701-85d9-b2da-638757fed84e/AC-3",
+      "ef669c8c-b701-85d9-b2da-638757fed84e/AC-4",
+      "ef669c8c-b701-85d9-b2da-638757fed84e/AC-5",
+      "ef669c8c-b701-85d9-b2da-638757fed84e/AC-6",
+      "b37364e8-36d3-8901-a879-3a6e32f21210/AC-1",
+      "b37364e8-36d3-8901-a879-3a6e32f21210/AC-2",
+      "b37364e8-36d3-8901-a879-3a6e32f21210/AC-3",
+      "b37364e8-36d3-8901-a879-3a6e32f21210/AC-4"
+    ],
+    "implemented": true,
+    "revisionDigest": "0dab67a31f295e21fac35419b36da2e7198798fa14ebedcae416d350ff34dc02",
+    "sourceDigest": "c8f4868ff34987197994875b18ee719a82f3fb07a5e32fe907182a2ef6f6b448",
+    "preview": {
+      "url": "http://127.0.0.1:3738/workflows",
+      "label": "Saved workflow library and full-view builder"
+    }
+  },
+  "id": "6f0a8973-f066-8807-b89d-b86dd40ba237",
+  "migration": {
+    "origins": {
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/decisions/T-044/D-04.json",
+        "id": "T-044/D-04",
+        "sha256": "872d105b2e1cf7a29f6e9134cb94594b215c710bac506b262a00b263f6f026ab"
+      }
+    },
+    "historical": true
+  },
+  "sequence": 4
+}

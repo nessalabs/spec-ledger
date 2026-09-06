@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "id": "0a3b270f-410e-8033-94ee-cd53c2919bc9",
+  "reason": "The user explicitly requested fixing PR 2 CI; preserving failed verification diagnostics in the CI workflow is necessary to identify its hidden packaging error.",
+  "actor": "agent:user-request",
+  "treeDigest": "c9761aa9bd002b5641166c9d2928d4d7841c2172254d871d2f2c429c3f0a1739",
+  "createdAt": "2026-09-06T07:57:28.607Z",
+  "workstreamId": "ef172105-4f40-8bbb-8abe-d1cd11ae618a",
+  "turnId": "12188f1c-5b60-8a29-99a1-9178d796cc42",
+  "migration": {
+    "origins": {
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/align-waivers/AW-22.json",
+        "id": "T-050/AW-22",
+        "sha256": "9308686675679db8c7376c76eea0ae48c47d8fe502a732dd975d489808405dec"
+      }
+    },
+    "historical": true
+  }
+}

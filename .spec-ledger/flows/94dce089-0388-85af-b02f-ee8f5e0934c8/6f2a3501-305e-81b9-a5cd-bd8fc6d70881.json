@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "turnId": "94dce089-0388-85af-b02f-ee8f5e0934c8",
+  "title": "Install from npm pack",
+  "after": "pnpm pack tarball installs outside; bin + client/server resolve under @nessalabs",
+  "before": "Only monorepo node path worked",
+  "id": "6f2a3501-305e-81b9-a5cd-bd8fc6d70881",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/flows/T-022/F-01.json",
+        "id": "T-022/F-01",
+        "sha256": "160beee861afc1314d10904783c7b43380b8724b05ec2fb1ec3442d2b064129d"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/flows/T-022/F-01.json",
+        "id": "T-022/F-01",
+        "sha256": "160beee861afc1314d10904783c7b43380b8724b05ec2fb1ec3442d2b064129d"
+      }
+    },
+    "historical": true
+  }
+}

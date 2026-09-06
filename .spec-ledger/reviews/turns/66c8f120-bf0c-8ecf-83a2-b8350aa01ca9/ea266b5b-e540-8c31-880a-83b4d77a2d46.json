@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "ea266b5b-e540-8c31-880a-83b4d77a2d46",
+  "turnId": "66c8f120-bf0c-8ecf-83a2-b8350aa01ca9",
+  "workstreamId": "76451749-a54f-8579-96f2-dcec19d79026",
+  "kind": "human",
+  "target": "code",
+  "reviewer": "agent:align",
+  "verdict": "approve",
+  "summary": "Coverage intent: post-commit align check accepts closed-turn approve digests when worktree has no dirty product paths.",
+  "plainSummary": "After a commit, a clean tree still honors the earlier coverage approve.",
+  "treeDigest": "f64702b0233d0205a88b027e2d1a0a5470525e7d007907740d21e579610144f1",
+  "uncoveredPaths": [],
+  "coverageSource": "mixed",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/reviews/turns/T-018/R-01.json",
+        "id": "T-018/R-01",
+        "sha256": "1d755858f8bc6ee63a87d90f1df872ae98bc859c5de26278ccd13eef2d5c6e8b"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/reviews/turns/T-018/R-01.json",
+        "id": "T-018/R-01",
+        "sha256": "1d755858f8bc6ee63a87d90f1df872ae98bc859c5de26278ccd13eef2d5c6e8b"
+      }
+    },
+    "historical": true
+  }
+}

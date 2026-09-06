@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "turnId": "7a56453a-0979-8b0a-a4fe-ddbc9aab354a",
+  "decision": "Keep CLI and MCP as adapters over shared application operations.",
+  "rationale": "The user explicitly requested equivalent internal logic across both surfaces. Shared validation, permission, persistence and request receipts prevent transport-specific gate behavior; the generic HTTP server stays read-only.",
+  "id": "afa0e120-66ab-8097-bcd9-d05ac49eca29",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/decisions/T-034/D-01.json",
+        "id": "T-034/D-01",
+        "sha256": "84bfea5d1b39e056b6ea5e1c6cab75edbd1f2fd55a460af256d8821677eee4ea"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/decisions/T-034/D-01.json",
+        "id": "T-034/D-01",
+        "sha256": "84bfea5d1b39e056b6ea5e1c6cab75edbd1f2fd55a460af256d8821677eee4ea"
+      }
+    },
+    "historical": true
+  },
+  "sequence": 1
+}

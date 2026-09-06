@@ -7,23 +7,23 @@
   "outcome": "succeeded",
   "result": {
     "schemaVersion": 1,
-    "id": "T-034/R-02",
-    "turnId": "T-034",
-    "workstreamId": "W-008",
+    "id": "76fa3ede-653d-8dbc-a5dd-8cb4a2394aad",
+    "turnId": "7a56453a-0979-8b0a-a4fe-ddbc9aab354a",
+    "workstreamId": "815c7a44-59df-8102-9769-bf8a74e49c0c",
     "kind": "adversarial",
     "target": "code",
     "reviewer": "agent:sl-dev-break:w008-slc01",
     "verdict": "approve",
     "blocking": false,
     "alertOnSeverity": "high",
-    "resolvesReviewId": "T-034/R-01",
+    "resolvesReviewId": "bb841b14-6082-8016-971b-a025621fe7c3",
     "resolvesFindingIds": [
-      "T-034/R-01#F-01",
-      "T-034/R-01#F-02",
-      "T-034/R-01#F-03"
+      "bb841b14-6082-8016-971b-a025621fe7c3#43ba6379-4428-8692-9349-9440c6353046",
+      "bb841b14-6082-8016-971b-a025621fe7c3#79a2ed24-4a83-86e6-9874-8a6b66bde28c",
+      "bb841b14-6082-8016-971b-a025621fe7c3#7a5c0b98-85ad-8eb0-a9e9-7113f50e6ba2"
     ],
     "plainSummary": "The shared CLI and MCP work loop now preserves permission, review provenance, retry safety, and equivalent lifecycle outcomes under the tested attacks.",
-    "summary": "R-01 is resolved on the frozen SLC-01 tree. The unchanged operation killers pass 9/9: invalid slices and roots fail before effects; progress, decisions, and reviews require current permission; stale revisions and sources leave domain state unchanged; portable reviews cannot claim human provenance or another turn’s workstream; and caller tree digests are replaced with the current source digest. Receipt killers pass 6/6 across same/different process request races, conflicting reuse, corrupt and unfinished receipts, completion-publication failure, and unknown lock ownership. The actual executable suite passes 4/4 for full CLI/MCP lifecycle parity, equivalent denial with no effects, retry/stale/malformed/missing-evidence negatives, and packed executable installation.",
+    "summary": "R-01 is resolved on the frozen 26c9bf2f-a090-8415-bd2b-f46dff6af4f7 tree. The unchanged operation killers pass 9/9: invalid slices and roots fail before effects; progress, decisions, and reviews require current permission; stale revisions and sources leave domain state unchanged; portable reviews cannot claim human provenance or another turn’s workstream; and caller tree digests are replaced with the current source digest. Receipt killers pass 6/6 across same/different process request races, conflicting reuse, corrupt and unfinished receipts, completion-publication failure, and unknown lock ownership. The actual executable suite passes 4/4 for full CLI/MCP lifecycle parity, equivalent denial with no effects, retry/stale/malformed/missing-evidence negatives, and packed executable installation.",
     "findings": [],
     "killersCited": [
       "packages/ledger/src/application/operations.break.test.ts::rejects an invalid slice through the actual CLI before sealing, opening, activating, or resuming",
@@ -49,7 +49,7 @@
     "residualRisks": [
       "Portable reviewer labels remain agent-reported attribution; authenticated human identity still depends on a trusted host boundary.",
       "The receipt protocol coordinates participating application callers and does not claim atomicity against arbitrary direct filesystem edits.",
-      "Activity, recovery, and customizable workflow profiles remain assigned to later W-008 slices and were not graded in SLC-01."
+      "Activity, recovery, and customizable workflow profiles remain assigned to later 815c7a44-59df-8102-9769-bf8a74e49c0c slices and were not graded in 26c9bf2f-a090-8415-bd2b-f46dff6af4f7."
     ],
     "treeDigest": "4991707ac7b32c34ae2297305a8826703f5fba6493bd353ba0bde9ed06fe5d0d"
   }

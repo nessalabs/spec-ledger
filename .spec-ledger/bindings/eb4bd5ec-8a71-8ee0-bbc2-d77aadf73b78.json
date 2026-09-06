@@ -1,0 +1,19 @@
+{
+  "id": "eb4bd5ec-8a71-8ee0-bbc2-d77aadf73b78",
+  "claimId": "39fc903d-08ba-8a0c-a5d4-f9995941fd94",
+  "kind": "test",
+  "locator": {
+    "type": "command",
+    "command": "node --test packages/ledger/dist/workflows/library*.test.js"
+  },
+  "migration": {
+    "origins": {
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/bindings/b-sl-033.json",
+        "id": "b-sl-033",
+        "sha256": "64e58d9811b1e70de6a878dd952435ccac0abd42d5b6cb0558b8a0e1c6ff5b1c"
+      }
+    },
+    "historical": true
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "id": "77fb26cd-bc46-8037-a8f2-7573f7d6d33d",
+  "kind": "invariant",
+  "statement": "The project map points to files that actually exist.",
+  "area": "lattice",
+  "required": true,
+  "links": {
+    "docs": [
+      "docs/architecture/claim-contracts.md"
+    ]
+  },
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/claims/SL-004.json",
+        "id": "SL-004",
+        "sha256": "f0c250ffaf51708f5a2c04a46890a4dbe8cfca400d4546708f56225cb50242c6"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/claims/SL-004.json",
+        "id": "SL-004",
+        "sha256": "f0c250ffaf51708f5a2c04a46890a4dbe8cfca400d4546708f56225cb50242c6"
+      }
+    },
+    "historical": true
+  }
+}

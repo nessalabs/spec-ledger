@@ -4,12 +4,70 @@
   "title": "Spec Ledger workflow attempt report",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schemaVersion", "attemptId", "status", "reportedAt"],
+  "required": [
+    "schemaVersion",
+    "attemptId",
+    "status",
+    "reportedAt"
+  ],
   "properties": {
-    "schemaVersion": { "const": 1 },
-    "attemptId": { "type": "string" },
-    "status": { "enum": ["reported-complete", "blocked"] },
-    "reason": { "type": "string", "minLength": 1, "maxLength": 1000 },
-    "reportedAt": { "type": "string" }
+    "schemaVersion": {
+      "const": 1
+    },
+    "attemptId": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    },
+    "status": {
+      "enum": [
+        "reported-complete",
+        "blocked"
+      ]
+    },
+    "reason": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1000
+    },
+    "reportedAt": {
+      "type": "string"
+    },
+    "migration": {
+      "type": "object",
+      "properties": {
+        "origins": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "required": [
+              "path",
+              "id",
+              "sha256"
+            ],
+            "properties": {
+              "path": {
+                "type": "string"
+              },
+              "id": {
+                "type": "string"
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "historical": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "origins",
+        "historical"
+      ],
+      "additionalProperties": false
+    }
   }
 }

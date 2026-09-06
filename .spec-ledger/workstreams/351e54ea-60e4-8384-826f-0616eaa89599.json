@@ -1,0 +1,98 @@
+{
+  "schemaVersion": 1,
+  "id": "351e54ea-60e4-8384-826f-0616eaa89599",
+  "status": "done",
+  "title": "Inspect a test and run it again",
+  "objective": "Read what a test checks, inspect its source and actual output, and rerun the saved check from the website.",
+  "specPath": "docs/workstreams/351e54ea-60e4-8384-826f-0616eaa89599-inspect-and-run-checks/spec.md",
+  "featureIds": [
+    "cli",
+    "client",
+    "verify",
+    "lattice"
+  ],
+  "policy": {
+    "requireSpecBreak": true,
+    "requireCodeBreak": true,
+    "requireAlignApprove": true
+  },
+  "trust": {
+    "userFacing": true,
+    "securitySensitive": true,
+    "correctnessCritical": true,
+    "requiredEvidence": [
+      "unit",
+      "integration",
+      "e2e"
+    ]
+  },
+  "suggestedSlices": [
+    {
+      "id": "31586ff0-42d1-85f6-8733-49244fa3d467",
+      "title": "Inspect and rerun a saved check with real output",
+      "kind": "vertical",
+      "acceptance": [
+        "CLI, MCP and local UI run the same saved check with bounded inspectable output, current source/check provenance, honest metadata, retry safety and passive read surfaces."
+      ],
+      "expectedPaths": [
+        "packages/**",
+        "schemas/**",
+        "docs/**",
+        "skills/**"
+      ],
+      "codeBreakReviewId": "92e44229-095f-8288-bb7f-ddaf5a1dc131"
+    }
+  ],
+  "specBreakReviewId": "a6bf2f44-8c43-8065-9227-897f94e8e85e",
+  "updatedAt": "2026-09-05T02:34:09.135Z",
+  "seal": {
+    "sealedAt": "2026-09-05T02:16:15.428Z",
+    "sealedBy": "agent:permission:c5157d54-3272-8c33-abbf-b446e7202e95",
+    "specDigest": "890af1f59461249bc7d31f1c19d772c16896627cadc2e94ea9fd8dbdf4bcb725",
+    "snapshotPath": "workstreams/351e54ea-60e4-8384-826f-0616eaa89599.seals/2.json",
+    "revision": 2,
+    "specDocDigest": "036cbc5e3e9cf30a48102254d3c73e6fd42857f91cfbc5bab541dfb00aac7c99"
+  },
+  "acceptanceClaimIds": {
+    "31586ff0-42d1-85f6-8733-49244fa3d467/AC-1": [
+      "3d819ad1-8f9b-893c-a5bf-92d67c933cd3"
+    ]
+  },
+  "postSealAmends": [
+    {
+      "at": "2026-09-05T02:15:07.156Z",
+      "summary": "Name the shared test metadata fields and link acceptance to behavioral saved-check regressions.",
+      "humanConfirmed": true,
+      "sealedRevision": 1,
+      "beforeDocDigest": "caff47784ff8ba6726b3e6d85954844ffd5a48343e95cf5b3ed8ac7e0d48fc75",
+      "afterDocDigest": "036cbc5e3e9cf30a48102254d3c73e6fd42857f91cfbc5bab541dfb00aac7c99",
+      "actor": "agent:user-request",
+      "turnId": "21e1bd8d-8745-8900-b8a5-249314d027be"
+    },
+    {
+      "at": "2026-09-05T02:27:27.965Z",
+      "summary": "User requested Nessa syntax highlighting and feature-focused claim wording; preserve the precise contracts and checks in linked technical documentation.",
+      "humanConfirmed": true,
+      "sealedRevision": 2,
+      "beforeDocDigest": "036cbc5e3e9cf30a48102254d3c73e6fd42857f91cfbc5bab541dfb00aac7c99",
+      "afterDocDigest": "b3ff97d8a3146193f0637ebc94c92b2720b7b2fb00b13e95d89c016d9bba3bfb",
+      "actor": "agent:user-request",
+      "turnId": "21e1bd8d-8745-8900-b8a5-249314d027be"
+    }
+  ],
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/workstreams/W-010.json",
+        "id": "W-010",
+        "sha256": "612c703ddf9a7540bf2b2d9cc4cde777256f522940553bba6453de28b3a81547"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/workstreams/W-010.json",
+        "id": "W-010",
+        "sha256": "612c703ddf9a7540bf2b2d9cc4cde777256f522940553bba6453de28b3a81547"
+      }
+    },
+    "historical": true
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "id": "de1490fb-f0c7-8d34-8dc3-d275a7c5e1e5",
+  "turnId": "aa9eaf8d-f0f6-8039-ab93-3967acc596f4",
+  "kind": "adversarial",
+  "target": "code",
+  "reviewer": "agent:sl-dev-break",
+  "verdict": "approve",
+  "summary": "SpecDoc uses MessageMarkdown: 76451749-a54f-8579-96f2-dcec19d79026/f413d965-4b38-89aa-85bd-aae03d8d9aef HTML has data-slot=message-markdown and <strong>explicit</strong> (not half-parser raw ###/** only).",
+  "plainSummary": "Workstream pitch now renders as real formatted text, not raw markdown marks.",
+  "killersCited": [
+    "curl:/workstreams/76451749-a54f-8579-96f2-dcec19d79026#message-markdown+strong",
+    "curl:/turns/f413d965-4b38-89aa-85bd-aae03d8d9aef#message-markdown",
+    "grep:spec-doc.tsx#MessageMarkdown"
+  ],
+  "findings": [
+    {
+      "id": "2342af3f-916a-8edf-867d-b4659f0ff17d",
+      "severity": "moderate",
+      "gap": "Pitch must render GFM via MessageMarkdown: Half-parser left ** and ### visible. Killer: production page must expose MessageMarkdown slot and bold as <strong>.",
+      "plainImpact": "Pitch pages would show raw stars and hashes instead of bold headings.",
+      "evidence": {
+        "kind": "command",
+        "command": "curl -s http://127.0.0.1:3737/workstreams/76451749-a54f-8579-96f2-dcec19d79026 | grep -E 'data-slot=\"message-markdown\"|<strong>explicit</strong>'",
+        "observedOutput": "data-slot=\"message-markdown\" and <strong>explicit</strong> both present; HTTP 200",
+        "exitCode": 0
+      }
+    }
+  ],
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/reviews/turns/T-008/R-01.json",
+        "id": "T-008/R-01",
+        "sha256": "16c085595d7efb7a9036cae0900af37c708872aea331832324eed05f4d760e0b"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/reviews/turns/T-008/R-01.json",
+        "id": "T-008/R-01",
+        "sha256": "16c085595d7efb7a9036cae0900af37c708872aea331832324eed05f4d760e0b"
+      }
+    },
+    "historical": true
+  }
+}

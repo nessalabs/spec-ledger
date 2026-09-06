@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "requestId": "518dc987-2278-4106-aa27-417f6b702d0f",
+  "operation": "record_screenshot",
+  "inputDigest": "6b636e79b34a1e61df005bf4226e9f6dca78daa0a4ac2181f852c0e33e511992",
+  "finishedAt": "2026-09-06T21:58:04.272Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "id": "14d6c709-f097-4e55-b8e4-ced4bf86e230",
+    "turnId": "f649c404-7ab0-436a-8691-8662cd4a139d",
+    "kind": "image",
+    "title": "Active Specs with progress and fixup links — desktop",
+    "path": ".spec-ledger/evidence/screenshots/discovery-fix/active-desktop.png",
+    "mediaType": "image/png",
+    "byteLength": 82103,
+    "contentDigest": "eab3fec7a454c14e01692c93ebfcf85d552b4728300febe234990f49df43bce9",
+    "visualEvidence": {
+      "sliceId": "25eac677-2871-816d-956d-770bdcb61798",
+      "surface": "Active Specs with progress and fixup links — desktop",
+      "sourceDigest": "7bd5f5b2dd8a1b5c3e7f20a70632596b99441887b4892e8617c871fbfa8cea98",
+      "revisionDigest": "a584acc3319d6700424703bddc1a76f38453c55b9f38d5926321a48842b476c1",
+      "recordedAt": "2026-09-06T21:58:04.271Z"
+    },
+    "note": "Recorded visual coverage; image adequacy is assessed in review."
+  }
+}

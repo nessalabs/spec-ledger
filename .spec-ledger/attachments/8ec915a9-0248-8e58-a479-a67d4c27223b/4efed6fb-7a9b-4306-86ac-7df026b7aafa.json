@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "4efed6fb-7a9b-4306-86ac-7df026b7aafa",
+  "turnId": "8ec915a9-0248-8e58-a479-a67d4c27223b",
+  "kind": "image",
+  "title": "Integrated experiments",
+  "path": ".spec-ledger/evidence/screenshots/uuid-experiments.png",
+  "mediaType": "image/jpeg",
+  "byteLength": 34341,
+  "contentDigest": "cb06e26718ed71cfee122fb3a773b422571030b3da1ab1ebb219f7774f57eecb",
+  "visualEvidence": {
+    "sliceId": "596b8830-61c6-887a-b6c3-9ae0561f2761",
+    "surface": "Integrated experiments",
+    "sourceDigest": "33c0154adae867718148d5db7540f8a190ee585ee7db06737d5c78c2a1e92e28",
+    "revisionDigest": "8e73475305d4952bb9e2aa6318ae4742b205dd92e1a86f81e32751928ff7bdc2",
+    "recordedAt": "2026-09-06T19:30:33.837Z"
+  },
+  "note": "Recorded visual coverage; image adequacy is assessed in review."
+}

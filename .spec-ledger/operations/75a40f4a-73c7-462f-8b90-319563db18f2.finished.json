@@ -7,7 +7,7 @@
   "outcome": "succeeded",
   "result": {
     "schemaVersion": 1,
-    "id": "T-051",
+    "id": "ee4292d1-b9ee-8e3e-8a5a-57cf6155baf3",
     "status": "open",
     "openedAt": "2026-09-06T08:05:13.725Z",
     "opened": {
@@ -16,8 +16,8 @@
       "treeDigest": "c9761aa9bd002b5641166c9d2928d4d7841c2172254d871d2f2c429c3f0a1739",
       "dirtyAtOpen": [],
       "contextDigest": "059b739f8553561d8a20a00557d2f371fc9a8f6b5315928702b84b98c8620e82",
-      "contextWorkstreamId": "W-014",
-      "contextSliceId": "SLC-02",
+      "contextWorkstreamId": "ef172105-4f40-8bbb-8abe-d1cd11ae618a",
+      "contextSliceId": "ef669c8c-b701-85d9-b2da-638757fed84e",
       "contextSealRevision": 1,
       "contextGeneratedAt": "2026-09-06T08:05:13.725Z"
     },
@@ -26,8 +26,8 @@
       "restatedGoal": "Stop the packaged test server after each run",
       "changeType": "fix",
       "riskLevel": "moderate",
-      "workstreamId": "W-014",
-      "sliceId": "SLC-02",
+      "workstreamId": "ef172105-4f40-8bbb-8abe-d1cd11ae618a",
+      "sliceId": "ef669c8c-b701-85d9-b2da-638757fed84e",
       "featureIds": [
         "client",
         "cli",

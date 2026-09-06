@@ -28,7 +28,7 @@ function walkPackageJson(dir: string, out: string[] = []): string[] {
   return out
 }
 
-describe("UI release asset (SLC-03)", () => {
+describe("UI release asset (ebc0a8ca-0244-527c-917b-c578e2cc854e)", () => {
   it("built release boots outside the checkout and reads the consumer ledger", async () => {
     const fixture = uiReleaseFixture()
     let extract = ""

@@ -1,0 +1,32 @@
+{
+  "id": "7a81ffaf-80f0-8063-89e3-5ac9a630d44d",
+  "action": "grant",
+  "mode": "request",
+  "workstreamId": "1652e353-e3dc-8960-985b-35fbe40c1edb",
+  "featureIds": [
+    "lattice",
+    "verify",
+    "client"
+  ],
+  "source": {
+    "kind": "agent-reported",
+    "reference": "User explicitly requested: first fix workstream evidence UI, then propose customizable skills/workflows with guardrails; overhaul acceptable for experimental project."
+  },
+  "schemaVersion": 1,
+  "createdAt": "2026-09-04T23:12:10.569Z",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/authority/AUTH-W007-REQUEST.json",
+        "id": "AUTH-W007-REQUEST",
+        "sha256": "ab6cb053d798af14c15021a5f25ece2bff73d0e8986102d965cc11c5df1fbe71"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/authority/AUTH-W007-REQUEST.json",
+        "id": "AUTH-W007-REQUEST",
+        "sha256": "ab6cb053d798af14c15021a5f25ece2bff73d0e8986102d965cc11c5df1fbe71"
+      }
+    },
+    "historical": true
+  }
+}

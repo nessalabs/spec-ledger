@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "requestId": "a26dd637-faa0-4ff2-be97-fd17d1ab3a67",
+  "operation": "approve_alignment",
+  "inputDigest": "86fc5125cb0ada49b2ff1d8b09a376eb4759dd5bddc297b9e8319af30aeb77fc",
+  "finishedAt": "2026-09-06T21:11:48.820Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "id": "0e4e6cb8-3e54-4d52-8a3f-1a5f7b66654a",
+    "turnId": "259b685b-1331-4088-a691-d3fa16e57424",
+    "workstreamId": "815c7a44-59df-8102-9769-bf8a74e49c0c",
+    "kind": "human",
+    "target": "code",
+    "reviewer": "agent:align",
+    "verdict": "approve",
+    "summary": "User coverage intent is explicit: fix progress against all tasks and amend the original progress spec. Covered changes are the session completion checklist, shared UI display, regression tests, the owning spec and required audit inventory maintenance. All 11 product paths are covered by existing slice packages/** and docs/**; no uncovered paths or waiver.",
+    "plainSummary": "The progress fix and its regression checks are covered by the existing spec.",
+    "treeDigest": "b860fecaf0f21d922057b248c6d86cf680df6dfc52020ef2f5047de2fbe1f450",
+    "uncoveredPaths": [],
+    "coverageSource": "mixed"
+  }
+}

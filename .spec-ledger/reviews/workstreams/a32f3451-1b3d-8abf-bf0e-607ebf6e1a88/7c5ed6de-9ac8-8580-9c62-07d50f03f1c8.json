@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "id": "7c5ed6de-9ac8-8580-9c62-07d50f03f1c8",
+  "workstreamId": "a32f3451-1b3d-8abf-bf0e-607ebf6e1a88",
+  "kind": "adversarial",
+  "target": "spec",
+  "reviewer": "agent:sl-plan-break-spec:local-ui",
+  "verdict": "approve",
+  "blocking": false,
+  "alertOnSeverity": "high",
+  "supersedesReviewId": "d30417ac-9300-86d5-b368-36c7ffbf67b1",
+  "plainSummary": "The selected local UI can record narrow revision decisions while keeping broader permission and identity claims explicit.",
+  "summary": "Independent review of latest user-authorized local UI host amendment, canonical AC08/Implementation decisions, SLC06 metadata, docs/architecture/session.md and permission.md. Latest related pack:6features16claims23docs. Local UI adapter is separated from GET-only generic projection server, loopback-bound, same-origin/token protected, bounded typed approve/deny only, revision and authority-state bound, retryable with immutable request IDs. Approval intentionally replaces earlier request denials and is surfaced only after persistence/refreshed observation; it grants no broader request/standing delegation and claims no authenticated human identity. Existing portable CLI remains available. Removing redundant spec/history links, using the Nessa dropdown, hiding approval for permitted work, and public Spec Ledger UI branding preserve history and fit the reported user correction. Production boundary/source review and13passing local-UI/authority tests support implementability; final browser/code approval remains separate. Spec review pointer is set before tool-stamping revision identity.",
+  "findings": [],
+  "residualRisks": [
+    "Local browser access is not authentication against a hostile local process or checkout owner; portable provenance stays agent-reported.",
+    "The direct browser save walkthrough and final race/layout validation are pending root evidence before the code review is completed.",
+    "Token and strict host validation protect the bounded loopback adapter; the existing generic projection server does not gain writes.",
+    "Automated security tests exercise production Request→Response adapter; deployment through the actual Next route is a separate integration check."
+  ],
+  "revisionDigest": "022971e1176e6947fca28ac728ce7658103427198ef40d1e9d9d188ce302b6cd",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/reviews/workstreams/W-006/SR-03.json",
+        "id": "W-006/SR-03",
+        "sha256": "e75a68c1ce67f47688b6c4d30254f8f57f1a13f7405de2e2f452f89c672f8619"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/reviews/workstreams/W-006/SR-03.json",
+        "id": "W-006/SR-03",
+        "sha256": "e75a68c1ce67f47688b6c4d30254f8f57f1a13f7405de2e2f452f89c672f8619"
+      }
+    },
+    "historical": true
+  }
+}

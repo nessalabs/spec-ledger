@@ -8,7 +8,7 @@
   "result": {
     "action": "grant",
     "mode": "request",
-    "workstreamId": "W-014",
+    "workstreamId": "ef172105-4f40-8bbb-8abe-d1cd11ae618a",
     "featureIds": [
       "client",
       "cli",
@@ -16,9 +16,9 @@
     ],
     "source": {
       "kind": "agent-reported",
-      "reference": "User asked to continue building the saved workflow library and in-spec picker from W-014 in this conversation."
+      "reference": "User asked to continue building the saved workflow library and in-spec picker from ef172105-4f40-8bbb-8abe-d1cd11ae618a in this conversation."
     },
-    "id": "AUTH-4e179164-47e5-4ea9-88b2-0858b32fec25",
+    "id": "2d312788-2407-8787-8582-f3dd38b8c3a9",
     "schemaVersion": 1,
     "createdAt": "2026-09-06T05:33:42.080Z"
   }

@@ -7,9 +7,9 @@
   "outcome": "succeeded",
   "result": {
     "schemaVersion": 1,
-    "id": "T-050/R-01",
-    "turnId": "T-050",
-    "workstreamId": "W-014",
+    "id": "ce3c2826-3a6a-8f39-9c29-9aaa73d8da45",
+    "turnId": "12188f1c-5b60-8a29-99a1-9178d796cc42",
+    "workstreamId": "ef172105-4f40-8bbb-8abe-d1cd11ae618a",
     "kind": "human",
     "target": "code",
     "reviewer": "agent:align:user-scoped-ci-fix",
@@ -22,7 +22,7 @@
     ],
     "coverageSource": "mixed",
     "waiverIds": [
-      "T-050/AW-22"
+      "0a3b270f-410e-8033-94ee-cd53c2919bc9"
     ]
   }
 }

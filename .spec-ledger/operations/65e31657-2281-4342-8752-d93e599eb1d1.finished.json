@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "requestId": "65e31657-2281-4342-8752-d93e599eb1d1",
+  "operation": "record_progress",
+  "inputDigest": "5d1acee45de5ddca1da757c7ca0090d2c25022e772c57c1d2979a91f23f76ad6",
+  "finishedAt": "2026-09-06T22:01:04.457Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "turnId": "f649c404-7ab0-436a-8691-8662cd4a139d",
+    "decision": "Specs now shows the same active work as Overview, completion progress and direct typed fixup links. Fixup details show the requested correction and owning spec. Desktop, mobile, all four filters and keyboard navigation were verified; independent regression tests and eight screenshots cover the change.",
+    "rationale": "Agent-reported progress; evidence is evaluated separately.",
+    "progress": {
+      "criterionIds": [
+        "25eac677-2871-816d-956d-770bdcb61798/AC-5",
+        "25eac677-2871-816d-956d-770bdcb61798/AC-6",
+        "25eac677-2871-816d-956d-770bdcb61798/AC-7"
+      ],
+      "implemented": true,
+      "revisionDigest": "a584acc3319d6700424703bddc1a76f38453c55b9f38d5926321a48842b476c1",
+      "sourceDigest": "7bd5f5b2dd8a1b5c3e7f20a70632596b99441887b4892e8617c871fbfa8cea98"
+    },
+    "id": "f3e30f04-9f52-404f-99c8-d3846d59834b",
+    "recordedAt": "2026-09-06T22:01:04.457Z",
+    "sequence": 2
+  }
+}

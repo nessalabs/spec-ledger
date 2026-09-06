@@ -48,7 +48,7 @@ named models (e.g. Fable) only when the user asks — see
 ### 1. Load the bet + related pack (required)
 
 ```bash
-pnpm exec spec-ledger related --workstream W-00N --worktrees --json
+pnpm exec spec-ledger related --workstream <workstream-uuid> --worktrees --json
 ```
 
 Until the CLI exists, approximate the same pack with existing
@@ -106,12 +106,12 @@ user signed an agent-created snapshot.
 
 Use `spec-ledger review spec --file review.json`; it stamps the current revision
 and writes an immutable workstream review. Set the workstream's `specBreakReviewId`
-to that record's ID. Include finding IDs and cite pack paths in `gap` / `evidencePath`.
+to that record's ID. Omit review and finding IDs in input; the operation generates them. Cite pack paths in `gap` / `evidencePath`.
 
 ## Exit summary
 
 ```
-spec-break: W-00N
+spec-break: <workstream-uuid>
 status: spec_review | sealed
 related: features=… claims=… docs=… worktree-cautions=N|skipped
 alertOnSeverity: high
@@ -127,3 +127,7 @@ next: revision approval | applicable delegation | shape amend | sl-work
 - No silent post-seal edits
 - No inventing foreign-worktree conflicts without pack `worktree-caution` entries
 - No skipping `related` when the command exists for this workstream
+
+## Visual work evidence
+
+For visual UI changes, follow [required screenshot evidence](../references/visual-evidence.md): declare all relevant UI surfaces in the preserved plan, capture current screenshots, and inspect their coverage. Passing tests alone do not satisfy visual evidence; `evidence check`, turn close and completion enforce the declared screenshots.

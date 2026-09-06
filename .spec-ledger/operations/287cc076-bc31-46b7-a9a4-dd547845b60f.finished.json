@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "requestId": "287cc076-bc31-46b7-a9a4-dd547845b60f",
+  "operation": "begin_work",
+  "inputDigest": "aec9749e91c6d01a37b23dfc564410d22f009cb802dccd6eed6c430b750a7181",
+  "finishedAt": "2026-09-06T17:38:45.553Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "id": "b73479b8-7a81-84e9-84e8-efcd9c23e531",
+    "status": "open",
+    "openedAt": "2026-09-06T17:38:45.553Z",
+    "opened": {
+      "producedBy": "@nessalabs/spec-ledger@0.1.0",
+      "baseCommit": "7301403a60243d2b477dbd647e2f8a7b8e5dec04",
+      "treeDigest": "e496f8f4eaaa1ac895265f702dc1815148701d3360fff2fd202f770fc8f7500c",
+      "dirtyAtOpen": [
+        ".spec-ledger/authority/058aee1c-62ab-8fa9-85e1-b79a85ca2523.json",
+        ".spec-ledger/reviews/workstreams/29c935b4-56bd-84a0-b887-e280d775f54d/78c87091-4e55-84e2-b7d4-57405d97d6b0.json",
+        ".spec-ledger/workstreams/29c935b4-56bd-84a0-b887-e280d775f54d.json",
+        "docs/workstreams/29c935b4-56bd-84a0-b887-e280d775f54d-follow-agent-experiments/spec.md"
+      ],
+      "contextDigest": "d41cce500e7b9df75938e80061f11e6c26cdda07443bfb43decb5f900507f980",
+      "contextWorkstreamId": "29c935b4-56bd-84a0-b887-e280d775f54d",
+      "contextSliceId": "b21da6cf-af77-8a39-bf8e-bfdc0d5b3a95",
+      "contextSealRevision": 3,
+      "contextGeneratedAt": "2026-09-06T17:38:45.553Z"
+    },
+    "intent": {
+      "userPrompt": "Simplify requirement cards with clear status colors, test descriptions and captured output first, previewable saved UI screenshots, a compact Run again button and collapsed source and command details.",
+      "restatedGoal": "Read test results and visual evidence first",
+      "changeType": "feature",
+      "riskLevel": "moderate",
+      "workstreamId": "29c935b4-56bd-84a0-b887-e280d775f54d",
+      "sliceId": "b21da6cf-af77-8a39-bf8e-bfdc0d5b3a95",
+      "featureIds": [
+        "turns",
+        "lattice",
+        "cli"
+      ]
+    }
+  }
+}

@@ -1,7 +1,7 @@
 {
   "runId": "79dd04c9-5abb-4bec-9045-592a59a819fd",
   "requestId": "batch-79dd04c9-5abb-4bec-9045-592a59a819fd",
-  "bindingId": "b-sl-018",
+  "bindingId": "537947a3-37ec-86ab-9f87-ac54e50d1796",
   "state": "finished",
   "command": "node --test packages/ledger/dist/evidence/fingerprint.break.test.js",
   "cwd": "/Users/nessa/Documents/NessaLabs/spec-ledger-workflow-library",

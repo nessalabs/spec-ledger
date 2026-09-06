@@ -1,0 +1,33 @@
+{
+  "id": "c5157d54-3272-8c33-abbf-b446e7202e95",
+  "action": "grant",
+  "mode": "request",
+  "workstreamId": "351e54ea-60e4-8384-826f-0616eaa89599",
+  "featureIds": [
+    "cli",
+    "client",
+    "verify",
+    "lattice"
+  ],
+  "source": {
+    "kind": "agent-reported",
+    "reference": "User requests test source/input/expected/actual output/logs and explicit Run again button for saved check in correct directory."
+  },
+  "schemaVersion": 1,
+  "createdAt": "2026-09-05T02:01:38.310Z",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/authority/AUTH-W010-REQUEST.json",
+        "id": "AUTH-W010-REQUEST",
+        "sha256": "659c146a8b0fc1904d3ac4f0f7218d9074508e75e256527b7f89431679b87e68"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/authority/AUTH-W010-REQUEST.json",
+        "id": "AUTH-W010-REQUEST",
+        "sha256": "659c146a8b0fc1904d3ac4f0f7218d9074508e75e256527b7f89431679b87e68"
+      }
+    },
+    "historical": true
+  }
+}

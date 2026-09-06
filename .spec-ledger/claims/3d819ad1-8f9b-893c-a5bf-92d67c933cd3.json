@@ -1,0 +1,27 @@
+{
+  "id": "3d819ad1-8f9b-893c-a5bf-92d67c933cd3",
+  "statement": "Read what a test checks, run it again, and inspect what actually happened without accidentally running it twice.",
+  "required": true,
+  "links": {
+    "docs": [
+      "docs/workstreams/351e54ea-60e4-8384-826f-0616eaa89599-inspect-and-run-checks/spec.md",
+      "docs/architecture/claim-contracts.md"
+    ]
+  },
+  "kind": "invariant",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/claims/SL-027.json",
+        "id": "SL-027",
+        "sha256": "e19e739e4c7600f92dc087a9d10307d785d7f3a5c1623c8335302b7709af0c32"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/claims/SL-027.json",
+        "id": "SL-027",
+        "sha256": "e19e739e4c7600f92dc087a9d10307d785d7f3a5c1623c8335302b7709af0c32"
+      }
+    },
+    "historical": true
+  }
+}

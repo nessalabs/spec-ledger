@@ -1,0 +1,27 @@
+{
+  "statement": "The workflow builder should fill the view with the canvas; clicking each stage opens its details in a drawer.",
+  "workstreamId": "ef172105-4f40-8bbb-8abe-d1cd11ae618a",
+  "featureIds": [
+    "lattice"
+  ],
+  "supersedes": [
+    "d73b4c93-b796-8d7e-bb01-2614ec2ab79e"
+  ],
+  "source": {
+    "kind": "user-reported",
+    "reference": "User: no it should show this in a full view with those and when we click on each show details for those things in a drawer like component"
+  },
+  "id": "aaccfa61-c663-8a0e-9d91-ac9783f96aab",
+  "schemaVersion": 1,
+  "createdAt": "2026-09-06T06:14:15.710Z",
+  "migration": {
+    "origins": {
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/learnings/LN-c2ee10d1-c4da-4f84-880f-e6f59b7084f0.json",
+        "id": "LN-c2ee10d1-c4da-4f84-880f-e6f59b7084f0",
+        "sha256": "2ac9a174f1f325362110e0fd5ce01983d39762c4968b8e04c3712b8ece30f369"
+      }
+    },
+    "historical": true
+  }
+}

@@ -7,7 +7,7 @@
   "outcome": "succeeded",
   "result": {
     "schemaVersion": 1,
-    "turnId": "T-044",
+    "turnId": "eb02e4af-5c85-89fa-8aad-70f0444297f7",
     "decision": "Display completion gates in workflow order, retaining completed items in their original positions.",
     "rationale": "User requested planning and plan review first, followed by implementation, code review and closure. Sort presentation by stable checklist IDs; preserve all states, counts and additional attention messages. This refines the existing in-spec workflow presentation without changing completion rules.",
     "basis": {
@@ -15,6 +15,6 @@
       "contextDigest": "a557f0b19c339a49718ef31120a2e5415ae03b9897014d355044949722b38562",
       "sealRevision": 1
     },
-    "id": "T-044/D-03"
+    "id": "cb79bb87-0c9d-85c8-958b-8a5c37a7c124"
   }
 }

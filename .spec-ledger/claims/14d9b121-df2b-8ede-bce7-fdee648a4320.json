@@ -1,0 +1,28 @@
+{
+  "id": "14d9b121-df2b-8ede-bce7-fdee648a4320",
+  "kind": "absence",
+  "statement": "The read-only service that supplies project information cannot change your project.",
+  "area": "server",
+  "required": true,
+  "links": {
+    "docs": [
+      "DESIGN.md",
+      "docs/architecture/claim-contracts.md"
+    ]
+  },
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/claims/SL-003.json",
+        "id": "SL-003",
+        "sha256": "2f5b1ee2d87bf8d5d694ddeb2fc5ba524a6b67c954d8ed6380424c424b67e14a"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/claims/SL-003.json",
+        "id": "SL-003",
+        "sha256": "2f5b1ee2d87bf8d5d694ddeb2fc5ba524a6b67c954d8ed6380424c424b67e14a"
+      }
+    },
+    "historical": true
+  }
+}

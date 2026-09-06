@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "87876af5-6d2e-867e-bf07-290a8b734d76",
+  "reason": "User explicitly requested all five PR 1 fixes, CI regression tests, and updating the PR. This repair crosses existing slices: workflow ordering and CI, .npmrc, publishable client/server manifests, lockfile, and removal of the unsafe rewrite script. Waive the 520ff720-fc13-8275-b710-f677f8d2efb4-only path restriction for these seven reviewed repair paths; do not waive verification or code review.",
+  "actor": "agent:sl-dev-build",
+  "treeDigest": "e223be9e5034139dbd5048dfcb3997089cf1cba6368dfab47124db669a8a01ed",
+  "createdAt": "2026-09-04T21:15:20.718Z",
+  "workstreamId": "d1be55a6-11bb-8460-8650-ddf0ecac8185",
+  "turnId": "383eee85-f226-857a-a920-2f338ca83df4",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/align-waivers/AW-08.json",
+        "id": "T-025/AW-08",
+        "sha256": "dd79e598311edd2f00de4dc22fc100a1b070682baee8401bbc7377ee309e62a6"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/align-waivers/AW-08.json",
+        "id": "T-025/AW-08",
+        "sha256": "dd79e598311edd2f00de4dc22fc100a1b070682baee8401bbc7377ee309e62a6"
+      }
+    },
+    "historical": true
+  }
+}

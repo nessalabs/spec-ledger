@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "2c614463-24b0-808d-8625-f96a6387eed0",
+  "turnId": "a4ac3301-09fd-84e5-a54e-d91df8ffe307",
+  "workstreamId": "1652e353-e3dc-8960-985b-35fbe40c1edb",
+  "kind": "human",
+  "target": "code",
+  "reviewer": "agent:align:evidence-review",
+  "verdict": "approve",
+  "summary": "User asked for the evidence UI first and a customizable workflow proposal; expected paths cover implementation and docs, with exact report schema waiver for shared verifier output.",
+  "plainSummary": "The evidence UI and proposal changes stay within the requested scope.",
+  "treeDigest": "d7fdea43922377f2d293b60668d4371ce13415328ae4335816359bb73a18bc17",
+  "uncoveredPaths": [
+    "schemas/report.json"
+  ],
+  "coverageSource": "mixed",
+  "waiverIds": [
+    "aaa69ccf-1c0c-843d-aba6-f5141c113ccb"
+  ],
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/reviews/turns/T-033/R-02.json",
+        "id": "T-033/R-02",
+        "sha256": "1f5baf310ba3d6d5074468186e17307dab94a54e826e51ebd05dfc0927977d61"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/reviews/turns/T-033/R-02.json",
+        "id": "T-033/R-02",
+        "sha256": "1f5baf310ba3d6d5074468186e17307dab94a54e826e51ebd05dfc0927977d61"
+      }
+    },
+    "historical": true
+  }
+}

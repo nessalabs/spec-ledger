@@ -5,13 +5,13 @@ A deferred commitment extends an episode decision. It is discoverable across the
 ```json
 {
   "schemaVersion": 1,
-  "id": "T-001/D-01",
-  "turnId": "T-001",
+  "id": "d8837bac-91f8-8262-82e3-0a000a74639a/D-01",
+  "turnId": "d8837bac-91f8-8262-82e3-0a000a74639a",
   "decision": "Defer tenant isolation",
   "rationale": "This release is single-user",
   "deferral": {
     "deferred": "Implement and verify tenant isolation",
-    "originSpecRef": "W-001",
+    "originSpecRef": "3317ada5-b347-894e-8c88-110b7b42d58b",
     "when": { "kind": "feature-planned", "featureId": "multi-user" },
     "response": "implement",
     "gate": "before-feature-complete",
@@ -20,7 +20,7 @@ A deferred commitment extends an episode decision. It is discoverable across the
 }
 ```
 
-`originSpecRef` identifies the originating workstream, optionally followed by a criterion (`W-001/AC-01`). The trigger references a feature in the graph. The requirement references a live claim. Missing references are unknown, not false. Only the feature-planned trigger is supported; vague future conditions remain ordinary review notes.
+`originSpecRef` identifies the originating workstream, optionally followed by a criterion (`3317ada5-b347-894e-8c88-110b7b42d58b/AC-01`). The trigger references a feature in the graph. The requirement references a live claim. Missing references are unknown, not false. Only the feature-planned trigger is supported; vague future conditions remain ordinary review notes.
 
 `recordDeferredDecision` writes the decision immutably on an open turn. At explicit work start, `activateDeferralsForWork` requires permission and a valid plan snapshot, then preserves the full original decision in `.spec-ledger/deferral-activations/`. One activation per decision and workstream makes retries idempotent. Observations never activate anything. Removing a feature after activation does not remove its gate; deleting or rewriting the originating decision yields unknown until the original commitment is restored. These activation receipts are facts about when the existing decision became due, not a second task list.
 
@@ -34,10 +34,10 @@ For a `revisit` response, append a new decision with `deferralResolution`:
 
 ```json
 {
-  "decisionRef": "T-001/D-01",
+  "decisionRef": "d8837bac-91f8-8262-82e3-0a000a74639a/D-01",
   "action": "revisited",
   "authorityRef": "AUTH-request",
-  "workstreamId": "W-002",
+  "workstreamId": "e6213c3f-60e4-8ceb-9d6a-15c67833b383",
   "revisionDigest": "<current permission revision digest>"
 }
 ```

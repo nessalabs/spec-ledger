@@ -1,0 +1,24 @@
+{
+  "id": "dea7dcb9-9337-8e8a-9d0d-db2816e25612",
+  "claimId": "9767b1da-9568-8e2f-ad2a-c2c3eb3e424c",
+  "kind": "test",
+  "locator": {
+    "type": "command",
+    "command": "node --test packages/ledger/dist/session/session.break.test.js packages/ledger/dist/graph/display.test.js packages/ledger/dist/permission/local-ui.break.test.js"
+  },
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/bindings/b-sl-021.json",
+        "id": "b-sl-021",
+        "sha256": "d774503cf87baf130998072954feb01433ef96ef51b13b47cffa824bf092f629"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/bindings/b-sl-021.json",
+        "id": "b-sl-021",
+        "sha256": "d774503cf87baf130998072954feb01433ef96ef51b13b47cffa824bf092f629"
+      }
+    },
+    "historical": true
+  }
+}

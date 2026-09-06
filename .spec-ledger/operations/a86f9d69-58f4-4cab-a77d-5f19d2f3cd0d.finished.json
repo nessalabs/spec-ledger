@@ -7,7 +7,7 @@
   "outcome": "failed",
   "error": {
     "code": "prerequisite_missing",
-    "message": "turn T-046 is not open",
+    "message": "turn f452f323-83c6-83e0-9ce2-faae3f1a3772 is not open",
     "retryable": false
   }
 }

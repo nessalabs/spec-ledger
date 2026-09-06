@@ -18,8 +18,8 @@ function fixture() {
   const root = mkdtempSync(join(tmpdir(), "sl-fingerprint-break-"))
   initLedger(root, "fingerprint breaker")
   writeFileSync(join(root, "source.ts"), "export const value = 1\n")
-  writeJson(join(root, ".spec-ledger/claims/SL-001.json"), { id: "SL-001", statement: "Implementation is checked", required: true })
-  writeJson(join(root, ".spec-ledger/bindings/b.json"), {id:"b",claimId:"SL-001",kind:"check",locator:{type:"results-row",resultsKey:"r"}})
+  writeJson(join(root, ".spec-ledger/claims/02f2ae36-9568-53f9-bc0c-a25f0a7e3af4.json"), { id: "02f2ae36-9568-53f9-bc0c-a25f0a7e3af4", statement: "Implementation is checked", required: true })
+  writeJson(join(root, ".spec-ledger/bindings/a56b72e7-48a0-5cd6-b5c2-20eb12257138.json"), {id:"a56b72e7-48a0-5cd6-b5c2-20eb12257138",claimId:"02f2ae36-9568-53f9-bc0c-a25f0a7e3af4",kind:"check",locator:{type:"results-row",resultsKey:"r"}})
   return root
 }
 function stamp(root: string) {
@@ -38,10 +38,10 @@ describe("evidence freshness adversarial", () => {
       git("init");git("config","user.name","Test");git("config","user.email","test@example.invalid")
       git("add",".");git("commit","-m","initial")
       const base=git("rev-parse","HEAD").trim(), digest=computeTreeDigest(root)
-      writeJson(join(root,".spec-ledger/workstreams/W-001.json"),{id:"W-001",status:"active",featureIds:[],policy:{requireAlignApprove:true,allowExplicitAlignSkip:true},suggestedSlices:[{id:"SLC-01",expectedPaths:[]}]})
-      writeJson(join(root,".spec-ledger/turns/T-001.json"),{id:"T-001",status:"closed",opened:{producedBy:"builder",baseCommit:base},intent:{workstreamId:"W-001",sliceId:"SLC-01",featureIds:[]},facts:{commit:base,files:[{path:"source.ts",kind:"modified"}],verify:{treeDigest:digest}}})
-      writeJson(join(root,".spec-ledger/align-waivers/AW-01.json"),{schemaVersion:1,id:"T-001/AW-01",turnId:"T-001",workstreamId:"W-001",treeDigest:digest,reason:"Synthetic fixture scoped waiver for source.ts",actor:"fixture"})
-      writeReview(root,{schemaVersion:1,id:"T-001/R-01",turnId:"T-001",kind:"human",reviewer:"agent:align:fixture",verdict:"approve",plainSummary:"The source scope is covered.",summary:"Synthetic scoped approval",treeDigest:digest,coverageSource:"user",uncoveredPaths:[]})
+      writeJson(join(root,".spec-ledger/workstreams/2b74bc14-227a-5c05-b2ed-1c32d9703cad.json"),{id:"2b74bc14-227a-5c05-b2ed-1c32d9703cad",status:"active",featureIds:[],policy:{requireAlignApprove:true,allowExplicitAlignSkip:true},suggestedSlices:[{id:"886b091f-57f9-5f69-9e74-f0b50275d693",expectedPaths:[]}]})
+      writeJson(join(root,".spec-ledger/turns/1c5a8e44-dd09-543a-97d5-bfe173becbaa.json"),{id:"1c5a8e44-dd09-543a-97d5-bfe173becbaa",status:"closed",opened:{producedBy:"builder",baseCommit:base},intent:{workstreamId:"2b74bc14-227a-5c05-b2ed-1c32d9703cad",sliceId:"886b091f-57f9-5f69-9e74-f0b50275d693",featureIds:[]},facts:{commit:base,files:[{path:"source.ts",kind:"modified"}],verify:{treeDigest:digest}}})
+      writeJson(join(root,".spec-ledger/align-waivers/6c1c61ec-d8f4-5d52-9a35-697ddf6c95e8.json"),{schemaVersion:1,id:"6c1c61ec-d8f4-5d52-9a35-697ddf6c95e8",turnId:"1c5a8e44-dd09-543a-97d5-bfe173becbaa",workstreamId:"2b74bc14-227a-5c05-b2ed-1c32d9703cad",treeDigest:digest,reason:"Synthetic fixture scoped waiver for source.ts",actor:"fixture"})
+      writeReview(root,{schemaVersion:1,id:"ae993426-55ab-5610-9784-6f1a5efe7241",turnId:"1c5a8e44-dd09-543a-97d5-bfe173becbaa",kind:"human",reviewer:"agent:align:fixture",verdict:"approve",plainSummary:"The source scope is covered.",summary:"Synthetic scoped approval",treeDigest:digest,coverageSource:"user",uncoveredPaths:[]})
       assert.equal(alignCheck(root).ok,true)
       writeFileSync(join(root,"source.ts"),"changed after close")
       assert.equal(alignCheck(root).ok,false,"closed-turn digest rescued stale waiver/approval")
@@ -50,12 +50,12 @@ describe("evidence freshness adversarial", () => {
   it("binds code review to source content while excluding declared evidence outputs", () => {
     const root=fixture()
     try {
-      const path="docs/workstreams/W-001/evidence/run-1/output.txt"
-      mkdirSync(join(root,"docs/workstreams/W-001/evidence/run-1"),{recursive:true})
+      const path="docs/workstreams/2b74bc14-227a-5c05-b2ed-1c32d9703cad/evidence/run-1/output.txt"
+      mkdirSync(join(root,"docs/workstreams/2b74bc14-227a-5c05-b2ed-1c32d9703cad/evidence/run-1"),{recursive:true})
       const config=loadLedger(root).config
       config.generatedArtifactPaths=[path]
       writeJson(join(root,".spec-ledger/ledger.json"),config)
-      const review=writeReview(root,{schemaVersion:1,id:"T-001/R-01",turnId:"T-001",kind:"adversarial",target:"code",reviewer:"breaker",verdict:"approve",plainSummary:"The check passes.",summary:"Synthetic review fixture",killersCited:["fixture"]})
+      const review=writeReview(root,{schemaVersion:1,id:"ae993426-55ab-5610-9784-6f1a5efe7241",turnId:"1c5a8e44-dd09-543a-97d5-bfe173becbaa",kind:"adversarial",target:"code",reviewer:"breaker",verdict:"approve",plainSummary:"The check passes.",summary:"Synthetic review fixture",killersCited:["fixture"]})
       assert.ok(codeBreakSatisfied([review],computeTreeDigest(root)))
       writeFileSync(join(root,path),"generated evidence")
       assert.ok(codeBreakSatisfied([review],computeTreeDigest(root)),"declared generated output invalidated unchanged source review")
@@ -67,7 +67,7 @@ describe("evidence freshness adversarial", () => {
     const root=fixture()
     try {
       const ledger=stamp(root)
-      const input={bindingId:"b",outcome:"pass" as const,producer:{name:"external fixture",version:"1"},sourceDigest:ledger.results!.rows[0].sourceDigest!,checkDigest:ledger.results!.rows[0].checkDigest!,runId:"run-1"}
+      const input={bindingId:"a56b72e7-48a0-5cd6-b5c2-20eb12257138",outcome:"pass" as const,producer:{name:"external fixture",version:"1"},sourceDigest:ledger.results!.rows[0].sourceDigest!,checkDigest:ledger.results!.rows[0].checkDigest!,runId:"run-1"}
       const first=recordEvidence(root,input)
       assert.deepEqual(recordEvidence(root,input),first)
       assert.throws(()=>recordEvidence(root,{...input,outcome:"fail"}),/run id/)
@@ -118,7 +118,7 @@ describe("evidence freshness adversarial", () => {
   it("invalidates results if a successful command changes its own source inputs", () => {
     const root=fixture()
     try {
-      writeJson(join(root,".spec-ledger/bindings/b.json"),{id:"b",claimId:"SL-001",kind:"check",locator:{type:"command",command:"printf changed > source.ts"}})
+      writeJson(join(root,".spec-ledger/bindings/a56b72e7-48a0-5cd6-b5c2-20eb12257138.json"),{id:"a56b72e7-48a0-5cd6-b5c2-20eb12257138",claimId:"02f2ae36-9568-53f9-bc0c-a25f0a7e3af4",kind:"check",locator:{type:"command",command:"printf changed > source.ts"}})
       const report=checkLedger(root)
       assert.equal(report.ok,false)
       assert.equal(report.claims[0].outcome,"missing")
@@ -129,8 +129,8 @@ describe("evidence freshness adversarial", () => {
     const root=fixture()
     const outside=mkdtempSync(join(tmpdir(),"sl-artifact-outside-"))
     try {
-      const path="docs/workstreams/W-001/evidence/run-1/output.txt"
-      mkdirSync(join(root,"docs/workstreams/W-001/evidence/run-1"),{recursive:true})
+      const path="docs/workstreams/2b74bc14-227a-5c05-b2ed-1c32d9703cad/evidence/run-1/output.txt"
+      mkdirSync(join(root,"docs/workstreams/2b74bc14-227a-5c05-b2ed-1c32d9703cad/evidence/run-1"),{recursive:true})
       writeFileSync(join(root,path),"proof")
       const ledger=stamp(root)
       ledger.config.generatedArtifactPaths=[path]

@@ -6,8 +6,8 @@
   "finishedAt": "2026-09-05T01:58:13.256Z",
   "outcome": "succeeded",
   "result": {
-    "id": "T-037/R-01",
-    "workstreamId": "W-009",
+    "id": "618f978d-76e1-87aa-8562-566c8480687d",
+    "workstreamId": "3ca37660-1506-8a85-80c6-410a024d9a9a",
     "kind": "adversarial",
     "target": "code",
     "reviewer": "agent:turn-evidence-breaker",
@@ -30,6 +30,6 @@
       "Legacy turns with top-level acceptance and slice IDs intentionally show no scoped acceptance mapping until an explicit association exists."
     ],
     "schemaVersion": 1,
-    "turnId": "T-037"
+    "turnId": "a2340a88-188e-87da-8cee-96c5126cef29"
   }
 }

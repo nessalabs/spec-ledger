@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "ce0fa5b8-f12a-8e4a-a835-c68238b12e23",
+  "turnId": "be53dde7-0211-8c72-aeae-43494a57c198",
+  "kind": "adversarial",
+  "target": "code",
+  "reviewer": "agent:sl-dev-break",
+  "verdict": "approve",
+  "summary": "UI routes 200; Spec Ledger chrome; workstreams + episode trail.",
+  "plainSummary": "Lattice pages load with Spec Ledger chrome; this slice may ship.",
+  "killersCited": [
+    "curl:/",
+    "curl:/workstreams",
+    "curl:/turns/0fc5ce0a-1a93-8929-ae8c-1fc80861dc8e"
+  ],
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/reviews/turns/T-006/R-01.json",
+        "id": "T-006/R-01",
+        "sha256": "345959cb3ba9ee65deadd65c648de3b3f5811a3fc657c38a287b49fc3cbbc42c"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/reviews/turns/T-006/R-01.json",
+        "id": "T-006/R-01",
+        "sha256": "345959cb3ba9ee65deadd65c648de3b3f5811a3fc657c38a287b49fc3cbbc42c"
+      }
+    },
+    "historical": true
+  }
+}

@@ -1,0 +1,143 @@
+{
+  "schemaVersion": 1,
+  "id": "eab32d2d-6c3c-84df-b831-9bcc13fd0152",
+  "status": "sealed",
+  "createdAt": "2026-09-06T18:34:26.182Z",
+  "featureIds": [
+    "turns",
+    "lattice",
+    "cli",
+    "verify"
+  ],
+  "title": "Give concurrent work distinct identities",
+  "problem": "Parallel agents mint overlapping numbered identities and prevent lossless integration.",
+  "objective": "Create and inspect concurrent work without identity collisions.",
+  "specPath": "docs/workstreams/eab32d2d-6c3c-84df-b831-9bcc13fd0152-concurrent-identities/spec.md",
+  "changeType": "migration",
+  "riskLevel": "high",
+  "trust": {
+    "deployTarget": "library-consumer",
+    "userFacing": true,
+    "requiredEvidence": [
+      "unit",
+      "integration",
+      "e2e"
+    ],
+    "visualEvidence": {
+      "596b8830-61c6-887a-b6c3-9ae0561f2761": [
+        "UUID work list — desktop",
+        "UUID work details — mobile",
+        "Integrated experiments",
+        "Integrated workflow library",
+        "Overview with migrated work",
+        "Capabilities and recent changes",
+        "Code map with named requirements",
+        "Requirement details and preview",
+        "Change details and evidence",
+        "Workflow details",
+        "Task updates — desktop",
+        "Task updates — mobile"
+      ]
+    }
+  },
+  "policy": {
+    "alertOnSeverity": "high",
+    "onAlert": "wait",
+    "alertWaitMinutes": 10,
+    "onAlertTimeout": "move",
+    "onSealedSpecDeviation": "wait",
+    "sealedDeviationWaitMinutes": 10,
+    "onSealedDeviationTimeout": "move",
+    "requireSpecBreak": true,
+    "requireCodeBreak": true
+  },
+  "suggestedSlices": [
+    {
+      "id": "596b8830-61c6-887a-b6c3-9ae0561f2761",
+      "title": "Create and inspect concurrent work safely",
+      "kind": "vertical",
+      "acceptance": [
+        "Concurrent creation generates distinct UUIDs while retries preserve one record.",
+        "Both branches integrate with migrated references and preserved historical provenance.",
+        "People inspect titled work, results and screenshots; agents use generated identities.",
+        "Publishing uses the organization credential and passes dry-run validation without releasing."
+      ],
+      "evidence": [
+        "unit",
+        "integration",
+        "e2e",
+        "screenshot"
+      ],
+      "expectedPaths": [
+        "packages/**",
+        "schemas/**",
+        "skills/**",
+        "docs/**",
+        "scripts/**",
+        ".github/**",
+        "package.json",
+        "pnpm-lock.yaml",
+        ".npmrc"
+      ],
+      "codeBreakReviewId": "a7dff9d4-95c9-484d-849c-1a7af6109f7b"
+    }
+  ],
+  "acceptanceClaimIds": {
+    "596b8830-61c6-887a-b6c3-9ae0561f2761/AC-1": [
+      "39e43d1e-6e29-8983-8c0e-e55c2beabcc6"
+    ],
+    "596b8830-61c6-887a-b6c3-9ae0561f2761/AC-2": [
+      "39e43d1e-6e29-8983-8c0e-e55c2beabcc6"
+    ],
+    "596b8830-61c6-887a-b6c3-9ae0561f2761/AC-3": [
+      "39e43d1e-6e29-8983-8c0e-e55c2beabcc6"
+    ],
+    "596b8830-61c6-887a-b6c3-9ae0561f2761/AC-4": [
+      "db092384-a2b9-8db4-b9b8-ff7b5e58f133"
+    ]
+  },
+  "proposedClaimIds": [
+    "efc1f0a4-7911-8163-b194-906c6ae5f62a"
+  ],
+  "specBreakReviewId": "5ab16e1d-5768-4fa1-a2ce-99d3aee8209c",
+  "updatedAt": "2026-09-06T20:42:24.764Z",
+  "seal": {
+    "sealedAt": "2026-09-06T20:19:01.005Z",
+    "sealedBy": "agent:permission:4e6cc9b2-c4e1-8671-9676-99a44a454eac",
+    "specDigest": "baa39ef881188030e3fea251de155b5499978829a40f80d4606d3639e4a8cc17",
+    "snapshotPath": "workstreams/eab32d2d-6c3c-84df-b831-9bcc13fd0152.seals/3.json",
+    "revision": 3,
+    "specDocDigest": "f883a20a37139a3e63a6220d406c47e8d17f27ccfa66afcb8b6f69c86798c3ac"
+  },
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/workstreams/W-015.json",
+        "id": "W-015",
+        "sha256": "8fdc8e3b24bec030cee176c80e8f20bf37383424854084702a22c378a21907cf"
+      }
+    },
+    "historical": true
+  },
+  "postSealAmends": [
+    {
+      "at": "2026-09-06T20:06:01.780Z",
+      "summary": "User requests titles throughout the UI and verification of populated migrated data on the active server.",
+      "humanConfirmed": true,
+      "sealedRevision": 1,
+      "beforeDocDigest": "455a563aabf26bf1444ad06d52dc2749708f5247ddd5da45058bd1dc197afd00",
+      "afterDocDigest": "37cd378eec5c1ffdcb99c6903288a4f5e75edd8b3ae5f0dd2a8d93013fdf7b8d",
+      "actor": "user-request"
+    },
+    {
+      "at": "2026-09-06T20:17:33.051Z",
+      "summary": "Give recorded task updates their own dated feed tab, preserving Changes for implementation history.",
+      "humanConfirmed": true,
+      "sealedRevision": 2,
+      "beforeDocDigest": "37cd378eec5c1ffdcb99c6903288a4f5e75edd8b3ae5f0dd2a8d93013fdf7b8d",
+      "afterDocDigest": "f883a20a37139a3e63a6220d406c47e8d17f27ccfa66afcb8b6f69c86798c3ac",
+      "actor": "user-request",
+      "turnId": "718a2712-fb21-4c1b-9d10-101995c19cf6"
+    }
+  ]
+}

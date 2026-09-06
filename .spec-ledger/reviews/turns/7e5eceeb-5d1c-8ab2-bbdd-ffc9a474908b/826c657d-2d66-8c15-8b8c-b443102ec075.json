@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "id": "826c657d-2d66-8c15-8b8c-b443102ec075",
+  "turnId": "7e5eceeb-5d1c-8ab2-bbdd-ffc9a474908b",
+  "workstreamId": "a32f3451-1b3d-8abf-bf0e-607ebf6e1a88",
+  "kind": "adversarial",
+  "target": "code",
+  "reviewer": "agent:sl-dev-break:deferrals",
+  "verdict": "request-changes",
+  "blocking": true,
+  "alertOnSeverity": "high",
+  "plainSummary": "Malformed deferred work can crash planning instead of showing an unknown obligation.",
+  "summary": "Independent deferrals.break.test.ts4/5 passing. Malformed parsed JSON with deferral.deferred:42 reaches validDeferral optional .trim call and throws rather than projecting unknown. Read discovery APIs now compose this evaluator, so malformed agent-authored ledger data disrupts the planning/session read.",
+  "findings": [
+    {
+      "id": "c41a7ee9-7633-83ab-a556-209283ef73c8",
+      "severity": "high",
+      "gap": "validDeferral assumes string-typed fields after reading unvalidated JSON. deferred:42 causes TypeError v.deferred?.trim is not a function in evaluateDeferrals. Equivalent assumptions exist for originSpecRef/requirementRef and resolution rationale.",
+      "plainImpact": "A malformed remembered task can prevent users and agents from reading the planning context.",
+      "fixProposal": "Validate primitive types before string/array operations, project malformed commitments as unknown, and keep affected completion blocked without crashing unrelated discovery.",
+      "evidence": {
+        "kind": "test",
+        "citedTest": "packages/ledger/src/deferrals/deferrals.break.test.ts::projects missing references and malformed commitments as unknown",
+        "ran": true,
+        "command": "node --test packages/ledger/dist/deferrals/deferrals.break.test.js",
+        "observedOutput": "4 passed1 failed; TypeError v.deferred?.trim is not a function"
+      }
+    }
+  ],
+  "residualRisks": [
+    "Other bounded tests pass activation idempotency, deletion/feature removal persistence, old orphan decision discovery, hard requirement dismissal/path-only denial, and scoped revisit authority/revocation."
+  ],
+  "treeDigest": "c243c525c46e6a06c2cd8b93c94f50ba7214dc45a39c3291a6452eab803c1527",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/reviews/turns/T-030/R-01.json",
+        "id": "T-030/R-01",
+        "sha256": "6ab0fea0a60b1892ab56dd442267c88f3b8ece8b91f7e3b3c0641338b9d3dc47"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/reviews/turns/T-030/R-01.json",
+        "id": "T-030/R-01",
+        "sha256": "6ab0fea0a60b1892ab56dd442267c88f3b8ece8b91f7e3b3c0641338b9d3dc47"
+      }
+    },
+    "historical": true
+  }
+}

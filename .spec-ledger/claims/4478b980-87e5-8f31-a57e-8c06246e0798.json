@@ -1,0 +1,29 @@
+{
+  "id": "4478b980-87e5-8f31-a57e-8c06246e0798",
+  "kind": "invariant",
+  "statement": "Install Spec Ledger in a separate project and use its commands without needing this development repository.",
+  "area": "core",
+  "required": true,
+  "links": {
+    "docs": [
+      "docs/workstreams/consumer-cli-and-npm-publish.md",
+      "docs/architecture/claim-contracts.md"
+    ],
+    "proposedClaimId": "ee4b88b6-f54b-8011-82e1-e4d44b94aaab"
+  },
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/claims/SL-012.json",
+        "id": "SL-012",
+        "sha256": "c9d2c116182ddad1b80f447493b92b57b29273fbf71b5d31b7b87eab74cfca2d"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/claims/SL-012.json",
+        "id": "SL-012",
+        "sha256": "c9d2c116182ddad1b80f447493b92b57b29273fbf71b5d31b7b87eab74cfca2d"
+      }
+    },
+    "historical": true
+  }
+}

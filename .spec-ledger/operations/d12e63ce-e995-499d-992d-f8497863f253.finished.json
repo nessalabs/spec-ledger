@@ -7,7 +7,7 @@
   "outcome": "succeeded",
   "result": {
     "schemaVersion": 1,
-    "id": "T-047",
+    "id": "12494adf-1065-80ed-b949-f346a6334018",
     "status": "closed",
     "openedAt": "2026-09-06T07:07:13.627Z",
     "opened": {
@@ -15,22 +15,22 @@
       "baseCommit": "56d6ab11d684d654f6d09cbed531238823a72229",
       "treeDigest": "47c70dc12fd9b447502a27da1f458a75ef70d5808408f28750350788a4b46a2e",
       "dirtyAtOpen": [
-        ".spec-ledger/align-waivers/AW-18.json",
-        ".spec-ledger/decisions/T-046/D-01.json",
+        ".spec-ledger/align-waivers/00bfd6e8-56e6-8a6f-8e19-ed04de22179e.json",
+        ".spec-ledger/decisions/f452f323-83c6-83e0-9ce2-faae3f1a3772/a0adad6a-f6d8-8344-a355-f68763086406.json",
         ".spec-ledger/evidence/check-runs/10ac0b8a-ce00-4aec-a173-9bc53753ce8b-stderr.txt",
         ".spec-ledger/evidence/check-runs/10ac0b8a-ce00-4aec-a173-9bc53753ce8b-stdout.txt",
         ".spec-ledger/evidence/check-runs/10ac0b8a-ce00-4aec-a173-9bc53753ce8b.json",
         ".spec-ledger/evidence/runs/10ac0b8a-ce00-4aec-a173-9bc53753ce8b.json",
-        ".spec-ledger/turns/T-045.json",
-        ".spec-ledger/turns/T-046.json",
+        ".spec-ledger/turns/5bfd91de-8592-889f-954b-26c28d6b02c3.json",
+        ".spec-ledger/turns/f452f323-83c6-83e0-9ce2-faae3f1a3772.json",
         "package.json",
         "packages/ledger/src/episodes.write.test.ts",
         "packages/ledger/src/pack.concurrency.break.test.ts",
         "pnpm-lock.yaml"
       ],
       "contextDigest": "c36624835a24befc1c471c1af87121c3eeafabbf6def1ba1d7bafb15bf4b3163",
-      "contextWorkstreamId": "W-014",
-      "contextSliceId": "SLC-02",
+      "contextWorkstreamId": "ef172105-4f40-8bbb-8abe-d1cd11ae618a",
+      "contextSliceId": "ef669c8c-b701-85d9-b2da-638757fed84e",
       "contextSealRevision": 1,
       "contextGeneratedAt": "2026-09-06T07:07:13.627Z"
     },
@@ -39,8 +39,8 @@
       "restatedGoal": "Verify the CI fixture repairs",
       "changeType": "fix",
       "riskLevel": "moderate",
-      "workstreamId": "W-014",
-      "sliceId": "SLC-02",
+      "workstreamId": "ef172105-4f40-8bbb-8abe-d1cd11ae618a",
+      "sliceId": "ef669c8c-b701-85d9-b2da-638757fed84e",
       "featureIds": [
         "client",
         "cli",
@@ -53,25 +53,25 @@
       "commit": "56d6ab11d684d654f6d09cbed531238823a72229",
       "files": [
         {
-          "path": ".spec-ledger/align-waivers/AW-18.json",
+          "path": ".spec-ledger/align-waivers/00bfd6e8-56e6-8a6f-8e19-ed04de22179e.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/align-waivers/AW-19.json",
+          "path": ".spec-ledger/align-waivers/bcd05bf1-663c-8137-8d90-ef04fd9a6a9f.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/decisions/T-046/D-01.json",
+          "path": ".spec-ledger/decisions/f452f323-83c6-83e0-9ce2-faae3f1a3772/a0adad6a-f6d8-8344-a355-f68763086406.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/decisions/T-047/D-01.json",
+          "path": ".spec-ledger/decisions/12494adf-1065-80ed-b949-f346a6334018/ea5b1b1f-8797-891b-9837-fe99d1992cf1.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
@@ -701,37 +701,37 @@
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/reviews/turns/T-047/R-01.json",
+          "path": ".spec-ledger/reviews/turns/12494adf-1065-80ed-b949-f346a6334018/7719a05c-4c36-8e63-8089-7a351eb8a215.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/reviews/turns/T-047/R-02.json",
+          "path": ".spec-ledger/reviews/turns/12494adf-1065-80ed-b949-f346a6334018/8b55bd25-43d0-81cc-946d-da9bf44b5f28.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/turns/T-045.json",
+          "path": ".spec-ledger/turns/5bfd91de-8592-889f-954b-26c28d6b02c3.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/turns/T-046.json",
+          "path": ".spec-ledger/turns/f452f323-83c6-83e0-9ce2-faae3f1a3772.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/turns/T-047.json",
+          "path": ".spec-ledger/turns/12494adf-1065-80ed-b949-f346a6334018.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/workstreams/W-014.json",
+          "path": ".spec-ledger/workstreams/ef172105-4f40-8bbb-8abe-d1cd11ae618a.json",
           "kind": "modified",
           "additions": 4,
           "deletions": 4
@@ -790,7 +790,7 @@
       },
       "schemaSurfaceChanged": false,
       "decisionIds": [
-        "T-047/D-01"
+        "ea5b1b1f-8797-891b-9837-fe99d1992cf1"
       ],
       "decisionsDigest": "d263825a406b456e22dd7f53b74a834345e2f9b6048a4b105648575dbca34b4b",
       "reviewsDigest": "60c1312310ac6b3529f229026d464766907fb9b04d34d312db5a5231630afa3c"

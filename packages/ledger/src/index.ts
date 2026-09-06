@@ -107,3 +107,6 @@ export { createLocalCheckBridge } from "./verify/local-check.js"
 
 export { createLocalWorkflowBridge } from "./workflows/local-ui.js"
 export type { LibraryOptions, WorkflowOptions } from "./workflows/options.js"
+
+export { listOptimizationGoals, getOptimizationGoal } from "./optimization/index.js"
+export type { OptimizationGoal, Experiment, ExperimentResult, GoalConclusion, GoalProjection, Observation } from "./optimization/model.js"

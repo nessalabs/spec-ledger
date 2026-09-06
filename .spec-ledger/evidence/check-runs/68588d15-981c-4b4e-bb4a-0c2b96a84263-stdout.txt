@@ -1,0 +1,24 @@
+✔ breaker: a rejected stale-source write leaves no experiment and can retry with fresh guards (426.143208ms)
+✔ breaker: pending parents and cross-workstream references cannot consume an attempt (491.795167ms)
+✔ breaker: corrupt identity and orphan result history fail closed on reads and new writes (396.385542ms)
+✔ breaker: a result-file symlink is rejected without modifying its target (369.56825ms)
+✔ breaker: clock rollback never reorders attempts or changes latest attempt measurement (366.233709ms)
+✔ iterative work is optional, records attempts faithfully, and does not change verify (734.25775ms)
+✔ immutable identity and operation retries preserve exactly one record (455.061167ms)
+✔ rejects poison and invalid transitions without partial optimization history (563.846667ms)
+✔ goals continue on later authorized turns; closed, stale and revoked tasks cannot add history (560.552ms)
+✔ qualitative goals and maximizing metrics do not manufacture a score (378.30725ms)
+✔ optimization storage refuses symlink reads and writes (231.769583ms)
+✔ CLI convenience commands persist and inspect real experiment history (570.613625ms)
+✔ an interrupted unpublished goal and redirected receipt cannot expose partial history (211.056541ms)
+✔ MCP records iterative work and both client transports inspect the same read-only history (618.168ms)
+✔ chart preserves gaps, zero and a single-point result (0.819875ms)
+✔ equal, negative and extreme finite values retain finite geometry (8.958875ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 16
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3786.69375

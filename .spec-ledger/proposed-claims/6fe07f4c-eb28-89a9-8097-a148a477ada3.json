@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "6fe07f4c-eb28-89a9-8097-a148a477ada3",
+  "status": "accepted",
+  "workstreamId": "815c7a44-59df-8102-9769-bf8a74e49c0c",
+  "suggestedLiveId": "a3c38839-cf13-837c-8866-ce46af309e15",
+  "statement": "Best-effort execution activity cannot mint completion or recovery authority; unknown host state and absent capabilities prevent automatic recovery.",
+  "requiredEvidence": [
+    "unit",
+    "integration",
+    "e2e"
+  ],
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/proposed-claims/PC-022.json",
+        "id": "PC-022",
+        "sha256": "73c5a23e68920ce7e08768ba6711da71bd043307e9d558235b845ef3af365c73"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/proposed-claims/PC-022.json",
+        "id": "PC-022",
+        "sha256": "73c5a23e68920ce7e08768ba6711da71bd043307e9d558235b845ef3af365c73"
+      }
+    },
+    "historical": true
+  }
+}

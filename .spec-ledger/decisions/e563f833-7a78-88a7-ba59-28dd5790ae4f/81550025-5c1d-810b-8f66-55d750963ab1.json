@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "turnId": "e563f833-7a78-88a7-ba59-28dd5790ae4f",
+  "decision": "Custom engineering methods now preserve chosen skills and show current step evidence.",
+  "rationale": "Agent-reported progress; evidence is evaluated separately.",
+  "progress": {
+    "criterionIds": [
+      "26c9bf2f-a090-8415-bd2b-f46dff6af4f7/AC-1",
+      "25eac677-2871-816d-956d-770bdcb61798/AC-1"
+    ],
+    "implemented": true,
+    "revisionDigest": "631ba496f0816511b043042299190dca445c4a040c64d95a96666dbd4daf1b20",
+    "sourceDigest": "8bb3d984fe7b57d446dd27d32f52f2db3774db4b3eec88ae82640ba83bd11946"
+  },
+  "id": "81550025-5c1d-810b-8f66-55d750963ab1",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/decisions/T-035/D-02.json",
+        "id": "T-035/D-02",
+        "sha256": "609281c45bb2522834c2463c8ef98255784ebab5342b84da48e5bef7ec953a04"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/decisions/T-035/D-02.json",
+        "id": "T-035/D-02",
+        "sha256": "609281c45bb2522834c2463c8ef98255784ebab5342b84da48e5bef7ec953a04"
+      }
+    },
+    "historical": true
+  },
+  "sequence": 2
+}

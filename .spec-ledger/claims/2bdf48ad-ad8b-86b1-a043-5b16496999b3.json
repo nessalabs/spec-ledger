@@ -1,0 +1,27 @@
+{
+  "id": "2bdf48ad-ad8b-86b1-a043-5b16496999b3",
+  "statement": "See what changed, the evidence for that change, and whether earlier results still apply today.",
+  "required": true,
+  "links": {
+    "docs": [
+      "docs/workstreams/3ca37660-1506-8a85-80c6-410a024d9a9a-evidence-first-changes/spec.md",
+      "docs/architecture/claim-contracts.md"
+    ]
+  },
+  "kind": "invariant",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/claims/SL-026.json",
+        "id": "SL-026",
+        "sha256": "899f3a193058abf93cc4e6669784f42bee7ec69ff197ed660b3d36e5f5342924"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/claims/SL-026.json",
+        "id": "SL-026",
+        "sha256": "899f3a193058abf93cc4e6669784f42bee7ec69ff197ed660b3d36e5f5342924"
+      }
+    },
+    "historical": true
+  }
+}

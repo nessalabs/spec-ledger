@@ -7,33 +7,33 @@
   "outcome": "succeeded",
   "result": {
     "schemaVersion": 1,
-    "turnId": "T-047",
-    "decision": "Revalidated all 17 workflow requirements after CI-only fixture and test dependency repairs. Independent review T-047/R-02 covers all three slices with 63 passing regression tests; evidence is refreshed separately.",
+    "turnId": "12494adf-1065-80ed-b949-f346a6334018",
+    "decision": "Revalidated all 17 workflow requirements after CI-only fixture and test dependency repairs. Independent review 8b55bd25-43d0-81cc-946d-da9bf44b5f28 covers all three slices with 63 passing regression tests; evidence is refreshed separately.",
     "rationale": "Agent-reported progress; evidence is evaluated separately.",
     "progress": {
       "criterionIds": [
-        "SLC-01/AC-1",
-        "SLC-01/AC-2",
-        "SLC-01/AC-3",
-        "SLC-01/AC-4",
-        "SLC-01/AC-5",
-        "SLC-01/AC-6",
-        "SLC-01/AC-7",
-        "SLC-02/AC-1",
-        "SLC-02/AC-2",
-        "SLC-02/AC-3",
-        "SLC-02/AC-4",
-        "SLC-02/AC-5",
-        "SLC-02/AC-6",
-        "SLC-03/AC-1",
-        "SLC-03/AC-2",
-        "SLC-03/AC-3",
-        "SLC-03/AC-4"
+        "11519a1a-0d18-889b-8422-9bb8accc4483/AC-1",
+        "11519a1a-0d18-889b-8422-9bb8accc4483/AC-2",
+        "11519a1a-0d18-889b-8422-9bb8accc4483/AC-3",
+        "11519a1a-0d18-889b-8422-9bb8accc4483/AC-4",
+        "11519a1a-0d18-889b-8422-9bb8accc4483/AC-5",
+        "11519a1a-0d18-889b-8422-9bb8accc4483/AC-6",
+        "11519a1a-0d18-889b-8422-9bb8accc4483/AC-7",
+        "ef669c8c-b701-85d9-b2da-638757fed84e/AC-1",
+        "ef669c8c-b701-85d9-b2da-638757fed84e/AC-2",
+        "ef669c8c-b701-85d9-b2da-638757fed84e/AC-3",
+        "ef669c8c-b701-85d9-b2da-638757fed84e/AC-4",
+        "ef669c8c-b701-85d9-b2da-638757fed84e/AC-5",
+        "ef669c8c-b701-85d9-b2da-638757fed84e/AC-6",
+        "b37364e8-36d3-8901-a879-3a6e32f21210/AC-1",
+        "b37364e8-36d3-8901-a879-3a6e32f21210/AC-2",
+        "b37364e8-36d3-8901-a879-3a6e32f21210/AC-3",
+        "b37364e8-36d3-8901-a879-3a6e32f21210/AC-4"
       ],
       "implemented": true,
-      "revisionDigest": "6d374e9385ddd97d30d75f4d28a42527e4a46ce5a0c086ba5041ef38af2619dc",
+      "revisionDigest": "0dab67a31f295e21fac35419b36da2e7198798fa14ebedcae416d350ff34dc02",
       "sourceDigest": "47c70dc12fd9b447502a27da1f458a75ef70d5808408f28750350788a4b46a2e"
     },
-    "id": "T-047/D-01"
+    "id": "ea5b1b1f-8797-891b-9837-fe99d1992cf1"
   }
 }

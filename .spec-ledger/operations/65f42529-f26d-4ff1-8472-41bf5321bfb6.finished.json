@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "requestId": "65f42529-f26d-4ff1-8472-41bf5321bfb6",
+  "operation": "record_review",
+  "inputDigest": "074b611fc67d00540b4d5298ff6ef22c7167a5f7700d2176a832ebb5b41084c2",
+  "finishedAt": "2026-09-06T18:08:27.286Z",
+  "outcome": "succeeded",
+  "result": {
+    "kind": "adversarial",
+    "reviewer": "agent:sl-dev-break",
+    "verdict": "request-changes",
+    "blocking": false,
+    "plainSummary": "Valid screenshot coverage can still be reported as missing when a surface has multiple saved captures.",
+    "summary": "Bounded hunt ran pnpm --filter @nessalabs/spec-ledger build && node --test packages/ledger/dist/evidence/visual.break.test.js; 4 pass, 1 fails. Greedy digest consumption rejects Desktop[A,B], Mobile[A] despite valid assignment Desktop=B, Mobile=A.",
+    "findings": [
+      {
+        "id": "5a1c9d04-d7ea-84b2-8156-4e1819adbc26",
+        "severity": "medium",
+        "claimId": "ca2529a5-cf17-821c-ae1f-ac3e56178bf2",
+        "gap": "checkVisualEvidence assigns the first eligible digest to each surface without reassigning earlier choices, so a full unique matching can be rejected.",
+        "plainImpact": "An agent can be prevented from finishing even after it supplies valid distinct screenshots for every required surface.",
+        "fixProposal": "Find a matching between required surfaces and valid image digests; allow alternate captures to free a digest needed by a later surface.",
+        "evidence": {
+          "kind": "test",
+          "ran": true,
+          "citedTest": "packages/ledger/src/evidence/visual.break.test.ts::visual breaker: alternative screenshots satisfy distinct surfaces regardless of attachment order",
+          "command": "pnpm --filter @nessalabs/spec-ledger build && node --test packages/ledger/dist/evidence/visual.break.test.js",
+          "observedOutput": "AssertionError: Desktop can use B while Mobile uses A; unique valid coverage exists. false !== true"
+        }
+      }
+    ],
+    "alertOnSeverity": "high",
+    "residualRisks": [
+      "One out-of-intent killer: alternate image allocation across surfaces. Final screenshot visual review still pending."
+    ],
+    "schemaVersion": 1,
+    "id": "e5869657-5c9f-8acb-b287-9befc67a9816",
+    "turnId": "da66d16d-d4e0-837e-a34b-fb7cec0d855d",
+    "target": "code",
+    "treeDigest": "e5819268ea555bbab6817a14b2e5fac26955cc12b50388a01686f14e4a433595"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "turnId": "0fc5ce0a-1a93-8929-ae8c-1fc80861dc8e",
+  "decision": "Vendor RFC 8785 JCS in-repo",
+  "rationale": "Avoid npm workspace friction; match work-model seal digest requirement.",
+  "basis": {
+    "at": "2026-09-03T04:49:16.762Z"
+  },
+  "id": "3c3771b1-ac9a-8d7f-877e-f585764ba842",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/decisions/T-005/D-01.json",
+        "id": "T-005/D-01",
+        "sha256": "055ddc9e3497fbc946324ee85002f93cfd56c708d09aac7099e135dcce2cddf4"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/decisions/T-005/D-01.json",
+        "id": "T-005/D-01",
+        "sha256": "055ddc9e3497fbc946324ee85002f93cfd56c708d09aac7099e135dcce2cddf4"
+      }
+    },
+    "historical": true
+  },
+  "sequence": 1
+}

@@ -7,7 +7,7 @@
   "outcome": "succeeded",
   "result": {
     "schemaVersion": 1,
-    "id": "T-048",
+    "id": "c27931c8-b548-81c7-a660-ee6bf9e61466",
     "status": "closed",
     "openedAt": "2026-09-06T07:20:38.435Z",
     "opened": {
@@ -16,8 +16,8 @@
       "treeDigest": "47c70dc12fd9b447502a27da1f458a75ef70d5808408f28750350788a4b46a2e",
       "dirtyAtOpen": [],
       "contextDigest": "2356afec317817ccf3ca3b02eaa9e500d0b7bdda4381f1dd1b39afbbd89784a2",
-      "contextWorkstreamId": "W-014",
-      "contextSliceId": "SLC-02",
+      "contextWorkstreamId": "ef172105-4f40-8bbb-8abe-d1cd11ae618a",
+      "contextSliceId": "ef669c8c-b701-85d9-b2da-638757fed84e",
       "contextSealRevision": 1,
       "contextGeneratedAt": "2026-09-06T07:20:38.435Z"
     },
@@ -26,8 +26,8 @@
       "restatedGoal": "Keep CI fixture cleanup deterministic",
       "changeType": "fix",
       "riskLevel": "moderate",
-      "workstreamId": "W-014",
-      "sliceId": "SLC-02",
+      "workstreamId": "ef172105-4f40-8bbb-8abe-d1cd11ae618a",
+      "sliceId": "ef669c8c-b701-85d9-b2da-638757fed84e",
       "featureIds": [
         "client",
         "cli",
@@ -46,19 +46,19 @@
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/align-waivers/AW-20.json",
+          "path": ".spec-ledger/align-waivers/6458250e-a605-8e79-a72e-6829104b43d9.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/decisions/T-048/D-01.json",
+          "path": ".spec-ledger/decisions/c27931c8-b548-81c7-a660-ee6bf9e61466/fe2644b2-d159-84c5-be34-a200d788505e.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/decisions/T-048/D-02.json",
+          "path": ".spec-ledger/decisions/c27931c8-b548-81c7-a660-ee6bf9e61466/791c7ddc-b86a-8f84-844e-b48b407114d9.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
@@ -640,25 +640,25 @@
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/reviews/turns/T-048/R-01.json",
+          "path": ".spec-ledger/reviews/turns/c27931c8-b548-81c7-a660-ee6bf9e61466/8f1fa94c-1b19-8956-95ef-a0736e56f99e.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/reviews/turns/T-048/R-02.json",
+          "path": ".spec-ledger/reviews/turns/c27931c8-b548-81c7-a660-ee6bf9e61466/3a3fe1ba-0237-8efc-b0e8-06d77cac1336.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/turns/T-048.json",
+          "path": ".spec-ledger/turns/c27931c8-b548-81c7-a660-ee6bf9e61466.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/workstreams/W-014.json",
+          "path": ".spec-ledger/workstreams/ef172105-4f40-8bbb-8abe-d1cd11ae618a.json",
           "kind": "modified",
           "additions": 4,
           "deletions": 4
@@ -680,8 +680,8 @@
       },
       "schemaSurfaceChanged": false,
       "decisionIds": [
-        "T-048/D-01",
-        "T-048/D-02"
+        "fe2644b2-d159-84c5-be34-a200d788505e",
+        "791c7ddc-b86a-8f84-844e-b48b407114d9"
       ],
       "decisionsDigest": "b8d41efe127c396605a6e78a736e587ec1bcf913fa4cb05d845677265ae80f93",
       "reviewsDigest": "962534f1eb71dc3aa63f62e7bbb353b144c5f1d9e603545681a6acb577cb72a0"

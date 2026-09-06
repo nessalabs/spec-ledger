@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "85305be2-dd75-8c2d-9a53-daefb5498792",
+  "turnId": "21e1bd8d-8745-8900-b8a5-249314d027be",
+  "workstreamId": "351e54ea-60e4-8384-826f-0616eaa89599",
+  "kind": "human",
+  "target": "code",
+  "reviewer": "agent:align",
+  "verdict": "approve",
+  "summary": "User explicitly requested saved test execution, Nessa code rendering and plain feature wording. All product paths remain within the preserved packages, schemas, docs and skills scope.",
+  "plainSummary": "The changes cover the requested test evidence, syntax highlighting and readable feature descriptions.",
+  "treeDigest": "1928c529067013cc45fdbdf5153d5496b2f07bd62e5de9a327f1938374c1a746",
+  "uncoveredPaths": [],
+  "coverageSource": "mixed",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/reviews/turns/T-038/R-04.json",
+        "id": "T-038/R-04",
+        "sha256": "b06861dbb8ffcf297b1ed91c780b1abfffcfd344d20bddedbc49fa6286e6d7c1"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/reviews/turns/T-038/R-04.json",
+        "id": "T-038/R-04",
+        "sha256": "b06861dbb8ffcf297b1ed91c780b1abfffcfd344d20bddedbc49fa6286e6d7c1"
+      }
+    },
+    "historical": true
+  }
+}

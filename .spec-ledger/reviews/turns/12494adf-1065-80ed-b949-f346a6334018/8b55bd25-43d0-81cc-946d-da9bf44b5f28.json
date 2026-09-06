@@ -1,0 +1,40 @@
+{
+  "kind": "adversarial",
+  "target": "code",
+  "reviewer": "agent:sl-dev-break:library",
+  "verdict": "approve",
+  "blocking": false,
+  "summary": "Bounded CI-fixture and ef172105-4f40-8bbb-8abe-d1cd11ae618a compatibility review. Reproduced CI ERR_MODULE_NOT_FOUND zod/v4/core/json-schema.js through a synthetic pnpm-style identical-file hardlink and the unchanged real consumer import. Materializing dependency files before npm pack restores the test: pack concurrency/failure and episode closure tests 4/4 pass. Reviewed isolated Git maintenance settings and bounded cleanup retries; episode assertions unchanged. Root React/ReactDOM test dependencies are direct pinned devDependencies with lock entries. Existing 11519a1a-0d18-889b-8422-9bb8accc4483 library, ef669c8c-b701-85d9-b2da-638757fed84e real CLI/MCP boundaries, b37364e8-36d3-8901-a879-3a6e32f21210 UI/navigation/API regressions pass 63/63. No production files changed.",
+  "plainSummary": "The CI fixtures now handle linked dependencies reliably, and the saved-workflow regression tests still pass.",
+  "killersCited": [
+    "packages/ledger/src/pack.concurrency.break.test.ts::overlapping npm packs preserve manifests and produce installable tarballs",
+    "packages/ledger/src/pack.concurrency.break.test.ts::a failed prepack build does not rewrite the source manifest",
+    "packages/ledger/src/episodes.write.test.ts::episode write CLIs leave digests on close",
+    "packages/ledger/src/workflows/library.break.test.ts",
+    "packages/ledger/src/workflows/library-storage.break.test.ts",
+    "packages/mcp/src/library.boundary.break.test.ts",
+    "packages/ui/lib/navigation.break.test.mjs",
+    "packages/ui/lib/workflow-api.break.test.mjs"
+  ],
+  "findings": [],
+  "alertOnSeverity": "high",
+  "residualRisks": [
+    "Local reproduction and fix run on macOS Node 26.8.1/npm 11.19.0; Linux Node 22/npm 10 validation remains the CI rerun.",
+    "Fixture now intentionally creates a same-content Zod hardlink before materialization so copy-based local installs exercise the pnpm layout.",
+    "Bounded existing regression rerun covers all three ef172105-4f40-8bbb-8abe-d1cd11ae618a slices; no new browser end-to-end session because production is unchanged."
+  ],
+  "schemaVersion": 1,
+  "id": "8b55bd25-43d0-81cc-946d-da9bf44b5f28",
+  "turnId": "12494adf-1065-80ed-b949-f346a6334018",
+  "treeDigest": "47c70dc12fd9b447502a27da1f458a75ef70d5808408f28750350788a4b46a2e",
+  "migration": {
+    "origins": {
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/reviews/turns/T-047/R-02.json",
+        "id": "T-047/R-02",
+        "sha256": "a7991756124a2f8fb40640bf73a1b712ef7ad24f2bef966fb8949b77741ae886"
+      }
+    },
+    "historical": true
+  }
+}

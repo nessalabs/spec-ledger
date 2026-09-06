@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "turnId": "da66d16d-d4e0-837e-a34b-fb7cec0d855d",
+  "decision": "Require current screenshots for every declared visual surface while keeping passing test cards quiet.",
+  "rationale": "User requested machine-enforced visual coverage and removal of redundant success metadata. Visual checks gate close/completion separately from claims-only verification. Source changes intentionally invalidate previous evidence; fresh checks and screenshots will resolve this workstream before close.",
+  "basis": {
+    "at": "2026-09-06T18:07:22.109Z",
+    "contextDigest": "f03aa05e523d4e1e31f2abdbf69fde693b1878c7b8714fca475429f2c4457b13",
+    "sealRevision": 4
+  },
+  "id": "377e675a-fd62-8670-a968-a41e6a8aeaaa",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/decisions/T-045/D-01.json",
+        "id": "T-045/D-01",
+        "sha256": "a8f5efb4dcebb1bc7dae361b4f562e4ee782f5a1f350e12dfe8157b91e6d91fd"
+      }
+    },
+    "historical": true
+  },
+  "sequence": 1
+}

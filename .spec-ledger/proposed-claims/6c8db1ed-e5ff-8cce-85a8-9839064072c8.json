@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "id": "6c8db1ed-e5ff-8cce-85a8-9839064072c8",
+  "statement": "Turn open stamps treeDigest and refuses a dirty worktree unless --allow-dirty.",
+  "status": "accepted",
+  "workstreamId": "e6213c3f-60e4-8ceb-9d6a-15c67833b383",
+  "severity": "medium",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/proposed-claims/PC-010.json",
+        "id": "PC-010",
+        "sha256": "cab2abacbcecde935fc594fbe16f939a5c85648deef5d07fd5815c95c2d3a767"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/proposed-claims/PC-010.json",
+        "id": "PC-010",
+        "sha256": "cab2abacbcecde935fc594fbe16f939a5c85648deef5d07fd5815c95c2d3a767"
+      }
+    },
+    "historical": true
+  }
+}

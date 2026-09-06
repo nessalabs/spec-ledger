@@ -1,0 +1,33 @@
+{
+  "id": "b43b216b-a9dd-8b90-a3f5-851f6fa9be9f",
+  "claimId": "d62365fc-02af-826c-b961-8942c540bddf",
+  "kind": "test",
+  "locator": {
+    "type": "command",
+    "command": "node --test packages/ui/lib/simplicity.break.test.mjs packages/ui/lib/check-evidence.test.mjs packages/ui/lib/navigation*.test.mjs packages/ledger/dist/session/visual-evidence.break.test.js"
+  },
+  "test": {
+    "level": "integration",
+    "description": "Render simple feature views while keeping missing and failed evidence honest and proof accessible.",
+    "source": {
+      "path": "packages/ui/lib/simplicity.break.test.mjs"
+    },
+    "inputs": "Complete, incomplete, historical, failed, missing and unlinked evidence.",
+    "expected": "A clear feature summary and direct proof controls; missing evidence and remaining requirements never imply completion."
+  },
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/bindings/B-SL-031.json",
+        "id": "b-sl-031",
+        "sha256": "826689d86b404a4429da7777455baf7ad41b6f9a766170484f35e28efc20a440"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/bindings/B-SL-031.json",
+        "id": "b-sl-031",
+        "sha256": "2e231b5329600a308222ec73a50e479d889b4ba48be1c4c39490382cb26e89e1"
+      }
+    },
+    "historical": true
+  }
+}

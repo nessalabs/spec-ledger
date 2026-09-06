@@ -43,6 +43,10 @@ Corrections: [`sl-learn`](../sl-learn/SKILL.md).
 After [`sl-dev-break`](../sl-dev-break/SKILL.md): breaker owns killers until they
 fail for the intended reason; you own prod only. Do not “fix” the failing test.
 
+## Optional iterative work
+
+When the user asks for optimization or recursive improvement, or the agent identifies work that benefits from repeated experiments, compose [sl-dev-experiment](../sl-dev-experiment/SKILL.md) onto this workflow. Attach a goal to the existing open turn; ordinary tasks need no goal. This choice does not replace the plan, permission, reviews, checks or close gates.
+
 ## Before / while implementing
 
 Honor sealed acceptance and
@@ -81,13 +85,13 @@ ask cohesive, **do not change meaning**, redact secrets/PII, strip abusive
 language. Never write raw chat dumps or credentials into the turn.
 
 ```bash
-pnpm exec spec-ledger context --workstream W-001 --slice SLC-01 --json
+pnpm exec spec-ledger context --workstream <workstream-uuid> --slice <slice-uuid> --json
 pnpm exec spec-ledger turn open \
-  --workstream W-001 \
+  --workstream <workstream-uuid> \
   --feature <id> \
   --goal "…" \
   --prompt "…" \
-  [--slice SLC-01]
+  [--slice <slice-uuid>]
 ```
 
 Until flags exist, set `intent.workstreamId`, `featureIds`, `sliceId`,
@@ -120,12 +124,12 @@ Commits during the turn should carry `SL-Turn:` trailers (see
 [provenance chain](../../docs/architecture/episodes.md)).
 
 ```bash
-pnpm exec spec-ledger turn close [--id T-00N] [--slice SLC-01]
+pnpm exec spec-ledger turn close [--id <turn-uuid>] [--slice <slice-uuid>]
 ```
 
 ### Finish the workstream
 
-When acceptance is met, run `spec-ledger complete --workstream W-NNN`.
+When acceptance is met, run `spec-ledger complete --workstream <workstream-uuid>`.
 Do not set `status` directly: completion also checks current evidence, permission,
 required reviews, and affected deferred commitments.
 
@@ -135,3 +139,7 @@ required reviews, and affected deferred commitments.
 - Workstreams / proposals / compass never affect `verify.ok`
 - Do not treat Spec Ledger UI or Flow as proof
 - Server stays read-only; git is the write path
+
+## Visual work evidence
+
+For visual UI changes, follow [required screenshot evidence](../references/visual-evidence.md): declare all relevant UI surfaces in the preserved plan, capture current screenshots, and inspect their coverage. Passing tests alone do not satisfy visual evidence; `evidence check`, turn close and completion enforce the declared screenshots.

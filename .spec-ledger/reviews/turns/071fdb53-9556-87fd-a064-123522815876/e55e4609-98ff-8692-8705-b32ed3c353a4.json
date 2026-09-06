@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "e55e4609-98ff-8692-8705-b32ed3c353a4",
+  "turnId": "071fdb53-9556-87fd-a064-123522815876",
+  "kind": "adversarial",
+  "target": "code",
+  "reviewer": "agent:sl-dev-break",
+  "verdict": "approve",
+  "summary": "Ran close-gate + open-context unit tests; approve for 3317ada5-b347-894e-8c88-110b7b42d58b ce4b9f10-4ad6-8c70-b097-ee8d97ce19c3/03.",
+  "plainSummary": "Close and open-turn rules were tested; this slice may ship.",
+  "killersCited": [
+    "packages/ledger/src/turns/close.test.ts::workstream open stamps contextDigest",
+    "packages/ledger/src/turns/close.test.ts::close refuses missing code-break"
+  ],
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/reviews/turns/T-003/R-01.json",
+        "id": "T-003/R-01",
+        "sha256": "099a8545f0d9c57dabcd45694f8876038bbf63f8b89ab606012b0bf06a0ddb3a"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/reviews/turns/T-003/R-01.json",
+        "id": "T-003/R-01",
+        "sha256": "099a8545f0d9c57dabcd45694f8876038bbf63f8b89ab606012b0bf06a0ddb3a"
+      }
+    },
+    "historical": true
+  }
+}

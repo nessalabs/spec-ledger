@@ -1,0 +1,35 @@
+{
+  "id": "4f09a0a4-dc11-8ae2-ba66-d3a96cd12f56",
+  "action": "grant",
+  "mode": "request",
+  "workstreamId": "d1be55a6-11bb-8460-8650-ddf0ecac8185",
+  "source": {
+    "kind": "agent-reported",
+    "reference": "User explicitly requested verification and evidence data retrofit for Consumer CLI and all completed workstreams during T037."
+  },
+  "featureIds": [
+    "cli",
+    "verify",
+    "client",
+    "server",
+    "lattice",
+    "turns"
+  ],
+  "schemaVersion": 1,
+  "createdAt": "2026-09-05T01:52:16.487Z",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/authority/AUTH-W005-RETROFIT-ALL.json",
+        "id": "AUTH-W005-RETROFIT-ALL",
+        "sha256": "d9926926d88361d94b61a2c596d42ccb83b42c3b15fdfb36e9f3c6398989f5e3"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/authority/AUTH-W005-RETROFIT-ALL.json",
+        "id": "AUTH-W005-RETROFIT-ALL",
+        "sha256": "d9926926d88361d94b61a2c596d42ccb83b42c3b15fdfb36e9f3c6398989f5e3"
+      }
+    },
+    "historical": true
+  }
+}

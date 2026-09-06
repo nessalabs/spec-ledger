@@ -1,0 +1,375 @@
+{
+  "schemaVersion": 1,
+  "id": "2818ba02-24f9-863d-bc18-2b727b455498",
+  "status": "closed",
+  "openedAt": "2026-09-04T21:32:39.026Z",
+  "opened": {
+    "producedBy": "@nessalabs/spec-ledger@0.1.0",
+    "baseCommit": "27f8935ded65daaedb34e30d682ee2647a9f6d3a",
+    "treeDigest": "65104238988a09dd2fcf7d936a58e529bfc521f31eb3ce2f811dff030d8e09f8",
+    "dirtyAtOpen": [
+      ".spec-ledger/decisions/2660d32a-4964-8155-adf0-456687f45a9a/755ee9be-d109-8965-830a-1cdcdc7095fb.json",
+      ".spec-ledger/reviews/turns/2660d32a-4964-8155-adf0-456687f45a9a/ecf77633-290a-84dd-975e-10688aeff2b8.json",
+      ".spec-ledger/reviews/turns/2660d32a-4964-8155-adf0-456687f45a9a/811ad5ff-86c7-8c5c-9724-e3b7ea98ac2b.json",
+      ".spec-ledger/reviews/turns/2660d32a-4964-8155-adf0-456687f45a9a/6da8bfd1-465a-8941-99d8-b457e5abdad9.json",
+      ".spec-ledger/reviews/turns/d7e50697-01ae-8412-850b-746bf171e540/b5808f49-c36b-80dc-b62e-239f8c0f16ee.json",
+      ".spec-ledger/reviews/turns/d7e50697-01ae-8412-850b-746bf171e540/5f3f1359-e8bb-89df-9556-e3b7b5c07ab5.json",
+      ".spec-ledger/reviews/workstreams/a32f3451-1b3d-8abf-bf0e-607ebf6e1a88/a8008034-72a1-852e-94c2-d6adb65e6815.json",
+      ".spec-ledger/sources/2660d32a-4964-8155-adf0-456687f45a9a/88a6ba97-cd76-821f-bbb6-a508dd77f3e3.json",
+      ".spec-ledger/turns/2660d32a-4964-8155-adf0-456687f45a9a.json",
+      ".spec-ledger/turns/d7e50697-01ae-8412-850b-746bf171e540.json",
+      ".spec-ledger/workstreams/a32f3451-1b3d-8abf-bf0e-607ebf6e1a88.json",
+      ".spec-ledger/workstreams/a32f3451-1b3d-8abf-bf0e-607ebf6e1a88.seals/1.json",
+      "docs/architecture/evidence.md",
+      "docs/workstreams/a32f3451-1b3d-8abf-bf0e-607ebf6e1a88-trustworthy-autonomous-coding/spec.md",
+      "packages/client/src/index.ts",
+      "packages/ledger/src/cli/main.ts",
+      "packages/ledger/src/context/vertical.ts",
+      "packages/ledger/src/fs/snapshot.ts",
+      "packages/ledger/src/index.ts",
+      "packages/ledger/src/verify/aggregation.break.test.ts",
+      "packages/ledger/src/verify/execute.ts",
+      "packages/ledger/src/verify/readonly.break.test.ts",
+      "packages/ledger/src/verify/verify.ts",
+      "packages/server/src/routes.ts",
+      "packages/ui/app/page.tsx",
+      "packages/ui/app/verify/page.tsx"
+    ],
+    "contextDigest": "be38dc1da0827018adbff6a68ba3d81d624199abd45b371230ac6ddf2fce0e1e",
+    "contextWorkstreamId": "a32f3451-1b3d-8abf-bf0e-607ebf6e1a88",
+    "contextSliceId": "88c72d83-aa21-8191-b6ed-64d088b99504",
+    "contextSealRevision": 1,
+    "contextGeneratedAt": "2026-09-04T21:32:39.026Z"
+  },
+  "intent": {
+    "userPrompt": "Continue W006: source and check fingerprints, artifact integrity, and current-content review and coverage gates.",
+    "restatedGoal": "Keep evidence and reviews tied to the code they checked",
+    "changeType": "feature",
+    "riskLevel": "moderate",
+    "workstreamId": "a32f3451-1b3d-8abf-bf0e-607ebf6e1a88",
+    "sliceId": "88c72d83-aa21-8191-b6ed-64d088b99504",
+    "featureIds": [
+      "verify",
+      "cli",
+      "client",
+      "server",
+      "turns"
+    ]
+  },
+  "closedAt": "2026-09-04T21:39:40.694Z",
+  "facts": {
+    "producedBy": "@nessalabs/spec-ledger@0.1.0",
+    "commit": "27f8935ded65daaedb34e30d682ee2647a9f6d3a",
+    "files": [
+      {
+        "path": ".spec-ledger/align-waivers/7cdafe3b-9084-8c7d-940a-4d3aa53c12d8.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/decisions/2660d32a-4964-8155-adf0-456687f45a9a/755ee9be-d109-8965-830a-1cdcdc7095fb.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/turns/2660d32a-4964-8155-adf0-456687f45a9a/ecf77633-290a-84dd-975e-10688aeff2b8.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/turns/2660d32a-4964-8155-adf0-456687f45a9a/811ad5ff-86c7-8c5c-9724-e3b7ea98ac2b.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/turns/2660d32a-4964-8155-adf0-456687f45a9a/6da8bfd1-465a-8941-99d8-b457e5abdad9.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/turns/d7e50697-01ae-8412-850b-746bf171e540/b5808f49-c36b-80dc-b62e-239f8c0f16ee.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/turns/d7e50697-01ae-8412-850b-746bf171e540/5f3f1359-e8bb-89df-9556-e3b7b5c07ab5.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/turns/2818ba02-24f9-863d-bc18-2b727b455498/e3c4bd6f-a9f7-8a9b-8e14-3eea910898c4.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/turns/2818ba02-24f9-863d-bc18-2b727b455498/507084d8-4493-8511-a6fe-e26f44881a72.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/workstreams/a32f3451-1b3d-8abf-bf0e-607ebf6e1a88/a8008034-72a1-852e-94c2-d6adb65e6815.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/sources/2660d32a-4964-8155-adf0-456687f45a9a/88a6ba97-cd76-821f-bbb6-a508dd77f3e3.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/turns/2660d32a-4964-8155-adf0-456687f45a9a.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/turns/d7e50697-01ae-8412-850b-746bf171e540.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/turns/2818ba02-24f9-863d-bc18-2b727b455498.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/workstreams/a32f3451-1b3d-8abf-bf0e-607ebf6e1a88.json",
+        "kind": "modified",
+        "additions": 206,
+        "deletions": 3
+      },
+      {
+        "path": ".spec-ledger/workstreams/a32f3451-1b3d-8abf-bf0e-607ebf6e1a88.seals/1.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "docs/architecture/evidence.md",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "docs/workstreams/a32f3451-1b3d-8abf-bf0e-607ebf6e1a88-trustworthy-autonomous-coding/spec.md",
+        "kind": "modified",
+        "additions": 17,
+        "deletions": 5
+      },
+      {
+        "path": "packages/client/src/index.ts",
+        "kind": "modified",
+        "additions": 8,
+        "deletions": 2
+      },
+      {
+        "path": "packages/ledger/src/align/check.ts",
+        "kind": "modified",
+        "additions": 0,
+        "deletions": 3
+      },
+      {
+        "path": "packages/ledger/src/cli/main.ts",
+        "kind": "modified",
+        "additions": 19,
+        "deletions": 3
+      },
+      {
+        "path": "packages/ledger/src/context/vertical.ts",
+        "kind": "modified",
+        "additions": 7,
+        "deletions": 2
+      },
+      {
+        "path": "packages/ledger/src/evidence/fingerprint.break.test.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/evidence/fingerprint.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/evidence/record.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/fs/snapshot.ts",
+        "kind": "modified",
+        "additions": 7,
+        "deletions": 1
+      },
+      {
+        "path": "packages/ledger/src/git/tree.ts",
+        "kind": "modified",
+        "additions": 9,
+        "deletions": 30
+      },
+      {
+        "path": "packages/ledger/src/index.ts",
+        "kind": "modified",
+        "additions": 7,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/reviews/load.ts",
+        "kind": "modified",
+        "additions": 5,
+        "deletions": 3
+      },
+      {
+        "path": "packages/ledger/src/turns/gates.ts",
+        "kind": "modified",
+        "additions": 1,
+        "deletions": 1
+      },
+      {
+        "path": "packages/ledger/src/types.ts",
+        "kind": "modified",
+        "additions": 13,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/verify/aggregation.break.test.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/verify/execute.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/verify/readonly.break.test.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/verify/verify.ts",
+        "kind": "modified",
+        "additions": 54,
+        "deletions": 44
+      },
+      {
+        "path": "packages/server/src/routes.ts",
+        "kind": "modified",
+        "additions": 6,
+        "deletions": 4
+      },
+      {
+        "path": "packages/ui/app/page.tsx",
+        "kind": "modified",
+        "additions": 2,
+        "deletions": 2
+      },
+      {
+        "path": "packages/ui/app/verify/page.tsx",
+        "kind": "modified",
+        "additions": 2,
+        "deletions": 2
+      },
+      {
+        "path": "schemas/ledger-root.json",
+        "kind": "modified",
+        "additions": 42,
+        "deletions": 9
+      },
+      {
+        "path": "schemas/report.json",
+        "kind": "modified",
+        "additions": 87,
+        "deletions": 19
+      },
+      {
+        "path": "schemas/results.json",
+        "kind": "modified",
+        "additions": 78,
+        "deletions": 11
+      }
+    ],
+    "touchedNodeIds": [
+      "ledger-client",
+      "ledger-core",
+      "ledger-server",
+      "ledger-ui",
+      "schemas"
+    ],
+    "touchedFeatureIds": [
+      "cli",
+      "client",
+      "lattice",
+      "server",
+      "turns",
+      "verify"
+    ],
+    "touchedClaimIds": [
+      "67609c19-de05-862c-8db7-e5dc95f38cee",
+      "2884eafb-114e-85f1-ae07-ce1fbd140550",
+      "14d9b121-df2b-8ede-bce7-fdee648a4320",
+      "77fb26cd-bc46-8037-a8f2-7573f7d6d33d",
+      "e7222390-759f-8d86-9f2c-1115b9b20261",
+      "a642f738-2313-853e-a94d-d9936dcbc596",
+      "259e1acf-d082-8bfe-b0ab-76fab45ae7d0",
+      "505a71e7-37de-8e56-ae5c-467828201dba"
+    ],
+    "blastRadius": {
+      "direct": [
+        "ledger-client",
+        "ledger-core",
+        "ledger-server",
+        "ledger-ui"
+      ],
+      "transitive": [
+        "ledger-client",
+        "ledger-core",
+        "ledger-server",
+        "ledger-ui"
+      ]
+    },
+    "verify": {
+      "ok": true,
+      "ledgerDigest": "35e4d3d1ebdf1e74071441c1087a1ee79fe1ac3b7813f90f8fbf560141eaf15b",
+      "resultsDigest": "ded3eb2608a70a2e28040c5e1e7c4faa49be0d27b4ffc4d3e2a3ffb91bf72fbb",
+      "treeDigest": "7d73478b08a2a66ae925a726487fc1d744b5738f2e7a2c5b92db3264949e2897",
+      "producedAt": "2026-09-04T21:39:40.647Z"
+    },
+    "schemaSurfaceChanged": true,
+    "reviewsDigest": "491babb8cd9ee1f0283cbb52f1111d168a76fb5362470f09966e3a8bd921c118"
+  },
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/turns/T-028.json",
+        "id": "T-028",
+        "sha256": "aa3b47fe53062d5d0a8efe1abc345acd398103191fc576880649faeba262ebc5"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/turns/T-028.json",
+        "id": "T-028",
+        "sha256": "aa3b47fe53062d5d0a8efe1abc345acd398103191fc576880649faeba262ebc5"
+      }
+    },
+    "historical": true
+  }
+}

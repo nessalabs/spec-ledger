@@ -62,3 +62,5 @@ Pipeline: `sl-plan-vision` → `sl-plan-shape` (verticals via `sl-plan-decompose
 
 Trust / quality bar set at vision+shape turns the **same** gates harder or
 softer (hobby vs prod) — no parallel skill trees.
+
+- [`sl-dev-experiment`](sl-dev-experiment/SKILL.md): optional goals and experiment history alongside existing authorized work; selected by the user or agent.

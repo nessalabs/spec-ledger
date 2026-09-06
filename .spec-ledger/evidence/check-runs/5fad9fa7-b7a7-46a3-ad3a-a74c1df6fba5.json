@@ -1,0 +1,29 @@
+{
+  "runId": "5fad9fa7-b7a7-46a3-ad3a-a74c1df6fba5",
+  "requestId": "batch-5fad9fa7-b7a7-46a3-ad3a-a74c1df6fba5",
+  "bindingId": "aed9b13d-bbde-8d48-8e4b-e02a3ad64a11",
+  "state": "finished",
+  "command": "node --test packages/ledger/dist/ui-release.smoke.test.js packages/ledger/dist/ui-release.break.test.js",
+  "cwd": "/Users/nessa/.codex/worktrees/24db/spec-ledger",
+  "sourceDigest": "b860fecaf0f21d922057b248c6d86cf680df6dfc52020ef2f5047de2fbe1f450",
+  "checkDigest": "9ce5951f0bb4f4fa2d64ca031640119203b23ff829bb8ec684ed629ead4a6cc4",
+  "startedAt": "2026-09-06T21:07:00.473Z",
+  "finishedAt": "2026-09-06T21:07:45.205Z",
+  "outcome": "pass",
+  "exitCode": 0,
+  "signal": null,
+  "durationMs": 44657,
+  "stdout": {
+    "path": ".spec-ledger/evidence/check-runs/5fad9fa7-b7a7-46a3-ad3a-a74c1df6fba5-stdout.txt",
+    "capturedBytes": 1243,
+    "sha256": "aa45495f6cb790672959a1270c08b4a1071d1d81319fcd83506dc5cd9ee12fb1",
+    "truncated": false
+  },
+  "stderr": {
+    "path": ".spec-ledger/evidence/check-runs/5fad9fa7-b7a7-46a3-ad3a-a74c1df6fba5-stderr.txt",
+    "capturedBytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "truncated": false
+  },
+  "reason": "exit 0"
+}

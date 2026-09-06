@@ -1,0 +1,24 @@
+{
+  "id": "e60ea2da-d558-82a3-826d-28228fa3676a",
+  "claimId": "e7222390-759f-8d86-9f2c-1115b9b20261",
+  "kind": "check",
+  "locator": {
+    "type": "path",
+    "path": "packages/server/src/routes.ts"
+  },
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/bindings/b-sl-007.json",
+        "id": "b-sl-007",
+        "sha256": "738364916a62ae8c102253430ce2e7b37111cbd3fa2a5997e908e0a1bd19e54a"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/bindings/b-sl-007.json",
+        "id": "b-sl-007",
+        "sha256": "738364916a62ae8c102253430ce2e7b37111cbd3fa2a5997e908e0a1bd19e54a"
+      }
+    },
+    "historical": true
+  }
+}

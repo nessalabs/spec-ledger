@@ -1,9 +1,0 @@
-{
-  "id": "SL-034",
-  "kind": "invariant",
-  "statement": "A saved way of working is refused, with the reason named, when it does not fit the spec choosing it or when someone else changed it first, and nothing is stored.",
-  "required": true,
-  "links": [
-    "docs/workstreams/W-014-named-workflows/spec.md"
-  ]
-}

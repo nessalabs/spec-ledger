@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "1e1fddb7-566c-460b-8a99-3753b84995b9",
+  "turnId": "e05efbb1-6f8f-4c55-9bca-f6698478b753",
+  "kind": "image",
+  "title": "Task updates — desktop",
+  "path": ".spec-ledger/evidence/screenshots/titles-updates-desktop-final.png",
+  "mediaType": "image/png",
+  "byteLength": 117401,
+  "contentDigest": "68e0a8e3552892c8ea49491fe6271fa89d95b305fe8d1d6dadfd63f7c61a1e51",
+  "visualEvidence": {
+    "sliceId": "596b8830-61c6-887a-b6c3-9ae0561f2761",
+    "surface": "Task updates — desktop",
+    "sourceDigest": "9cb69fbe142bdc23c828db8c97033f676cb8135735bc1b2fe4d4e01ac0812e05",
+    "revisionDigest": "4cc7f69286eb0f9161f84f0f1945fb6adbbad39ef04f13ac00f2b7c8e8f48937",
+    "recordedAt": "2026-09-06T20:41:27.459Z"
+  },
+  "note": "Recorded visual coverage; image adequacy is assessed in review."
+}

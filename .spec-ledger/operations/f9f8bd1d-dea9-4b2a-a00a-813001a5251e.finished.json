@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "requestId": "f9f8bd1d-dea9-4b2a-a00a-813001a5251e",
+  "operation": "record_screenshot",
+  "inputDigest": "eb3c2536e55cc8c307927ca8c9034a3dab0609edbab7caaaf624cf0e5b90e3e9",
+  "finishedAt": "2026-09-06T20:36:10.694Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "id": "fd5aef14-e4e0-449f-8357-130e886706a6",
+    "turnId": "e05efbb1-6f8f-4c55-9bca-f6698478b753",
+    "kind": "image",
+    "title": "Integrated experiments",
+    "path": ".spec-ledger/evidence/screenshots/titles-experiments.png",
+    "mediaType": "image/png",
+    "byteLength": 54207,
+    "contentDigest": "b91feeb760f76156887478f5d035e0405f0dd1ae70c1753bad0597967ff84fd1",
+    "visualEvidence": {
+      "sliceId": "596b8830-61c6-887a-b6c3-9ae0561f2761",
+      "surface": "Integrated experiments",
+      "sourceDigest": "2c81a42393bbb2b7cf47f690a1f7bdcfeb50ce2595229ef12512d1a4c4855801",
+      "revisionDigest": "4cc7f69286eb0f9161f84f0f1945fb6adbbad39ef04f13ac00f2b7c8e8f48937",
+      "recordedAt": "2026-09-06T20:36:10.693Z"
+    },
+    "note": "Recorded visual coverage; image adequacy is assessed in review."
+  }
+}

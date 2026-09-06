@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "turnId": "ce974321-6cb8-8abb-9377-fe35739143ba",
+  "title": "Sealed plan digests",
+  "after": "specDocDigest + amend/backfill + audit catch silent edits",
+  "before": "Pitch Markdown could change after seal with no trail",
+  "id": "e0891d84-da4a-8553-be6b-50c43c841196",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/flows/T-021/F-01.json",
+        "id": "T-021/F-01",
+        "sha256": "a54a30da35a4b8bf5447226d95f734f77f89d40269b53ae121793829e196cf56"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/flows/T-021/F-01.json",
+        "id": "T-021/F-01",
+        "sha256": "a54a30da35a4b8bf5447226d95f734f77f89d40269b53ae121793829e196cf56"
+      }
+    },
+    "historical": true
+  }
+}

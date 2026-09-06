@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "turnId": "383eee85-f226-857a-a920-2f338ca83df4",
+  "decision": "Keep publishable dependency versions in source manifests and apply document amendments only to their seal revision.",
+  "rationale": "PR review reproduced clean-CI failure, manifest corruption during overlapping packs, and two false seal verdicts. User explicitly requested fixing all findings. f92f85de-1e99-855b-b750-225f42af5f81 requires honest results; c032669c-96c9-88fb-b88c-371d0d6da054 favors removing mutable pack machinery. A new seal supersedes earlier amendments, whose history is retained. Use fixture UI packages for default CI and finish real release preparation before registry writes.",
+  "alternativesRejected": [
+    "Shared manifest backup/restore with cross-process locking",
+    "Deleting old amendment history",
+    "Requiring a private sibling checkout for default tests"
+  ],
+  "basis": {
+    "sealRevision": 3,
+    "at": "2026-09-04T21:11:01.888Z"
+  },
+  "id": "edcedbe9-4ae2-8277-b6e9-f9d3f9ff19ca",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/decisions/T-025/D-01.json",
+        "id": "T-025/D-01",
+        "sha256": "6e37bfb7071238f3bf7f4ddbd11f2729ce1285393146aafabcf8decec19347da"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/decisions/T-025/D-01.json",
+        "id": "T-025/D-01",
+        "sha256": "6e37bfb7071238f3bf7f4ddbd11f2729ce1285393146aafabcf8decec19347da"
+      }
+    },
+    "historical": true
+  },
+  "sequence": 1
+}

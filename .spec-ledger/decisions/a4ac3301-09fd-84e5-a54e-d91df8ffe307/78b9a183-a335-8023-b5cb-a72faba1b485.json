@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "turnId": "a4ac3301-09fd-84e5-a54e-d91df8ffe307",
+  "decision": "Requirements now expose current checks, historical receipts, reviews and readable artifacts; the custom workflow proposal is ready for review.",
+  "rationale": "Agent-reported progress; evidence is evaluated separately.",
+  "progress": {
+    "criterionIds": [
+      "1cc99a13-3a0e-8451-a8b8-17e8d35a933d/AC-1"
+    ],
+    "implemented": true,
+    "revisionDigest": "a79dea647f19ccd716d73c94a9e56f3fc6f64c2349e2304cb391d0cb55385177",
+    "sourceDigest": "d7fdea43922377f2d293b60668d4371ce13415328ae4335816359bb73a18bc17",
+    "preview": {
+      "url": "http://127.0.0.1:3737/workstreams/a32f3451-1b3d-8abf-bf0e-607ebf6e1a88",
+      "label": "Review workstream evidence"
+    }
+  },
+  "id": "78b9a183-a335-8023-b5cb-a72faba1b485",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/decisions/T-033/D-01.json",
+        "id": "T-033/D-01",
+        "sha256": "404ae30b3bb7948981a795bf532f3b3d53036b1c772919efa61c096ee7a264e3"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/decisions/T-033/D-01.json",
+        "id": "T-033/D-01",
+        "sha256": "404ae30b3bb7948981a795bf532f3b3d53036b1c772919efa61c096ee7a264e3"
+      }
+    },
+    "historical": true
+  },
+  "sequence": 1
+}

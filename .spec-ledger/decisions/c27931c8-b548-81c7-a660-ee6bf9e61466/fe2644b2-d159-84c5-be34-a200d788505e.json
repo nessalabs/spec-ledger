@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "turnId": "c27931c8-b548-81c7-a660-ee6bf9e61466",
+  "decision": "Disable automatic Git maintenance for the CI job so temporary repositories cannot spawn detached cleanup racers.",
+  "rationale": "CI run 34018748260 confirms original fixtures pass; turns/close.test.ts then failed ENOTEMPTY in .git. The same test job creates many temporary repos from the growing ledger. Process-scoped Git configuration covers all Git subprocesses in both pnpm test and saved verification without altering global/user configuration or test assertions.",
+  "basis": {
+    "at": "2026-09-06T07:21:19.628Z",
+    "contextDigest": "2356afec317817ccf3ca3b02eaa9e500d0b7bdda4381f1dd1b39afbbd89784a2",
+    "sealRevision": 1
+  },
+  "discovery": {
+    "kind": "verification-gap",
+    "reportedVia": "runtime",
+    "observation": "Another copied-repository fixture hit detached Git maintenance during cleanup.",
+    "regression": "Exercise episode/close fixtures on Node22 with exact CI overrides, then verify remote Linux CI."
+  },
+  "id": "fe2644b2-d159-84c5-be34-a200d788505e",
+  "migration": {
+    "origins": {
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/decisions/T-048/D-01.json",
+        "id": "T-048/D-01",
+        "sha256": "fb28ed2d88fbb9b4e715235e3fc4394426dbb122e45caedcc6d9db7144fbe2d2"
+      }
+    },
+    "historical": true
+  },
+  "sequence": 1
+}

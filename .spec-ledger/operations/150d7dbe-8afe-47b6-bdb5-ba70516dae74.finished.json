@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "requestId": "150d7dbe-8afe-47b6-bdb5-ba70516dae74",
+  "operation": "record_permission",
+  "inputDigest": "47ce45a597f9638685008df94c8fc5b4fd340acf4b3bc1cb37b5a4ebd21541b9",
+  "finishedAt": "2026-09-06T21:42:58.664Z",
+  "outcome": "succeeded",
+  "result": {
+    "action": "grant",
+    "mode": "request",
+    "workstreamId": "815c7a44-59df-8102-9769-bf8a74e49c0c",
+    "featureIds": [
+      "cli",
+      "client",
+      "turns",
+      "verify",
+      "lattice"
+    ],
+    "source": {
+      "kind": "agent-reported",
+      "reference": "User explicitly requests fixing missing Specs-list progress and fixup discoverability, and adds that Overview active counts must lead to identifiable active specs. Continue this fixup under the existing spec, with verification and the existing PR."
+    },
+    "id": "bd8ecec7-540c-4656-b15a-3afd12a42839",
+    "schemaVersion": 1,
+    "createdAt": "2026-09-06T21:42:58.660Z"
+  }
+}

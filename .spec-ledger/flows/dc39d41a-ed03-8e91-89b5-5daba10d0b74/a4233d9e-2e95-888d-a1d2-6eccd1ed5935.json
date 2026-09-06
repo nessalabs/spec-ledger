@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "turnId": "dc39d41a-ed03-8e91-89b5-5daba10d0b74",
+  "title": "Consumer init skeleton",
+  "after": "Full .spec-ledger skeleton from spec-ledger init; no invented pass",
+  "before": "Thin init; other repos cannot adopt",
+  "id": "a4233d9e-2e95-888d-a1d2-6eccd1ed5935",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/flows/T-020/F-01.json",
+        "id": "T-020/F-01",
+        "sha256": "62cfc3000a3829d14d32334db53e10264232e87d4bb2bac1676b4f12d3628266"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/flows/T-020/F-01.json",
+        "id": "T-020/F-01",
+        "sha256": "62cfc3000a3829d14d32334db53e10264232e87d4bb2bac1676b4f12d3628266"
+      }
+    },
+    "historical": true
+  }
+}

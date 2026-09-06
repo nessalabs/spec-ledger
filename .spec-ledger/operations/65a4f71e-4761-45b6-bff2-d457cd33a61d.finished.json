@@ -7,9 +7,9 @@
   "outcome": "succeeded",
   "result": {
     "schemaVersion": 1,
-    "id": "T-039/R-02",
-    "turnId": "T-039",
-    "workstreamId": "W-009",
+    "id": "973d7786-847d-87dc-ab68-6e20be78a69a",
+    "turnId": "9fa55cfe-6dd6-83c5-8b42-baf619c093c6",
+    "workstreamId": "3ca37660-1506-8a85-80c6-410a024d9a9a",
     "kind": "human",
     "target": "code",
     "reviewer": "agent:align",

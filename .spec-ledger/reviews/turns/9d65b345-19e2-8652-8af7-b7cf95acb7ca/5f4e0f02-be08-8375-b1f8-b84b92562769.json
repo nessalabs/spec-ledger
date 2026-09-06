@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "5f4e0f02-be08-8375-b1f8-b84b92562769",
+  "turnId": "9d65b345-19e2-8652-8af7-b7cf95acb7ca",
+  "workstreamId": "11788af6-4cbe-834d-9993-8ee534b22b94",
+  "kind": "human",
+  "target": "code",
+  "reviewer": "agent:align",
+  "verdict": "approve",
+  "summary": "User explicitly requested UI simplification based on Sol navigation. Covered UI presentation, regressions and audit evidence only.",
+  "plainSummary": "Feature screens and their tests match the requested simpler view.",
+  "treeDigest": "9881b7b494b232b8822f6737e35b563d44277a21b5056966ec794a7e2c882adf",
+  "uncoveredPaths": [],
+  "coverageSource": "mixed",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/reviews/turns/T-042/R-02.json",
+        "id": "T-042/R-02",
+        "sha256": "7f1a302b494c02fe5f3b5b3ecf8a5e19c6d535074e017bb0522e07999f25a13b"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/reviews/turns/T-042/R-02.json",
+        "id": "T-042/R-02",
+        "sha256": "7f1a302b494c02fe5f3b5b3ecf8a5e19c6d535074e017bb0522e07999f25a13b"
+      }
+    },
+    "historical": true
+  }
+}

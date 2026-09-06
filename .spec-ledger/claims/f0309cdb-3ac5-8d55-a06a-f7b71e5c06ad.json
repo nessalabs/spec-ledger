@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "f0309cdb-3ac5-8d55-a06a-f7b71e5c06ad",
+  "statement": "Starting work records the project as it is and flags existing edits before the agent builds on them.",
+  "severity": "medium",
+  "required": true,
+  "kind": "invariant",
+  "links": {
+    "docs": [
+      "docs/architecture/claim-contracts.md"
+    ]
+  },
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/claims/SL-006.json",
+        "id": "SL-006",
+        "sha256": "14ed8e9c8ba3f07cd9f396937e750e440781ca5db9c4c8894229a22886d9bd3e"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/claims/SL-006.json",
+        "id": "SL-006",
+        "sha256": "14ed8e9c8ba3f07cd9f396937e750e440781ca5db9c4c8894229a22886d9bd3e"
+      }
+    },
+    "historical": true
+  }
+}

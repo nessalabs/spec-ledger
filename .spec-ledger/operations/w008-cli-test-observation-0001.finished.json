@@ -7,7 +7,7 @@
   "outcome": "succeeded",
   "result": {
     "schemaVersion": 1,
-    "turnId": "T-034",
+    "turnId": "7a56453a-0979-8b0a-a4fe-ddbc9aab354a",
     "decision": "The shared tools pass the current regression run; the full revamp remains in progress.",
     "rationale": "The executed suite passed 162 core tests, 3 MCP lifecycle/package tests and 3 UI helpers. This result covers the current first slice; additional parity cases, custom methods and activity tracking remain to be completed.",
     "basis": {
@@ -15,6 +15,6 @@
       "contextDigest": "aaa63c9cd99afe977a474f8a17cb4aaafe7ae07e298330282fbd4f1a3a971304",
       "sealRevision": 1
     },
-    "id": "T-034/D-04"
+    "id": "7bd9851b-5d6d-87c7-ad4b-1a909ab8ed62"
   }
 }

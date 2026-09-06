@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "turnId": "d720cc6b-3fe9-89dd-8ef4-0c0416e1e35d",
+  "path": "docs/workstreams/0f65234d-cf94-8f8d-a7c9-0ce6ef01e073-simple-navigation/evidence/d720cc6b-3fe9-89dd-8ef4-0c0416e1e35d/pinned-sections-mobile.png",
+  "kind": "image",
+  "title": "Section links stay visible on a narrow screen",
+  "mediaType": "image/png",
+  "id": "9449bacb-1794-8dc7-816b-42b91f5692b8",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/attachments/T-040/A-02.json",
+        "id": "T-040/A-02",
+        "sha256": "e499c56ec685d4e51f0447f08e75de43f7e2e5a1ccbcac1fa425abcb345cfee7"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/attachments/T-040/A-02.json",
+        "id": "T-040/A-02",
+        "sha256": "e499c56ec685d4e51f0447f08e75de43f7e2e5a1ccbcac1fa425abcb345cfee7"
+      }
+    },
+    "historical": true
+  }
+}

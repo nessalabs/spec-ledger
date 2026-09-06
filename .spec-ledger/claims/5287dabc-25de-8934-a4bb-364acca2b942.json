@@ -1,0 +1,28 @@
+{
+  "id": "5287dabc-25de-8934-a4bb-364acca2b942",
+  "kind": "invariant",
+  "statement": "Bring postponed requirements back when the work needs them, and resolve them before calling that work complete.",
+  "required": true,
+  "area": "core",
+  "links": {
+    "docs": [
+      "docs/workstreams/a32f3451-1b3d-8abf-bf0e-607ebf6e1a88-trustworthy-autonomous-coding/spec.md",
+      "docs/architecture/claim-contracts.md"
+    ]
+  },
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/claims/SL-020.json",
+        "id": "SL-020",
+        "sha256": "c5769f5aabb416be8f7c238444dadc54115adb6ee9e162e0b6eff03bda4332d8"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/claims/SL-020.json",
+        "id": "SL-020",
+        "sha256": "c5769f5aabb416be8f7c238444dadc54115adb6ee9e162e0b6eff03bda4332d8"
+      }
+    },
+    "historical": true
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "id": "3e7d9f55-e735-8c80-bfba-afc41b0819fa",
+  "turnId": "dc39d41a-ed03-8e91-89b5-5daba10d0b74",
+  "workstreamId": "d1be55a6-11bb-8460-8650-ddf0ecac8185",
+  "kind": "adversarial",
+  "target": "code",
+  "reviewer": "agent:sl-dev-break",
+  "verdict": "approve",
+  "blocking": false,
+  "treeDigest": "2e46415f0920f8c2022e3b5e4f0048dbed28179c54a73b7464423d1fda0c874d",
+  "alertOnSeverity": "high",
+  "resolvesReviewId": "2c5f2caf-f980-84b3-917b-241759f1c137",
+  "resolvesFindingIds": [
+    "2c5f2caf-f980-84b3-917b-241759f1c137#78601c80-a14f-8b3b-a9cc-59b90a92ffcc"
+  ],
+  "summary": "Re-ran sl-dev-break init killers after findRepoRoot fix (.git ancestors first; .spec-ledger only when ledger.json). All 9 killers green including poison nested empty .spec-ledger. 141476c9-8a75-8ee1-8eb6-54aa420d3a07 path table, re-init, partial gate, verify honesty, CLI negatives hold.",
+  "plainSummary": "Init lands at the real git repo root even if a nested empty ledger folder was left behind.",
+  "findings": [],
+  "killersCited": [
+    "packages/ledger/src/cli/init.break.test.ts::exact normative top-level set — no extras, no missing",
+    "packages/ledger/src/cli/init.break.test.ts::re-init refuse must not clobber existing skeleton",
+    "packages/ledger/src/cli/init.break.test.ts::partial failure before ledger.json must leave re-init gate unset",
+    "packages/ledger/src/cli/init.break.test.ts::verify after init: no invented pass; no binding status/pass fields",
+    "packages/ledger/src/cli/init.break.test.ts::git prefer: init from subdirectory lands at repo-root .spec-ledger",
+    "packages/ledger/src/cli/init.break.test.ts::poison: nested empty .spec-ledger must not win over parent .git",
+    "packages/ledger/src/cli/init.break.test.ts::CLI re-init exits non-zero and prints already initialized",
+    "packages/ledger/src/cli/init.break.test.ts::CLI no-.git prints one-line warning then initializes at cwd",
+    "packages/ledger/src/cli/init.break.test.ts::out-of-intent: vision write failure must not leave ledger.json"
+  ],
+  "residualRisks": [
+    "Hunt budget: one out-of-intent killer used (vision write failure ordering) — still green."
+  ],
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/reviews/turns/T-020/R-02.json",
+        "id": "T-020/R-02",
+        "sha256": "1b1b673b2b778cbaec4103ae32542f7e5065b6cf693d7ce17a20805f255d1f46"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/reviews/turns/T-020/R-02.json",
+        "id": "T-020/R-02",
+        "sha256": "1b1b673b2b778cbaec4103ae32542f7e5065b6cf693d7ce17a20805f255d1f46"
+      }
+    },
+    "historical": true
+  }
+}

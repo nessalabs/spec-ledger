@@ -16,8 +16,13 @@
     "objective"
   ],
   "properties": {
-    "schemaVersion": { "const": 1 },
-    "id": { "type": "string", "pattern": "^W-[0-9]{3,}$" },
+    "schemaVersion": {
+      "const": 1
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    },
     "status": {
       "type": "string",
       "enum": [
@@ -30,81 +35,200 @@
         "cancelled"
       ]
     },
-    "createdAt": { "type": "string", "format": "date-time" },
-    "updatedAt": { "type": "string", "format": "date-time" },
-    "themeId": { "type": "string" },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "themeId": {
+      "type": "string"
+    },
     "featureIds": {
       "type": "array",
-      "items": { "type": "string" },
+      "items": {
+        "type": "string"
+      },
       "minItems": 1
     },
-    "primaryFeatureId": { "type": "string" },
-    "title": { "type": "string", "minLength": 1 },
-    "problem": { "type": "string", "minLength": 1 },
-    "objective": { "type": "string", "minLength": 1 },
+    "primaryFeatureId": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "problem": {
+      "type": "string",
+      "minLength": 1
+    },
+    "objective": {
+      "type": "string",
+      "minLength": 1
+    },
     "specPath": {
       "type": "string",
       "minLength": 1,
       "description": "Repo-relative Markdown humans review under docs/ (e.g. docs/workstreams/spec-code-coupling-and-honest-lattice-trail.md). Title-slug filename. .spec-ledger JSON is agent/metadata only."
     },
-    "appetite": { "type": "string" },
+    "appetite": {
+      "type": "string"
+    },
     "changeType": {
       "type": "string",
-      "enum": ["feature", "refactor", "fix", "migration", "chore", "docs"]
+      "enum": [
+        "feature",
+        "refactor",
+        "fix",
+        "migration",
+        "chore",
+        "docs"
+      ]
     },
     "riskLevel": {
       "type": "string",
-      "enum": ["low", "moderate", "elevated", "high"]
+      "enum": [
+        "low",
+        "moderate",
+        "elevated",
+        "high"
+      ]
     },
-    "trust": { "type": "object" },
-    "policy": { "type": "object" },
+    "trust": {
+      "type": "object",
+      "properties": {
+        "visualEvidence": {
+          "type": "object",
+          "description": "Required screenshots by slice ID for visual work; enumerate all relevant UI screens, states and viewports.",
+          "additionalProperties": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 30,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            }
+          }
+        }
+      }
+    },
+    "policy": {
+      "type": "object"
+    },
     "acceptanceCriteria": {
       "type": "array",
-      "items": { "type": "string" }
+      "items": {
+        "type": "string"
+      }
     },
-    "outOfScope": { "type": "array", "items": { "type": "string" } },
-    "proposedClaimIds": { "type": "array", "items": { "type": "string" } },
+    "outOfScope": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "proposedClaimIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
     "suggestedSlices": {
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["id", "title", "kind", "acceptance"],
+        "required": [
+          "id",
+          "title",
+          "kind",
+          "acceptance"
+        ],
         "properties": {
-          "id": { "type": "string" },
-          "title": { "type": "string" },
-          "kind": { "const": "vertical" },
+          "id": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+          },
+          "title": {
+            "type": "string"
+          },
+          "kind": {
+            "const": "vertical"
+          },
           "acceptance": {
             "type": "array",
-            "items": { "type": "string" },
+            "items": {
+              "type": "string"
+            },
             "minItems": 1
           },
-          "evidence": { "type": "array", "items": { "type": "string" } },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
           "expectedClaimIds": {
             "type": "array",
-            "items": { "type": "string" }
+            "items": {
+              "type": "string"
+            }
           },
           "expectedPaths": {
             "type": "array",
             "description": "Product path prefixes/globs this vertical is allowed to cover (align check).",
-            "items": { "type": "string", "minLength": 1 }
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
           },
-          "notes": { "type": "string" },
-          "doneTurnId": { "type": "string" },
-          "codeBreakReviewId": { "type": "string" },
-          "specBreakReviewId": { "type": "string" }
+          "notes": {
+            "type": "string"
+          },
+          "doneTurnId": {
+            "type": "string"
+          },
+          "codeBreakReviewId": {
+            "type": "string"
+          },
+          "specBreakReviewId": {
+            "type": "string"
+          }
         }
       }
     },
     "seal": {
       "type": "object",
-      "required": ["sealedAt", "sealedBy", "specDigest", "snapshotPath", "revision"],
+      "required": [
+        "sealedAt",
+        "sealedBy",
+        "specDigest",
+        "snapshotPath",
+        "revision"
+      ],
       "properties": {
-        "sealedAt": { "type": "string" },
-        "sealedBy": { "type": "string" },
-        "specDigest": { "type": "string" },
-        "snapshotPath": { "type": "string" },
-        "revision": { "type": "integer", "minimum": 1 },
-        "specBreakReviewId": { "type": "string" },
+        "sealedAt": {
+          "type": "string"
+        },
+        "sealedBy": {
+          "type": "string"
+        },
+        "specDigest": {
+          "type": "string"
+        },
+        "snapshotPath": {
+          "type": "string"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "specBreakReviewId": {
+          "type": "string"
+        },
         "specDocDigest": {
           "type": "string",
           "description": "sha256 hex of UTF-8 bytes at specPath when this revision was sealed"
@@ -124,18 +248,77 @@
           "afterDocDigest"
         ],
         "properties": {
-          "at": { "type": "string" },
-          "summary": { "type": "string" },
-          "humanConfirmed": { "type": "boolean" },
-          "sealedRevision": { "type": "integer", "minimum": 1 },
-          "beforeDocDigest": { "type": "string" },
-          "afterDocDigest": { "type": "string" },
-          "turnId": { "type": "string" },
-          "decisionId": { "type": "string" },
-          "commit": { "type": "string" },
-          "actor": { "type": "string" }
+          "at": {
+            "type": "string"
+          },
+          "summary": {
+            "type": "string"
+          },
+          "humanConfirmed": {
+            "type": "boolean"
+          },
+          "sealedRevision": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "beforeDocDigest": {
+            "type": "string"
+          },
+          "afterDocDigest": {
+            "type": "string"
+          },
+          "turnId": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+          },
+          "decisionId": {
+            "type": "string"
+          },
+          "commit": {
+            "type": "string"
+          },
+          "actor": {
+            "type": "string"
+          }
         }
       }
+    },
+    "migration": {
+      "type": "object",
+      "properties": {
+        "origins": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "required": [
+              "path",
+              "id",
+              "sha256"
+            ],
+            "properties": {
+              "path": {
+                "type": "string"
+              },
+              "id": {
+                "type": "string"
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "historical": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "origins",
+        "historical"
+      ],
+      "additionalProperties": false
     }
   }
 }

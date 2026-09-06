@@ -1,0 +1,24 @@
+{
+  "id": "835c6845-b9f1-8359-b222-271c56dbad45",
+  "claimId": "db092384-a2b9-8db4-b9b8-ff7b5e58f133",
+  "kind": "test",
+  "locator": {
+    "type": "command",
+    "command": "node --test packages/ledger/dist/publish.workflow.test.js packages/ledger/dist/publish.workflow.break.test.js"
+  },
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/bindings/b-sl-014.json",
+        "id": "b-sl-014",
+        "sha256": "06a4086e312cf091a5cec061f010427a99e0e7e2cfcc3f0a82ddc2a9a9716876"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/bindings/b-sl-014.json",
+        "id": "b-sl-014",
+        "sha256": "06a4086e312cf091a5cec061f010427a99e0e7e2cfcc3f0a82ddc2a9a9716876"
+      }
+    },
+    "historical": true
+  }
+}

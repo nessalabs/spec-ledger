@@ -20,8 +20,8 @@ import type { Review } from "../types.js"
 
 const base: Review = {
   schemaVersion: 1,
-  id: "T-001/R-01",
-  turnId: "T-001",
+  id: "978fb18b-7dc9-520b-9fb5-0413b7b983bf",
+  turnId: "bcbf5513-797b-5a84-b5cf-eb04b5444708",
   kind: "adversarial",
   target: "code",
   reviewer: "agent:test",
@@ -74,14 +74,14 @@ describe("review Lattice copy", () => {
     try {
       spawnSync("git", ["init"], { cwd: dir })
       initLedger(dir, "audit-lattice")
-      const reviewsDir = join(dir, ".spec-ledger", "reviews", "turns", "T-001")
+      const reviewsDir = join(dir, ".spec-ledger", "reviews", "turns", "bcbf5513-797b-5a84-b5cf-eb04b5444708")
       mkdirSync(reviewsDir, { recursive: true })
       writeFileSync(
-        join(reviewsDir, "R-01.json"),
+        join(reviewsDir, "01582fd4-affd-581c-86aa-6533d80f8d67.json"),
         JSON.stringify({
           schemaVersion: 1,
-          id: "T-001/R-01",
-          turnId: "T-001",
+          id: "978fb18b-7dc9-520b-9fb5-0413b7b983bf",
+          turnId: "bcbf5513-797b-5a84-b5cf-eb04b5444708",
           reviewer: "agent:x",
           verdict: "comment",
           summary: "tech only",

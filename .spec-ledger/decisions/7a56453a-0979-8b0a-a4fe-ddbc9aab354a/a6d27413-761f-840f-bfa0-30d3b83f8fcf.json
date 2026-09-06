@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "turnId": "7a56453a-0979-8b0a-a4fe-ddbc9aab354a",
+  "decision": "Show a clear percentage of acceptance criteria verified in the website.",
+  "rationale": "The user requested an at-a-glance indication of how far work has progressed. The next UI slice will derive the percentage from current passing criteria, show the count and agent-reported implementation separately, and retain completion blockers.",
+  "id": "a6d27413-761f-840f-bfa0-30d3b83f8fcf",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/decisions/T-034/D-06.json",
+        "id": "T-034/D-06",
+        "sha256": "64540dc437787979760e3cbe71207b5911fcfc98ab1a0e4b104532625b8330c0"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/decisions/T-034/D-06.json",
+        "id": "T-034/D-06",
+        "sha256": "64540dc437787979760e3cbe71207b5911fcfc98ab1a0e4b104532625b8330c0"
+      }
+    },
+    "historical": true
+  },
+  "sequence": 6
+}

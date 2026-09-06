@@ -84,11 +84,11 @@ Suggested `sources[]` on each turn decision:
 | `kind` | Example |
 | --- | --- |
 | `user` | Verbatim human instruction / correction mid-turn |
-| `claim` | Re-read SL-003 / KER-001 |
+| `claim` | Re-read 14d9b121-df2b-8ede-bce7-fdee648a4320 / KER-001 |
 | `doc` | DESIGN.md, ADR, protocol schema |
 | `runtime` | Failing test, verify FAIL, profiler, log |
 | `observation` | User repro, screenshot, prod metric |
-| `prior-turn` | T-001 facts / prior decision |
+| `prior-turn` | d8837bac-91f8-8262-82e3-0a000a74639a facts / prior decision |
 | `external` | Vendor doc, RFC, paper, Slack from expert |
 | `probe` | Result of a spike / A-B / canary |
 

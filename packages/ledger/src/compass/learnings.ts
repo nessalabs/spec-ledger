@@ -1,5 +1,6 @@
+import { assertEntityId, publishEntity } from "../identity/index.js"
 import { randomUUID } from "node:crypto"
-import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs"
+import { existsSync, readdirSync, readFileSync } from "node:fs"
 import { join } from "node:path"
 import { loadLedger, sha256Stable } from "../fs/load.js"
 
@@ -27,11 +28,11 @@ export function recordLearning(root:string,input:Omit<Learning,"id"|"schemaVersi
   if (!input.statement?.trim() || !input.source?.reference?.trim() || !["user-reported","agent-inferred"].includes(input.source.kind)) throw new Error("learning requires a statement and attributed source")
   const existing=listLearnings(root)
   if ((input.supersedes ?? []).some(id=>!existing.some(l=>l.id===id))) throw new Error("superseded learning not found")
-  const id=input.id ?? `LN-${randomUUID()}`
-  if (!/^LN-[a-zA-Z0-9_-]+$/.test(id)) throw new Error("invalid learning ID")
+  const id=input.id ?? randomUUID()
+  assertEntityId(id, "learning id")
   const record:Learning={...input,id,schemaVersion:1,createdAt:new Date().toISOString()}
-  const dir=join(loadLedger(root).rootDir,"learnings");mkdirSync(dir,{recursive:true})
-  try {writeFileSync(join(dir,`${id}.json`),JSON.stringify(record,null,2)+"\n",{flag:"wx"})}
+  const dir=join(loadLedger(root).rootDir,"learnings")
+  try {publishEntity(join(dir,`${id}.json`),record)}
   catch(error) {
     const prior=existing.find(l=>l.id===id)
     if ((error as NodeJS.ErrnoException).code !== "EEXIST" || !prior || sha256Stable({...prior,createdAt:null})!==sha256Stable({...record,createdAt:null})) throw error

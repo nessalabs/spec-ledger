@@ -1,7 +1,7 @@
 {
   "runId": "c6b30a57-233a-4848-9210-e8d48f0835bc",
   "requestId": "batch-c6b30a57-233a-4848-9210-e8d48f0835bc",
-  "bindingId": "b-sl-012",
+  "bindingId": "0e24eba8-4721-8373-ba7d-0f18be5063fc",
   "state": "finished",
   "command": "node --test packages/ledger/dist/pack.smoke.test.js packages/ledger/dist/pack.break.test.js packages/ledger/dist/pack.concurrency.break.test.js",
   "cwd": "/Users/nessa/Documents/NessaLabs/spec-ledger",

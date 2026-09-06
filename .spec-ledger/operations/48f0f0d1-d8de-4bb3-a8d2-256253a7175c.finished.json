@@ -7,7 +7,7 @@
   "outcome": "succeeded",
   "result": {
     "schemaVersion": 1,
-    "id": "T-044",
+    "id": "eb02e4af-5c85-89fa-8aad-70f0444297f7",
     "status": "open",
     "openedAt": "2026-09-06T05:51:18.037Z",
     "opened": {
@@ -16,18 +16,18 @@
       "treeDigest": "ba844f3d36db65f90547ba661e8265b694f58d7536aa4e035c153b435b814854",
       "dirtyAtOpen": [],
       "contextDigest": "a557f0b19c339a49718ef31120a2e5415ae03b9897014d355044949722b38562",
-      "contextWorkstreamId": "W-014",
-      "contextSliceId": "SLC-03",
+      "contextWorkstreamId": "ef172105-4f40-8bbb-8abe-d1cd11ae618a",
+      "contextSliceId": "b37364e8-36d3-8901-a879-3a6e32f21210",
       "contextSealRevision": 1,
       "contextGeneratedAt": "2026-09-06T05:51:18.037Z"
     },
     "intent": {
-      "userPrompt": "Continue W-014 by building the workflow library screen and placing the named workflow picker beside each spec’s evidence and changes.",
+      "userPrompt": "Continue ef172105-4f40-8bbb-8abe-d1cd11ae618a by building the workflow library screen and placing the named workflow picker beside each spec’s evidence and changes.",
       "restatedGoal": "Choose a saved workflow beside the spec evidence and changes",
       "changeType": "feature",
       "riskLevel": "moderate",
-      "workstreamId": "W-014",
-      "sliceId": "SLC-03",
+      "workstreamId": "ef172105-4f40-8bbb-8abe-d1cd11ae618a",
+      "sliceId": "b37364e8-36d3-8901-a879-3a6e32f21210",
       "featureIds": [
         "client",
         "cli",

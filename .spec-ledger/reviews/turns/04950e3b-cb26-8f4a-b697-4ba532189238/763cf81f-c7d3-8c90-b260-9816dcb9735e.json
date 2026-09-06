@@ -1,0 +1,44 @@
+{
+  "kind": "adversarial",
+  "target": "code",
+  "reviewer": "agent:sl-dev-break:library",
+  "verdict": "request-changes",
+  "blocking": true,
+  "summary": "Initial run found deletion committed before validating the default pointer (4 pass/1 fail); recorded after the operation lock released. Builder preflight fix now passes the unchanged killer; follow-up approval will resolve this finding.",
+  "plainSummary": "Deleting a workflow can report failure after the workflow has already disappeared.",
+  "findings": [
+    {
+      "id": "bd3a61de-f2a7-87e7-94ff-98c99ade0c51",
+      "severity": "high",
+      "claimId": "89ab5a3f-2aea-8b44-a9b8-6cedccb52979",
+      "gap": "deleteWorkflowProfile removes the record before defaultWorkflowProfileId validates pointer storage. A symlink pointer throws only after deletion.",
+      "plainImpact": "A rejected delete can still erase a saved workflow, leaving the user with a misleading failure and lost data.",
+      "fixProposal": "Validate and prepare all pointer handling before deleting the profile; reject unsafe or malformed pointer storage without deleting the record.",
+      "evidence": {
+        "kind": "test",
+        "citedTest": "packages/ledger/src/workflows/library-storage.break.test.ts::a refused delete with an unsafe default pointer preserves the saved workflow",
+        "ran": true,
+        "command": "node --test packages/ledger/dist/workflows/library-storage.break.test.js packages/mcp/dist/library.boundary.break.test.js",
+        "observedOutput": "AssertionError: a rejected operation must not delete the profile; false !== true; 4 pass, 1 fail"
+      }
+    }
+  ],
+  "alertOnSeverity": "high",
+  "residualRisks": [
+    "Bounded hunt: partial failure, local route poison/cross-site, storage confinement, and actual CLI/MCP retries and stale versions."
+  ],
+  "schemaVersion": 1,
+  "id": "763cf81f-c7d3-8c90-b260-9816dcb9735e",
+  "turnId": "04950e3b-cb26-8f4a-b697-4ba532189238",
+  "treeDigest": "ba844f3d36db65f90547ba661e8265b694f58d7536aa4e035c153b435b814854",
+  "migration": {
+    "origins": {
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/reviews/turns/T-043/R-01.json",
+        "id": "T-043/R-01",
+        "sha256": "022b538952071b0191127c45fcab252d1b60fbaf1e0db8afb5a3ab5c3f18a196"
+      }
+    },
+    "historical": true
+  }
+}

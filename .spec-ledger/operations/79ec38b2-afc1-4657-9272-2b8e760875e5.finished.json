@@ -7,7 +7,7 @@
   "outcome": "succeeded",
   "result": {
     "schemaVersion": 1,
-    "id": "T-041",
+    "id": "c0f436e5-d157-89aa-8a90-2e5bf6f06ef3",
     "status": "closed",
     "openedAt": "2026-09-05T04:06:02.845Z",
     "opened": {
@@ -15,14 +15,14 @@
       "baseCommit": "12bc93afe86c72173e33770df4926391fa23317c",
       "treeDigest": "69fb75fa3691fb43bbd12d40aa4601eebcd27f8031fa072b2d56b4cc041cd03d",
       "dirtyAtOpen": [
-        ".spec-ledger/authority/AUTH-W012-REQUEST.json",
-        ".spec-ledger/reviews/workstreams/W-012/SR-01.json",
-        ".spec-ledger/workstreams/W-012.json",
-        "docs/workstreams/W-012-choose-your-workflow/spec.md"
+        ".spec-ledger/authority/10af6d0d-25ac-8ca9-9571-f0e90bc899a1.json",
+        ".spec-ledger/reviews/workstreams/ba7715db-e75e-84e6-9d91-f9cc61b037a9/a37bcf3e-71e9-8769-ba42-47ed14044ec1.json",
+        ".spec-ledger/workstreams/ba7715db-e75e-84e6-9d91-f9cc61b037a9.json",
+        "docs/workstreams/ba7715db-e75e-84e6-9d91-f9cc61b037a9-choose-your-workflow/spec.md"
       ],
       "contextDigest": "873cc783d5dc4c0da830e05eafa3afa1e5a01a4e1ee78275e869c86d65fb9c6d",
-      "contextWorkstreamId": "W-012",
-      "contextSliceId": "SLC-01",
+      "contextWorkstreamId": "ba7715db-e75e-84e6-9d91-f9cc61b037a9",
+      "contextSliceId": "c8c007db-de84-8eba-ae51-6a8a72d6b28f",
       "contextSealRevision": 1,
       "contextGeneratedAt": "2026-09-05T04:06:02.845Z"
     },
@@ -31,8 +31,8 @@
       "restatedGoal": "Choose the steps and skills your agent follows",
       "changeType": "feature",
       "riskLevel": "moderate",
-      "workstreamId": "W-012",
-      "sliceId": "SLC-01",
+      "workstreamId": "ba7715db-e75e-84e6-9d91-f9cc61b037a9",
+      "sliceId": "c8c007db-de84-8eba-ae51-6a8a72d6b28f",
       "featureIds": [
         "lattice",
         "cli",
@@ -45,37 +45,37 @@
       "commit": "12bc93afe86c72173e33770df4926391fa23317c",
       "files": [
         {
-          "path": ".spec-ledger/attachments/T-041/A-01.json",
+          "path": ".spec-ledger/attachments/c0f436e5-d157-89aa-8a90-2e5bf6f06ef3/3588ed98-a885-8c6c-9312-94952e308d88.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/attachments/T-041/A-02.json",
+          "path": ".spec-ledger/attachments/c0f436e5-d157-89aa-8a90-2e5bf6f06ef3/b5a10ccc-36ab-8e2f-8f91-568ef9c78de9.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/authority/AUTH-W012-REQUEST.json",
+          "path": ".spec-ledger/authority/10af6d0d-25ac-8ca9-9571-f0e90bc899a1.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/bindings/B-SL-030.json",
+          "path": ".spec-ledger/bindings/b02db887-018b-848d-a0b8-df170e543eb5.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/claims/SL-030.json",
+          "path": ".spec-ledger/claims/3cb6214c-8605-80e6-b73b-d20b9025023f.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/decisions/T-041/D-01.json",
+          "path": ".spec-ledger/decisions/c0f436e5-d157-89aa-8a90-2e5bf6f06ef3/fbd3016b-704a-84eb-9052-09a3e93b36e1.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
@@ -573,61 +573,61 @@
           "deletions": 1
         },
         {
-          "path": ".spec-ledger/reviews/turns/T-041/R-01.json",
+          "path": ".spec-ledger/reviews/turns/c0f436e5-d157-89aa-8a90-2e5bf6f06ef3/bafc9af6-1ccb-8802-9b25-c9cdd25c8f88.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/reviews/turns/T-041/R-02.json",
+          "path": ".spec-ledger/reviews/turns/c0f436e5-d157-89aa-8a90-2e5bf6f06ef3/315d2dc2-3710-8f9f-8bd2-732229c5915c.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/reviews/workstreams/W-012/SR-01.json",
+          "path": ".spec-ledger/reviews/workstreams/ba7715db-e75e-84e6-9d91-f9cc61b037a9/a37bcf3e-71e9-8769-ba42-47ed14044ec1.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/reviews/workstreams/W-012/SR-02.json",
+          "path": ".spec-ledger/reviews/workstreams/ba7715db-e75e-84e6-9d91-f9cc61b037a9/2afdd2f2-1d66-829b-bfe6-d17251a78160.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/reviews/workstreams/W-012/SR-03.json",
+          "path": ".spec-ledger/reviews/workstreams/ba7715db-e75e-84e6-9d91-f9cc61b037a9/1024eeae-9608-8352-bd35-ebda4e090606.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/turns/T-041.json",
+          "path": ".spec-ledger/turns/c0f436e5-d157-89aa-8a90-2e5bf6f06ef3.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/workstreams/W-012.json",
+          "path": ".spec-ledger/workstreams/ba7715db-e75e-84e6-9d91-f9cc61b037a9.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/workstreams/W-012.seals/1.json",
+          "path": ".spec-ledger/workstreams/ba7715db-e75e-84e6-9d91-f9cc61b037a9.seals/1.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/workstreams/W-012.seals/2.json",
+          "path": ".spec-ledger/workstreams/ba7715db-e75e-84e6-9d91-f9cc61b037a9.seals/2.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/workstreams/W-012.seals/3.json",
+          "path": ".spec-ledger/workstreams/ba7715db-e75e-84e6-9d91-f9cc61b037a9.seals/3.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
@@ -639,19 +639,19 @@
           "deletions": 0
         },
         {
-          "path": "docs/workstreams/W-012-choose-your-workflow/evidence/T-041/browser-check.md",
+          "path": "docs/workstreams/ba7715db-e75e-84e6-9d91-f9cc61b037a9-choose-your-workflow/evidence/c0f436e5-d157-89aa-8a90-2e5bf6f06ef3/browser-check.md",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": "docs/workstreams/W-012-choose-your-workflow/evidence/T-041/regression-tests.txt",
+          "path": "docs/workstreams/ba7715db-e75e-84e6-9d91-f9cc61b037a9-choose-your-workflow/evidence/c0f436e5-d157-89aa-8a90-2e5bf6f06ef3/regression-tests.txt",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": "docs/workstreams/W-012-choose-your-workflow/spec.md",
+          "path": "docs/workstreams/ba7715db-e75e-84e6-9d91-f9cc61b037a9-choose-your-workflow/spec.md",
           "kind": "added",
           "additions": 0,
           "deletions": 0
@@ -803,14 +803,14 @@
         "verify"
       ],
       "touchedClaimIds": [
-        "SL-003",
-        "SL-004",
-        "SL-021",
-        "SL-022",
-        "SL-024",
-        "SL-025",
-        "SL-029",
-        "SL-030"
+        "14d9b121-df2b-8ede-bce7-fdee648a4320",
+        "77fb26cd-bc46-8037-a8f2-7573f7d6d33d",
+        "9767b1da-9568-8e2f-ad2a-c2c3eb3e424c",
+        "dd5caaee-dace-8f53-bff5-65b6a7646b6d",
+        "4d4f7c20-b7e0-86d8-9b17-f45053bbf43b",
+        "a3c38839-cf13-837c-8866-ce46af309e15",
+        "93abee59-3e8d-809f-a140-d86105b0d865",
+        "3cb6214c-8605-80e6-b73b-d20b9025023f"
       ],
       "blastRadius": {
         "direct": [
@@ -833,7 +833,7 @@
       },
       "schemaSurfaceChanged": true,
       "decisionIds": [
-        "T-041/D-01"
+        "fbd3016b-704a-84eb-9052-09a3e93b36e1"
       ],
       "decisionsDigest": "5bc8d32ce02faa9ac3ceaa38dc7e7fd72cafd9d6c33f5cefe8354bd3cf983005",
       "attachmentsDigest": "9027c1dcf07dc2b985d64174ece9856b68aab7f2b1c5693387d7bd60c25a7ab8",

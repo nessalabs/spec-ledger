@@ -1,5 +1,7 @@
 "use client"
 
+import { ReadableText } from "@/components/readable-text"
+
 import { featureHref, featureLabel, featureSummary, featureSlug } from "@/lib/features"
 
 import * as React from "react"
@@ -118,7 +120,7 @@ function GraphPane({
             paneId={pane.id}
             className="px-1 text-xs text-muted-foreground"
           >
-            {claimId}
+            <ReadableText>{claim?.statement ?? "Unavailable requirement"}</ReadableText>
           </AppShellPaneDragHandle>
           <button
             type="button"
@@ -133,7 +135,7 @@ function GraphPane({
           {claim ? (
             <ClaimDetail claim={claim} />
           ) : (
-            <p className="text-sm text-muted-foreground">Unknown claim {claimId}</p>
+            <p className="text-sm text-muted-foreground">This requirement is unavailable.</p>
           )}
         </div>
       </div>
@@ -211,7 +213,7 @@ function GraphMain({
                   </span>
                 </div>
                 <p className="mt-0.5 line-clamp-1 text-xs text-muted-foreground">
-                  {featureSummary(f.id, f.summary)}
+                  <ReadableText>{featureSummary(f.id, f.summary)}</ReadableText>
                 </p>
                 {f.claimIds?.length ? (
                   <ul className="mt-1.5 space-y-0.5">
@@ -225,7 +227,7 @@ function GraphMain({
                           onClick={() => onOpenClaim(id)}
                           className="min-w-0 flex-1 rounded text-start leading-snug text-muted-foreground outline-none hover:text-foreground hover:underline focus-visible:ring-2 focus-visible:ring-ring"
                         >
-                          {claimById.get(id)?.statement ?? id}
+                          <ReadableText>{claimById.get(id)?.statement ?? "Unavailable requirement"}</ReadableText>
                         </button>
                       </li>
                     ))}
@@ -280,7 +282,7 @@ function GraphMain({
                   href={`/nodes/${encodeURIComponent(n.id)}`}
                   className="font-mono text-xs text-foreground no-underline hover:underline"
                 >
-                  {n.id}
+                  <ReadableText>{n.id}</ReadableText>
                 </Link>
                 <span className="text-[11px] text-muted-foreground">{n.layer}</span>
                 <span className="text-[11px] text-muted-foreground">{n.kind}</span>
@@ -302,13 +304,13 @@ function ClaimDetail({ claim }: { claim: Claim }) {
   return (
     <div className="flex flex-col gap-3">
       <div className="flex flex-wrap items-center gap-2">
-        <h2 className="font-mono text-lg font-semibold">{claim.id}</h2>
+        <h2 className="text-lg font-semibold"><ReadableText>{claim.statement}</ReadableText></h2>
         <Badge variant="outline">{claim.kind}</Badge>
         {claim.required ? <Badge>required</Badge> : null}
       </div>
-      <p className="text-sm leading-relaxed">{claim.statement}</p>
+      <p className="text-sm leading-relaxed"><ReadableText>{claim.statement}</ReadableText></p>
       {claim.links?.docs?.length ? (
-        <p className="text-xs text-muted-foreground">docs: {claim.links.docs.join(", ")}</p>
+        <p className="text-xs text-muted-foreground">docs: <ReadableText>{claim.links.docs.join(", ")}</ReadableText></p>
       ) : null}
       {claim.area ? (
         <p className="font-mono text-xs text-muted-foreground">area: {claim.area}</p>

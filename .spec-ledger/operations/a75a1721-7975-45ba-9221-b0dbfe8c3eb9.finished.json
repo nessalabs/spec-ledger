@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "requestId": "a75a1721-7975-45ba-9221-b0dbfe8c3eb9",
+  "operation": "begin_work",
+  "inputDigest": "c114bcbe532f660c07f1495e2ab570d2b6c5833f1e4d13220ee0f553d3394e4c",
+  "finishedAt": "2026-09-06T18:36:28.534Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "id": "8ec915a9-0248-8e58-a479-a67d4c27223b",
+    "status": "open",
+    "openedAt": "2026-09-06T18:36:28.534Z",
+    "opened": {
+      "producedBy": "@nessalabs/spec-ledger@0.1.0",
+      "baseCommit": "f0e053bea47f018f183816574b11c43a51d04c21",
+      "treeDigest": "0d51d9c340365bf4e29f5bc33a4a4c0aa5c420577cb9ce5a76b509ddc33eeed5",
+      "dirtyAtOpen": [
+        ".spec-ledger/authority/4e6cc9b2-c4e1-8671-9676-99a44a454eac.json",
+        ".spec-ledger/proposed-claims/efc1f0a4-7911-8163-b194-906c6ae5f62a.json",
+        ".spec-ledger/reviews/workstreams/eab32d2d-6c3c-84df-b831-9bcc13fd0152/b5c57bac-53ea-8b97-b104-693a42645314.json",
+        ".spec-ledger/reviews/workstreams/eab32d2d-6c3c-84df-b831-9bcc13fd0152/e5ecaf1b-a06d-8cd1-8148-e06aa69fecf6.json",
+        ".spec-ledger/workstreams/eab32d2d-6c3c-84df-b831-9bcc13fd0152.json",
+        "docs/workstreams/eab32d2d-6c3c-84df-b831-9bcc13fd0152-concurrent-identities/spec.md"
+      ],
+      "contextDigest": "53fa4e6ebc1c0254c7cb924d62e2933a54a7a0de5ac77971ced8acb42a7c4c04",
+      "contextWorkstreamId": "eab32d2d-6c3c-84df-b831-9bcc13fd0152",
+      "contextSliceId": "596b8830-61c6-887a-b6c3-9ae0561f2761",
+      "contextSealRevision": 1,
+      "contextGeneratedAt": "2026-09-06T18:36:28.534Z"
+    },
+    "intent": {
+      "userPrompt": "Generate UUID identities for concurrent agents, use short titles for display, migrate existing data without backward compatibility and reconcile both branch histories. Configure the organization npm publishing secret and validate CI without making a live release.",
+      "restatedGoal": "Give concurrent work distinct identities",
+      "changeType": "feature",
+      "riskLevel": "moderate",
+      "workstreamId": "eab32d2d-6c3c-84df-b831-9bcc13fd0152",
+      "sliceId": "596b8830-61c6-887a-b6c3-9ae0561f2761",
+      "featureIds": [
+        "turns",
+        "lattice",
+        "cli",
+        "verify"
+      ]
+    }
+  }
+}

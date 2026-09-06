@@ -7,7 +7,7 @@
   "outcome": "succeeded",
   "result": {
     "schemaVersion": 1,
-    "id": "T-046",
+    "id": "f452f323-83c6-83e0-9ce2-faae3f1a3772",
     "status": "open",
     "openedAt": "2026-09-06T07:04:19.446Z",
     "opened": {
@@ -19,12 +19,12 @@
         ".spec-ledger/evidence/check-runs/10ac0b8a-ce00-4aec-a173-9bc53753ce8b-stdout.txt",
         ".spec-ledger/evidence/check-runs/10ac0b8a-ce00-4aec-a173-9bc53753ce8b.json",
         ".spec-ledger/evidence/runs/10ac0b8a-ce00-4aec-a173-9bc53753ce8b.json",
-        ".spec-ledger/turns/T-045.json",
+        ".spec-ledger/turns/5bfd91de-8592-889f-954b-26c28d6b02c3.json",
         "packages/ledger/src/episodes.write.test.ts"
       ],
       "contextDigest": "b7fb5690becd1ca0f2d4ad3979c9cccf16d057832e005f6df6788d90bfb5aeb3",
-      "contextWorkstreamId": "W-014",
-      "contextSliceId": "SLC-02",
+      "contextWorkstreamId": "ef172105-4f40-8bbb-8abe-d1cd11ae618a",
+      "contextSliceId": "ef669c8c-b701-85d9-b2da-638757fed84e",
       "contextSealRevision": 1,
       "contextGeneratedAt": "2026-09-06T07:04:19.446Z"
     },
@@ -33,8 +33,8 @@
       "restatedGoal": "Make the PR verification pass reliably",
       "changeType": "fix",
       "riskLevel": "moderate",
-      "workstreamId": "W-014",
-      "sliceId": "SLC-02",
+      "workstreamId": "ef172105-4f40-8bbb-8abe-d1cd11ae618a",
+      "sliceId": "ef669c8c-b701-85d9-b2da-638757fed84e",
       "featureIds": [
         "client",
         "cli",

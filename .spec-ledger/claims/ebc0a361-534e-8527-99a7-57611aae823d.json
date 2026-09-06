@@ -1,0 +1,30 @@
+{
+  "id": "ebc0a361-534e-8527-99a7-57611aae823d",
+  "kind": "invariant",
+  "statement": "Open the Spec Ledger website for your own project using the downloadable release and its setup instructions.",
+  "area": "ui",
+  "required": true,
+  "links": {
+    "docs": [
+      "README.md",
+      "docs/workstreams/consumer-cli-and-npm-publish.md",
+      "docs/architecture/claim-contracts.md"
+    ],
+    "proposedClaimId": "29a5b902-b969-823e-86f5-89b23debe467"
+  },
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/claims/SL-013.json",
+        "id": "SL-013",
+        "sha256": "df698b72ae0c29df46bd398e15c2b413ea74f104704db0032ab598983d292080"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/claims/SL-013.json",
+        "id": "SL-013",
+        "sha256": "df698b72ae0c29df46bd398e15c2b413ea74f104704db0032ab598983d292080"
+      }
+    },
+    "historical": true
+  }
+}

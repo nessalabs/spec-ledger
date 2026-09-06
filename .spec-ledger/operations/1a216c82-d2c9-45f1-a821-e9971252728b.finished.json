@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "requestId": "1a216c82-d2c9-45f1-a821-e9971252728b",
+  "operation": "create_workstream",
+  "inputDigest": "9795759e4085817dfbbb31a1ba0ce1def6bdfdd40f7b065f9888d847df900bcc",
+  "finishedAt": "2026-09-06T20:47:26.031Z",
+  "outcome": "succeeded",
+  "result": {
+    "title": "Show accurate overall work progress",
+    "problem": "The main progress bar reaches 100% from passing checks even when implementation, required reviews, or other completion tasks remain unfinished.",
+    "objective": "See how much required work is complete without mistaking passing checks for finished work.",
+    "featureIds": [
+      "lattice",
+      "turns",
+      "verify"
+    ],
+    "changeType": "fix",
+    "riskLevel": "moderate",
+    "trust": {
+      "deployTarget": "library-consumer",
+      "userFacing": true,
+      "requiredEvidence": [
+        "unit",
+        "integration",
+        "e2e"
+      ]
+    },
+    "policy": {
+      "alertOnSeverity": "high",
+      "onAlert": "wait",
+      "alertWaitMinutes": 10,
+      "onAlertTimeout": "move",
+      "onSealedSpecDeviation": "wait",
+      "sealedDeviationWaitMinutes": 10,
+      "onSealedDeviationTimeout": "move",
+      "requireSpecBreak": true,
+      "requireCodeBreak": true
+    },
+    "suggestedSlices": [
+      {
+        "title": "Count all completion tasks in the progress bar",
+        "kind": "vertical",
+        "acceptance": [
+          "Passing checks cannot produce 100% while any required implementation, review, permission, deferred obligation, screenshot, workflow output, or turn-closure task remains incomplete.",
+          "The progress count covers the applicable completion checklist, counts grouped tasks consistently, avoids counting the same diagnostic twice, and reaches 100% only when the shared completion gate allows completion.",
+          "Overview and spec details show consistent completion progress; evidence counts stay separate, missing scope is indeterminate, and historical completion stays distinct from current rechecking."
+        ],
+        "evidence": [
+          "unit",
+          "integration",
+          "e2e",
+          "screenshot"
+        ],
+        "expectedPaths": [
+          "packages/ledger/src/session/**",
+          "packages/ui/**",
+          "docs/architecture/session.md",
+          "docs/workstreams/**"
+        ],
+        "expectedClaimIds": [
+          "9767b1da-9568-8e2f-ad2a-c2c3eb3e424c",
+          "93abee59-3e8d-809f-a140-d86105b0d865"
+        ],
+        "id": "e5efed5f-6417-4591-97dc-3034970c216f"
+      }
+    ],
+    "schemaVersion": 1,
+    "id": "58acbc36-d5d8-450b-b955-a83e656a6e86",
+    "status": "draft",
+    "createdAt": "2026-09-06T20:47:26.030Z"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "requestId": "5a26369c-5c6f-40e8-99e3-2671d638d6b6",
+  "operation": "record_screenshot",
+  "inputDigest": "f5f05f6d884bea42f0ee146356d86488155aa41baa3b8313f77b9b9099a43aa9",
+  "finishedAt": "2026-09-06T21:08:27.605Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "id": "5c5943cf-88ce-4bdd-ac66-a21bcd0ca4f7",
+    "turnId": "259b685b-1331-4088-a691-d3fa16e57424",
+    "kind": "image",
+    "title": "Overall progress with unfinished work — mobile",
+    "path": ".spec-ledger/evidence/screenshots/progress-fix/mobile.png",
+    "mediaType": "image/png",
+    "byteLength": 95823,
+    "contentDigest": "9c478e24043c35268a6faa55c00d704cd37ba416dbd1d99c2c2aa9ed3b102ced",
+    "visualEvidence": {
+      "sliceId": "25eac677-2871-816d-956d-770bdcb61798",
+      "surface": "Overall progress with unfinished work — mobile",
+      "sourceDigest": "b860fecaf0f21d922057b248c6d86cf680df6dfc52020ef2f5047de2fbe1f450",
+      "revisionDigest": "d901a91669a2b44e8e6485c1a7410597227ca66c4ad9386122e364617ac5c655",
+      "recordedAt": "2026-09-06T21:08:27.604Z"
+    },
+    "note": "Recorded visual coverage; image adequacy is assessed in review."
+  }
+}

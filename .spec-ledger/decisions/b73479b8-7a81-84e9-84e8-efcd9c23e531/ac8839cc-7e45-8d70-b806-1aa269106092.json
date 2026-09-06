@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "turnId": "b73479b8-7a81-84e9-84e8-efcd9c23e531",
+  "decision": "Show captured results before implementation details; preview only bounded digest-checked local screenshots.",
+  "rationale": "The user reviews test names, outcomes and visual evidence rather than source code. Keep run execution explicit and all verifier and historical evidence semantics unchanged.",
+  "basis": {
+    "at": "2026-09-06T17:40:55.632Z",
+    "contextDigest": "d41cce500e7b9df75938e80061f11e6c26cdda07443bfb43decb5f900507f980",
+    "sealRevision": 3
+  },
+  "id": "ac8839cc-7e45-8d70-b806-1aa269106092",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/decisions/T-044/D-01.json",
+        "id": "T-044/D-01",
+        "sha256": "e6fa421bdb3dc712c625ee65a1f80be7d9452c58076a7703dc1d2b72b73461a1"
+      }
+    },
+    "historical": true
+  },
+  "sequence": 1
+}

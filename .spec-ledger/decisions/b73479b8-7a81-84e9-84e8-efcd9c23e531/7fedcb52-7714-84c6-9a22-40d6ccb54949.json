@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "turnId": "b73479b8-7a81-84e9-84e8-efcd9c23e531",
+  "decision": "Simplified evidence cards show captured results first and verified local image previews; existing experiment regressions remain passing.",
+  "rationale": "Agent-reported progress; evidence is evaluated separately.",
+  "progress": {
+    "criterionIds": [
+      "04932de5-9225-81d4-b42c-c13f79e6c5be/AC-1",
+      "04932de5-9225-81d4-b42c-c13f79e6c5be/AC-2",
+      "04932de5-9225-81d4-b42c-c13f79e6c5be/AC-3",
+      "b21da6cf-af77-8a39-bf8e-bfdc0d5b3a95/AC-1",
+      "b21da6cf-af77-8a39-bf8e-bfdc0d5b3a95/AC-2"
+    ],
+    "implemented": true,
+    "revisionDigest": "dffb0913bb8b1d69c5ac6d5af82918cbb244f2f089837c2db0d5bd97b760a67e",
+    "sourceDigest": "98dd50aa8b389be4d774c93bbf2e095a8c43b5007bf2a458f6d0b469544f47b0"
+  },
+  "id": "7fedcb52-7714-84c6-9a22-40d6ccb54949",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/decisions/T-044/D-02.json",
+        "id": "T-044/D-02",
+        "sha256": "9d5f916fcee9b7bbb5592fb11b710ac66bede959ea6a06c0057bf4e58fbd52c6"
+      }
+    },
+    "historical": true
+  },
+  "sequence": 2
+}

@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "requestId": "6491ea5c-15cd-4d35-bc71-ce98ca11647e",
+  "operation": "record_review",
+  "inputDigest": "47db88d5d50081641d36b9b826e6815048f16602d7c70acd35dc1ef206c9d9df",
+  "finishedAt": "2026-09-06T20:49:57.407Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "workstreamId": "58acbc36-d5d8-450b-b955-a83e656a6e86",
+    "kind": "adversarial",
+    "target": "spec",
+    "reviewer": "agent:sl-plan-break-spec",
+    "verdict": "approve",
+    "blocking": false,
+    "plainSummary": "Overall progress counts required work as well as checks, so unfinished implementation or reviews cannot appear complete.",
+    "summary": "Independent spec review grounded in the related pack (3 features, 18 claims, 50 docs), existing session checklist projection and mapped claims for separating implementation/evidence and showing current progress. The bounded plan places completion ownership in session, makes UI format typed task counts, removes duplicate diagnostic counting, preserves grouped part counts, keeps unavailable scope indeterminate, and reserves 100 percent for shared completion eligibility. Four declared screenshots cover the reported unfinished state, mobile, Overview and historical rechecks. No changes to completion authorization or verification truth are permitted. No material spec gaps found.",
+    "alertOnSeverity": "high",
+    "findings": [],
+    "residualRisks": [
+      "Code review should test percentage rounding with many satisfied tasks and one unfinished task so a rounded label or full bar cannot display 100 percent before eligibility.",
+      "Stable grouping must include required gates even when satisfied; disappearing attention text must not change the denominator, while genuinely changed applicable scope may change it.",
+      "Extend actual mapped-claim evidence with regressions for checklist counts and gate disagreement; existing navigation or separation tests alone do not establish the new behavior.",
+      "Use the actual user-facing app with current migrated data for screenshots, and preserve historical recorded completion separately from current recheck status.",
+      "The related tool provides generic worktree caution text rather than actual sibling-path scan evidence."
+    ],
+    "id": "27136c13-7f94-4ee8-ab9e-c7290967b55d",
+    "revisionDigest": "5c509eec60ba772a68f5be1ec0236165fd1df109c0194b65b53374897dbf16a2"
+  }
+}

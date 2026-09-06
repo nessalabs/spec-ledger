@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "turnId": "0fc5ce0a-1a93-8929-ae8c-1fc80861dc8e",
+  "question": "Do episode digests stamp on close?",
+  "outcome": "yes",
+  "id": "2dc835eb-fd96-8ff5-82f3-41e7de5819ef",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/probes/T-005/P-01.json",
+        "id": "T-005/P-01",
+        "sha256": "9cb9ab063a274ece2ae9568d0186cab01f83a355e74a7128cb8b055a4fa0a8f4"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/probes/T-005/P-01.json",
+        "id": "T-005/P-01",
+        "sha256": "9cb9ab063a274ece2ae9568d0186cab01f83a355e74a7128cb8b055a4fa0a8f4"
+      }
+    },
+    "historical": true
+  }
+}

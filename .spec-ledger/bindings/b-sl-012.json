@@ -1,9 +1,0 @@
-{
-  "id": "b-sl-012",
-  "claimId": "SL-012",
-  "kind": "test",
-  "locator": {
-    "type": "command",
-    "command": "node --test packages/ledger/dist/pack.smoke.test.js packages/ledger/dist/pack.break.test.js packages/ledger/dist/pack.concurrency.break.test.js"
-  }
-}

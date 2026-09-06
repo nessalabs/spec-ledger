@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "2ddda9dd-7526-839c-9844-199b543f59ba",
+  "turnId": "f413d965-4b38-89aa-85bd-aae03d8d9aef",
+  "kind": "adversarial",
+  "target": "code",
+  "reviewer": "agent:sl-dev-break",
+  "verdict": "approve",
+  "summary": "8e34ebbd-c0cb-888c-95b8-0eaf07ecb634 e2e: specLedger wordmark; Verify statement-first + required covered; 76451749-a54f-8579-96f2-dcec19d79026 pitch from docs Markdown; f413d965-4b38-89aa-85bd-aae03d8d9aef plan+architecture touch.",
+  "plainSummary": "Workstream plans and human Verify copy show as intended; this slice may ship.",
+  "killersCited": [
+    "curl:/",
+    "curl:/verify",
+    "curl:/workstreams/76451749-a54f-8579-96f2-dcec19d79026",
+    "curl:/turns/f413d965-4b38-89aa-85bd-aae03d8d9aef"
+  ],
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/reviews/turns/T-007/R-01.json",
+        "id": "T-007/R-01",
+        "sha256": "78f2335cae4d8a95810f9df09ab8d215784c7e1844875272ae4b42e43e0d7a43"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/reviews/turns/T-007/R-01.json",
+        "id": "T-007/R-01",
+        "sha256": "78f2335cae4d8a95810f9df09ab8d215784c7e1844875272ae4b42e43e0d7a43"
+      }
+    },
+    "historical": true
+  }
+}

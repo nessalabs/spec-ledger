@@ -1,7 +1,7 @@
 {
   "runId": "f1bc638d-0873-4c36-96ae-db13429c2969",
   "requestId": "batch-f1bc638d-0873-4c36-96ae-db13429c2969",
-  "bindingId": "b-sl-029",
+  "bindingId": "b9215e80-1cbf-8bbf-83dc-63ceab15c182",
   "state": "finished",
   "command": "node --test packages/ui/lib/navigation*.test.mjs",
   "cwd": "/Users/nessa/Documents/NessaLabs/spec-ledger-workflow-library",

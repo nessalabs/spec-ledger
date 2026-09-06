@@ -34,7 +34,7 @@ open → implement → [`sl-dev-break`](../sl-dev-break/SKILL.md) → **this ski
 3. Close:
 
 ```bash
-pnpm exec spec-ledger turn close [--id T-00N] [--slice SLC-01]
+pnpm exec spec-ledger turn close [--id <turn-uuid>] [--slice <slice-uuid>]
 ```
 
 Close **refuses** if: missing `opened.contextDigest` on a workstream turn,
@@ -57,9 +57,9 @@ trailers so git navigation joins back to the ledger — see
 [`episodes.md` Provenance chain](../../docs/architecture/episodes.md):
 
 ```
-SL-Turn: T-00N
-SL-Workstream: W-001   # when applicable
-SL-Slice: SLC-01
+SL-Turn: <turn-uuid>
+SL-Workstream: <workstream-uuid>   # when applicable
+SL-Slice: <slice-uuid>
 SL-Features: turns,verify
 SL-Claims: SL-005
 ```
@@ -85,8 +85,8 @@ pnpm exec spec-ledger verify --root .
 
 ```
 spec-ledger: OK|FAIL
-turn: T-00N | (none)
-workstream: W-00N | (none)
+turn: <turn-uuid> | (none)
+workstream: <workstream-uuid> | (none)
 contextDigest: <hex or none>
 ledgerDigest: <full hex>
 resultsDigest: <full hex>
@@ -102,3 +102,7 @@ commit: <git rev-parse HEAD>
 - UI imports client only
 - No treating workstream/compass presence as verify success
 - No `turn reopen` — new turn only
+
+## Visual work evidence
+
+For visual UI changes, follow [required screenshot evidence](../references/visual-evidence.md): declare all relevant UI surfaces in the preserved plan, capture current screenshots, and inspect their coverage. Passing tests alone do not satisfy visual evidence; `evidence check`, turn close and completion enforce the declared screenshots.

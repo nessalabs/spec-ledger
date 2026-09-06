@@ -7,8 +7,8 @@
   "outcome": "succeeded",
   "result": {
     "schemaVersion": 1,
-    "id": "W-005/SR-06",
-    "workstreamId": "W-005",
+    "id": "c63c8019-5352-819f-913d-0753f7a51fa0",
+    "workstreamId": "d1be55a6-11bb-8460-8650-ddf0ecac8185",
     "kind": "adversarial",
     "target": "spec",
     "reviewer": "agent:turn-evidence-breaker",
@@ -21,6 +21,6 @@
       "Workflow assertions inspect publication configuration; they do not establish an actual successful registry publication or GitHub runner execution.",
       "Final source-bound results remain required; this mapping review is not a current code-completion review."
     ],
-    "revisionDigest": "aa5bb2609b3d832adfea9cd515060acd4a59f214ec5b8cb91c45c7099323c373"
+    "revisionDigest": "faa09bfe7d58ce063117acaa6e61a55f294eff4e9d5a5bca168fe36a09eb9708"
   }
 }

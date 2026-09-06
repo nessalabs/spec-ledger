@@ -1,5 +1,7 @@
 "use client"
 
+import { ReadableText } from "@/components/readable-text"
+
 import Link from "next/link"
 import { useEffect, useState } from "react"
 import { usePathname } from "next/navigation"
@@ -17,6 +19,7 @@ import {
   useSidebar,
 } from "@nessalabs/ui"
 import {
+  FlaskConical,
   Compass,
   FileJson2,
   GitBranch,
@@ -42,6 +45,7 @@ type NavItem = {
 const WORKSPACE: NavItem[] = [
   { href: "/", label: "Overview", hint: "Progress and what needs your attention", icon: LayoutDashboard },
   { href: "/workstreams", label: "Specs", hint: "Read the plans and their requirements", icon: Workflow },
+  { href: "/experiments", label: "Experiments", hint: "Follow iterative goals and experiment findings", icon: FlaskConical },
   { href: "/claims", label: "Evidence", hint: "Every requirement and the proof behind it", icon: ShieldCheck },
   { href: "/turns", label: "Changes", hint: "What changed, in order", icon: History },
 ]
@@ -93,7 +97,7 @@ function RailNavItem({
       >
         <Icon className="size-4 shrink-0" />
         <span className="min-w-0 flex-1 truncate group-data-[state=collapsed]/sidebar:sr-only">
-          {label}
+          <ReadableText>{label}</ReadableText>
         </span>
       </Link>
       <PopoverSurface
@@ -107,7 +111,7 @@ function RailNavItem({
           "group-data-[state=collapsed]/sidebar:group-focus-within/rail:block",
         )}
       >
-        <span className="block">{label}</span>
+        <span className="block"><ReadableText>{label}</ReadableText></span>
         <span className="mt-0.5 block font-normal text-muted-foreground">{hint}</span>
       </PopoverSurface>
     </li>
@@ -125,7 +129,7 @@ function NavGroup({
 }) {
   return (
     <SidebarGroup>
-      <SidebarGroupLabel>{label}</SidebarGroupLabel>
+      <SidebarGroupLabel><ReadableText>{label}</ReadableText></SidebarGroupLabel>
       <SidebarGroupContent>
         <ul className="flex w-full min-w-0 list-none flex-col gap-0.5 p-0">
           {items.map(item => (
@@ -210,7 +214,7 @@ export function SpecLedgerShell({ children }: { children: React.ReactNode }) {
           <nav aria-label="You are here" className="min-w-0 truncate text-sm text-muted-foreground">
             <Link href="/" className="hover:underline">Spec Ledger</Link>
             {current ? (
-              <> / <Link href={current.href} className="hover:underline">{current.label}</Link></>
+              <> / <Link href={current.href} className="hover:underline"><ReadableText>{current.label}</ReadableText></Link></>
             ) : null}
           </nav>
         </div>

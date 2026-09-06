@@ -1,3 +1,5 @@
+
+import { ReadableText } from "@/components/readable-text"
 import { Badge, JsonTree } from "@nessalabs/ui"
 import { ClaimsList } from "@/components/claims-list"
 import { liveReport, serverClient } from "@/lib/ledger"
@@ -46,7 +48,7 @@ export default async function EvidencePage() {
             key={label}
             className="flex-1 basis-32 rounded-lg border border-border px-3 py-2"
           >
-            <p className="text-[11px] text-muted-foreground">{label}</p>
+            <p className="text-[11px] text-muted-foreground"><ReadableText>{label}</ReadableText></p>
             <p className="font-mono text-lg font-semibold tabular-nums">{value}</p>
           </div>
         ))}

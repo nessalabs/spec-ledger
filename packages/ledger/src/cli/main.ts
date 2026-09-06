@@ -1,8 +1,9 @@
 #!/usr/bin/env node
+import { stageIdentityMigration, publishIdentityMigration } from "../identity/migrate.js"
 import { readFileSync } from "node:fs"
 import { backlog, evaluateDeferrals, recordDeferredDecision, recordDeferralResolution } from "../deferrals/index.js"
 import { permissionStatus, planRevision, type Authority } from "../permission/authority.js"
-import { listLearnings, recordLearning, type Learning } from "../compass/learnings.js"
+import { listLearnings } from "../compass/learnings.js"
 import { resolve } from "node:path"
 import { initLedgerDetailed } from "./init.js"
 import { loadLedger } from "../fs/load.js"
@@ -70,6 +71,7 @@ function usage(): never {
   console.log(`spec-ledger — claim adherence ledger
 
 Usage:
+  spec-ledger goal list|show|create|conclude … | experiment start|result --file <json>
   spec-ledger init [--name <name>] [--root <dir>]
   spec-ledger verify [--root <dir>]
   spec-ledger audit [--root <dir>]
@@ -82,8 +84,12 @@ Usage:
   spec-ledger plan --workstream W-…
   spec-ledger work --workstream W-… --slice SLC-… --goal "…"
   spec-ledger check | fingerprint | evidence record --file <json>
+  spec-ledger evidence check --workstream W-… | evidence screenshot --turn T-… --surface <name> --path <file>
   spec-ledger permission status|approve|deny|delegate|revoke|record …
   spec-ledger learning list|record --file <json>
+  spec-ledger workstream|claim|binding|tenet|theme create --file <json-without-id>
+  spec-ledger identity migrate --stage <external-dir> --ours <commit> --theirs <commit> --base <commit> [--resolutions <json>]
+  spec-ledger identity migrate --stage <external-dir> --publish
   spec-ledger review add|list …
   spec-ledger session | complete --workstream W-…
   spec-ledger progress --file <json>
@@ -137,6 +143,34 @@ async function main(): Promise<void> {
 
   const root = resolve(argValue(argv, "--root") ?? process.cwd())
 
+  if (cmd === "identity" && argv[1] === "migrate") {
+    const stage=argValue(argv,"--stage"); if(!stage)throw new Error("identity migrate requires --stage outside the checkout")
+    if(argv.includes("--publish")){publishIdentityMigration(root,stage);console.log(JSON.stringify({published:true,stage}));return}
+    const ours=argValue(argv,"--ours"),theirs=argValue(argv,"--theirs"),base=argValue(argv,"--base")
+    if(!ours||!theirs||!base)throw new Error("Migration staging requires --ours, --theirs and --base Git commits")
+    const file=argValue(argv,"--resolutions")
+    const resolutions=file?JSON.parse(readFileSync(resolve(file),"utf8")):undefined
+    const repairs=argValue(argv,"--reconciliations"),reconciliations=repairs?JSON.parse(readFileSync(resolve(repairs),"utf8")):undefined
+    console.log(JSON.stringify(stageIdentityMigration({root,stage,ours,theirs,base,resolutions,reconciliations}),null,2));return
+  }
+
+  if ((["tenet","theme"].includes(cmd) && argv[1] === "create") || (cmd === "learning" && argv[1] === "record")) {
+    const file=argValue(argv,"--file"); if(!file) throw new Error("Creation requires --file, omitting id")
+    const record=JSON.parse(readFileSync(resolve(file),"utf8"))
+    const operation=cmd==="tenet" ? "create_tenet" : cmd==="theme" ? "create_theme" : "record_learning"
+    console.log(JSON.stringify(executeOperation(root,operation,{requestId:argValue(argv,"--request-id") ?? newRequestId(),[cmd]:record}),null,2));return
+  }
+
+  if ((cmd === "workstream" && argv[1] === "create") || (cmd === "claim" && argv[1] === "create") || (cmd === "claim" && argv[1] === "propose") || (cmd === "binding" && argv[1] === "create")) {
+    const file = argValue(argv, "--file")
+    if (!file) throw new Error("Creation requires --file with record fields, omitting id; Spec Ledger returns the generated UUID")
+    const record = JSON.parse(readFileSync(resolve(file), "utf8"))
+    const requestId = argValue(argv, "--request-id") ?? newRequestId()
+    const operation = cmd === "workstream" ? "create_workstream" : cmd === "binding" ? "create_binding" : argv[1] === "propose" ? "create_proposed_claim" : "create_claim"
+    const input = operation === "create_workstream" ? {requestId, workstream:record} : operation === "create_proposed_claim" ? {requestId,workstreamId:argValue(argv,"--workstream"),claim:record} : operation === "create_claim" ? {requestId,turnId:argValue(argv,"--turn"),claim:record} : {requestId,turnId:argValue(argv,"--turn"),binding:record}
+    console.log(JSON.stringify(executeOperation(root, operation, input),null,2)); return
+  }
+
   if (cmd === "operation") {
     const operation = argv[1] as OperationName | undefined
     const file = argValue(argv, "--file")
@@ -152,6 +186,34 @@ async function main(): Promise<void> {
       console.log(JSON.stringify({ ok: false, operation, error: normalized.toJSON() }, null, 2))
       process.exit(1)
     }
+  }
+
+  if (cmd === "goal" || cmd === "experiment") {
+    const sub = argv[1]
+    if (cmd === "goal" && sub === "list") {
+      console.log(JSON.stringify(executeOperation(root, "list_goals", {
+        ...(argValue(argv, "--workstream") ? {workstreamId: argValue(argv, "--workstream")} : {}),
+        ...(argValue(argv, "--turn") ? {turnId: argValue(argv, "--turn")} : {}),
+      }), null, 2)); return
+    }
+    if (cmd === "goal" && sub === "show") {
+      console.log(JSON.stringify(executeOperation(root, "get_goal", {goalId: argValue(argv, "--id")}), null, 2)); return
+    }
+    const mapping = { "goal:create": ["create_goal", "goal"], "goal:conclude": ["conclude_goal", "conclusion"],
+      "experiment:start": ["start_experiment", "experiment"], "experiment:result": ["record_experiment_result", "result"] } as const
+    const pair = mapping[`${cmd}:${sub}` as keyof typeof mapping]
+    const file = argValue(argv, "--file")
+    if (!pair || !file) throw new Error("goal/experiment mutation requires create|conclude|start|result and --file <json>")
+    const record = JSON.parse(readFileSync(resolve(file), "utf8"))
+    const turn = loadLedger(root).turns.find(t => t.id === record.turnId)
+    if (!turn?.intent.workstreamId) throw new Error("goal/experiment requires a workstream turn")
+    const revision = planRevision(root, loadWorkstream(root, turn.intent.workstreamId))
+    const source = sourceFingerprint(root, loadLedger(root).config.generatedArtifactPaths)
+    console.log(JSON.stringify(executeOperation(root, pair[0], {
+      requestId: argValue(argv, "--request-id") ?? newRequestId(), [pair[1]]: record,
+      expectedRevisionDigest: argValue(argv, "--revision") ?? revision,
+      expectedSourceDigest: argValue(argv, "--source-digest") ?? source,
+    }), null, 2)); return
   }
 
   if (cmd === "init") {
@@ -250,7 +312,7 @@ async function main(): Promise<void> {
     if (argv[1] === "list") { console.log(JSON.stringify(listLearnings(root),null,2));return }
     const file=argValue(argv,"--file")
     if (argv[1] !== "record" || !file) throw new Error("learning record requires --file")
-    console.log(JSON.stringify(recordLearning(root,JSON.parse(readFileSync(resolve(file),"utf8")) as Learning),null,2)); return
+    throw new Error("Use learning record --file")
   }
 
   if (cmd === "fingerprint") {
@@ -259,6 +321,24 @@ async function main(): Promise<void> {
       checks:ledger.bindings.map(binding=>({bindingId:binding.id,checkDigest:ledger.claims.find(c=>c.id===binding.claimId) ? checkFingerprint(ledger.claims.find(c=>c.id===binding.claimId)!,binding) : null}))},null,2))
     return
   }
+  if (cmd === "evidence" && argv[1] === "check") {
+    const workstreamId = argValue(argv, "--workstream")
+    if (!workstreamId) throw new Error("evidence check requires --workstream")
+    const result = executeOperation(root, "check_visual_evidence", { workstreamId, turnId: argValue(argv, "--turn") }) as { ok: boolean }
+    console.log(JSON.stringify(result, null, 2)); process.exitCode = result.ok ? 0 : 1; return
+  }
+  if (cmd === "evidence" && argv[1] === "screenshot") {
+    const turnId = argValue(argv, "--turn"), surface = argValue(argv, "--surface"), path = argValue(argv, "--path")
+    if (!turnId || !surface || !path) throw new Error("Attach screenshots of all relevant UI: evidence screenshot --turn <open-turn> --surface <declared-surface> --path <repo-relative-file> [--slice <slice>]")
+    const ledger = loadLedger(root), turn = ledger.turns.find(t => t.id === turnId)
+    if (!turn?.intent.workstreamId) throw new Error("Screenshot requires an open workstream turn")
+    console.log(JSON.stringify(executeOperation(root, "record_screenshot", {
+      requestId: argValue(argv, "--request-id") ?? newRequestId(), turnId, surface, path, sliceId: argValue(argv, "--slice"), title: argValue(argv, "--title"),
+      expectedSourceDigest: sourceFingerprint(ledger.repoRoot, ledger.config.generatedArtifactPaths),
+      expectedRevisionDigest: planRevision(root, loadWorkstream(root, turn.intent.workstreamId)),
+    }), null, 2)); return
+  }
+
   if (cmd === "evidence" && argv[1] === "record") {
     const file = argValue(argv,"--file")
     if (!file) throw new Error("usage: spec-ledger evidence record --file <runner-evidence.json>")
@@ -288,7 +368,10 @@ async function main(): Promise<void> {
       console.log("problems:")
       for (const p of report.problems) console.log(`  - ${p}`)
     }
-    process.exit(report.ok ? 0 : 1)
+    if (cmd === "check" && !report.visualEvidence.ok) {
+      for (const turn of report.visualEvidence.turns) for (const reason of turn.reasons) console.error(reason)
+    }
+    process.exit(report.ok && (cmd !== "check" || report.visualEvidence.ok) ? 0 : 1)
   }
 
   if (cmd === "audit") {
@@ -510,7 +593,7 @@ async function main(): Promise<void> {
         process.exit(2)
       }
       const prompt = argValue(argv, "--prompt") ?? goal
-      const id = argValue(argv, "--id")
+      if (argValue(argv, "--id")) throw new Error("Spec Ledger generates turn IDs; provide --goal as the short title")
       const workstreamId = argValue(argv, "--workstream")
       const sliceId = argValue(argv, "--slice")
       const feature = argValue(argv, "--feature")
@@ -531,7 +614,6 @@ async function main(): Promise<void> {
             sliceId,
             goal,
             prompt,
-            turnId:id,
             featureIds,
             changeType:intent.changeType,
             riskLevel:intent.riskLevel,
@@ -541,7 +623,6 @@ async function main(): Promise<void> {
             expectedRevisionDigest:planRevision(root,loadWorkstream(root,workstreamId)),
           })
         : openTurn(root, intent, {
-            idHint: id,
             featureIds,
             allowDirty: hasFlag(argv, "--allow-dirty"),
           })

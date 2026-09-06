@@ -2,14 +2,62 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://nessalabs.ai/spec-ledger/schemas/attachment.json",
   "title": "Attachment",
-  "description": "Episode artifact metadata. Bodies live beside the JSON (or as a path ref). Image/video kinds are for code-review media; Spec Ledger does not host binary media — store a path/URL ref only.",
+  "description": "Episode artifact metadata. Bodies live beside the JSON (or as a path ref). Image/video kinds are for code-review media; Spec Ledger does not host binary media \u2014 store a path/URL ref only.",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schemaVersion", "id", "turnId", "path"],
+  "required": [
+    "schemaVersion",
+    "id",
+    "turnId",
+    "path"
+  ],
   "properties": {
-    "schemaVersion": { "const": 1 },
-    "id": { "type": "string", "minLength": 1 },
-    "turnId": { "type": "string", "pattern": "^T-" },
+    "visualEvidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sliceId",
+        "surface",
+        "sourceDigest",
+        "revisionDigest",
+        "recordedAt"
+      ],
+      "properties": {
+        "sliceId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "surface": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "sourceDigest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "revisionDigest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "recordedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "schemaVersion": {
+      "const": 1
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    },
+    "turnId": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    },
     "kind": {
       "type": "string",
       "enum": [
@@ -23,7 +71,9 @@
         "other"
       ]
     },
-    "title": { "type": "string" },
+    "title": {
+      "type": "string"
+    },
     "mediaType": {
       "type": "string",
       "description": "IANA media type, e.g. image/png, video/mp4"
@@ -33,13 +83,68 @@
       "minLength": 1,
       "description": "Repo-relative path or external ref URL; not a hosted blob store"
     },
-    "byteLength": { "type": "integer", "minimum": 0 },
-    "contentDigest": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
-    "note": { "type": "string" },
-    "decisionId": { "type": "string" },
-    "sourceId": { "type": "string" },
-    "probeId": { "type": "string" },
-    "reviewId": { "type": "string" },
-    "flowId": { "type": "string" }
+    "byteLength": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "contentDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "note": {
+      "type": "string"
+    },
+    "decisionId": {
+      "type": "string"
+    },
+    "sourceId": {
+      "type": "string"
+    },
+    "probeId": {
+      "type": "string"
+    },
+    "reviewId": {
+      "type": "string"
+    },
+    "flowId": {
+      "type": "string"
+    },
+    "migration": {
+      "type": "object",
+      "properties": {
+        "origins": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "required": [
+              "path",
+              "id",
+              "sha256"
+            ],
+            "properties": {
+              "path": {
+                "type": "string"
+              },
+              "id": {
+                "type": "string"
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "historical": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "origins",
+        "historical"
+      ],
+      "additionalProperties": false
+    }
   }
 }

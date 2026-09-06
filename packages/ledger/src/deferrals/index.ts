@@ -1,3 +1,4 @@
+import { isEntityId } from "../identity/index.js"
 import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs"
 import { dirname, join } from "node:path"
 import { loadLedger, sha256Stable } from "../fs/load.js"
@@ -41,12 +42,12 @@ export interface DeferralEvaluation {
 function nonempty(value:unknown):value is string { return typeof value==="string" && value.trim().length>0 }
 function object(value:unknown):value is Record<string,unknown> { return value!==null && typeof value==="object" && !Array.isArray(value) }
 function validDecision(d:DeferredDecision):boolean {
-  return object(d) && d.schemaVersion===1 && nonempty(d.turnId) && /^T-[0-9]{3,}$/.test(d.turnId) &&
-    nonempty(d.id) && new RegExp(`^${d.turnId}/D-[0-9]+$`).test(d.id) && nonempty(d.decision) && nonempty(d.rationale)
+  return object(d) && d.schemaVersion===1 && nonempty(d.turnId) && isEntityId(d.turnId) &&
+    nonempty(d.id) && isEntityId(d.id) && nonempty(d.decision) && nonempty(d.rationale)
 }
 function validResolution(r:unknown):r is DeferralResolution {
-  return object(r) && nonempty(r.decisionRef) && /^T-[0-9]{3,}\/D-[0-9]+$/.test(r.decisionRef) &&
-    nonempty(r.workstreamId) && /^W-[0-9]{3,}$/.test(r.workstreamId) && nonempty(r.authorityRef) &&
+  return object(r) && nonempty(r.decisionRef) && isEntityId(r.decisionRef) &&
+    nonempty(r.workstreamId) && isEntityId(r.workstreamId) && nonempty(r.authorityRef) &&
     nonempty(r.revisionDigest) && typeof r.action==="string" && ["revisited","dismissed","cancelled","re-deferred"].includes(r.action)
 }
 function read<T>(path: string): T { return JSON.parse(readFileSync(path,"utf8")) as T }
@@ -89,7 +90,7 @@ function persistDecision(root:string,d:DeferredDecision):DeferredDecision {
   validateDecision(d)
   const ledger=loadLedger(root)
   if (!ledger.turns.some(t=>t.id===d.turnId && t.status==="open")) throw new Error("record decisions on an open turn")
-  immutable(join(ledger.rootDir,ledger.config.decisionsDir ?? "decisions",d.turnId,`${d.id.split("/")[1]}.json`),d)
+  immutable(join(ledger.rootDir,ledger.config.decisionsDir ?? "decisions",d.turnId,`${d.id}.json`),d)
   return d
 }
 export function recordDeferredDecision(root:string,d:DeferredDecision):DeferredDecision {
@@ -113,7 +114,7 @@ export function evaluateDeferrals(root:string,workstreamId:string):DeferralEvalu
     const affected=ws.featureIds.includes(feature ?? "") || records.some(a=>a.workstreamId===workstreamId) || !feature
     const triggered=records.length>0 || (affected && ["sealed","active","done"].includes(ws.status))
     const base:DeferralEvaluation={decisionRef:nonempty(decision.id) ? decision.id : "invalid-decision",decision:snapshot,state:"not-due",affected,activated:records.length>0,reasons:[]}
-    if (!validDeferral(snapshot) || records.some(a=>a.schemaVersion!==1 || !nonempty(a.workstreamId) || !/^W-[0-9]{3,}$/.test(a.workstreamId) || !nonempty(a.activatedAt))) return {...base,state:"unknown",reasons:["Deferral trigger, response, or requirement reference is incomplete"]}
+    if (!validDeferral(snapshot) || records.some(a=>a.schemaVersion!==1 || !nonempty(a.workstreamId) || !isEntityId(a.workstreamId) || !nonempty(a.activatedAt))) return {...base,state:"unknown",reasons:["Deferral trigger, response, or requirement reference is incomplete"]}
     if (records.some(a=>sha256Stable(a.decision)!==sha256Stable(snapshot)) || (records.length && !decisions.some(d=>d.id===decision.id && sha256Stable(d)===sha256Stable(snapshot))))
       return {...base,state:"unknown",reasons:["An activated decision was changed or removed; preserve its original commitment"]}
     if (!ledger.graph?.features?.some(f=>f.id===feature)) return {...base,state:"unknown",reasons:["Referenced feature is missing"]}

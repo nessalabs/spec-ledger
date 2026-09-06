@@ -7,7 +7,7 @@
   "outcome": "succeeded",
   "result": {
     "schemaVersion": 1,
-    "id": "T-050",
+    "id": "12188f1c-5b60-8a29-99a1-9178d796cc42",
     "status": "closed",
     "openedAt": "2026-09-06T07:55:57.072Z",
     "opened": {
@@ -16,8 +16,8 @@
       "treeDigest": "8ac1d48125ccee06b9671056a4b75a10d9bfc6b8cb4ac4f619b908109541e401",
       "dirtyAtOpen": [],
       "contextDigest": "042c55441f4aa51f3e3edf1c1ddc4ae8e3599e305b2cbe20a242ddfea821e3df",
-      "contextWorkstreamId": "W-014",
-      "contextSliceId": "SLC-02",
+      "contextWorkstreamId": "ef172105-4f40-8bbb-8abe-d1cd11ae618a",
+      "contextSliceId": "ef669c8c-b701-85d9-b2da-638757fed84e",
       "contextSealRevision": 1,
       "contextGeneratedAt": "2026-09-06T07:55:57.072Z"
     },
@@ -26,8 +26,8 @@
       "restatedGoal": "Make repeated packaging verification reliable",
       "changeType": "fix",
       "riskLevel": "moderate",
-      "workstreamId": "W-014",
-      "sliceId": "SLC-02",
+      "workstreamId": "ef172105-4f40-8bbb-8abe-d1cd11ae618a",
+      "sliceId": "ef669c8c-b701-85d9-b2da-638757fed84e",
       "featureIds": [
         "client",
         "cli",
@@ -46,13 +46,13 @@
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/align-waivers/AW-22.json",
+          "path": ".spec-ledger/align-waivers/0a3b270f-410e-8033-94ee-cd53c2919bc9.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/decisions/T-050/D-01.json",
+          "path": ".spec-ledger/decisions/12188f1c-5b60-8a29-99a1-9178d796cc42/4e689deb-9ce4-88a5-bbf4-43754541814a.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
@@ -634,25 +634,25 @@
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/reviews/turns/T-050/R-01.json",
+          "path": ".spec-ledger/reviews/turns/12188f1c-5b60-8a29-99a1-9178d796cc42/ce3c2826-3a6a-8f39-9c29-9aaa73d8da45.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/reviews/turns/T-050/R-02.json",
+          "path": ".spec-ledger/reviews/turns/12188f1c-5b60-8a29-99a1-9178d796cc42/45d6348c-29b7-842d-9ab9-c1114653fcfa.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/turns/T-050.json",
+          "path": ".spec-ledger/turns/12188f1c-5b60-8a29-99a1-9178d796cc42.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/workstreams/W-014.json",
+          "path": ".spec-ledger/workstreams/ef172105-4f40-8bbb-8abe-d1cd11ae618a.json",
           "kind": "modified",
           "additions": 4,
           "deletions": 4
@@ -674,7 +674,7 @@
       },
       "schemaSurfaceChanged": false,
       "decisionIds": [
-        "T-050/D-01"
+        "4e689deb-9ce4-88a5-bbf4-43754541814a"
       ],
       "decisionsDigest": "08c5b142a0582134e7eeee79389d2cfa513964dbc6b064e637646a4a39e17592",
       "reviewsDigest": "f292fb39c6a863bd2dccd46fd487dded5ab9cc62102dbde00040f67b7802255c"

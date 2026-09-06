@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "turnId": "50a92ff8-1d8a-8671-ba7e-5679d6c916cc",
+  "kind": "log-excerpt",
+  "title": "Full regression: 209 passing tests and 23 verified claims",
+  "path": "docs/workstreams/815c7a44-59df-8102-9769-bf8a74e49c0c-shared-agent-workflows/evidence/50a92ff8-1d8a-8671-ba7e-5679d6c916cc/regression-tests.txt",
+  "mediaType": "text/plain",
+  "contentDigest": "03993238dfe3200dc2a8dcdecb7b357d26491de5d7115810586ef201485c4b37",
+  "byteLength": 26819,
+  "id": "27dff859-d0a4-8add-b89b-25498678aacd",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/attachments/T-036/A-02.json",
+        "id": "T-036/A-02",
+        "sha256": "17124b81315ddcf791e62d073302026e71b2da92ba955424ccd09c70ee40e8be"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/attachments/T-036/A-02.json",
+        "id": "T-036/A-02",
+        "sha256": "17124b81315ddcf791e62d073302026e71b2da92ba955424ccd09c70ee40e8be"
+      }
+    },
+    "historical": true
+  }
+}

@@ -6,8 +6,8 @@
   "finishedAt": "2026-09-05T03:09:34.543Z",
   "outcome": "succeeded",
   "result": {
-    "id": "T-039/R-01",
-    "workstreamId": "W-009",
+    "id": "d119d169-d84c-8c8d-bee7-9c10c7cd9a5a",
+    "workstreamId": "3ca37660-1506-8a85-80c6-410a024d9a9a",
     "kind": "adversarial",
     "target": "code",
     "reviewer": "agent:turn-evidence-breaker",
@@ -29,6 +29,6 @@
       "Syntax highlighting depends on lazy-loaded renderer assets; the UI reports loading/failure separately from test evidence."
     ],
     "schemaVersion": 1,
-    "turnId": "T-039"
+    "turnId": "9fa55cfe-6dd6-83c5-8b42-baf619c093c6"
   }
 }

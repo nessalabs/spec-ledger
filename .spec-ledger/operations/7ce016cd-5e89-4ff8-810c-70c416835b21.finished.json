@@ -7,8 +7,8 @@
   "outcome": "succeeded",
   "result": {
     "schemaVersion": 1,
-    "id": "W-013/SR-01",
-    "workstreamId": "W-013",
+    "id": "2dce4e38-f44e-8dd0-b7ab-7dfeaa78dc1d",
+    "workstreamId": "11788af6-4cbe-834d-9993-8ee534b22b94",
     "target": "spec",
     "kind": "adversarial",
     "reviewer": "agent:feature-view-breaker",
@@ -21,6 +21,6 @@
       "Related tool supplied only a caution-only worktree note; sibling state was not treated as authority.",
       "Rendered tests cannot establish usability alone; independent Sol observations and live walkthrough remain required."
     ],
-    "revisionDigest": "56d0b07291c52a6ea465083ec03b4e4a741992e3b980977ec8c98664549fad13"
+    "revisionDigest": "da886054e0edc5e999474177d9fa912dc92b32823edb6abeec5529d20beb9137"
   }
 }

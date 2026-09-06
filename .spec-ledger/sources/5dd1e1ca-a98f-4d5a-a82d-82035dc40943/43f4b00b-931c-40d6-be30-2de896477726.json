@@ -1,0 +1,7 @@
+{
+  "schemaVersion": 1,
+  "turnId": "5dd1e1ca-a98f-4d5a-a82d-82035dc40943",
+  "kind": "user",
+  "ref": "User correction, 2026-09-06: this is a fixup to existing progress behavior; amend the owning spec rather than create a new spec.",
+  "id": "43f4b00b-931c-40d6-be30-2de896477726"
+}

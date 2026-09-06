@@ -1,3 +1,5 @@
+
+import { ReadableText } from "@/components/readable-text"
 import { RelatedDocsList } from "@/components/turn-doc-split"
 import { CheckEvidencePanel } from "@/components/check-evidence"
 import { featureHref, featureLabel } from "@/lib/features"
@@ -54,11 +56,11 @@ export default async function ClaimPage({
             Evidence
           </Link>
           {" / "}
-          {claim.id}
+          Requirement
         </p>
         <div className="flex flex-wrap items-center gap-2">
-          <h1 className="font-mono text-2xl font-semibold tracking-tight">
-            {claim.id}
+          <h1 className="text-xl font-semibold tracking-tight">
+            <ReadableText>{claim.statement}</ReadableText>
           </h1>
           <Badge variant="outline">{claim.kind}</Badge>
           {claim.required ? <Badge>required</Badge> : null}
@@ -76,9 +78,7 @@ export default async function ClaimPage({
             </Badge>
           ) : null}
         </div>
-        <p className="max-w-2xl text-sm leading-relaxed text-muted-foreground">
-          {claim.statement}
-        </p>
+
       </header>
 
       <RelatedDocsList docs={docs} />
@@ -99,7 +99,7 @@ export default async function ClaimPage({
             {claimBindings.map((b) => (
               <li key={b.id} className="space-y-1 px-3 py-2.5">
                 <p className="flex flex-wrap items-center gap-x-2 text-[11px] text-muted-foreground">
-                  <span className="font-mono text-foreground">{b.id}</span>
+                  <span className="text-foreground">{b.test?.description ?? "Verification check"}</span>
                   <span>{b.kind}</span>
                   <span>{b.locator.type}</span>
                 </p>

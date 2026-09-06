@@ -11,7 +11,7 @@ function harness(stored=new Map()) {
  const mod={exports:{}};new Function('require','module','exports',output)(id=>id==='react'?react:require(id),mod,mod.exports)
  return {api:mod.exports,storage:{getItem:k=>stored.get(k),setItem:(k,v)=>stored.set(k,v),removeItem:k=>stored.delete(k)},stored,render:()=>{cursor=0;effects=[];return mod.exports.useWorkflowMutation('test:pending')},mount:()=>effects.forEach(fn=>fn())}
 }
-const request={action:'save',input:{requestId:'original-id',actor:'browser',reason:'Test',profile:{id:'test',title:'Original'}}}
+const request={action:'save',input:{requestId:'original-id',actor:'browser',reason:'Test',profile:{title:'Original'}}}
 const json=(value,status=200)=>new Response(JSON.stringify(value),{status,headers:{'content-type':'application/json'}})
 test('lost reply survives reload and retry preserves the exact operation instead of accepting another edit',async()=>{
  const oldFetch=globalThis.fetch,oldStorage=globalThis.sessionStorage

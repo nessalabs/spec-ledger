@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "turnId": "7a56453a-0979-8b0a-a4fe-ddbc9aab354a",
+  "kind": "log-excerpt",
+  "title": "CLI, MCP and regression test results",
+  "path": "docs/workstreams/815c7a44-59df-8102-9769-bf8a74e49c0c-shared-agent-workflows/evidence/7a56453a-0979-8b0a-a4fe-ddbc9aab354a/regression-tests.txt",
+  "mediaType": "text/plain",
+  "contentDigest": "d2924774582fc8fef17eae3f7345488936a899ad94b38f1002d96bc7ed5d8651",
+  "byteLength": 19963,
+  "id": "38fbe760-fcfe-8806-ab34-0c28a6cd238f",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/attachments/T-034/A-01.json",
+        "id": "T-034/A-01",
+        "sha256": "c767273569b4c2f5912ed8256af423f4cb50a230865a2283414cb256ac1c72f3"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/attachments/T-034/A-01.json",
+        "id": "T-034/A-01",
+        "sha256": "c767273569b4c2f5912ed8256af423f4cb50a230865a2283414cb256ac1c72f3"
+      }
+    },
+    "historical": true
+  }
+}

@@ -1,7 +1,7 @@
 {
   "runId": "5c250829-0683-4866-b9ba-de2c707664f0",
   "requestId": "batch-5c250829-0683-4866-b9ba-de2c707664f0",
-  "bindingId": "b-sl-023",
+  "bindingId": "240c8922-405a-824b-a2d4-e8ecbb5be6bd",
   "state": "finished",
   "command": "node --test packages/ledger/dist/application/*.break.test.js packages/mcp/dist/lifecycle.test.js",
   "cwd": "/Users/nessa/Documents/NessaLabs/spec-ledger-workflow-library",

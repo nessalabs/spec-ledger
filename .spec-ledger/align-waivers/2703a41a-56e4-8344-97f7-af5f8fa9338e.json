@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "2703a41a-56e4-8344-97f7-af5f8fa9338e",
+  "reason": "ce974321-6cb8-8abb-9377-fe35739143ba product surface is sealed plan digests (workstream/audit/cli/schemas/docs); UI rename, skills, and .gitignore remain dirty from dc39d41a-ed03-8e91-89b5-5daba10d0b74 and are outside 520ff720-fc13-8275-b710-f677f8d2efb4 expectedPaths.",
+  "actor": "human",
+  "treeDigest": "f9af08db359683a16910887c7a4a12d7b93301853c614a0a29bc12af207aed0b",
+  "createdAt": "2026-09-04T20:20:21.536Z",
+  "workstreamId": "d1be55a6-11bb-8460-8650-ddf0ecac8185",
+  "turnId": "ce974321-6cb8-8abb-9377-fe35739143ba",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/align-waivers/AW-04.json",
+        "id": "T-021/AW-04",
+        "sha256": "8827a70aada39d493beceff9c6642d08381c5d9bf7820d7e6f59361df1f9c680"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/align-waivers/AW-04.json",
+        "id": "T-021/AW-04",
+        "sha256": "8827a70aada39d493beceff9c6642d08381c5d9bf7820d7e6f59361df1f9c680"
+      }
+    },
+    "historical": true
+  }
+}

@@ -1,3 +1,5 @@
+
+import { ReadableText } from "@/components/readable-text"
 import { featureHref, featureLabel, featureSummary, featureSlug } from "@/lib/features"
 import Link from "next/link"
 import { liveReport, serverClient } from "@/lib/ledger"
@@ -43,7 +45,7 @@ export default async function FeaturesPage() {
                     {featureLabel(f.id, f.name)}
                   </span>
                   <span className="truncate text-sm text-muted-foreground">
-                    {featureSummary(f.id, f.summary)}
+                    <ReadableText>{featureSummary(f.id, f.summary)}</ReadableText>
                   </span>
                   <span className="shrink-0 font-mono text-[11px] text-muted-foreground">
                     {featureSlug(f.id)} · {history.length}

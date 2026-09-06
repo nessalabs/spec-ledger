@@ -22,33 +22,33 @@ function fixture(): string {
   git(root, "init", "-q"); git(root, "config", "user.email", "fixture@example.test"); git(root, "config", "user.name", "Fixture")
   initLedger(root, "execution breaker")
   writeFileSync(join(root, "source.ts"), "export const behavior = true\n")
-  writeJson(join(root, ".spec-ledger/workstreams/W-001.json"), {
-    schemaVersion: 1, id: "W-001", status: "active", createdAt: "2026-09-05T00:00:00.000Z",
+  writeJson(join(root, ".spec-ledger/workstreams/2b74bc14-227a-5c05-b2ed-1c32d9703cad.json"), {
+    schemaVersion: 1, id: "2b74bc14-227a-5c05-b2ed-1c32d9703cad", status: "active", createdAt: "2026-09-05T00:00:00.000Z",
     title: "Execution activity", problem: "Activity signals are incomplete", objective: "Keep recovery readiness honest",
     featureIds: ["alpha"], policy: { requireSpecBreak: false, requireCodeBreak: false },
-    suggestedSlices: [{ id: "SLC-01", title: "Activity", kind: "vertical", acceptance: ["Activity remains bounded"] }],
+    suggestedSlices: [{ id: "886b091f-57f9-5f69-9e74-f0b50275d693", title: "Activity", kind: "vertical", acceptance: ["Activity remains bounded"] }],
   })
-  writeJson(join(root, ".spec-ledger/turns/T-001.json"), {
-    schemaVersion: 1, id: "T-001", status: "open", openedAt: "2026-09-05T00:00:00.000Z",
+  writeJson(join(root, ".spec-ledger/turns/1c5a8e44-dd09-543a-97d5-bfe173becbaa.json"), {
+    schemaVersion: 1, id: "1c5a8e44-dd09-543a-97d5-bfe173becbaa", status: "open", openedAt: "2026-09-05T00:00:00.000Z",
     opened: { producedBy: "fixture", baseCommit: null, dirtyAtOpen: [] },
-    intent: { userPrompt: "Observe this task", restatedGoal: "Observe activity", workstreamId: "W-001", sliceId: "SLC-01", featureIds: ["alpha"] },
+    intent: { userPrompt: "Observe this task", restatedGoal: "Observe activity", workstreamId: "2b74bc14-227a-5c05-b2ed-1c32d9703cad", sliceId: "886b091f-57f9-5f69-9e74-f0b50275d693", featureIds: ["alpha"] },
   })
   git(root, "add", "."); git(root, "commit", "-qm", "fixture")
-  recordAuthority(root, { id: "AUTH-execution-breaker", action: "grant", mode: "request", workstreamId: "W-001", featureIds: ["alpha"], source: { kind: "agent-reported", reference: "fixture authorization" } })
+  recordAuthority(root, { id: "aa26a96c-c394-5417-b956-d84065843247", action: "grant", mode: "request", workstreamId: "2b74bc14-227a-5c05-b2ed-1c32d9703cad", featureIds: ["alpha"], source: { kind: "agent-reported", reference: "fixture authorization" } })
   return root
 }
 
 function source(root: string): string { const value = sourceFingerprint(root); assert.ok(value); return value }
-function revision(root: string): string { return planRevision(root, loadWorkstream(root, "W-001")) }
+function revision(root: string): string { return planRevision(root, loadWorkstream(root, "2b74bc14-227a-5c05-b2ed-1c32d9703cad")) }
 function register(root: string, session = "session-1"): ExecutionAssociation {
-  return executeOperation(root, "register_execution", { requestId: requestId("register-execution"), workstreamId: "W-001", turnId: "T-001", hostSessionRef: session, expectedRevisionDigest: revision(root), expectedSourceDigest: source(root) }) as ExecutionAssociation
+  return executeOperation(root, "register_execution", { requestId: requestId("register-execution"), workstreamId: "2b74bc14-227a-5c05-b2ed-1c32d9703cad", turnId: "1c5a8e44-dd09-543a-97d5-bfe173becbaa", hostSessionRef: session, expectedRevisionDigest: revision(root), expectedSourceDigest: source(root) }) as ExecutionAssociation
 }
 function event(root: string, registrationId: string, value: ActivityEvent) { return executeOperation(root, "record_activity", { registrationId, event: value }) }
 function activity(registrationId: string, n: number, kind: ActivityEvent["kind"], extra: Partial<ActivityEvent> = {}): ActivityEvent {
   return { eventId: `${registrationId.replace("/", "-")}-${kind}-${n}`, sessionId: "session-1", sequence: n, kind, observedAt: new Date(1_800_000_000_000 + n * 1000).toISOString(), ...extra }
 }
 function errorFrom(fn: () => unknown): OperationError { try { fn() } catch (error) { assert.ok(error instanceof OperationError, String(error)); return error } assert.fail("operation unexpectedly succeeded") }
-function projection(root: string) { return projectExecution(root, "W-001", { eligible: false, reasons: ["Current behavioral evidence is missing."] }) }
+function projection(root: string) { return projectExecution(root, "2b74bc14-227a-5c05-b2ed-1c32d9703cad", { eligible: false, reasons: ["Current behavioral evidence is missing."] }) }
 
 function waitFor(child: ReturnType<typeof spawn>): Promise<string> {
   return new Promise((resolve, reject) => {
@@ -115,7 +115,7 @@ describe("execution activity adversarial contracts", () => {
     try {
       const registration = register(root)
       for (let n = 0; n < 600; n += 1) event(root, registration.registrationId, activity(registration.registrationId, n, "tool-start", { invocationId: `inv-${n}`, toolName: "bounded-tool" }))
-      const runtimePath = join(root, ".spec-ledger/runtime/activity/W-001--X-001.json")
+      const runtimePath = join(root, `.spec-ledger/runtime/activity/${registration.registrationId.replace("/","--")}.json`)
       assert.ok(statSync(runtimePath).size <= 64 * 1024)
       const observed = projection(root)
       assert.ok(observed.inflightInvocations.length <= 256)
@@ -216,7 +216,7 @@ describe("execution activity adversarial contracts", () => {
     const linked = join(worktreeParent, "checkout")
     try {
       git(main, "worktree", "add", "-q", "-b", `execution-linked-${process.pid}-${Date.now()}`, linked, "HEAD")
-      recordAuthority(linked, { id: "AUTH-execution-linked", action: "grant", mode: "request", workstreamId: "W-001", featureIds: ["alpha"], source: { kind: "agent-reported", reference: "linked worktree fixture authorization" } })
+      recordAuthority(linked, { id: "bf85210a-1219-5f07-95fe-c42faf09ff9c", action: "grant", mode: "request", workstreamId: "2b74bc14-227a-5c05-b2ed-1c32d9703cad", featureIds: ["alpha"], source: { kind: "agent-reported", reference: "linked worktree fixture authorization" } })
       const registration = register(linked)
       event(linked, registration.registrationId, activity(registration.registrationId, 1, "session-start"))
       assert.equal(projection(linked).signals.totalSeen, 1)
@@ -248,12 +248,12 @@ describe("execution activity adversarial contracts", () => {
       assert.ok(observed.continuation.reasons.includes("host-resume-unsupported"))
       assert.deepEqual(observed.hostCapabilities, { verified: false, liveness: false, resume: false, cancelTool: false, ownedProcess: false })
       assert.equal(observed.timeout.enforcement, "unsupported")
-      assert.match(observed.continuation.prompt ?? "", /Task T-001 in W-001: Execution activity\./)
+      assert.match(observed.continuation.prompt ?? "", /Task 1c5a8e44-dd09-543a-97d5-bfe173becbaa in 2b74bc14-227a-5c05-b2ed-1c32d9703cad: Execution activity\./)
       assert.match(observed.continuation.prompt ?? "", /current revision [a-f0-9]{64}/)
       assert.match(observed.continuation.prompt ?? "", /Remaining: Current behavioral evidence is missing\./)
       assert.match(observed.continuation.prompt ?? "", /No agent was resumed and no host action was dispatched\./)
 
-      recordAuthority(root, { id: "AUTH-execution-revoked", action: "revoke", targetId: "AUTH-execution-breaker", workstreamId: "W-001", source: { kind: "agent-reported", reference: "User revoked execution permission" } })
+      recordAuthority(root, { id: "897cf875-6ce2-59ed-888e-9d0f70ca0b7b", action: "revoke", targetId: "aa26a96c-c394-5417-b956-d84065843247", workstreamId: "2b74bc14-227a-5c05-b2ed-1c32d9703cad", source: { kind: "agent-reported", reference: "User revoked execution permission" } })
       const revoked = projection(root)
       assert.ok(revoked.continuation.reasons.includes("permission-revoked"))
       assert.equal(revoked.continuation.readiness, "blocked")
@@ -277,7 +277,7 @@ describe("execution activity adversarial contracts", () => {
       if (!exited) { emitter.close(); throw new Error('Owned collector did not exit within the deadline'); }
       // Allow the host to consume the child exit event before checking its closed emitter.
       await new Promise(resolve => setImmediate(resolve));
-      const accepted = emitter.emit('W-001/X-001', { eventId:'after-exit', sessionId:'session-1', sequence:1, kind:'session-start', observedAt:new Date().toISOString() });
+      const accepted = emitter.emit('f6f848a9-4d9a-5ee1-bf25-56e870f09035', { eventId:'after-exit', sessionId:'session-1', sequence:1, kind:'session-start', observedAt:new Date().toISOString() });
       console.log(String(accepted));
       emitter.close();
       await new Promise(resolve => setTimeout(resolve, 50));

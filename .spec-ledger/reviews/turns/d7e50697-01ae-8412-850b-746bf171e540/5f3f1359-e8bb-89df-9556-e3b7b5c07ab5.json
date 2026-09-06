@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "5f3f1359-e8bb-89df-9556-e3b7b5c07ab5",
+  "turnId": "d7e50697-01ae-8412-850b-746bf171e540",
+  "workstreamId": "a32f3451-1b3d-8abf-bf0e-607ebf6e1a88",
+  "kind": "human",
+  "target": "code",
+  "reviewer": "agent:align",
+  "verdict": "approve",
+  "summary": "W006 implementation authorized; all paths covered by sealed SLC02. Independent review R01 passed.",
+  "plainSummary": "The read-only status and explicit check operations stay within the requested workflow changes.",
+  "treeDigest": "65104238988a09dd2fcf7d936a58e529bfc521f31eb3ce2f811dff030d8e09f8",
+  "uncoveredPaths": [],
+  "coverageSource": "mixed",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/reviews/turns/T-027/R-02.json",
+        "id": "T-027/R-02",
+        "sha256": "827eab81d0890f4cacb2276b1a058eee2bd21707bb0f0f95e0f18430ae984e10"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/reviews/turns/T-027/R-02.json",
+        "id": "T-027/R-02",
+        "sha256": "827eab81d0890f4cacb2276b1a058eee2bd21707bb0f0f95e0f18430ae984e10"
+      }
+    },
+    "historical": true
+  }
+}

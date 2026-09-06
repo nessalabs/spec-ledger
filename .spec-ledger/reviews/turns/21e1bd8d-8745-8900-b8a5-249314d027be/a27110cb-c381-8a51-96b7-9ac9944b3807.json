@@ -1,0 +1,43 @@
+{
+  "id": "a27110cb-c381-8a51-96b7-9ac9944b3807",
+  "workstreamId": "351e54ea-60e4-8384-826f-0616eaa89599",
+  "kind": "adversarial",
+  "target": "code",
+  "reviewer": "agent:turn-evidence-breaker",
+  "verdict": "approve",
+  "blocking": false,
+  "plainSummary": "Saved tests can be inspected and rerun while stale inputs, unsafe paths and uncertain retries stay guarded.",
+  "summary": "Independent review of final saved-check worker, shared application/CLI/MCP interfaces, narrow local bridge, metadata and UI. Executed 20 core adversarial tests (including eight new saved-check killers) and three rendered/UI interaction tests. Former evidence/runs symlink escape reproduced red, then same unchanged killer passed after all destination ancestors were confined before dispatch and final writes. Source changes during execution produce missing; stale displayed input rejects before worker; overlapping requests reject while same request reuses identity; 200KB stdout/stderr are drained with32KiB captures and integrity hashes; nonzero exit retains diagnostics; actual worker timeout/SIGKILL path confirms owned command termination before guard release (only120000ms timer compressed75ms). Local invalid origin/token/private cwd/oversize requests cause no run. UI source/log text escapes markup and uncertain409 reconnect retains request identity. Reviewed retry previousRunId and capturedBytes provenance. Repaired prior collector killer to wait for observed owned-process exit rather than assume150ms, preserving host survival and emitfalse assertions. Root reports production UI build/typecheck passed; final broad suite and explicit claim run are still pending and are not claimed by this review.",
+  "treeDigest": "d0615467064d1e7014d522e61037f387213251c707769410b8af4be9be76fa9c",
+  "killersCited": [
+    "packages/ledger/src/verify/saved-check.break.test.ts: symlinked receipt directory cannot receive check writes outside the checkout",
+    "packages/ledger/src/verify/saved-check.break.test.ts: source changes during a saved check cannot produce a passing outcome",
+    "packages/ledger/src/verify/saved-check.break.test.ts: overlapping new requests are rejected while retry returns the original identity",
+    "packages/ledger/src/verify/saved-check.break.test.ts: timeout terminates the owned command before releasing the guard and records signal",
+    "packages/ui/lib/check-evidence.test.mjs: uncertain HTTP response reconnects with the same request identity"
+  ],
+  "findings": [],
+  "residualRisks": [
+    "Saved repository shell commands execute with host privileges; this feature is not a sandbox for malicious repository code.",
+    "Ambiguous worker termination intentionally retains its execution guard and does not silently retry.",
+    "Timeout test compresses only the timer duration while exercising real subprocess termination; it is not a120-second wall-clock soak.",
+    "Historical discarded logs cannot be reconstructed; authored inputs/expectations remain descriptions rather than reporter-produced assertion results."
+  ],
+  "schemaVersion": 1,
+  "turnId": "21e1bd8d-8745-8900-b8a5-249314d027be",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/reviews/turns/T-038/R-01.json",
+        "id": "T-038/R-01",
+        "sha256": "2b3a7feaaca5c0dd2c384add7b145894384e1a1b670b8684933688db65db0617"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/reviews/turns/T-038/R-01.json",
+        "id": "T-038/R-01",
+        "sha256": "2b3a7feaaca5c0dd2c384add7b145894384e1a1b670b8684933688db65db0617"
+      }
+    },
+    "historical": true
+  }
+}

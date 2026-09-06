@@ -1,6 +1,0 @@
-{
-  "id": "b-sl-002",
-  "claimId": "SL-002",
-  "kind": "check",
-  "locator": { "type": "path", "path": "schemas/binding.json" }
-}

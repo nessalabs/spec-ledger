@@ -7,7 +7,7 @@
   "outcome": "succeeded",
   "result": {
     "schemaVersion": 1,
-    "id": "T-051",
+    "id": "ee4292d1-b9ee-8e3e-8a5a-57cf6155baf3",
     "status": "closed",
     "openedAt": "2026-09-06T08:05:13.725Z",
     "opened": {
@@ -16,8 +16,8 @@
       "treeDigest": "c9761aa9bd002b5641166c9d2928d4d7841c2172254d871d2f2c429c3f0a1739",
       "dirtyAtOpen": [],
       "contextDigest": "059b739f8553561d8a20a00557d2f371fc9a8f6b5315928702b84b98c8620e82",
-      "contextWorkstreamId": "W-014",
-      "contextSliceId": "SLC-02",
+      "contextWorkstreamId": "ef172105-4f40-8bbb-8abe-d1cd11ae618a",
+      "contextSliceId": "ef669c8c-b701-85d9-b2da-638757fed84e",
       "contextSealRevision": 1,
       "contextGeneratedAt": "2026-09-06T08:05:13.725Z"
     },
@@ -26,8 +26,8 @@
       "restatedGoal": "Stop the packaged test server after each run",
       "changeType": "fix",
       "riskLevel": "moderate",
-      "workstreamId": "W-014",
-      "sliceId": "SLC-02",
+      "workstreamId": "ef172105-4f40-8bbb-8abe-d1cd11ae618a",
+      "sliceId": "ef669c8c-b701-85d9-b2da-638757fed84e",
       "featureIds": [
         "client",
         "cli",
@@ -40,19 +40,19 @@
       "commit": "31d980d9a545ff03a1383bc486441324ebf4b6f4",
       "files": [
         {
-          "path": ".spec-ledger/decisions/T-051/D-01.json",
+          "path": ".spec-ledger/decisions/ee4292d1-b9ee-8e3e-8a5a-57cf6155baf3/616c0399-16a9-8ce4-9614-e7cba439f42b.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/decisions/T-051/D-02.json",
+          "path": ".spec-ledger/decisions/ee4292d1-b9ee-8e3e-8a5a-57cf6155baf3/cdb0c983-7f00-8672-8aea-aefbbd1fa0c5.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/decisions/T-051/D-03.json",
+          "path": ".spec-ledger/decisions/ee4292d1-b9ee-8e3e-8a5a-57cf6155baf3/27c13e24-8307-820e-a41c-a73af44e5498.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
@@ -634,31 +634,31 @@
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/reviews/turns/T-051/R-01.json",
+          "path": ".spec-ledger/reviews/turns/ee4292d1-b9ee-8e3e-8a5a-57cf6155baf3/3925ff19-5261-8a33-baae-049921232a51.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/reviews/turns/T-051/R-02.json",
+          "path": ".spec-ledger/reviews/turns/ee4292d1-b9ee-8e3e-8a5a-57cf6155baf3/50471349-96c0-87b8-8d88-c4a4b05afdaf.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/reviews/turns/T-051/R-03.json",
+          "path": ".spec-ledger/reviews/turns/ee4292d1-b9ee-8e3e-8a5a-57cf6155baf3/8f9167ca-f843-8641-abc1-388bdb3f8ad7.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/turns/T-051.json",
+          "path": ".spec-ledger/turns/ee4292d1-b9ee-8e3e-8a5a-57cf6155baf3.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/workstreams/W-014.json",
+          "path": ".spec-ledger/workstreams/ef172105-4f40-8bbb-8abe-d1cd11ae618a.json",
           "kind": "modified",
           "additions": 4,
           "deletions": 4
@@ -699,9 +699,9 @@
       },
       "schemaSurfaceChanged": false,
       "decisionIds": [
-        "T-051/D-01",
-        "T-051/D-02",
-        "T-051/D-03"
+        "616c0399-16a9-8ce4-9614-e7cba439f42b",
+        "cdb0c983-7f00-8672-8aea-aefbbd1fa0c5",
+        "27c13e24-8307-820e-a41c-a73af44e5498"
       ],
       "decisionsDigest": "50922a861c360cadeacfaae202569a3a9d5a9d62ce8f45e2aaf461c81b026678",
       "reviewsDigest": "e248244b9ee1f9556de8a603362e3369ab9be57c54f3fcdea106c75617903bae"

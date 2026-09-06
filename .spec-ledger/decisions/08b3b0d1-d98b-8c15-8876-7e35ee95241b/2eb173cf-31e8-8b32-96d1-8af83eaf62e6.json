@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "turnId": "08b3b0d1-d98b-8c15-8876-7e35ee95241b",
+  "decision": "Use a local browser approval adapter and show approval controls only when a decision is needed.",
+  "rationale": "User requested direct saved approval, Nessa UI dropdowns, removal of duplicate overview, and consistent Spec Ledger UI naming.",
+  "discovery": {
+    "kind": "spec-gap",
+    "reportedVia": "user",
+    "observation": "CLI handoff and repeated prompts did not match the desired local UI workflow.",
+    "specRef": "a32f3451-1b3d-8abf-bf0e-607ebf6e1a88/AC-08",
+    "regression": "Local approval adapter adversarial tests and browser persistence walkthrough."
+  },
+  "id": "2eb173cf-31e8-8b32-96d1-8af83eaf62e6",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/decisions/T-032/D-01.json",
+        "id": "T-032/D-01",
+        "sha256": "c329c1c3c938a822adfca30a8ae0605aa6f52c873cce60ffe6027ec12ffaa290"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/decisions/T-032/D-01.json",
+        "id": "T-032/D-01",
+        "sha256": "c329c1c3c938a822adfca30a8ae0605aa6f52c873cce60ffe6027ec12ffaa290"
+      }
+    },
+    "historical": true
+  },
+  "sequence": 1
+}

@@ -24,18 +24,21 @@ for (const surface of ['cli','mcp']) test(`${surface} boundary: library retries 
  const meta=()=>({requestId:randomUUID(),actor:'breaker:person',reason:'Check saved workflows'})
  try {
   const options=await invoke('get_workflow_library_options',{})
-  const profile=options.defaultProfile, input={...meta(),profile}
+  let profile=options.defaultProfile
+  const {id:templateId,...newProfile}=profile;void templateId
+  const input={...meta(),profile:newProfile}
   assert.deepEqual(profile,JSON.parse(JSON.stringify(libraryTemplate(root))))
   await invoke('preview_workflow_profile',{profile})
   assert.equal((await call('preview_workflow_profile',{profile:{...profile,stages:[]}})).ok,false)
   assert.deepEqual((await invoke('list_workflow_profiles',{})).entries,[])
   const saved=await invoke('save_workflow_profile',input)
   assert.deepEqual(await invoke('save_workflow_profile',input),saved)
-  writeFileSync(join(root,'.spec-ledger/workstreams/W-001.json'),JSON.stringify({schemaVersion:1,id:'W-001',status:'shaped',title:'Preview target',createdAt:'2026-01-01T00:00:00.000Z',problem:'p',objective:'o',featureIds:[],acceptanceCriteria:['One','Two'],policy:{requireSpecBreak:false,requireCodeBreak:false}}))
-  const preview=await invoke('preview_workflow',{workstreamId:'W-001',profileId:profile.id})
+  profile={id:saved.value.id,title:saved.value.title,skills:saved.value.skills,stages:saved.value.stages}
+  writeFileSync(join(root,'.spec-ledger/workstreams/2b74bc14-227a-5c05-b2ed-1c32d9703cad.json'),JSON.stringify({schemaVersion:1,id:'2b74bc14-227a-5c05-b2ed-1c32d9703cad',status:'shaped',title:'Preview target',createdAt:'2026-01-01T00:00:00.000Z',problem:'p',objective:'o',featureIds:[],acceptanceCriteria:['One','Two'],policy:{requireSpecBreak:false,requireCodeBreak:false}}))
+  const preview=await invoke('preview_workflow',{workstreamId:'2b74bc14-227a-5c05-b2ed-1c32d9703cad',profileId:profile.id})
   assert.equal(preview.profile.source,'library');assert.equal(preview.profile.profileDigest,saved.value.digest)
   assert.deepEqual(preview.stages.find((s:any)=>s.role==='verify').steps[0].outputs[0].criterionIds,['AC-1','AC-2'])
-  assert.equal((await call('preview_workflow',{workstreamId:'W-001',profileId:profile.id,profile})).ok,false)
+  assert.equal((await call('preview_workflow',{workstreamId:'2b74bc14-227a-5c05-b2ed-1c32d9703cad',profileId:profile.id,profile})).ok,false)
   assert.equal((await call('save_workflow_profile',{...meta(),profile})).ok,false)
   const initial=await invoke('list_workflow_profiles',{})
   await invoke('set_default_workflow_profile',{...meta(),profileId:profile.id,expectedDigest:initial.default.digest})

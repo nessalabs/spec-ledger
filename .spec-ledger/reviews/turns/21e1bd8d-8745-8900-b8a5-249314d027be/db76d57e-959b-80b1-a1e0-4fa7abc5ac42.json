@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "db76d57e-959b-80b1-a1e0-4fa7abc5ac42",
+  "turnId": "21e1bd8d-8745-8900-b8a5-249314d027be",
+  "workstreamId": "351e54ea-60e4-8384-826f-0616eaa89599",
+  "kind": "human",
+  "target": "code",
+  "reviewer": "agent:align",
+  "verdict": "approve",
+  "summary": "User requested test type, source, inputs and actual output with Run again; the preserved plan covers shared core, CLI/MCP, local UI bridge, client/server reads and schemas. All 25 product paths are covered.",
+  "plainSummary": "The requested test inspection and explicit rerun feature covers all changed product files.",
+  "treeDigest": "d0615467064d1e7014d522e61037f387213251c707769410b8af4be9be76fa9c",
+  "uncoveredPaths": [],
+  "coverageSource": "mixed",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/reviews/turns/T-038/R-02.json",
+        "id": "T-038/R-02",
+        "sha256": "bf605dae35b1164f5d09315653d7fc034311612e1b890dc8d165537429869443"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/reviews/turns/T-038/R-02.json",
+        "id": "T-038/R-02",
+        "sha256": "bf605dae35b1164f5d09315653d7fc034311612e1b890dc8d165537429869443"
+      }
+    },
+    "historical": true
+  }
+}

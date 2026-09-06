@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "requestId": "579f306c-9e40-474d-9484-e777acc08a75",
+  "operation": "record_permission",
+  "inputDigest": "9e5b3da8a09f071c01fd3a82dba990631190f660c1bc3860513983c0d61c8b67",
+  "finishedAt": "2026-09-06T20:49:03.826Z",
+  "outcome": "succeeded",
+  "result": {
+    "action": "grant",
+    "mode": "request",
+    "workstreamId": "58acbc36-d5d8-450b-b955-a83e656a6e86",
+    "featureIds": [
+      "lattice",
+      "turns",
+      "verify"
+    ],
+    "source": {
+      "kind": "agent-reported",
+      "reference": "User requests fixing the 100% progress bar to reflect all unfinished completion tasks, continuing the existing UI and PR work."
+    },
+    "id": "97bd74bc-5717-4c0c-8164-27335ba83f22",
+    "schemaVersion": 1,
+    "createdAt": "2026-09-06T20:49:03.822Z"
+  }
+}

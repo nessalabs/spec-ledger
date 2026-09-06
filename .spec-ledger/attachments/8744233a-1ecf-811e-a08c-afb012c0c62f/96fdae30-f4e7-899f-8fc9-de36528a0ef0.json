@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "turnId": "8744233a-1ecf-811e-a08c-afb012c0c62f",
+  "kind": "log-excerpt",
+  "title": "Browser observations for session and UI regressions",
+  "mediaType": "text/markdown",
+  "path": "docs/workstreams/a32f3451-1b3d-8abf-bf0e-607ebf6e1a88-trustworthy-autonomous-coding/evidence/8744233a-1ecf-811e-a08c-afb012c0c62f/browser-check.md",
+  "contentDigest": "82182b41c9e2bac5c7eff878f8c370d4274d0228684be00aa808db1e3514be42",
+  "note": "Manual agent observations; additional breakpoint tests unavailable. Current source tied by turn review.",
+  "id": "96fdae30-f4e7-899f-8fc9-de36528a0ef0",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/attachments/T-031/A-01.json",
+        "id": "T-031/A-01",
+        "sha256": "0ccb909d33680b318c6c17dc8ec8c37f675bb79cdbb13321fde9323031eb75f0"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/attachments/T-031/A-01.json",
+        "id": "T-031/A-01",
+        "sha256": "0ccb909d33680b318c6c17dc8ec8c37f675bb79cdbb13321fde9323031eb75f0"
+      }
+    },
+    "historical": true
+  }
+}

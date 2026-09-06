@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "turnId": "ee4292d1-b9ee-8e3e-8a5a-57cf6155baf3",
+  "decision": "Workflow requirements remain implemented; the packaging test now owns and terminates its installed server and uses an isolated port. Independent review 8f9167ca-f843-8641-abc1-388bdb3f8ad7 confirms two passing packaging runs and 63 workflow regressions.",
+  "rationale": "Agent-reported progress; evidence is evaluated separately.",
+  "progress": {
+    "criterionIds": [
+      "11519a1a-0d18-889b-8422-9bb8accc4483/AC-1",
+      "11519a1a-0d18-889b-8422-9bb8accc4483/AC-2",
+      "11519a1a-0d18-889b-8422-9bb8accc4483/AC-3",
+      "11519a1a-0d18-889b-8422-9bb8accc4483/AC-4",
+      "11519a1a-0d18-889b-8422-9bb8accc4483/AC-5",
+      "11519a1a-0d18-889b-8422-9bb8accc4483/AC-6",
+      "11519a1a-0d18-889b-8422-9bb8accc4483/AC-7",
+      "ef669c8c-b701-85d9-b2da-638757fed84e/AC-1",
+      "ef669c8c-b701-85d9-b2da-638757fed84e/AC-2",
+      "ef669c8c-b701-85d9-b2da-638757fed84e/AC-3",
+      "ef669c8c-b701-85d9-b2da-638757fed84e/AC-4",
+      "ef669c8c-b701-85d9-b2da-638757fed84e/AC-5",
+      "ef669c8c-b701-85d9-b2da-638757fed84e/AC-6",
+      "b37364e8-36d3-8901-a879-3a6e32f21210/AC-1",
+      "b37364e8-36d3-8901-a879-3a6e32f21210/AC-2",
+      "b37364e8-36d3-8901-a879-3a6e32f21210/AC-3",
+      "b37364e8-36d3-8901-a879-3a6e32f21210/AC-4"
+    ],
+    "implemented": true,
+    "revisionDigest": "0dab67a31f295e21fac35419b36da2e7198798fa14ebedcae416d350ff34dc02",
+    "sourceDigest": "7b5255fade858f944617f2fc83523c7d685a5929a42a8a1d8c544cb66cf4d350"
+  },
+  "id": "27c13e24-8307-820e-a41c-a73af44e5498",
+  "migration": {
+    "origins": {
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/decisions/T-051/D-03.json",
+        "id": "T-051/D-03",
+        "sha256": "256088c7dcfc6be127fdaedbb5410f746fc73631e3450afb6bcbc149ab84be3b"
+      }
+    },
+    "historical": true
+  },
+  "sequence": 3
+}

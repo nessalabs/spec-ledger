@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "id": "dfb39021-e991-8c81-8b65-70c5f2e4f7b3",
+  "workstreamId": "d1be55a6-11bb-8460-8650-ddf0ecac8185",
+  "kind": "adversarial",
+  "target": "spec",
+  "reviewer": "agent:sl-plan-break-spec",
+  "verdict": "approve",
+  "blocking": false,
+  "alertOnSeverity": "high",
+  "summary": "Re-break after PO amend: remove dogfood grandfather soft-skip; generic consumer rule. Related: features=6 (cli/verify/client/server/lattice/turns), claims=7 (67609c19-de05-862c-8db7-e5dc95f38cee..004/006..008), 628207d3-7b88-880b-abe1-acd523f8572f..019, docs=16 (incl. consumer-cli + work-model), worktreeCautions=caution-only string. Pitch + d1be55a6-11bb-8460-8650-ddf0ecac8185 AC/520ff720-fc13-8275-b710-f677f8d2efb4 + 1f1b46eb-ad28-8870-b46d-9826d55aaa1c + outOfScope agree: last expected = latest postSealAmends.afterDocDigest else seal.specDocDigest; sealed+specPath+no expected → check-seal + audit ERROR spec-doc-digest-missing; remediation workstream backfill-doc-digest writes NEW seals/N.json revision with specDocDigest from current bytes (never mutate old); amend requires expected digest already (else point to backfill); no-op refuse + never mutate seal.specDocDigest; seal-digest-drift ERROR. Dogfood 3317ada5-b347-894e-8c88-110b7b42d58b..004 already show that upgrade shape (new revisions + specDocDigest). SR-04 F-grandfather-noop cleared — stamp path is backfill CLI, not amend-before===after. Prior SR-02/03 highs on init/UI/pack/publish remain intact. No alert-threshold findings.",
+  "plainSummary": "The digest rules are consumer-generic and fail closed; missing digests need a new seal stamp, and this bet is clear enough to seal.",
+  "resolvesReviewId": "5b790a52-349d-8536-9122-fab870709c14",
+  "resolvesFindingIds": [
+    "5b790a52-349d-8536-9122-fab870709c14#ae3fe53f-43db-89cb-bcbb-f03d6c839787",
+    "5b790a52-349d-8536-9122-fab870709c14#0c337939-f82c-86c2-93ad-279874d6b310"
+  ],
+  "supersedesReviewId": "5b790a52-349d-8536-9122-fab870709c14",
+  "residualRisks": [
+    "backfill stamps current Markdown bytes as sealed truth without an amend row — intentional upgrade tradeoff; silent drift after a digest exists still fails",
+    "work-model.md seal shape and schemas/workstream.json lack specDocDigest / beforeDocDigest / afterDocDigest until 520ff720-fc13-8275-b710-f677f8d2efb4 (expectedPaths cover them)",
+    "UTF-8 / line-ending sensitivity of sha256(utf8 file bytes)",
+    "humanConfirmed:true whenever --by is set trusts the caller — process, not a seal blocker",
+    "## Modifications is human convention only (not audited)",
+    "Graph feature cli.claimIds empty until PC→SL promote",
+    "worktree scan caution-only — not a seal blocker",
+    "Proposed killers: K-init-table, K-init-reinit, K-init-no-pass, K-pack-ledger-bin, K-pack-no-workspace, K-ui-asset-no-file-deps, K-publish-yml-triggers, K-version-tag-match, K-seal-specdoc-digest, K-check-seal-doc-last-expected, K-check-seal-doc-missing-error, K-backfill-doc-digest-new-revision, K-amend-requires-expected, K-amend-before-after-noop, K-amend-sealed-only, K-audit-spec-doc-missing-error, K-audit-spec-doc-drift-error, K-audit-seal-digest-drift-error"
+  ],
+  "findings": [
+    {
+      "id": "a0e4aa83-725c-8547-aa75-03b2b3c5702e",
+      "severity": "low",
+      "gap": "Spec-break approve only — human must seal d1be55a6-11bb-8460-8650-ddf0ecac8185 (specDigest + sealedBy + seal.specDocDigest on the pitch) before sl-dev-build. Agent must not seal.",
+      "plainImpact": "Until a human seals, builders must not treat this bet as approved to implement.",
+      "fixProposal": "Human reads pitch + 628207d3-7b88-880b-abe1-acd523f8572f..019 + SR-05, then seals via workstream seal CLI with specBreakReviewId dfb39021-e991-8c81-8b65-70c5f2e4f7b3.",
+      "evidencePath": ".spec-ledger/workstreams/d1be55a6-11bb-8460-8650-ddf0ecac8185.json"
+    }
+  ],
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/reviews/workstreams/W-005/SR-05.json",
+        "id": "W-005/SR-05",
+        "sha256": "4e107d7df552028589f5bb351c52177c78f407871465c7fc237f49d80b6f8588"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/reviews/workstreams/W-005/SR-05.json",
+        "id": "W-005/SR-05",
+        "sha256": "4e107d7df552028589f5bb351c52177c78f407871465c7fc237f49d80b6f8588"
+      }
+    },
+    "historical": true
+  }
+}

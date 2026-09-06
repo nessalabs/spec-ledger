@@ -5,7 +5,7 @@ description: Implement an authorized Spec Ledger workstream while recording mean
 
 # Work
 
-Start with `spec-ledger work --workstream W-NNN --slice SLC-NN --goal 'User-visible outcome'`. The writer checks permission, prepares an executable spec snapshot, activates applicable deferrals, and stamps context. Then read `spec-ledger context --workstream W-NNN --slice SLC-NN --json` and [cheap-to-change](../references/cheap-to-change.md).
+Start with `spec-ledger work --workstream <workstream-uuid> --slice <slice-uuid> --goal 'User-visible outcome'`. The writer checks permission, prepares an executable spec snapshot, activates applicable deferrals, and stamps context. Then read `spec-ledger context --workstream <workstream-uuid> --slice <slice-uuid> --json` and [cheap-to-change](../references/cheap-to-change.md).
 
 Read the effective method through `get_workflow`. For an explicitly selected method, begin the eligible step with `begin_workflow_step`, follow its preserved skill instructions and link the resulting records with `record_workflow_output`. Inspect missing outputs before moving on. A reported attempt does not satisfy a step without its required current outputs; see [engineering methods](../../docs/architecture/workflows.md).
 

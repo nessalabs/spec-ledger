@@ -1,0 +1,19 @@
+{
+  "id": "2456326e-b918-84bc-a5cb-ac1fd3b8aaf2",
+  "kind": "invariant",
+  "statement": "A way of working saved under a name in the project can be applied to any spec by name, and that spec records which saved workflow and which version it copied.",
+  "required": true,
+  "links": [
+    "docs/workstreams/ef172105-4f40-8bbb-8abe-d1cd11ae618a-named-workflows/spec.md"
+  ],
+  "migration": {
+    "origins": {
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/claims/SL-032.json",
+        "id": "SL-032",
+        "sha256": "ba3017e95b02f3c08406c0126aa85ea9dd0974aafead6e226a30707bb9720192"
+      }
+    },
+    "historical": true
+  }
+}

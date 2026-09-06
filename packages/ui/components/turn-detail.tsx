@@ -1,3 +1,5 @@
+
+import { ReadableText } from "@/components/readable-text"
 import { TurnEvidence } from "@/components/turn-evidence"
 import { presentationCopy } from "@/lib/features"
 import { featureHref, featureLabel, featureSlug } from "@/lib/features"
@@ -36,6 +38,7 @@ import {
 } from "@/lib/impact"
 import type { CommitInfo } from "@/lib/git"
 import { turnFreshness } from "@/lib/turns"
+import { isFixup } from "@/lib/workstream-list"
 
 export type RelatedDoc = {
   path: string
@@ -89,17 +92,18 @@ export function TurnSummaryCard({
     <div className="rounded-lg border border-border/80 px-3 py-2.5">
       <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
         <div className="flex min-w-0 flex-1 flex-wrap items-center gap-2">
+          {isFixup(turn) && <Badge variant="outline" className="text-[10px]">Fixup</Badge>}
           {wsId ? (
             <Link
               href={`/workstreams/${encodeURIComponent(wsId)}`}
-              title={workstreamTitle ?? wsId}
+              title="Open related spec"
               className="no-underline"
             >
               <Badge
                 variant="outline"
                 className="font-mono text-[10px] font-normal"
               >
-                {wsId}
+                <ReadableText>{workstreamTitle ?? wsId}</ReadableText>
               </Badge>
             </Link>
           ) : null}
@@ -107,14 +111,14 @@ export function TurnSummaryCard({
             href={`/turns/${turn.id}`}
             className="min-w-0 flex-1 text-sm font-medium leading-snug text-foreground no-underline hover:underline"
           >
-            {presentationCopy(turn.intent.restatedGoal)}
+            <ReadableText>{presentationCopy(turn.intent.restatedGoal)}</ReadableText>
           </Link>
         </div>
         <span className="shrink-0 text-[11px] text-muted-foreground">{when}</span>
       </div>
       <p className="mt-1 text-[11px] text-muted-foreground">
         {humanStatus(turn.status)}
-        {turn.intent.changeType ? ` · ${turn.intent.changeType}` : ""}
+        {turn.intent.changeType ? ` · ${isFixup(turn) ? "Fixup" : turn.intent.changeType}` : ""}
         {` · ${fileBit}`}
         {areas ? ` · ${areas}` : ""}
         {freshness === "stale" ? " · verify outdated" : ""}
@@ -192,13 +196,13 @@ export function TurnDetail({
                 href={`/workstreams/${encodeURIComponent(turn.intent.workstreamId)}`}
                 className="no-underline hover:underline"
               >
-                {presentationCopy(workstream?.title ?? turn.intent.workstreamId)}
+                <ReadableText>{presentationCopy(workstream?.title ?? turn.intent.workstreamId)}</ReadableText>
               </Link>
             </>
           ) : null}
         </p>
         <h1 className="max-w-3xl text-2xl font-semibold tracking-tight">
-          {presentationCopy(turn.intent.restatedGoal)}
+          <ReadableText>{presentationCopy(turn.intent.restatedGoal)}</ReadableText>
         </h1>
         <div className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
           <span>{turn.status === "closed" ? "Change recorded" : humanStatus(turn.status)}</span>
@@ -207,10 +211,10 @@ export function TurnDetail({
           {turn.intent.changeType ? (
             <>
               <span aria-hidden>·</span>
-              <span className="capitalize">{turn.intent.changeType}</span>
+              <span className="capitalize">{isFixup(turn) ? "Fixup" : turn.intent.changeType}</span>
             </>
           ) : null}
-          <span className="font-mono text-xs text-muted-foreground/70">{turn.id}</span>
+
         </div>
         {freshness === "stale" ? (
           <p className="rounded-md border border-amber-500/30 bg-amber-500/5 px-3 py-2 text-sm text-amber-700 dark:text-amber-200/90">
@@ -224,6 +228,19 @@ export function TurnDetail({
         ) : null}
       </header>
 
+      {isFixup(turn) && <section aria-label="Fixup request" className="space-y-3 rounded-xl border border-border p-4 sm:p-5">
+        <div className="flex flex-wrap items-center gap-2">
+          <Badge variant="outline">Fixup</Badge>
+          <p className="text-sm">Correction to <Link href={`/workstreams/${turn.intent.workstreamId}`} className="underline underline-offset-4"><ReadableText>{workstream?.title ?? "the owning spec"}</ReadableText></Link></p>
+        </div>
+        <h2 className="text-sm font-semibold">Requested correction</h2>
+        <p className="whitespace-pre-wrap text-sm leading-relaxed"><ReadableText>{turn.intent.userPrompt}</ReadableText></p>
+        {episode?.decisions.filter(decision => decision.discovery).map(decision => <div key={decision.id} className="space-y-1 text-sm text-muted-foreground">
+          <p><ReadableText>{decision.discovery!.observation}</ReadableText></p>
+          {decision.discovery?.cause && <p><ReadableText>{decision.discovery.cause}</ReadableText></p>}
+        </div>)}
+      </section>}
+
       {evidence ? <TurnEvidence initial={evidence} turn={turn} /> : <p>No evidence is linked to this change yet.</p>}
 
       {flows.length > 0 ? (
@@ -232,9 +249,9 @@ export function TurnDetail({
           {flows.map((flow) => (
             <Card key={flow.id}>
               <CardHeader>
-                <CardTitle className="text-base">{presentationCopy(flow.title)}</CardTitle>
+                <CardTitle className="text-base"><ReadableText>{presentationCopy(flow.title)}</ReadableText></CardTitle>
                 {flow.narrative ? (
-                  <CardDescription>{presentationCopy(flow.narrative)}</CardDescription>
+                  <CardDescription><ReadableText>{presentationCopy(flow.narrative)}</ReadableText></CardDescription>
                 ) : null}
               </CardHeader>
               <CardContent className="space-y-4">
@@ -266,7 +283,7 @@ export function TurnDetail({
           <Card>
             <CardHeader className="gap-1">
               <CardTitle className="text-base font-medium leading-snug">
-                {presentationCopy(commit.subject)}
+                <ReadableText>{presentationCopy(commit.subject)}</ReadableText>
               </CardTitle>
               <CardDescription className="font-mono text-[11px]">
                 {commit.short}
@@ -318,8 +335,8 @@ export function TurnDetail({
                   key={d.id}
                   className="rounded-lg border border-border px-3 py-2 text-sm"
                 >
-                  <p className="font-medium">{d.decision}</p>
-                  <p className="text-muted-foreground">{d.rationale}</p>
+                  <p className="font-medium"><ReadableText>{d.decision}</ReadableText></p>
+                  <p className="text-muted-foreground"><ReadableText>{d.rationale}</ReadableText></p>
                 </div>
               ))}
             </div>
@@ -366,8 +383,8 @@ export function TurnDetail({
             ) : null}
             {turn.intent.decisions?.map((d) => (
               <div key={d.decision}>
-                <p className="font-medium">{d.decision}</p>
-                <p className="text-muted-foreground">{d.rationale}</p>
+                <p className="font-medium"><ReadableText>{d.decision}</ReadableText></p>
+                <p className="text-muted-foreground"><ReadableText>{d.rationale}</ReadableText></p>
               </div>
             ))}
           </div>
@@ -419,10 +436,7 @@ export function TurnDetail({
                   href={`/workstreams/${encodeURIComponent(workstream.id)}`}
                   className="text-sm hover:underline"
                 >
-                  {presentationCopy(workstream.title)}{" "}
-                  <span className="font-mono text-[11px] text-muted-foreground">
-                    {workstream.id}
-                  </span>
+                  <ReadableText>{presentationCopy(workstream.title)}</ReadableText>
                 </Link>
               </div>
             ) : null}
@@ -494,11 +508,11 @@ function ChipRow({
   if (!ids.length) return null
   return (
     <div>
-      <h3 className="mb-1.5 text-xs font-medium text-muted-foreground">{label}</h3>
+      <h3 className="mb-1.5 text-xs font-medium text-muted-foreground"><ReadableText>{label}</ReadableText></h3>
       <div className="flex flex-wrap gap-2">
         {ids.map((id) => (
           <Link key={id} href={`${hrefPrefix}/${encodeURIComponent(id)}`}>
-            <Badge variant="secondary">{id}</Badge>
+            <Badge variant="secondary"><ReadableText fallback="Related requirement">{id}</ReadableText></Badge>
           </Link>
         ))}
       </div>
@@ -513,7 +527,7 @@ function ReviewCard({ review }: { review: EpisodeReview }) {
   return (
     <div className="rounded-lg border border-border px-3 py-3 text-sm">
       <div className="flex flex-wrap items-center gap-2">
-        <span className="font-mono text-[11px] text-muted-foreground">{review.id}</span>
+
         <Badge variant="outline">{review.verdict}</Badge>
         {review.target ? (
           <Badge variant="secondary">{review.target}</Badge>
@@ -529,11 +543,11 @@ function ReviewCard({ review }: { review: EpisodeReview }) {
       {headline ? (
         <p className="mt-2 text-foreground">{headline}</p>
       ) : (
-        <p className="mt-2 text-muted-foreground">{presentationCopy(review.summary)}</p>
+        <p className="mt-2 text-muted-foreground"><ReadableText>{presentationCopy(review.summary)}</ReadableText></p>
       )}
       {review.resolvesReviewId ? (
         <p className="mt-1 text-[11px] text-muted-foreground">
-          Resolves {review.resolvesReviewId}
+          Resolves an earlier review
         </p>
       ) : null}
       {findings.length ? (
@@ -544,7 +558,7 @@ function ReviewCard({ review }: { review: EpisodeReview }) {
             return (
               <li key={f.id} className="space-y-1">
                 <div className="flex flex-wrap items-center gap-2">
-                  <span className="font-mono text-[11px]">{f.id}</span>
+
                   <Badge variant="outline">{f.severity}</Badge>
                 </div>
                 {impact ? (
@@ -575,7 +589,7 @@ function ReviewCard({ review }: { review: EpisodeReview }) {
             {killers.length ? ` · ${killers.length} killers` : ""}
           </summary>
           {headline ? (
-            <p className="mt-2 text-xs text-muted-foreground">{presentationCopy(review.summary)}</p>
+            <p className="mt-2 text-xs text-muted-foreground"><ReadableText>{presentationCopy(review.summary)}</ReadableText></p>
           ) : null}
           {killers.length ? (
             <ul className="mt-1 list-disc space-y-0.5 pl-5 font-mono text-[11px] text-muted-foreground">

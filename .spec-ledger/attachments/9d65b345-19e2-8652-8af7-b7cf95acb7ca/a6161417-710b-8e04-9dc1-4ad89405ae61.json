@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "turnId": "9d65b345-19e2-8652-8af7-b7cf95acb7ca",
+  "path": "docs/workstreams/11788af6-4cbe-834d-9993-8ee534b22b94-simple-feature-view/evidence/9d65b345-19e2-8652-8af7-b7cf95acb7ca/regression-tests.txt",
+  "kind": "log-excerpt",
+  "title": "UI regression results",
+  "mediaType": "text/plain",
+  "id": "a6161417-710b-8e04-9dc1-4ad89405ae61",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/attachments/T-042/A-03.json",
+        "id": "T-042/A-03",
+        "sha256": "aa9ac27c6da61d79383b15ed72f0e7bb78414f92534e94ad0ed4099370c9bb3e"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/attachments/T-042/A-03.json",
+        "id": "T-042/A-03",
+        "sha256": "aa9ac27c6da61d79383b15ed72f0e7bb78414f92534e94ad0ed4099370c9bb3e"
+      }
+    },
+    "historical": true
+  }
+}

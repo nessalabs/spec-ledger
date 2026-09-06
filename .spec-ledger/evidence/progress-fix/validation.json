@@ -1,0 +1,36 @@
+{
+  "turnId": "259b685b-1331-4088-a691-d3fa16e57424",
+  "sourceDigest": "b860fecaf0f21d922057b248c6d86cf680df6dfc52020ef2f5047de2fbe1f450",
+  "checks": [
+    "pnpm -r build: pass",
+    "pnpm test: pass",
+    "pnpm --dir packages/ui build: pass",
+    "pnpm verify: 35 claims pass",
+    "pnpm ledger:audit: pass",
+    "pnpm ledger:align: 11 paths covered, zero uncovered",
+    "node scripts/verify-completed-audit.mjs: 54 criteria in eight workstreams",
+    "node --test packages/ui/lib/completed-audit*.test.mjs: 5 pass",
+    "Independent progress killers: 11 UI and 7 session tests pass"
+  ],
+  "browser": {
+    "reportedSpec": "eab32d2d-6c3c-84df-b831-9bcc13fd0152",
+    "observed": "Work progress 5/22 complete, 22%; Current checks 4/4 verified in the expanded details. Current implementation/reviews/screenshots remain incomplete.",
+    "mobileViewportWidth": 390,
+    "mobileDocumentWidth": 390,
+    "ariaValueNow": 22,
+    "historical": "Completed earlier with current readiness 5/19, 26%; no historical completion rewritten.",
+    "screenshots": [
+      "desktop.png",
+      "mobile.png",
+      "overview.png",
+      "historical.png"
+    ]
+  },
+  "provenance": {
+    "commit": "dbbfddd7b040aa462281bf6fe2f136961a4f19a8",
+    "ledgerDigest": "d2ff5bbc48bf5ade6042bf4e15b2905c9ecf44baff7012f0661fcd4ac5b0771e",
+    "resultsDigest": "add4c0ab21191e93a01d442c64829f89525707b61cca9a277475dd2956a147b5",
+    "treeHint": "/Users/nessa/.codex/worktrees/24db/spec-ledger",
+    "sourceDigest": "b860fecaf0f21d922057b248c6d86cf680df6dfc52020ef2f5047de2fbe1f450"
+  }
+}

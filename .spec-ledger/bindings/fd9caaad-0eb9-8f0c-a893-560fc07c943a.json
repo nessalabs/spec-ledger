@@ -1,0 +1,24 @@
+{
+  "id": "fd9caaad-0eb9-8f0c-a893-560fc07c943a",
+  "claimId": "f0309cdb-3ac5-8d55-a06a-f7b71e5c06ad",
+  "kind": "check",
+  "locator": {
+    "type": "path",
+    "path": "packages/ledger/src/turns/close.ts"
+  },
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/bindings/b-sl-006.json",
+        "id": "b-sl-006",
+        "sha256": "6845560412db061f103e6c4d9322632a047855c99ba696d37f8ffd881139183f"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/bindings/b-sl-006.json",
+        "id": "b-sl-006",
+        "sha256": "6845560412db061f103e6c4d9322632a047855c99ba696d37f8ffd881139183f"
+      }
+    },
+    "historical": true
+  }
+}

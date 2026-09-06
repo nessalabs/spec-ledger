@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "id": "1652e353-e3dc-8960-985b-35fbe40c1edb",
+  "status": "done",
+  "createdAt": "2026-09-04T23:12:10.552Z",
+  "title": "Review evidence in one place",
+  "featureIds": [
+    "lattice",
+    "verify",
+    "client"
+  ],
+  "primaryFeatureId": "lattice",
+  "specPath": "docs/workstreams/1652e353-e3dc-8960-985b-35fbe40c1edb-evidence-and-custom-workflows/spec.md",
+  "problem": "Evidence is hidden behind shipped history.",
+  "objective": "Review each requirement with its current evidence and propose customizable engineering workflows.",
+  "changeType": "feature",
+  "shapedBy": "agent:sl-plan-shape",
+  "policy": {
+    "requireSpecBreak": true,
+    "requireCodeBreak": true,
+    "requireAlignApprove": true,
+    "allowExplicitAlignSkip": true,
+    "onAlert": "block",
+    "onSealedSpecDeviation": "block"
+  },
+  "suggestedSlices": [
+    {
+      "id": "1cc99a13-3a0e-8451-a8b8-17e8d35a933d",
+      "title": "Read evidence beside requirements",
+      "kind": "vertical",
+      "acceptance": [
+        "Workstream evidence explains current verdicts, recorded checks, reviews and safe artifacts; custom workflows have a concrete proposal."
+      ],
+      "expectedPaths": [
+        "packages/ledger/src/**",
+        "packages/client/**",
+        "packages/ui/**",
+        "docs/**"
+      ],
+      "evidence": [
+        "unit",
+        "integration"
+      ],
+      "codeBreakReviewId": "3716869c-684f-8d5e-92f7-f75862c81e71"
+    }
+  ],
+  "specBreakReviewId": "d4d73a0d-9c4c-8eda-a210-429175c9d1fa",
+  "updatedAt": "2026-09-04T23:23:12.505Z",
+  "seal": {
+    "sealedAt": "2026-09-04T23:21:15.708Z",
+    "sealedBy": "agent:permission:7a81ffaf-80f0-8063-89e3-5ac9a630d44d",
+    "specDigest": "d2e679ecd54293401a03a32ba095f1d69d185068322f4da33f5384f557c9a05d",
+    "snapshotPath": "workstreams/1652e353-e3dc-8960-985b-35fbe40c1edb.seals/2.json",
+    "revision": 2,
+    "specDocDigest": "adb9123ba1e3fb5850385c851bff98131c6de545c77b553ea490f1f92f0cfeb6"
+  },
+  "acceptanceClaimIds": {
+    "1cc99a13-3a0e-8451-a8b8-17e8d35a933d/AC-1": [
+      "dd5caaee-dace-8f53-bff5-65b6a7646b6d"
+    ]
+  },
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/workstreams/W-007.json",
+        "id": "W-007",
+        "sha256": "88a179714b9e54ada7d319a7c1fea3f8097566696e2e04e14a51fa23638e4656"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/workstreams/W-007.json",
+        "id": "W-007",
+        "sha256": "88a179714b9e54ada7d319a7c1fea3f8097566696e2e04e14a51fa23638e4656"
+      }
+    },
+    "historical": true
+  }
+}

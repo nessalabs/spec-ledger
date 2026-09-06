@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "requestId": "6648e527-71d4-4bb1-aa61-9e953b3b4f95",
+  "operation": "record_screenshot",
+  "inputDigest": "71f34bff777a6f0b925ea23055824160bab26047182e03c6879dbc5b8e202fb8",
+  "finishedAt": "2026-09-06T18:18:34.869Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "id": "9fedc76e-bd7b-80e9-b2d3-d3587862233c",
+    "turnId": "da66d16d-d4e0-837e-a34b-fb7cec0d855d",
+    "kind": "image",
+    "title": "Missing screenshot guidance",
+    "path": ".spec-ledger/evidence/screenshots/da66d16d-d4e0-837e-a34b-fb7cec0d855d-missing.png",
+    "mediaType": "image/png",
+    "byteLength": 107775,
+    "contentDigest": "43906c8dcef140b297344e30aa2ac44b3ab58d57bf48fb76ba978d6a8280beb3",
+    "visualEvidence": {
+      "sliceId": "d67e07f2-7343-88d2-afeb-0fe6f3c8c377",
+      "surface": "Missing screenshot guidance",
+      "sourceDigest": "e1b00fc86c55eea046dfadb4e8e1cc3cceb2d916543549c9542441569460e6fd",
+      "revisionDigest": "1ff6ee182547ae8f2e982b3d76a17396e7ac970f2b5ac4a62019209c18f52143",
+      "recordedAt": "2026-09-06T18:18:34.868Z"
+    },
+    "note": "Recorded visual coverage; image adequacy is assessed in review."
+  }
+}

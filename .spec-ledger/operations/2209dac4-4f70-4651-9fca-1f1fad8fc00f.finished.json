@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "requestId": "2209dac4-4f70-4651-9fca-1f1fad8fc00f",
+  "operation": "record_screenshot",
+  "inputDigest": "cc3708493e2c6d63c82ad3db141d5a4bde5decfb997cc18274bf9e45d9e1f75e",
+  "finishedAt": "2026-09-06T21:58:04.791Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "id": "14f35ec4-f96d-4803-be54-4d1d1144fdca",
+    "turnId": "f649c404-7ab0-436a-8691-8662cd4a139d",
+    "kind": "image",
+    "title": "Spec Changes with identified fixups",
+    "path": ".spec-ledger/evidence/screenshots/discovery-fix/changes.png",
+    "mediaType": "image/png",
+    "byteLength": 125646,
+    "contentDigest": "9aa4f1d46364b596a3c8ba111cffd9aab496c6d1e0395cf0ee75ab79732dd01a",
+    "visualEvidence": {
+      "sliceId": "25eac677-2871-816d-956d-770bdcb61798",
+      "surface": "Spec Changes with identified fixups",
+      "sourceDigest": "7bd5f5b2dd8a1b5c3e7f20a70632596b99441887b4892e8617c871fbfa8cea98",
+      "revisionDigest": "a584acc3319d6700424703bddc1a76f38453c55b9f38d5926321a48842b476c1",
+      "recordedAt": "2026-09-06T21:58:04.790Z"
+    },
+    "note": "Recorded visual coverage; image adequacy is assessed in review."
+  }
+}

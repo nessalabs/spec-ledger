@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "requestId": "ab1831ad-03f0-45cf-a340-e5108dd84bec",
+  "operation": "record_screenshot",
+  "inputDigest": "62c43b0d43ee0ba006b9f56713bbbbf2a6f7115bd0299fe1987d545ea522ce7f",
+  "finishedAt": "2026-09-06T20:41:25.962Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "id": "d1a50e36-625c-493b-a1c5-fb28e4e68928",
+    "turnId": "e05efbb1-6f8f-4c55-9bca-f6698478b753",
+    "kind": "image",
+    "title": "UUID work details — mobile",
+    "path": ".spec-ledger/evidence/screenshots/titles-work-mobile-final.png",
+    "mediaType": "image/png",
+    "byteLength": 55210,
+    "contentDigest": "8e2f6f373a2cc341f8c68564d81f7330221a715ded448fcb95dc314865ed49f7",
+    "visualEvidence": {
+      "sliceId": "596b8830-61c6-887a-b6c3-9ae0561f2761",
+      "surface": "UUID work details — mobile",
+      "sourceDigest": "9cb69fbe142bdc23c828db8c97033f676cb8135735bc1b2fe4d4e01ac0812e05",
+      "revisionDigest": "4cc7f69286eb0f9161f84f0f1945fb6adbbad39ef04f13ac00f2b7c8e8f48937",
+      "recordedAt": "2026-09-06T20:41:25.962Z"
+    },
+    "note": "Recorded visual coverage; image adequacy is assessed in review."
+  }
+}

@@ -1,0 +1,44 @@
+✔ visual breaker: digest mismatch, remote paths, type mismatch and escaping symlinks never expose image bytes (1.867875ms)
+✔ visual breaker: per-image and shared image budgets are enforced across attachments (3.775625ms)
+✔ visual breaker: truncated image headers cannot be offered as valid previews (1.038333ms)
+✔ visual breaker: exhausted image budget still preserves bounded text findings (0.709458ms)
+✔ passive evidence render keeps authored expectations distinct and escapes test source (17.094541ms)
+✔ actual failures and tampered logs remain visible independently of a described expectation (0.945125ms)
+✔ uncertain HTTP response reconnects with the same request identity (5.7865ms)
+✔ discovery breaker: every workflow status partitions into the same active overview count and URL views (76.627541ms)
+✔ discovery breaker: pagination is bounded deterministic and invalid values cannot drop the selected view (8.743458ms)
+✔ discovery breaker: actual server page observes only selected rows and isolates failed or mismatched sessions (10.736958ms)
+✔ discovery breaker: typed fixups require exact ownership and exclude abandoned or keyword-only changes (5.531458ms)
+✔ discovery breaker: list rows preserve filter and paging links, unknown readiness and exact fixup targets (21.97525ms)
+✔ discovery breaker: fixup context precedes evidence and badges follow typed intent on both change rows (34.052167ms)
+✔ discovery breaker: refresh is explicit and preserves current filter while native links retain browser navigation (10.334625ms)
+✔ section history returns from execution to exact acceptance without hiding the evidence (22.515625ms)
+✔ unknown or obsolete fragments do not strand readers in an invisible section (0.06375ms)
+✔ mobile navigation closes on same-page selection and route change but preserves modified clicks (33.314083ms)
+✔ live Updates remain separate from server change history without key warnings (12.230958ms)
+✔ the in-page workflow retains its picker and process state when live data changes workstream (5.259916ms)
+✔ a deleted library name stays visible with its preserved version while switching is pending (17.055958ms)
+✔ workflow definition has one library route and the old per-spec route no longer resolves (0.188166ms)
+✔ Updates has a distinct deep link and browser history restores the isolated selected tab (6.462292ms)
+✔ Updates shows recorded dates or an honest absence and links to the real turn instead of the decision (14.99275ms)
+✔ overview keeps permission and problems visible with direct spec, evidence and history links (66.788542ms)
+✔ approved work does not request approval again and disconnected approval stays disabled (22.907917ms)
+✔ simpler progress keeps incomplete and historical limits visible even when all checks pass (8.916417ms)
+✔ failed missing attested and unmapped requirements keep honest statuses on expandable requirements (2.211791ms)
+✔ simplified feature observation still exposes disconnection without replacing the requested spec (9.625417ms)
+✔ opening proof reads evidence without posting a command (11.48425ms)
+✔ requirement expansion mounts proof only on demand and screenshot labels never imply current pass (7.072917ms)
+✔ passing run metadata stays collapsed while output failures and historical warnings remain visible (29.116583ms)
+✔ completion keeps finished planning ahead of implementation and never changes supplied states or counts (1.038583ms)
+✔ overall progress counts unfinished groups despite every check passing and ignores repeated diagnostics (1.255042ms)
+✔ each applicable completion gate prevents full progress independently of passing checks (0.910375ms)
+✔ missing or contradictory completion observations stay unknown and historical readiness cannot rewrite completion (0.714375ms)
+✔ contradictory grouped done counts cannot report completion (0.149291ms)
+ℹ tests 36
+ℹ suites 0
+ℹ pass 36
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 306.164875

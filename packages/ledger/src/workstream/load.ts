@@ -1,3 +1,4 @@
+import { assertEntityId } from "../identity/index.js"
 import { existsSync, readdirSync, readFileSync } from "node:fs"
 import { join } from "node:path"
 import { findRepoRoot, ledgerRoot, sha256Stable, writeJson } from "../fs/load.js"
@@ -33,13 +34,13 @@ export function listWorkstreams(repoRootInput: string): Workstream[] {
   const dir = workstreamsDir(repoRootInput)
   if (!existsSync(dir)) return []
   return readdirSync(dir)
-    .filter((f) => /^W-.+\.json$/.test(f))
+    .filter((f) => f.endsWith(".json"))
     .sort()
     .map((f) => readJson<Workstream>(join(dir, f)))
 }
 
 export function loadWorkstream(repoRootInput: string, id: string): Workstream {
-  if (!/^W-[0-9]{3,}$/.test(id)) throw new Error("invalid workstream id")
+  assertEntityId(id, "workstream id")
   const path = join(workstreamsDir(repoRootInput), `${id}.json`)
   if (!existsSync(path)) throw new Error(`workstream not found: ${id}`)
   return readJson<Workstream>(path)
@@ -81,6 +82,7 @@ export function computeSpecDigest(ws: Workstream): string {
 }
 
 export function writeWorkstream(repoRootInput: string, ws: Workstream): string {
+  assertEntityId(ws.id, "workstream id")
   const path = join(workstreamsDir(repoRootInput), `${ws.id}.json`)
   writeJson(path, ws)
   return path

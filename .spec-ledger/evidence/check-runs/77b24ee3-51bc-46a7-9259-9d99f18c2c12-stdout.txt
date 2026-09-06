@@ -1,0 +1,23 @@
+✔ creation operations generate catalog identities, preserve retries and validate references (381.502416ms)
+✔ identity breaker: simultaneous independent checkouts never collide despite identical workstream and slice titles (395.123875ms)
+✔ identity breaker: identical request retry returns the original entity while new correlation creates another (94.687541ms)
+✔ identity breaker: callers cannot inject numbered IDs or chosen UUIDs at either creation level (82.617916ms)
+✔ identity breaker: forced publication collision preserves complete original bytes and removes staging files (63.732834ms)
+✔ identity breaker: waiver creation collision cannot overwrite the earlier coverage exception (62.267334ms)
+✔ migration breaker: independent same-number records retain distinct joins and common ancestry retains one identity (542.691125ms)
+✔ migration breaker: conflicting ancestor edits require reconciliation before any live replacement (376.988ms)
+✔ migration breaker: dangling authority targets cannot pass staged reference validation (322.344292ms)
+✔ migration breaker: nested audit rows map criterion IDs in their own workstream context (332.291125ms)
+✔ migration breaker: reconciliations require matching original values and preserve an attributed audit trail (488.800833ms)
+✔ migration breaker: extra staged files after validation cannot enter the live ledger (276.423084ms)
+✔ migration breaker: a redirected pending publication directory cannot write outside the checkout (275.336708ms)
+✔ migration breaker: stale pending files cannot be published as part of a validated migration (280.318083ms)
+✔ migration breaker: retry uses frozen origin commits when the caller supplied moving branch names (334.701417ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 15
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3267.483042

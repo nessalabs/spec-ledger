@@ -1,0 +1,16 @@
+file:///Users/nessa/.codex/worktrees/24db/spec-ledger/packages/ledger/dist/identity/index.js:9
+        throw new Error(`Invalid ${label}: expected a UUID. Create the record using Spec Ledger and use its returned id.`);
+              ^
+
+Error: Invalid workstream id: expected a UUID. Create the record using Spec Ledger and use its returned id.
+    at assertEntityId (file:///Users/nessa/.codex/worktrees/24db/spec-ledger/packages/ledger/dist/identity/index.js:9:15)
+    at loadWorkstream (file:///Users/nessa/.codex/worktrees/24db/spec-ledger/packages/ledger/dist/workstream/load.js:28:5)
+    at file:///Users/nessa/.codex/worktrees/24db/spec-ledger/scripts/verify-completed-audit.mjs:34:94
+    at Array.from (<anonymous>)
+    at checkRepository (file:///Users/nessa/.codex/worktrees/24db/spec-ledger/scripts/verify-completed-audit.mjs:34:23)
+    at file:///Users/nessa/.codex/worktrees/24db/spec-ledger/scripts/verify-completed-audit.mjs:40:96
+    at ModuleJob.run (node:internal/modules/esm/module_job:569:25)
+    at async node:internal/modules/esm/loader:650:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+
+Node.js v26.8.1

@@ -1,0 +1,133 @@
+{
+  "schemaVersion": 1,
+  "requestId": "c84b8132-45bb-4977-88a7-258f3e9fb325",
+  "operation": "complete_work",
+  "inputDigest": "aa534957f5b79d567fa47d338e77b5d5daf96aa3950fb89836a2f7799050a74f",
+  "finishedAt": "2026-09-06T17:49:17.849Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "id": "29c935b4-56bd-84a0-b887-e280d775f54d",
+    "status": "done",
+    "createdAt": "2026-09-06T07:33:40.672522+00:00",
+    "featureIds": [
+      "turns",
+      "lattice",
+      "cli"
+    ],
+    "title": "Follow agent experiments",
+    "problem": "Iterative agent work lacks a durable goal and experiment history that people can inspect.",
+    "objective": "See what an agent is improving, its experiment results, and what it learned.",
+    "specPath": "docs/workstreams/29c935b4-56bd-84a0-b887-e280d775f54d-follow-agent-experiments/spec.md",
+    "changeType": "feature",
+    "riskLevel": "moderate",
+    "trust": {
+      "deployTarget": "library-consumer",
+      "userFacing": true,
+      "requiredEvidence": [
+        "unit",
+        "integration",
+        "e2e"
+      ]
+    },
+    "policy": {
+      "alertOnSeverity": "high",
+      "onAlert": "wait",
+      "alertWaitMinutes": 10,
+      "onAlertTimeout": "move",
+      "onSealedSpecDeviation": "wait",
+      "sealedDeviationWaitMinutes": 10,
+      "onSealedDeviationTimeout": "move",
+      "requireSpecBreak": true,
+      "requireCodeBreak": true
+    },
+    "suggestedSlices": [
+      {
+        "id": "04932de5-9225-81d4-b42c-c13f79e6c5be",
+        "title": "Record and inspect an agent’s experiments",
+        "kind": "vertical",
+        "acceptance": [
+          "Agents record durable goals and attempts with safe retries and validated references.",
+          "People inspect honest results and progress in a screenshot-readable view.",
+          "Experiment reports never change verification or permission semantics."
+        ],
+        "evidence": [
+          "unit",
+          "integration",
+          "e2e"
+        ],
+        "expectedPaths": [
+          "packages/ledger/**",
+          "packages/client/**",
+          "packages/server/**",
+          "packages/mcp/**",
+          "packages/ui/**",
+          "schemas/**",
+          "docs/**",
+          "skills/**"
+        ],
+        "codeBreakReviewId": "52ac5c69-b96f-84c0-b3f0-7f334c579ca6"
+      },
+      {
+        "id": "b21da6cf-af77-8a39-bf8e-bfdc0d5b3a95",
+        "title": "Read test results and visual evidence first",
+        "kind": "vertical",
+        "acceptance": [
+          "Expand a requirement card to see test descriptions and captured results before collapsed source and command details, with clear status colors and a compact Run again action.",
+          "Inspect an integrity-checked local screenshot as visual evidence without treating it as a passing test; unavailable or changed images remain explicit."
+        ],
+        "evidence": [
+          "unit",
+          "integration",
+          "e2e"
+        ],
+        "expectedPaths": [
+          "packages/ui/**",
+          "packages/ledger/**",
+          "packages/client/**",
+          "docs/**",
+          "schemas/**"
+        ],
+        "codeBreakReviewId": "52ac5c69-b96f-84c0-b3f0-7f334c579ca6"
+      }
+    ],
+    "specBreakReviewId": "78c87091-4e55-84e2-b7d4-57405d97d6b0",
+    "updatedAt": "2026-09-06T17:49:17.849Z",
+    "seal": {
+      "sealedAt": "2026-09-06T17:38:45.359Z",
+      "sealedBy": "agent:permission:058aee1c-62ab-8fa9-85e1-b79a85ca2523",
+      "specDigest": "5c1976edeb80e4fe23bca48a253ecf5d72e51ac76193272cd5d8327163c9f8ec",
+      "snapshotPath": "workstreams/29c935b4-56bd-84a0-b887-e280d775f54d.seals/3.json",
+      "revision": 3,
+      "specDocDigest": "1ccb0be430d2f727532117aebe9bd072e2c87bd924f35774b003d7264eb57062"
+    },
+    "acceptanceClaimIds": {
+      "04932de5-9225-81d4-b42c-c13f79e6c5be/AC-1": [
+        "1ea8304f-a051-8234-b7a7-ce31b25eccf2"
+      ],
+      "04932de5-9225-81d4-b42c-c13f79e6c5be/AC-2": [
+        "1ea8304f-a051-8234-b7a7-ce31b25eccf2"
+      ],
+      "04932de5-9225-81d4-b42c-c13f79e6c5be/AC-3": [
+        "1ea8304f-a051-8234-b7a7-ce31b25eccf2"
+      ],
+      "b21da6cf-af77-8a39-bf8e-bfdc0d5b3a95/AC-1": [
+        "d62365fc-02af-826c-b961-8942c540bddf"
+      ],
+      "b21da6cf-af77-8a39-bf8e-bfdc0d5b3a95/AC-2": [
+        "d62365fc-02af-826c-b961-8942c540bddf"
+      ]
+    },
+    "postSealAmends": [
+      {
+        "at": "2026-09-06T17:37:39.808Z",
+        "summary": "User requested result-first evidence cards and previewable UI screenshots.",
+        "humanConfirmed": true,
+        "sealedRevision": 2,
+        "beforeDocDigest": "e94f99159c92232d20dd21d3f3690c6fda0c31ab749e7d514bb4e61316bb5c0c",
+        "afterDocDigest": "1ccb0be430d2f727532117aebe9bd072e2c87bd924f35774b003d7264eb57062",
+        "actor": "agent"
+      }
+    ]
+  }
+}

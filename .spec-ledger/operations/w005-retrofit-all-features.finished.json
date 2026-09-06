@@ -6,10 +6,10 @@
   "finishedAt": "2026-09-05T01:52:16.491Z",
   "outcome": "succeeded",
   "result": {
-    "id": "AUTH-W005-RETROFIT-ALL",
+    "id": "4f09a0a4-dc11-8ae2-ba66-d3a96cd12f56",
     "action": "grant",
     "mode": "request",
-    "workstreamId": "W-005",
+    "workstreamId": "d1be55a6-11bb-8460-8650-ddf0ecac8185",
     "source": {
       "kind": "agent-reported",
       "reference": "User explicitly requested verification and evidence data retrofit for Consumer CLI and all completed workstreams during T037."

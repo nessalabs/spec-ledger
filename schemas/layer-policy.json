@@ -5,20 +5,27 @@
   "description": "Per-repo layer allowlist. Mechanism is generic; names are data.",
   "type": "object",
   "additionalProperties": false,
-  "required": ["layers", "allow"],
+  "required": [
+    "layers",
+    "allow"
+  ],
   "properties": {
     "layers": {
       "type": "array",
-      "items": { "type": "string" },
+      "items": {
+        "type": "string"
+      },
       "description": "Declared layer ids (order is display-only)."
     },
     "allow": {
       "type": "object",
       "additionalProperties": {
         "type": "array",
-        "items": { "type": "string" }
+        "items": {
+          "type": "string"
+        }
       },
-      "description": "Map fromLayer → list of toLayers that are legal dependencies."
+      "description": "Map fromLayer \u2192 list of toLayers that are legal dependencies."
     }
   }
 }

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "id": "5e0a9583-e280-8088-8ce4-4caa7db2f2ab",
+  "turnId": "01f8517b-6a02-897f-a15f-829951ce22a1",
+  "workstreamId": "a32f3451-1b3d-8abf-bf0e-607ebf6e1a88",
+  "kind": "human",
+  "target": "code",
+  "reviewer": "agent:align",
+  "verdict": "approve",
+  "summary": "User asked to implement a32f3451-1b3d-8abf-bf0e-607ebf6e1a88, chose portable CLI handoff, and explicitly added the narrow-panel UI defect.",
+  "plainSummary": "Permission changes and the user-requested UI fix fit the agreed work.",
+  "treeDigest": "daa3ec3387cc58e0ded9db9c526a3086c465f6f660fabf3a61356da131a518ae",
+  "uncoveredPaths": [
+    "packages/ui/app/globals.css",
+    "packages/ui/app/page.tsx",
+    "packages/ui/app/verify/page.tsx",
+    "packages/ui/components/spec-ledger-shell.tsx"
+  ],
+  "coverageSource": "mixed",
+  "waiverIds": [
+    "39c1d2ba-edc5-880b-922d-aafadfa04a59"
+  ],
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/reviews/turns/T-029/R-04.json",
+        "id": "T-029/R-04",
+        "sha256": "6401526d336bc3b479d2952d33254cc635cd0833f3b7350c7ebc6ec9cf6571ae"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/reviews/turns/T-029/R-04.json",
+        "id": "T-029/R-04",
+        "sha256": "6401526d336bc3b479d2952d33254cc635cd0833f3b7350c7ebc6ec9cf6571ae"
+      }
+    },
+    "historical": true
+  }
+}

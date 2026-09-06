@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "0845547d-9f1d-8cb4-89a8-205f7f0e3702",
+  "workstreamId": "351e54ea-60e4-8384-826f-0616eaa89599",
+  "kind": "adversarial",
+  "target": "spec",
+  "reviewer": "agent:turn-evidence-breaker",
+  "verdict": "approve",
+  "blocking": false,
+  "plainSummary": "The requirement now points to saved-check behavior tests without treating recorded descriptions as test results.",
+  "summary": "Reviewed mapping-only SLC01/AC1→SL027 and latest document amendment naming optional binding.test metadata. Focused core/MCP/UI tests directly target shared saved execution, bounded output, confinement, passive reads, strict local bridge and UI inspection; final source execution and independent code approval remain separate requirements. Required behavior, fixed root cwd and host/security boundary unchanged. Seven independent saved-check killers reran green including former outside receipt-write regression.",
+  "supersedesReviewId": "11d6aa54-b289-8be0-8542-178af459e8cc",
+  "findings": [],
+  "residualRisks": [
+    "Final code review remains pending source freeze and retry-uncertainty UI handling review; spec approval is not code approval."
+  ],
+  "revisionDigest": "95d03bfb1a04832d1dc78b034a59d7c5cbc9f77409d00672fae7ed967e03b0b0",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/reviews/workstreams/W-010/SR-02.json",
+        "id": "W-010/SR-02",
+        "sha256": "b3980fa2aead95915e4cd9128564f1609dee8238fa8ec21598d49eb037375647"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/reviews/workstreams/W-010/SR-02.json",
+        "id": "W-010/SR-02",
+        "sha256": "b3980fa2aead95915e4cd9128564f1609dee8238fa8ec21598d49eb037375647"
+      }
+    },
+    "historical": true
+  }
+}

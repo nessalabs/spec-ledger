@@ -1,4 +1,4 @@
-// sl-dev-break killers (T-024 / W-005 SLC-03) — falsify UI Release asset vs SL-013.
+// sl-dev-break killers (8eef8af2-e23a-5dc7-8d35-91712f4afcb0 / d80732c1-ab98-55d9-9a9d-cbf6befe3ed1 d569e07e-a576-5c74-bb39-67cd628fc5e9) — falsify UI Release asset vs 297bf2fd-ed87-509e-a670-8b0f77215bae.
 import { describe, it } from "node:test"
 import assert from "node:assert/strict"
 import {
@@ -41,7 +41,7 @@ function readmeUiSection(): string {
   return next >= 0 ? rest.slice(0, next) : rest
 }
 
-describe("UI release break (T-024 SLC-03 / SL-013)", () => {
+describe("UI release break (8eef8af2-e23a-5dc7-8d35-91712f4afcb0 d569e07e-a576-5c74-bb39-67cd628fc5e9 / 297bf2fd-ed87-509e-a670-8b0f77215bae)", () => {
   it("shipped tree incl node_modules has zero file:/workspace: protocols", () => {
     const fixture = uiReleaseFixture()
     const out = mkdtempSync(join(tmpdir(), "sl-ui-break-out-"))
@@ -84,7 +84,7 @@ describe("UI release break (T-024 SLC-03 / SL-013)", () => {
     }
   })
 
-  it("README documents published client/server + Release UI asset (SLC-03 acceptance)", () => {
+  it("README documents published client/server + Release UI asset (d569e07e-a576-5c74-bb39-67cd628fc5e9 acceptance)", () => {
     const section = readmeUiSection()
     assert.match(section, /spec-ledger-ui-.*\.tgz/)
     assert.match(
@@ -92,11 +92,11 @@ describe("UI release break (T-024 SLC-03 / SL-013)", () => {
       /@nessalabs\/spec-ledger-client/,
       "UI section must mention published client",
     )
-    // Sealed W-005 SLC-03: "published client/server + Release Spec Ledger UI asset"
+    // Sealed d80732c1-ab98-55d9-9a9d-cbf6befe3ed1 d569e07e-a576-5c74-bb39-67cd628fc5e9: "published client/server + Release Spec Ledger UI asset"
     assert.match(
       section,
       /@nessalabs\/spec-ledger-server/,
-      "UI section must mention published server (sealed acceptance / SL-013)",
+      "UI section must mention published server (sealed acceptance / 297bf2fd-ed87-509e-a670-8b0f77215bae)",
     )
     // Path B: must not tell consumers to npm-install unpublished @nessalabs/ui
     assert.doesNotMatch(

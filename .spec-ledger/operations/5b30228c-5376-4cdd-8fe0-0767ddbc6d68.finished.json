@@ -1,0 +1,472 @@
+{
+  "schemaVersion": 1,
+  "requestId": "5b30228c-5376-4cdd-8fe0-0767ddbc6d68",
+  "operation": "run_checks",
+  "inputDigest": "a5ec714a1f02fbb1aa8ea993e51dcae2749f8c9aaf430f38fa612f530e75ee14",
+  "finishedAt": "2026-09-06T08:08:55.654Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "producedAt": "2026-09-06T08:08:55.632Z",
+    "producedBy": "@nessalabs/spec-ledger@0.1.0",
+    "ok": true,
+    "provenance": {
+      "commit": "16bee63c4828ea06576936cfab8be5b2b5f1c21f",
+      "ledgerDigest": "80e769927f89edee902caa8e013cdf71afa1e6e3ec2733d6cda07f0b61fc8790",
+      "resultsDigest": "74caccd0d6ec7f0c9876af98665626541ae0b93148fdad83ef0acf82affe089e",
+      "treeHint": "/Users/nessa/.codex/worktrees/24db/spec-ledger",
+      "sourceDigest": "355cfbbe5d071cb88cb23e745b845f66d7193bc0b33a53ea10d8194b84d63087"
+    },
+    "claims": [
+      {
+        "claimId": "67609c19-de05-862c-8db7-e5dc95f38cee",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "e1a3fe4b-6226-83e6-984e-654abfb57689"
+        ],
+        "checks": [
+          {
+            "bindingId": "e1a3fe4b-6226-83e6-984e-654abfb57689",
+            "outcome": "pass"
+          }
+        ]
+      },
+      {
+        "claimId": "2884eafb-114e-85f1-ae07-ce1fbd140550",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "e87d326d-8701-854b-8bb4-03cb3e5eb714"
+        ],
+        "checks": [
+          {
+            "bindingId": "e87d326d-8701-854b-8bb4-03cb3e5eb714",
+            "outcome": "pass"
+          }
+        ]
+      },
+      {
+        "claimId": "14d9b121-df2b-8ede-bce7-fdee648a4320",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "cf5f0a86-f101-829e-838f-cffc08b7e9a0"
+        ],
+        "checks": [
+          {
+            "bindingId": "cf5f0a86-f101-829e-838f-cffc08b7e9a0",
+            "outcome": "pass"
+          }
+        ]
+      },
+      {
+        "claimId": "77fb26cd-bc46-8037-a8f2-7573f7d6d33d",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "de5fb116-a9a5-8626-a432-84eabb4f3597"
+        ],
+        "checks": [
+          {
+            "bindingId": "de5fb116-a9a5-8626-a432-84eabb4f3597",
+            "outcome": "pass"
+          }
+        ]
+      },
+      {
+        "claimId": "b69a663d-e2dd-8655-be45-0e07bfb45c89",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "6b67dbef-ab49-8559-a96a-b961a9cedf91"
+        ],
+        "checks": [
+          {
+            "bindingId": "6b67dbef-ab49-8559-a96a-b961a9cedf91",
+            "outcome": "pass"
+          }
+        ]
+      },
+      {
+        "claimId": "f0309cdb-3ac5-8d55-a06a-f7b71e5c06ad",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "fd9caaad-0eb9-8f0c-a893-560fc07c943a"
+        ],
+        "checks": [
+          {
+            "bindingId": "fd9caaad-0eb9-8f0c-a893-560fc07c943a",
+            "outcome": "pass"
+          }
+        ]
+      },
+      {
+        "claimId": "e7222390-759f-8d86-9f2c-1115b9b20261",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "e60ea2da-d558-82a3-826d-28228fa3676a"
+        ],
+        "checks": [
+          {
+            "bindingId": "e60ea2da-d558-82a3-826d-28228fa3676a",
+            "outcome": "pass"
+          }
+        ]
+      },
+      {
+        "claimId": "a642f738-2313-853e-a94d-d9936dcbc596",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "a4db64ff-3857-8e09-ab4c-0e34627ec84b"
+        ],
+        "checks": [
+          {
+            "bindingId": "a4db64ff-3857-8e09-ab4c-0e34627ec84b",
+            "outcome": "pass"
+          }
+        ]
+      },
+      {
+        "claimId": "259e1acf-d082-8bfe-b0ab-76fab45ae7d0",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "37455091-6c3b-827f-8ed3-f4737345e01c"
+        ],
+        "checks": [
+          {
+            "bindingId": "37455091-6c3b-827f-8ed3-f4737345e01c",
+            "outcome": "pass",
+            "detail": "exit 0"
+          }
+        ]
+      },
+      {
+        "claimId": "4478b980-87e5-8f31-a57e-8c06246e0798",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "0e24eba8-4721-8373-ba7d-0f18be5063fc"
+        ],
+        "checks": [
+          {
+            "bindingId": "0e24eba8-4721-8373-ba7d-0f18be5063fc",
+            "outcome": "pass",
+            "detail": "exit 0"
+          }
+        ]
+      },
+      {
+        "claimId": "ebc0a361-534e-8527-99a7-57611aae823d",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "aed9b13d-bbde-8d48-8e4b-e02a3ad64a11"
+        ],
+        "checks": [
+          {
+            "bindingId": "aed9b13d-bbde-8d48-8e4b-e02a3ad64a11",
+            "outcome": "pass",
+            "detail": "exit 0"
+          }
+        ]
+      },
+      {
+        "claimId": "db092384-a2b9-8db4-b9b8-ff7b5e58f133",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "835c6845-b9f1-8359-b222-271c56dbad45"
+        ],
+        "checks": [
+          {
+            "bindingId": "835c6845-b9f1-8359-b222-271c56dbad45",
+            "outcome": "pass",
+            "detail": "exit 0"
+          }
+        ]
+      },
+      {
+        "claimId": "505a71e7-37de-8e56-ae5c-467828201dba",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "e49ce4da-8d40-855e-9c96-2f6723794a23"
+        ],
+        "checks": [
+          {
+            "bindingId": "e49ce4da-8d40-855e-9c96-2f6723794a23",
+            "outcome": "pass",
+            "detail": "exit 0"
+          }
+        ]
+      },
+      {
+        "claimId": "4265ae8b-dc22-8851-9a29-a9dab77fb7bb",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "8a0f4b13-b869-8d0e-bbd0-59000d824efe"
+        ],
+        "checks": [
+          {
+            "bindingId": "8a0f4b13-b869-8d0e-bbd0-59000d824efe",
+            "outcome": "pass",
+            "detail": "exit 0"
+          }
+        ]
+      },
+      {
+        "claimId": "d6bec874-d62d-850e-bf0f-f19d5b07f7a9",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "7f011d7f-e2d9-8ea9-99ae-7450d7879e2e"
+        ],
+        "checks": [
+          {
+            "bindingId": "7f011d7f-e2d9-8ea9-99ae-7450d7879e2e",
+            "outcome": "pass",
+            "detail": "exit 0"
+          }
+        ]
+      },
+      {
+        "claimId": "ef771e69-a55e-8f9c-8c2b-b5238a3fcff3",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "537947a3-37ec-86ab-9f87-ac54e50d1796"
+        ],
+        "checks": [
+          {
+            "bindingId": "537947a3-37ec-86ab-9f87-ac54e50d1796",
+            "outcome": "pass",
+            "detail": "exit 0"
+          }
+        ]
+      },
+      {
+        "claimId": "fb335474-ec02-8a07-a399-a948d076a225",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "82c028b6-b26e-82af-bb28-80b57bda6576"
+        ],
+        "checks": [
+          {
+            "bindingId": "82c028b6-b26e-82af-bb28-80b57bda6576",
+            "outcome": "pass",
+            "detail": "exit 0"
+          }
+        ]
+      },
+      {
+        "claimId": "5287dabc-25de-8934-a4bb-364acca2b942",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "5e20c4c0-c26d-8662-93b0-59575a838f83"
+        ],
+        "checks": [
+          {
+            "bindingId": "5e20c4c0-c26d-8662-93b0-59575a838f83",
+            "outcome": "pass",
+            "detail": "exit 0"
+          }
+        ]
+      },
+      {
+        "claimId": "9767b1da-9568-8e2f-ad2a-c2c3eb3e424c",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "dea7dcb9-9337-8e8a-9d0d-db2816e25612"
+        ],
+        "checks": [
+          {
+            "bindingId": "dea7dcb9-9337-8e8a-9d0d-db2816e25612",
+            "outcome": "pass",
+            "detail": "exit 0"
+          }
+        ]
+      },
+      {
+        "claimId": "dd5caaee-dace-8f53-bff5-65b6a7646b6d",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "823982ba-7fa8-8c9d-9721-f2b128d0db00"
+        ],
+        "checks": [
+          {
+            "bindingId": "823982ba-7fa8-8c9d-9721-f2b128d0db00",
+            "outcome": "pass",
+            "detail": "exit 0"
+          }
+        ]
+      },
+      {
+        "claimId": "2f8cf085-d7a5-83b9-89f8-9d0754cb16a0",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "240c8922-405a-824b-a2d4-e8ecbb5be6bd"
+        ],
+        "checks": [
+          {
+            "bindingId": "240c8922-405a-824b-a2d4-e8ecbb5be6bd",
+            "outcome": "pass",
+            "detail": "exit 0"
+          }
+        ]
+      },
+      {
+        "claimId": "4d4f7c20-b7e0-86d8-9b17-f45053bbf43b",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "35c8eb44-8d25-8185-82c2-bf645f8f0710"
+        ],
+        "checks": [
+          {
+            "bindingId": "35c8eb44-8d25-8185-82c2-bf645f8f0710",
+            "outcome": "pass",
+            "detail": "exit 0"
+          }
+        ]
+      },
+      {
+        "claimId": "a3c38839-cf13-837c-8866-ce46af309e15",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "bc2c8e56-0cda-8b8a-a9a0-bafe5989265f"
+        ],
+        "checks": [
+          {
+            "bindingId": "bc2c8e56-0cda-8b8a-a9a0-bafe5989265f",
+            "outcome": "pass",
+            "detail": "exit 0"
+          }
+        ]
+      },
+      {
+        "claimId": "2bdf48ad-ad8b-86b1-a043-5b16496999b3",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "c4ff7e22-ebc9-8d3f-a34e-a21d102a83c8"
+        ],
+        "checks": [
+          {
+            "bindingId": "c4ff7e22-ebc9-8d3f-a34e-a21d102a83c8",
+            "outcome": "pass",
+            "detail": "exit 0"
+          }
+        ]
+      },
+      {
+        "claimId": "3d819ad1-8f9b-893c-a5bf-92d67c933cd3",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "bfd1e091-65c9-8870-8ec7-2cf1c3047f5f"
+        ],
+        "checks": [
+          {
+            "bindingId": "bfd1e091-65c9-8870-8ec7-2cf1c3047f5f",
+            "outcome": "pass",
+            "detail": "exit 0"
+          }
+        ]
+      },
+      {
+        "claimId": "fbe7ce66-ef39-848d-8426-b7f2643315b6",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "a69fc4b7-ac59-8d37-954c-2e53efd1bda6"
+        ],
+        "checks": [
+          {
+            "bindingId": "a69fc4b7-ac59-8d37-954c-2e53efd1bda6",
+            "outcome": "pass",
+            "detail": "exit 0"
+          }
+        ]
+      },
+      {
+        "claimId": "93abee59-3e8d-809f-a140-d86105b0d865",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "b9215e80-1cbf-8bbf-83dc-63ceab15c182"
+        ],
+        "checks": [
+          {
+            "bindingId": "b9215e80-1cbf-8bbf-83dc-63ceab15c182",
+            "outcome": "pass",
+            "detail": "exit 0"
+          }
+        ]
+      },
+      {
+        "claimId": "3cb6214c-8605-80e6-b73b-d20b9025023f",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "b02db887-018b-848d-a0b8-df170e543eb5"
+        ],
+        "checks": [
+          {
+            "bindingId": "b02db887-018b-848d-a0b8-df170e543eb5",
+            "outcome": "pass",
+            "detail": "exit 0"
+          }
+        ]
+      },
+      {
+        "claimId": "d62365fc-02af-826c-b961-8942c540bddf",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "b43b216b-a9dd-8b90-a3f5-851f6fa9be9f"
+        ],
+        "checks": [
+          {
+            "bindingId": "b43b216b-a9dd-8b90-a3f5-851f6fa9be9f",
+            "outcome": "pass",
+            "detail": "exit 0"
+          }
+        ]
+      },
+      {
+        "claimId": "1ea8304f-a051-8234-b7a7-ce31b25eccf2",
+        "required": true,
+        "outcome": "pass",
+        "bindingIds": [
+          "479095fc-cc04-8104-8461-ce0edb86e9e6"
+        ],
+        "checks": [
+          {
+            "bindingId": "479095fc-cc04-8104-8461-ce0edb86e9e6",
+            "outcome": "pass",
+            "detail": "exit 0"
+          }
+        ]
+      }
+    ],
+    "graph": {
+      "ok": true,
+      "danglingNodes": [],
+      "missingLocators": [],
+      "freshness": "ok"
+    },
+    "problems": []
+  }
+}

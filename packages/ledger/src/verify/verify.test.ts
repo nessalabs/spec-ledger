@@ -15,29 +15,29 @@ describe("spec-ledger verify", () => {
     mkdirSync(join(dir, "src"), { recursive: true })
     writeFileSync(join(dir, "src", "ok.ts"), "export {}\n")
 
-    writeJson(join(dir, ".spec-ledger/claims/SL-001.json"), {
-      id: "SL-001",
+    writeJson(join(dir, ".spec-ledger/claims/5e852279-c620-5042-b952-b015a4c32e20.json"), {
+      id: "5e852279-c620-5042-b952-b015a4c32e20",
       kind: "invariant",
       statement: "DESIGN.md exists",
       required: true,
     })
-    writeJson(join(dir, ".spec-ledger/claims/SL-002.json"), {
-      id: "SL-002",
+    writeJson(join(dir, ".spec-ledger/claims/48cc88b5-b35b-5236-9e5b-b845d2319792.json"), {
+      id: "48cc88b5-b35b-5236-9e5b-b845d2319792",
       kind: "invariant",
       statement: "unbound on purpose",
       required: true,
     })
-    writeJson(join(dir, ".spec-ledger/bindings/b1.json"), {
-      id: "b1",
-      claimId: "SL-001",
+    writeJson(join(dir, ".spec-ledger/bindings/96ea1d7d-215f-4981-8eef-9f9db6748504.json"), {
+      id: "96ea1d7d-215f-4981-8eef-9f9db6748504",
+      claimId: "5e852279-c620-5042-b952-b015a4c32e20",
       kind: "check",
       locator: { type: "path", path: "src/ok.ts" },
     })
 
     const report = verifyLedger(loadLedger(dir))
     assert.equal(report.ok, false)
-    const sl1 = report.claims.find((c) => c.claimId === "SL-001")
-    const sl2 = report.claims.find((c) => c.claimId === "SL-002")
+    const sl1 = report.claims.find((c) => c.claimId === "5e852279-c620-5042-b952-b015a4c32e20")
+    const sl2 = report.claims.find((c) => c.claimId === "48cc88b5-b35b-5236-9e5b-b845d2319792")
     assert.equal(sl1?.outcome, "pass")
     assert.equal(sl2?.outcome, "unbound")
     assert.ok(report.provenance.ledgerDigest.length === 64)
@@ -46,15 +46,15 @@ describe("spec-ledger verify", () => {
   it("never treats attested as pass for required claims", () => {
     const dir = mkdtempSync(join(tmpdir(), "spec-ledger-"))
     initLedger(dir, "test")
-    writeJson(join(dir, ".spec-ledger/claims/SL-010.json"), {
-      id: "SL-010",
+    writeJson(join(dir, ".spec-ledger/claims/27d14c63-c79e-5cfc-b5dc-d27109c0b855.json"), {
+      id: "27d14c63-c79e-5cfc-b5dc-d27109c0b855",
       kind: "absence",
       statement: "server has no write endpoints",
       required: true,
     })
-    writeJson(join(dir, ".spec-ledger/bindings/att.json"), {
-      id: "att",
-      claimId: "SL-010",
+    writeJson(join(dir, ".spec-ledger/bindings/7e861469-a23c-4511-b07e-4f3c1216ee0b.json"), {
+      id: "7e861469-a23c-4511-b07e-4f3c1216ee0b",
+      claimId: "27d14c63-c79e-5cfc-b5dc-d27109c0b855",
       kind: "attestation",
       locator: { type: "attestation", note: "reviewed in DESIGN.md" },
     })

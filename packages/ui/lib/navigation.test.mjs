@@ -1,3 +1,4 @@
+import { presentationRequire } from './presentation-test-support.mjs'
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
@@ -9,7 +10,7 @@ const ts = createRequire(new URL('../../ledger/package.json', import.meta.url))(
 function load(file, overrides) {
   const compiled = ts.transpileModule(readFileSync(new URL(file, import.meta.url),'utf8'), {compilerOptions:{module:ts.ModuleKind.CommonJS, target:ts.ScriptTarget.ES2022, jsx:ts.JsxEmit.ReactJSX, esModuleInterop:true}}).outputText
   const module={exports:{}}
-  new Function('require','module','exports',compiled)(id=>overrides[id]??require(id),module,module.exports)
+  new Function('require','module','exports',compiled)(id=>overrides[id]??presentationRequire(id,require),module,module.exports)
   return module.exports
 }
 const Link=({children,href,...props})=>React.createElement('a',{href,...props},children)

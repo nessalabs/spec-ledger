@@ -1,0 +1,28 @@
+{
+  "id": "9767b1da-9568-8e2f-ad2a-c2c3eb3e424c",
+  "kind": "invariant",
+  "statement": "Show what the agent says it built separately from what has been verified, and check your permission before completing work.",
+  "required": true,
+  "area": "core",
+  "links": {
+    "docs": [
+      "docs/workstreams/a32f3451-1b3d-8abf-bf0e-607ebf6e1a88-trustworthy-autonomous-coding/spec.md",
+      "docs/architecture/claim-contracts.md"
+    ]
+  },
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/claims/SL-021.json",
+        "id": "SL-021",
+        "sha256": "f5f4e32bf436193d139eb62898e76f3ebc39d71176edc15afb77bc152dfc1d1b"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/claims/SL-021.json",
+        "id": "SL-021",
+        "sha256": "f5f4e32bf436193d139eb62898e76f3ebc39d71176edc15afb77bc152dfc1d1b"
+      }
+    },
+    "historical": true
+  }
+}

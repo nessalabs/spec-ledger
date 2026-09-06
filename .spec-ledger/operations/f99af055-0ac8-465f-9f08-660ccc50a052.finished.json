@@ -7,8 +7,8 @@
   "outcome": "succeeded",
   "result": {
     "schemaVersion": 1,
-    "id": "W-010/SR-01",
-    "workstreamId": "W-010",
+    "id": "11d6aa54-b289-8be0-8542-178af459e8cc",
+    "workstreamId": "351e54ea-60e4-8384-826f-0616eaa89599",
     "kind": "adversarial",
     "target": "spec",
     "reviewer": "agent:turn-evidence-breaker",

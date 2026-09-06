@@ -16,8 +16,8 @@ for (const surface of ["CLI", "MCP"]) {
         try {
             initLedger(root, "check surface");
             writeFileSync(join(root, "test.cjs"), "console.log('expected greeting');console.error('stderr captured')");
-            writeFileSync(join(root, ".spec-ledger/claims/C.json"), JSON.stringify({ id: "C", statement: "Greeting", required: true }));
-            writeFileSync(join(root, ".spec-ledger/bindings/B.json"), JSON.stringify({ id: "B", claimId: "C", kind: "test", locator: { type: "command", command: "node test.cjs" } }));
+            writeFileSync(join(root, ".spec-ledger/claims/8a90b352-50da-4518-859d-98e904b19517.json"), JSON.stringify({ id: "8a90b352-50da-4518-859d-98e904b19517", statement: "Greeting", required: true }));
+            writeFileSync(join(root, ".spec-ledger/bindings/fa9e1a54-8d3e-4f6c-bc5e-0b313ce77b18.json"), JSON.stringify({ id: "fa9e1a54-8d3e-4f6c-bc5e-0b313ce77b18", claimId: "8a90b352-50da-4518-859d-98e904b19517", kind: "test", locator: { type: "command", command: "node test.cjs" } }));
             if (surface === "MCP") {
                 client = new Client({ name: "check test", version: "1" });
                 await client.connect(new StdioClientTransport({ command: process.execPath, args: [join(here, "main.js"), "--root", root] }));
@@ -38,7 +38,7 @@ for (const surface of ["CLI", "MCP"]) {
                 assert.equal(r.status, 0, r.stdout + r.stderr);
                 return JSON.parse(r.stdout).result as CheckRun;
             };
-            const e = getCheckEvidence(root, "B"), args = { requestId: "surface-saved-check-request", bindingId: "B", expectedSourceDigest: e.sourceDigest, expectedCheckDigest: e.checkDigest };
+            const e = getCheckEvidence(root, "fa9e1a54-8d3e-4f6c-bc5e-0b313ce77b18"), args = { requestId: "surface-saved-check-request", bindingId: "fa9e1a54-8d3e-4f6c-bc5e-0b313ce77b18", expectedSourceDigest: e.sourceDigest, expectedCheckDigest: e.checkDigest };
             const run = await call("run_saved_check", args);
             assert.equal((await call("run_saved_check", args)).runId, run.runId);
             let final = run;
@@ -52,7 +52,7 @@ for (const surface of ["CLI", "MCP"]) {
             assert.equal(final.outcome, "pass");
             assert.match(final.stdout!.text!, /expected greeting/);
             assert.match(final.stderr!.text!, /stderr captured/);
-            assert.equal(getCheckEvidence(root, "B").runs.length, 1);
+            assert.equal(getCheckEvidence(root, "fa9e1a54-8d3e-4f6c-bc5e-0b313ce77b18").runs.length, 1);
         }
         finally {
             await client?.close();

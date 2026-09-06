@@ -1,3 +1,4 @@
+import { assertEntityId, createEntityId, derivedEntityId } from "../identity/index.js"
 import { existsSync, lstatSync, mkdirSync, readFileSync, readdirSync, realpathSync, renameSync, rmSync, writeFileSync } from "node:fs"
 import { dirname, isAbsolute, join, relative, resolve } from "node:path"
 import { createHash, randomUUID } from "node:crypto"
@@ -20,7 +21,6 @@ export * from "./types.js"
 
 const MAX_SKILL_BYTES = 64 * 1024
 const MAX_TOTAL_SKILL_BYTES = 512 * 1024
-const ID = /^[a-zA-Z0-9][a-zA-Z0-9_-]{0,79}$/
 const BUNDLED: Record<string, { content: string; capabilities: WorkflowOutputKind[] }> = {
   plan: { content: `# Plan
 
@@ -42,7 +42,8 @@ Review the current source as an adversary. Start with permission and data-integr
 function defaultStages(ws: Workstream): ResolvedWorkflowStage[] {
   const stage = (id: string, title: string, role: WorkflowStageRole, kind: WorkflowOutputKind): ResolvedWorkflowStage => {
     const bundled = BUNDLED[id]!
-    return { id, title, role, steps: [{ id, title, outputs: [{ kind }], skill: {
+    const stageId=derivedEntityId("spec-ledger:bundled-stage",id),stepId=derivedEntityId("spec-ledger:bundled-step",id)
+    return { id:stageId, title, role, steps: [{ id:stepId, title, outputs: [{ kind }], skill: {
       id, source: "bundled", digest: sha256Stable(bundled.content), content: bundled.content,
       capabilities: bundled.capabilities, capability: "declared", uncertaintyAcknowledged: false,
     } }] }
@@ -62,7 +63,7 @@ function criterionIds(ws: Workstream): string[] {
 }
 
 function assertId(value: string, label: string): void {
-  if (!ID.test(value)) throw new Error(`${label} must be a bounded identifier`)
+  assertEntityId(value,label)
 }
 
 function localSkill(root: string, id: string, ref: { path: string; capabilities?: WorkflowOutputKind[]; acknowledgeUncertain?: boolean }): ResolvedWorkflowSkill {
@@ -251,8 +252,7 @@ export function preserveWorkflow(root: string, workstreamId: string, profile: Wo
   if (current && !reason?.trim()) throw new Error("workflow amendment requires a reason")
   if (!current && expectedSnapshotDigest) throw new Error("no workflow snapshot exists for expectedSnapshotDigest")
   const resolved = resolveWorkflow(root, workstreamId, profile, origin)
-  const existing = listJson<WorkflowSnapshot>(join(base(root), "snapshots", workstreamId))
-  const snapshotId = `${workstreamId}/M-${String(existing.length + 1).padStart(2, "0")}`
+  const snapshotId = createEntityId()
   const { snapshotDigest: _configurationDigest, ...resolvedBody } = resolved
   void _configurationDigest
   const snapshotBody = { ...resolvedBody, snapshotId, createdAt: new Date().toISOString(), ...(reason ? { reason } : {}), ...(current ? { supersedesSnapshotDigest: current.snapshotDigest } : {}) }
@@ -327,7 +327,7 @@ export function validateLibraryProfile(root: string, profile: WorkflowProfile) {
 
 export function libraryTemplate(root: string): WorkflowProfile {
   const snapshot = resolveForSpec(root, { schemaVersion: 1, id: "library", status: "shaped", title: "Workflow library", createdAt: "2026-01-01T00:00:00.000Z", problem: "Reusable workflows", objective: "Validate reusable steps", featureIds: [] })
-  return { id: "my-workflow", title: "My workflow", stages: portableStages(snapshot.stages) }
+  return { id: derivedEntityId("spec-ledger:template","default"), title: "My workflow", stages: portableStages(snapshot.stages) }
 }
 
 function assertProfileShape(profile: WorkflowProfile): void {
@@ -433,8 +433,8 @@ export function startWorkflowStep(root: string, args: { workstreamId: string; st
   if (priorAttempt && !args.reason?.trim()) {
     throw new Error("a new workflow attempt requires a reason")
   }
-  const id = args.attemptId ?? `${args.workstreamId}/A-${String(attempts.length + 1).padStart(3, "0")}`
-  if (!new RegExp(`^${args.workstreamId}/A-[0-9]{3,}$`).test(id)) throw new Error("invalid workflow attempt id")
+  const id = createEntityId()
+  assertEntityId(id)
   const attempt: WorkflowAttempt = { schemaVersion: 1, id, workstreamId: args.workstreamId, stageId: args.stageId, stepId: args.stepId,
     snapshotDigest: snapshot.snapshotDigest, revisionDigest: snapshot.revisionDigest, sourceDigest: computeTreeDigest(root), startedAt: new Date().toISOString(), ...(args.reason ? { reason: args.reason } : {}) }
   immutable(join(base(root), "attempts", args.workstreamId, `${id.split("/").at(-1)}.json`), attempt); return attempt
@@ -462,7 +462,7 @@ export function addWorkflowOutput(root: string, args: Omit<WorkflowOutputReferen
     revisionDigest: snapshot.revisionDigest, sourceDigest: computeTreeDigest(root), recordedAt: new Date().toISOString() }
   const evaluated = evaluateRef(root, probe, snapshot)
   if (!evaluated.current) throw new Error(`workflow output is not current: ${evaluated.reason}`)
-  const outputs = listWorkflowOutputs(root, args.workstreamId); const id = `${args.workstreamId}/O-${String(outputs.length + 1).padStart(3, "0")}`
+  const id = createEntityId()
   const output = { ...probe, id }; immutable(join(base(root), "outputs", args.workstreamId, `${id.split("/").at(-1)}.json`), output); return output
 }
 

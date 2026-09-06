@@ -1,8 +1,7 @@
-// sl-dev-break killers (T-019 / SLC-04) — alignCheck + close gate in a real git fixture.
+// sl-dev-break killers (ebb397fe-dada-5164-a3b3-71e9ed762cb5 / ea6c52db-e95b-5c00-86b4-ac72769a331a) — alignCheck + close gate in a real git fixture.
 import { describe, it } from "node:test"
 import assert from "node:assert/strict"
 import {
-  cpSync,
   mkdtempSync,
   mkdirSync,
   rmSync,
@@ -14,9 +13,12 @@ import { spawnSync } from "node:child_process"
 import { alignCheck } from "./check.js"
 import { assertTurnCloseAllowed } from "../turns/gates.js"
 import { writeReview } from "../reviews/load.js"
+import { initLedger } from "../cli/init.js"
+import { writeJson } from "../fs/load.js"
+import { sealWorkstream } from "../workstream/load.js"
+import { recordAuthority } from "../permission/authority.js"
 import type { Turn } from "../types.js"
 
-const REPO = join(import.meta.dirname, "../../../..")
 const GARBAGE_DIGEST = "f".repeat(64)
 const ROGUE = "packages/rogue/evil.ts"
 const COVERED = "packages/ledger/src/turns/gates.ts"
@@ -28,13 +30,15 @@ function git(dir: string, args: string[]): string {
 
 function fixture(): string {
   const dir = mkdtempSync(join(tmpdir(), "sl-align-killer-"))
-  cpSync(join(REPO, ".spec-ledger"), join(dir, ".spec-ledger"), { recursive: true })
-  // Keep sealed spec documents available so permission validation reaches the align gate.
-  cpSync(join(REPO, "docs/workstreams"), join(dir, "docs/workstreams"), { recursive: true })
-  for (const sub of ["turns", "align-waivers", "reviews/turns"]) {
-    rmSync(join(dir, ".spec-ledger", sub), { recursive: true, force: true })
-    mkdirSync(join(dir, ".spec-ledger", sub), { recursive: true })
-  }
+  initLedger(dir, "Isolated align breaker")
+  writeJson(join(dir,".spec-ledger/workstreams/9ab6270f-07fe-57fb-84ed-e1756ee505f7.json"),{
+    schemaVersion:1,id:"9ab6270f-07fe-57fb-84ed-e1756ee505f7",status:"shaped",title:"Align fixture",featureIds:["turns"],
+    policy:{requireSpecBreak:false,requireCodeBreak:true,requireAlignApprove:true},
+    suggestedSlices:[{id:"ea6c52db-e95b-5c00-86b4-ac72769a331a",title:"Covered change",kind:"vertical",acceptance:["Covered paths"],expectedPaths:["packages/ledger/**"]}]
+  })
+  sealWorkstream(dir,"9ab6270f-07fe-57fb-84ed-e1756ee505f7","fixture")
+  recordAuthority(dir,{action:"grant",mode:"request",workstreamId:"9ab6270f-07fe-57fb-84ed-e1756ee505f7",featureIds:["turns"],source:{kind:"agent-reported",reference:"Explicit synthetic align fixture authority"}})
+  mkdirSync(join(dir,".spec-ledger/align-waivers"),{recursive:true})
   git(dir, ["init", "-q"])
   git(dir, ["config", "user.email", "t@e.com"])
   git(dir, ["config", "user.name", "t"])
@@ -67,7 +71,7 @@ function closedTurn(args: {
 }): Turn {
   return {
     schemaVersion: 1,
-    id: "T-001",
+    id: "1c5a8e44-dd09-543a-97d5-bfe173becbaa",
     status: "closed",
     openedAt: "2026-01-01T00:00:00.000Z",
     closedAt: "2026-01-01T01:00:00.000Z",
@@ -79,8 +83,8 @@ function closedTurn(args: {
     intent: {
       userPrompt: "k",
       restatedGoal: "k",
-      workstreamId: "W-004",
-      sliceId: "SLC-04",
+      workstreamId: "9ab6270f-07fe-57fb-84ed-e1756ee505f7",
+      sliceId: "ea6c52db-e95b-5c00-86b4-ac72769a331a",
       featureIds: ["turns"],
     },
     facts: {
@@ -116,7 +120,7 @@ describe("KILLERS align/check — closed-turn blind spots (pnpm ledger:align / p
       // No open turn. Attacker edits product outside any turn.
       writeProduct(dir, ROGUE)
       const report = alignCheck(dir)
-      assert.equal(report.turnId, "T-001")
+      assert.equal(report.turnId, "1c5a8e44-dd09-543a-97d5-bfe173becbaa")
       assert.equal(
         report.ok,
         false,
@@ -162,16 +166,16 @@ describe("KILLERS align/check — closed-turn blind spots (pnpm ledger:align / p
         closedTurn({ baseCommit: base, commit: base, files: [ROGUE], treeDigest: realDigest }),
       )
       writeFileSync(
-        join(dir, ".spec-ledger/align-waivers/AW-01.json"),
+        join(dir, ".spec-ledger/align-waivers/6c1c61ec-d8f4-5d52-9a35-697ddf6c95e8.json"),
         JSON.stringify(
           {
             schemaVersion: 1,
-            id: "T-001/AW-01",
+            id: "6c1c61ec-d8f4-5d52-9a35-697ddf6c95e8",
             reason: "x".repeat(40),
             actor: "agent:anyone",
             treeDigest: GARBAGE_DIGEST,
-            workstreamId: "W-004",
-            turnId: "T-001",
+            workstreamId: "9ab6270f-07fe-57fb-84ed-e1756ee505f7",
+            turnId: "1c5a8e44-dd09-543a-97d5-bfe173becbaa",
             createdAt: "2026-01-01T02:00:00.000Z",
           },
           null,
@@ -198,7 +202,7 @@ describe("KILLERS turns/gates — close gate bypass", () => {
       commitAll(dir, "init")
       const turn: Turn = {
         schemaVersion: 1,
-        id: "T-001",
+        id: "1c5a8e44-dd09-543a-97d5-bfe173becbaa",
         status: "open",
         openedAt: "2026-01-01T00:00:00.000Z",
         opened: {
@@ -210,8 +214,8 @@ describe("KILLERS turns/gates — close gate bypass", () => {
         intent: {
           userPrompt: "k",
           restatedGoal: "k",
-          workstreamId: "W-004",
-          sliceId: "SLC-04",
+          workstreamId: "9ab6270f-07fe-57fb-84ed-e1756ee505f7",
+          sliceId: "ea6c52db-e95b-5c00-86b4-ac72769a331a",
           featureIds: ["turns"],
         },
       }
@@ -220,8 +224,8 @@ describe("KILLERS turns/gates — close gate bypass", () => {
       commitAll(dir, "rogue committed under open turn")
       writeReview(dir, {
         schemaVersion: 1,
-        id: "T-001/R-01",
-        turnId: "T-001",
+        id: "ae993426-55ab-5610-9784-6f1a5efe7241",
+        turnId: "1c5a8e44-dd09-543a-97d5-bfe173becbaa",
         kind: "adversarial",
         target: "code",
         reviewer: "agent:sl-dev-break",

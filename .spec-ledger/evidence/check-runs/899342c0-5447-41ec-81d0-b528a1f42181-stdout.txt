@@ -1,0 +1,22 @@
+✔ passive evidence render keeps authored expectations distinct and escapes test source (5.721ms)
+✔ actual failures and tampered logs remain visible independently of a described expectation (3.599875ms)
+✔ uncertain HTTP response reconnects with the same request identity (5.033708ms)
+✔ section history returns from execution to exact acceptance without hiding the evidence (16.561792ms)
+✔ unknown or obsolete fragments do not strand readers in an invisible section (0.143208ms)
+✔ mobile navigation closes on same-page selection and route change but preserves modified clicks (34.245334ms)
+✔ change history is isolated from the live child list and renders without key warnings (24.974959ms)
+✔ the dedicated workflow page retains editor and process state when live data changes workstream (5.218041ms)
+✔ overview keeps permission and problems visible with direct spec, evidence and history links (118.015541ms)
+✔ approved work does not request approval again and disconnected approval stays disabled (27.043958ms)
+✔ simpler progress keeps incomplete and historical limits visible even when all checks pass (2.113333ms)
+✔ failed missing attested and unmapped requirements keep their limitations beside expandable proof (2.144541ms)
+✔ simplified feature observation still exposes disconnection without replacing the requested spec (9.596333ms)
+✔ opening proof reads evidence without posting a command (24.386375ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 447.435292

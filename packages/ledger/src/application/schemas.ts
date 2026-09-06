@@ -1,6 +1,9 @@
+import { workstreamInput, claimInput, bindingInput, tenetInput, themeInput, learningInput } from "../identity/creation.js"
+import { goalInputSchema, experimentInputSchema, resultInputSchema, conclusionInputSchema, goalIdSchema } from "../optimization/model.js"
 import * as z from "zod/v4"
 
-const id = z.string().min(1).max(160)
+const id = z.string().uuid()
+const actorName = z.string().trim().min(1).max(160)
 const requestId = z.string().regex(/^[a-zA-Z0-9][a-zA-Z0-9_-]{15,79}$/)
 const digest = z.string().regex(/^[a-f0-9]{64}$/)
 const stringList = z.array(z.string().min(1).max(500)).max(200)
@@ -20,15 +23,32 @@ const workflowProfile = z.object({
 const provenance = z.object({ kind: z.literal("agent-reported"), reference: z.string().min(1).max(1000) }).strict()
 const opaqueId = z.string().regex(/^[A-Za-z0-9][A-Za-z0-9._:@-]{0,159}$/)
 
+const optimizationGuard = { requestId, expectedRevisionDigest: digest, expectedSourceDigest: digest }
+
 export const OPERATION_SCHEMAS = {
+  create_tenet: z.object({requestId, tenet:tenetInput}).strict(),
+  create_theme: z.object({requestId, theme:themeInput}).strict(),
+  record_learning: z.object({requestId, learning:learningInput}).strict(),
+  create_workstream: z.object({ requestId, workstream: workstreamInput }).strict(),
+  create_claim: z.object({ requestId, turnId: id, claim: claimInput }).strict(),
+  create_proposed_claim: z.object({ requestId, workstreamId: id, claim: claimInput }).strict(),
+  create_binding: z.object({ requestId, turnId: id, binding: bindingInput }).strict(),
+  check_visual_evidence: z.object({ workstreamId: id, turnId: id.optional() }).strict(),
+  record_screenshot: z.object({ requestId, turnId: id, sliceId: id.optional(), surface: z.string().trim().min(1).max(200), path: z.string().min(1).max(1000), title: z.string().min(1).max(200).optional(), expectedSourceDigest: digest, expectedRevisionDigest: digest }).strict(),
+  list_goals: z.object({ workstreamId: id.optional(), turnId: id.optional() }).strict(),
+  get_goal: z.object({ goalId: goalIdSchema }).strict(),
+  create_goal: z.object({ ...optimizationGuard, goal: goalInputSchema }).strict(),
+  start_experiment: z.object({ ...optimizationGuard, experiment: experimentInputSchema }).strict(),
+  record_experiment_result: z.object({ ...optimizationGuard, result: resultInputSchema }).strict(),
+  conclude_goal: z.object({ ...optimizationGuard, conclusion: conclusionInputSchema }).strict(),
   get_workflow_library_options: z.object({}).strict(),
   preview_workflow_profile: z.object({ profile: workflowProfile }).strict(),
   list_workflow_profiles: z.object({ workstreamId: id.optional() }).strict(),
   get_workflow_profile: z.object({ profileId: id }).strict(),
-  save_workflow_profile: z.object({ requestId, profile: workflowProfile, actor: id, reason: z.string().trim().min(1).max(1000) }).strict(),
-  update_workflow_profile: z.object({ requestId, profile: workflowProfile, expectedDigest: digest, actor: id, reason: z.string().trim().min(1).max(1000) }).strict(),
-  delete_workflow_profile: z.object({ requestId, profileId: id, expectedDigest: digest, actor: id, reason: z.string().trim().min(1).max(1000) }).strict(),
-  set_default_workflow_profile: z.object({ requestId, profileId: id.nullable(), expectedDigest: digest, actor: id, reason: z.string().trim().min(1).max(1000) }).strict(),
+  save_workflow_profile: z.object({ requestId, profile: workflowProfile.omit({ id: true }), actor: actorName, reason: z.string().trim().min(1).max(1000) }).strict(),
+  update_workflow_profile: z.object({ requestId, profile: workflowProfile, expectedDigest: digest, actor: actorName, reason: z.string().trim().min(1).max(1000) }).strict(),
+  delete_workflow_profile: z.object({ requestId, profileId: id, expectedDigest: digest, actor: actorName, reason: z.string().trim().min(1).max(1000) }).strict(),
+  set_default_workflow_profile: z.object({ requestId, profileId: id.nullable(), expectedDigest: digest, actor: actorName, reason: z.string().trim().min(1).max(1000) }).strict(),
   plan_work: z.object({ workstreamId: id }).strict(),
   get_context: z.object({ workstreamId: id, sliceId: id }).strict(),
   get_session: z.object({ workstreamId: id.optional() }).strict(),
@@ -40,7 +60,7 @@ export const OPERATION_SCHEMAS = {
   begin_work: z.object({
     requestId, workstreamId: id, sliceId: id.optional(), goal: z.string().min(1).max(1000),
     prompt: z.string().min(1).max(4000).optional(), featureIds: stringList.optional(),
-    turnId: id.optional(), changeType: z.enum(["feature", "refactor", "fix", "migration", "chore", "docs"]).optional(),
+    changeType: z.enum(["feature", "refactor", "fix", "migration", "chore", "docs"]).optional(),
     riskLevel: z.enum(["low", "moderate", "elevated", "high"]).optional(),
     noContext: z.boolean().optional(), noContextReason: z.string().min(1).max(1000).optional(),
     allowDirty: z.boolean().optional(), expectedRevisionDigest: digest,
@@ -79,7 +99,7 @@ export const OPERATION_SCHEMAS = {
   complete_work: z.object({ requestId, workstreamId: id, expectedRevisionDigest: digest, expectedSourceDigest: digest }).strict(),
   set_workflow: z.object({ requestId, workstreamId: id, expectedRevisionDigest: digest, expectedSourceDigest: digest,
     expectedConfigurationDigest: digest.optional(), profile: workflowProfile.optional(), profileId: id.optional(), reason: z.string().min(1).max(1000).optional(), expectedSnapshotDigest: digest.optional() }).strict(),
-  begin_workflow_step: z.object({ requestId, workstreamId: id, stageId: id, stepId: id, attemptId: id.optional(),
+  begin_workflow_step: z.object({ requestId, workstreamId: id, stageId: id, stepId: id,
     reason: z.string().min(1).max(1000).optional(), expectedRevisionDigest: digest, expectedSourceDigest: digest, expectedSnapshotDigest: digest }).strict(),
   report_workflow_attempt: z.object({ requestId, workstreamId: id, attemptId: id, status: z.enum(["reported-complete", "blocked"]),
     reason: z.string().min(1).max(1000).optional(), expectedRevisionDigest: digest, expectedSourceDigest: digest, expectedSnapshotDigest: digest }).strict(),

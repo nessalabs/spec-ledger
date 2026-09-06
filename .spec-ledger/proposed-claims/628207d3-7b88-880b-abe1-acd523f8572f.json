@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "628207d3-7b88-880b-abe1-acd523f8572f",
+  "status": "promoted",
+  "statement": "spec-ledger init creates exactly the normative .spec-ledger/ path table in docs/workstreams/consumer-cli-and-npm-publish.md (ledger.json last; vision stub; empty claims/bindings/turns/workstreams/proposed-claims/reviews/themes/tenets; graph+policy files; results/.gitkeep). Re-init when ledger.json exists is refused. After init, verify invents no claim outcome pass and no binding contains status or pass (67609c19-de05-862c-8db7-e5dc95f38cee, 2884eafb-114e-85f1-ae07-ce1fbd140550).",
+  "rationale": "Machine-checkable skeleton so skills and consumers share one layout; init must not greenwash verify.",
+  "workstreamId": "d1be55a6-11bb-8460-8650-ddf0ecac8185",
+  "suggestedLiveId": "259e1acf-d082-8bfe-b0ab-76fab45ae7d0",
+  "requiredEvidence": [
+    "unit",
+    "integration"
+  ],
+  "liveId": "259e1acf-d082-8bfe-b0ab-76fab45ae7d0",
+  "updatedAt": "2026-09-04T20:04:34.266Z",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/proposed-claims/PC-015.json",
+        "id": "PC-015",
+        "sha256": "d946ee892e66b85b523211b0425d4419af0c7d5c9beee600b16fd96db9498860"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/proposed-claims/PC-015.json",
+        "id": "PC-015",
+        "sha256": "d946ee892e66b85b523211b0425d4419af0c7d5c9beee600b16fd96db9498860"
+      }
+    },
+    "historical": true
+  }
+}

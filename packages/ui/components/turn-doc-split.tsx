@@ -1,5 +1,7 @@
 "use client"
 
+import { ReadableText } from "@/components/readable-text"
+
 import * as React from "react"
 import type { RelatedDoc } from "@/components/turn-detail"
 import { useDocPane } from "@/components/doc-reader"
@@ -54,10 +56,7 @@ export function RelatedDocsList({ docs }: { docs: RelatedDoc[] }) {
               className="flex items-baseline justify-between gap-3 px-3 py-2 text-sm"
             >
               <span className="min-w-0">
-                <span className="font-medium text-foreground">{d.label}</span>
-                <span className="mt-0.5 block truncate font-mono text-[11px] text-muted-foreground">
-                  {d.path}
-                </span>
+                <span className="font-medium text-foreground"><ReadableText>{d.label}</ReadableText></span>
               </span>
               <button
                 type="button"

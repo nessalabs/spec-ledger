@@ -23,7 +23,7 @@ Haiku-class** model. Does **not** affect `verify.ok`.
 ## Hard rules
 
 1. Establish the user's coverage intent before writing approve JSON. An explicit request or accepted scope already in the conversation satisfies this; ask only when the intended coverage is missing or ambiguous. Do not invent why paths are in-scope.
-2. Run `spec-ledger align check --turn T-…` (or `pnpm ledger:align`).
+2. Run `spec-ledger align check --turn <turn-uuid>` (or `pnpm ledger:align`).
 3. Approve only when `uncoveredPaths` is empty **or** `waiverIds` references a written waiver.
 4. Reviewer must start with `policy.alignReviewerPrefix` (default `agent:align`) and must **not** equal turn `opened.producedBy`.
 5. Stamp `treeDigest`, `coverageSource`, `uncoveredPaths`, and **`plainSummary`**
@@ -35,11 +35,11 @@ Haiku-class** model. Does **not** affect `verify.ok`.
 ```bash
 pnpm ledger:align
 # or
-node packages/ledger/dist/cli/main.js align check --turn T-016
-node packages/ledger/dist/cli/main.js align approve --turn T-016 --reviewer agent:align \
+node packages/ledger/dist/cli/main.js align check --turn <turn-uuid>
+node packages/ledger/dist/cli/main.js align approve --turn <turn-uuid> --reviewer agent:align \
   --plain-summary "Product files in this turn are covered by the sealed plan." \
   --summary "user intent: …"
-node packages/ledger/dist/cli/main.js align waiver --turn T-016 --actor human \
+node packages/ledger/dist/cli/main.js align waiver --turn <turn-uuid> --actor human \
   --reason "…… at least forty characters explaining the skip ……"
 ```
 

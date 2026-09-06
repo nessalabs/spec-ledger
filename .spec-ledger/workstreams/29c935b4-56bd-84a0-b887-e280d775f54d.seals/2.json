@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "workstreamId": "29c935b4-56bd-84a0-b887-e280d775f54d",
+  "revision": 2,
+  "sealedAt": "2026-09-06T07:51:25.216Z",
+  "sealedBy": "agent:permission:e4e8c4a1-b747-869a-a7b7-aee3ac248572",
+  "specDigest": "3ad5e9ddfa54ac72bae34eeb628d36381654f5767dcbbc5633cc1636fc8a209c",
+  "specDocDigest": "e94f99159c92232d20dd21d3f3690c6fda0c31ab749e7d514bb4e61316bb5c0c",
+  "body": {
+    "id": "29c935b4-56bd-84a0-b887-e280d775f54d",
+    "featureIds": [
+      "turns",
+      "lattice",
+      "cli"
+    ],
+    "primaryFeatureId": null,
+    "title": "Follow agent experiments",
+    "problem": "Iterative agent work lacks a durable goal and experiment history that people can inspect.",
+    "objective": "See what an agent is improving, its experiment results, and what it learned.",
+    "specPath": "docs/workstreams/29c935b4-56bd-84a0-b887-e280d775f54d-follow-agent-experiments/spec.md",
+    "appetite": null,
+    "changeType": "feature",
+    "riskLevel": "moderate",
+    "trust": {
+      "deployTarget": "library-consumer",
+      "userFacing": true,
+      "requiredEvidence": [
+        "unit",
+        "integration",
+        "e2e"
+      ]
+    },
+    "policy": {
+      "alertOnSeverity": "high",
+      "onAlert": "wait",
+      "alertWaitMinutes": 10,
+      "onAlertTimeout": "move",
+      "onSealedSpecDeviation": "wait",
+      "sealedDeviationWaitMinutes": 10,
+      "onSealedDeviationTimeout": "move",
+      "requireSpecBreak": true,
+      "requireCodeBreak": true
+    },
+    "acceptanceCriteria": [],
+    "acceptanceClaimIds": {
+      "04932de5-9225-81d4-b42c-c13f79e6c5be/AC-1": [
+        "1ea8304f-a051-8234-b7a7-ce31b25eccf2"
+      ],
+      "04932de5-9225-81d4-b42c-c13f79e6c5be/AC-2": [
+        "1ea8304f-a051-8234-b7a7-ce31b25eccf2"
+      ],
+      "04932de5-9225-81d4-b42c-c13f79e6c5be/AC-3": [
+        "1ea8304f-a051-8234-b7a7-ce31b25eccf2"
+      ]
+    },
+    "outOfScope": [],
+    "proposedClaimIds": [],
+    "suggestedSlices": [
+      {
+        "id": "04932de5-9225-81d4-b42c-c13f79e6c5be",
+        "title": "Record and inspect an agent’s experiments",
+        "kind": "vertical",
+        "acceptance": [
+          "Agents record durable goals and attempts with safe retries and validated references.",
+          "People inspect honest results and progress in a screenshot-readable view.",
+          "Experiment reports never change verification or permission semantics."
+        ],
+        "evidence": [
+          "unit",
+          "integration",
+          "e2e"
+        ],
+        "expectedClaimIds": [],
+        "expectedPaths": [
+          "packages/ledger/**",
+          "packages/client/**",
+          "packages/server/**",
+          "packages/mcp/**",
+          "packages/ui/**",
+          "schemas/**",
+          "docs/**",
+          "skills/**"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,609 @@
+{
+  "schemaVersion": 1,
+  "id": "4ec19543-c21c-881a-9752-b0294e33bfc0",
+  "status": "closed",
+  "openedAt": "2026-09-03T07:48:43.748Z",
+  "opened": {
+    "producedBy": "@nessa/spec-ledger@0.1.0",
+    "baseCommit": "491ca29479e04b1de8dd20577754992310af2f2b",
+    "treeDigest": "a3c78a4622a719fac785eb631a1f3821839f12717f9f33c516fd80b4dd0f51e8",
+    "dirtyAtOpen": [
+      ".spec-ledger/proposed-claims/82fa5163-847a-8bb4-9cf4-61c3fb607187.json",
+      ".spec-ledger/proposed-claims/afbad76d-e486-8108-9e2c-231bfc254ab8.json",
+      ".spec-ledger/reviews/turns/f413d965-4b38-89aa-85bd-aae03d8d9aef/2ddda9dd-7526-839c-9844-199b543f59ba.json",
+      ".spec-ledger/reviews/turns/aa9eaf8d-f0f6-8039-ab93-3967acc596f4/de1490fb-f0c7-8d34-8dc3-d275a7c5e1e5.json",
+      ".spec-ledger/reviews/turns/f1be3685-cdec-81f6-a240-f435ff5c9f36/5038b55b-2018-899a-b897-8112e6f4254f.json",
+      ".spec-ledger/reviews/turns/0650e1d5-4674-8317-a8f6-cf9d9cef08c4/5db637a1-4599-8f4e-8b45-f38bb80c28cc.json",
+      ".spec-ledger/reviews/turns/da654146-9663-8ddb-878a-bfb94c4f904f/b4e23404-93bb-891c-bac9-69c942a19621.json",
+      ".spec-ledger/reviews/turns/62783542-eaa4-8f3a-ac42-f75d77560b41/e336d992-f74f-8b11-82d5-1a5596249479.json",
+      ".spec-ledger/reviews/turns/c048a8e1-d33f-8625-85e3-24a0470b3da7/4eadde69-2098-8bc4-a8b0-cdae81708e4e.json",
+      ".spec-ledger/reviews/workstreams/76451749-a54f-8579-96f2-dcec19d79026/449c5d79-aef1-84ba-92c5-4c7d15d5c1f5.json",
+      ".spec-ledger/reviews/workstreams/76451749-a54f-8579-96f2-dcec19d79026/bbdc547e-1a24-8c0f-a4e4-9c96dccb4281.json",
+      ".spec-ledger/reviews/workstreams/76451749-a54f-8579-96f2-dcec19d79026/5efd0ede-3a89-8d86-b186-805803acad4a.json",
+      ".spec-ledger/turns/f413d965-4b38-89aa-85bd-aae03d8d9aef.json",
+      ".spec-ledger/turns/aa9eaf8d-f0f6-8039-ab93-3967acc596f4.json",
+      ".spec-ledger/turns/f1be3685-cdec-81f6-a240-f435ff5c9f36.json",
+      ".spec-ledger/turns/0650e1d5-4674-8317-a8f6-cf9d9cef08c4.json",
+      ".spec-ledger/turns/da654146-9663-8ddb-878a-bfb94c4f904f.json",
+      ".spec-ledger/turns/62783542-eaa4-8f3a-ac42-f75d77560b41.json",
+      ".spec-ledger/turns/c048a8e1-d33f-8625-85e3-24a0470b3da7.json",
+      ".spec-ledger/vision.json",
+      ".spec-ledger/workstreams/3317ada5-b347-894e-8c88-110b7b42d58b.json",
+      ".spec-ledger/workstreams/e6213c3f-60e4-8ceb-9d6a-15c67833b383.json",
+      ".spec-ledger/workstreams/beee03a2-1e8d-8091-9ed9-b35bea93d6a3.json",
+      ".spec-ledger/workstreams/76451749-a54f-8579-96f2-dcec19d79026.json",
+      ".spec-ledger/workstreams/76451749-a54f-8579-96f2-dcec19d79026.seals/1.json",
+      "docs/README.md",
+      "docs/compass/README.md",
+      "docs/compass/vision.md",
+      "docs/workstreams/README.md",
+      "docs/workstreams/builder-episode-loop.md",
+      "docs/workstreams/p0-p3-runtime-and-dogfood.md",
+      "docs/workstreams/spec-code-coupling-and-honest-lattice-trail.md",
+      "docs/workstreams/spec-ledger-dogfood-ui.md",
+      "package.json",
+      "packages/ledger/src/types.ts",
+      "packages/ledger/src/workstream/load.ts",
+      "packages/ui/app/claims/[id]/page.tsx",
+      "packages/ui/app/claims/page.tsx",
+      "packages/ui/app/compass/page.tsx",
+      "packages/ui/app/contracts/page.tsx",
+      "packages/ui/app/features/[id]/page.tsx",
+      "packages/ui/app/features/page.tsx",
+      "packages/ui/app/graph/page.tsx",
+      "packages/ui/app/layout.tsx",
+      "packages/ui/app/nodes/[id]/page.tsx",
+      "packages/ui/app/page.tsx",
+      "packages/ui/app/timeline/page.tsx",
+      "packages/ui/app/turns/[id]/page.tsx",
+      "packages/ui/app/turns/page.tsx",
+      "packages/ui/app/verify/page.tsx",
+      "packages/ui/app/workstreams/[id]/page.tsx",
+      "packages/ui/app/workstreams/page.tsx",
+      "packages/ui/components/claims-list.tsx",
+      "packages/ui/components/graph-workspace.tsx",
+      "packages/ui/components/lattice-shell.tsx",
+      "packages/ui/components/pitch-doc-link.tsx",
+      "packages/ui/components/spec-doc.tsx",
+      "packages/ui/components/static-mermaid-inner.tsx",
+      "packages/ui/components/static-mermaid.tsx",
+      "packages/ui/components/turn-detail.tsx",
+      "packages/ui/components/turn-doc-split.tsx",
+      "packages/ui/components/turn-files.tsx",
+      "packages/ui/components/turn-plan-section.tsx",
+      "packages/ui/lib/git.ts",
+      "packages/ui/lib/impact.ts",
+      "packages/ui/lib/ledger.ts",
+      "packages/ui/lib/spec-md.ts",
+      "packages/ui/next.config.mjs",
+      "packages/ui/package.json",
+      "schemas/review.json",
+      "schemas/workstream.json",
+      "skills/sl-plan-shape/SKILL.md",
+      "skills/sl-plan-shape/workstream-template.md"
+    ],
+    "contextDigest": "24899fdb27d08a37aafb4e01fffcbc15aee9a13d60d91c06132caf3a41db6da7",
+    "contextWorkstreamId": "76451749-a54f-8579-96f2-dcec19d79026",
+    "contextSliceId": "8e34ebbd-c0cb-888c-95b8-0eaf07ecb634",
+    "contextSealRevision": 1,
+    "contextGeneratedAt": "2026-09-03T07:48:43.743Z"
+  },
+  "intent": {
+    "userPrompt": "Turns list: workstream pill on each row",
+    "restatedGoal": "Show which workstream each turn belongs to",
+    "changeType": "feature",
+    "riskLevel": "moderate",
+    "workstreamId": "76451749-a54f-8579-96f2-dcec19d79026",
+    "sliceId": "8e34ebbd-c0cb-888c-95b8-0eaf07ecb634",
+    "featureIds": [
+      "lattice"
+    ]
+  },
+  "closedAt": "2026-09-03T07:50:28.650Z",
+  "facts": {
+    "producedBy": "@nessa/spec-ledger@0.1.0",
+    "commit": "491ca29479e04b1de8dd20577754992310af2f2b",
+    "files": [
+      {
+        "path": ".spec-ledger/proposed-claims/82fa5163-847a-8bb4-9cf4-61c3fb607187.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/proposed-claims/afbad76d-e486-8108-9e2c-231bfc254ab8.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/turns/f413d965-4b38-89aa-85bd-aae03d8d9aef/2ddda9dd-7526-839c-9844-199b543f59ba.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/turns/aa9eaf8d-f0f6-8039-ab93-3967acc596f4/de1490fb-f0c7-8d34-8dc3-d275a7c5e1e5.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/turns/f1be3685-cdec-81f6-a240-f435ff5c9f36/5038b55b-2018-899a-b897-8112e6f4254f.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/turns/0650e1d5-4674-8317-a8f6-cf9d9cef08c4/5db637a1-4599-8f4e-8b45-f38bb80c28cc.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/turns/da654146-9663-8ddb-878a-bfb94c4f904f/b4e23404-93bb-891c-bac9-69c942a19621.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/turns/62783542-eaa4-8f3a-ac42-f75d77560b41/e336d992-f74f-8b11-82d5-1a5596249479.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/turns/c048a8e1-d33f-8625-85e3-24a0470b3da7/4eadde69-2098-8bc4-a8b0-cdae81708e4e.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/turns/4ec19543-c21c-881a-9752-b0294e33bfc0/b3ad0c83-1661-83cc-b596-dd5f5c6e43ad.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/workstreams/76451749-a54f-8579-96f2-dcec19d79026/449c5d79-aef1-84ba-92c5-4c7d15d5c1f5.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/workstreams/76451749-a54f-8579-96f2-dcec19d79026/bbdc547e-1a24-8c0f-a4e4-9c96dccb4281.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/workstreams/76451749-a54f-8579-96f2-dcec19d79026/5efd0ede-3a89-8d86-b186-805803acad4a.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/turns/f413d965-4b38-89aa-85bd-aae03d8d9aef.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/turns/aa9eaf8d-f0f6-8039-ab93-3967acc596f4.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/turns/f1be3685-cdec-81f6-a240-f435ff5c9f36.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/turns/0650e1d5-4674-8317-a8f6-cf9d9cef08c4.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/turns/da654146-9663-8ddb-878a-bfb94c4f904f.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/turns/62783542-eaa4-8f3a-ac42-f75d77560b41.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/turns/c048a8e1-d33f-8625-85e3-24a0470b3da7.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/turns/4ec19543-c21c-881a-9752-b0294e33bfc0.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/vision.json",
+        "kind": "modified",
+        "additions": 2,
+        "deletions": 1
+      },
+      {
+        "path": ".spec-ledger/workstreams/3317ada5-b347-894e-8c88-110b7b42d58b.json",
+        "kind": "modified",
+        "additions": 1,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/workstreams/e6213c3f-60e4-8ceb-9d6a-15c67833b383.json",
+        "kind": "modified",
+        "additions": 1,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/workstreams/beee03a2-1e8d-8091-9ed9-b35bea93d6a3.json",
+        "kind": "modified",
+        "additions": 1,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/workstreams/76451749-a54f-8579-96f2-dcec19d79026.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/workstreams/76451749-a54f-8579-96f2-dcec19d79026.seals/1.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "docs/compass/README.md",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "docs/compass/vision.md",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "docs/README.md",
+        "kind": "modified",
+        "additions": 2,
+        "deletions": 0
+      },
+      {
+        "path": "docs/workstreams/builder-episode-loop.md",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "docs/workstreams/p0-p3-runtime-and-dogfood.md",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "docs/workstreams/README.md",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "docs/workstreams/spec-code-coupling-and-honest-lattice-trail.md",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "docs/workstreams/spec-ledger-dogfood-ui.md",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "package.json",
+        "kind": "modified",
+        "additions": 1,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/types.ts",
+        "kind": "modified",
+        "additions": 7,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/workstream/load.ts",
+        "kind": "modified",
+        "additions": 2,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ui/app/claims/[id]/page.tsx",
+        "kind": "modified",
+        "additions": 2,
+        "deletions": 2
+      },
+      {
+        "path": "packages/ui/app/claims/page.tsx",
+        "kind": "modified",
+        "additions": 3,
+        "deletions": 4
+      },
+      {
+        "path": "packages/ui/app/compass/page.tsx",
+        "kind": "modified",
+        "additions": 1,
+        "deletions": 1
+      },
+      {
+        "path": "packages/ui/app/contracts/page.tsx",
+        "kind": "modified",
+        "additions": 18,
+        "deletions": 4
+      },
+      {
+        "path": "packages/ui/app/features/[id]/page.tsx",
+        "kind": "modified",
+        "additions": 2,
+        "deletions": 2
+      },
+      {
+        "path": "packages/ui/app/features/page.tsx",
+        "kind": "modified",
+        "additions": 38,
+        "deletions": 46
+      },
+      {
+        "path": "packages/ui/app/graph/page.tsx",
+        "kind": "modified",
+        "additions": 13,
+        "deletions": 1
+      },
+      {
+        "path": "packages/ui/app/layout.tsx",
+        "kind": "modified",
+        "additions": 2,
+        "deletions": 15
+      },
+      {
+        "path": "packages/ui/app/nodes/[id]/page.tsx",
+        "kind": "modified",
+        "additions": 2,
+        "deletions": 2
+      },
+      {
+        "path": "packages/ui/app/page.tsx",
+        "kind": "modified",
+        "additions": 63,
+        "deletions": 10
+      },
+      {
+        "path": "packages/ui/app/timeline/page.tsx",
+        "kind": "modified",
+        "additions": 4,
+        "deletions": 81
+      },
+      {
+        "path": "packages/ui/app/turns/[id]/page.tsx",
+        "kind": "modified",
+        "additions": 79,
+        "deletions": 6
+      },
+      {
+        "path": "packages/ui/app/turns/page.tsx",
+        "kind": "modified",
+        "additions": 74,
+        "deletions": 10
+      },
+      {
+        "path": "packages/ui/app/verify/page.tsx",
+        "kind": "modified",
+        "additions": 80,
+        "deletions": 92
+      },
+      {
+        "path": "packages/ui/app/workstreams/[id]/page.tsx",
+        "kind": "modified",
+        "additions": 72,
+        "deletions": 91
+      },
+      {
+        "path": "packages/ui/app/workstreams/page.tsx",
+        "kind": "modified",
+        "additions": 35,
+        "deletions": 41
+      },
+      {
+        "path": "packages/ui/components/claims-list.tsx",
+        "kind": "modified",
+        "additions": 46,
+        "deletions": 40
+      },
+      {
+        "path": "packages/ui/components/graph-workspace.tsx",
+        "kind": "modified",
+        "additions": 41,
+        "deletions": 34
+      },
+      {
+        "path": "packages/ui/components/lattice-shell.tsx",
+        "kind": "modified",
+        "additions": 80,
+        "deletions": 45
+      },
+      {
+        "path": "packages/ui/components/pitch-doc-link.tsx",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ui/components/spec-doc.tsx",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ui/components/static-mermaid-inner.tsx",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ui/components/static-mermaid.tsx",
+        "kind": "modified",
+        "additions": 12,
+        "deletions": 68
+      },
+      {
+        "path": "packages/ui/components/turn-detail.tsx",
+        "kind": "modified",
+        "additions": 461,
+        "deletions": 377
+      },
+      {
+        "path": "packages/ui/components/turn-doc-split.tsx",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ui/components/turn-files.tsx",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ui/components/turn-plan-section.tsx",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ui/lib/git.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ui/lib/impact.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ui/lib/ledger.ts",
+        "kind": "modified",
+        "additions": 10,
+        "deletions": 3
+      },
+      {
+        "path": "packages/ui/lib/spec-md.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ui/next.config.mjs",
+        "kind": "modified",
+        "additions": 10,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ui/package.json",
+        "kind": "modified",
+        "additions": 1,
+        "deletions": 1
+      },
+      {
+        "path": "schemas/review.json",
+        "kind": "modified",
+        "additions": 18,
+        "deletions": 0
+      },
+      {
+        "path": "schemas/workstream.json",
+        "kind": "modified",
+        "additions": 11,
+        "deletions": 0
+      },
+      {
+        "path": "skills/sl-plan-shape/SKILL.md",
+        "kind": "modified",
+        "additions": 5,
+        "deletions": 3
+      },
+      {
+        "path": "skills/sl-plan-shape/workstream-template.md",
+        "kind": "modified",
+        "additions": 3,
+        "deletions": 2
+      }
+    ],
+    "touchedNodeIds": [
+      "ledger-core",
+      "ledger-ui",
+      "schemas"
+    ],
+    "touchedFeatureIds": [
+      "lattice",
+      "turns",
+      "verify"
+    ],
+    "touchedClaimIds": [
+      "b69a663d-e2dd-8655-be45-0e07bfb45c89"
+    ],
+    "blastRadius": {
+      "direct": [
+        "ledger-client",
+        "ledger-core",
+        "ledger-server"
+      ],
+      "transitive": [
+        "ledger-client",
+        "ledger-core",
+        "ledger-server",
+        "ledger-ui"
+      ]
+    },
+    "verify": {
+      "ok": true,
+      "ledgerDigest": "9731a4d02e58971ec6e340a4385d32d9fc3c09ad55c0a7f2c137cbc356c9052a",
+      "resultsDigest": "ded3eb2608a70a2e28040c5e1e7c4faa49be0d27b4ffc4d3e2a3ffb91bf72fbb",
+      "treeDigest": "65a3a1ee888ef231485dec20572219fddf48cecbd6b315ac79e5b65f24029e47",
+      "producedAt": "2026-09-03T07:50:28.556Z"
+    },
+    "schemaSurfaceChanged": true,
+    "reviewsDigest": "982abf32b6d3afd6eb1e2ab44e81d0987c8c41f944fe7d8aba4144b466bf83e1"
+  },
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/turns/T-014.json",
+        "id": "T-014",
+        "sha256": "57bef052ceb7bd28ef0c75b9649837af0ccdc52d52d8c0f9acfa9be72576e43a"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/turns/T-014.json",
+        "id": "T-014",
+        "sha256": "57bef052ceb7bd28ef0c75b9649837af0ccdc52d52d8c0f9acfa9be72576e43a"
+      }
+    },
+    "historical": true
+  }
+}

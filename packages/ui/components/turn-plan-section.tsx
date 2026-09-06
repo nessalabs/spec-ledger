@@ -1,5 +1,7 @@
 "use client"
 
+import { ReadableText } from "@/components/readable-text"
+
 import { presentationCopy } from "@/lib/features"
 
 
@@ -41,7 +43,7 @@ export function TurnPlanSection({
         <Card>
           <CardHeader className="gap-1">
             <CardTitle className="text-base">
-              {presentationCopy(workstream?.title ?? "Workstream pitch")}
+              <ReadableText>{presentationCopy(workstream?.title ?? "Workstream pitch")}</ReadableText>
             </CardTitle>
             <CardDescription>
               {workstream ? (
@@ -49,7 +51,7 @@ export function TurnPlanSection({
                   href={`/workstreams/${encodeURIComponent(workstream.id)}`}
                   className="hover:underline"
                 >
-                  {workstream.id}
+                  <ReadableText>{workstream.id}</ReadableText>
                 </Link>
               ) : null}
               {sliceTitle ? ` · ${presentationCopy(sliceTitle)}` : ""}
@@ -82,7 +84,7 @@ export function TurnPlanSection({
                     Before
                   </h3>
                   <p className="leading-relaxed text-foreground/90">
-                    {presentationCopy(workstream.problem)}
+                    <ReadableText>{presentationCopy(workstream.problem)}</ReadableText>
                   </p>
                 </div>
                 <div>
@@ -90,7 +92,7 @@ export function TurnPlanSection({
                     After
                   </h3>
                   <p className="leading-relaxed text-foreground/90">
-                    {presentationCopy(workstream.objective)}
+                    <ReadableText>{presentationCopy(workstream.objective)}</ReadableText>
                   </p>
                 </div>
               </div>

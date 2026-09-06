@@ -1,3 +1,4 @@
+import { GoalLinks } from "@/components/goal-links"
 import { notFound } from "next/navigation"
 import { liveReport, serverClient } from "@/lib/ledger"
 import { readTurnCommit } from "@/lib/git"
@@ -26,6 +27,7 @@ export default async function TurnPage({
   } catch {
     notFound()
   }
+  const goals = await client.listGoals({ turnId: id })
   const turn = episode.turn
   const [report, claims, graph] = await Promise.all([
     liveReport(),
@@ -67,7 +69,7 @@ export default async function TurnPage({
     if (!claimIds.has(c.id)) continue
     for (const path of c.links?.docs ?? []) {
       if (!docPaths.has(path)) {
-        docPaths.set(path, { path, label: `${c.id} · ${path.split("/").pop()}` })
+        docPaths.set(path, { path, label: `Requirement documentation · ${path.split("/").pop()}` })
       }
     }
   }
@@ -84,6 +86,7 @@ export default async function TurnPage({
 
   return (
     <TurnDocSplit docs={relatedDocs}>
+      <GoalLinks goals={goals} />
       <TurnDetail
         turn={turn}
         evidence={evidence}

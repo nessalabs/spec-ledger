@@ -22,7 +22,8 @@ export function WorkflowBuilder({ profileId }: { profileId?: string }) {
     return () => controller.abort()
   }, [profileId])
   async function save(profile: WorkflowProfile, expectedDigest: string | undefined, reason: string) {
-    if (await mutation.run({ action: expectedDigest ? 'update' : 'save', input: { requestId: crypto.randomUUID(), actor: 'local:browser', reason, profile, ...(expectedDigest ? { expectedDigest } : {}) } })) router.push('/workflows')
+    const {id: _id,...newProfile}=profile
+    if (await mutation.run({ action: expectedDigest ? 'update' : 'save', input: { requestId: crypto.randomUUID(), actor: 'local:browser', reason, profile: expectedDigest ? profile : newProfile, ...(expectedDigest ? { expectedDigest } : {}) } })) router.push('/workflows')
   }
   return <div className="-m-6 flex h-[calc(100dvh-3rem)] min-h-0 flex-col">
     {(message || mutation.message) && <p role="status" className="text-sm text-destructive">{message || mutation.message}</p>}

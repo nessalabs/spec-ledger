@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "producedAt": "2026-09-06T17:47:13.261Z",
+  "producer": {
+    "name": "spec-ledger check",
+    "version": "0.1.0"
+  },
+  "rows": [
+    {
+      "key": "command:bc2c8e56-0cda-8b8a-a9a0-bafe5989265f",
+      "runId": "88a9c25a-0f2d-46e8-9a26-245bcf43d2cb",
+      "sourceDigest": "98dd50aa8b389be4d774c93bbf2e095a8c43b5007bf2a458f6d0b469544f47b0",
+      "checkDigest": "0b5b53c4601663fc57e44da7c77380faa0628e8b5deff74feb82e56dfc081496",
+      "outcome": "pass",
+      "detail": "exit 0",
+      "durationMs": 4870,
+      "artifacts": [
+        {
+          "path": ".spec-ledger/evidence/check-runs/88a9c25a-0f2d-46e8-9a26-245bcf43d2cb-stdout.txt",
+          "sha256": "394886430556868f37d0c2cd7d96df8e518d58dfa40a311c238473b9bf646512",
+          "required": true
+        },
+        {
+          "path": ".spec-ledger/evidence/check-runs/88a9c25a-0f2d-46e8-9a26-245bcf43d2cb-stderr.txt",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "required": true
+        }
+      ]
+    }
+  ]
+}

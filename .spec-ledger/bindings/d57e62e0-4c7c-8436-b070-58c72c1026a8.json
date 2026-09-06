@@ -1,0 +1,26 @@
+{
+  "id": "d57e62e0-4c7c-8436-b070-58c72c1026a8",
+  "claimId": "39e43d1e-6e29-8983-8c0e-e55c2beabcc6",
+  "kind": "test",
+  "locator": {
+    "type": "command",
+    "command": "node --test packages/ledger/dist/identity/*.test.js"
+  },
+  "test": {
+    "level": "integration",
+    "description": "Concurrent creation, generated UUID references, migration recovery and data integrity.",
+    "source": {
+      "path": "packages/ledger/src/identity/identity.break.test.ts"
+    }
+  },
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/bindings/B-SL-034.json",
+        "id": "B-SL-034",
+        "sha256": "275c1c3ed6d8ddc86992ec3550e8eab1d2120664bcf4871b44beb1271f5a36db"
+      }
+    },
+    "historical": true
+  }
+}

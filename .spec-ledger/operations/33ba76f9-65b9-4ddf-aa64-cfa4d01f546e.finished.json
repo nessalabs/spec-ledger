@@ -1,0 +1,176 @@
+{
+  "schemaVersion": 1,
+  "requestId": "33ba76f9-65b9-4ddf-aa64-cfa4d01f546e",
+  "operation": "finish_turn",
+  "inputDigest": "f82de6e88d4c051789f581c13e6ead14cdf73d0e064b6c349634cb7938d715cc",
+  "finishedAt": "2026-09-06T20:57:05.803Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "id": "5dd1e1ca-a98f-4d5a-a82d-82035dc40943",
+    "status": "abandoned",
+    "openedAt": "2026-09-06T20:50:55.576Z",
+    "opened": {
+      "producedBy": "@nessalabs/spec-ledger@0.1.0",
+      "baseCommit": "dbbfddd7b040aa462281bf6fe2f136961a4f19a8",
+      "treeDigest": "41d24a0da3e8425fa5d09fe0aa307ea2276ff5f755d3a0f397ff8ac750af5c0a",
+      "dirtyAtOpen": [
+        ".spec-ledger/authority/97bd74bc-5717-4c0c-8164-27335ba83f22.json",
+        ".spec-ledger/reviews/workstreams/58acbc36-d5d8-450b-b955-a83e656a6e86/27136c13-7f94-4ee8-ab9e-c7290967b55d.json",
+        ".spec-ledger/workstreams/58acbc36-d5d8-450b-b955-a83e656a6e86.json",
+        "docs/workstreams/58acbc36-d5d8-450b-b955-a83e656a6e86-overall-work-progress/spec.md"
+      ],
+      "contextDigest": "018304af2e6ea18d9b6e24482b2c577fa44d1274c47d6e7ab9c05f948486846e",
+      "contextWorkstreamId": "58acbc36-d5d8-450b-b955-a83e656a6e86",
+      "contextSliceId": "e5efed5f-6417-4591-97dc-3034970c216f",
+      "contextSealRevision": 1,
+      "contextGeneratedAt": "2026-09-06T20:50:55.576Z"
+    },
+    "intent": {
+      "userPrompt": "Fix the progress bar so it reflects all required tasks, not only passing checks, and cannot show 100% while work remains incomplete.",
+      "restatedGoal": "Count all work needed to finish",
+      "changeType": "feature",
+      "riskLevel": "moderate",
+      "workstreamId": "58acbc36-d5d8-450b-b955-a83e656a6e86",
+      "sliceId": "e5efed5f-6417-4591-97dc-3034970c216f",
+      "featureIds": [
+        "lattice",
+        "turns",
+        "verify"
+      ]
+    },
+    "closedAt": "2026-09-06T20:57:05.803Z",
+    "facts": {
+      "producedBy": "@nessalabs/spec-ledger@0.1.0",
+      "commit": "dbbfddd7b040aa462281bf6fe2f136961a4f19a8",
+      "files": [
+        {
+          "path": ".spec-ledger/authority/97bd74bc-5717-4c0c-8164-27335ba83f22.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/decisions/5dd1e1ca-a98f-4d5a-a82d-82035dc40943/3ec7feb5-ac54-4aa3-9575-2a10f0a582e4.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/reviews/workstreams/58acbc36-d5d8-450b-b955-a83e656a6e86/27136c13-7f94-4ee8-ab9e-c7290967b55d.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/sources/5dd1e1ca-a98f-4d5a-a82d-82035dc40943/43f4b00b-931c-40d6-be30-2de896477726.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/turns/5dd1e1ca-a98f-4d5a-a82d-82035dc40943.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/workstreams/58acbc36-d5d8-450b-b955-a83e656a6e86.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/workstreams/58acbc36-d5d8-450b-b955-a83e656a6e86.seals/1.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": "docs/architecture/session.md",
+          "kind": "modified",
+          "additions": 7,
+          "deletions": 0
+        },
+        {
+          "path": "docs/workstreams/58acbc36-d5d8-450b-b955-a83e656a6e86-overall-work-progress/spec.md",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": "packages/ledger/src/session/project.ts",
+          "kind": "modified",
+          "additions": 12,
+          "deletions": 11
+        },
+        {
+          "path": "packages/ui/components/acceptance-progress.tsx",
+          "kind": "modified",
+          "additions": 31,
+          "deletions": 35
+        },
+        {
+          "path": "packages/ui/components/live-session.tsx",
+          "kind": "modified",
+          "additions": 1,
+          "deletions": 0
+        },
+        {
+          "path": "packages/ui/components/live-workstream-evidence.tsx",
+          "kind": "modified",
+          "additions": 1,
+          "deletions": 0
+        },
+        {
+          "path": "packages/ui/lib/acceptance-progress.ts",
+          "kind": "modified",
+          "additions": 25,
+          "deletions": 0
+        }
+      ],
+      "touchedNodeIds": [
+        "ledger-core",
+        "ledger-ui"
+      ],
+      "touchedFeatureIds": [
+        "cli",
+        "lattice",
+        "turns",
+        "verify"
+      ],
+      "touchedClaimIds": [
+        "1ea8304f-a051-8234-b7a7-ce31b25eccf2",
+        "3cb6214c-8605-80e6-b73b-d20b9025023f",
+        "77fb26cd-bc46-8037-a8f2-7573f7d6d33d",
+        "93abee59-3e8d-809f-a140-d86105b0d865",
+        "9767b1da-9568-8e2f-ad2a-c2c3eb3e424c",
+        "d62365fc-02af-826c-b961-8942c540bddf",
+        "dd5caaee-dace-8f53-bff5-65b6a7646b6d"
+      ],
+      "blastRadius": {
+        "direct": [
+          "ledger-mcp",
+          "ledger-server"
+        ],
+        "transitive": [
+          "ledger-mcp",
+          "ledger-server"
+        ]
+      },
+      "verify": {
+        "ok": false,
+        "ledgerDigest": "d2ff5bbc48bf5ade6042bf4e15b2905c9ecf44baff7012f0661fcd4ac5b0771e",
+        "resultsDigest": "e313bf7a9932d63c0b8c37833a17b4fe131a7f5a70e16587a41787b9255b0e65",
+        "treeDigest": "4b7728bfb2e07fd10760950f25ebe785c937f3e22f9a7ed514782cb24f134201",
+        "producedAt": "2026-09-06T20:57:05.765Z"
+      },
+      "schemaSurfaceChanged": false,
+      "decisionIds": [
+        "3ec7feb5-ac54-4aa3-9575-2a10f0a582e4"
+      ],
+      "decisionsDigest": "a4e737dd4a1457c48b902ac76e54982223beffbb50b1dd6e43c73c78fbcebe55",
+      "sourcesDigest": "de96a4fed862404417bc916c49b43cb26d09519b3428e10a549fef04526f0a9c"
+    }
+  }
+}

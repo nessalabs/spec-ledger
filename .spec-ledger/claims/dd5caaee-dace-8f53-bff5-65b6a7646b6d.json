@@ -1,0 +1,28 @@
+{
+  "id": "dd5caaee-dace-8f53-bff5-65b6a7646b6d",
+  "kind": "invariant",
+  "statement": "See the evidence for each requirement, what is missing, and whether an earlier result still applies.",
+  "required": true,
+  "area": "ui",
+  "links": {
+    "docs": [
+      "docs/workstreams/1652e353-e3dc-8960-985b-35fbe40c1edb-evidence-and-custom-workflows/spec.md",
+      "docs/architecture/claim-contracts.md"
+    ]
+  },
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/claims/SL-022.json",
+        "id": "SL-022",
+        "sha256": "aacbd8b1fc5468fe54c54ef20a0ca5354559bbe392f78e88c48b1ae5ea9ee0df"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/claims/SL-022.json",
+        "id": "SL-022",
+        "sha256": "aacbd8b1fc5468fe54c54ef20a0ca5354559bbe392f78e88c48b1ae5ea9ee0df"
+      }
+    },
+    "historical": true
+  }
+}

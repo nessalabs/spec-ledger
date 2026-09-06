@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "id": "e336d992-f74f-8b11-82d5-1a5596249479",
+  "turnId": "62783542-eaa4-8f3a-ac42-f75d77560b41",
+  "kind": "adversarial",
+  "target": "code",
+  "reviewer": "agent:sl-dev-break",
+  "verdict": "approve",
+  "summary": "When pitch path is open in SplitView, Plan card collapses to 'Showing in the right pane' instead of duplicating SpecDoc.",
+  "plainSummary": "Opening a doc in the side pane no longer duplicates it under Plan.",
+  "killersCited": [
+    "grep:turn-plan-section.tsx#showingInPane",
+    "tsc+build"
+  ],
+  "findings": [
+    {
+      "id": "bffee53d-c5a7-87d0-ba76-68431b1d9181",
+      "severity": "low",
+      "gap": "Inline Plan must not duplicate open pane doc: Opening the pitch in the right pane left the same Markdown under Plan.",
+      "plainImpact": "The same document would appear twice once you opened the side pane.",
+      "evidence": {
+        "kind": "command",
+        "command": "rg -n showingInPane packages/ui/components/turn-plan-section.tsx && pnpm --dir packages/ui exec tsc --noEmit",
+        "observedOutput": "showingInPane gate present; tsc clean; build+HTTP 200",
+        "exitCode": 0
+      }
+    }
+  ],
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/reviews/turns/T-012/R-01.json",
+        "id": "T-012/R-01",
+        "sha256": "157592d004f017238307de192d39b5e593241798ee8a805f351de137041e77a5"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/reviews/turns/T-012/R-01.json",
+        "id": "T-012/R-01",
+        "sha256": "157592d004f017238307de192d39b5e593241798ee8a805f351de137041e77a5"
+      }
+    },
+    "historical": true
+  }
+}

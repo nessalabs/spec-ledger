@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "turnId": "50a92ff8-1d8a-8671-ba7e-5679d6c916cc",
+  "decision": "Treat host activity as a best-effort observation, separate from proof and permission.",
+  "rationale": "Associate activity with existing turns and preserve bounded runtime signals outside source fingerprints. Hooks cannot grant liveness, cancellation or resume capabilities. Show current missing outcomes and optional continuation policy, but keep unsupported controls unavailable and never infer idleness from silence.",
+  "id": "da10a1c3-c10a-8ce0-beac-85da797519a4",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/decisions/T-036/D-01.json",
+        "id": "T-036/D-01",
+        "sha256": "a2d0e1feff5ed3bdebcd045ef745f6b9b10481eb5a51456efc93fc7a947e0d6b"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/decisions/T-036/D-01.json",
+        "id": "T-036/D-01",
+        "sha256": "a2d0e1feff5ed3bdebcd045ef745f6b9b10481eb5a51456efc93fc7a947e0d6b"
+      }
+    },
+    "historical": true
+  },
+  "sequence": 1
+}

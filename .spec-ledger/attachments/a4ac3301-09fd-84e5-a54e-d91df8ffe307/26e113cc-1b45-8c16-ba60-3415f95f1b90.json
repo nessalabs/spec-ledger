@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "turnId": "a4ac3301-09fd-84e5-a54e-d91df8ffe307",
+  "kind": "log-excerpt",
+  "title": "Full regression test output",
+  "path": "docs/workstreams/1652e353-e3dc-8960-985b-35fbe40c1edb-evidence-and-custom-workflows/evidence/a4ac3301-09fd-84e5-a54e-d91df8ffe307/regression-tests.txt",
+  "mediaType": "text/plain",
+  "contentDigest": "179363282dab03c75025a5d11c7535d3528cab181afc1cb400ba3d247ca66ddc",
+  "note": "Actual output of the full pnpm test command.",
+  "id": "26e113cc-1b45-8c16-ba60-3415f95f1b90",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/attachments/T-033/A-02.json",
+        "id": "T-033/A-02",
+        "sha256": "6befe788d1e645418eb06fb4aee9f6bbaf159d9196462207e9783725c4435275"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/attachments/T-033/A-02.json",
+        "id": "T-033/A-02",
+        "sha256": "6befe788d1e645418eb06fb4aee9f6bbaf159d9196462207e9783725c4435275"
+      }
+    },
+    "historical": true
+  }
+}

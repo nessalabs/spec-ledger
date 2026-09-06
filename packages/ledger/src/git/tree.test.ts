@@ -1,4 +1,4 @@
-// sl-dev-break killers (T-019 / SLC-04) — treeDigest drift + base-commit fallback.
+// sl-dev-break killers (c2f832a5-44ad-578c-80c3-ebf24734bc55 / 4d4a1476-aa94-5d68-aa73-54c5531aded7) — treeDigest drift + base-commit fallback.
 import { describe, it } from "node:test"
 import assert from "node:assert/strict"
 import { mkdtempSync, writeFileSync, rmSync } from "node:fs"

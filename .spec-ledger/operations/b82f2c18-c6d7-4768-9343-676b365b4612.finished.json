@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "requestId": "b82f2c18-c6d7-4768-9343-676b365b4612",
+  "operation": "record_review",
+  "inputDigest": "e3dc5896235ed10b4b1005c10bb68671c566d808caf69ab4a6e3c8c36af1b90f",
+  "finishedAt": "2026-09-06T07:34:57.149Z",
+  "outcome": "failed",
+  "error": {
+    "code": "prerequisite_missing",
+    "message": "spec review requires a workstream review ID",
+    "retryable": false
+  }
+}

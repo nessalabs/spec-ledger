@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "id": "6f2bffab-9ae4-854c-b767-73958d0d1fa2",
+  "status": "proposed",
+  "workstreamId": "ef172105-4f40-8bbb-8abe-d1cd11ae618a",
+  "suggestedLiveId": "39fc903d-08ba-8a0c-a5d4-f9995941fd94",
+  "statement": "Changing, renaming or removing a saved way of working leaves every spec that already adopted it running the steps it copied, with its progress and evidence unchanged.",
+  "requiredEvidence": [
+    "unit",
+    "integration"
+  ],
+  "migration": {
+    "origins": {
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/proposed-claims/PC-024.json",
+        "id": "PC-024",
+        "sha256": "72d0f1665590cad1bffb829bbf14aa9f283e95a0c2b9f6456958fd50152bd156"
+      }
+    },
+    "historical": true
+  }
+}

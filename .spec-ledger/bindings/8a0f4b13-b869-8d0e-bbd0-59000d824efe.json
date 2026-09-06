@@ -1,0 +1,24 @@
+{
+  "id": "8a0f4b13-b869-8d0e-bbd0-59000d824efe",
+  "claimId": "4265ae8b-dc22-8851-9a29-a9dab77fb7bb",
+  "kind": "test",
+  "locator": {
+    "type": "command",
+    "command": "node --test packages/ledger/dist/verify/aggregation.break.test.js"
+  },
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/bindings/b-sl-016.json",
+        "id": "b-sl-016",
+        "sha256": "c7988dd389d9abbc599ea9fddd4bc35a80d87e7fcdb4dded2bacf810358a2ab6"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/bindings/b-sl-016.json",
+        "id": "b-sl-016",
+        "sha256": "c7988dd389d9abbc599ea9fddd4bc35a80d87e7fcdb4dded2bacf810358a2ab6"
+      }
+    },
+    "historical": true
+  }
+}

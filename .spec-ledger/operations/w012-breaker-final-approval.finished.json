@@ -23,8 +23,8 @@
       "The cooperative workflow guides and records agent steps; it neither launches an agent nor proves compliance from skill prose."
     ],
     "schemaVersion": 1,
-    "id": "T-041/R-01",
-    "turnId": "T-041",
+    "id": "bafc9af6-1ccb-8802-9b25-c9cdd25c8f88",
+    "turnId": "c0f436e5-d157-89aa-8a90-2e5bf6f06ef3",
     "target": "code",
     "treeDigest": "251e9c1b4f3b6dedf6ce0ee30a075c05a39a5f998bb2c93dc90c2d829376320c"
   }

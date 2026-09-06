@@ -1,0 +1,287 @@
+{
+  "schemaVersion": 1,
+  "id": "a4ac3301-09fd-84e5-a54e-d91df8ffe307",
+  "status": "closed",
+  "openedAt": "2026-09-04T23:14:59.261Z",
+  "opened": {
+    "producedBy": "@nessalabs/spec-ledger@0.1.0",
+    "baseCommit": "69bdc79cc76fe918a867c130b8aa908066a2d45e",
+    "treeDigest": "13b6c2c9efea3b7371e45d02e0dc9fc34c5af688e88f1158eb14d0081af66215",
+    "dirtyAtOpen": [
+      ".spec-ledger/authority/7a81ffaf-80f0-8063-89e3-5ac9a630d44d.json",
+      ".spec-ledger/reviews/workstreams/1652e353-e3dc-8960-985b-35fbe40c1edb/4c57f4d2-353b-8304-92e3-b3e2e158048a.json",
+      ".spec-ledger/workstreams/1652e353-e3dc-8960-985b-35fbe40c1edb.json",
+      ".spec-ledger/workstreams/1652e353-e3dc-8960-985b-35fbe40c1edb.seals/1.json",
+      "docs/proposals/customizable-engineering-workflows.md",
+      "docs/workstreams/1652e353-e3dc-8960-985b-35fbe40c1edb-evidence-and-custom-workflows/spec.md"
+    ],
+    "contextDigest": "f8cea04737921e5a3e18e5828985b839041f4809881e0be723dbdc3295bfb0b5",
+    "contextWorkstreamId": "1652e353-e3dc-8960-985b-35fbe40c1edb",
+    "contextSliceId": "1cc99a13-3a0e-8451-a8b8-17e8d35a933d",
+    "contextSealRevision": 1,
+    "contextGeneratedAt": "2026-09-04T23:14:59.261Z"
+  },
+  "intent": {
+    "restatedGoal": "See the evidence behind each requirement",
+    "userPrompt": "Put verification and evidence on the workstream page, then propose customizable skills and workflows with sensible defaults and guardrails.",
+    "workstreamId": "1652e353-e3dc-8960-985b-35fbe40c1edb",
+    "featureIds": [
+      "lattice",
+      "verify",
+      "client"
+    ],
+    "sliceId": "1cc99a13-3a0e-8451-a8b8-17e8d35a933d"
+  },
+  "closedAt": "2026-09-04T23:23:12.287Z",
+  "facts": {
+    "producedBy": "@nessalabs/spec-ledger@0.1.0",
+    "commit": "69bdc79cc76fe918a867c130b8aa908066a2d45e",
+    "files": [
+      {
+        "path": ".spec-ledger/align-waivers/aaa69ccf-1c0c-843d-aba6-f5141c113ccb.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/attachments/a4ac3301-09fd-84e5-a54e-d91df8ffe307/aa4ba711-f527-83f0-ae83-147e3e173900.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/attachments/a4ac3301-09fd-84e5-a54e-d91df8ffe307/26e113cc-1b45-8c16-ba60-3415f95f1b90.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/authority/7a81ffaf-80f0-8063-89e3-5ac9a630d44d.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/bindings/823982ba-7fa8-8c9d-9721-f2b128d0db00.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/claims/dd5caaee-dace-8f53-bff5-65b6a7646b6d.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/decisions/a4ac3301-09fd-84e5-a54e-d91df8ffe307/78b9a183-a335-8023-b5cb-a72faba1b485.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/evidence/runs/06ba748e-9f54-4b2d-ab8f-4e603e6a21d0.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/graph/codebase-graph.json",
+        "kind": "modified",
+        "additions": 2,
+        "deletions": 1
+      },
+      {
+        "path": ".spec-ledger/ledger.json",
+        "kind": "modified",
+        "additions": 3,
+        "deletions": 1
+      },
+      {
+        "path": ".spec-ledger/reviews/turns/a4ac3301-09fd-84e5-a54e-d91df8ffe307/3716869c-684f-8d5e-92f7-f75862c81e71.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/turns/a4ac3301-09fd-84e5-a54e-d91df8ffe307/2c614463-24b0-808d-8625-f96a6387eed0.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/workstreams/1652e353-e3dc-8960-985b-35fbe40c1edb/4c57f4d2-353b-8304-92e3-b3e2e158048a.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/workstreams/1652e353-e3dc-8960-985b-35fbe40c1edb/d4d73a0d-9c4c-8eda-a210-429175c9d1fa.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/turns/a4ac3301-09fd-84e5-a54e-d91df8ffe307.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/workstreams/1652e353-e3dc-8960-985b-35fbe40c1edb.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/workstreams/1652e353-e3dc-8960-985b-35fbe40c1edb.seals/1.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/workstreams/1652e353-e3dc-8960-985b-35fbe40c1edb.seals/2.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "docs/proposals/customizable-engineering-workflows.md",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "docs/workstreams/1652e353-e3dc-8960-985b-35fbe40c1edb-evidence-and-custom-workflows/evidence/a4ac3301-09fd-84e5-a54e-d91df8ffe307/browser-check.md",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "docs/workstreams/1652e353-e3dc-8960-985b-35fbe40c1edb-evidence-and-custom-workflows/evidence/a4ac3301-09fd-84e5-a54e-d91df8ffe307/regression-tests.txt",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "docs/workstreams/1652e353-e3dc-8960-985b-35fbe40c1edb-evidence-and-custom-workflows/spec.md",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/session/evidence.break.test.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/session/evidence.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/session/project.ts",
+        "kind": "modified",
+        "additions": 11,
+        "deletions": 1
+      },
+      {
+        "path": "packages/ledger/src/types.ts",
+        "kind": "modified",
+        "additions": 1,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/verify/verify.ts",
+        "kind": "modified",
+        "additions": 1,
+        "deletions": 1
+      },
+      {
+        "path": "packages/ui/app/workstreams/[id]/page.tsx",
+        "kind": "modified",
+        "additions": 5,
+        "deletions": 1
+      },
+      {
+        "path": "packages/ui/components/workstream-evidence.tsx",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "schemas/report.json",
+        "kind": "modified",
+        "additions": 29,
+        "deletions": 0
+      }
+    ],
+    "touchedNodeIds": [
+      "ledger-core",
+      "ledger-ui",
+      "schemas"
+    ],
+    "touchedFeatureIds": [
+      "cli",
+      "lattice",
+      "turns",
+      "verify"
+    ],
+    "touchedClaimIds": [
+      "67609c19-de05-862c-8db7-e5dc95f38cee",
+      "2884eafb-114e-85f1-ae07-ce1fbd140550",
+      "14d9b121-df2b-8ede-bce7-fdee648a4320",
+      "77fb26cd-bc46-8037-a8f2-7573f7d6d33d",
+      "a642f738-2313-853e-a94d-d9936dcbc596",
+      "4265ae8b-dc22-8851-9a29-a9dab77fb7bb",
+      "d6bec874-d62d-850e-bf0f-f19d5b07f7a9",
+      "ef771e69-a55e-8f9c-8c2b-b5238a3fcff3",
+      "9767b1da-9568-8e2f-ad2a-c2c3eb3e424c",
+      "dd5caaee-dace-8f53-bff5-65b6a7646b6d"
+    ],
+    "blastRadius": {
+      "direct": [
+        "ledger-client",
+        "ledger-core",
+        "ledger-server"
+      ],
+      "transitive": [
+        "ledger-client",
+        "ledger-core",
+        "ledger-server",
+        "ledger-ui"
+      ]
+    },
+    "verify": {
+      "ok": true,
+      "ledgerDigest": "cba8223c72cca26f13758309ae3de1faf494ec59b48ce89a363c43288decc258",
+      "resultsDigest": "b34d0d2adb13125bd06d73ee9c1298901d533f859ff23957528524b21465bd2f",
+      "treeDigest": "d7fdea43922377f2d293b60668d4371ce13415328ae4335816359bb73a18bc17",
+      "producedAt": "2026-09-04T23:23:12.250Z"
+    },
+    "schemaSurfaceChanged": true,
+    "decisionIds": [
+      "78b9a183-a335-8023-b5cb-a72faba1b485"
+    ],
+    "decisionsDigest": "19e103e2e14ceb7858cc129b2a08560a0f78aeca8955ff752d88b45181340630",
+    "attachmentsDigest": "014e9e15679acea78570505d05c3a730351206f494f0671e8087bea8a5eeca3f",
+    "reviewsDigest": "8f28d2a1477cca2c9aff4523d58e8c8c98073816cfbef507240d22c2ff4330c3"
+  },
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/turns/T-033.json",
+        "id": "T-033",
+        "sha256": "b5024243cb0c03d07c69a91393f888cccea72a0404d451bb2e15b59073fde41e"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/turns/T-033.json",
+        "id": "T-033",
+        "sha256": "b5024243cb0c03d07c69a91393f888cccea72a0404d451bb2e15b59073fde41e"
+      }
+    },
+    "historical": true
+  }
+}

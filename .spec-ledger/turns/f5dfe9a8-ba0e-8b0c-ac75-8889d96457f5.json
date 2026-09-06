@@ -1,0 +1,260 @@
+{
+  "schemaVersion": 1,
+  "id": "f5dfe9a8-ba0e-8b0c-ac75-8889d96457f5",
+  "status": "closed",
+  "openedAt": "2026-09-03T08:32:20.925Z",
+  "opened": {
+    "producedBy": "@nessa/spec-ledger@0.1.0",
+    "baseCommit": "f774f8197b51b589ddd353737c04ab775fd60eef",
+    "treeDigest": "01359a13c4006998e06a0d721a6f2f484f6d0f9e278b0a7f3386bf468ece9f9c",
+    "dirtyAtOpen": [],
+    "contextDigest": "123ad4565ecf1ce4824fd4b7dc6c941eaf02bf5a7f58b54c0fbc20d21783a33b",
+    "contextWorkstreamId": "76451749-a54f-8579-96f2-dcec19d79026",
+    "contextSliceId": "97bf91dc-b772-84fa-9a73-c4fe453839e9",
+    "contextSealRevision": 1,
+    "contextGeneratedAt": "2026-09-03T08:32:20.924Z"
+  },
+  "intent": {
+    "userPrompt": "97bf91dc-b772-84fa-9a73-c4fe453839e9: align check path coverage CLI + unit tests",
+    "restatedGoal": "Check product files against the sealed plan before close",
+    "changeType": "feature",
+    "riskLevel": "moderate",
+    "workstreamId": "76451749-a54f-8579-96f2-dcec19d79026",
+    "sliceId": "97bf91dc-b772-84fa-9a73-c4fe453839e9",
+    "featureIds": [
+      "lattice",
+      "turns",
+      "verify"
+    ]
+  },
+  "closedAt": "2026-09-03T08:41:29.463Z",
+  "facts": {
+    "producedBy": "@nessa/spec-ledger@0.1.0",
+    "commit": "f774f8197b51b589ddd353737c04ab775fd60eef",
+    "files": [
+      {
+        "path": ".github/workflows/ci.yml",
+        "kind": "modified",
+        "additions": 1,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/align-waivers/ffe69c37-b08a-8449-9f08-070232073a62.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/turns/f5dfe9a8-ba0e-8b0c-ac75-8889d96457f5/6789f44d-a665-8589-a62e-68118ef4ea8b.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/turns/f5dfe9a8-ba0e-8b0c-ac75-8889d96457f5/a61a89ed-f75e-808b-8335-4202a50e181b.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/turns/f5dfe9a8-ba0e-8b0c-ac75-8889d96457f5.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/workstreams/76451749-a54f-8579-96f2-dcec19d79026.json",
+        "kind": "modified",
+        "additions": 7,
+        "deletions": 3
+      },
+      {
+        "path": "AGENTS.md",
+        "kind": "modified",
+        "additions": 5,
+        "deletions": 4
+      },
+      {
+        "path": "docs/ci/align.md",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "docs/ci/github-actions.yml",
+        "kind": "modified",
+        "additions": 1,
+        "deletions": 0
+      },
+      {
+        "path": "package.json",
+        "kind": "modified",
+        "additions": 2,
+        "deletions": 1
+      },
+      {
+        "path": "packages/ledger/src/align/approve.test.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/align/approve.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/align/check.test.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/align/check.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/align/coverage.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/align/paths.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/align/waiver.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/audit/audit.ts",
+        "kind": "modified",
+        "additions": 11,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/cli/main.ts",
+        "kind": "modified",
+        "additions": 132,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/git/tree.ts",
+        "kind": "modified",
+        "additions": 15,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/index.ts",
+        "kind": "modified",
+        "additions": 17,
+        "deletions": 1
+      },
+      {
+        "path": "packages/ledger/src/turns/close.test.ts",
+        "kind": "modified",
+        "additions": 2,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/turns/gates.ts",
+        "kind": "modified",
+        "additions": 15,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/types.ts",
+        "kind": "modified",
+        "additions": 7,
+        "deletions": 0
+      },
+      {
+        "path": "schemas/align-waiver.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "scripts/git-hooks/pre-push",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "scripts/git-hooks/README.md",
+        "kind": "modified",
+        "additions": 3,
+        "deletions": 2
+      },
+      {
+        "path": "skills/README.md",
+        "kind": "modified",
+        "additions": 1,
+        "deletions": 0
+      },
+      {
+        "path": "skills/sl-dev-align/SKILL.md",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      }
+    ],
+    "touchedNodeIds": [
+      "ledger-core",
+      "schemas"
+    ],
+    "touchedFeatureIds": [
+      "lattice",
+      "turns",
+      "verify"
+    ],
+    "touchedClaimIds": [
+      "a642f738-2313-853e-a94d-d9936dcbc596"
+    ],
+    "blastRadius": {
+      "direct": [
+        "ledger-client",
+        "ledger-core",
+        "ledger-server"
+      ],
+      "transitive": [
+        "ledger-client",
+        "ledger-core",
+        "ledger-server",
+        "ledger-ui"
+      ]
+    },
+    "verify": {
+      "ok": true,
+      "ledgerDigest": "9731a4d02e58971ec6e340a4385d32d9fc3c09ad55c0a7f2c137cbc356c9052a",
+      "resultsDigest": "ded3eb2608a70a2e28040c5e1e7c4faa49be0d27b4ffc4d3e2a3ffb91bf72fbb",
+      "treeDigest": "51bf73938c3f02c58d3ef935b7759d8c26c26934f445363079181eee3c6dd034",
+      "producedAt": "2026-09-03T08:41:29.387Z"
+    },
+    "schemaSurfaceChanged": true,
+    "reviewsDigest": "814ed547a18c07c1dd50dc5072978b17d0b015f0fc61df2bbeee795f7c6df11c"
+  },
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/turns/T-016.json",
+        "id": "T-016",
+        "sha256": "dc80c43f6b7a1006158125d356bec9f06181fdabeab0a3afe3984b01d3e96612"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/turns/T-016.json",
+        "id": "T-016",
+        "sha256": "dc80c43f6b7a1006158125d356bec9f06181fdabeab0a3afe3984b01d3e96612"
+      }
+    },
+    "historical": true
+  }
+}

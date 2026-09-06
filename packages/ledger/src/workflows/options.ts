@@ -1,3 +1,4 @@
+import { derivedEntityId } from "../identity/index.js"
 import { existsSync, lstatSync, readdirSync, realpathSync } from 'node:fs'
 import { join } from 'node:path'
 import { loadLedger } from '../fs/load.js'
@@ -7,7 +8,7 @@ import { resolveWorkflow, selectedWorkflow, libraryTemplate } from './index.js'
 import type { WorkflowProfile, WorkflowSnapshot } from './types.js'
 
 function editable(snapshot: Pick<WorkflowSnapshot, 'stages' | 'profile'>): WorkflowProfile {
-  return { id: snapshot.profile.source === 'default' ? 'my-workflow' : snapshot.profile.id, title: snapshot.profile.source === 'default' ? 'My workflow' : snapshot.profile.title,
+  return { id: snapshot.profile.source === 'default' ? derivedEntityId('spec-ledger:template','default') : snapshot.profile.id, title: snapshot.profile.source === 'default' ? 'My workflow' : snapshot.profile.title,
     stages: snapshot.stages.map(stage => ({ ...stage, steps: stage.steps.map(step => ({ ...step, skill: step.skill.source === 'bundled' ? `spec-ledger/${step.skill.id}` : { path: step.skill.path!, ...(step.skill.capabilities.length ? { capabilities: step.skill.capabilities } : { acknowledgeUncertain: step.skill.uncertaintyAcknowledged }) } })) })) }
 }
 

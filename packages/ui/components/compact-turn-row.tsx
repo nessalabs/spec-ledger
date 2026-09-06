@@ -1,5 +1,7 @@
 "use client"
 
+import { ReadableText, useRecordLabels } from "@/components/readable-text"
+
 import { presentationCopy } from "@/lib/features"
 
 
@@ -13,6 +15,7 @@ import {
 } from "@/lib/impact"
 import type { VerifyReport } from "@nessalabs/spec-ledger-client"
 import { turnFreshness } from "@/lib/turns"
+import { isFixup } from "@/lib/workstream-list"
 
 export function CompactTurnRow({
   turn,
@@ -23,6 +26,7 @@ export function CompactTurnRow({
   report: VerifyReport | null
   workstreamTitle?: string | null
 }) {
+  const labels = useRecordLabels()
   const freshness = turnFreshness(turn, report)
   const impact = turnImpactSummary(turn)
   const when = formatWhen(turn.closedAt ?? turn.openedAt)
@@ -42,6 +46,7 @@ export function CompactTurnRow({
   const wsId = turn.intent.workstreamId
   const goal = presentationCopy(turn.intent.restatedGoal)
   const peek = turnPeekMarkdown({
+          labels,
     id: turn.id,
     goal,
     workstreamId: wsId,
@@ -55,40 +60,40 @@ export function CompactTurnRow({
   return (
     <div className="grid gap-0.5 rounded-lg border border-border/80 px-3 py-2 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-baseline sm:gap-3">
       <div className="min-w-0">
-        <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+        <div className="flex flex-col items-start gap-x-2 gap-y-1 sm:flex-row sm:flex-wrap sm:items-center">
+          {isFixup(turn) && <Badge variant="outline" className="text-[10px] font-medium">Fixup</Badge>}
           {wsId ? (
             <PeekLink
               href={`/workstreams/${encodeURIComponent(wsId)}`}
               peekPath={`peek:workstream/${wsId}`}
-              peekLabel={wsId}
+              peekLabel={workstreamTitle ?? "Related spec"}
               peekContent={[
-                `# ${presentationCopy(workstreamTitle ?? wsId)}`,
+                `# ${presentationCopy(workstreamTitle ?? "Related spec")}`,
                 "",
-                `**${wsId}**`,
                 "",
                 `[Open full workstream](/workstreams/${encodeURIComponent(wsId)})`,
                 "",
               ].join("\n")}
-              title={presentationCopy(workstreamTitle ?? wsId)}
-              className="no-underline"
+              title="Open related spec"
+              className="max-w-full no-underline"
             >
               <Badge
                 variant="outline"
-                className="font-mono text-[10px] font-normal"
+                className="max-w-full whitespace-normal text-left text-[10px] font-normal"
               >
-                {wsId}
+                <ReadableText>{workstreamTitle ?? wsId}</ReadableText>
               </Badge>
             </PeekLink>
           ) : null}
           <PeekLink
             href={`/turns/${turn.id}`}
             peekPath={`peek:turn/${turn.id}`}
-            peekLabel={turn.id}
+            peekLabel={goal}
             peekContent={peek}
-            className="min-w-0 flex-1 line-clamp-1 text-sm font-medium text-foreground no-underline hover:underline"
-            title={`${turn.id} — ⌘/Ctrl-click to peek`}
+            className="min-w-0 w-full text-sm font-medium text-foreground no-underline hover:underline sm:w-auto sm:flex-1 sm:line-clamp-1"
+            title="⌘/Ctrl-click to peek"
           >
-            {goal}
+            <ReadableText>{goal}</ReadableText>
           </PeekLink>
         </div>
         <p className="mt-0.5 truncate text-[11px] text-muted-foreground">

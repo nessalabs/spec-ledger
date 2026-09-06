@@ -7,7 +7,7 @@
   "outcome": "succeeded",
   "result": {
     "schemaVersion": 1,
-    "id": "W-014",
+    "id": "ef172105-4f40-8bbb-8abe-d1cd11ae618a",
     "status": "done",
     "createdAt": "2026-09-05T22:40:00.000Z",
     "featureIds": [
@@ -17,7 +17,7 @@
     ],
     "primaryFeatureId": "client",
     "title": "Name a workflow once and reuse it",
-    "specPath": "docs/workstreams/W-014-named-workflows/spec.md",
+    "specPath": "docs/workstreams/ef172105-4f40-8bbb-8abe-d1cd11ae618a-named-workflows/spec.md",
     "problem": "A WorkflowProfile exists only as the bundled spec-ledger/default or as a custom profile embedded in one workstream snapshot, so there is nothing to select. Reuse is manual JSON export/import and there is no repo default. Portability is blocked by two per-workstream couplings: resolveWorkflow validates output.criterionIds against criterionIds(ws), which is positional per workstream, and validateOrder derives required stages from the target workstream's policy. profile.source is a closed default|custom union that roleApplicable and workflowOptions branch on, so a third source would silently change stage gating.",
     "objective": "Save a workflow under a name, pick which one is normal, and choose it for a spec instead of rebuilding the steps every time.",
     "appetite": "3-4 days",
@@ -58,25 +58,25 @@
     "rabbitHoles": [
       "Migrating existing embedded custom snapshots - the library is additive and old snapshots stay readable",
       "Letting a library edit mutate a running spec as a side effect",
-      "Moving /workflows without updating the navigation test inside both b-sl-029 and b-sl-030 while SL-029 and SL-030 stay true",
+      "Moving /workflows without updating the navigation test inside both b9215e80-1cbf-8bbf-83dc-63ceab15c182 and b02db887-018b-848d-a0b8-df170e543eb5 while 93abee59-3e8d-809f-a140-d86105b0d865 and 3cb6214c-8605-80e6-b73b-d20b9025023f stay true",
       "Re-implementing workflow validation rules inside packages/ui",
       "Reusing editable() to save a profile without stripping the source spec's criterionIds - that reintroduces the portability bug",
-      "Sealing before SL-032/SL-033/SL-034 are promoted: acceptanceClaimIds is inside sealPayload, so a later fix drifts the seal digest"
+      "Sealing before 2456326e-b918-84bc-a5cb-ac1fd3b8aaf2/39fc903d-08ba-8a0c-a5d4-f9995941fd94/89ab5a3f-2aea-8b44-a9b8-6cedccb52979 are promoted: acceptanceClaimIds is inside sealPayload, so a later fix drifts the seal digest"
     ],
     "expectedClaimIds": [
-      "SL-023",
-      "SL-024",
-      "SL-029",
-      "SL-030"
+      "2f8cf085-d7a5-83b9-89f8-9d0754cb16a0",
+      "4d4f7c20-b7e0-86d8-9b17-f45053bbf43b",
+      "93abee59-3e8d-809f-a140-d86105b0d865",
+      "3cb6214c-8605-80e6-b73b-d20b9025023f"
     ],
     "proposedClaimIds": [
-      "PC-023",
-      "PC-024",
-      "PC-025"
+      "14a02231-23f5-875e-9229-a64e9a0ebaaf",
+      "6f2bffab-9ae4-854c-b767-73958d0d1fa2",
+      "30440930-4132-8f19-8699-847cd22723c5"
     ],
     "suggestedSlices": [
       {
-        "id": "SLC-01",
+        "id": "11519a1a-0d18-889b-8422-9bb8accc4483",
         "title": "Save one workflow and use it on another spec",
         "kind": "vertical",
         "acceptance": [
@@ -93,7 +93,7 @@
           "integration"
         ],
         "expectedClaimIds": [
-          "SL-023"
+          "2f8cf085-d7a5-83b9-89f8-9d0754cb16a0"
         ],
         "expectedPaths": [
           "packages/ledger/**",
@@ -102,11 +102,11 @@
           "schemas/**",
           "docs/**"
         ],
-        "notes": "Stage applicability becomes stage.required ?? policy(role); profile.source stops feeding roleApplicable and becomes provenance only. packages/ledger/src/workflows/workflow.break.test.ts:372 (bound to required claim SL-024) changes with SL-024's statement intact. N-3: saving strips output.criterionIds at the editable() boundary; adoption attaches the adopting spec's criterionIds to every implementation-report and check-results output by kind, mirroring defaultStages, and never overwrites criteria an author wrote by hand.",
-        "codeBreakReviewId": "T-048/R-02"
+        "notes": "Stage applicability becomes stage.required ?? policy(role); profile.source stops feeding roleApplicable and becomes provenance only. packages/ledger/src/workflows/workflow.break.test.ts:372 (bound to required claim 4d4f7c20-b7e0-86d8-9b17-f45053bbf43b) changes with 4d4f7c20-b7e0-86d8-9b17-f45053bbf43b's statement intact. N-3: saving strips output.criterionIds at the editable() boundary; adoption attaches the adopting spec's criterionIds to every implementation-report and check-results output by kind, mirroring defaultStages, and never overwrites criteria an author wrote by hand.",
+        "codeBreakReviewId": "3a3fe1ba-0237-8efc-b0e8-06d77cac1336"
       },
       {
-        "id": "SLC-02",
+        "id": "ef669c8c-b701-85d9-b2da-638757fed84e",
         "title": "Manage the saved workflows",
         "kind": "vertical",
         "acceptance": [
@@ -123,7 +123,7 @@
           "e2e"
         ],
         "expectedClaimIds": [
-          "SL-023"
+          "2f8cf085-d7a5-83b9-89f8-9d0754cb16a0"
         ],
         "expectedPaths": [
           "packages/ledger/**",
@@ -134,10 +134,10 @@
           "packages/ui/**"
         ],
         "notes": "Default pointer lives in the workflows store, not schemas/ledger-root.json, which is additionalProperties:false. Reserve the pointer path so a profile whose id is 'default' cannot collide with it. N-5: .spec-ledger/** is in DEFAULT_ALIGN_IGNORE and excluded from sourceFingerprint, so align check will not surface library edits.",
-        "codeBreakReviewId": "T-048/R-02"
+        "codeBreakReviewId": "3a3fe1ba-0237-8efc-b0e8-06d77cac1336"
       },
       {
-        "id": "SLC-03",
+        "id": "b37364e8-36d3-8901-a879-3a6e32f21210",
         "title": "Choose a workflow where the work is",
         "kind": "vertical",
         "acceptance": [
@@ -152,69 +152,69 @@
           "e2e"
         ],
         "expectedClaimIds": [
-          "SL-029",
-          "SL-030"
+          "93abee59-3e8d-809f-a140-d86105b0d865",
+          "3cb6214c-8605-80e6-b73b-d20b9025023f"
         ],
         "expectedPaths": [
           "packages/ui/**",
           "packages/client/**",
           "docs/**"
         ],
-        "notes": "Editor guard rails come from the client's exported validation or preview round-trip, never a second copy of the rules in packages/ui. N-9: the route change touches packages/ui/lib/navigation.test.mjs:27, which is inside BOTH b-sl-029 and b-sl-030; the rewritten test must assert the new in-page workflow join and that /workflows/<W-id> no longer resolves. N-7: packages/ui/components/workflow-view.tsx:199,224 render a two-value default|custom badge.",
-        "codeBreakReviewId": "T-048/R-02"
+        "notes": "Editor guard rails come from the client's exported validation or preview round-trip, never a second copy of the rules in packages/ui. N-9: the route change touches packages/ui/lib/navigation.test.mjs:27, which is inside BOTH b9215e80-1cbf-8bbf-83dc-63ceab15c182 and b02db887-018b-848d-a0b8-df170e543eb5; the rewritten test must assert the new in-page workflow join and that /workflows/<W-id> no longer resolves. N-7: packages/ui/components/workflow-view.tsx:199,224 render a two-value default|custom badge.",
+        "codeBreakReviewId": "3a3fe1ba-0237-8efc-b0e8-06d77cac1336"
       }
     ],
     "acceptanceClaimIds": {
-      "SLC-01/AC-1": [
-        "SL-032"
+      "11519a1a-0d18-889b-8422-9bb8accc4483/AC-1": [
+        "2456326e-b918-84bc-a5cb-ac1fd3b8aaf2"
       ],
-      "SLC-01/AC-2": [
-        "SL-032"
+      "11519a1a-0d18-889b-8422-9bb8accc4483/AC-2": [
+        "2456326e-b918-84bc-a5cb-ac1fd3b8aaf2"
       ],
-      "SLC-01/AC-3": [
-        "SL-034"
+      "11519a1a-0d18-889b-8422-9bb8accc4483/AC-3": [
+        "89ab5a3f-2aea-8b44-a9b8-6cedccb52979"
       ],
-      "SLC-01/AC-4": [
-        "SL-034"
+      "11519a1a-0d18-889b-8422-9bb8accc4483/AC-4": [
+        "89ab5a3f-2aea-8b44-a9b8-6cedccb52979"
       ],
-      "SLC-01/AC-5": [
-        "SL-033"
+      "11519a1a-0d18-889b-8422-9bb8accc4483/AC-5": [
+        "39fc903d-08ba-8a0c-a5d4-f9995941fd94"
       ],
-      "SLC-01/AC-6": [
-        "SL-033"
+      "11519a1a-0d18-889b-8422-9bb8accc4483/AC-6": [
+        "39fc903d-08ba-8a0c-a5d4-f9995941fd94"
       ],
-      "SLC-01/AC-7": [
-        "SL-032"
+      "11519a1a-0d18-889b-8422-9bb8accc4483/AC-7": [
+        "2456326e-b918-84bc-a5cb-ac1fd3b8aaf2"
       ],
-      "SLC-02/AC-1": [
-        "SL-032"
+      "ef669c8c-b701-85d9-b2da-638757fed84e/AC-1": [
+        "2456326e-b918-84bc-a5cb-ac1fd3b8aaf2"
       ],
-      "SLC-02/AC-2": [
-        "SL-032"
+      "ef669c8c-b701-85d9-b2da-638757fed84e/AC-2": [
+        "2456326e-b918-84bc-a5cb-ac1fd3b8aaf2"
       ],
-      "SLC-02/AC-3": [
-        "SL-034"
+      "ef669c8c-b701-85d9-b2da-638757fed84e/AC-3": [
+        "89ab5a3f-2aea-8b44-a9b8-6cedccb52979"
       ],
-      "SLC-02/AC-4": [
-        "SL-033"
+      "ef669c8c-b701-85d9-b2da-638757fed84e/AC-4": [
+        "39fc903d-08ba-8a0c-a5d4-f9995941fd94"
       ],
-      "SLC-02/AC-5": [
-        "SL-023"
+      "ef669c8c-b701-85d9-b2da-638757fed84e/AC-5": [
+        "2f8cf085-d7a5-83b9-89f8-9d0754cb16a0"
       ],
-      "SLC-02/AC-6": [
-        "SL-034"
+      "ef669c8c-b701-85d9-b2da-638757fed84e/AC-6": [
+        "89ab5a3f-2aea-8b44-a9b8-6cedccb52979"
       ],
-      "SLC-03/AC-1": [
-        "SL-029"
+      "b37364e8-36d3-8901-a879-3a6e32f21210/AC-1": [
+        "93abee59-3e8d-809f-a140-d86105b0d865"
       ],
-      "SLC-03/AC-2": [
-        "SL-032"
+      "b37364e8-36d3-8901-a879-3a6e32f21210/AC-2": [
+        "2456326e-b918-84bc-a5cb-ac1fd3b8aaf2"
       ],
-      "SLC-03/AC-3": [
-        "SL-030"
+      "b37364e8-36d3-8901-a879-3a6e32f21210/AC-3": [
+        "3cb6214c-8605-80e6-b73b-d20b9025023f"
       ],
-      "SLC-03/AC-4": [
-        "SL-033"
+      "b37364e8-36d3-8901-a879-3a6e32f21210/AC-4": [
+        "39fc903d-08ba-8a0c-a5d4-f9995941fd94"
       ]
     },
     "updatedAt": "2026-09-06T07:24:35.978Z",
@@ -222,12 +222,12 @@
       "Library edits live under .spec-ledger/, which align check ignores and the source fingerprint excludes, so they never appear in turn path coverage.",
       "trust.requiredEvidence is advisory; no code enforces the e2e requirement."
     ],
-    "specBreakReviewId": "W-014/SR-03",
+    "specBreakReviewId": "749ffc19-b2bf-8db5-bd00-4efb91acf031",
     "seal": {
       "sealedAt": "2026-09-06T05:34:58.907Z",
-      "sealedBy": "agent:permission:AUTH-4e179164-47e5-4ea9-88b2-0858b32fec25",
-      "specDigest": "52c99d6542e20d41fc948b4c067f8d7b61ee9174ed15aca63881dc5a9fbc4512",
-      "snapshotPath": "workstreams/W-014.seals/1.json",
+      "sealedBy": "agent:permission:2d312788-2407-8787-8582-f3dd38b8c3a9",
+      "specDigest": "b61b0c65d91feab524aa78fc4a4a600c9d958b51f865b18fab7ce535bce2e60f",
+      "snapshotPath": "workstreams/ef172105-4f40-8bbb-8abe-d1cd11ae618a.seals/1.json",
       "revision": 1,
       "specDocDigest": "26a3a61bc6f7f971e65f650884d1ac3c290629dbc49e00c7ce40a3d461f7ca15"
     },
@@ -240,8 +240,8 @@
         "beforeDocDigest": "26a3a61bc6f7f971e65f650884d1ac3c290629dbc49e00c7ce40a3d461f7ca15",
         "afterDocDigest": "c4223e8b319f15c7a1f9eec0aea10043845a463c6107839ac757c0a8e69b7d9e",
         "actor": "agent:user-request",
-        "turnId": "T-044",
-        "decisionId": "T-044/D-01"
+        "turnId": "eb02e4af-5c85-89fa-8aad-70f0444297f7",
+        "decisionId": "17198f98-504e-865e-869f-1be8078ace33"
       },
       {
         "at": "2026-09-06T06:14:15.887Z",
@@ -249,10 +249,10 @@
         "humanConfirmed": true,
         "sealedRevision": 1,
         "beforeDocDigest": "c4223e8b319f15c7a1f9eec0aea10043845a463c6107839ac757c0a8e69b7d9e",
-        "afterDocDigest": "ef4d9e376dbb85f984a37951dc90becef462506f8e10a12b3b4d8411c7a1b5a6",
+        "afterDocDigest": "369cbad61ec84478809cf38237a53f8730b001f6ed7f698e21d71fc3350b6e68",
         "actor": "agent:user-request",
-        "turnId": "T-044",
-        "decisionId": "T-044/D-02"
+        "turnId": "eb02e4af-5c85-89fa-8aad-70f0444297f7",
+        "decisionId": "8735bfb7-ba19-8c47-8fc8-e75cb0403daa"
       }
     ]
   }

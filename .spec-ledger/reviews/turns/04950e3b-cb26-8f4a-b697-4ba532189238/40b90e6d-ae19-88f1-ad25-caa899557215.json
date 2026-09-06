@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "40b90e6d-ae19-88f1-ad25-caa899557215",
+  "turnId": "04950e3b-cb26-8f4a-b697-4ba532189238",
+  "workstreamId": "ef172105-4f40-8bbb-8abe-d1cd11ae618a",
+  "kind": "human",
+  "target": "code",
+  "reviewer": "agent:align",
+  "verdict": "approve",
+  "summary": "User requested continued ef172105-4f40-8bbb-8abe-d1cd11ae618a library management and picker work; all changed paths are covered by ef669c8c-b701-85d9-b2da-638757fed84e.",
+  "plainSummary": "The saved workflow changes are covered by the approved library scope.",
+  "treeDigest": "ba844f3d36db65f90547ba661e8265b694f58d7536aa4e035c153b435b814854",
+  "uncoveredPaths": [],
+  "coverageSource": "mixed",
+  "migration": {
+    "origins": {
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/reviews/turns/T-043/R-03.json",
+        "id": "T-043/R-03",
+        "sha256": "ec6de6c2b021621982a2df0d0c58e4cb7537f911036069225025436eeeb3a716"
+      }
+    },
+    "historical": true
+  }
+}

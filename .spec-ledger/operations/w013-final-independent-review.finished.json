@@ -24,8 +24,8 @@
       "Independent browser interaction was unavailable to Sol; the builder separately verified opening proof and captured the observation. Rendered regressions do not establish a complete accessibility audit."
     ],
     "schemaVersion": 1,
-    "id": "T-042/R-01",
-    "turnId": "T-042",
+    "id": "dcd79264-1acd-80ca-a27f-a2c62fb42435",
+    "turnId": "9d65b345-19e2-8652-8af7-b7cf95acb7ca",
     "target": "code",
     "treeDigest": "9881b7b494b232b8822f6737e35b563d44277a21b5056966ec794a7e2c882adf"
   }

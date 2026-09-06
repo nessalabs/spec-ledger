@@ -104,7 +104,7 @@ number each question; give your recommended answer; wait.
 
 ## On-disk artifacts
 
-Prefer CLI when available. Human pitch Markdown under **`docs/workstreams/W-00N-<title-slug>/spec.md`**
+Prefer CLI when available. Human pitch Markdown under **`docs/workstreams/<workstream-uuid>-<title-slug>/spec.md`**
 first; then JSON per [workstream-template.md](workstream-template.md) with `specPath`
 pointing at that file (`.spec-ledger` = metadata only).
 
@@ -115,11 +115,11 @@ consequence rather than the mechanism, give every decision its “or else”, an
 keep field names, digests, claim ids and HTTP verbs in the JSON and linked
 technical docs instead of the pitch.
 
-- Pitch → `docs/workstreams/W-00N-<title-slug>/spec.md`
-- Workstream → `.spec-ledger/workstreams/W-00N.json` (`status: shaped` after confirm, `specPath` set)
-- Proposed claim → `.spec-ledger/proposed-claims/PC-00N.json` (`status: "proposed"`)
+- Pitch → `docs/workstreams/<workstream-uuid>-<title-slug>/spec.md`
+- Workstream → `.spec-ledger/workstreams/<workstream-uuid>.json` (`status: shaped` after confirm, `specPath` set)
+- Proposed claim → `.spec-ledger/proposed-claims/<proposed-claim-uuid>.json` (`status: "proposed"`)
 
-Pick the next free `W-` / `PC-` id by listing those directories. Keep optional
+Use `spec-ledger workstream create --file draft.json` with title, problem, objective, featureIds and slices, omitting all IDs. Save its returned UUIDs. Use `spec-ledger claim propose --workstream <workstream-uuid> --file claim.json` for proposed claims. Spec Ledger generates identities; never choose counters or generate UUIDs in an agent. Keep optional
 supporting notes beside `spec.md` and link the main spec from
 [`docs/workstreams/README.md`](../../docs/workstreams/README.md). Preserve existing
 sealed paths unless an explicit recorded migration covers the move.
@@ -131,12 +131,12 @@ sealed paths unless an explicit recorded migration covers the move.
 3. Summarize:
 
 ```
-workstream: W-00N (shaped)
+workstream: <workstream-uuid> (shaped)
 trust: deploy=… perf=… security=… correctness=… evidence=…
 policy: alertOnSeverity=… onAlert=… onSealedSpecDeviation=…
 featureIds: …
 proposedClaimIds: …
-verticals: SLC-01 … (acceptance each)
+verticals: <slice-uuid> … (acceptance each)
 next: sl-plan-break-spec → revision approval or applicable delegation → sl-work
 ```
 
@@ -157,3 +157,7 @@ next: sl-plan-break-spec → revision approval or applicable delegation → sl-w
 - Builder: [`skills/sl-dev-build`](../sl-dev-build/SKILL.md)
 - Code breaker: [`skills/sl-dev-break`](../sl-dev-break/SKILL.md)
 - Close gate: [`skills/sl-dev-verify`](../sl-dev-verify/SKILL.md)
+
+## Visual work evidence
+
+For visual UI changes, follow [required screenshot evidence](../references/visual-evidence.md): declare all relevant UI surfaces in the preserved plan, capture current screenshots, and inspect their coverage. Passing tests alone do not satisfy visual evidence; `evidence check`, turn close and completion enforce the declared screenshots.

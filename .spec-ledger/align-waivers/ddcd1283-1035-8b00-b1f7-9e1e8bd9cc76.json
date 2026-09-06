@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "ddcd1283-1035-8b00-b1f7-9e1e8bd9cc76",
+  "reason": "Restamp the same exact DESIGN.md coverage after the user added acceptance-percentage UI and review-ID integrity was fixed. The original explicit request authorizes the shared CLI/MCP architecture documentation; no additional paths are waived.",
+  "actor": "agent:coverage-of-user-request",
+  "treeDigest": "e5abd70a9c07ed530f2cf0edca2fa0967362ad2a7550d214afcc6719f3310a76",
+  "createdAt": "2026-09-05T00:43:57.681Z",
+  "workstreamId": "815c7a44-59df-8102-9769-bf8a74e49c0c",
+  "turnId": "7a56453a-0979-8b0a-a4fe-ddbc9aab354a",
+  "paths": [
+    "DESIGN.md"
+  ],
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/align-waivers/AW-16.json",
+        "id": "T-034/AW-16",
+        "sha256": "b3ddff878b2f82832ed44febc75b0f1299c2998ffe2c5b67964ac889f97943e2"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/align-waivers/AW-16.json",
+        "id": "T-034/AW-16",
+        "sha256": "b3ddff878b2f82832ed44febc75b0f1299c2998ffe2c5b67964ac889f97943e2"
+      }
+    },
+    "historical": true
+  }
+}

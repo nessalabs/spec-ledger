@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "requestId": "391535a9-0c81-420d-97d0-ea46bbc9f0ac",
+  "operation": "record_permission",
+  "inputDigest": "de096e8f83693676c1ef7af32c4a3057df81340d404ff089409601f9cfa77afb",
+  "finishedAt": "2026-09-06T20:58:09.626Z",
+  "outcome": "succeeded",
+  "result": {
+    "action": "grant",
+    "mode": "request",
+    "workstreamId": "815c7a44-59df-8102-9769-bf8a74e49c0c",
+    "featureIds": [
+      "cli",
+      "client",
+      "turns",
+      "verify",
+      "lattice"
+    ],
+    "source": {
+      "kind": "agent-reported",
+      "reference": "User requests correcting progress against all tasks and explicitly directs amending its original spec as a fixup; continue existing verification and PR work."
+    },
+    "id": "67b02df0-446e-4d15-87ab-ea805baa6ced",
+    "schemaVersion": 1,
+    "createdAt": "2026-09-06T20:58:09.622Z"
+  }
+}

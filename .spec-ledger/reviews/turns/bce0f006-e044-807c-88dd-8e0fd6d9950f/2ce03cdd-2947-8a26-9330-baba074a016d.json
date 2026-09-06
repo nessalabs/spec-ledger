@@ -1,0 +1,37 @@
+{
+  "kind": "adversarial",
+  "reviewer": "agent:sl-dev-break",
+  "verdict": "approve",
+  "blocking": false,
+  "summary": "Final-source rerun: node --test packages/ledger/dist/optimization/*.test.js packages/mcp/dist/optimization.lifecycle.test.js packages/ui/lib/experiment-chart.test.mjs; exit 0, 16 passed, 0 failed, including all five unchanged independent killers. Inspected final empty-unpublished-directory filtering, receipt-path symlink rejection, read-only GET corruption response, opt-in agent skill and UI refresh timeout. Metadata revision 2 preserves unchanged product requirements and explicit evidence mapping. No production edits by breaker.",
+  "plainSummary": "The final experiment feature preserves ordinary work and passes checks for invalid writes, honest results, and read-only inspection.",
+  "killersCited": [
+    "packages/ledger/src/optimization/optimization.break.test.ts::breaker: a rejected stale-source write leaves no experiment and can retry with fresh guards",
+    "packages/ledger/src/optimization/optimization.break.test.ts::breaker: pending parents and cross-workstream references cannot consume an attempt",
+    "packages/ledger/src/optimization/optimization.break.test.ts::breaker: corrupt identity and orphan result history fail closed on reads and new writes",
+    "packages/ledger/src/optimization/optimization.break.test.ts::breaker: a result-file symlink is rejected without modifying its target",
+    "packages/ledger/src/optimization/optimization.break.test.ts::breaker: clock rollback never reorders attempts or changes latest attempt measurement"
+  ],
+  "findings": [],
+  "alertOnSeverity": "high",
+  "residualRisks": [
+    "One out-of-intent killer: clock rollback; bounded hunt complete.",
+    "No process-kill or multi-process stress; atomic publication and application serialization inspected.",
+    "Browser rendering was verified by builder; this review independently reran storage, CLI, MCP, client/HTTP and chart tests."
+  ],
+  "schemaVersion": 1,
+  "id": "2ce03cdd-2947-8a26-9330-baba074a016d",
+  "turnId": "bce0f006-e044-807c-88dd-8e0fd6d9950f",
+  "target": "code",
+  "treeDigest": "355cfbbe5d071cb88cb23e745b845f66d7193bc0b33a53ea10d8194b84d63087",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/reviews/turns/T-043/R-02.json",
+        "id": "T-043/R-02",
+        "sha256": "ac0c5d2b6506c6fcf85d35cc91f421803988f8127d963d383fc88c897d3addcb"
+      }
+    },
+    "historical": true
+  }
+}

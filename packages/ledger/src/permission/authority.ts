@@ -1,5 +1,6 @@
+import { assertEntityId, publishEntity } from "../identity/index.js"
 import { randomUUID } from "node:crypto"
-import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs"
+import { existsSync, mkdirSync, readdirSync, readFileSync } from "node:fs"
 import { join } from "node:path"
 import { loadLedger, sha256Stable } from "../fs/load.js"
 import { checkSeal, computeSpecDigest, loadWorkstream, sealWorkstream, writeWorkstream } from "../workstream/load.js"
@@ -55,11 +56,11 @@ export function recordAuthority(root: string, input: Omit<Authority,"schemaVersi
     if ((input.mode === "revision" || input.action === "deny") && input.revisionDigest !== planRevision(root,ws)) throw new Error("approval or denial must name the current revision digest")
   }
   for (const ids of [input.featureIds,input.excludeFeatureIds,input.supersedes]) if (ids && (!Array.isArray(ids) || ids.some(id=>typeof id!=="string" || !id))) throw new Error("authority ID lists must contain nonempty strings")
-  const id=input.id ?? `AUTH-${randomUUID()}`
-  if (!/^AUTH-[a-zA-Z0-9_-]+$/.test(id)) throw new Error("invalid authority id")
+  const id=input.id ?? randomUUID()
+  assertEntityId(id, "authority id")
   const record:Authority={...input,id,schemaVersion:1,createdAt:new Date().toISOString()}
   const dir=join(loadLedger(root).rootDir,"authority");mkdirSync(dir,{recursive:true})
-  try { writeFileSync(join(dir,`${id}.json`),JSON.stringify(record,null,2)+"\n",{flag:"wx"}) }
+  try { publishEntity(join(dir,`${id}.json`),record) }
   catch(error) {
     if ((error as NodeJS.ErrnoException).code !== "EEXIST") throw error
     const prior=existing.find(a=>a.id===id)
@@ -113,13 +114,14 @@ export function prepareExecutablePlan(root: string, id: string): Workstream {
 
 /** Separate spec reviewer supplies judgment; the tool stamps the plan it actually reviewed. */
 export function recordSpecReview(root:string,review:Review):Review {
-  if (!review.workstreamId || review.turnId || review.target!=="spec" || !new RegExp(`^${review.workstreamId}/SR-[0-9]+$`).test(review.id)) throw new Error("spec review requires a workstream review ID")
+  assertEntityId(review.id, "review id")
+  if (!review.workstreamId || review.turnId || review.target!=="spec") throw new Error("spec review requires a workstream review ID")
   const ws=loadWorkstream(root,review.workstreamId)
   const stamped={...review,revisionDigest:planRevision(root,ws)}
   assertReviewLatticeCopy(stamped)
   const ledger=loadLedger(root)
   const dir=join(ledger.rootDir,ledger.config.reviewsDir ?? "reviews","workstreams",ws.id)
   mkdirSync(dir,{recursive:true})
-  writeFileSync(join(dir,`${review.id.split("/").at(-1)}.json`),JSON.stringify(stamped,null,2)+"\n",{flag:"wx"})
+  publishEntity(join(dir,`${review.id}.json`),stamped)
   return stamped
 }

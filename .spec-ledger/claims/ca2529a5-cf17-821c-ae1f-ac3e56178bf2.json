@@ -1,0 +1,21 @@
+{
+  "id": "ca2529a5-cf17-821c-ae1f-ac3e56178bf2",
+  "kind": "invariant",
+  "required": true,
+  "statement": "Visual work cannot finish without current screenshot evidence for every declared UI surface.",
+  "links": {
+    "docs": [
+      "skills/references/visual-evidence.md"
+    ]
+  },
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/claims/SL-033.json",
+        "id": "SL-033",
+        "sha256": "f3f50eb94221912e12b0a6ee95e4f846af7fbdb7aaf6a054f0daa0e31b74c708"
+      }
+    },
+    "historical": true
+  }
+}

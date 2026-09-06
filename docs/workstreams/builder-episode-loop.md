@@ -1,7 +1,7 @@
 # Builder episode loop
 
-**Workstream:** `W-001` · **Status:** done (retrofit pitch — prose extracted from metadata for human navigation)  
-**Agent metadata:** [`.spec-ledger/workstreams/W-001.json`](../../.spec-ledger/workstreams/W-001.json)  
+**Workstream:** `3317ada5-b347-894e-8c88-110b7b42d58b` · **Status:** done (retrofit pitch — prose extracted from metadata for human navigation)  
+**Agent metadata:** [`.spec-ledger/workstreams/3317ada5-b347-894e-8c88-110b7b42d58b.json`](../../.spec-ledger/workstreams/3317ada5-b347-894e-8c88-110b7b42d58b.json)  
 **Note:** Historical seal digests predate this Markdown; `specPath` is a live pointer only.
 
 ---

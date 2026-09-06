@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "turnId": "383eee85-f226-857a-a920-2f338ca83df4",
+  "title": "Release checks and approved specs remain reliable",
+  "before": "CI cannot install, packing can rewrite source manifests, and seal checks can accept obsolete or unrecorded document edits.",
+  "after": "Clean CI runs isolated artifact checks, packaging leaves manifests unchanged, and seal checks enforce the active revision and immutable document pointer.",
+  "id": "ce78dd26-869e-889a-b3c7-1fe41223a218",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/flows/T-025/F-01.json",
+        "id": "T-025/F-01",
+        "sha256": "02158005f22223a2e0a8be655fc32cf00c8c97f0368d4ba56df068a60c1b4d92"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/flows/T-025/F-01.json",
+        "id": "T-025/F-01",
+        "sha256": "02158005f22223a2e0a8be655fc32cf00c8c97f0368d4ba56df068a60c1b4d92"
+      }
+    },
+    "historical": true
+  }
+}

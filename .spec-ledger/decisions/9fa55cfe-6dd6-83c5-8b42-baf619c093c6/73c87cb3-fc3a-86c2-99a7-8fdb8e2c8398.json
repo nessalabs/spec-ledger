@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "turnId": "9fa55cfe-6dd6-83c5-8b42-baf619c093c6",
+  "decision": "Read evidence on change pages and inspect the completed audit of all earlier requirements, including remaining gaps.",
+  "rationale": "Agent-reported progress; evidence is evaluated separately.",
+  "progress": {
+    "criterionIds": [
+      "79c61989-9765-86e0-b429-2d97d4e38892/AC-1",
+      "79c61989-9765-86e0-b429-2d97d4e38892/AC-2"
+    ],
+    "implemented": true,
+    "revisionDigest": "e0d1f2ef4f9ba379544e2c087298b91e1f6af836e923f79d773011eb81f99be7",
+    "sourceDigest": "586407c4b40244f902e776ddb2c675b89ae65abaed86d7952e399ad1e7e66337"
+  },
+  "id": "73c87cb3-fc3a-86c2-99a7-8fdb8e2c8398",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/decisions/T-039/D-01.json",
+        "id": "T-039/D-01",
+        "sha256": "2a47df9ef83fc26a5edb933b411b335b04c1a3ec767b143155b7d38f2a29903b"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/decisions/T-039/D-01.json",
+        "id": "T-039/D-01",
+        "sha256": "2a47df9ef83fc26a5edb933b411b335b04c1a3ec767b143155b7d38f2a29903b"
+      }
+    },
+    "historical": true
+  },
+  "sequence": 1
+}

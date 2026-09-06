@@ -1,0 +1,28 @@
+{
+  "id": "c702bd7f-8dfb-8201-b878-0bda077f708a",
+  "statement": "Show the feature outcome and its supporting evidence before implementation bookkeeping. Clearly distinguish recorded completion from current verification.",
+  "featureIds": [
+    "lattice"
+  ],
+  "source": {
+    "kind": "user-reported",
+    "reference": "User T037 screenshots: evidence buried on turn pages, wrong previous commit, and Complete contradicted by unmapped or stale checks across older workstreams."
+  },
+  "schemaVersion": 1,
+  "createdAt": "2026-09-05T01:51:14.316Z",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/learnings/LN-005.json",
+        "id": "LN-005",
+        "sha256": "0a249831da543444400b0718228b9645261c6a600db312c3600ceb5acd958d70"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/learnings/LN-005.json",
+        "id": "LN-005",
+        "sha256": "0a249831da543444400b0718228b9645261c6a600db312c3600ceb5acd958d70"
+      }
+    },
+    "historical": true
+  }
+}

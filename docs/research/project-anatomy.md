@@ -159,7 +159,7 @@ EPISODE (temporary)
 
 - “History of feature `verify`” → turns with that `featureId` (+ decisions)
 - “What obligations govern this feature?” → claims on feature / nodes
-- “What did this turn decide relative to SL-003?” → decisions citing claim
+- “What did this turn decide relative to 14d9b121-df2b-8ede-bce7-fdee648a4320?” → decisions citing claim
 - “Did we leave the spec?” → deviate without follow-up claim (audit)
 
 ---

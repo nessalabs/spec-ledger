@@ -1,0 +1,28 @@
+{
+  "id": "d6bec874-d62d-850e-bf0f-f19d5b07f7a9",
+  "kind": "invariant",
+  "statement": "Reading specs, progress, or evidence never runs tests or changes saved results.",
+  "required": true,
+  "area": "core",
+  "links": {
+    "docs": [
+      "docs/workstreams/a32f3451-1b3d-8abf-bf0e-607ebf6e1a88-trustworthy-autonomous-coding/spec.md",
+      "docs/architecture/claim-contracts.md"
+    ]
+  },
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/claims/SL-017.json",
+        "id": "SL-017",
+        "sha256": "a31337d7f70235a3f40d212898cc31102137caada23758babf46b07abd299020"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/claims/SL-017.json",
+        "id": "SL-017",
+        "sha256": "a31337d7f70235a3f40d212898cc31102137caada23758babf46b07abd299020"
+      }
+    },
+    "historical": true
+  }
+}

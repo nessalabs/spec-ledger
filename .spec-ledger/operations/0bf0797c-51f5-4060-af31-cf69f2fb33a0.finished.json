@@ -7,7 +7,7 @@
   "outcome": "succeeded",
   "result": {
     "schemaVersion": 1,
-    "id": "T-045",
+    "id": "5bfd91de-8592-889f-954b-26c28d6b02c3",
     "status": "abandoned",
     "openedAt": "2026-09-06T07:03:12.289Z",
     "opened": {
@@ -58,7 +58,7 @@
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/turns/T-045.json",
+          "path": ".spec-ledger/turns/5bfd91de-8592-889f-954b-26c28d6b02c3.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0

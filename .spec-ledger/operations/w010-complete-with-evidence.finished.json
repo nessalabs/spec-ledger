@@ -7,11 +7,11 @@
   "outcome": "succeeded",
   "result": {
     "schemaVersion": 1,
-    "id": "W-010",
+    "id": "351e54ea-60e4-8384-826f-0616eaa89599",
     "status": "done",
     "title": "Inspect a test and run it again",
     "objective": "Read what a test checks, inspect its source and actual output, and rerun the saved check from the website.",
-    "specPath": "docs/workstreams/W-010-inspect-and-run-checks/spec.md",
+    "specPath": "docs/workstreams/351e54ea-60e4-8384-826f-0616eaa89599-inspect-and-run-checks/spec.md",
     "featureIds": [
       "cli",
       "client",
@@ -35,7 +35,7 @@
     },
     "suggestedSlices": [
       {
-        "id": "SLC-01",
+        "id": "31586ff0-42d1-85f6-8733-49244fa3d467",
         "title": "Inspect and rerun a saved check with real output",
         "kind": "vertical",
         "acceptance": [
@@ -47,22 +47,22 @@
           "docs/**",
           "skills/**"
         ],
-        "codeBreakReviewId": "T-038/R-03"
+        "codeBreakReviewId": "92e44229-095f-8288-bb7f-ddaf5a1dc131"
       }
     ],
-    "specBreakReviewId": "W-010/SR-03",
+    "specBreakReviewId": "a6bf2f44-8c43-8065-9227-897f94e8e85e",
     "updatedAt": "2026-09-05T02:34:09.135Z",
     "seal": {
       "sealedAt": "2026-09-05T02:16:15.428Z",
-      "sealedBy": "agent:permission:AUTH-W010-REQUEST",
-      "specDigest": "c77ac0a2cd2c1941f0ae033ac8d312e3389cd2d1b8373adf7f839500e817225c",
-      "snapshotPath": "workstreams/W-010.seals/2.json",
+      "sealedBy": "agent:permission:c5157d54-3272-8c33-abbf-b446e7202e95",
+      "specDigest": "890af1f59461249bc7d31f1c19d772c16896627cadc2e94ea9fd8dbdf4bcb725",
+      "snapshotPath": "workstreams/351e54ea-60e4-8384-826f-0616eaa89599.seals/2.json",
       "revision": 2,
       "specDocDigest": "036cbc5e3e9cf30a48102254d3c73e6fd42857f91cfbc5bab541dfb00aac7c99"
     },
     "acceptanceClaimIds": {
-      "SLC-01/AC-1": [
-        "SL-027"
+      "31586ff0-42d1-85f6-8733-49244fa3d467/AC-1": [
+        "3d819ad1-8f9b-893c-a5bf-92d67c933cd3"
       ]
     },
     "postSealAmends": [
@@ -74,7 +74,7 @@
         "beforeDocDigest": "caff47784ff8ba6726b3e6d85954844ffd5a48343e95cf5b3ed8ac7e0d48fc75",
         "afterDocDigest": "036cbc5e3e9cf30a48102254d3c73e6fd42857f91cfbc5bab541dfb00aac7c99",
         "actor": "agent:user-request",
-        "turnId": "T-038"
+        "turnId": "21e1bd8d-8745-8900-b8a5-249314d027be"
       },
       {
         "at": "2026-09-05T02:27:27.965Z",
@@ -84,7 +84,7 @@
         "beforeDocDigest": "036cbc5e3e9cf30a48102254d3c73e6fd42857f91cfbc5bab541dfb00aac7c99",
         "afterDocDigest": "b3ff97d8a3146193f0637ebc94c92b2720b7b2fb00b13e95d89c016d9bba3bfb",
         "actor": "agent:user-request",
-        "turnId": "T-038"
+        "turnId": "21e1bd8d-8745-8900-b8a5-249314d027be"
       }
     ]
   }

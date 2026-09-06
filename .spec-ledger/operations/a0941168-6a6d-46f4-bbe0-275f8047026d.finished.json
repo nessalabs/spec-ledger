@@ -7,7 +7,7 @@
   "outcome": "succeeded",
   "result": {
     "schemaVersion": 1,
-    "id": "T-044",
+    "id": "eb02e4af-5c85-89fa-8aad-70f0444297f7",
     "status": "closed",
     "openedAt": "2026-09-06T05:51:18.037Z",
     "opened": {
@@ -16,18 +16,18 @@
       "treeDigest": "ba844f3d36db65f90547ba661e8265b694f58d7536aa4e035c153b435b814854",
       "dirtyAtOpen": [],
       "contextDigest": "a557f0b19c339a49718ef31120a2e5415ae03b9897014d355044949722b38562",
-      "contextWorkstreamId": "W-014",
-      "contextSliceId": "SLC-03",
+      "contextWorkstreamId": "ef172105-4f40-8bbb-8abe-d1cd11ae618a",
+      "contextSliceId": "b37364e8-36d3-8901-a879-3a6e32f21210",
       "contextSealRevision": 1,
       "contextGeneratedAt": "2026-09-06T05:51:18.037Z"
     },
     "intent": {
-      "userPrompt": "Continue W-014 by building the workflow library screen and placing the named workflow picker beside each spec’s evidence and changes.",
+      "userPrompt": "Continue ef172105-4f40-8bbb-8abe-d1cd11ae618a by building the workflow library screen and placing the named workflow picker beside each spec’s evidence and changes.",
       "restatedGoal": "Choose a saved workflow beside the spec evidence and changes",
       "changeType": "feature",
       "riskLevel": "moderate",
-      "workstreamId": "W-014",
-      "sliceId": "SLC-03",
+      "workstreamId": "ef172105-4f40-8bbb-8abe-d1cd11ae618a",
+      "sliceId": "b37364e8-36d3-8901-a879-3a6e32f21210",
       "featureIds": [
         "client",
         "cli",
@@ -40,31 +40,31 @@
       "commit": "9d63d03b9a2207170049968d5af19c3ca85e6a00",
       "files": [
         {
-          "path": ".spec-ledger/bindings/B-SL-030.json",
+          "path": ".spec-ledger/bindings/b02db887-018b-848d-a0b8-df170e543eb5.json",
           "kind": "modified",
           "additions": 1,
           "deletions": 1
         },
         {
-          "path": ".spec-ledger/decisions/T-044/D-01.json",
+          "path": ".spec-ledger/decisions/eb02e4af-5c85-89fa-8aad-70f0444297f7/17198f98-504e-865e-869f-1be8078ace33.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/decisions/T-044/D-02.json",
+          "path": ".spec-ledger/decisions/eb02e4af-5c85-89fa-8aad-70f0444297f7/8735bfb7-ba19-8c47-8fc8-e75cb0403daa.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/decisions/T-044/D-03.json",
+          "path": ".spec-ledger/decisions/eb02e4af-5c85-89fa-8aad-70f0444297f7/cb79bb87-0c9d-85c8-958b-8a5c37a7c124.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/decisions/T-044/D-04.json",
+          "path": ".spec-ledger/decisions/eb02e4af-5c85-89fa-8aad-70f0444297f7/6f0a8973-f066-8807-b89d-b86dd40ba237.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
@@ -646,61 +646,61 @@
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/learnings/LN-c2ee10d1-c4da-4f84-880f-e6f59b7084f0.json",
+          "path": ".spec-ledger/learnings/aaccfa61-c663-8a0e-9d91-ac9783f96aab.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/learnings/LN-f2d4e484-4fef-4200-8595-c572c1658f43.json",
+          "path": ".spec-ledger/learnings/d73b4c93-b796-8d7e-bb01-2614ec2ab79e.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/reviews/turns/T-044/R-01.json",
+          "path": ".spec-ledger/reviews/turns/eb02e4af-5c85-89fa-8aad-70f0444297f7/e9783210-e117-8b89-8202-2de8c44f808c.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/reviews/turns/T-044/R-02.json",
+          "path": ".spec-ledger/reviews/turns/eb02e4af-5c85-89fa-8aad-70f0444297f7/4b16dd68-eebb-8634-b190-2c27bdff94f7.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/reviews/workstreams/W-014/SR-02.json",
+          "path": ".spec-ledger/reviews/workstreams/ef172105-4f40-8bbb-8abe-d1cd11ae618a/fb0f1f3c-3a43-8467-ab1d-c6c729a757e1.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/reviews/workstreams/W-014/SR-03.json",
+          "path": ".spec-ledger/reviews/workstreams/ef172105-4f40-8bbb-8abe-d1cd11ae618a/749ffc19-b2bf-8db5-bd00-4efb91acf031.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/turns/T-044.json",
+          "path": ".spec-ledger/turns/eb02e4af-5c85-89fa-8aad-70f0444297f7.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/workstreams/W-014.json",
+          "path": ".spec-ledger/workstreams/ef172105-4f40-8bbb-8abe-d1cd11ae618a.json",
           "kind": "modified",
           "additions": 32,
           "deletions": 6
         },
         {
-          "path": "docs/workstreams/W-014-named-workflows/browser-verification.md",
+          "path": "docs/workstreams/ef172105-4f40-8bbb-8abe-d1cd11ae618a-named-workflows/browser-verification.md",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": "docs/workstreams/W-014-named-workflows/spec.md",
+          "path": "docs/workstreams/ef172105-4f40-8bbb-8abe-d1cd11ae618a-named-workflows/spec.md",
           "kind": "modified",
           "additions": 7,
           "deletions": 4
@@ -857,12 +857,12 @@
         "lattice"
       ],
       "touchedClaimIds": [
-        "SL-004",
-        "SL-021",
-        "SL-022",
-        "SL-029",
-        "SL-030",
-        "SL-031"
+        "77fb26cd-bc46-8037-a8f2-7573f7d6d33d",
+        "9767b1da-9568-8e2f-ad2a-c2c3eb3e424c",
+        "dd5caaee-dace-8f53-bff5-65b6a7646b6d",
+        "93abee59-3e8d-809f-a140-d86105b0d865",
+        "3cb6214c-8605-80e6-b73b-d20b9025023f",
+        "d62365fc-02af-826c-b961-8942c540bddf"
       ],
       "blastRadius": {
         "direct": [],
@@ -877,10 +877,10 @@
       },
       "schemaSurfaceChanged": true,
       "decisionIds": [
-        "T-044/D-01",
-        "T-044/D-02",
-        "T-044/D-03",
-        "T-044/D-04"
+        "17198f98-504e-865e-869f-1be8078ace33",
+        "8735bfb7-ba19-8c47-8fc8-e75cb0403daa",
+        "cb79bb87-0c9d-85c8-958b-8a5c37a7c124",
+        "6f0a8973-f066-8807-b89d-b86dd40ba237"
       ],
       "decisionsDigest": "439d61f07759cc8fec59127622846e958c3227ee6b852c014f0938b283a9d88d",
       "reviewsDigest": "b5d875344373f178298b57c8fbd3b2344bcf64c09c02967bc10487abf7dd2fc0"

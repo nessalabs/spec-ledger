@@ -1,0 +1,35 @@
+{
+  "id": "f9ac6b2d-8fdd-875e-a825-24bd24152342",
+  "action": "grant",
+  "mode": "request",
+  "workstreamId": "a32f3451-1b3d-8abf-bf0e-607ebf6e1a88",
+  "featureIds": [
+    "verify",
+    "turns",
+    "lattice",
+    "cli",
+    "client",
+    "server"
+  ],
+  "source": {
+    "kind": "agent-reported",
+    "reference": "User request: now implement your proposed new changes; portable CLI handoff first; two UI bug fixes in same session."
+  },
+  "schemaVersion": 1,
+  "createdAt": "2026-09-04T22:27:47.484Z",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/authority/AUTH-W006-REQUEST.json",
+        "id": "AUTH-W006-REQUEST",
+        "sha256": "70e07cfa6deb62ad8b023539e7ebed6988bff2ee521c37fd3a1a654934922a92"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/authority/AUTH-W006-REQUEST.json",
+        "id": "AUTH-W006-REQUEST",
+        "sha256": "70e07cfa6deb62ad8b023539e7ebed6988bff2ee521c37fd3a1a654934922a92"
+      }
+    },
+    "historical": true
+  }
+}

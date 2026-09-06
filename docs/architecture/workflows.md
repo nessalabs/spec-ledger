@@ -13,7 +13,7 @@ spec-ledger operation get_workflow --file observe.json
 spec-ledger operation set_workflow --file select.json
 ```
 
-The read input is `{ "workstreamId": "W-001" }`. Selection includes that ID, a stable `requestId`, the observed `expectedRevisionDigest` and `expectedSourceDigest`, and an optional `profile`. Omitting the profile selects the bundled default. An amendment includes the existing `expectedSnapshotDigest` and a reason. Inspect the effective method before starting steps. Selection changes guidance and method requirements within existing permission; it does not grant permission or weaken project policy.
+The read input is `{ "workstreamId": "3317ada5-b347-894e-8c88-110b7b42d58b" }`. Selection includes that ID, a stable `requestId`, the observed `expectedRevisionDigest` and `expectedSourceDigest`, and an optional `profile`. Omitting the profile selects the bundled default. An amendment includes the existing `expectedSnapshotDigest` and a reason. Inspect the effective method before starting steps. Selection changes guidance and method requirements within existing permission; it does not grant permission or weaken project policy.
 
 A profile can supply an ordered list of stages or extend `spec-ledger/default` to replace skill choices. Each step declares nonempty typed outputs. Stage satisfaction requires all its steps; recording one step's output does not silently complete its siblings. Full stage replacements use explicit order, never a positional array merge.
 

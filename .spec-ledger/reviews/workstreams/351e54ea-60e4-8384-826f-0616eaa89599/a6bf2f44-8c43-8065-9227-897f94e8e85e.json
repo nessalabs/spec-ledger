@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "id": "a6bf2f44-8c43-8065-9227-897f94e8e85e",
+  "workstreamId": "351e54ea-60e4-8384-826f-0616eaa89599",
+  "kind": "adversarial",
+  "target": "spec",
+  "reviewer": "agent:turn-evidence-breaker",
+  "verdict": "approve",
+  "blocking": false,
+  "plainSummary": "The descriptions explain user-visible behavior while the linked technical contracts and checks remain intact.",
+  "summary": "Reviewed latest user-authorized presentation amendment: Nessa syntax highlighting and plain claim descriptions with linked exact technical contracts. Reread AGENTS and refreshed related pack. Automated comparison confirmed all24 changed pre-existing claim statements appear verbatim under their IDs in docs/architecture/claim-contracts.md and each updated claim links that document. New SL027 remains saved-check contract. Reviewed all rewritten outcomes for consistency; no check commands or requirements were removed by copy edits. These statement changes affect check identities and require new verification rather than retaining earlier passes. Final code review and source-bound check execution remain separate.",
+  "supersedesReviewId": "0845547d-9f1d-8cb4-89a8-205f7f0e3702",
+  "findings": [],
+  "residualRisks": [
+    "Plain summaries are intentionally abbreviated; exact constraints remain in linked technical contracts and existing behavior checks.",
+    "Current checks must rerun because claim text and source changes invalidate previous evidence identities."
+  ],
+  "revisionDigest": "926ea0b3eef0bb27ffcf55a672c5e909a292d2e0dded381ca57c4a2d2cd266b9",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/reviews/workstreams/W-010/SR-03.json",
+        "id": "W-010/SR-03",
+        "sha256": "8dd6b070d0a832a9fbb98f653855f844191d5301936cf39072aabe195ac00f6d"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/reviews/workstreams/W-010/SR-03.json",
+        "id": "W-010/SR-03",
+        "sha256": "8dd6b070d0a832a9fbb98f653855f844191d5301936cf39072aabe195ac00f6d"
+      }
+    },
+    "historical": true
+  }
+}

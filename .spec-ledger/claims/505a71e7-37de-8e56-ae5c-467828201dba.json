@@ -1,0 +1,29 @@
+{
+  "id": "505a71e7-37de-8e56-ae5c-467828201dba",
+  "kind": "invariant",
+  "statement": "Changes to an agreed spec must be recorded, so an agent cannot silently replace what was approved.",
+  "area": "core",
+  "required": true,
+  "links": {
+    "docs": [
+      "docs/workstreams/consumer-cli-and-npm-publish.md",
+      "docs/architecture/claim-contracts.md"
+    ],
+    "proposedClaimId": "1f1b46eb-ad28-8870-b46d-9826d55aaa1c"
+  },
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/claims/SL-015.json",
+        "id": "SL-015",
+        "sha256": "5e6d4b08eb94a7c1ef63a1633cf4cf35bd7530ef994f48953ca6eba6777c566e"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/claims/SL-015.json",
+        "id": "SL-015",
+        "sha256": "5e6d4b08eb94a7c1ef63a1633cf4cf35bd7530ef994f48953ca6eba6777c566e"
+      }
+    },
+    "historical": true
+  }
+}

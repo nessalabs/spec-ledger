@@ -1,5 +1,8 @@
 "use client"
 
+import { useRecordLabels } from "@/components/readable-text"
+import { readableText, readableMarkdown } from "@/lib/record-labels"
+
 import { presentationCopy } from "@/lib/features"
 
 import Link from "next/link"
@@ -25,19 +28,20 @@ export function PeekLink({
   children: React.ReactNode
 }) {
   const { openDoc } = useDocPane()
+  const labels = useRecordLabels()
 
   return (
     <Link
       href={href}
       className={className}
-      title={title}
+      title={readableText(title, labels)}
       onClick={(e) => {
         if (!(e.metaKey || e.ctrlKey)) return
         e.preventDefault()
         openDoc({
           path: peekPath,
-          label: peekLabel,
-          content: peekContent,
+          label: readableText(peekLabel, labels),
+          content: readableMarkdown(peekContent, labels),
         })
       }}
     >
@@ -48,6 +52,7 @@ export function PeekLink({
 
 export function turnPeekMarkdown(args: {
   id: string
+  labels?: Record<string, string>
   goal: string
   workstreamId?: string | null
   workstreamTitle?: string | null
@@ -59,14 +64,12 @@ export function turnPeekMarkdown(args: {
   const lines = [
     `# ${presentationCopy(args.goal)}`,
     "",
-    `**${args.id}** · ${args.status}${args.when ? ` · ${args.when}` : ""}`,
+    `${args.status}${args.when ? ` · ${args.when}` : ""}`,
   ]
   if (args.workstreamId) {
     lines.push(
       "",
-      `Workstream **${args.workstreamId}**${
-        args.workstreamTitle ? ` — ${presentationCopy(args.workstreamTitle)}` : ""
-      }`,
+      `Spec: ${readableText(presentationCopy(args.workstreamTitle ?? "Related spec"), args.labels)}`,
     )
   }
   if (args.areas || args.fileBit) {
@@ -82,11 +85,12 @@ export function turnPeekMarkdown(args: {
     `[Open full turn](/turns/${encodeURIComponent(args.id)})`,
     "",
   )
-  return lines.join("\n")
+  return readableMarkdown(lines.join("\n"), args.labels ?? {})
 }
 
 export function claimPeekMarkdown(args: {
   id: string
+  labels?: Record<string, string>
   statement: string
   kind: string
   required: boolean
@@ -95,36 +99,37 @@ export function claimPeekMarkdown(args: {
   detail?: string
 }): string {
   const lines = [
-    `# ${args.id}`,
+    `# ${readableText(args.statement, args.labels)}`,
     "",
-    args.statement,
+    readableText(args.statement, args.labels),
     "",
     `**${args.kind}** · ${args.required ? "required" : "optional"} · ${args.bindings} binding${
       args.bindings === 1 ? "" : "s"
     }${args.outcome ? ` · verify **${args.outcome}**` : ""}`,
   ]
-  if (args.detail) {
-    lines.push("", "## Verify detail", "", args.detail)
+  if (readableText(args.detail, args.labels)) {
+    lines.push("", "## Verify detail", "", readableText(args.detail, args.labels))
   }
   lines.push(
     "",
     `[Open full claim](/claims/${encodeURIComponent(args.id)})`,
     "",
   )
-  return lines.join("\n")
+  return readableMarkdown(lines.join("\n"), args.labels ?? {})
 }
 
 export function workstreamPeekMarkdown(args: {
   id: string
+  labels?: Record<string, string>
   title: string
   objective: string
   status: string
   revision?: number
 }): string {
-  return [
+  return readableMarkdown([
     `# ${presentationCopy(args.title)}`,
     "",
-    `**${args.id}** · ${args.status}${
+    `${args.status}${
       args.revision != null ? ` · rev ${args.revision}` : ""
     }`,
     "",
@@ -132,5 +137,5 @@ export function workstreamPeekMarkdown(args: {
     "",
     `[Open full workstream](/workstreams/${encodeURIComponent(args.id)})`,
     "",
-  ].join("\n")
+  ].join("\n"), args.labels ?? {})
 }

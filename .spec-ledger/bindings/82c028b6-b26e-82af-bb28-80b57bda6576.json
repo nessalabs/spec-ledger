@@ -1,0 +1,24 @@
+{
+  "id": "82c028b6-b26e-82af-bb28-80b57bda6576",
+  "claimId": "fb335474-ec02-8a07-a399-a948d076a225",
+  "kind": "test",
+  "locator": {
+    "type": "command",
+    "command": "node --test packages/ledger/dist/permission/authority.break.test.js"
+  },
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/bindings/b-sl-019.json",
+        "id": "b-sl-019",
+        "sha256": "c12c425241cfd47d918519ee3658fb05dffd3f37bb00500d9227eac680e9d8b5"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/bindings/b-sl-019.json",
+        "id": "b-sl-019",
+        "sha256": "c12c425241cfd47d918519ee3658fb05dffd3f37bb00500d9227eac680e9d8b5"
+      }
+    },
+    "historical": true
+  }
+}

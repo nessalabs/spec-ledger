@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "c6d2b6e3-e6e2-8d08-872e-d632ff8c84a9",
+  "workstreamId": "3ca37660-1506-8a85-80c6-410a024d9a9a",
+  "kind": "adversarial",
+  "target": "spec",
+  "reviewer": "agent:turn-evidence-breaker",
+  "verdict": "approve",
+  "blocking": false,
+  "plainSummary": "The interface requirement is linked to tested behavior while the audit keeps its remaining verification gaps explicit.",
+  "summary": "Mapping-only review after W009 SR02 and T037 R01. AC1 maps solely to SL026, whose executed independent UI/Git regressions substantiate scoped evidence, historical completion labels and exact trailer attribution. Acceptance wording and intended scope remain unchanged. AC2 remains unmapped: the audit artifact and review do not prove all historical criteria or justify blanket mapping to component contracts. Related pack refreshed; no new production changes or verification authority.",
+  "supersedesReviewId": "d8d99c3c-a263-8c85-9b27-97cf80d854f2",
+  "findings": [],
+  "residualRisks": [
+    "Audit acceptance retains an explicit manual/unmapped evidence gap; this review does not convert that gap to a behavioral pass."
+  ],
+  "revisionDigest": "5795bd40b477f259b8c51119602ac4d81d962befcd0a83f5325458c7011f0333",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/reviews/workstreams/W-009/SR-03.json",
+        "id": "W-009/SR-03",
+        "sha256": "4eabdf6471f4902914216fa19d282fdb35e10bff4f31564ee39a6348fd9a05a4"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/reviews/workstreams/W-009/SR-03.json",
+        "id": "W-009/SR-03",
+        "sha256": "4eabdf6471f4902914216fa19d282fdb35e10bff4f31564ee39a6348fd9a05a4"
+      }
+    },
+    "historical": true
+  }
+}

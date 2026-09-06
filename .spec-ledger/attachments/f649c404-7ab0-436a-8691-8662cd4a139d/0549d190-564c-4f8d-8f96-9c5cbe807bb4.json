@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "0549d190-564c-4f8d-8f96-9c5cbe807bb4",
+  "turnId": "f649c404-7ab0-436a-8691-8662cd4a139d",
+  "kind": "image",
+  "title": "Fixup detail with requested correction",
+  "path": ".spec-ledger/evidence/screenshots/discovery-fix/fixup.png",
+  "mediaType": "image/png",
+  "byteLength": 158244,
+  "contentDigest": "0f2320f5be32bc71b98ef9ac4d3d696911707992660cbfaac25ec08968769ff0",
+  "visualEvidence": {
+    "sliceId": "25eac677-2871-816d-956d-770bdcb61798",
+    "surface": "Fixup detail with requested correction",
+    "sourceDigest": "7bd5f5b2dd8a1b5c3e7f20a70632596b99441887b4892e8617c871fbfa8cea98",
+    "revisionDigest": "a584acc3319d6700424703bddc1a76f38453c55b9f38d5926321a48842b476c1",
+    "recordedAt": "2026-09-06T21:58:04.626Z"
+  },
+  "note": "Recorded visual coverage; image adequacy is assessed in review."
+}

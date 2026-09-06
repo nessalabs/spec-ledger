@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "requestId": "d0ee791c-d70c-4a6b-a105-8a8f3c07f5f7",
+  "operation": "record_learning",
+  "inputDigest": "464bb87ee89367adb82e79e9e972f55727e9b4cc496ea07f6483d2b5d45f496e",
+  "finishedAt": "2026-09-06T20:57:50.923Z",
+  "outcome": "succeeded",
+  "result": {
+    "statement": "When a reported issue corrects existing behavior, use the owning spec and fixup route; amend missing intent there instead of creating a separate spec for the same behavior.",
+    "featureIds": [
+      "lattice",
+      "turns"
+    ],
+    "source": {
+      "kind": "user-reported",
+      "reference": "User correction on 2026-09-06: progress is existing behavior and should be a fixup to the prior spec, amending gaps if necessary."
+    },
+    "id": "330fd73a-cb25-49f1-86a6-324d7aef45e5",
+    "schemaVersion": 1,
+    "createdAt": "2026-09-06T20:57:50.919Z"
+  }
+}

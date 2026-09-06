@@ -7,7 +7,7 @@
   "outcome": "succeeded",
   "result": {
     "schemaVersion": 1,
-    "id": "T-040",
+    "id": "d720cc6b-3fe9-89dd-8ef4-0c0416e1e35d",
     "status": "closed",
     "openedAt": "2026-09-05T03:25:20.635Z",
     "opened": {
@@ -15,15 +15,15 @@
       "baseCommit": "0d403e92c35186ae6507181fba4902a00b55a6c0",
       "treeDigest": "55e42d5f4adb32ab023b25bfeab5d30e00ba41b243cde48b457b7ecf56068706",
       "dirtyAtOpen": [
-        ".spec-ledger/authority/AUTH-W011-REQUEST.json",
-        ".spec-ledger/reviews/workstreams/W-011/SR-01.json",
-        ".spec-ledger/workstreams/W-011.json",
-        ".spec-ledger/workstreams/W-011.seals/1.json",
-        "docs/workstreams/W-011-simple-navigation/spec.md"
+        ".spec-ledger/authority/ba52f9d6-c484-898d-9dc3-034af46da76c.json",
+        ".spec-ledger/reviews/workstreams/0f65234d-cf94-8f8d-a7c9-0ce6ef01e073/d2b34ecb-cb0a-8aa0-955e-221e99d37751.json",
+        ".spec-ledger/workstreams/0f65234d-cf94-8f8d-a7c9-0ce6ef01e073.json",
+        ".spec-ledger/workstreams/0f65234d-cf94-8f8d-a7c9-0ce6ef01e073.seals/1.json",
+        "docs/workstreams/0f65234d-cf94-8f8d-a7c9-0ce6ef01e073-simple-navigation/spec.md"
       ],
       "contextDigest": "b5b08d13ec949cd8892203ab6e44be6593e015b7f69a4f2e4ce205ddac1b2029",
-      "contextWorkstreamId": "W-011",
-      "contextSliceId": "SLC-01",
+      "contextWorkstreamId": "0f65234d-cf94-8f8d-a7c9-0ce6ef01e073",
+      "contextSliceId": "67f295ed-b0ec-8e83-aa58-1c11d7cb8f4c",
       "contextSealRevision": 1,
       "contextGeneratedAt": "2026-09-05T03:25:20.635Z"
     },
@@ -32,8 +32,8 @@
       "restatedGoal": "Find the spec, progress and proof easily",
       "changeType": "feature",
       "riskLevel": "moderate",
-      "workstreamId": "W-011",
-      "sliceId": "SLC-01",
+      "workstreamId": "0f65234d-cf94-8f8d-a7c9-0ce6ef01e073",
+      "sliceId": "67f295ed-b0ec-8e83-aa58-1c11d7cb8f4c",
       "featureIds": [
         "lattice"
       ]
@@ -44,49 +44,49 @@
       "commit": "0d403e92c35186ae6507181fba4902a00b55a6c0",
       "files": [
         {
-          "path": ".spec-ledger/align-waivers/AW-17.json",
+          "path": ".spec-ledger/align-waivers/405e607d-4e37-8a31-a3cc-256982706da9.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/attachments/T-040/A-01.json",
+          "path": ".spec-ledger/attachments/d720cc6b-3fe9-89dd-8ef4-0c0416e1e35d/721ff923-9403-82fe-a87e-07ec29d7180e.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/attachments/T-040/A-02.json",
+          "path": ".spec-ledger/attachments/d720cc6b-3fe9-89dd-8ef4-0c0416e1e35d/9449bacb-1794-8dc7-816b-42b91f5692b8.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/authority/AUTH-W011-REQUEST.json",
+          "path": ".spec-ledger/authority/ba52f9d6-c484-898d-9dc3-034af46da76c.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/bindings/B-SL-029.json",
+          "path": ".spec-ledger/bindings/b9215e80-1cbf-8bbf-83dc-63ceab15c182.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/claims/SL-029.json",
+          "path": ".spec-ledger/claims/93abee59-3e8d-809f-a140-d86105b0d865.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/decisions/T-040/D-01.json",
+          "path": ".spec-ledger/decisions/d720cc6b-3fe9-89dd-8ef4-0c0416e1e35d/a4261090-0544-890b-b840-90b8428d7ac5.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/decisions/T-040/D-02.json",
+          "path": ".spec-ledger/decisions/d720cc6b-3fe9-89dd-8ef4-0c0416e1e35d/446e7970-4195-8e0e-828f-23008d22cfbe.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
@@ -1928,73 +1928,73 @@
           "deletions": 2
         },
         {
-          "path": ".spec-ledger/reviews/turns/T-040/R-01.json",
+          "path": ".spec-ledger/reviews/turns/d720cc6b-3fe9-89dd-8ef4-0c0416e1e35d/5fd0f8e9-3bb6-80ab-b603-3c724e54b455.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/reviews/turns/T-040/R-02.json",
+          "path": ".spec-ledger/reviews/turns/d720cc6b-3fe9-89dd-8ef4-0c0416e1e35d/a923462d-2d18-86a5-9ba3-55ec8e430b1c.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/reviews/workstreams/W-011/SR-01.json",
+          "path": ".spec-ledger/reviews/workstreams/0f65234d-cf94-8f8d-a7c9-0ce6ef01e073/d2b34ecb-cb0a-8aa0-955e-221e99d37751.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/reviews/workstreams/W-011/SR-02.json",
+          "path": ".spec-ledger/reviews/workstreams/0f65234d-cf94-8f8d-a7c9-0ce6ef01e073/709bf6e4-170b-8bdf-97ca-7a8d40dce7b9.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/turns/T-040.json",
+          "path": ".spec-ledger/turns/d720cc6b-3fe9-89dd-8ef4-0c0416e1e35d.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/workstreams/W-011.json",
+          "path": ".spec-ledger/workstreams/0f65234d-cf94-8f8d-a7c9-0ce6ef01e073.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/workstreams/W-011.seals/1.json",
+          "path": ".spec-ledger/workstreams/0f65234d-cf94-8f8d-a7c9-0ce6ef01e073.seals/1.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/workstreams/W-011.seals/2.json",
+          "path": ".spec-ledger/workstreams/0f65234d-cf94-8f8d-a7c9-0ce6ef01e073.seals/2.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": "docs/workstreams/W-011-simple-navigation/evidence/T-040/mobile-specs.png",
+          "path": "docs/workstreams/0f65234d-cf94-8f8d-a7c9-0ce6ef01e073-simple-navigation/evidence/d720cc6b-3fe9-89dd-8ef4-0c0416e1e35d/mobile-specs.png",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": "docs/workstreams/W-011-simple-navigation/evidence/T-040/navigation-check.md",
+          "path": "docs/workstreams/0f65234d-cf94-8f8d-a7c9-0ce6ef01e073-simple-navigation/evidence/d720cc6b-3fe9-89dd-8ef4-0c0416e1e35d/navigation-check.md",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": "docs/workstreams/W-011-simple-navigation/evidence/T-040/pinned-sections-mobile.png",
+          "path": "docs/workstreams/0f65234d-cf94-8f8d-a7c9-0ce6ef01e073-simple-navigation/evidence/d720cc6b-3fe9-89dd-8ef4-0c0416e1e35d/pinned-sections-mobile.png",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": "docs/workstreams/W-011-simple-navigation/spec.md",
+          "path": "docs/workstreams/0f65234d-cf94-8f8d-a7c9-0ce6ef01e073-simple-navigation/spec.md",
           "kind": "added",
           "additions": 0,
           "deletions": 0
@@ -2113,10 +2113,10 @@
         "verify"
       ],
       "touchedClaimIds": [
-        "SL-004",
-        "SL-021",
-        "SL-022",
-        "SL-029"
+        "77fb26cd-bc46-8037-a8f2-7573f7d6d33d",
+        "9767b1da-9568-8e2f-ad2a-c2c3eb3e424c",
+        "dd5caaee-dace-8f53-bff5-65b6a7646b6d",
+        "93abee59-3e8d-809f-a140-d86105b0d865"
       ],
       "blastRadius": {
         "direct": [
@@ -2137,8 +2137,8 @@
       },
       "schemaSurfaceChanged": true,
       "decisionIds": [
-        "T-040/D-01",
-        "T-040/D-02"
+        "a4261090-0544-890b-b840-90b8428d7ac5",
+        "446e7970-4195-8e0e-828f-23008d22cfbe"
       ],
       "decisionsDigest": "4f6097ea4df712a89d86ddaa331262d56cb46806619a030601abe751e343d08a",
       "attachmentsDigest": "557e5047c6be3f7d3d322cd876b7f0abb5fe01e93ca4a72baaa1f038d87073ed",

@@ -7,9 +7,9 @@
   "outcome": "succeeded",
   "result": {
     "schemaVersion": 1,
-    "id": "T-049/R-01",
-    "turnId": "T-049",
-    "workstreamId": "W-014",
+    "id": "41ab05c6-c623-8173-ac9a-60c76a961ec2",
+    "turnId": "5289b54d-6551-8eae-9780-c7cfc17dc651",
+    "workstreamId": "ef172105-4f40-8bbb-8abe-d1cd11ae618a",
     "kind": "human",
     "target": "code",
     "reviewer": "agent:align",
@@ -23,7 +23,7 @@
     ],
     "coverageSource": "mixed",
     "waiverIds": [
-      "T-049/AW-21"
+      "42dc4857-1488-89af-a198-ab724c202a70"
     ]
   }
 }

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "id": "6b7b4aa1-f465-8398-aee7-94d97c05ab18",
+  "turnId": "94dce089-0388-85af-b02f-ee8f5e0934c8",
+  "workstreamId": "d1be55a6-11bb-8460-8650-ddf0ecac8185",
+  "kind": "adversarial",
+  "target": "code",
+  "reviewer": "agent:sl-dev-break",
+  "verdict": "approve",
+  "blocking": false,
+  "treeDigest": "48f55e3b6e8e2daff01e2ead78c1e3cdaa076cd206e9061f8f91722ab7e109ea",
+  "alertOnSeverity": "high",
+  "resolvesReviewId": "58fdacc5-3e0a-8c91-85d3-5d525692a6d1",
+  "resolvesFindingIds": [
+    "58fdacc5-3e0a-8c91-85d3-5d525692a6d1#a3515679-93a6-8359-9282-226c5c3a1b52"
+  ],
+  "summary": "Re-ran 7274f0f7-06fc-809b-bf50-34149f1a028d pack break killers after prepack/postpack rewrite-workspace-deps.mjs on client/server. npm pack now ships @nessalabs/spec-ledger@0.1.0-alpha.0; source workspace:* restored postpack. All 4 killers green (npm pack cleanliness, pnpm install+import+server bin, all dep fields, CLI shebang). Builder reported 69 tests green.",
+  "plainSummary": "Client and server pack cleanly for consumers whether you use pnpm or npm; monorepo workspace links stay only in the repo source.",
+  "findings": [],
+  "killersCited": [
+    "packages/ledger/src/pack.break.test.ts::npm pack client/server must not ship workspace: or file: deps (4478b980-87e5-8f31-a57e-8c06246e0798)",
+    "packages/ledger/src/pack.break.test.ts::after pnpm pack install, client and server modules import and run (not package.json-only)",
+    "packages/ledger/src/pack.break.test.ts::pnpm-packed package.json: all dep fields free of workspace:/file:/link:/portal:",
+    "packages/ledger/src/pack.break.test.ts::out-of-intent: packed ledger bin shebang survives and is directly executable via node path"
+  ],
+  "residualRisks": [
+    "Hunt budget: one out-of-intent killer (shebang) — green.",
+    "Rewrite script must stay wired on prepack/postpack; broken postpack could leave source package.json pinned without workspace:*.",
+    "6f2b8a6c-e341-8ca2-84c4-d4427e03529a publish.yml path not exercised this turn."
+  ],
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/reviews/turns/T-022/R-02.json",
+        "id": "T-022/R-02",
+        "sha256": "e2413221f803169993081aae809d38424b4e8aa1b1ef3102d2382e73e8f1a8b0"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/reviews/turns/T-022/R-02.json",
+        "id": "T-022/R-02",
+        "sha256": "e2413221f803169993081aae809d38424b4e8aa1b1ef3102d2382e73e8f1a8b0"
+      }
+    },
+    "historical": true
+  }
+}

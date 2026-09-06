@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "id": "a37bcf3e-71e9-8769-ba42-47ed14044ec1",
+  "workstreamId": "ba7715db-e75e-84e6-9d91-f9cc61b037a9",
+  "target": "spec",
+  "kind": "adversarial",
+  "reviewer": "agent:workflow-editor-breaker",
+  "verdict": "approve",
+  "blocking": false,
+  "plainSummary": "The plan lets users choose their agent’s steps while keeping approval and proof requirements intact.",
+  "summary": "Independent sl-plan-break-spec and security spec review used CLI related ba7715db-e75e-84e6-9d91-f9cc61b037a9 --worktrees pack (3 features, 11 claims, related W008 workflow and W010 browser-action boundaries, W011 navigation). Reviewed preview content identity, concurrent selection conflicts, repeated save identity, required typed review outputs, local skill path confinement and browser origin/token checks. Requested explicit security model; shaper added principals, untrusted inputs, enforcing components and persisted-selection negative assertions before this stamp. Stage order and missing mandatory output contracts must be enforced in workflow domain, not merely UI validation. UI-to-shared-operation save plus CLI/MCP observation, keyboard/narrow flow and stable section navigation are required acceptance evidence.",
+  "findings": [],
+  "residualRisks": [
+    "Tool related pack supplied a caution-only worktree note without scan status or entries; no sibling checkout state was used as authority.",
+    "No code has been independently verified at spec review time; cross-origin rejection and unchanged selections require runtime negative tests.",
+    "Saving guidance does not establish agent compliance or launch a host runner; local filesystem writers remain outside the cooperative boundary."
+  ],
+  "revisionDigest": "c07687515416e899b470451ad1da11abbeb266ee6c48201d785f949b9cd3ee83",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/reviews/workstreams/W-012/SR-01.json",
+        "id": "W-012/SR-01",
+        "sha256": "bef326fa739ef7bc30319f034fcf3ec52edbbfa4a994e0331177e846870c44aa"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/reviews/workstreams/W-012/SR-01.json",
+        "id": "W-012/SR-01",
+        "sha256": "bef326fa739ef7bc30319f034fcf3ec52edbbfa4a994e0331177e846870c44aa"
+      }
+    },
+    "historical": true
+  }
+}

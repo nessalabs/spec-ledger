@@ -7,7 +7,7 @@
   "outcome": "succeeded",
   "result": {
     "schemaVersion": 1,
-    "id": "T-047",
+    "id": "12494adf-1065-80ed-b949-f346a6334018",
     "status": "open",
     "openedAt": "2026-09-06T07:07:13.627Z",
     "opened": {
@@ -15,22 +15,22 @@
       "baseCommit": "56d6ab11d684d654f6d09cbed531238823a72229",
       "treeDigest": "47c70dc12fd9b447502a27da1f458a75ef70d5808408f28750350788a4b46a2e",
       "dirtyAtOpen": [
-        ".spec-ledger/align-waivers/AW-18.json",
-        ".spec-ledger/decisions/T-046/D-01.json",
+        ".spec-ledger/align-waivers/00bfd6e8-56e6-8a6f-8e19-ed04de22179e.json",
+        ".spec-ledger/decisions/f452f323-83c6-83e0-9ce2-faae3f1a3772/a0adad6a-f6d8-8344-a355-f68763086406.json",
         ".spec-ledger/evidence/check-runs/10ac0b8a-ce00-4aec-a173-9bc53753ce8b-stderr.txt",
         ".spec-ledger/evidence/check-runs/10ac0b8a-ce00-4aec-a173-9bc53753ce8b-stdout.txt",
         ".spec-ledger/evidence/check-runs/10ac0b8a-ce00-4aec-a173-9bc53753ce8b.json",
         ".spec-ledger/evidence/runs/10ac0b8a-ce00-4aec-a173-9bc53753ce8b.json",
-        ".spec-ledger/turns/T-045.json",
-        ".spec-ledger/turns/T-046.json",
+        ".spec-ledger/turns/5bfd91de-8592-889f-954b-26c28d6b02c3.json",
+        ".spec-ledger/turns/f452f323-83c6-83e0-9ce2-faae3f1a3772.json",
         "package.json",
         "packages/ledger/src/episodes.write.test.ts",
         "packages/ledger/src/pack.concurrency.break.test.ts",
         "pnpm-lock.yaml"
       ],
       "contextDigest": "c36624835a24befc1c471c1af87121c3eeafabbf6def1ba1d7bafb15bf4b3163",
-      "contextWorkstreamId": "W-014",
-      "contextSliceId": "SLC-02",
+      "contextWorkstreamId": "ef172105-4f40-8bbb-8abe-d1cd11ae618a",
+      "contextSliceId": "ef669c8c-b701-85d9-b2da-638757fed84e",
       "contextSealRevision": 1,
       "contextGeneratedAt": "2026-09-06T07:07:13.627Z"
     },
@@ -39,8 +39,8 @@
       "restatedGoal": "Verify the CI fixture repairs",
       "changeType": "fix",
       "riskLevel": "moderate",
-      "workstreamId": "W-014",
-      "sliceId": "SLC-02",
+      "workstreamId": "ef172105-4f40-8bbb-8abe-d1cd11ae618a",
+      "sliceId": "ef669c8c-b701-85d9-b2da-638757fed84e",
       "featureIds": [
         "client",
         "cli",

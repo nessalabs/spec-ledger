@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "turnId": "2660d32a-4964-8155-adf0-456687f45a9a",
+  "decision": "Deliver a32f3451-1b3d-8abf-bf0e-607ebf6e1a88 as six independently checked verticals, beginning with aggregation.",
+  "rationale": "User authorized implementation. Preserve the library-consumer correctness bar, package boundaries, and prior seal history. Portable CLI handoff first is explicitly selected. Failures must dominate other binding outcomes; duplicates remain errors. 4bb567af-6d1e-8c2d-87f6-c9e72f27827a does not claim evidence freshness or read-only execution yet.",
+  "basis": {
+    "sealRevision": 1,
+    "at": "2026-09-04T21:26:03.098Z"
+  },
+  "id": "755ee9be-d109-8965-830a-1cdcdc7095fb",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/decisions/T-026/D-01.json",
+        "id": "T-026/D-01",
+        "sha256": "a49ebd5cf6759e2c5d1beba54a00b484d42598d15eda80136165673d65d4d91e"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/decisions/T-026/D-01.json",
+        "id": "T-026/D-01",
+        "sha256": "a49ebd5cf6759e2c5d1beba54a00b484d42598d15eda80136165673d65d4d91e"
+      }
+    },
+    "historical": true
+  },
+  "sequence": 1
+}

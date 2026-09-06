@@ -1,9 +1,0 @@
-{
-  "id": "b-sl-033",
-  "claimId": "SL-033",
-  "kind": "test",
-  "locator": {
-    "type": "command",
-    "command": "node --test packages/ledger/dist/workflows/library*.test.js"
-  }
-}

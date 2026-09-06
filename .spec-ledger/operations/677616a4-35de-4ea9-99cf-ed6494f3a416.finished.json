@@ -7,7 +7,7 @@
   "outcome": "succeeded",
   "result": {
     "schemaVersion": 1,
-    "id": "T-043",
+    "id": "04950e3b-cb26-8f4a-b697-4ba532189238",
     "status": "open",
     "openedAt": "2026-09-06T05:34:59.063Z",
     "opened": {
@@ -15,29 +15,29 @@
       "baseCommit": "406b7d15a74b666ad801014b850b62f0d55bef0d",
       "treeDigest": "a576b9cb015e62e5a2792cf1931455b89d7de34fdccc5e3de7dc00f1bc4feccc",
       "dirtyAtOpen": [
-        ".spec-ledger/authority/AUTH-4e179164-47e5-4ea9-88b2-0858b32fec25.json",
-        ".spec-ledger/bindings/b-sl-032.json",
-        ".spec-ledger/bindings/b-sl-033.json",
-        ".spec-ledger/bindings/b-sl-034.json",
-        ".spec-ledger/claims/SL-032.json",
-        ".spec-ledger/claims/SL-033.json",
-        ".spec-ledger/claims/SL-034.json",
-        ".spec-ledger/reviews/workstreams/W-014/SR-01.json",
-        ".spec-ledger/workstreams/W-014.json"
+        ".spec-ledger/authority/2d312788-2407-8787-8582-f3dd38b8c3a9.json",
+        ".spec-ledger/bindings/49fb3fac-648d-8ad3-a19f-de5160853f52.json",
+        ".spec-ledger/bindings/eb4bd5ec-8a71-8ee0-bbc2-d77aadf73b78.json",
+        ".spec-ledger/bindings/15eb2922-efe8-83db-bc31-238e8efb8c03.json",
+        ".spec-ledger/claims/2456326e-b918-84bc-a5cb-ac1fd3b8aaf2.json",
+        ".spec-ledger/claims/39fc903d-08ba-8a0c-a5d4-f9995941fd94.json",
+        ".spec-ledger/claims/89ab5a3f-2aea-8b44-a9b8-6cedccb52979.json",
+        ".spec-ledger/reviews/workstreams/ef172105-4f40-8bbb-8abe-d1cd11ae618a/5cb168d0-ecdd-80c9-9618-c623b46e87b1.json",
+        ".spec-ledger/workstreams/ef172105-4f40-8bbb-8abe-d1cd11ae618a.json"
       ],
       "contextDigest": "aaa683ddc4bc35404b629b82eec95b2bce890bbb2888ac9337eb02644507e6d5",
-      "contextWorkstreamId": "W-014",
-      "contextSliceId": "SLC-02",
+      "contextWorkstreamId": "ef172105-4f40-8bbb-8abe-d1cd11ae618a",
+      "contextSliceId": "ef669c8c-b701-85d9-b2da-638757fed84e",
       "contextSealRevision": 1,
       "contextGeneratedAt": "2026-09-06T05:34:59.063Z"
     },
     "intent": {
-      "userPrompt": "Continue building the saved workflow library and the workflow picker described in W-014.",
+      "userPrompt": "Continue building the saved workflow library and the workflow picker described in ef172105-4f40-8bbb-8abe-d1cd11ae618a.",
       "restatedGoal": "Manage saved workflows safely from the library",
       "changeType": "feature",
       "riskLevel": "moderate",
-      "workstreamId": "W-014",
-      "sliceId": "SLC-02",
+      "workstreamId": "ef172105-4f40-8bbb-8abe-d1cd11ae618a",
+      "sliceId": "ef669c8c-b701-85d9-b2da-638757fed84e",
       "featureIds": [
         "client",
         "cli",

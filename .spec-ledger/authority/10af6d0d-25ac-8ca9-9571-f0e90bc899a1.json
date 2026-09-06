@@ -1,0 +1,32 @@
+{
+  "id": "10af6d0d-25ac-8ca9-9571-f0e90bc899a1",
+  "action": "grant",
+  "mode": "request",
+  "workstreamId": "ba7715db-e75e-84e6-9d91-f9cc61b037a9",
+  "featureIds": [
+    "lattice",
+    "cli",
+    "client"
+  ],
+  "source": {
+    "kind": "agent-reported",
+    "reference": "User requested implementation of workflow configuration with chosen steps and skills, plus the reported rendering warning and stable section switching."
+  },
+  "schemaVersion": 1,
+  "createdAt": "2026-09-05T04:05:05.936Z",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/authority/AUTH-W012-REQUEST.json",
+        "id": "AUTH-W012-REQUEST",
+        "sha256": "22fb8b92f8ca5fa9e42c8ca598ae6828dab5423e954425c10d76e652f2e0337d"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/authority/AUTH-W012-REQUEST.json",
+        "id": "AUTH-W012-REQUEST",
+        "sha256": "22fb8b92f8ca5fa9e42c8ca598ae6828dab5423e954425c10d76e652f2e0337d"
+      }
+    },
+    "historical": true
+  }
+}

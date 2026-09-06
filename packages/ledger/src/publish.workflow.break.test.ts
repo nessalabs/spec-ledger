@@ -1,4 +1,4 @@
-// sl-dev-break killers (T-023 / W-005 SLC-04) — falsify publish.yml vs SL-014.
+// sl-dev-break killers (ac950f2d-3e8d-5e18-b26e-513ea36d2c71 / d80732c1-ab98-55d9-9a9d-cbf6befe3ed1 ea6c52db-e95b-5c00-86b4-ac72769a331a) — falsify publish.yml vs ac16dc5d-fd64-5a20-9d3d-1f21dd1206c7.
 import { describe, it } from "node:test"
 import assert from "node:assert/strict"
 import { readFileSync, existsSync } from "node:fs"
@@ -19,10 +19,10 @@ function onBlock(yaml: string): string {
   return m[1]
 }
 
-describe("publish workflow break (SLC-04 / SL-014)", () => {
+describe("publish workflow break (ea6c52db-e95b-5c00-86b4-ac72769a331a / ac16dc5d-fd64-5a20-9d3d-1f21dd1206c7)", () => {
   it("live publish only on release: workflow_dispatch must always dry-run (cannot live via dry_run=false)", () => {
     const y = loadPublish()
-    // Acceptance + SL-014: live registry write only on release published.
+    // Acceptance + ac16dc5d-fd64-5a20-9d3d-1f21dd1206c7: live registry write only on release published.
     // inputs.dry_run must never gate live publish (dispatch dry_run=false must not write).
     assert.doesNotMatch(
       y,

@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "6ff1f110-b7ed-8050-b36b-945ca2cc6dac",
+  "turnId": "61614817-7e84-8b87-985b-33531845b15c",
+  "workstreamId": "76451749-a54f-8579-96f2-dcec19d79026",
+  "kind": "adversarial",
+  "target": "code",
+  "reviewer": "agent:sl-dev-break",
+  "verdict": "approve",
+  "summary": "Killer: align check must exit 0 when waive/approve covers treeDigest; unit suite still green.",
+  "plainSummary": "The coverage-check tests passed; this slice may ship.",
+  "killersCited": [
+    "packages/ledger/src/align/check.test.ts::align coverage",
+    "pnpm ledger:align exits 0 with waiver"
+  ],
+  "treeDigest": "51bf73938c3f02c58d3ef935b7759d8c26c26934f445363079181eee3c6dd034",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/reviews/turns/T-017/R-02.json",
+        "id": "T-017/R-02",
+        "sha256": "9d1101db2f54afc11cce22f423a73d53dc427460440d8a74ba2c47d165098f7b"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/reviews/turns/T-017/R-02.json",
+        "id": "T-017/R-02",
+        "sha256": "9d1101db2f54afc11cce22f423a73d53dc427460440d8a74ba2c47d165098f7b"
+      }
+    },
+    "historical": true
+  }
+}

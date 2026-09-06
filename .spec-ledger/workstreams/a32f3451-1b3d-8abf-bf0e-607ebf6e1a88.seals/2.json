@@ -1,0 +1,246 @@
+{
+  "schemaVersion": 1,
+  "workstreamId": "a32f3451-1b3d-8abf-bf0e-607ebf6e1a88",
+  "revision": 2,
+  "sealedAt": "2026-09-04T22:31:13.335Z",
+  "sealedBy": "agent:permission:f9ac6b2d-8fdd-875e-a825-24bd24152342",
+  "specDigest": "9191efc233dc45ff7eeb6925743826ab828bdf2660a6cd21439d338d99e27ad9",
+  "specDocDigest": "d1633692de274c1fe2a5eed8c92800e15e1c48de8c821d72e4f2255bc962b8d0",
+  "body": {
+    "id": "a32f3451-1b3d-8abf-bf0e-607ebf6e1a88",
+    "featureIds": [
+      "verify",
+      "turns",
+      "lattice",
+      "cli",
+      "client",
+      "server"
+    ],
+    "primaryFeatureId": "lattice",
+    "title": "Trustworthy autonomous coding",
+    "problem": "Evidence freshness, delegated authority, remembered deferrals, and live progress need one simpler workflow.",
+    "objective": "Follow agent work through readable specs, explicit permission, meaningful progress, and current evidence.",
+    "specPath": "docs/workstreams/a32f3451-1b3d-8abf-bf0e-607ebf6e1a88-trustworthy-autonomous-coding/spec.md",
+    "appetite": "Incremental delivery in independently verified verticals; portable local workflow first",
+    "changeType": "feature",
+    "riskLevel": "elevated",
+    "trust": {
+      "deployTarget": "library-consumer",
+      "userFacing": true,
+      "performanceCritical": false,
+      "securitySensitive": true,
+      "correctnessCritical": true,
+      "requiredEvidence": [
+        "unit",
+        "integration",
+        "e2e"
+      ]
+    },
+    "policy": {
+      "alertOnSeverity": "high",
+      "onAlert": "block",
+      "onSealedSpecDeviation": "block",
+      "requireSpecBreak": true,
+      "requireCodeBreak": true,
+      "requireAlignApprove": true,
+      "alignReviewerPrefix": "agent:align",
+      "allowExplicitAlignSkip": true
+    },
+    "acceptanceCriteria": [],
+    "acceptanceClaimIds": {
+      "4bb567af-6d1e-8c2d-87f6-c9e72f27827a/AC-1": [
+        "4265ae8b-dc22-8851-9a29-a9dab77fb7bb"
+      ],
+      "d9cb1d03-8f89-8a01-a54b-20d137493265/AC-1": [
+        "d6bec874-d62d-850e-bf0f-f19d5b07f7a9"
+      ],
+      "88c72d83-aa21-8191-b6ed-64d088b99504/AC-1": [
+        "ef771e69-a55e-8f9c-8c2b-b5238a3fcff3"
+      ],
+      "44061bcc-deb1-8eeb-a20e-69cc18756bf3/AC-1": [
+        "fb335474-ec02-8a07-a399-a948d076a225"
+      ],
+      "11dcdd45-4a20-8f4d-8c53-c4e92071939b/AC-1": [
+        "5287dabc-25de-8934-a4bb-364acca2b942"
+      ],
+      "782ababb-e2ba-8f93-8832-69a5c4334094/AC-1": [
+        "9767b1da-9568-8e2f-ad2a-c2c3eb3e424c"
+      ]
+    },
+    "outOfScope": [
+      "Replacing existing d1be55a6-11bb-8460-8650-ddf0ecac8185 work without reconciling scope",
+      "Multi-user SaaS, a new agent runtime, or generic workflow engine",
+      "Claiming full semantic equivalence between arbitrary prose and code",
+      "Rewriting historical facts or fabricating approvals"
+    ],
+    "proposedClaimIds": [],
+    "suggestedSlices": [
+      {
+        "id": "4bb567af-6d1e-8c2d-87f6-c9e72f27827a",
+        "title": "Every required check contributes to the verdict",
+        "kind": "vertical",
+        "acceptance": [
+          "AC-05: Fail dominates missing, which dominates attested, which dominates pass; order never changes the result. Duplicate result keys are rejected. Empty ledgers show no requirements checked."
+        ],
+        "evidence": [
+          "unit",
+          "integration"
+        ],
+        "expectedClaimIds": [
+          "67609c19-de05-862c-8db7-e5dc95f38cee",
+          "2884eafb-114e-85f1-ae07-ce1fbd140550",
+          "14d9b121-df2b-8ede-bce7-fdee648a4320",
+          "77fb26cd-bc46-8037-a8f2-7573f7d6d33d",
+          "b69a663d-e2dd-8655-be45-0e07bfb45c89"
+        ],
+        "expectedPaths": [
+          "packages/ledger/src/verify/**",
+          "packages/ledger/src/types.ts",
+          "packages/client/**",
+          "packages/server/**",
+          "packages/ui/**",
+          "schemas/**",
+          "docs/**",
+          "packages/ledger/src/cli/**"
+        ]
+      },
+      {
+        "id": "d9cb1d03-8f89-8a01-a54b-20d137493265",
+        "title": "Reads cannot run checks or change ledger state",
+        "kind": "vertical",
+        "acceptance": [
+          "AC-06: CLI execution and report persistence are explicit; client/server/context reads do not run commands, write reports, or resume automation."
+        ],
+        "evidence": [
+          "unit",
+          "integration"
+        ],
+        "expectedClaimIds": [
+          "67609c19-de05-862c-8db7-e5dc95f38cee",
+          "2884eafb-114e-85f1-ae07-ce1fbd140550",
+          "14d9b121-df2b-8ede-bce7-fdee648a4320",
+          "77fb26cd-bc46-8037-a8f2-7573f7d6d33d",
+          "b69a663d-e2dd-8655-be45-0e07bfb45c89"
+        ],
+        "expectedPaths": [
+          "packages/ledger/src/**",
+          "packages/client/**",
+          "packages/server/**",
+          "packages/ui/**",
+          "schemas/**",
+          "docs/**"
+        ]
+      },
+      {
+        "id": "88c72d83-aa21-8191-b6ed-64d088b99504",
+        "title": "Evidence and approvals match the current source",
+        "kind": "vertical",
+        "acceptance": [
+          "AC-06/09: Relevant dirty and untracked content changes invalidate results and reviews; metadata-only changes and content-preserving commits do not. Artifact references are confined and integrity checked."
+        ],
+        "evidence": [
+          "unit",
+          "integration"
+        ],
+        "expectedClaimIds": [
+          "67609c19-de05-862c-8db7-e5dc95f38cee",
+          "2884eafb-114e-85f1-ae07-ce1fbd140550",
+          "14d9b121-df2b-8ede-bce7-fdee648a4320",
+          "77fb26cd-bc46-8037-a8f2-7573f7d6d33d",
+          "b69a663d-e2dd-8655-be45-0e07bfb45c89"
+        ],
+        "expectedPaths": [
+          "packages/ledger/src/**",
+          "packages/client/**",
+          "packages/server/**",
+          "schemas/**",
+          "docs/**"
+        ]
+      },
+      {
+        "id": "44061bcc-deb1-8eeb-a20e-69cc18756bf3",
+        "title": "Proceed under explicit permission and scoped corrections",
+        "kind": "vertical",
+        "acceptance": [
+          "AC-01/02: Revision approval, request and standing delegation are distinct; denial/revocation blocks affected work. Corrections are scoped, provenance is honest, context hashes content."
+        ],
+        "evidence": [
+          "unit",
+          "integration"
+        ],
+        "expectedClaimIds": [
+          "67609c19-de05-862c-8db7-e5dc95f38cee",
+          "2884eafb-114e-85f1-ae07-ce1fbd140550",
+          "14d9b121-df2b-8ede-bce7-fdee648a4320",
+          "77fb26cd-bc46-8037-a8f2-7573f7d6d33d",
+          "b69a663d-e2dd-8655-be45-0e07bfb45c89"
+        ],
+        "expectedPaths": [
+          "packages/ledger/src/**",
+          "packages/client/**",
+          "packages/server/**",
+          "schemas/**",
+          "skills/**",
+          "docs/**",
+          "DESIGN.md",
+          "AGENTS.md"
+        ]
+      },
+      {
+        "id": "11dcdd45-4a20-8f4d-8c53-c4e92071939b",
+        "title": "Deferred work returns when its feature is planned",
+        "kind": "vertical",
+        "acceptance": [
+          "AC-03/04: Old unresolved linked deferrals appear independent of recent history; activation is persistent and idempotent, unknown inputs stay unknown, completion requires a valid response. Backlog projects drafts and deferrals."
+        ],
+        "evidence": [
+          "unit",
+          "integration"
+        ],
+        "expectedClaimIds": [
+          "67609c19-de05-862c-8db7-e5dc95f38cee",
+          "2884eafb-114e-85f1-ae07-ce1fbd140550",
+          "14d9b121-df2b-8ede-bce7-fdee648a4320",
+          "77fb26cd-bc46-8037-a8f2-7573f7d6d33d",
+          "b69a663d-e2dd-8655-be45-0e07bfb45c89"
+        ],
+        "expectedPaths": [
+          "packages/ledger/src/**",
+          "packages/client/**",
+          "packages/server/**",
+          "schemas/**",
+          "skills/**",
+          "docs/**"
+        ]
+      },
+      {
+        "id": "782ababb-e2ba-8f93-8832-69a5c4334094",
+        "title": "Follow work through one clear session",
+        "kind": "vertical",
+        "acceptance": [
+          "AC-07/08: CLI and read-only session projection show permission, acceptance/evidence, attention, meaningful changes, and preview. Polling reports disconnects; portable approval handoff is labeled honestly until a host bridge is selected."
+        ],
+        "evidence": [
+          "unit",
+          "integration"
+        ],
+        "expectedClaimIds": [
+          "67609c19-de05-862c-8db7-e5dc95f38cee",
+          "2884eafb-114e-85f1-ae07-ce1fbd140550",
+          "14d9b121-df2b-8ede-bce7-fdee648a4320",
+          "77fb26cd-bc46-8037-a8f2-7573f7d6d33d",
+          "b69a663d-e2dd-8655-be45-0e07bfb45c89"
+        ],
+        "expectedPaths": [
+          "packages/ledger/src/**",
+          "packages/client/**",
+          "packages/server/**",
+          "packages/ui/**",
+          "schemas/**",
+          "skills/**",
+          "docs/**"
+        ]
+      }
+    ]
+  }
+}

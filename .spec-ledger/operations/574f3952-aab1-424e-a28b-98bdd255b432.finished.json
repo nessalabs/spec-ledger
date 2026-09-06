@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "requestId": "574f3952-aab1-424e-a28b-98bdd255b432",
+  "operation": "record_decision",
+  "inputDigest": "fb8a2eee5d3436376546e8c38726a28aa671b9138c3c86f1b312944e8b8e9cce",
+  "finishedAt": "2026-09-06T07:48:24.170Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "turnId": "bce0f006-e044-807c-88dd-8e0fd6d9950f",
+    "decision": "Attach experiments to existing tasks without changing their workflow.",
+    "rationale": "The user explicitly clarified that iterative optimization is additive and can be selected by the user or agent. Goals are optional history records associated with existing workstreams and open turns. Existing permission, review and verification gates still govern work. Implementation acceptance will be bound to a new behavioral claim before completion; this only adds evidence mapping to the preserved requirements.",
+    "basis": {
+      "at": "2026-09-06T07:48:24.170Z",
+      "contextDigest": "e054598d1579c93450196a553a0b057e6213b74964977e8eaa5d685fcb01cb25",
+      "sealRevision": 1
+    },
+    "id": "0ebe5716-0c28-8141-8d69-ac30818ba944"
+  }
+}

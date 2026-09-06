@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "requestId": "fc0fcf0f-b9a2-4d50-af83-32912cb7e3a1",
+  "operation": "record_screenshot",
+  "inputDigest": "63a9435cb7d5911e2005290b57d0349dde45fc095955bc09563940704511338d",
+  "finishedAt": "2026-09-06T20:41:25.818Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "id": "69af3e48-8dec-4094-b4be-b177e0c1e32b",
+    "turnId": "e05efbb1-6f8f-4c55-9bca-f6698478b753",
+    "kind": "image",
+    "title": "UUID work list — desktop",
+    "path": ".spec-ledger/evidence/screenshots/titles-work-desktop-final.png",
+    "mediaType": "image/png",
+    "byteLength": 129387,
+    "contentDigest": "1ce8a3a82b8ee10856a386aef28f5b606683ae95499707627c82038cdb93b5a5",
+    "visualEvidence": {
+      "sliceId": "596b8830-61c6-887a-b6c3-9ae0561f2761",
+      "surface": "UUID work list — desktop",
+      "sourceDigest": "9cb69fbe142bdc23c828db8c97033f676cb8135735bc1b2fe4d4e01ac0812e05",
+      "revisionDigest": "4cc7f69286eb0f9161f84f0f1945fb6adbbad39ef04f13ac00f2b7c8e8f48937",
+      "recordedAt": "2026-09-06T20:41:25.817Z"
+    },
+    "note": "Recorded visual coverage; image adequacy is assessed in review."
+  }
+}

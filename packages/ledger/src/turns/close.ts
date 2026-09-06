@@ -1,3 +1,4 @@
+import { assertEntityId, createEntityId, publishEntity } from "../identity/index.js"
 import { prepareExecutablePlan } from "../permission/authority.js"
 import { activateDeferralsForWork } from "../deferrals/index.js"
 import { spawnSync } from "node:child_process"
@@ -226,10 +227,11 @@ export function listTurns(ledger: LoadedLedger): Turn[] {
     .filter((f) => f.endsWith(".json"))
     .sort()
     .map((f) => JSON.parse(readFileSync(join(dir, f), "utf8")) as Turn)
-    .sort((a, b) => a.id.localeCompare(b.id))
+    .sort((a, b) => a.openedAt.localeCompare(b.openedAt) || a.id.localeCompare(b.id))
 }
 
 function readTurnFile(ledger: LoadedLedger, id: string): { path: string; turn: Turn } {
+  assertEntityId(id, "turn id")
   const path = join(turnsDir(ledger), `${id}.json`)
   if (!existsSync(path)) throw new Error(`turn not found: ${id}`)
   const turn = JSON.parse(readFileSync(path, "utf8")) as Turn
@@ -260,12 +262,8 @@ export function openTurn(
   if (open.length) {
     throw new Error(`open turn already exists: ${open.map((t) => t.id).join(", ")}`)
   }
-  const nextNum =
-    existing.reduce((max, t) => {
-      const n = Number(t.id.replace(/^T-/, "").split(".")[0])
-      return Number.isFinite(n) ? Math.max(max, n) : max
-    }, 0) + 1
-  const id = opts.idHint ?? `T-${String(nextNum).padStart(3, "0")}`
+  const id = opts.idHint ?? createEntityId()
+  assertEntityId(id, "turn id")
   if (existing.some((t) => t.id === id)) throw new Error(`turn id already exists: ${id}`)
 
   const workstreamId = opts.workstreamId ?? intent.workstreamId
@@ -327,7 +325,7 @@ export function openTurn(
     opened,
     intent: finalIntent,
   }
-  writeJson(join(dir, `${id}.json`), turn)
+  publishEntity(join(dir, `${id}.json`), turn)
   return turn
 }
 

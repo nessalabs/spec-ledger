@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "id": "47b13811-655f-8fcb-bb4d-9c071bb64504",
+  "turnId": "918cd8be-50a0-803c-8430-3b98fba81f39",
+  "workstreamId": "d1be55a6-11bb-8460-8650-ddf0ecac8185",
+  "kind": "adversarial",
+  "target": "code",
+  "reviewer": "agent:sl-dev-break",
+  "verdict": "approve",
+  "blocking": false,
+  "treeDigest": "2f3d3f1663443b2e55da225548b3597ca6e356652bc1121eed5d99cf32cd2fb4",
+  "alertOnSeverity": "high",
+  "resolvesReviewId": "2a247787-6a74-8d18-8801-d72debb738a6",
+  "resolvesFindingIds": [
+    "2a247787-6a74-8d18-8801-d72debb738a6#06b07de4-faba-82d8-96ff-6e879f6fef26"
+  ],
+  "summary": "Re-ran 6f2b8a6c-e341-8ca2-84c4-d4427e03529a publish.yml break killers after builder force: non-release events set DRY_RUN=true in the publish step shell (event_name != release); inputs.dry_run no longer gates live publish. All 7 killers green (release-only live, exclusive published types, on: triggers, dry_run default, version mismatch exit, NPM_TOKEN+ci clean, @nessalabs + no UI). Killer oracle updated to accept shell-level force (same invariant).",
+  "plainSummary": "Manual workflow runs can only dry-run; live npm publish happens only when a GitHub Release is published.",
+  "findings": [],
+  "killersCited": [
+    "packages/ledger/src/publish.workflow.break.test.ts::live publish only on release: workflow_dispatch must always dry-run (cannot live via dry_run=false)",
+    "packages/ledger/src/publish.workflow.break.test.ts::release types are exclusively [published] (no created/edited/prereleased)",
+    "packages/ledger/src/publish.workflow.break.test.ts::on: triggers are only release + workflow_dispatch (no push/pull_request siblings)",
+    "packages/ledger/src/publish.workflow.break.test.ts::dry_run input defaults to true",
+    "packages/ledger/src/publish.workflow.break.test.ts::version mismatch fails closed before publish",
+    "packages/ledger/src/publish.workflow.break.test.ts::NPM_TOKEN required for live publish; ci.yml never publishes",
+    "packages/ledger/src/publish.workflow.break.test.ts::published package names are @nessalabs/* and UI is not in the publish loop"
+  ],
+  "residualRisks": [
+    "Hunt budget: one out-of-intent killer (UI not in publish loop) — green.",
+    "Partial multi-package publish failure still residual.",
+    "workflow_dispatch dry_run input is now documentation-only relative to live gate."
+  ],
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/reviews/turns/T-023/R-02.json",
+        "id": "T-023/R-02",
+        "sha256": "34f4ee93f6b4c4c1f6e8511794134a5f2cbd355034b028d72533828171e21fb9"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/reviews/turns/T-023/R-02.json",
+        "id": "T-023/R-02",
+        "sha256": "34f4ee93f6b4c4c1f6e8511794134a5f2cbd355034b028d72533828171e21fb9"
+      }
+    },
+    "historical": true
+  }
+}

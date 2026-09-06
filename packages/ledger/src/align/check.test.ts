@@ -37,7 +37,7 @@ describe("align paths", () => {
       true,
     )
     assert.equal(pathMatchesPattern("packages/ui/app/x.tsx", "packages/ledger"), false)
-    assert.equal(isExemptPath(".spec-ledger/turns/T-001.json"), true)
+    assert.equal(isExemptPath(".spec-ledger/turns/bcbf5513-797b-5a84-b5cf-eb04b5444708.json"), true)
     assert.equal(isExemptPath("packages/ui/.next/cache"), true)
   })
 })
@@ -47,7 +47,7 @@ describe("align coverage", () => {
     const r = checkPathCoverage({
       paths: [
         "packages/ledger/src/align/check.ts",
-        ".spec-ledger/turns/T-001.json",
+        ".spec-ledger/turns/bcbf5513-797b-5a84-b5cf-eb04b5444708.json",
         "packages/client/src/index.ts",
       ],
       featureIds: ["turns"],

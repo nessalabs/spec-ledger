@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "turnId": "9fa55cfe-6dd6-83c5-8b42-baf619c093c6",
+  "path": "docs/workstreams/3ca37660-1506-8a85-80c6-410a024d9a9a-evidence-first-changes/evidence/9fa55cfe-6dd6-83c5-8b42-baf619c093c6/completed-workstreams-audit.md",
+  "kind": "log-excerpt",
+  "title": "What the audit found",
+  "mediaType": "text/markdown",
+  "id": "407a3c75-d968-857a-8313-7577d289ff42",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/attachments/T-039/A-01.json",
+        "id": "T-039/A-01",
+        "sha256": "b2eb1a3e3a80887b943f9c0b6418d8bed72a9a23a7987dc88a8decccfe961d81"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/attachments/T-039/A-01.json",
+        "id": "T-039/A-01",
+        "sha256": "b2eb1a3e3a80887b943f9c0b6418d8bed72a9a23a7987dc88a8decccfe961d81"
+      }
+    },
+    "historical": true
+  }
+}

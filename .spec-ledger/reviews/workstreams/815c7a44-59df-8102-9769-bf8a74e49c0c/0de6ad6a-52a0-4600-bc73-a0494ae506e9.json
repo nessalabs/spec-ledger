@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "workstreamId": "815c7a44-59df-8102-9769-bf8a74e49c0c",
+  "kind": "adversarial",
+  "target": "spec",
+  "reviewer": "agent:sl-plan-break-spec",
+  "verdict": "approve",
+  "blocking": false,
+  "plainSummary": "Specs will show the same progress as their details, match the active count, and make recorded fixups easy to find.",
+  "summary": "Independent review of added AC-5 through AC-7 and the user-confirmed discoverability amendment, using the refreshed related pack and existing owning workflow/progress contracts. Active is explicitly a lifecycle grouping, not agent liveness; Overview and URL-filtered list share its definition. Progress reuses existing completion observations with compact selected-view summaries, explicit refresh, isolated failures and honest historical/unknown states. Fixup links derive from recorded work type and exclude abandoned turns. The authorized prior turn metadata correction has explicit decision provenance while opened/facts/evidence/receipts remain unchanged. Eight declared screenshots retain prior progress coverage and add list/fixup views. Existing stronger trust, align and blocking policies are preserved. No blocking spec gaps found.",
+  "alertOnSeverity": "high",
+  "findings": [],
+  "supersedesReviewId": "124458d6-6ef7-4709-ae53-78105bb9e76c",
+  "residualRisks": [
+    "Tests should ensure All/Completed/Cancelled navigation and refresh cannot apply a stale response from a previously selected view, and one failed observation never removes unrelated rows.",
+    "Active defaults reduce normal observation work but do not bound an explicitly selected All view; keep summary computation bounded in concurrency and avoid sending full evidence payloads or polling every record.",
+    "Use deterministic recent ordering and owning-workstream joins for latest non-abandoned fixups; preserve distinct link targets for duplicate titles and explicit unknown correction text if records lack it.",
+    "Record the requested historical intent classification correction separately and verify original opened, facts, evidence and operation receipts remain byte-identical.",
+    "The related pack provides generic worktree caution text rather than actual sibling-path scan evidence."
+  ],
+  "id": "0de6ad6a-52a0-4600-bc73-a0494ae506e9",
+  "revisionDigest": "a584acc3319d6700424703bddc1a76f38453c55b9f38d5926321a48842b476c1"
+}

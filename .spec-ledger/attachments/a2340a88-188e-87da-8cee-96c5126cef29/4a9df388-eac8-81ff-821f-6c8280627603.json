@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "turnId": "a2340a88-188e-87da-8cee-96c5126cef29",
+  "kind": "log-excerpt",
+  "title": "Audit of all completed workstreams: supported evidence and remaining gaps",
+  "path": "docs/workstreams/3ca37660-1506-8a85-80c6-410a024d9a9a-evidence-first-changes/evidence/a2340a88-188e-87da-8cee-96c5126cef29/completed-workstream-audit.md",
+  "mediaType": "text/markdown",
+  "contentDigest": "0153058db0001691ef77ac5c09841082aa1b00cb7b6219b3f07c19571ff96f4a",
+  "byteLength": 8086,
+  "id": "4a9df388-eac8-81ff-821f-6c8280627603",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/attachments/T-037/A-02.json",
+        "id": "T-037/A-02",
+        "sha256": "43dd0868f775e3c98c36092d94b25ceff4dbeab66828200c09c9d045710822ee"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/attachments/T-037/A-02.json",
+        "id": "T-037/A-02",
+        "sha256": "43dd0868f775e3c98c36092d94b25ceff4dbeab66828200c09c9d045710822ee"
+      }
+    },
+    "historical": true
+  }
+}

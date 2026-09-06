@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "turnId": "08b3b0d1-d98b-8c15-8876-7e35ee95241b",
+  "decision": "Direct approval works in the local UI; progress, evidence, deferrals, permission and Spec Ledger UI naming are implemented.",
+  "rationale": "Agent-reported progress; evidence is evaluated separately.",
+  "progress": {
+    "criterionIds": [
+      "4bb567af-6d1e-8c2d-87f6-c9e72f27827a/AC-1",
+      "d9cb1d03-8f89-8a01-a54b-20d137493265/AC-1",
+      "88c72d83-aa21-8191-b6ed-64d088b99504/AC-1",
+      "44061bcc-deb1-8eeb-a20e-69cc18756bf3/AC-1",
+      "11dcdd45-4a20-8f4d-8c53-c4e92071939b/AC-1",
+      "782ababb-e2ba-8f93-8832-69a5c4334094/AC-1"
+    ],
+    "implemented": true,
+    "revisionDigest": "022971e1176e6947fca28ac728ce7658103427198ef40d1e9d9d188ce302b6cd",
+    "sourceDigest": "08a3836ed83dfdc3780d94f773a8b39146127774ebd38dfc55b4ea17dc5818e4",
+    "preview": {
+      "url": "http://127.0.0.1:3737/",
+      "label": "Open Spec Ledger UI"
+    }
+  },
+  "id": "1fd9449f-8614-8a1d-9636-9a67388ea302",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/decisions/T-032/D-03.json",
+        "id": "T-032/D-03",
+        "sha256": "291fe7f224a0eb7cc9afd8b2b8bce2c92204af263a1e4004e1a9f903e03a73a3"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/decisions/T-032/D-03.json",
+        "id": "T-032/D-03",
+        "sha256": "291fe7f224a0eb7cc9afd8b2b8bce2c92204af263a1e4004e1a9f903e03a73a3"
+      }
+    },
+    "historical": true
+  },
+  "sequence": 3
+}

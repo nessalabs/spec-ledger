@@ -158,17 +158,17 @@ decision · source · attachment · probe · review · flow
   results/report.json               # verify report (adherence)
   results/audit.json                # episode hygiene (history; never merged into report.ok)
 
-  turns/T-002.json
-  turns/T-002.prompt.md             # optional; when userPrompt is huge (same hygiene)
+  turns/10156e96-22b0-8600-8279-0847f71dacf9.json
+  turns/10156e96-22b0-8600-8279-0847f71dacf9.prompt.md             # optional; when userPrompt is huge (same hygiene)
 
-  decisions/T-002/D-01.json         # id "T-002/D-01"
-  sources/T-002.json                # one file per turn; items[]
-  attachments/T-002/A-01.json       # metadata; body file beside it when large
-  attachments/T-002/A-01.md
-  probes/T-002/P-01.json
-  reviews/turns/T-002/R-01.json
-  reviews/workstreams/W-001/SR-01.json   # spec adversarial (target: spec)
-  flows/T-002/F-01.json
+  decisions/10156e96-22b0-8600-8279-0847f71dacf9/D-01.json         # id "10156e96-22b0-8600-8279-0847f71dacf9/D-01"
+  sources/10156e96-22b0-8600-8279-0847f71dacf9.json                # one file per turn; items[]
+  attachments/10156e96-22b0-8600-8279-0847f71dacf9/A-01.json       # metadata; body file beside it when large
+  attachments/10156e96-22b0-8600-8279-0847f71dacf9/A-01.md
+  probes/10156e96-22b0-8600-8279-0847f71dacf9/P-01.json
+  reviews/turns/10156e96-22b0-8600-8279-0847f71dacf9/R-01.json
+  reviews/workstreams/3317ada5-b347-894e-8c88-110b7b42d58b/SR-01.json   # spec adversarial (target: spec)
+  flows/10156e96-22b0-8600-8279-0847f71dacf9/F-01.json
   automation-events/AE-001.json
 ```
 
@@ -251,7 +251,7 @@ Turn {
   }
   intent: {
     userPrompt: string             // sanitized ask — see § Intent.userPrompt hygiene
-    userPromptRef?: string         // e.g. "turns/T-002.prompt.md" (same hygiene)
+    userPromptRef?: string         // e.g. "turns/10156e96-22b0-8600-8279-0847f71dacf9.prompt.md" (same hygiene)
     restatedGoal: string           // what this episode will do (one line; not a second “why”)
     workstreamId?: string          // required when builder works from a workstream
     featureIds: string[]           // graph features this turn is FOR
@@ -362,7 +362,7 @@ make that chain joinable without hand-maintaining commit SHAs inside documents.
 
 | Identifier | Stable across rebase/amend? | Role |
 | --- | --- | --- |
-| **Turn id** (`T-002`) | Yes | **Primary join key** everywhere |
+| **Turn id** (`10156e96-22b0-8600-8279-0847f71dacf9`) | Yes | **Primary join key** everywhere |
 | Workstream / slice / feature / claim ids | Yes | Scope of the episode |
 | **Paths** touched (`facts.files[].path`) | Yes (as names) | Doc ↔ code adjacency |
 | `treeDigest` / file content digests | Yes for same bytes | “Same tree/content, new SHA” |
@@ -408,11 +408,11 @@ line stays normal prose. Body (or trailers) carries Spec Ledger ids so
 ```
 Close Spec Ledger UI turn-detail gaps
 
-SL-Turn: T-002
-SL-Workstream: W-001
+SL-Turn: 10156e96-22b0-8600-8279-0847f71dacf9
+SL-Workstream: 3317ada5-b347-894e-8c88-110b7b42d58b
 SL-Slice: SLC-03
 SL-Features: turns,verify
-SL-Claims: SL-005
+SL-Claims: b69a663d-e2dd-8655-be45-0e07bfb45c89
 ```
 
 Rules:
@@ -468,7 +468,7 @@ depth; local hook is the fast path.
 ```ts
 Decision {
   schemaVersion: 1
-  id: string                       // "T-002/D-01"
+  id: string                       // "10156e96-22b0-8600-8279-0847f71dacf9/D-01"
   turnId: TurnId
   kind: "conform"|"clarify"|"deviate"|"add"|"defer"|"reject"
   title: string                    // ≤120 chars
@@ -492,7 +492,7 @@ Decision {
     consequences?: string[]
     residualRisk?: string            // required when acting on agent-inferred tenets alone
     followUpClaimId?: ClaimId
-    addressesFindingIds?: string[]   // "T-002/R-01#F-01" — review catch → this judgment
+    addressesFindingIds?: string[]   // "10156e96-22b0-8600-8279-0847f71dacf9/R-01#F-01" — review catch → this judgment
 }
 ```
 
@@ -522,7 +522,7 @@ SourcesFile {
 }
 
 SourceItem {
-  id: string                       // "T-002/S-01"
+  id: string                       // "10156e96-22b0-8600-8279-0847f71dacf9/S-01"
   decisionId?: string
   kind: "user"|"claim"|"doc"|"runtime"|"observation"|"prior-turn"|"external"|"probe"|"tenet"|"learning"|"review"
   ref?: string
@@ -540,7 +540,7 @@ SourceItem {
 | `learning` | `LN-…` |
 | `doc` | `path[#anchor]` |
 | `prior-turn` | earlier turn id |
-| `review` | `T-002/R-01` or `T-002/R-01#F-01` |
+| `review` | `10156e96-22b0-8600-8279-0847f71dacf9/R-01` or `10156e96-22b0-8600-8279-0847f71dacf9/R-01#F-01` |
 | `external` | URL |
 | `probe` | probe id or command |
 | `runtime` / `observation` / `user` | optional |
@@ -552,7 +552,7 @@ Source = **cue occurrence** this turn. Same cue for two decisions ⇒ two items 
 ```ts
 Attachment {
   schemaVersion: 1
-  id: string                       // "T-002/A-01"
+  id: string                       // "10156e96-22b0-8600-8279-0847f71dacf9/A-01"
   turnId: TurnId
   kind: "prompt"|"rationale"|"log-excerpt"|"diff-note"
       |"image"|"video"|"image-ref"|"other"
@@ -583,7 +583,7 @@ store credentials.
 ```ts
 Probe {
   schemaVersion: 1
-  id: string                       // "T-002/P-01"
+  id: string                       // "10156e96-22b0-8600-8279-0847f71dacf9/P-01"
   turnId: TurnId
   hypothesis: string
   method: string
@@ -602,7 +602,7 @@ Not executed by verify. Optional `source` with `kind: probe` + `probeId` for the
 ```ts
 Review {
   schemaVersion: 1
-  id: string                       // "T-002/R-01" or "W-001/SR-01"
+  id: string                       // "10156e96-22b0-8600-8279-0847f71dacf9/R-01" or "3317ada5-b347-894e-8c88-110b7b42d58b/SR-01"
   turnId?: TurnId
   workstreamId?: string
   kind?: "human"|"adversarial"|"discussion"
@@ -703,7 +703,7 @@ UI: “Flagged X → chose Y → landed in T-00N / these paths”
 
 | From | Field | To |
 | --- | --- | --- |
-| Decision | `addressesFindingIds?: string[]` (`T-002/R-01#F-01`) | Finding |
+| Decision | `addressesFindingIds?: string[]` (`10156e96-22b0-8600-8279-0847f71dacf9/R-01#F-01`) | Finding |
 | Decision | `alternativesRejected` + `rationale` | Why Y not X |
 | Source | `kind: "review"` + `ref` | Cue trail |
 | Review | `resolvesReviewId` / `resolvesFindingIds` | Clearance |
@@ -730,7 +730,7 @@ getFindingTrail(findingRef) → {
 ```ts
 Flow {
   schemaVersion: 1
-  id: string                       // "T-002/F-01"
+  id: string                       // "10156e96-22b0-8600-8279-0847f71dacf9/F-01"
   turnId: TurnId
   title: string
   kind: "flowchart"|"sequence"|"er"|"state"
@@ -826,7 +826,7 @@ cheap joins — not full-repo greps.
 **Rules for every new episode schema:**
 
 1. **FK on the child** — `turnId` required (except workstream-scoped spec reviews).
-2. **Stable string ids** with sortable prefixes (`T-002`, `T-002/D-01`, `F-01`).
+2. **Stable string ids** with sortable prefixes (`10156e96-22b0-8600-8279-0847f71dacf9`, `10156e96-22b0-8600-8279-0847f71dacf9/D-01`, `F-01`).
 3. **No untyped bags** — Spec Ledger UI fields must be schema keys so clients can project columns.
 4. **Denormalize onto `facts` at close** what UI lists need without opening every side file when possible (`decisionIds`, digests, touched*).
 5. **Arrays of ids over embedded blobs** for large text (rationale files / attachments).
@@ -859,35 +859,35 @@ in the UI.
 ## 8. CLI
 
 ```bash
-spec-ledger context --workstream W-001 --slice SLC-01 [--json]
+spec-ledger context --workstream 3317ada5-b347-894e-8c88-110b7b42d58b --slice SLC-01 [--json]
 spec-ledger impact --feature verify [--json]
 
 spec-ledger turn open --goal "…" --feature verify[,turns] \
-  --workstream W-001 [--slice SLC-01] \
+  --workstream 3317ada5-b347-894e-8c88-110b7b42d58b [--slice SLC-01] \
   [--prompt "…"|--prompt-file f] [--change-type feature] \
   [--allow-dirty] [--no-context --no-context-reason "…"] [--json]
 # --goal → intent.restatedGoal; --prompt → hygiened intent.userPrompt
 # --workstream implies context load + opened.contextDigest stamp
-spec-ledger turn close [--id T-002] [--json]
-spec-ledger turn abandon [--id T-002] [--json]
+spec-ledger turn close [--id 10156e96-22b0-8600-8279-0847f71dacf9] [--json]
+spec-ledger turn abandon [--id 10156e96-22b0-8600-8279-0847f71dacf9] [--json]
 spec-ledger turn check <id> [--json]
 spec-ledger turn show <id> [--json]
 
-spec-ledger source add --turn T-002 --kind runtime --quote "…" [--ref …] [--decision …] [--json]
+spec-ledger source add --turn 10156e96-22b0-8600-8279-0847f71dacf9 --kind runtime --quote "…" [--ref …] [--decision …] [--json]
 spec-ledger source link <S-id> --decision <D-id>
 spec-ledger source unlink <S-id>
-spec-ledger decision add --turn T-002 --kind deviate --title "…" --rationale-file r.md \
-  --claim SL-003 --actual "…" [--source S-…] [--follow-up SL-0xx] [--json]
+spec-ledger decision add --turn 10156e96-22b0-8600-8279-0847f71dacf9 --kind deviate --title "…" --rationale-file r.md \
+  --claim 14d9b121-df2b-8ede-bce7-fdee648a4320 --actual "…" [--source S-…] [--follow-up SL-0xx] [--json]
 
-spec-ledger probe add --turn T-002 --hypothesis "…" --method "…" --result "…" \
+spec-ledger probe add --turn 10156e96-22b0-8600-8279-0847f71dacf9 --hypothesis "…" --method "…" --result "…" \
   --outcome supports|rejects|inconclusive [--json]
-spec-ledger flow add --turn T-002 --title "…" --after-file after.mmd [--before-file …] [--json]
-spec-ledger attachment add --turn T-002 --path path-or-url \
+spec-ledger flow add --turn 10156e96-22b0-8600-8279-0847f71dacf9 --title "…" --after-file after.mmd [--before-file …] [--json]
+spec-ledger attachment add --turn 10156e96-22b0-8600-8279-0847f71dacf9 --path path-or-url \
   [--kind log-excerpt|image|video|…] [--title "…"] [--media-type image/png] \
-  [--review T-002/R-01] [--json]
-spec-ledger review add --turn T-002 --reviewer "…" --verdict approve|request-changes|comment \
+  [--review 10156e96-22b0-8600-8279-0847f71dacf9/R-01] [--json]
+spec-ledger review add --turn 10156e96-22b0-8600-8279-0847f71dacf9 --reviewer "…" --verdict approve|request-changes|comment \
   --summary "…" --plain-summary "…" [--blocking]
-spec-ledger align approve --turn T-002 --plain-summary "…" [--summary "…"]
+spec-ledger align approve --turn 10156e96-22b0-8600-8279-0847f71dacf9 --plain-summary "…" [--summary "…"]
 
 spec-ledger verify [--write-report] [--root .]
 spec-ledger audit [--root .] [--json]
@@ -927,7 +927,7 @@ Do not maintain a second loop here. Skills: [`skills/README.md`](../../skills/RE
 
 ---
 
-## 11. Dogfood rewrite (T-001 / T-002)
+## 11. Dogfood rewrite (d8837bac-91f8-8262-82e3-0a000a74639a / 10156e96-22b0-8600-8279-0847f71dacf9)
 
 Pre-alpha: **no dual-read, no schemaVersion bump.** When episode side collections
 land, rewrite the two turns in the same change:

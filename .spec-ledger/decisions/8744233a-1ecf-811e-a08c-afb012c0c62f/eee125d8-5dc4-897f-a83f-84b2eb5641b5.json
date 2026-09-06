@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "turnId": "8744233a-1ecf-811e-a08c-afb012c0c62f",
+  "decision": "Map each a32f3451-1b3d-8abf-bf0e-607ebf6e1a88 acceptance slice to behavioral regression checks and preserve manual browser observations as evidence.",
+  "rationale": "File existence does not establish these new behaviors. This adds verification links without relaxing the requested acceptance.",
+  "discovery": {
+    "kind": "verification-gap",
+    "reportedVia": "review",
+    "observation": "a32f3451-1b3d-8abf-bf0e-607ebf6e1a88 had no explicit acceptance-to-claim mapping.",
+    "specRef": "a32f3451-1b3d-8abf-bf0e-607ebf6e1a88",
+    "regression": "Six behavioral suites now run through check and CI."
+  },
+  "id": "eee125d8-5dc4-897f-a83f-84b2eb5641b5",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/decisions/T-031/D-01.json",
+        "id": "T-031/D-01",
+        "sha256": "b4e8f472a0034a814faedfd2c25c8846b4d256a677686b0dbd21603672427ee4"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/decisions/T-031/D-01.json",
+        "id": "T-031/D-01",
+        "sha256": "b4e8f472a0034a814faedfd2c25c8846b4d256a677686b0dbd21603672427ee4"
+      }
+    },
+    "historical": true
+  },
+  "sequence": 1
+}

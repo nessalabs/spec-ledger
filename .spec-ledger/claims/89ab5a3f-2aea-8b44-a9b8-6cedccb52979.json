@@ -1,0 +1,19 @@
+{
+  "id": "89ab5a3f-2aea-8b44-a9b8-6cedccb52979",
+  "kind": "invariant",
+  "statement": "A saved way of working is refused, with the reason named, when it does not fit the spec choosing it or when someone else changed it first, and nothing is stored.",
+  "required": true,
+  "links": [
+    "docs/workstreams/ef172105-4f40-8bbb-8abe-d1cd11ae618a-named-workflows/spec.md"
+  ],
+  "migration": {
+    "origins": {
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/claims/SL-034.json",
+        "id": "SL-034",
+        "sha256": "45b7fd2c469fcbb70c462beb979f9535e2d17ddbf3e69f840c16091d7463f584"
+      }
+    },
+    "historical": true
+  }
+}

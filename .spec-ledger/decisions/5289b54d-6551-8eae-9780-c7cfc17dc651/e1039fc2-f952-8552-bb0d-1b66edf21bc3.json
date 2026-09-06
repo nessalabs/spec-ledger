@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "turnId": "5289b54d-6551-8eae-9780-c7cfc17dc651",
+  "decision": "Verified all workflow requirements after the final CI test dependency fix. All 44 UI tests pass in a clean frozen install; 61a8cd06-b22d-8d1c-8337-8c1913fc1e4c reviews all three slices and the unchanged runtime.",
+  "rationale": "Agent-reported progress; evidence is evaluated separately.",
+  "progress": {
+    "criterionIds": [
+      "11519a1a-0d18-889b-8422-9bb8accc4483/AC-1",
+      "11519a1a-0d18-889b-8422-9bb8accc4483/AC-2",
+      "11519a1a-0d18-889b-8422-9bb8accc4483/AC-3",
+      "11519a1a-0d18-889b-8422-9bb8accc4483/AC-4",
+      "11519a1a-0d18-889b-8422-9bb8accc4483/AC-5",
+      "11519a1a-0d18-889b-8422-9bb8accc4483/AC-6",
+      "11519a1a-0d18-889b-8422-9bb8accc4483/AC-7",
+      "ef669c8c-b701-85d9-b2da-638757fed84e/AC-1",
+      "ef669c8c-b701-85d9-b2da-638757fed84e/AC-2",
+      "ef669c8c-b701-85d9-b2da-638757fed84e/AC-3",
+      "ef669c8c-b701-85d9-b2da-638757fed84e/AC-4",
+      "ef669c8c-b701-85d9-b2da-638757fed84e/AC-5",
+      "ef669c8c-b701-85d9-b2da-638757fed84e/AC-6",
+      "b37364e8-36d3-8901-a879-3a6e32f21210/AC-1",
+      "b37364e8-36d3-8901-a879-3a6e32f21210/AC-2",
+      "b37364e8-36d3-8901-a879-3a6e32f21210/AC-3",
+      "b37364e8-36d3-8901-a879-3a6e32f21210/AC-4"
+    ],
+    "implemented": true,
+    "revisionDigest": "0dab67a31f295e21fac35419b36da2e7198798fa14ebedcae416d350ff34dc02",
+    "sourceDigest": "8ac1d48125ccee06b9671056a4b75a10d9bfc6b8cb4ac4f619b908109541e401"
+  },
+  "id": "e1039fc2-f952-8552-bb0d-1b66edf21bc3",
+  "migration": {
+    "origins": {
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/decisions/T-049/D-01.json",
+        "id": "T-049/D-01",
+        "sha256": "bc9fdce86d9d0c9f7c0805a2ebb93f36f2ee91d3ede8c3f724392d55565415ed"
+      }
+    },
+    "historical": true
+  },
+  "sequence": 1
+}

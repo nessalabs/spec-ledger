@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "turnId": "a2340a88-188e-87da-8cee-96c5126cef29",
+  "kind": "log-excerpt",
+  "title": "Change-page proof and historical completion browser walkthrough",
+  "path": "docs/workstreams/3ca37660-1506-8a85-80c6-410a024d9a9a-evidence-first-changes/evidence/a2340a88-188e-87da-8cee-96c5126cef29/browser-check.md",
+  "mediaType": "text/markdown",
+  "contentDigest": "54f92febb673a7bd8150efe10d378d1f5a449b4a7c14bab8aace747126bc90b5",
+  "byteLength": 1315,
+  "id": "2f3a8288-b5b4-87ce-b140-f8fa6320a2ee",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/attachments/T-037/A-01.json",
+        "id": "T-037/A-01",
+        "sha256": "74c28b28bd989623137744f64d7916a3d9c1054f3ae5a3f9b3b4956515090115"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/attachments/T-037/A-01.json",
+        "id": "T-037/A-01",
+        "sha256": "74c28b28bd989623137744f64d7916a3d9c1054f3ae5a3f9b3b4956515090115"
+      }
+    },
+    "historical": true
+  }
+}

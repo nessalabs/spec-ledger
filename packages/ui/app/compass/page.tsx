@@ -1,3 +1,5 @@
+
+import { ReadableText } from "@/components/readable-text"
 import {
   Badge,
   Card,
@@ -34,7 +36,7 @@ export default async function CompassPage() {
         <CardContent className="space-y-3 text-sm">
           {vision ? (
             <>
-              <p className="leading-relaxed">{vision.summary}</p>
+              <p className="leading-relaxed"><ReadableText>{vision.summary}</ReadableText></p>
               {vision.northStar ? (
                 <p className="text-muted-foreground">
                   <span className="font-medium text-foreground">North star · </span>
@@ -65,13 +67,13 @@ export default async function CompassPage() {
               <CardHeader className="gap-2">
                 <div className="flex flex-wrap items-center gap-2">
                   <Badge variant="outline" className="font-mono">
-                    {t.id}
+                    Principle
                   </Badge>
                   {t.weight ? <Badge variant="secondary">{t.weight}</Badge> : null}
                   <Badge variant="outline">{t.origin}</Badge>
                 </div>
                 <CardDescription className="text-sm text-foreground">
-                  {t.statement}
+                  <ReadableText>{t.statement}</ReadableText>
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -88,12 +90,12 @@ export default async function CompassPage() {
             <Card key={th.id}>
               <CardHeader>
                 <div className="flex items-center gap-2">
-                  <CardTitle className="text-base">{th.title}</CardTitle>
+                  <CardTitle className="text-base"><ReadableText>{th.title}</ReadableText></CardTitle>
                   <Badge variant="outline" className="font-mono">
-                    {th.id}
+                    Theme
                   </Badge>
                 </div>
-                <CardDescription>{th.summary}</CardDescription>
+                <CardDescription><ReadableText>{th.summary}</ReadableText></CardDescription>
               </CardHeader>
             </Card>
           ))
@@ -108,9 +110,9 @@ export default async function CompassPage() {
           <ul className="space-y-2 text-sm">
             {proposed.map((p) => (
               <li key={p.id} className="rounded-md border border-border px-3 py-2">
-                <span className="font-mono text-xs">{p.id}</span>{" "}
+
                 <Badge variant="secondary">{p.status}</Badge>
-                <p className="mt-1 text-muted-foreground">{p.statement}</p>
+                <p className="mt-1 text-muted-foreground"><ReadableText>{p.statement}</ReadableText></p>
               </li>
             ))}
           </ul>

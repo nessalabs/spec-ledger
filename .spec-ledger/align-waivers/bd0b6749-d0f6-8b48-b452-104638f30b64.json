@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "bd0b6749-d0f6-8b48-b452-104638f30b64",
+  "reason": "User-authorized a32f3451-1b3d-8abf-bf0e-607ebf6e1a88 implementation includes AGENTS and DESIGN permission guidance carried from 44061bcc-deb1-8eeb-a20e-69cc18756bf3; concurrent session work and the requested UI repair are covered by the existing a32f3451-1b3d-8abf-bf0e-607ebf6e1a88 plan. This scoped carryover does not waive behavioral or completion checks.",
+  "actor": "agent:user-request-scope",
+  "treeDigest": "176ce1b2734003743f950d8e7a0db7872dc7069d4302d444b8c18e78174a58be",
+  "createdAt": "2026-09-04T22:20:58.409Z",
+  "workstreamId": "a32f3451-1b3d-8abf-bf0e-607ebf6e1a88",
+  "turnId": "7e5eceeb-5d1c-8ab2-bbdd-ffc9a474908b",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/align-waivers/AW-11.json",
+        "id": "T-030/AW-11",
+        "sha256": "b197bfca5ae10d80acafffe4f888a80a05eda721dcba3327abef0f5110878ca1"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/align-waivers/AW-11.json",
+        "id": "T-030/AW-11",
+        "sha256": "b197bfca5ae10d80acafffe4f888a80a05eda721dcba3327abef0f5110878ca1"
+      }
+    },
+    "historical": true
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "turnId": "a4ac3301-09fd-84e5-a54e-d91df8ffe307",
+  "kind": "log-excerpt",
+  "title": "Workstream evidence browser walkthrough",
+  "path": "docs/workstreams/1652e353-e3dc-8960-985b-35fbe40c1edb-evidence-and-custom-workflows/evidence/a4ac3301-09fd-84e5-a54e-d91df8ffe307/browser-check.md",
+  "mediaType": "text/plain",
+  "contentDigest": "442f9031de282834efa5948cb2b4e7e505ed35b281f03b6f1e2697f025ddb2d1",
+  "note": "Manual agent observations, not automated browser CI.",
+  "id": "aa4ba711-f527-83f0-ae83-147e3e173900",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/attachments/T-033/A-01.json",
+        "id": "T-033/A-01",
+        "sha256": "1936da588b995ed4b3e27eab2807f6ac1158c7cd8da7da3bc273939f15f778c3"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/attachments/T-033/A-01.json",
+        "id": "T-033/A-01",
+        "sha256": "1936da588b995ed4b3e27eab2807f6ac1158c7cd8da7da3bc273939f15f778c3"
+      }
+    },
+    "historical": true
+  }
+}

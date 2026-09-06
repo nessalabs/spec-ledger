@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "0a8d514c-2350-8cb8-a34a-89e1b6e01084",
+  "status": "accepted",
+  "workstreamId": "815c7a44-59df-8102-9769-bf8a74e49c0c",
+  "suggestedLiveId": "4d4f7c20-b7e0-86d8-9b17-f45053bbf43b",
+  "statement": "Custom workflow satisfaction comes from current typed outputs, and the live UI separates reported progress from inspectable verification.",
+  "requiredEvidence": [
+    "unit",
+    "integration",
+    "e2e"
+  ],
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/proposed-claims/PC-021.json",
+        "id": "PC-021",
+        "sha256": "62219f29621ebf91a783fd1f1caddb2fa24de12e70ce3c6e7ad52f658c8312df"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/proposed-claims/PC-021.json",
+        "id": "PC-021",
+        "sha256": "62219f29621ebf91a783fd1f1caddb2fa24de12e70ce3c6e7ad52f658c8312df"
+      }
+    },
+    "historical": true
+  }
+}

@@ -7,21 +7,21 @@
   "outcome": "succeeded",
   "result": {
     "schemaVersion": 1,
-    "turnId": "T-038",
+    "turnId": "21e1bd8d-8745-8900-b8a5-249314d027be",
     "decision": "Inspect saved test source, inputs and expected behavior; run it explicitly and read the actual result and logs.",
     "rationale": "Agent-reported progress; evidence is evaluated separately.",
     "progress": {
       "criterionIds": [
-        "SLC-01/AC-1"
+        "31586ff0-42d1-85f6-8733-49244fa3d467/AC-1"
       ],
       "implemented": true,
       "revisionDigest": "95d03bfb1a04832d1dc78b034a59d7c5cbc9f77409d00672fae7ed967e03b0b0",
       "sourceDigest": "d0615467064d1e7014d522e61037f387213251c707769410b8af4be9be76fa9c",
       "preview": {
-        "url": "http://127.0.0.1:3737/claims/SL-023",
+        "url": "http://127.0.0.1:3737/claims/2f8cf085-d7a5-83b9-89f8-9d0754cb16a0",
         "label": "Inspect a real lifecycle check"
       }
     },
-    "id": "T-038/D-02"
+    "id": "52db6b96-4546-85d9-86ba-106bc7057e93"
   }
 }

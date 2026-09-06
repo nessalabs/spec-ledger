@@ -1,0 +1,26 @@
+✔ discovery breaker: every workflow status partitions into the same active overview count and URL views (53.859667ms)
+✔ discovery breaker: pagination is bounded deterministic and invalid values cannot drop the selected view (5.392375ms)
+✔ discovery breaker: actual server page observes only selected rows and isolates failed or mismatched sessions (10.718916ms)
+✔ discovery breaker: typed fixups require exact ownership and exclude abandoned or keyword-only changes (5.804958ms)
+✔ discovery breaker: list rows preserve filter and paging links, unknown readiness and exact fixup targets (20.756542ms)
+✔ discovery breaker: fixup context precedes evidence and badges follow typed intent on both change rows (30.279042ms)
+✔ discovery breaker: refresh is explicit and preserves current filter while native links retain browser navigation (10.9635ms)
+✔ section history returns from execution to exact acceptance without hiding the evidence (17.196625ms)
+✔ unknown or obsolete fragments do not strand readers in an invisible section (0.0735ms)
+✔ mobile navigation closes on same-page selection and route change but preserves modified clicks (25.049667ms)
+✔ live Updates remain separate from server change history without key warnings (11.092083ms)
+✔ the in-page workflow retains its picker and process state when live data changes workstream (1.910042ms)
+✔ a deleted library name stays visible with its preserved version while switching is pending (10.834917ms)
+✔ workflow definition has one library route and the old per-spec route no longer resolves (0.166583ms)
+✔ Updates has a distinct deep link and browser history restores the isolated selected tab (4.420958ms)
+✔ Updates shows recorded dates or an honest absence and links to the real turn instead of the decision (11.891833ms)
+✔ overview keeps permission and problems visible with direct spec, evidence and history links (49.544833ms)
+✔ approved work does not request approval again and disconnected approval stays disabled (18.000041ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 251.110833

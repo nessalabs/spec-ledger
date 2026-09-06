@@ -1,7 +1,7 @@
 # Spec Ledger dogfood UI
 
-**Workstream:** `W-003` · **Status:** done (retrofit pitch — prose extracted from metadata for human navigation)  
-**Agent metadata:** [`.spec-ledger/workstreams/W-003.json`](../../.spec-ledger/workstreams/W-003.json)  
+**Workstream:** `beee03a2-1e8d-8091-9ed9-b35bea93d6a3` · **Status:** done (retrofit pitch — prose extracted from metadata for human navigation)  
+**Agent metadata:** [`.spec-ledger/workstreams/beee03a2-1e8d-8091-9ed9-b35bea93d6a3.json`](../../.spec-ledger/workstreams/beee03a2-1e8d-8091-9ed9-b35bea93d6a3.json)  
 **Note:** Historical seal digests predate this Markdown; `specPath` is a live pointer only.
 
 ---

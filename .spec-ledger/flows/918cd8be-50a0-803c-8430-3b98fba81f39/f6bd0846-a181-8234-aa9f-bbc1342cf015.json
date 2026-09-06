@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "turnId": "918cd8be-50a0-803c-8430-3b98fba81f39",
+  "title": "Release publishes to npm",
+  "after": "publish.yml on Release only; dry-run via workflow_dispatch",
+  "before": "No Release→npm path",
+  "id": "f6bd0846-a181-8234-aa9f-bbc1342cf015",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/flows/T-023/F-01.json",
+        "id": "T-023/F-01",
+        "sha256": "95c19b5ec8de6e45d6b7cc230b4925d86ab293ad441bcfca279bbe25be16f40d"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/flows/T-023/F-01.json",
+        "id": "T-023/F-01",
+        "sha256": "95c19b5ec8de6e45d6b7cc230b4925d86ab293ad441bcfca279bbe25be16f40d"
+      }
+    },
+    "historical": true
+  }
+}

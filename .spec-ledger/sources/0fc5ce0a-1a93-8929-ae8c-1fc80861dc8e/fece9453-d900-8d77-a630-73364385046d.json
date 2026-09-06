@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "turnId": "0fc5ce0a-1a93-8929-ae8c-1fc80861dc8e",
+  "kind": "doc",
+  "ref": "docs/architecture/work-model.md",
+  "id": "fece9453-d900-8d77-a630-73364385046d",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/sources/T-005/S-01.json",
+        "id": "T-005/S-01",
+        "sha256": "6505b36319dee5a700d3446d52921cea8014900f1c51d637c8856190792fa9d4"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/sources/T-005/S-01.json",
+        "id": "T-005/S-01",
+        "sha256": "6505b36319dee5a700d3446d52921cea8014900f1c51d637c8856190792fa9d4"
+      }
+    },
+    "historical": true
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "requestId": "951fc5f7-b54b-4b0e-8d24-013351874288",
+  "operation": "record_review",
+  "inputDigest": "05d477ab7e620bb8a299fffcab05e0fce4ef4cb99f8d4804f53599df808d9e86",
+  "finishedAt": "2026-09-06T18:36:08.785Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "id": "e5ecaf1b-a06d-8cd1-8148-e06aa69fecf6",
+    "workstreamId": "eab32d2d-6c3c-84df-b831-9bcc13fd0152",
+    "kind": "adversarial",
+    "target": "spec",
+    "reviewer": "agent:sl-plan-break-spec",
+    "verdict": "approve",
+    "blocking": false,
+    "plainSummary": "The plan now separates publishing proof from credential setup and preserves safe retries during identity migration.",
+    "summary": "Re-reviewed F-1 and F-2 against updated eab32d2d-6c3c-84df-b831-9bcc13fd0152. AC-4 now cites the relevant release-only db092384-a2b9-8db4-b9b8-ff7b5e58f133 and explicitly requires separate organization-secret availability/authenticated dry-run observations, never inferred from workflow tests. Stable request IDs remain correlation keys while entity identities are generated. The plan also requires explicit reconciliation of divergent ancestor edits and a frozen per-origin mapping reused after interruption. These changes resolve the reviewed gaps without changing user-authorized scope.",
+    "alertOnSeverity": "high",
+    "findings": [],
+    "resolvesReviewId": "b5c57bac-53ea-8b97-b104-693a42645314",
+    "resolvesFindingIds": [
+      "b5c57bac-53ea-8b97-b104-693a42645314#74eb25a8-461f-8eb9-a313-aaafa5e3488a",
+      "b5c57bac-53ea-8b97-b104-693a42645314#145ed2ee-5318-879b-9cbf-c659dfd03796"
+    ],
+    "supersedesReviewId": "b5c57bac-53ea-8b97-b104-693a42645314",
+    "residualRisks": [
+      "A passing release-workflow claim alone does not prove organization credential setup; retain explicit operational evidence or clearly report the credential outcome as outstanding.",
+      "Identity migration must preserve original artifact hashes and historical source provenance; current tests and screenshot coverage establish fresh proof rather than restamped historical success.",
+      "The related pack exposes only generic worktree caution text, so integration must independently validate the two explicitly chosen origin histories."
+    ],
+    "revisionDigest": "8e73475305d4952bb9e2aa6318ae4742b205dd92e1a86f81e32751928ff7bdc2"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "turnId": "08b3b0d1-d98b-8c15-8876-7e35ee95241b",
+  "kind": "log-excerpt",
+  "title": "Local approval browser verification",
+  "mediaType": "text/markdown",
+  "path": "docs/workstreams/a32f3451-1b3d-8abf-bf0e-607ebf6e1a88-trustworthy-autonomous-coding/evidence/08b3b0d1-d98b-8c15-8876-7e35ee95241b/browser-check.md",
+  "contentDigest": "e2236814072fa6193484459c7309dda0118831d4e8904673c6b1b16192a63547",
+  "note": "Isolated fixture browser save, reload and Nessa dropdown; manual observations.",
+  "id": "079f6220-d412-8ef4-8c31-608ea0f2b6d7",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/attachments/T-032/A-01.json",
+        "id": "T-032/A-01",
+        "sha256": "46ce6277290035d5acba22770c9c0c45b93a46c086e947c88b164fa4edae3ecb"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/attachments/T-032/A-01.json",
+        "id": "T-032/A-01",
+        "sha256": "46ce6277290035d5acba22770c9c0c45b93a46c086e947c88b164fa4edae3ecb"
+      }
+    },
+    "historical": true
+  }
+}

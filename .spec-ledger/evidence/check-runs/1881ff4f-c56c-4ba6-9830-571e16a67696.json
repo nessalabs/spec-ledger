@@ -1,7 +1,7 @@
 {
   "runId": "1881ff4f-c56c-4ba6-9830-571e16a67696",
   "requestId": "batch-1881ff4f-c56c-4ba6-9830-571e16a67696",
-  "bindingId": "b-sl-018",
+  "bindingId": "537947a3-37ec-86ab-9f87-ac54e50d1796",
   "state": "finished",
   "command": "node --test packages/ledger/dist/evidence/fingerprint.break.test.js",
   "cwd": "/Users/nessa/Documents/NessaLabs/spec-ledger",

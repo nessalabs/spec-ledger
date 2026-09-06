@@ -1,0 +1,25 @@
+{
+  "id": "735fd8e1-ee5a-8663-b80d-4f94d1ae1bb0",
+  "statement": "Visual UI work requires current screenshots of all relevant UI as enforced evidence; the primary passing badge should carry success status without repeating pass and exit metadata above test output.",
+  "workstreamId": "29c935b4-56bd-84a0-b887-e280d775f54d",
+  "featureIds": [
+    "lattice",
+    "turns"
+  ],
+  "source": {
+    "kind": "user-reported",
+    "reference": "User requested mandatory screenshots through evidence checks with actionable agent errors, removal of repeated success metadata, and fresh evidence before finishing."
+  },
+  "schemaVersion": 1,
+  "createdAt": "2026-09-06T18:10:43.214Z",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/learnings/LN-visual-evidence-required.json",
+        "id": "LN-visual-evidence-required",
+        "sha256": "2a0ad817374213a009f373713e7379938d367e52f26415325e1c7132130ed645"
+      }
+    },
+    "historical": true
+  }
+}

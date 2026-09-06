@@ -1,0 +1,130 @@
+{
+  "schemaVersion": 1,
+  "id": "cee6b88e-a62f-8821-9319-babc533e5522",
+  "workstreamId": "d1be55a6-11bb-8460-8650-ddf0ecac8185",
+  "kind": "adversarial",
+  "target": "spec",
+  "reviewer": "agent:sl-plan-break-spec",
+  "verdict": "request-changes",
+  "blocking": true,
+  "alertOnSeverity": "high",
+  "summary": "Related pack (features cli/verify/client/server/lattice; claims 67609c19-de05-862c-8db7-e5dc95f38cee..004/007/008; 628207d3-7b88-880b-abe1-acd523f8572f/016; docs consumer-cli + work-model/vision; worktree scan caution-only) shows the bet aims right (full init + installable bin + Release→npm for alpha) but cannot seal yet: skeleton contract is untestable (tenets vs 628207d3-7b88-880b-abe1-acd523f8572f drift), UI path is OR-shaped atop private+file:@nessa-ui, workspace:* publishability not acceptance-bound, ee4b88b6-f54b-8011-82e1-e4d44b94aaab mega-claim fuses 7274f0f7-06fc-809b-bf50-34149f1a028d/03/04, expectedPaths missing under requireAlignApprove, and NPM_TOKEN publish lacks negative/security acceptance despite securitySensitive:false. Graph feature cli has empty claimIds and entryPoints only main+init — understates .github/workflows + client/server/ui pack surface.",
+  "plainSummary": "Seal is blocked: init, Lattice publish, and Release→npm rules are still too vague for a consumer to get a trustworthy install path.",
+  "residualRisks": [
+    "worktrees.scanned caution-only string from related pack — not a seal blocker; authority remains this checkout",
+    "Proposed killers (post-amend): K-init-skeleton-list (fixture dir/file set after init); K-init-no-pass (verify after init invents no claim/binding pass); K-pack-bin (tarball install outside monorepo runs --help/init/verify); K-pack-client-server (no workspace: in packed package.json; install resolves); K-ui-path (chosen publish OR artifact path succeeds without file:../../../nessa); K-release-trigger (workflow yaml on: release only; push/PR job cannot publish); K-version-tag (published version matches Release tag / alpha line)"
+  ],
+  "findings": [
+    {
+      "id": "b7ec61d0-ced3-8fca-9a05-e8dcb67fc4aa",
+      "severity": "high",
+      "claimId": "628207d3-7b88-880b-abe1-acd523f8572f",
+      "gap": "Acceptance and 628207d3-7b88-880b-abe1-acd523f8572f say 'contracted full skeleton' / 'stub or empty dirs as documented' but there is no normative, machine-checkable file/dir list. Pitch prose includes tenets; 628207d3-7b88-880b-abe1-acd523f8572f and d1be55a6-11bb-8460-8650-ddf0ecac8185.acceptanceCriteria omit tenets; themes/vision/reviews/proposed-claims/workstreams listed inconsistently. Current initLedger only creates claims/bindings/graph/policy/results/turns — delta is large and untestable without a fixture contract.",
+      "plainImpact": "Two agents could ship different init layouts and both claim the skeleton is done.",
+      "fixProposal": "Add a sealed appendix or attachment: exact paths created (files vs empty dirs vs stubs), including whether tenets/ and vision.json|md are required. Point 628207d3-7b88-880b-abe1-acd523f8572f and 141476c9-8a75-8ee1-8eb6-54aa420d3a07 acceptance at that list; add an integration fixture that asserts the set. Drop weasel 'as contracted/as documented' without the document.",
+      "evidencePath": "packages/ledger/src/cli/init.ts"
+    },
+    {
+      "id": "eef8044b-b21f-83d6-8616-47d99cf9a99a",
+      "severity": "high",
+      "claimId": "ee4b88b6-f54b-8011-82e1-e4d44b94aaab",
+      "gap": "4a65c48e-eaf5-8e43-b1b6-4c7bc8c793ca/ee4b88b6-f54b-8011-82e1-e4d44b94aaab accept 'UI publishable OR Release-artifact runnable' while packages/ui is private:true and depends on @nessa-ui/react via file:../../../nessa/packages/react plus client via file:../client. Rabbit hole acknowledges the link but out-of-scope forbids replacing the design system and allows 'document temporary constraint' — so the consumer Lattice objective can forever defer. Related feature lattice + prior UI turns show this is the product surface, not optional polish.",
+      "plainImpact": "Consumers could install the CLI and still have no way to see their ledger in Lattice.",
+      "fixProposal": "Pick one path before seal: (A) publish @nessa/spec-ledger-ui with pinned public @nessa-ui/react (or vendored CSS-only subset) and workspace-stripped client dep; or (B) ship a Release-attached runnable artifact (documented one-liner) and demote npm UI from ee4b88b6-f54b-8011-82e1-e4d44b94aaab. Elevate the chosen path into 4a65c48e-eaf5-8e43-b1b6-4c7bc8c793ca acceptance; remove the OR. Do not treat 'document rabbit hole' as done.",
+      "evidencePath": "packages/ui/package.json"
+    },
+    {
+      "id": "a9a5f9ee-4613-8b0b-aef4-58fe8bdaeb2d",
+      "severity": "high",
+      "claimId": "ee4b88b6-f54b-8011-82e1-e4d44b94aaab",
+      "gap": "Acceptance mentions publishConfig/files/workspace deps resolved for npm, but client and server package.json use workspace:* and have no files/publishConfig; UI uses file: deps. 7274f0f7-06fc-809b-bf50-34149f1a028d only packs @nessa/spec-ledger; 4a65c48e-eaf5-8e43-b1b6-4c7bc8c793ca says 'npm-publishable' without a pack-install oracle. Pack-time workspace stripping is rabbit-hole prose, not acceptance.",
+      "plainImpact": "Published client or server packages could be uninstallable outside this monorepo.",
+      "fixProposal": "Per package in 7274f0f7-06fc-809b-bf50-34149f1a028d/03: after pnpm pack (or documented publish dry-run), packed package.json must contain no workspace: or file: protocol deps; files/exports must include runnable dist (+ bin for ledger/server). Add integration evidence installing client+server tarballs against a packed ledger version.",
+      "evidencePath": "packages/client/package.json"
+    },
+    {
+      "id": "40e5ecae-4249-886d-9137-b902e3f5cc4a",
+      "severity": "high",
+      "claimId": "ee4b88b6-f54b-8011-82e1-e4d44b94aaab",
+      "gap": "ee4b88b6-f54b-8011-82e1-e4d44b94aaab is a mega-claim: installable bin + client + server + Lattice UI/artifact + Release-only publish trigger. 7274f0f7-06fc-809b-bf50-34149f1a028d, 4a65c48e-eaf5-8e43-b1b6-4c7bc8c793ca, and 6f2b8a6c-e341-8ca2-84c4-d4427e03529a all cite only ee4b88b6-f54b-8011-82e1-e4d44b94aaab. That fuses mechanism (pack/bin), product surface (Lattice), and CI policy (workflow triggers) — cheap-to-change smell; one failing vertical cannot falsify a clear claim slice.",
+      "plainImpact": "A partial ship could claim the publish story done while one package or the workflow still fails consumers.",
+      "fixProposal": "Split proposed claims before seal: e.g. 628207d3-7b88-880b-abe1-acd523f8572f init; ee4b88b6-f54b-8011-82e1-e4d44b94aaab installable ledger bin (+ optional client/server pack); 29a5b902-b969-823e-86f5-89b23debe467 Release→npm trigger + package set / UI artifact. Re-map suggestedSlices proposedClaimIds. Keep each vertical independently fail-able.",
+      "evidencePath": ".spec-ledger/proposed-claims/ee4b88b6-f54b-8011-82e1-e4d44b94aaab.json"
+    },
+    {
+      "id": "7d139c8c-58af-88af-ab1b-dde8b33e081a",
+      "severity": "high",
+      "gap": "policy.requireAlignApprove is true but no suggestedSlices.expectedPaths despite schemas/workstream.json supporting them (76451749-a54f-8579-96f2-dcec19d79026 lesson). Related blast spans packages/ledger (cli), client, server, ui, and net-new .github/workflows publish; graph feature cli entryPoints are only main.ts+init.ts with claimIds:[]. Align coverage will be ad-hoc.",
+      "plainImpact": "Path coverage could pass or fail arbitrarily because the sealed plan never named allowed files.",
+      "fixProposal": "Add expectedPaths per slice, e.g. 141476c9-8a75-8ee1-8eb6-54aa420d3a07 packages/ledger/src/cli/**; 7274f0f7-06fc-809b-bf50-34149f1a028d packages/ledger/package.json + bin surface; 4a65c48e-eaf5-8e43-b1b6-4c7bc8c793ca packages/{client,server,ui}/**; 6f2b8a6c-e341-8ca2-84c4-d4427e03529a .github/workflows/** + docs. Optionally extend graph cli entryPoints / locators for workflow + pack scripts.",
+      "evidencePath": ".spec-ledger/workstreams/d1be55a6-11bb-8460-8650-ddf0ecac8185.json"
+    },
+    {
+      "id": "1785807a-b63d-80ad-af43-252dda0e494a",
+      "severity": "high",
+      "claimId": "ee4b88b6-f54b-8011-82e1-e4d44b94aaab",
+      "gap": "trust.securitySensitive is false while 6f2b8a6c-e341-8ca2-84c4-d4427e03529a introduces NPM_TOKEN and publish-on-Release — a supply-chain / secret boundary. Acceptance lacks negatives: push/PR must not publish; tag/version mismatch refuses publish; partial multi-package publish failure behavior; dry-run vs live gates; who may cut the first alpha Release. Related pack includes no prior publish workflow (only ci.yml on push/PR).",
+      "plainImpact": "A mistaken push or tag could publish broken or inconsistent packages to npm.",
+      "fixProposal": "Either set securitySensitive:true with required evidence for workflow negatives, or keep false but put explicit acceptance + killers: workflow on: [release] (and optional workflow_dispatch dry-run) only; no npm publish step on push/PR; version must equal release tag; document NPM_TOKEN least privilege. Name the workflow file path in acceptance.",
+      "evidencePath": ".github/workflows/ci.yml"
+    },
+    {
+      "id": "43b114fe-628b-85b1-b0f9-771217aa766d",
+      "severity": "moderate",
+      "claimId": "ee4b88b6-f54b-8011-82e1-e4d44b94aaab",
+      "gap": "Packages are version 0.1.0 today; acceptance allows '0.1.0-alpha.0 or agreed tag' and 'no Release cut unless explicitly creating 0.1.0-alpha'. Weasel 'or agreed' plus undefined 'production Release' vs alpha makes done-ness for 6f2b8a6c-e341-8ca2-84c4-d4427e03529a unclear (workflow merged + dry-run only? or first alpha publish required?).",
+      "plainImpact": "The team could disagree whether shipping the workflow alone finishes the bet.",
+      "fixProposal": "Pin the alpha version string in acceptance (e.g. 0.1.0-alpha.0). State explicitly: this bet completes with workflow+docs+dry-run evidence; cutting the GitHub Release is optional human action outside acceptance unless chosen.",
+      "evidencePath": "docs/workstreams/consumer-cli-and-npm-publish.md"
+    },
+    {
+      "id": "61ef2860-469c-8a89-9974-1bc871599e64",
+      "severity": "moderate",
+      "claimId": "628207d3-7b88-880b-abe1-acd523f8572f",
+      "gap": "Missing init failure modes: re-init on existing ledger.json (today throws); crash mid-write leaving partial tree; init outside a git repo (findRepoRoot falls back to cwd); whether schemas/ must exist for consumer verify/server schema routes (ledger npm files[] is only dist+README — schemas stay in monorepo). No acceptance for these.",
+      "plainImpact": "Init could leave a half-written ledger or a consumer install that cannot load schemas the tools expect.",
+      "fixProposal": "Add 141476c9-8a75-8ee1-8eb6-54aa420d3a07 negatives: re-init is refused without clobber; specify git requirement; decide schemas strategy (bundle in package, generate stubs, or document monorepo-only) and put it in acceptance/outOfScope explicitly.",
+      "evidencePath": "packages/ledger/src/fs/load.ts"
+    },
+    {
+      "id": "df73eaf3-6023-8007-87ae-0254e94fe0ee",
+      "severity": "moderate",
+      "claimId": "67609c19-de05-862c-8db7-e5dc95f38cee",
+      "gap": "Bet correctly requires not weakening 67609c19-de05-862c-8db7-e5dc95f38cee/2884eafb-114e-85f1-ae07-ce1fbd140550, but acceptance is aspirational. 141476c9-8a75-8ee1-8eb6-54aa420d3a07 says verify runs and does not invent pass without a concrete oracle (empty claims → report shape; no binding status:pass; no stub claims with outcomes). expectedClaimIds include 67609c19-de05-862c-8db7-e5dc95f38cee but not 2884eafb-114e-85f1-ae07-ce1fbd140550 though bindings are in the skeleton.",
+      "plainImpact": "Init could add stub files that quietly teach verify to look greener than the empty ledger is.",
+      "fixProposal": "Name the oracle: after init, verify exits with no invented claim pass; bindings dir empty or stubs validate against schemas/binding.json with no status field; cite 2884eafb-114e-85f1-ae07-ce1fbd140550 on 141476c9-8a75-8ee1-8eb6-54aa420d3a07 expectedClaimIds. Killer test in code-break later.",
+      "evidencePath": ".spec-ledger/claims/2884eafb-114e-85f1-ae07-ce1fbd140550.json"
+    },
+    {
+      "id": "5368547c-e082-8ae3-b19a-095f8e3fa8ff",
+      "severity": "moderate",
+      "gap": "Appetite 1–2 days for full init rewrite + four publish surfaces + @nessa-ui unblock + new Release workflow is under-scoped relative to rabbit holes. 6f2b8a6c-e341-8ca2-84c4-d4427e03529a is largely a horizontal CI chore fused into the same bet as product verticals — risk of shipping workflow theater before consumer pack works.",
+      "plainImpact": "The bet may seal a schedule that forces shallow publish wiring and leaves consumers broken.",
+      "fixProposal": "Either extend appetite / cut UI to a follow-on workstream after CLI+client+server pack works, or make 4a65c48e-eaf5-8e43-b1b6-4c7bc8c793ca explicitly optional/follow-on in outOfScope with objective narrowed. Prefer sequencing: 141476c9-8a75-8ee1-8eb6-54aa420d3a07→02→04 for ledger bin, then 4a65c48e-eaf5-8e43-b1b6-4c7bc8c793ca.",
+      "evidencePath": ".spec-ledger/workstreams/d1be55a6-11bb-8460-8650-ddf0ecac8185.json"
+    },
+    {
+      "id": "b28be955-1d28-8397-87c0-e5e6e5cc4020",
+      "severity": "low",
+      "gap": "related.worktreeCautions is caution-only (no structured sibling dirty entries). Graph feature cli.claimIds is empty until PC promote — residual soft risk only.",
+      "plainImpact": "Other checkouts stay a soft warning, and the new CLI feature still has no live claims attached.",
+      "fixProposal": "Copy into residualRisks; on promote, bind 259e1acf-d082-8bfe-b0ab-76fab45ae7d0/4478b980-87e5-8f31-a57e-8c06246e0798 (or splits) to feature cli. Do not block seal on worktrees alone.",
+      "evidencePath": ".spec-ledger/graph/codebase-graph.json"
+    }
+  ],
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/reviews/workstreams/W-005/SR-01.json",
+        "id": "W-005/SR-01",
+        "sha256": "62a536fd610cfe01db0e166526280adc0d2c55dd8e0ee5a714eb932ea95597dc"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/reviews/workstreams/W-005/SR-01.json",
+        "id": "W-005/SR-01",
+        "sha256": "62a536fd610cfe01db0e166526280adc0d2c55dd8e0ee5a714eb932ea95597dc"
+      }
+    },
+    "historical": true
+  }
+}

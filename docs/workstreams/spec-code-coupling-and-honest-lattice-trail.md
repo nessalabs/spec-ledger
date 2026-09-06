@@ -1,8 +1,8 @@
 # Spec↔code coupling + honest Lattice trail
 
-**Workstream:** `W-004` · **Status:** ready for human seal  
-**Agent metadata:** `.spec-ledger/workstreams/W-004.json` (`specPath` → this file)  
-**Spec break:** `.spec-ledger/reviews/workstreams/W-004/SR-01.json` · `SR-02.json`
+**Workstream:** `76451749-a54f-8579-96f2-dcec19d79026` · **Status:** ready for human seal  
+**Agent metadata:** `.spec-ledger/workstreams/76451749-a54f-8579-96f2-dcec19d79026.json` (`specPath` → this file)  
+**Spec break:** `.spec-ledger/reviews/workstreams/76451749-a54f-8579-96f2-dcec19d79026/449c5d79-aef1-84ba-92c5-4c7d15d5c1f5.json` · `SR-02.json`
 
 > Human docs live under **`docs/workstreams/`** with a **title slug**.  
 > `.spec-ledger/` keeps JSON ids, policy, slices, digests only.
@@ -11,7 +11,7 @@
 
 ## Problem
 
-Agents ship UI and product changes without a sealed bet or open turn (TN-002 in spirit). Lattice then shows file dumps and bare node ids instead of the **plan**. Verify shows cryptic `SL-00N` badges. Nothing flags product paths that aren’t covered by the sealed spec, and nothing requires an align-approve artifact before push/PR/CI — silence acts like a skip.
+Agents ship UI and product changes without a sealed bet or open turn (4f850c5a-83ce-85c9-a081-b0a3e02d2811 in spirit). Lattice then shows file dumps and bare node ids instead of the **plan**. Verify shows cryptic `SL-00N` badges. Nothing flags product paths that aren’t covered by the sealed spec, and nothing requires an align-approve artifact before push/PR/CI — silence acts like a skip.
 
 ## Objective
 
@@ -28,7 +28,7 @@ Agents ship UI and product changes without a sealed bet or open turn (TN-002 in 
 
 Long prose does **not** live in `.spec-ledger`. Seal digests this file via `specPath` / attachment digests.
 
-**Naming:** `docs/workstreams/<title-slug>.md` — not `W-004.md` and not under `.spec-ledger/`.
+**Naming:** `docs/workstreams/<title-slug>.md` — not `76451749-a54f-8579-96f2-dcec19d79026.md` and not under `.spec-ledger/`.
 
 ## Trust
 
@@ -89,12 +89,12 @@ Long prose does **not** live in `.spec-ledger`. Seal digests this file via `spec
 
 ## Proposed claims
 
-- **PC-013** → SL-009: product paths covered by sealed plan/graph or explicit waiver  
-- **PC-014** → SL-010: requireAlignApprove gate (structured approve or waiver); not part of `verify.ok`  
+- **82fa5163-847a-8bb4-9cf4-61c3fb607187** → SL-009: product paths covered by sealed plan/graph or explicit waiver  
+- **afbad76d-e486-8108-9e2c-231bfc254ab8** → SL-010: requireAlignApprove gate (structured approve or waiver); not part of `verify.ok`  
 
 ## Residual risks
 
-- Orphan UI diff under done W-003 must land only under an open W-004 turn after seal  
+- Orphan UI diff under done beee03a2-1e8d-8091-9ed9-b35bea93d6a3 must land only under an open 76451749-a54f-8579-96f2-dcec19d79026 turn after seal  
 - Worktree scan is caution-only  
 - Schema fields for align exist; runtime ships in SLC-02…04  
 
@@ -102,10 +102,10 @@ Long prose does **not** live in `.spec-ledger`. Seal digests this file via `spec
 
 - [ ] This Markdown matches what you want built  
 - [ ] Verticals / out-of-scope / skip rules OK  
-- [ ] Then: `node packages/ledger/dist/cli/main.js workstream seal W-004 --by <you>`
+- [ ] Then: `node packages/ledger/dist/cli/main.js workstream seal 76451749-a54f-8579-96f2-dcec19d79026 --by <you>`
 
 ## Modifications
 
 | When | Link | Summary |
 | --- | --- | --- |
-| 2026-09-04 | T-022 | npm package scope in prose: @nessa → @nessalabs |
+| 2026-09-04 | 94dce089-0388-85af-b02f-ee8f5e0934c8 | npm package scope in prose: @nessa → @nessalabs |

@@ -1,0 +1,34 @@
+{
+  "id": "240c8922-405a-824b-a2d4-e8ecbb5be6bd",
+  "claimId": "2f8cf085-d7a5-83b9-89f8-9d0754cb16a0",
+  "kind": "test",
+  "locator": {
+    "type": "command",
+    "command": "node --test packages/ledger/dist/application/*.break.test.js packages/mcp/dist/lifecycle.test.js"
+  },
+  "test": {
+    "level": "integration",
+    "description": "Run the same work lifecycle through the actual CLI and MCP executables and compare the resulting state. Also attack invalid requests and retry handling.",
+    "source": {
+      "path": "packages/mcp/src/lifecycle.test.ts",
+      "name": "Representative lifecycle assertions; the saved command also runs operation and receipt regressions."
+    },
+    "inputs": "Disposable Git repositories with the same spec and behavior. Submit equivalent permission, begin-work, progress, check, review, close and complete requests through CLI and MCP. Negative cases use denied permissions, stale digests, reused request IDs and missing evidence.",
+    "expected": "Both executables reach the same verified completion state. Equivalent invalid requests return the same error and leave domain state unchanged. An uncertain or duplicate request must not repeat its effect."
+  },
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/bindings/B-SL-023.json",
+        "id": "b-sl-023",
+        "sha256": "384aed9f81570ebda76c5c2aa4d10dacf9417c261b9c8b1b48ef112e9bab3291"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/bindings/B-SL-023.json",
+        "id": "b-sl-023",
+        "sha256": "384aed9f81570ebda76c5c2aa4d10dacf9417c261b9c8b1b48ef112e9bab3291"
+      }
+    },
+    "historical": true
+  }
+}

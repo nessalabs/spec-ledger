@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "ab94071b-121c-4c7a-9579-31ff4a00db16",
+  "turnId": "f649c404-7ab0-436a-8691-8662cd4a139d",
+  "kind": "image",
+  "title": "Overall progress with unfinished work — desktop",
+  "path": ".spec-ledger/evidence/screenshots/discovery-fix/progress-desktop.png",
+  "mediaType": "image/png",
+  "byteLength": 132470,
+  "contentDigest": "0c029b350c17a7dc6660e62f610c27227082734195f761102db25612bb6a2c36",
+  "visualEvidence": {
+    "sliceId": "25eac677-2871-816d-956d-770bdcb61798",
+    "surface": "Overall progress with unfinished work — desktop",
+    "sourceDigest": "7bd5f5b2dd8a1b5c3e7f20a70632596b99441887b4892e8617c871fbfa8cea98",
+    "revisionDigest": "a584acc3319d6700424703bddc1a76f38453c55b9f38d5926321a48842b476c1",
+    "recordedAt": "2026-09-06T21:58:03.549Z"
+  },
+  "note": "Recorded visual coverage; image adequacy is assessed in review."
+}

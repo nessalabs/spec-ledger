@@ -4,33 +4,105 @@
   "title": "Claim",
   "type": "object",
   "additionalProperties": false,
-  "required": ["id", "kind", "statement", "required"],
+  "required": [
+    "id",
+    "kind",
+    "statement",
+    "required"
+  ],
   "properties": {
     "id": {
       "type": "string",
-      "pattern": "^[A-Z][A-Z0-9]*-[0-9]{3,}([.][0-9]+)?$",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
       "description": "Stable id. Never reuse. Deprecate instead of delete."
     },
     "kind": {
       "type": "string",
-      "enum": ["spec", "adr", "invariant", "protocol", "absence"]
+      "enum": [
+        "spec",
+        "adr",
+        "invariant",
+        "protocol",
+        "absence"
+      ]
     },
-    "statement": { "type": "string", "minLength": 1 },
-    "area": { "type": "string" },
+    "statement": {
+      "type": "string",
+      "minLength": 1
+    },
+    "area": {
+      "type": "string"
+    },
     "required": {
       "type": "boolean",
       "description": "If true, verify fails when no binding or result is missing."
     },
-    "deprecated": { "type": "boolean" },
-    "supersededBy": { "type": "string" },
+    "deprecated": {
+      "type": "boolean"
+    },
+    "supersededBy": {
+      "type": "string"
+    },
     "links": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "dependsOn": { "type": "array", "items": { "type": "string" } },
-        "related": { "type": "array", "items": { "type": "string" } },
-        "docs": { "type": "array", "items": { "type": "string" } }
+        "dependsOn": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "related": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "docs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
       }
+    },
+    "migration": {
+      "type": "object",
+      "properties": {
+        "origins": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "required": [
+              "path",
+              "id",
+              "sha256"
+            ],
+            "properties": {
+              "path": {
+                "type": "string"
+              },
+              "id": {
+                "type": "string"
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "historical": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "origins",
+        "historical"
+      ],
+      "additionalProperties": false
     }
   }
 }

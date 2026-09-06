@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 1,
+  "id": "66c8f120-bf0c-8ecf-83a2-b8350aa01ca9",
+  "status": "closed",
+  "openedAt": "2026-09-03T08:44:49.445Z",
+  "opened": {
+    "producedBy": "@nessa/spec-ledger@0.1.0",
+    "baseCommit": "48961f4799a4dc0f343c1ccf559291eda2e3909c",
+    "treeDigest": "f64702b0233d0205a88b027e2d1a0a5470525e7d007907740d21e579610144f1",
+    "dirtyAtOpen": [
+      "packages/ledger/src/align/check.ts"
+    ],
+    "contextDigest": "cbe3752636451a2131e4930c32c77849cccbbd84d69b04df10ae688692236237",
+    "contextWorkstreamId": "76451749-a54f-8579-96f2-dcec19d79026",
+    "contextSliceId": "654cc896-be04-8523-bb8b-a64161d0e665",
+    "contextSealRevision": 1,
+    "contextGeneratedAt": "2026-09-03T08:44:49.444Z"
+  },
+  "intent": {
+    "userPrompt": "Align check: honor closed-turn approve after commit (CI clean tree)",
+    "restatedGoal": "Keep coverage honest after the turn is closed and committed",
+    "changeType": "feature",
+    "riskLevel": "moderate",
+    "workstreamId": "76451749-a54f-8579-96f2-dcec19d79026",
+    "sliceId": "654cc896-be04-8523-bb8b-a64161d0e665",
+    "featureIds": [
+      "turns",
+      "verify"
+    ]
+  },
+  "closedAt": "2026-09-03T08:45:28.440Z",
+  "facts": {
+    "producedBy": "@nessa/spec-ledger@0.1.0",
+    "commit": "48961f4799a4dc0f343c1ccf559291eda2e3909c",
+    "files": [
+      {
+        "path": ".spec-ledger/reviews/turns/66c8f120-bf0c-8ecf-83a2-b8350aa01ca9/ea266b5b-e540-8c31-880a-83b4d77a2d46.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/turns/66c8f120-bf0c-8ecf-83a2-b8350aa01ca9/1535d257-ca2e-8e23-aad8-e5bf4557ccc7.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/turns/66c8f120-bf0c-8ecf-83a2-b8350aa01ca9.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/align/check.ts",
+        "kind": "modified",
+        "additions": 34,
+        "deletions": 21
+      }
+    ],
+    "touchedNodeIds": [
+      "ledger-core"
+    ],
+    "touchedFeatureIds": [
+      "lattice",
+      "turns",
+      "verify"
+    ],
+    "touchedClaimIds": [],
+    "blastRadius": {
+      "direct": [
+        "ledger-server"
+      ],
+      "transitive": [
+        "ledger-server"
+      ]
+    },
+    "verify": {
+      "ok": true,
+      "ledgerDigest": "9731a4d02e58971ec6e340a4385d32d9fc3c09ad55c0a7f2c137cbc356c9052a",
+      "resultsDigest": "ded3eb2608a70a2e28040c5e1e7c4faa49be0d27b4ffc4d3e2a3ffb91bf72fbb",
+      "treeDigest": "f64702b0233d0205a88b027e2d1a0a5470525e7d007907740d21e579610144f1",
+      "producedAt": "2026-09-03T08:45:28.378Z"
+    },
+    "schemaSurfaceChanged": false,
+    "reviewsDigest": "9b525b095d653b3839183d1358b2d9b77477bef8c4eebdbe5403f65f39a5a30d"
+  },
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/turns/T-018.json",
+        "id": "T-018",
+        "sha256": "b625d8f3b7396cb0765d4f6f676e107066642ee747fe08c9b7d49d25ffb17327"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/turns/T-018.json",
+        "id": "T-018",
+        "sha256": "b625d8f3b7396cb0765d4f6f676e107066642ee747fe08c9b7d49d25ffb17327"
+      }
+    },
+    "historical": true
+  }
+}

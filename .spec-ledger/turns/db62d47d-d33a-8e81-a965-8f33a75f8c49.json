@@ -1,0 +1,185 @@
+{
+  "schemaVersion": 1,
+  "id": "db62d47d-d33a-8e81-a965-8f33a75f8c49",
+  "status": "closed",
+  "openedAt": "2026-09-03T08:46:58.398Z",
+  "opened": {
+    "producedBy": "@nessa/spec-ledger@0.1.0",
+    "baseCommit": "d831b2c155e9cdb87fc4227760c6f46f4dcf2775",
+    "treeDigest": "5fd85d3a5cfe0d24f8f3497260c1515a447e0aa5c9c4ef768bb34b992cfdc71f",
+    "dirtyAtOpen": [],
+    "contextDigest": "cbe3752636451a2131e4930c32c77849cccbbd84d69b04df10ae688692236237",
+    "contextWorkstreamId": "76451749-a54f-8579-96f2-dcec19d79026",
+    "contextSliceId": "654cc896-be04-8523-bb8b-a64161d0e665",
+    "contextSealRevision": 1,
+    "contextGeneratedAt": "2026-09-03T08:46:58.397Z"
+  },
+  "intent": {
+    "userPrompt": "Real sl-dev-break (Fable 5.1) on align check/approve/waiver/gates/hooks — not self-approve",
+    "restatedGoal": "Break the coverage stack for real, then fix every hole",
+    "changeType": "feature",
+    "riskLevel": "moderate",
+    "workstreamId": "76451749-a54f-8579-96f2-dcec19d79026",
+    "sliceId": "654cc896-be04-8523-bb8b-a64161d0e665",
+    "featureIds": [
+      "turns",
+      "verify"
+    ]
+  },
+  "closedAt": "2026-09-03T09:01:49.621Z",
+  "facts": {
+    "producedBy": "@nessa/spec-ledger@0.1.0",
+    "commit": "d831b2c155e9cdb87fc4227760c6f46f4dcf2775",
+    "files": [
+      {
+        "path": ".github/workflows/ci.yml",
+        "kind": "modified",
+        "additions": 2,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/turns/db62d47d-d33a-8e81-a965-8f33a75f8c49/bd58e7c6-9ce7-874a-bd5a-e6e9a5861f00.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/turns/db62d47d-d33a-8e81-a965-8f33a75f8c49/df92dc70-3c83-8096-b0ed-9f2bafae378b.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/turns/db62d47d-d33a-8e81-a965-8f33a75f8c49/4f966094-14f7-8759-9730-e7534dc73f8a.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/turns/db62d47d-d33a-8e81-a965-8f33a75f8c49.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "docs/ci/github-actions.yml",
+        "kind": "modified",
+        "additions": 2,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/align/approve.ts",
+        "kind": "modified",
+        "additions": 82,
+        "deletions": 16
+      },
+      {
+        "path": "packages/ledger/src/align/break.test.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/align/check.break.test.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/align/check.ts",
+        "kind": "modified",
+        "additions": 43,
+        "deletions": 18
+      },
+      {
+        "path": "packages/ledger/src/align/coverage.ts",
+        "kind": "modified",
+        "additions": 8,
+        "deletions": 1
+      },
+      {
+        "path": "packages/ledger/src/align/paths.ts",
+        "kind": "modified",
+        "additions": 19,
+        "deletions": 5
+      },
+      {
+        "path": "packages/ledger/src/cli/main.ts",
+        "kind": "modified",
+        "additions": 29,
+        "deletions": 5
+      },
+      {
+        "path": "packages/ledger/src/git/tree.test.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/git/tree.ts",
+        "kind": "modified",
+        "additions": 39,
+        "deletions": 16
+      },
+      {
+        "path": "packages/ledger/src/index.ts",
+        "kind": "modified",
+        "additions": 1,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/turns/gates.ts",
+        "kind": "modified",
+        "additions": 9,
+        "deletions": 1
+      },
+      {
+        "path": "scripts/git-hooks/pre-push",
+        "kind": "modified",
+        "additions": 5,
+        "deletions": 5
+      }
+    ],
+    "touchedNodeIds": [
+      "ledger-core"
+    ],
+    "touchedFeatureIds": [
+      "lattice",
+      "turns",
+      "verify"
+    ],
+    "touchedClaimIds": [],
+    "blastRadius": {
+      "direct": [
+        "ledger-server"
+      ],
+      "transitive": [
+        "ledger-server"
+      ]
+    },
+    "verify": {
+      "ok": true,
+      "ledgerDigest": "9731a4d02e58971ec6e340a4385d32d9fc3c09ad55c0a7f2c137cbc356c9052a",
+      "resultsDigest": "ded3eb2608a70a2e28040c5e1e7c4faa49be0d27b4ffc4d3e2a3ffb91bf72fbb",
+      "treeDigest": "257ef1ad1c5c9c953f133a88e1b08bdc8ebba3ff0189d4998aa3f9a0a5a48f9e",
+      "producedAt": "2026-09-03T09:01:49.085Z"
+    },
+    "schemaSurfaceChanged": false,
+    "reviewsDigest": "9180c46635695d4b4cb18f170ef18f17497bd1e3fb3302577a08c7ac7b08a830"
+  },
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/turns/T-019.json",
+        "id": "T-019",
+        "sha256": "50f250881982168de5daa1bbe2430e2d2bff055b5ff8daf2b29d3c4157e9445e"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/turns/T-019.json",
+        "id": "T-019",
+        "sha256": "50f250881982168de5daa1bbe2430e2d2bff055b5ff8daf2b29d3c4157e9445e"
+      }
+    },
+    "historical": true
+  }
+}

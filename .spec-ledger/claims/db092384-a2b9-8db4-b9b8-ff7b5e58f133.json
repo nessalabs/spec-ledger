@@ -1,0 +1,30 @@
+{
+  "id": "db092384-a2b9-8db4-b9b8-ff7b5e58f133",
+  "kind": "invariant",
+  "statement": "Publish packages only for an intentional release, with matching versions; ordinary code changes must not publish them.",
+  "area": "core",
+  "required": true,
+  "links": {
+    "docs": [
+      "docs/workstreams/consumer-cli-and-npm-publish.md",
+      ".github/workflows/publish.yml",
+      "docs/architecture/claim-contracts.md"
+    ],
+    "proposedClaimId": "74007d2e-7517-85a2-bd9c-390fae8871a4"
+  },
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/claims/SL-014.json",
+        "id": "SL-014",
+        "sha256": "aca35cd2648119798e69528615fe7af359190b76a158dc8b41bdc16dc056863c"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/claims/SL-014.json",
+        "id": "SL-014",
+        "sha256": "aca35cd2648119798e69528615fe7af359190b76a158dc8b41bdc16dc056863c"
+      }
+    },
+    "historical": true
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "id": "5418d06f-8b16-8d64-b004-408d9eb0f5a9",
+  "status": "accepted",
+  "workstreamId": "29c935b4-56bd-84a0-b887-e280d775f54d",
+  "suggestedLiveId": "ca2529a5-cf17-821c-ae1f-ac3e56178bf2",
+  "statement": "Visual work cannot finish without current screenshot evidence for every declared UI surface.",
+  "requiredEvidence": [
+    "unit",
+    "integration",
+    "e2e"
+  ],
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/proposed-claims/PC-023.json",
+        "id": "PC-023",
+        "sha256": "790b9a87efad7eeca6c375a31e0f4116f148db7562f8739f307851c5e94fa54f"
+      }
+    },
+    "historical": true
+  }
+}

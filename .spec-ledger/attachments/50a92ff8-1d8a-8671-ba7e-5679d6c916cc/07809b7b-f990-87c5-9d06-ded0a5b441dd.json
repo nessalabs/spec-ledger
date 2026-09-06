@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "turnId": "50a92ff8-1d8a-8671-ba7e-5679d6c916cc",
+  "kind": "log-excerpt",
+  "title": "Activity, verified progress and disconnected observations in the browser",
+  "path": "docs/workstreams/815c7a44-59df-8102-9769-bf8a74e49c0c-shared-agent-workflows/evidence/50a92ff8-1d8a-8671-ba7e-5679d6c916cc/browser-check.md",
+  "mediaType": "text/markdown",
+  "contentDigest": "e10aafa1daec42f6a099bf1cf64460fd133d0f930f05e47f2d447f83af1d43ef",
+  "byteLength": 1634,
+  "id": "07809b7b-f990-87c5-9d06-ded0a5b441dd",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/attachments/T-036/A-01.json",
+        "id": "T-036/A-01",
+        "sha256": "f9644cc96dab2297ec28a0af32ac226717c73ac10eb822f3a879a699c422ac33"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/attachments/T-036/A-01.json",
+        "id": "T-036/A-01",
+        "sha256": "f9644cc96dab2297ec28a0af32ac226717c73ac10eb822f3a879a699c422ac33"
+      }
+    },
+    "historical": true
+  }
+}

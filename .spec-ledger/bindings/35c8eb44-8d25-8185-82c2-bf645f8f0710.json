@@ -1,0 +1,33 @@
+{
+  "id": "35c8eb44-8d25-8185-82c2-bf645f8f0710",
+  "claimId": "4d4f7c20-b7e0-86d8-9b17-f45053bbf43b",
+  "kind": "test",
+  "locator": {
+    "type": "command",
+    "command": "node --test packages/ledger/dist/workflows/*.test.js packages/mcp/dist/workflow.lifecycle.test.js"
+  },
+  "test": {
+    "level": "integration",
+    "description": "Follow a custom engineering method through real CLI and MCP calls.",
+    "source": {
+      "path": "packages/mcp/src/workflow.lifecycle.test.ts"
+    },
+    "inputs": "A temporary repository with a local skill and custom stages, including an attestation step, evidence checks and reviews.",
+    "expected": "Selected instructions are preserved; typed outputs gate stages; stale evidence or missing reviews prevents completion. CLI and MCP observe the same result."
+  },
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/bindings/B-SL-024.json",
+        "id": "b-sl-024",
+        "sha256": "a3833ffa39de359c4d773fa84cb1cff56bcca754ed6c664131e339decf1ab034"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/bindings/B-SL-024.json",
+        "id": "b-sl-024",
+        "sha256": "a3833ffa39de359c4d773fa84cb1cff56bcca754ed6c664131e339decf1ab034"
+      }
+    },
+    "historical": true
+  }
+}

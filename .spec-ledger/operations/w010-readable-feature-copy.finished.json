@@ -7,7 +7,7 @@
   "outcome": "succeeded",
   "result": {
     "schemaVersion": 1,
-    "turnId": "T-038",
+    "turnId": "21e1bd8d-8745-8900-b8a5-249314d027be",
     "decision": "Use plain feature outcomes for claim descriptions and Nessa UI syntax highlighting for inspected code.",
     "rationale": "The user is approving behavior, not implementation mechanics. Preserve the exact existing contracts in linked documentation while making visible descriptions understandable. Checks remain unchanged and are rerun because the claim text changed.",
     "basis": {
@@ -22,6 +22,6 @@
       "cause": "The writing guidance named turn and workstream copy but did not explicitly cover claim statements.",
       "specRef": "skills/references/plain-titles.md"
     },
-    "id": "T-038/D-03"
+    "id": "77f20d3d-0f9c-8a04-80c5-fec9140e20c0"
   }
 }

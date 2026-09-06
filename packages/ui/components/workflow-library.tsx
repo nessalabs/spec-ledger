@@ -1,5 +1,8 @@
 'use client'
 
+import { ReadableText } from "@/components/readable-text"
+
+
 import { useEffect, useState } from 'react'
 import { Badge, Button } from '@nessalabs/ui'
 import type { WorkflowLibraryEntry } from '@nessalabs/spec-ledger-client'
@@ -34,7 +37,7 @@ export function WorkflowLibrary({ specs }: { specs: Array<{ id: string; title: s
   }
   return <div className="space-y-6">
     <div className="flex flex-wrap items-end justify-between gap-4">
-      <label className="block w-full max-w-md space-y-2 text-sm">Check compatibility with a spec<select className={field} value={spec} disabled={disabled} onChange={event => setSpec(event.target.value)}><option value="">All saved workflows</option>{specs.map(item => <option key={item.id} value={item.id}>{item.title}</option>)}</select></label>
+      <label className="block w-full max-w-md space-y-2 text-sm">Check compatibility with a spec<select className={field} value={spec} disabled={disabled} onChange={event => setSpec(event.target.value)}><option value="">All saved workflows</option>{specs.map(item => <option key={item.id} value={item.id}><ReadableText>{item.title}</ReadableText></option>)}</select></label>
       <Button disabled={disabled} onClick={() => router.push('/workflows/new')}>New workflow</Button>
     </div>
     {(message || mutation.message) && <p role="status" className="text-sm text-destructive">{message || mutation.message}</p>}
@@ -45,8 +48,8 @@ export function WorkflowLibrary({ specs }: { specs: Array<{ id: string; title: s
         {library.default.profileId && <Button variant="outline" disabled={disabled} onClick={() => { setChange({ action: 'default', profileId: null, title: 'Spec Ledger default', expectedDigest: library.default.digest }) }}>Use as normal</Button>}
       </article>
       {library.entries.map(entry => <article key={entry.id} className="flex flex-wrap items-start justify-between gap-4 rounded-xl border border-border p-5">
-        <div className="min-w-0 flex-1"><div className="flex flex-wrap items-center gap-2"><h2 className="break-words font-semibold">{entry.title}</h2>{entry.isDefault && <Badge variant="outline">Normal</Badge>}</div><p className="mt-1 break-all text-xs text-muted-foreground">{entry.id} · version {entry.digest.slice(0, 8)}</p>{spec && <p className={`mt-3 text-sm ${entry.unusableReason ? 'text-destructive' : 'text-muted-foreground'}`}>{entry.unusableReason ?? 'Available for this spec'}</p>}</div>
-        <div className="flex flex-wrap gap-2"><Button variant="outline" disabled={disabled} onClick={() => router.push(`/workflows/edit/${encodeURIComponent(entry.id)}`)}>Edit {entry.title}</Button>{!entry.isDefault && <Button variant="outline" disabled={disabled} onClick={() => { setChange({ action: 'default', profileId: entry.id, title: entry.title, expectedDigest: library.default.digest }) }}>Use as normal</Button>}<Button variant="ghost" disabled={disabled} onClick={() => { setChange({ action: 'delete', profileId: entry.id, title: entry.title, expectedDigest: entry.digest }) }}>Delete {entry.title}</Button></div>
+        <div className="min-w-0 flex-1"><div className="flex flex-wrap items-center gap-2"><h2 className="break-words font-semibold"><ReadableText>{entry.title}</ReadableText></h2>{entry.isDefault && <Badge variant="outline">Normal</Badge>}</div><p className="mt-1 break-all text-xs text-muted-foreground">Saved workflow</p>{spec && <p className={`mt-3 text-sm ${entry.unusableReason ? 'text-destructive' : 'text-muted-foreground'}`}>{entry.unusableReason ?? 'Available for this spec'}</p>}</div>
+        <div className="flex flex-wrap gap-2"><Button variant="outline" disabled={disabled} onClick={() => router.push(`/workflows/edit/${encodeURIComponent(entry.id)}`)}>Edit <ReadableText>{entry.title}</ReadableText></Button>{!entry.isDefault && <Button variant="outline" disabled={disabled} onClick={() => { setChange({ action: 'default', profileId: entry.id, title: entry.title, expectedDigest: library.default.digest }) }}>Use as normal</Button>}<Button variant="ghost" disabled={disabled} onClick={() => { setChange({ action: 'delete', profileId: entry.id, title: entry.title, expectedDigest: entry.digest }) }}>Delete <ReadableText>{entry.title}</ReadableText></Button></div>
       </article>)}
       {!library.entries.length && <p className="rounded-xl border border-dashed border-border p-8 text-center text-sm text-muted-foreground">No saved workflows yet. Start with the bundled steps, give them a name, and reuse them across specs.</p>}
     </div>}

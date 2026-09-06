@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "requestId": "32a3aa48-73fc-455b-aac6-401e0ba5084d",
+  "operation": "record_decision",
+  "inputDigest": "8ac331fe0e4bf54152b0fd21bf623eb964fb293962dbb6c846aeb7069ad6d52f",
+  "finishedAt": "2026-09-06T21:05:58.910Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "turnId": "259b685b-1331-4088-a691-d3fa16e57424",
+    "decision": "Include the amended progress requirements in the existing audit inventory.",
+    "rationale": "The saved requirement check correctly rejected the three new acceptance items because the audit inventory omitted them. Add each exact criterion and mapping with an explicit fixup provenance note and inspected regression sources, preserving earlier judgments and observations. This repairs the required downstream inventory after the user-directed spec amendment.",
+    "basis": {
+      "at": "2026-09-06T21:05:58.909Z",
+      "contextDigest": "9673bce3abb39f688503581a4ccfee8209d297afed02e0cf66e796249a8a5484",
+      "sealRevision": 2
+    },
+    "id": "a6d8cbaf-bd08-46e1-af94-6418a3814983",
+    "recordedAt": "2026-09-06T21:05:58.909Z",
+    "sequence": 2
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "turnId": "9fa55cfe-6dd6-83c5-8b42-baf619c093c6",
+  "path": "docs/workstreams/3ca37660-1506-8a85-80c6-410a024d9a9a-evidence-first-changes/evidence/9fa55cfe-6dd6-83c5-8b42-baf619c093c6/mcp-verification.txt",
+  "kind": "log-excerpt",
+  "title": "MCP executable test results",
+  "mediaType": "text/plain",
+  "id": "54a93bc3-df3c-8154-8883-a483beadcf9d",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/attachments/T-039/A-02.json",
+        "id": "T-039/A-02",
+        "sha256": "075d4ad03e2bcbc6906c85fba83b63fdcdf0a5cda423e5a3ca5ebb35d056458d"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/attachments/T-039/A-02.json",
+        "id": "T-039/A-02",
+        "sha256": "075d4ad03e2bcbc6906c85fba83b63fdcdf0a5cda423e5a3ca5ebb35d056458d"
+      }
+    },
+    "historical": true
+  }
+}

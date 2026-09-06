@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "requestId": "80aa4857-156f-4d65-bda5-5adf2381c7c5",
+  "operation": "begin_work",
+  "inputDigest": "6cefd5f57c6476d1379c00d6878db8bf71fb21626752a3f90006f061586047d4",
+  "finishedAt": "2026-09-06T21:45:20.329Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "id": "f649c404-7ab0-436a-8691-8662cd4a139d",
+    "status": "open",
+    "openedAt": "2026-09-06T21:45:20.328Z",
+    "opened": {
+      "producedBy": "@nessalabs/spec-ledger@0.1.0",
+      "baseCommit": "abe6c89c204959aa2352ebc9df96d871de843487",
+      "treeDigest": "55060c071f136d216206c2ad52654d6fed3c184704988b222802ee7483e9e614",
+      "dirtyAtOpen": [
+        ".spec-ledger/authority/bd8ecec7-540c-4656-b15a-3afd12a42839.json",
+        ".spec-ledger/reviews/workstreams/815c7a44-59df-8102-9769-bf8a74e49c0c/0de6ad6a-52a0-4600-bc73-a0494ae506e9.json",
+        ".spec-ledger/workstreams/815c7a44-59df-8102-9769-bf8a74e49c0c.json",
+        "docs/workstreams/815c7a44-59df-8102-9769-bf8a74e49c0c-shared-agent-workflows/spec.md"
+      ],
+      "contextDigest": "1d997982cc9ce1d4bbb426ad417ccdb60341e13efa3ab39ed5e0381599ec48e2",
+      "contextWorkstreamId": "815c7a44-59df-8102-9769-bf8a74e49c0c",
+      "contextSliceId": "25eac677-2871-816d-956d-770bdcb61798",
+      "contextSealRevision": 3,
+      "contextGeneratedAt": "2026-09-06T21:45:20.328Z"
+    },
+    "intent": {
+      "userPrompt": "Show progress in the Specs list, clearly identify fixups and link to their details. Make the Overview active count lead to the same identifiable active specs. Continue as a fixup to the existing progress spec.",
+      "restatedGoal": "Find active specs, progress and fixup details",
+      "changeType": "fix",
+      "riskLevel": "high",
+      "workstreamId": "815c7a44-59df-8102-9769-bf8a74e49c0c",
+      "sliceId": "25eac677-2871-816d-956d-770bdcb61798",
+      "featureIds": [
+        "lattice"
+      ]
+    }
+  }
+}

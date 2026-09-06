@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "id": "b4e23404-93bb-891c-bac9-69c942a19621",
+  "turnId": "da654146-9663-8ddb-878a-bfb94c4f904f",
+  "kind": "adversarial",
+  "target": "code",
+  "reviewer": "agent:sl-dev-break",
+  "verdict": "approve",
+  "summary": "Turn pages wrap TurnDocSplit; Related docs are openable; SplitView is in client chunks.",
+  "plainSummary": "Related docs open beside the turn instead of as dead path lists.",
+  "killersCited": [
+    "curl:/turns/f413d965-4b38-89aa-85bd-aae03d8d9aef#Related-docs",
+    "grep:.next/static#SplitView"
+  ],
+  "findings": [
+    {
+      "id": "babfb1eb-3f89-8e17-b376-3068deeb78ee",
+      "severity": "low",
+      "gap": "Related docs must open via SplitView: Static path list did not preview docs beside the turn.",
+      "plainImpact": "You could not read related docs next to the change.",
+      "evidence": {
+        "kind": "command",
+        "command": "curl -s http://127.0.0.1:3737/turns/f413d965-4b38-89aa-85bd-aae03d8d9aef | grep -c 'Click a doc to open'; rg -l SplitView packages/ui/.next/static/chunks | head -1",
+        "observedOutput": "Related docs CTA present; SplitView in client chunk; HTTP 200",
+        "exitCode": 0
+      }
+    }
+  ],
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/reviews/turns/T-011/R-01.json",
+        "id": "T-011/R-01",
+        "sha256": "ba2da10b4c162437e330b86042e5b0b99802e792acfd865e78b805eb639ab059"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/reviews/turns/T-011/R-01.json",
+        "id": "T-011/R-01",
+        "sha256": "ba2da10b4c162437e330b86042e5b0b99802e792acfd865e78b805eb639ab059"
+      }
+    },
+    "historical": true
+  }
+}

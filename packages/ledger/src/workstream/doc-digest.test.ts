@@ -29,7 +29,7 @@ function repo(): string {
   writeFileSync(join(dir, "docs/workstreams/bet.md"), "# bet v1\n", "utf8")
   const ws = {
     schemaVersion: 1 as const,
-    id: "W-100",
+    id: "416a553f-8550-5a4b-b2ab-6bd5a3d58f2a",
     status: "shaped" as const,
     createdAt: new Date().toISOString(),
     featureIds: ["cli"],
@@ -44,19 +44,19 @@ function repo(): string {
   return dir
 }
 
-describe("sealed plan digests (SLC-05)", () => {
+describe("sealed plan digests (7c0eb1c1-f6d3-5b70-941d-b485ee6a075d)", () => {
   it("seal stamps specDocDigest; check-seal fails on silent edit; amend restores", () => {
     const dir = repo()
-    const sealed = sealWorkstream(dir, "W-100", "human")
+    const sealed = sealWorkstream(dir, "416a553f-8550-5a4b-b2ab-6bd5a3d58f2a", "human")
     assert.ok(sealed.seal?.specDocDigest)
     assert.equal(
       sealed.seal?.specDocDigest,
       sha256FileBytes(join(dir, "docs/workstreams/bet.md")),
     )
-    assert.equal(checkSeal(dir, "W-100").ok, true)
+    assert.equal(checkSeal(dir, "416a553f-8550-5a4b-b2ab-6bd5a3d58f2a").ok, true)
 
     writeFileSync(join(dir, "docs/workstreams/bet.md"), "# bet v2\n", "utf8")
-    const drifted = checkSeal(dir, "W-100")
+    const drifted = checkSeal(dir, "416a553f-8550-5a4b-b2ab-6bd5a3d58f2a")
     assert.equal(drifted.ok, false)
     assert.equal(drifted.doc?.status, "drift")
 
@@ -66,20 +66,20 @@ describe("sealed plan digests (SLC-05)", () => {
       JSON.stringify(audit.findings),
     )
 
-    const { amend } = amendWorkstream(dir, "W-100", {
+    const { amend } = amendWorkstream(dir, "416a553f-8550-5a4b-b2ab-6bd5a3d58f2a", {
       by: "human",
       summary: "bump pitch to v2",
     })
     assert.notEqual(amend.beforeDocDigest, amend.afterDocDigest)
-    assert.equal(checkSeal(dir, "W-100").ok, true)
+    assert.equal(checkSeal(dir, "416a553f-8550-5a4b-b2ab-6bd5a3d58f2a").ok, true)
     assert.equal(auditLedger(dir).ok, true)
   })
 
   it("missing expected digest fails until backfill", () => {
     const dir = repo()
-    const sealed = sealWorkstream(dir, "W-100", "human")
+    const sealed = sealWorkstream(dir, "416a553f-8550-5a4b-b2ab-6bd5a3d58f2a", "human")
     // Simulate pre-feature seal: strip digests
-    const live = loadWorkstream(dir, "W-100")
+    const live = loadWorkstream(dir, "416a553f-8550-5a4b-b2ab-6bd5a3d58f2a")
     assert.ok(live.seal)
     const { specDocDigest: _drop, ...restSeal } = live.seal
     live.seal = restSeal
@@ -90,39 +90,39 @@ describe("sealed plan digests (SLC-05)", () => {
     delete snap.specDocDigest
     writeFileSync(snapPath, JSON.stringify(snap, null, 2))
 
-    const missing = checkSeal(dir, "W-100")
+    const missing = checkSeal(dir, "416a553f-8550-5a4b-b2ab-6bd5a3d58f2a")
     assert.equal(missing.ok, false)
     assert.equal(missing.doc?.status, "missing-expected")
     assert.ok(
       auditLedger(dir).findings.some((f) => f.rule === "spec-doc-digest-missing"),
     )
 
-    const filled = backfillDocDigest(dir, "W-100", "human")
+    const filled = backfillDocDigest(dir, "416a553f-8550-5a4b-b2ab-6bd5a3d58f2a", "human")
     assert.ok(filled.seal?.specDocDigest)
     assert.equal(filled.seal!.revision, sealed.seal!.revision + 1)
-    assert.equal(checkSeal(dir, "W-100").ok, true)
+    assert.equal(checkSeal(dir, "416a553f-8550-5a4b-b2ab-6bd5a3d58f2a").ok, true)
   })
 
   it("amend refuses no-op and requires backfill first", () => {
     const dir = repo()
-    sealWorkstream(dir, "W-100", "human")
+    sealWorkstream(dir, "416a553f-8550-5a4b-b2ab-6bd5a3d58f2a", "human")
     assert.throws(
       () =>
-        amendWorkstream(dir, "W-100", {
+        amendWorkstream(dir, "416a553f-8550-5a4b-b2ab-6bd5a3d58f2a", {
           by: "human",
           summary: "noop",
         }),
       /no byte change/,
     )
 
-    const live = loadWorkstream(dir, "W-100")
+    const live = loadWorkstream(dir, "416a553f-8550-5a4b-b2ab-6bd5a3d58f2a")
     const { specDocDigest: _d, ...rest } = live.seal!
     live.seal = rest
     live.postSealAmends = []
     writeWorkstream(dir, live)
     assert.throws(
       () =>
-        amendWorkstream(dir, "W-100", {
+        amendWorkstream(dir, "416a553f-8550-5a4b-b2ab-6bd5a3d58f2a", {
           by: "human",
           summary: "x",
         }),
@@ -132,8 +132,8 @@ describe("sealed plan digests (SLC-05)", () => {
 
   it("seal-digest-drift when live payload diverges", () => {
     const dir = repo()
-    sealWorkstream(dir, "W-100", "human")
-    const live = loadWorkstream(dir, "W-100")
+    sealWorkstream(dir, "416a553f-8550-5a4b-b2ab-6bd5a3d58f2a", "human")
+    const live = loadWorkstream(dir, "416a553f-8550-5a4b-b2ab-6bd5a3d58f2a")
     live.title = "changed without reseal"
     writeWorkstream(dir, live)
     const findings = auditLedger(dir).findings

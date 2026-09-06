@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "efc1f0a4-7911-8163-b194-906c6ae5f62a",
+  "status": "proposed",
+  "workstreamId": "eab32d2d-6c3c-84df-b831-9bcc13fd0152",
+  "kind": "invariant",
+  "statement": "Spec Ledger creates UUID identities and migrates parallel histories without collisions or fabricated evidence.",
+  "required": true,
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/proposed-claims/PC-024.json",
+        "id": "PC-024",
+        "sha256": "fcc2075975fb43f1a9f1a805f189fdaebe41dbb4808f0a60864d31297813a049"
+      }
+    },
+    "historical": true
+  }
+}

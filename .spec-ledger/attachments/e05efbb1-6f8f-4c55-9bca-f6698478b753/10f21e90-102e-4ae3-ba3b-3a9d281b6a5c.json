@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "10f21e90-102e-4ae3-ba3b-3a9d281b6a5c",
+  "turnId": "e05efbb1-6f8f-4c55-9bca-f6698478b753",
+  "kind": "image",
+  "title": "Code map with named requirements",
+  "path": ".spec-ledger/evidence/screenshots/titles-graph.png",
+  "mediaType": "image/png",
+  "byteLength": 89839,
+  "contentDigest": "b7f587418c0b5de4131a164fbd832c8213efdd70789cd1bbd5039ddc3ff71f10",
+  "visualEvidence": {
+    "sliceId": "596b8830-61c6-887a-b6c3-9ae0561f2761",
+    "surface": "Code map with named requirements",
+    "sourceDigest": "2c81a42393bbb2b7cf47f690a1f7bdcfeb50ce2595229ef12512d1a4c4855801",
+    "revisionDigest": "4cc7f69286eb0f9161f84f0f1945fb6adbbad39ef04f13ac00f2b7c8e8f48937",
+    "recordedAt": "2026-09-06T20:36:11.284Z"
+  },
+  "note": "Recorded visual coverage; image adequacy is assessed in review."
+}

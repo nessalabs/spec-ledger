@@ -1,3 +1,4 @@
+import { checkVisualEvidence } from "../evidence/visual.js"
 import { claimEvidence, attachmentEvidence } from "./evidence.js"
 import { listAttachmentsForTurn } from "../episodes/load.js"
 import { loadLedger } from "../fs/load.js"
@@ -66,7 +67,7 @@ export function recordProgress(root: string, input: {
 export function getSession(root: string, workstreamId?: string) {
   const workstreams = listWorkstreams(root)
   const active = workstreams.filter(w => ["active", "sealed", "shaped", "draft"].includes(w.status))
-  const choices = workstreams.filter(w => w.status !== "cancelled").sort((a,b) => b.id.localeCompare(a.id))
+  const choices = workstreams.filter(w => w.status !== "cancelled").sort((a,b) => (b.createdAt ?? "").localeCompare(a.createdAt ?? "") || b.id.localeCompare(a.id))
   const selected = workstreamId ?? (active.length === 1 ? active[0].id : active.length === 0 ? choices.find(w => w.status === "done")?.id : undefined)
   if (!selected) return {
     observedAt: new Date().toISOString(), selectionRequired: active.length > 1,
@@ -80,7 +81,7 @@ export function getSession(root: string, workstreamId?: string) {
   const sourceDigest = computeTreeDigest(root)
   const turns = ledger.turns.filter(t => t.intent.workstreamId === selected)
   const decisions = turns.flatMap(t => listDecisionsForTurn(root, t.id) as ProgressDecision[])
-    .sort((a,b) => a.id.localeCompare(b.id, undefined, { numeric: true }))
+    .sort((a,b) => (turns.findIndex(t=>t.id===a.turnId)-turns.findIndex(t=>t.id===b.turnId)) || (a.sequence ?? 0)-(b.sequence ?? 0) || (a.recordedAt ?? "").localeCompare(b.recordedAt ?? ""))
   const current = decisions.filter(d => d.progress?.revisionDigest === revisionDigest && d.progress.sourceDigest === sourceDigest)
   const mapping = ws.acceptanceClaimIds ?? {}
   const criteria = acceptanceItems(ws).map(c => {
@@ -105,6 +106,7 @@ export function getSession(root: string, workstreamId?: string) {
   for (const criterion of criteria.filter(c => c.evidence === "fail")) attention.push(`A required check failed: ${criterion.text}`)
   if (unresolvedBlockingReviews(reviews).length) attention.push("Blocking review findings remain unresolved.")
   if (ws.policy?.requireCodeBreak !== false && !codeBreakSatisfied(reviews, sourceDigest)) attention.push("A code review of the current source is required.")
+  const visualEvidence = checkVisualEvidence(root, selected)
   const workflow = projectWorkflow(root, selected)
   const sealOk = checkSeal(root, selected).ok
   const criteriaDone = criteria.length > 0 && criteria.every(c => c.implemented && c.evidence === "pass")
@@ -115,26 +117,27 @@ export function getSession(root: string, workstreamId?: string) {
   const slicesReviewed = slices.filter(sl => reviews.some(r => r.id === sl.codeBreakReviewId && codeBreakSatisfied([r], sourceDigest))).length
   const workflowSelected = Boolean(workflow.profile.snapshotId)
 
-  /**
-   * The same conditions the reasons list uses, evaluated both ways so a reader
-   * can see what is already done rather than only what is missing. "started"
-   * means real progress exists but the requirement is not met yet — it never
-   * stands in for a passing check.
-   */
+  const noBlockingFindings = unresolvedBlockingReviews(reviews).length === 0
+  const currentCodeReview = codeBreakSatisfied(reviews, sourceDigest)
+  const workflowOutputs = workflow.stages.filter(stage => stage.status !== "not-applicable").flatMap(stage => stage.requiredOutputs)
+  const screenshotCount = visualEvidence.surfaces.length
+
+  /** Stable completion tasks, rather than a count of disappearing diagnostics. */
   const state = (done: boolean, started = false): CompletionState => done ? "done" : started ? "in-progress" : "todo"
   const checklist: CompletionChecklistItem[] = [
-    // Anything already demanding attention is a real outstanding item, so it
-    // belongs in the one list rather than repeated underneath it.
-    ...attention.map((label, index) => ({ id: `attention-${index}`, label, state: "todo" as CompletionState })),
+    { id: "permission", label: "Permission to complete this work", state: state(permission.allowed) },
     { id: "seal", label: "Spec snapshot recorded and unchanged", state: state(sealOk) },
     { id: "criteria", label: "Every requirement implemented with passing evidence", state: state(criteriaDone, criteriaStarted), done: criteria.filter(c => c.implemented && c.evidence === "pass").length, total: criteria.length },
     { id: "turn", label: "No turn left open", state: state(!turnOpen) },
+    { id: "review-findings", label: "No unresolved blocking review findings", state: state(noBlockingFindings) },
     ...(ws.policy?.requireSpecBreak !== false ? [{ id: "spec-review", label: "Independent review of the current spec", state: state(specReviewed) }] : []),
-    ...(ws.policy?.requireCodeBreak !== false ? [{ id: "code-review", label: "Every slice reviewed against the current source", state: state(slicesReviewed === slices.length && slices.length > 0, slicesReviewed > 0), done: slicesReviewed, total: slices.length }] : []),
-    ...(workflowSelected ? [{ id: "workflow", label: "Chosen workflow's required results recorded", state: state(workflow.status === "satisfied", workflow.status === "running") }] : []),
+    ...(ws.policy?.requireCodeBreak !== false ? [{ id: "code-review", label: slices.length ? "Every slice reviewed against the current source" : "Independent review of the current source", state: state(currentCodeReview && slicesReviewed === slices.length, slicesReviewed > 0), done: slices.length ? slicesReviewed : Number(currentCodeReview), total: Math.max(1, slices.length) }] : []),
+    ...(obligations.length ? [{ id: "deferrals", label: "Required deferred commitments resolved", state: state(obligations.every(o => o.state === "resolved"), obligations.some(o => o.state === "resolved")), done: obligations.filter(o => o.state === "resolved").length, total: obligations.length }] : []),
+    ...(screenshotCount || !visualEvidence.ok ? [{ id: "screenshots", label: "Current screenshots for every required screen", state: state(visualEvidence.ok, visualEvidence.surfaces.some(surface => surface.satisfied)), done: visualEvidence.surfaces.filter(surface => surface.satisfied).length, total: Math.max(1, screenshotCount) }] : []),
+    ...(workflowSelected ? [{ id: "workflow", label: "Chosen workflow's required results recorded", state: state(workflow.status === "satisfied", workflow.status === "running"), done: workflowOutputs.length ? workflowOutputs.filter(output => output.satisfied).length : Number(workflow.status === "satisfied"), total: Math.max(1, workflowOutputs.length) }] : []),
   ]
 
-  const completionReasons = [...attention]
+  const completionReasons = [...attention, ...visualEvidence.reasons]
   if (!sealOk) completionReasons.push("The spec snapshot is missing or has changed.")
   if (!criteriaDone) completionReasons.push("Every acceptance criterion needs current implementation and passing evidence.")
   if (turnOpen) completionReasons.push("Close the open turn before completing the workstream.")
@@ -155,7 +158,7 @@ export function getSession(root: string, workstreamId?: string) {
     if (seen.has(d.decision)) return false
     seen.add(d.decision); return true
   }).slice(0, 12)
-    .map(d => ({ id: d.id, summary: d.decision, reason: d.rationale, discovery: d.discovery }))
+    .map(d => ({ id: d.id, turnId: d.turnId, recordedAt: d.recordedAt ?? d.basis?.at ?? null, summary: d.decision, reason: d.rationale, discovery: d.discovery }))
   const handoff = (action: "approve" | "deny") =>
     `spec-ledger permission ${action} --workstream ${selected} --revision ${revisionDigest} --source 'user:cli-handoff'`
   return {
@@ -167,8 +170,8 @@ export function getSession(root: string, workstreamId?: string) {
       reviews: reviews.map(r => ({ id: r.id, turnId: r.turnId, target: r.target, verdict: r.verdict,
         summary: r.plainSummary ?? r.summary, findings: r.findings ?? [], residualRisks: r.residualRisks ?? [],
         current: r.target === "spec" ? r.revisionDigest === revisionDigest : Boolean(sourceDigest && r.treeDigest === sourceDigest) })),
-      artifacts: turns.flatMap(t => listAttachmentsForTurn(root, t.id)).map(a => attachmentEvidence(root, a)),
-      permission, authorityDigest: authorityStateDigest(root), attention, criteria, activity, obligations, workflow, executionActivity,
+      artifacts: (() => { const budget = { remaining: 2 * 1024 * 1024 }; return turns.flatMap(t => listAttachmentsForTurn(root, t.id)).map(a => attachmentEvidence(root, a, budget)) })(),
+      visualEvidence, permission, authorityDigest: authorityStateDigest(root), attention, criteria, activity, obligations, workflow, executionActivity,
       completion: { eligible: permission.allowed && completionReasons.length === 0, reasons: completionReasons, checklist },
       openTurnIds: turns.filter(t => t.status === "open").map(t => t.id),
       evidenceCount: criteria.filter(c => c.evidence === "pass").length,

@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "requestId": "710f6fed-2c63-4579-a935-ac736c965906",
+  "operation": "record_review",
+  "inputDigest": "7b8a7a28b755a40c629be0563ecf658df390e03456eac632131f628171019c03",
+  "finishedAt": "2026-09-06T20:18:08.091Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "workstreamId": "eab32d2d-6c3c-84df-b831-9bcc13fd0152",
+    "kind": "adversarial",
+    "target": "spec",
+    "reviewer": "agent:sl-plan-break-spec",
+    "verdict": "approve",
+    "blocking": false,
+    "plainSummary": "Recorded progress notes get their own Updates tab while Changes keeps implementation history and existing links remain usable.",
+    "summary": "Independent bounded spec review of the additional Updates presentation scope, grounded in refreshed related pack and existing read-only client/UI and navigation obligations. The current amendment explicitly uses existing recorded updates, dates, summaries, reasons and related change links, preserves direct links and browser history, and requires an honest empty state. Desktop/mobile Updates captures are added without dropping previous surfaces. No composer, write endpoint, new activity facts or verification semantics are introduced. No blocking spec gaps found; current revision is ready for a preserved executable snapshot under existing user authorization.",
+    "alertOnSeverity": "high",
+    "findings": [],
+    "supersedesReviewId": "47cc4425-655a-4c92-8663-4f3d8733ce1c",
+    "residualRisks": [
+      "Implementation should preserve old update deep links when moving their presentation and test back/forward plus keyboard navigation.",
+      "Only recorded dates and attributed content should appear; missing timestamps or related changes must remain honest instead of being inferred as fresh updates.",
+      "Check populated and empty Updates views, mobile overflow, and the no-visible-identity rule using the actual app and migrated records.",
+      "The related tool still provides generic worktree caution text rather than actual sibling-path scan evidence."
+    ],
+    "id": "5ab16e1d-5768-4fa1-a2ce-99d3aee8209c",
+    "revisionDigest": "4cc7f69286eb0f9161f84f0f1945fb6adbbad39ef04f13ac00f2b7c8e8f48937"
+  }
+}

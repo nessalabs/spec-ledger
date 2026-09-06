@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "turnId": "5dd1e1ca-a98f-4d5a-a82d-82035dc40943",
+  "decision": "Move the progress correction to its existing spec.",
+  "rationale": "The user corrected the routing: this changes existing progress behavior. The original progress bar was introduced under Guide agents and follow verified work. Classify the omitted all-task denominator as a spec gap and the missing unfinished-work case as a verification gap. Amend that owning spec, retain this mistaken workstream as cancelled history, and continue through a newly preserved revision and independent review.",
+  "basis": {
+    "at": "2026-09-06T20:57:05.539Z",
+    "contextDigest": "018304af2e6ea18d9b6e24482b2c577fa44d1274c47d6e7ab9c05f948486846e",
+    "sealRevision": 1
+  },
+  "id": "3ec7feb5-ac54-4aa3-9575-2a10f0a582e4",
+  "recordedAt": "2026-09-06T20:57:05.539Z",
+  "sequence": 1
+}

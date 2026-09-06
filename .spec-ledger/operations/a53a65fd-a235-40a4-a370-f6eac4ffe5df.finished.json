@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "requestId": "a53a65fd-a235-40a4-a370-f6eac4ffe5df",
+  "operation": "record_review",
+  "inputDigest": "f01ab5c19922d70f0c7e729453666859a41a840dcf476f7f62b81cea77ed1dfb",
+  "finishedAt": "2026-09-06T20:42:24.764Z",
+  "outcome": "succeeded",
+  "result": {
+    "workstreamId": "eab32d2d-6c3c-84df-b831-9bcc13fd0152",
+    "kind": "adversarial",
+    "target": "code",
+    "reviewer": "agent:sl-dev-break",
+    "verdict": "approve",
+    "blocking": false,
+    "plainSummary": "Names remain readable throughout the interface, and Updates shows recorded task activity with dates and links to the correct change.",
+    "summary": "Scoped approval for readable identity presentation and the separate Updates tab under revision 3. Independent presentation killers initially exposed UUID prose and tooltip leaks, then passed after production fixes while retaining exact raw evidence, commands, routes and markdown destinations. Updates navigation and projection checks cover deep links, browser history, isolated Changes content, recorded date precedence, honest missing dates and the originating turn link. Independently ran 33 UI adversarial tests and five session tests; final builder UI run passed all 56 tests and verifier passed 35 claims. Inspected all 13 final screenshots across every declared surface plus requirement preview. The mobile Changes inspection exposed truncated indistinguishable titles; the final refreshed image confirms all four goals are readable after the responsive fix. Current visual evidence gate passes. This approval does not establish external organization publishing credentials.",
+    "killersCited": [
+      "packages/ui/lib/identity-presentation.break.test.mjs::identity presentation breaker: duplicate titled specs keep separate targets without UUID prose or tooltips",
+      "packages/ui/lib/identity-presentation.break.test.mjs::identity presentation breaker: requirement labels and document tooltips hide identities but retain distinct claim routes",
+      "packages/ui/lib/identity-presentation.break.test.mjs::identity presentation breaker: missing work titles use an honest fallback while change routes stay exact",
+      "packages/ui/lib/identity-presentation.break.test.mjs::identity presentation breaker: generated peek prose hides IDs while markdown destinations preserve identity",
+      "packages/ui/lib/identity-presentation.break.test.mjs::identity presentation breaker: raw check source and command bytes survive label presentation",
+      "packages/ui/lib/identity-presentation.break.test.mjs::identity presentation breaker: prose conversion retains code blocks and exact markdown destinations",
+      "packages/ui/lib/navigation.break.test.mjs::Updates has a distinct deep link and browser history restores the isolated selected tab",
+      "packages/ui/lib/navigation.break.test.mjs::Updates shows recorded dates or an honest absence and links to the real turn instead of the decision",
+      "packages/ledger/src/session/session.break.test.ts::activity preserves the originating turn and recorded dates without inventing missing historical dates"
+    ],
+    "findings": [],
+    "alertOnSeverity": "high",
+    "residualRisks": [
+      "Organization-wide NPM_TOKEN configuration remains outside this scoped code approval.",
+      "Actual repository screenshots show empty experiments and the bundled workflow; populated records are exercised by existing fixtures.",
+      "Bounded adversarial and visual inspection cannot establish every possible historic prose variation."
+    ],
+    "schemaVersion": 1,
+    "id": "a7dff9d4-95c9-484d-849c-1a7af6109f7b",
+    "turnId": "e05efbb1-6f8f-4c55-9bca-f6698478b753",
+    "treeDigest": "9cb69fbe142bdc23c828db8c97033f676cb8135735bc1b2fe4d4e01ac0812e05"
+  }
+}

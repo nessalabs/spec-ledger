@@ -1,0 +1,21 @@
+{
+  "id": "1ea8304f-a051-8234-b7a7-ce31b25eccf2",
+  "statement": "Follow optional iterative goals and experiment results while ordinary tasks and their verification rules continue unchanged.",
+  "required": true,
+  "kind": "invariant",
+  "links": {
+    "docs": [
+      "docs/architecture/experiments.md"
+    ]
+  },
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/claims/SL-032.json",
+        "id": "SL-032",
+        "sha256": "fa907bd8557ea1c4e21961fc56578c6d27dd99e316369297fb00d62f16c6aa52"
+      }
+    },
+    "historical": true
+  }
+}

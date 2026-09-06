@@ -11,9 +11,9 @@
     "reviewer": "agent:sl-dev-break:library",
     "verdict": "approve",
     "blocking": false,
-    "resolvesReviewId": "T-043/R-01",
+    "resolvesReviewId": "763cf81f-c7d3-8c90-b260-9816dcb9735e",
     "resolvesFindingIds": [
-      "F-01"
+      "763cf81f-c7d3-8c90-b260-9816dcb9735e#bd3a61de-f2a7-87e7-94ff-98c99ade0c51"
     ],
     "summary": "Five independent boundary tests pass. The unsafe-pointer partial-delete killer failed before the builder preflight fix and passes unchanged afterward. CLI and stdio MCP exercise library options, validation preview, named provenance and target coverage, retries, duplicate save, stale edit/delete/default, and default deletion fallback; local bridge poison and origin attacks leave no profiles; symlink confinement preserves external files.",
     "plainSummary": "Saved workflows now survive rejected deletes, and the library passes the boundary attack tests.",
@@ -27,13 +27,13 @@
     "findings": [],
     "alertOnSeverity": "high",
     "residualRisks": [
-      "Bounded SLC-02 review; SLC-03 browser library and picker flows require their own review.",
+      "Bounded ef669c8c-b701-85d9-b2da-638757fed84e review; b37364e8-36d3-8901-a879-3a6e32f21210 browser library and picker flows require their own review.",
       "One out-of-intent partial-failure killer used; no performance/load hunt because performanceCritical is false.",
       "Final run: node --test packages/ledger/dist/workflows/library-storage.break.test.js packages/mcp/dist/library.boundary.break.test.js; 5 pass, 0 fail."
     ],
     "schemaVersion": 1,
-    "id": "T-043/R-02",
-    "turnId": "T-043",
+    "id": "197f4ea8-8881-84a4-b649-1567abcc3be0",
+    "turnId": "04950e3b-cb26-8f4a-b697-4ba532189238",
     "treeDigest": "ba844f3d36db65f90547ba661e8265b694f58d7536aa4e035c153b435b814854"
   }
 }

@@ -1,0 +1,37 @@
+✔ visual breaker: digest mismatch, remote paths, type mismatch and escaping symlinks never expose image bytes (1.956ms)
+✔ visual breaker: per-image and shared image budgets are enforced across attachments (3.77825ms)
+✔ visual breaker: truncated image headers cannot be offered as valid previews (1.068167ms)
+✔ visual breaker: exhausted image budget still preserves bounded text findings (0.43625ms)
+✔ passive evidence render keeps authored expectations distinct and escapes test source (10.329167ms)
+✔ actual failures and tampered logs remain visible independently of a described expectation (1.56375ms)
+✔ uncertain HTTP response reconnects with the same request identity (2.332667ms)
+✔ section history returns from execution to exact acceptance without hiding the evidence (24.032625ms)
+✔ unknown or obsolete fragments do not strand readers in an invisible section (0.152625ms)
+✔ mobile navigation closes on same-page selection and route change but preserves modified clicks (28.356083ms)
+✔ live Updates remain separate from server change history without key warnings (12.252333ms)
+✔ the in-page workflow retains its picker and process state when live data changes workstream (2.944583ms)
+✔ a deleted library name stays visible with its preserved version while switching is pending (8.551625ms)
+✔ workflow definition has one library route and the old per-spec route no longer resolves (0.166666ms)
+✔ Updates has a distinct deep link and browser history restores the isolated selected tab (5.763875ms)
+✔ Updates shows recorded dates or an honest absence and links to the real turn instead of the decision (13.524ms)
+✔ overview keeps permission and problems visible with direct spec, evidence and history links (64.89675ms)
+✔ approved work does not request approval again and disconnected approval stays disabled (19.359167ms)
+✔ simpler progress keeps incomplete and historical limits visible even when all checks pass (8.633208ms)
+✔ failed missing attested and unmapped requirements keep honest statuses on expandable requirements (2.084875ms)
+✔ simplified feature observation still exposes disconnection without replacing the requested spec (9.592792ms)
+✔ opening proof reads evidence without posting a command (11.354709ms)
+✔ requirement expansion mounts proof only on demand and screenshot labels never imply current pass (7.399ms)
+✔ passing run metadata stays collapsed while output failures and historical warnings remain visible (26.056125ms)
+✔ completion keeps finished planning ahead of implementation and never changes supplied states or counts (0.963708ms)
+✔ overall progress counts unfinished groups despite every check passing and ignores repeated diagnostics (1.245042ms)
+✔ each applicable completion gate prevents full progress independently of passing checks (0.858584ms)
+✔ missing or contradictory completion observations stay unknown and historical readiness cannot rewrite completion (0.67ms)
+✔ contradictory grouped done counts cannot report completion (0.139791ms)
+ℹ tests 29
+ℹ suites 0
+ℹ pass 29
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 267.468875

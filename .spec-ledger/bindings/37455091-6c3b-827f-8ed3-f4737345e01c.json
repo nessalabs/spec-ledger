@@ -1,0 +1,33 @@
+{
+  "id": "37455091-6c3b-827f-8ed3-f4737345e01c",
+  "claimId": "259e1acf-d082-8bfe-b0ab-76fab45ae7d0",
+  "kind": "test",
+  "locator": {
+    "type": "command",
+    "command": "node --test packages/ledger/dist/cli/init.test.js packages/ledger/dist/cli/init.break.test.js"
+  },
+  "test": {
+    "level": "integration",
+    "description": "Initialize a fresh checkout and try initializing it again.",
+    "source": {
+      "path": "packages/ledger/src/cli/init.break.test.ts"
+    },
+    "inputs": "Disposable empty, existing, partially initialized and unsafe filesystem fixtures.",
+    "expected": "Initialization creates the specified ledger skeleton with ledger.json last; reinitialization is refused and no passing claim or binding status is invented."
+  },
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/bindings/b-sl-011.json",
+        "id": "b-sl-011",
+        "sha256": "07718bdad706c922f2b9ea970212bbb46bb5c82e9d52417ac80b50a0261e4b2a"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/bindings/b-sl-011.json",
+        "id": "b-sl-011",
+        "sha256": "07718bdad706c922f2b9ea970212bbb46bb5c82e9d52417ac80b50a0261e4b2a"
+      }
+    },
+    "historical": true
+  }
+}

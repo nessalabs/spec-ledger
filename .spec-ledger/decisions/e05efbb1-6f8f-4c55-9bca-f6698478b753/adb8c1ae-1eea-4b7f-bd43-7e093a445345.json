@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "turnId": "e05efbb1-6f8f-4c55-9bca-f6698478b753",
+  "decision": "Readable titles now appear across specs, requirements, changes, previews, workflows and experiments. Migrated work is populated in the current app. Updates has its own dated task feed, while Changes keeps implementation history. Builds, regression tests and all current requirement checks pass. The organization publishing credential remains pending.",
+  "rationale": "Agent-reported progress; evidence is evaluated separately.",
+  "progress": {
+    "criterionIds": [
+      "596b8830-61c6-887a-b6c3-9ae0561f2761/AC-1",
+      "596b8830-61c6-887a-b6c3-9ae0561f2761/AC-2",
+      "596b8830-61c6-887a-b6c3-9ae0561f2761/AC-3"
+    ],
+    "implemented": true,
+    "revisionDigest": "4cc7f69286eb0f9161f84f0f1945fb6adbbad39ef04f13ac00f2b7c8e8f48937",
+    "sourceDigest": "2c81a42393bbb2b7cf47f690a1f7bdcfeb50ce2595229ef12512d1a4c4855801",
+    "preview": {
+      "url": "http://127.0.0.1:3844/workstreams/eab32d2d-6c3c-84df-b831-9bcc13fd0152#updates",
+      "label": "Task updates"
+    }
+  },
+  "id": "adb8c1ae-1eea-4b7f-bd43-7e093a445345",
+  "recordedAt": "2026-09-06T20:34:47.646Z",
+  "sequence": 1
+}

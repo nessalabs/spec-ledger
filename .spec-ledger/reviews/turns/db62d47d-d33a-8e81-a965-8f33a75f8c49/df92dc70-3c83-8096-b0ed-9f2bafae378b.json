@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "id": "df92dc70-3c83-8096-b0ed-9f2bafae378b",
+  "turnId": "db62d47d-d33a-8e81-a965-8f33a75f8c49",
+  "workstreamId": "76451749-a54f-8579-96f2-dcec19d79026",
+  "kind": "adversarial",
+  "target": "code",
+  "reviewer": "agent:sl-dev-break",
+  "verdict": "approve",
+  "blocking": false,
+  "resolvesReviewId": "bd58e7c6-9ce7-874a-bd5a-e6e9a5861f00",
+  "treeDigest": "257ef1ad1c5c9c953f133a88e1b08bdc8ebba3ff0189d4998aa3f9a0a5a48f9e",
+  "summary": "Re-run after builder prod-only fix: all 10 killer tests red→green for the intended reasons (32/32 suite green); killers byte-identical to R-01. Command killers re-run: pre-push without dist now exits 1 ('silence is not skip'); align waiver refuses closed turn (exit 1) and nonexistent turn (exit 1), no orphan waiver written. Fixes verified at root cause: post-close fallback no longer harvests review/waiver digests (only current + facts.verify.treeDigest); treeDigest is content-addressed via hash-object per dirty path; changedPathsSince fails closed on unresolvable base; closed-turn align paths = facts ∪ since-close ∪ dirty; waiverIds resolved; producer passed to gate; '..' normalized; CI fetch-depth set.",
+  "plainSummary": "The attack tests failed for those holes, then passed after the fix — this review may ship.",
+  "killersCited": [
+    "packages/ledger/src/align/break.test.ts::dot-dot segments must not smuggle paths into exempt or covered sets",
+    "packages/ledger/src/align/break.test.ts::approve with uncoveredPaths + waiverIds pointing at NO existing waiver must not satisfy",
+    "packages/ledger/src/align/break.test.ts::close gate must refuse hand-written approve whose reviewer equals turn producer",
+    "packages/ledger/src/align/break.test.ts::empty alignReviewerPrefix must not accept any reviewer",
+    "packages/ledger/src/git/tree.test.ts::treeDigest must change when a dirty file's CONTENT changes (same path set)",
+    "packages/ledger/src/git/tree.test.ts::changedPathsSince must fail closed when baseCommit cannot be resolved",
+    "packages/ledger/src/align/check.break.test.ts::new DIRTY uncovered product path after turn close must fail align check",
+    "packages/ledger/src/align/check.break.test.ts::COMMITTED uncovered product path after turn close (clean tree, CI) must fail align check",
+    "packages/ledger/src/align/check.break.test.ts::post-close digest fallback must not accept a waiver whose treeDigest never matched any tree",
+    "packages/ledger/src/align/check.break.test.ts::close must refuse when baseCommit is unresolvable and committed product paths are uncovered",
+    "cmd: pre-push hook without dist → exit 1 (was 0)",
+    "cmd: align waiver --turn <closed> / --turn T-999 → exit 1, no waiver written (was exit 0, orphan AW written)"
+  ],
+  "findings": [],
+  "resolvesFindingIds": [
+    "bd58e7c6-9ce7-874a-bd5a-e6e9a5861f00#7c656ad3-f84e-879a-b37f-e512d970aefe",
+    "bd58e7c6-9ce7-874a-bd5a-e6e9a5861f00#0514fb05-70a5-827f-8e88-fc2e64f95098",
+    "bd58e7c6-9ce7-874a-bd5a-e6e9a5861f00#5f0149bc-a05a-8309-9fe8-3ed3e19c25e7",
+    "bd58e7c6-9ce7-874a-bd5a-e6e9a5861f00#b088d5fa-3174-8e3e-a802-143d317896a9",
+    "bd58e7c6-9ce7-874a-bd5a-e6e9a5861f00#7e07986f-b386-82c1-91eb-467ad2867875",
+    "bd58e7c6-9ce7-874a-bd5a-e6e9a5861f00#961eedd6-6a46-8fe1-9c2c-4c44f57fcb46",
+    "bd58e7c6-9ce7-874a-bd5a-e6e9a5861f00#9b08041f-6dbc-8bf3-9291-4e61c22c98b1",
+    "bd58e7c6-9ce7-874a-bd5a-e6e9a5861f00#ac36704b-0334-8204-a4c9-fb636b888912",
+    "bd58e7c6-9ce7-874a-bd5a-e6e9a5861f00#b9480feb-3dfd-8575-91c4-cc1058cf65ed",
+    "bd58e7c6-9ce7-874a-bd5a-e6e9a5861f00#e8b57761-3eed-88ab-b5d4-c48b4fec4f9c"
+  ],
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/reviews/turns/T-019/R-02.json",
+        "id": "T-019/R-02",
+        "sha256": "8156cd64f9a904e4cecec65dc63e47c0c6bc3ecc88b51f234231b79c56c17961"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/reviews/turns/T-019/R-02.json",
+        "id": "T-019/R-02",
+        "sha256": "8156cd64f9a904e4cecec65dc63e47c0c6bc3ecc88b51f234231b79c56c17961"
+      }
+    },
+    "historical": true
+  }
+}

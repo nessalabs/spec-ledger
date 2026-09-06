@@ -1,10 +1,11 @@
+import { presentationRequire } from './presentation-test-support.mjs'
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 import { createRequire } from 'node:module'
 const require = createRequire(import.meta.url), ts = createRequire(new URL('../../ledger/package.json', import.meta.url))('typescript')
 const React = require('react'), { renderToStaticMarkup } = require('react-dom/server')
-function compile(path, overrides = {}) { const module = { exports: {} }; const output = ts.transpileModule(readFileSync(new URL(path, import.meta.url), 'utf8'), { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022, jsx: ts.JsxEmit.ReactJSX } }).outputText; new Function('require', 'module', 'exports', output)(id => overrides[id] ?? require(id), module, module.exports); return module.exports }
+function compile(path, overrides = {}) { const module = { exports: {} }; const output = ts.transpileModule(readFileSync(new URL(path, import.meta.url), 'utf8'), { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022, jsx: ts.JsxEmit.ReactJSX } }).outputText; new Function('require', 'module', 'exports', output)(id => overrides[id] ?? presentationRequire(id, require), module, module.exports); return module.exports }
 const Box=({children})=>React.createElement('div',null,children)
 const ui={Button:({children,onClick,variant,...props})=>React.createElement('button',props,children),Input:props=>React.createElement('input',props),Checkbox:props=>React.createElement('input',{type:'checkbox',...props}),DropdownMenu:Box,DropdownMenuTrigger:Box,DropdownMenuContent:Box,DropdownMenuRadioGroup:Box,DropdownMenuRadioItem:Box}
 const profile={id:'team',title:'Team workflow',stages:[{id:'build',title:'Build it',role:'implement',steps:[{id:'implement',title:'Implement',skill:'spec-ledger/implement',outputs:[{kind:'implementation-report'}]}]},{id:'test',title:'Test it',role:'verify',steps:[{id:'verify',title:'Verify',skill:'spec-ledger/verify',outputs:[{kind:'check-results'}]}]}]}

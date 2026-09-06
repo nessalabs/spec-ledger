@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "requestId": "5f45bf22-7f9d-4dea-8fe2-d70a6da919f5",
+  "operation": "begin_work",
+  "inputDigest": "f930dcd45d98afb93e31bb26b45e87a85e72595d2f4b813e0df5b4ae6c41b94c",
+  "finishedAt": "2026-09-06T17:59:28.618Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "id": "da66d16d-d4e0-837e-a34b-fb7cec0d855d",
+    "status": "open",
+    "openedAt": "2026-09-06T17:59:28.618Z",
+    "opened": {
+      "producedBy": "@nessalabs/spec-ledger@0.1.0",
+      "baseCommit": "704aef05ecef7aed357353964fb128d65286bf41",
+      "treeDigest": "f6a9036139b2c5b101c913d5da0e968bb779a6a790dbeec425a388b0f8d07adc",
+      "dirtyAtOpen": [
+        ".spec-ledger/authority/f18752a1-6dbd-8d90-b9aa-296b6994935e.json",
+        ".spec-ledger/proposed-claims/5418d06f-8b16-8d64-b004-408d9eb0f5a9.json",
+        ".spec-ledger/reviews/workstreams/29c935b4-56bd-84a0-b887-e280d775f54d/87dc2941-f56d-84c0-bb35-1447bf06bb7f.json",
+        ".spec-ledger/workstreams/29c935b4-56bd-84a0-b887-e280d775f54d.json",
+        "docs/workstreams/29c935b4-56bd-84a0-b887-e280d775f54d-follow-agent-experiments/spec.md"
+      ],
+      "contextDigest": "f03aa05e523d4e1e31f2abdbf69fde693b1878c7b8714fca475429f2c4457b13",
+      "contextWorkstreamId": "29c935b4-56bd-84a0-b887-e280d775f54d",
+      "contextSliceId": "d67e07f2-7343-88d2-afeb-0fe6f3c8c377",
+      "contextSealRevision": 4,
+      "contextGeneratedAt": "2026-09-06T17:59:28.618Z"
+    },
+    "intent": {
+      "userPrompt": "Remove repeated current-pass, successful-exit and finished metadata from passing evidence cards. Enforce current screenshots covering all relevant UI for visual tasks, with clear agent errors identifying missing screenshots.",
+      "restatedGoal": "Require screenshots for visual work and remove repeated passing details",
+      "changeType": "feature",
+      "riskLevel": "moderate",
+      "workstreamId": "29c935b4-56bd-84a0-b887-e280d775f54d",
+      "sliceId": "d67e07f2-7343-88d2-afeb-0fe6f3c8c377",
+      "featureIds": [
+        "turns",
+        "lattice",
+        "cli"
+      ]
+    }
+  }
+}

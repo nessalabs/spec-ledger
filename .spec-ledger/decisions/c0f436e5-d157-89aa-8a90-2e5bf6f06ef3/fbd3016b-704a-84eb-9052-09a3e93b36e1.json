@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "turnId": "c0f436e5-d157-89aa-8a90-2e5bf6f06ef3",
+  "decision": "Choose skills and steps on a dedicated Workflows page, then follow their process and evidence.",
+  "rationale": "Agent-reported progress; evidence is evaluated separately.",
+  "progress": {
+    "criterionIds": [
+      "c8c007db-de84-8eba-ae51-6a8a72d6b28f/AC-1",
+      "c8c007db-de84-8eba-ae51-6a8a72d6b28f/AC-2",
+      "c8c007db-de84-8eba-ae51-6a8a72d6b28f/AC-3"
+    ],
+    "implemented": true,
+    "revisionDigest": "3939da26750223505d6c83ce9c69f1f4ed60694ef987e2f41519d6c89fa6b744",
+    "sourceDigest": "251e9c1b4f3b6dedf6ce0ee30a075c05a39a5f998bb2c93dc90c2d829376320c",
+    "preview": {
+      "url": "http://127.0.0.1:3737/workflows/ba7715db-e75e-84e6-9d91-f9cc61b037a9",
+      "label": "Open workflow"
+    }
+  },
+  "id": "fbd3016b-704a-84eb-9052-09a3e93b36e1",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/decisions/T-041/D-01.json",
+        "id": "T-041/D-01",
+        "sha256": "6862e08aa151d35575bf5f9803e2b5e855ddb8f0c0e30128c2452137cef5a09e"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/decisions/T-041/D-01.json",
+        "id": "T-041/D-01",
+        "sha256": "6862e08aa151d35575bf5f9803e2b5e855ddb8f0c0e30128c2452137cef5a09e"
+      }
+    },
+    "historical": true
+  },
+  "sequence": 1
+}

@@ -1,0 +1,13 @@
+{
+  "statement": "Show readable titles throughout the product UI; internal UUIDs must not appear as labels or reference details. Validate the actual server URL the user is using, including populated migrated records.",
+  "featureIds": [
+    "lattice"
+  ],
+  "source": {
+    "kind": "user-reported",
+    "reference": "User correction on September 6: empty specs on port 3844 and UUID badges in capabilities/code map; requested titles everywhere."
+  },
+  "id": "11603941-5698-4ef1-801c-c7537da4b815",
+  "schemaVersion": 1,
+  "createdAt": "2026-09-06T20:06:01.859Z"
+}
