@@ -1,0 +1,18 @@
+✔ visual breaker: closed turns and revoked permission cannot publish new screenshots (1000.408875ms)
+✔ visual breaker: wrong turn, stale guards and invalid declarations fail closed (407.620625ms)
+✔ visual breaker: malformed images, remote files and escaping attachment paths never publish evidence (767.440667ms)
+✔ visual breaker: completion cannot use missing screenshots or another turn's images to close (1138.296042ms)
+✔ visual breaker: alternative screenshots satisfy distinct surfaces regardless of attachment order (366.834333ms)
+✔ visual evidence blocks close until every current surface is attached, preserves retries, and rejects changed images (1423.74575ms)
+✔ source changes and duplicate screenshot reuse cannot satisfy current coverage (434.039167ms)
+✔ CLI screenshot and evidence check use the shared coverage evaluator (817.693584ms)
+✔ nonvisual work keeps its existing close path (533.162ms)
+✔ MCP exposes missing screenshot guidance and records the same guarded visual coverage (884.088209ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3783.477125

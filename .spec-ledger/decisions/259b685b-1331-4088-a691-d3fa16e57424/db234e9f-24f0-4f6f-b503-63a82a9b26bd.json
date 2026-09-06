@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "turnId": "259b685b-1331-4088-a691-d3fa16e57424",
+  "decision": "Continue the progress fix under its original spec and count the shared completion checklist.",
+  "rationale": "User requested a fixup to existing progress, recorded in learning 330fd73a-cb25-49f1-86a6-324d7aef45e5 and prior discovery decision 3ec7feb5-ac54-4aa3-9575-2a10f0a582e4. Production changes began under the mistakenly separate reviewed plan; that turn was abandoned and workstream cancelled without rewriting history. This newly reviewed preserved amendment owns their continuation. The session owns stable completion tasks, the UI counts actual grouped parts, and missing or contradictory observations remain unknown.",
+  "basis": {
+    "at": "2026-09-06T20:59:28.963Z",
+    "contextDigest": "9673bce3abb39f688503581a4ccfee8209d297afed02e0cf66e796249a8a5484",
+    "sealRevision": 2
+  },
+  "id": "db234e9f-24f0-4f6f-b503-63a82a9b26bd",
+  "recordedAt": "2026-09-06T20:59:28.963Z",
+  "sequence": 1
+}

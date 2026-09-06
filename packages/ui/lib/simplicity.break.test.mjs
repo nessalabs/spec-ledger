@@ -12,7 +12,7 @@ const Evidence=load('../components/workstream-evidence.tsx',{'@/components/evide
 
 test('simpler progress keeps incomplete and historical limits visible even when all checks pass',()=>{
  const full=Progress({total:2,verified:2,implemented:0,remaining:['Code review still required']})
- assert.match(text(full,true),/2\s*\/\s*2\s+verified/);assert.match(text(full,true),/Still needed.*Code review still required/)
+ assert.match(text(full,true),/Completion unavailable/);assert.match(text(full),/2\s*\/\s*2\s+verified/);assert.match(text(full,true),/Still needed.*Code review still required/)
  assert.doesNotMatch(text(full,true),/agent reported/)
  assert.match(text(full),/Current implementation reports:\s*0\s*\/\s*2/)
  const old=Progress({total:2,verified:0,implemented:0,historical:true,unmapped:1,remaining:['Rerun the check']})
@@ -109,4 +109,45 @@ test('completion keeps finished planning ahead of implementation and never chang
  assert.deepEqual(checklist,original)
  assert.match(text(tree),/3\s*\/\s*17\s+verified/)
  assert.deepEqual(rows.map(n=>nodes(n,x=>x.props?.state)[0].props.state),['done','done','in-progress','not-started','not-started','not-started'])
+})
+
+
+test('overall progress counts unfinished groups despite every check passing and ignores repeated diagnostics',()=>{
+ const checklist=[{id:'permission',label:'Permission',state:'done'},{id:'criteria',label:'Requirements',state:'in-progress',done:3,total:4},{id:'code-review',label:'Reviews',state:'in-progress',done:1,total:2},{id:'screenshots',label:'Screens',state:'in-progress',done:2,total:3},{id:'deferrals',label:'Commitments',state:'todo',done:0,total:2},{id:'workflow',label:'Outputs',state:'in-progress',done:2,total:3},{id:'turn',label:'Close work',state:'todo'}]
+ const before=structuredClone(checklist)
+ for(const remaining of [[],['Review missing','Review missing','Review missing']]){
+  const tree=Progress({total:4,verified:4,implemented:3,checklist,completionEligible:false,remaining})
+  assert.equal(nodes(tree,n=>n.props?.role==='progressbar')[0].props['aria-valuenow'],56)
+  assert.match(text(tree,true),/9\/16 complete/)
+  assert.doesNotMatch(text(tree,true),/100%|4\s*\/\s*4\s+verified/)
+  assert.match(text(tree),/4\s*\/\s*4\s+verified/)
+ }
+ assert.deepEqual(checklist,before)
+})
+
+test('each applicable completion gate prevents full progress independently of passing checks',()=>{
+ for(const id of ['permission','seal','spec-review','code-review','review-findings','deferrals','screenshots','workflow','turn']){
+  const checklist=[{id:'criteria',label:'Requirements',state:'done',done:4,total:4},{id,label:'Remaining task',state:'todo'}]
+  const tree=Progress({total:4,verified:4,implemented:4,checklist,completionEligible:false})
+  assert.equal(nodes(tree,n=>n.props?.role==='progressbar')[0].props['aria-valuenow'],80,id)
+ }
+ const tree=Progress({total:4,verified:4,implemented:4,checklist:[{id:'criteria',label:'Requirements',state:'done',done:4,total:4},{id:'turn',label:'Closed',state:'done'}],completionEligible:true})
+ assert.equal(nodes(tree,n=>n.props?.role==='progressbar')[0].props['aria-valuenow'],100)
+})
+
+test('missing or contradictory completion observations stay unknown and historical readiness cannot rewrite completion',()=>{
+ const done=[{id:'criteria',label:'Requirements',state:'done',done:4,total:4}]
+ for(const props of [{total:0,checklist:done,completionEligible:true},{total:4,checklist:[],completionEligible:true},{total:4,checklist:done},{total:4,checklist:done,completionEligible:false},{total:4,checklist:[{id:'criteria',label:'Requirements',state:'todo',done:0,total:4}],completionEligible:true}]){
+  const tree=Progress({verified:4,implemented:4,...props})
+  assert.equal(nodes(tree,n=>n.props?.role==='progressbar')[0].props['aria-valuenow'],undefined)
+  assert.doesNotMatch(text(tree,true),/100%/)
+ }
+ const tree=Progress({total:4,verified:4,implemented:4,historical:true,completionEligible:false,checklist:[...done,{id:'code-review',label:'Current review',state:'todo'}]})
+ assert.match(text(tree,true),/Current readiness.*80%.*Completed earlier/s)
+})
+
+test('contradictory grouped done counts cannot report completion',()=>{
+ const tree=Progress({total:4,verified:4,implemented:4,completionEligible:true,checklist:[{id:'criteria',label:'Requirements',state:'done',done:0,total:4}]})
+ assert.equal(nodes(tree,n=>n.props?.role==='progressbar')[0].props['aria-valuenow'],undefined)
+ assert.doesNotMatch(text(tree,true),/100%/)
 })

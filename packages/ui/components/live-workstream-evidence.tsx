@@ -40,6 +40,7 @@ export function LiveWorkstreamEvidence({
         implemented={session.criteria.filter((criterion) => criterion.implemented).length}
         remaining={session.completion.reasons}
             checklist={session.completion.checklist}
+            completionEligible={session.completion.eligible}
         historical={session.status === "done"}
         unmapped={session.criteria.filter(c => !c.claims.length).length}
       />

@@ -458,7 +458,7 @@
             }
           ],
           "assessment": "superseded",
-          "rationale": "W006 explicitly assigns main prose to docs/workstreams/W-…/spec.md and artifacts to evidence/<run-id>/. This later directory contract supersedes the original flat title-slug shape; the preserved requirement is not silently changed or passed.",
+          "rationale": "W006 explicitly assigns main prose to docs/workstreams/W-\u2026/spec.md and artifacts to evidence/<run-id>/. This later directory contract supersedes the original flat title-slug shape; the preserved requirement is not silently changed or passed.",
           "suggestedClaimIds": [],
           "evidenceSources": [
             "docs/workstreams/a32f3451-1b3d-8abf-bf0e-607ebf6e1a88-trustworthy-autonomous-coding/spec.md"
@@ -468,7 +468,7 @@
         },
         {
           "id": "AC-2",
-          "text": "Sidebar wordmark is specLedger (bold 'spec', regular 'Ledger'); no 'Bets → turns → claims' subtitle under the brand",
+          "text": "Sidebar wordmark is specLedger (bold 'spec', regular 'Ledger'); no 'Bets \u2192 turns \u2192 claims' subtitle under the brand",
           "mappedClaimIds": [],
           "currentEvidence": [
             {
@@ -487,7 +487,7 @@
         },
         {
           "id": "AC-3",
-          "text": "Turn detail leads with plan loaded from workstream specPath Markdown (before/after + ask), before→after diagram or flows, commit subject/body, related docs; FileDiffCard lists product files; build artifacts (.next, node_modules) excluded from impact lists",
+          "text": "Turn detail leads with plan loaded from workstream specPath Markdown (before/after + ask), before\u2192after diagram or flows, commit subject/body, related docs; FileDiffCard lists product files; build artifacts (.next, node_modules) excluded from impact lists",
           "mappedClaimIds": [],
           "currentEvidence": [
             {
@@ -1333,6 +1333,54 @@
             }
           ],
           "nextAction": "Retain mapping; run its saved checks after source changes and inspect current results."
+        },
+        {
+          "id": "25eac677-2871-816d-956d-770bdcb61798/AC-2",
+          "text": "Passing checks cannot produce 100% while any required implementation, review, permission, deferred obligation, screenshot, workflow output, or turn-closure task remains incomplete.",
+          "mappedClaimIds": [
+            "9767b1da-9568-8e2f-ad2a-c2c3eb3e424c",
+            "93abee59-3e8d-809f-a140-d86105b0d865"
+          ],
+          "assessment": "mapped",
+          "rationale": "Added in the user-requested progress fixup. The session and UI breakers exercise incomplete tasks, eligible completion, grouped counts and unknown observations; current saved results must still be inspected separately. This row does not claim historical completion.",
+          "evidenceSources": [
+            "packages/ledger/src/session/session.break.test.ts",
+            "packages/ui/lib/simplicity.break.test.mjs"
+          ],
+          "nextAction": "Inspect the fresh saved check run and the four progress screenshots for the fixup turn.",
+          "addedByTurn": "259b685b-1331-4088-a691-d3fa16e57424"
+        },
+        {
+          "id": "25eac677-2871-816d-956d-770bdcb61798/AC-3",
+          "text": "The progress count covers the applicable completion checklist, counts grouped tasks consistently, avoids counting the same diagnostic twice, and reaches 100% only when the shared completion gate allows completion.",
+          "mappedClaimIds": [
+            "9767b1da-9568-8e2f-ad2a-c2c3eb3e424c",
+            "93abee59-3e8d-809f-a140-d86105b0d865"
+          ],
+          "assessment": "mapped",
+          "rationale": "Added in the user-requested progress fixup. The session and UI breakers exercise incomplete tasks, eligible completion, grouped counts and unknown observations; current saved results must still be inspected separately. This row does not claim historical completion.",
+          "evidenceSources": [
+            "packages/ledger/src/session/session.break.test.ts",
+            "packages/ui/lib/simplicity.break.test.mjs"
+          ],
+          "nextAction": "Inspect the fresh saved check run and the four progress screenshots for the fixup turn.",
+          "addedByTurn": "259b685b-1331-4088-a691-d3fa16e57424"
+        },
+        {
+          "id": "25eac677-2871-816d-956d-770bdcb61798/AC-4",
+          "text": "Overview and spec details show consistent completion progress; evidence counts stay separate, missing scope is indeterminate, and historical completion stays distinct from current rechecking.",
+          "mappedClaimIds": [
+            "9767b1da-9568-8e2f-ad2a-c2c3eb3e424c",
+            "93abee59-3e8d-809f-a140-d86105b0d865"
+          ],
+          "assessment": "mapped",
+          "rationale": "Added in the user-requested progress fixup. The session and UI breakers exercise incomplete tasks, eligible completion, grouped counts and unknown observations; current saved results must still be inspected separately. This row does not claim historical completion.",
+          "evidenceSources": [
+            "packages/ledger/src/session/session.break.test.ts",
+            "packages/ui/lib/simplicity.break.test.mjs"
+          ],
+          "nextAction": "Inspect the fresh saved check run and the four progress screenshots for the fixup turn.",
+          "addedByTurn": "259b685b-1331-4088-a691-d3fa16e57424"
         }
       ]
     }
@@ -1349,8 +1397,8 @@
       "1652e353-e3dc-8960-985b-35fbe40c1edb",
       "815c7a44-59df-8102-9769-bf8a74e49c0c"
     ],
-    "criterionCount": 51,
-    "mappedCriteria": 17,
+    "criterionCount": 54,
+    "mappedCriteria": 20,
     "supersededCriteria": 5,
     "gapCriteria": 29
   },
@@ -1392,5 +1440,12 @@
       "Publication of this version to npm or a production release."
     ],
     "distinction": "The saved-check worker can time out its own child process. That is not cancellation of an external agent or its tools."
-  }
+  },
+  "amendments": [
+    {
+      "at": "2026-09-06T21:05:58.672329+00:00",
+      "turnId": "259b685b-1331-4088-a691-d3fa16e57424",
+      "summary": "Add three progress criteria introduced by amendment to the existing Guide agents and follow verified work spec. Earlier judgments, observations and provenance remain unchanged; scope totals include the new inventory."
+    }
+  ]
 }

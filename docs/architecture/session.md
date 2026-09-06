@@ -23,3 +23,10 @@ The local Spec Ledger UI host saves revision-bound approval and denial through `
 `spec-ledger complete --workstream a32f3451-1b3d-8abf-bf0e-607ebf6e1a88` is a separate completion checkpoint. It activates and evaluates affected deferred commitments, requires current implementation and behavioral evidence for every criterion, required spec/code reviews, valid permission and spec snapshot, and no open turn. Claims-only `verify.ok` does not mean a feature is complete. As with other Git-backed records, these gates protect supported tool paths; a writer with filesystem access is not cryptographically prevented from changing JSON directly.
 
 Human-readable specs, explanations, and useful evidence files live under `docs/workstreams/<id-title>/`. Structured permission, decisions, activation receipts, review records, and evidence indexes live under `.spec-ledger/`. There is no second hand-maintained progress log or backlog database.
+
+
+## Overall completion progress
+
+The primary progress bar counts the session's completion checklist, not passing claims alone. Each criterion requires both a current implementation report and current passing behavioral evidence. Required plan, permission, review, unresolved-finding, deferred-commitment, screenshot, selected-workflow and turn-closure conditions are included. Criteria, slices, required screens and selected workflow outputs contribute their explicit part counts; other gates count as one task. Stable checklist entries prevent the same missing review from being counted again through its diagnostic message.
+
+The UI shows 100% only when every counted task is complete and the shared completion gate is eligible. Missing acceptance scope, missing eligibility, or inconsistent checklist/gate observations are indeterminate. Evidence-only counts remain in the progress details. Historical completion stays recorded separately from readiness on current source. Reads and the progress bar do not run tests or grant completion.

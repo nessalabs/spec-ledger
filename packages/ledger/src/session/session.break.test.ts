@@ -8,10 +8,12 @@ import {createServer} from "node:http"
 import type {AddressInfo} from "node:net"
 import {initLedger} from "../cli/init.js"
 import {loadLedger,writeJson} from "../fs/load.js"
-import {sealWorkstream} from "../workstream/load.js"
+import {loadWorkstream,sealWorkstream} from "../workstream/load.js"
 import {recordAuthority,permissionStatus} from "../permission/authority.js"
 import {sourceFingerprint,checkFingerprint} from "../evidence/fingerprint.js"
 import {recordProgress,getSession,completeWorkstream} from "./project.js"
+import {recordDeferredDecision} from "../deferrals/index.js"
+import {preserveWorkflow} from "../workflows/index.js"
 function fixture(){
  const root=mkdtempSync(join(tmpdir(),"sl-session-break-"));initLedger(root,"session breaker")
  writeFileSync(join(root,"source.ts"),"source")
@@ -101,6 +103,68 @@ describe("session projection adversarial",()=>{
    session=getSession(root,"2b74bc14-227a-5c05-b2ed-1c32d9703cad").session!
    assert.equal(session.criteria[0].implemented,false);assert.equal(session.preview,null)
    assert.throws(()=>recordProgress(root,{turnId:"1c5a8e44-dd09-543a-97d5-bfe173becbaa",summary:"unsafe preview",criterionIds:["AC-1"],implemented:true,preview:{url:"javascript:alert(1)",label:"bad"}}),/HTTP/)
+  }finally{rmSync(root,{recursive:true,force:true})}
+ })
+})
+
+
+describe("overall completion projection adversarial",()=>{
+ const wsId="2b74bc14-227a-5c05-b2ed-1c32d9703cad",turnId="1c5a8e44-dd09-543a-97d5-bfe173becbaa"
+ const session=(root:string)=>getSession(root,wsId).session!
+ const close=(root:string)=>writeJson(join(root,`.spec-ledger/turns/${turnId}.json`),{id:turnId,status:"closed",intent:{workstreamId:wsId,featureIds:["alpha"]}})
+ it("passing evidence does not finish implementation or open work and task totals survive progress",()=>{
+  const root=fixture()
+  try{
+   evidence(root)
+   const initial=session(root),tasks=initial.completion.checklist
+   assert.equal(initial.criteria[0].evidence,"pass")
+   assert.equal(tasks.find(x=>x.id==="criteria")!.done,0)
+   assert.equal(tasks.find(x=>x.id==="turn")!.state,"todo")
+   assert.equal(initial.completion.eligible,false)
+   recordProgress(root,{turnId,summary:"Implemented",criterionIds:["AC-1"],implemented:true})
+   const built=session(root)
+   assert.equal(built.completion.checklist.find(x=>x.id==="criteria")!.done,1)
+   assert.equal(built.completion.eligible,false)
+   close(root)
+   const ready=session(root)
+   assert.equal(ready.completion.eligible,true)
+   assert.ok(ready.completion.checklist.every(x=>x.state==="done"))
+   assert.deepEqual(ready.completion.checklist.map(x=>[x.id,x.total]),tasks.map(x=>[x.id,x.total]))
+   recordAuthority(root,{action:"revoke",targetId:permissionStatus(root,wsId).authorityId,source:{kind:"agent-reported",reference:"revoked"}})
+   const denied=session(root)
+   assert.equal(denied.completion.checklist.find(x=>x.id==="permission")!.state,"todo")
+   assert.equal(denied.completion.eligible,false)
+   assert.deepEqual(denied.completion.checklist.map(x=>[x.id,x.total]),tasks.map(x=>[x.id,x.total]))
+  }finally{rmSync(root,{recursive:true,force:true})}
+ })
+ it("required reviews screenshots commitments and selected workflow are counted once despite multiple diagnostics",()=>{
+  const root=fixture()
+  try{
+   const ws=loadWorkstream(root,wsId),slice=ws.suggestedSlices![0].id
+   writeJson(join(root,`.spec-ledger/workstreams/${wsId}.json`),{...ws,policy:{requireSpecBreak:true,requireCodeBreak:true},trust:{visualEvidence:{[slice]:["Desktop","Mobile"]}}})
+   sealWorkstream(root,wsId,"updated fixture")
+   recordAuthority(root,{action:"grant",mode:"request",workstreamId:wsId,featureIds:["alpha"],source:{kind:"agent-reported",reference:"fixture"}})
+   recordDeferredDecision(root,{schemaVersion:1,id:randomUUID(),turnId,decision:"Deferred decision",rationale:"Needs a later decision",deferral:{deferred:"Revisit",originSpecRef:wsId+"/spec",when:{kind:"feature-planned",featureId:"alpha"},response:"revisit",gate:"before-feature-complete"}})
+   preserveWorkflow(root,wsId,undefined,"Selected default")
+   evidence(root)
+   recordProgress(root,{turnId,summary:"Implemented",criterionIds:["AC-1"],implemented:true})
+   close(root)
+   const projected=session(root),tasks=projected.completion.checklist
+   assert.equal(projected.criteria[0].evidence,"pass")
+   assert.equal(projected.criteria[0].implemented,true)
+   assert.equal(projected.completion.eligible,false)
+   assert.equal(new Set(tasks.map(x=>x.id)).size,tasks.length)
+   for(const id of ["spec-review","code-review","screenshots","deferrals","workflow"]){
+    assert.equal(tasks.filter(x=>x.id===id).length,1,id)
+    assert.notEqual(tasks.find(x=>x.id===id)!.state,"done",id)
+   }
+   assert.equal(tasks.find(x=>x.id==="screenshots")!.total,2)
+   assert.equal(tasks.find(x=>x.id==="deferrals")!.total,1)
+   assert.equal(tasks.find(x=>x.id==="code-review")!.total,1)
+   const outputs=projected.workflow.stages.filter(x=>x.status!=="not-applicable").flatMap(x=>x.requiredOutputs)
+   assert.equal(tasks.find(x=>x.id==="workflow")!.total,outputs.length)
+   assert.ok(projected.completion.reasons.length>0)
+   assert.ok(!tasks.some(x=>x.id==="attention"),"diagnostic reasons are not additional work")
   }finally{rmSync(root,{recursive:true,force:true})}
  })
 })

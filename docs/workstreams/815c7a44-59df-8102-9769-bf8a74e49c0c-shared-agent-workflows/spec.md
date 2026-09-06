@@ -46,3 +46,26 @@ Test malformed IDs and path traversal through real tool calls and verify no file
 Deliver in three executable verticals: (1) perform and observe a full work loop through interchangeable CLI/MCP surfaces, (2) select and follow a custom method with current evidence in the UI, (3) associate execution activity and expose honest optional recovery readiness. Each vertical includes its UI/projection where applicable, adversarial review and behavioral tests. Integration evidence must exercise the actual MCP executable and CLI, not only call a shared helper. Browser evidence must exercise updates and negative states, not only a static successful page.
 
 Keep existing package directions: UI imports client only; application code lives in ledger; MCP composes on it. Start without a DAG runtime. External hosted execution, automatic model choice, remote skill marketplaces and task-tracker synchronization are not part of this change. No promise of host resume or cancellation without a concrete supported adapter and verification.
+
+## Progress fixup requested on 6 September 2026
+
+Discovery: decision `3ec7feb5-ac54-4aa3-9575-2a10f0a582e4` on turn `5dd1e1ca-a98f-4d5a-a82d-82035dc40943`. The user saw all checks verified while completion tasks remained. This is a spec gap in the meaning of the percentage and a verification gap in unfinished-work coverage. The user explicitly requested amending the existing behavior. The separately opened progress workstream was cancelled; its preserved records remain history.
+
+## Outcome
+
+Show progress toward completing the whole spec. Each acceptance requirement counts as complete only when implementation is recorded for the current work and its checks pass. Include the other applicable completion tasks: permission, the preserved plan, required reviews, unresolved findings and commitments, required screenshots, any chosen workflow results, and closing open work. Grouped tasks use their actual part counts. Explanatory messages must not count the same unfinished task twice, or disappearing warning text would change the denominator without work being done.
+
+A fully satisfied checklist reaches 100% only when the shared completion gate allows completion. Passing checks remain visible as a separate diagnostic. Missing acceptance scope or unavailable completion information must stay indeterminate. Earlier recorded completion remains historical when current work needs rechecking.
+
+Use the same progress on Overview and spec details. The total represents applicable completion tasks, not estimated effort or time. Keep the existing read-only observation and completion rules; do not weaken a gate to make the bar green. Do not change saved historical reports, credentials, or publishing state.
+
+## Scope and validation
+
+One bounded fix to the session checklist and shared progress presentation. The session owns completion conditions; the UI formats their counts. Reuse the existing requirement and navigation checks. Cover all-passing checks with unimplemented work, open work, missing or stale reviews, denied permission, unresolved commitments, required screenshots and chosen workflow outputs. Check an actually eligible case, zero or missing scope, and historical evidence rechecks.
+
+Capture the user's unfinished spec on desktop and mobile, Overview progress, and a previously completed spec with current rechecks. Independent spec review precedes a preserved plan and implementation; an independent breaker checks behavior and screenshots before close. Continue the existing library-consumer quality bar and user-authorized PR work.
+
+## Correction
+
+This fixes the mistaken assumption that a percentage labeled as check verification would be understood separately from overall task progress. It applies the existing guidance to distinguish recorded completion from current verification. Updates and the readable-title retrofit remain part of the earlier reviewed change.
+

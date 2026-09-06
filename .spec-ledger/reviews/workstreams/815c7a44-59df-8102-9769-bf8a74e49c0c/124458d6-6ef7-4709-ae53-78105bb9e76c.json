@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "workstreamId": "815c7a44-59df-8102-9769-bf8a74e49c0c",
+  "kind": "adversarial",
+  "target": "spec",
+  "reviewer": "agent:sl-plan-break-spec",
+  "verdict": "approve",
+  "blocking": false,
+  "plainSummary": "The progress correction now belongs to the original workflow spec and counts unfinished work without weakening completion rules.",
+  "summary": "Independent fresh review of the owning workstream and current amendment, grounded in a refreshed related pack. The existing outcome already promises current workflow progress, inspectable evidence and no fabricated completion percentage, so the three added acceptance criteria appropriately clarify its existing UI slice rather than create a separate feature. Original verticals, typed output contracts, shared CLI/MCP gates, security/correctness trust and block/align policy remain preserved. The cancelled workstream and abandoned turn are historical only. Reused substantive assessment of task-count correctness, duplicate-diagnostic avoidance, indeterminate scope, historical rechecks and four screenshots, bound by this review to the actual owner/current revision. No blocking spec gaps found.",
+  "alertOnSeverity": "high",
+  "findings": [],
+  "supersedesReviewId": "6b210ddc-0fca-8e13-b7b3-fddd48b29ab5",
+  "residualRisks": [
+    "Preserve the owning workstream requireAlignApprove and block policies; the cancelled proposal policy does not transfer to this amendment.",
+    "Verify percentage rounding never displays 100 percent while the shared completion gate is ineligible, and stable applicable tasks do not disappear when diagnostic messages clear.",
+    "Extend mapped behavioral evidence to exercise current implementation plus checks, required reviews and workflow outputs; prior navigation evidence alone does not prove corrected progress.",
+    "Capture the actual populated app and historical rechecks without rewriting earlier completion reports or weakening denied-permission and passive-read behavior.",
+    "The related tool provides only generic worktree caution text rather than an actual sibling-path scan."
+  ],
+  "id": "124458d6-6ef7-4709-ae53-78105bb9e76c",
+  "revisionDigest": "d901a91669a2b44e8e6485c1a7410597227ca66c4ad9386122e364617ac5c655"
+}

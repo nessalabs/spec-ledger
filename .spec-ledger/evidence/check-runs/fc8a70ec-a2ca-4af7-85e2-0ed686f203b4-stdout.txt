@@ -1,0 +1,31 @@
+▶ workflow editor boundary regressions
+  ✔ roundtrips bundled choices and hides symlinked discovery roots (130.7065ms)
+  ✔ rejects attestation substitutes for every mandatory stage output (83.779084ms)
+  ✔ rejects changed skill content and stale amendment identity without replacing the selection (319.922458ms)
+  ✔ rejects oversized and malformed browser actions without writes or execution (87.511583ms)
+  ✔ browser preview and apply share core state, deny foreign requests, and retry once (164.025459ms)
+✔ workflow editor boundary regressions (786.642542ms)
+✔ section history returns from execution to exact acceptance without hiding the evidence (25.850583ms)
+✔ unknown or obsolete fragments do not strand readers in an invisible section (0.067875ms)
+✔ mobile navigation closes on same-page selection and route change but preserves modified clicks (29.528875ms)
+✔ live Updates remain separate from server change history without key warnings (9.566916ms)
+✔ the in-page workflow retains its picker and process state when live data changes workstream (1.828709ms)
+✔ a deleted library name stays visible with its preserved version while switching is pending (9.877875ms)
+✔ workflow definition has one library route and the old per-spec route no longer resolves (0.172625ms)
+✔ Updates has a distinct deep link and browser history restores the isolated selected tab (5.308208ms)
+✔ Updates shows recorded dates or an honest absence and links to the real turn instead of the decision (11.897667ms)
+✔ overview keeps permission and problems visible with direct spec, evidence and history links (68.8425ms)
+✔ approved work does not request approval again and disconnected approval stays disabled (17.625208ms)
+✔ lost reply survives reload and retry preserves the exact operation instead of accepting another edit (40.359875ms)
+✔ unknown and busy outcomes retain recovery but a definitive stale-version conflict releases the form (18.4225ms)
+✔ unreadable mutation response keeps the original request for recovery (4.533334ms)
+✔ a browser unable to persist recovery must not send an unrecoverable write (6.025958ms)
+✔ canvas opens only the selected stage drawer and closing restores the full canvas without mutating or executing (67.190167ms)
+ℹ tests 21
+ℹ suites 1
+ℹ pass 21
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 874.533083

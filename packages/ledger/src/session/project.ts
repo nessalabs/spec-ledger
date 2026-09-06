@@ -117,23 +117,24 @@ export function getSession(root: string, workstreamId?: string) {
   const slicesReviewed = slices.filter(sl => reviews.some(r => r.id === sl.codeBreakReviewId && codeBreakSatisfied([r], sourceDigest))).length
   const workflowSelected = Boolean(workflow.profile.snapshotId)
 
-  /**
-   * The same conditions the reasons list uses, evaluated both ways so a reader
-   * can see what is already done rather than only what is missing. "started"
-   * means real progress exists but the requirement is not met yet — it never
-   * stands in for a passing check.
-   */
+  const noBlockingFindings = unresolvedBlockingReviews(reviews).length === 0
+  const currentCodeReview = codeBreakSatisfied(reviews, sourceDigest)
+  const workflowOutputs = workflow.stages.filter(stage => stage.status !== "not-applicable").flatMap(stage => stage.requiredOutputs)
+  const screenshotCount = visualEvidence.surfaces.length
+
+  /** Stable completion tasks, rather than a count of disappearing diagnostics. */
   const state = (done: boolean, started = false): CompletionState => done ? "done" : started ? "in-progress" : "todo"
   const checklist: CompletionChecklistItem[] = [
-    // Anything already demanding attention is a real outstanding item, so it
-    // belongs in the one list rather than repeated underneath it.
-    ...[...attention, ...visualEvidence.reasons].map((label, index) => ({ id: `attention-${index}`, label, state: "todo" as CompletionState })),
+    { id: "permission", label: "Permission to complete this work", state: state(permission.allowed) },
     { id: "seal", label: "Spec snapshot recorded and unchanged", state: state(sealOk) },
     { id: "criteria", label: "Every requirement implemented with passing evidence", state: state(criteriaDone, criteriaStarted), done: criteria.filter(c => c.implemented && c.evidence === "pass").length, total: criteria.length },
     { id: "turn", label: "No turn left open", state: state(!turnOpen) },
+    { id: "review-findings", label: "No unresolved blocking review findings", state: state(noBlockingFindings) },
     ...(ws.policy?.requireSpecBreak !== false ? [{ id: "spec-review", label: "Independent review of the current spec", state: state(specReviewed) }] : []),
-    ...(ws.policy?.requireCodeBreak !== false ? [{ id: "code-review", label: "Every slice reviewed against the current source", state: state(slicesReviewed === slices.length && slices.length > 0, slicesReviewed > 0), done: slicesReviewed, total: slices.length }] : []),
-    ...(workflowSelected ? [{ id: "workflow", label: "Chosen workflow's required results recorded", state: state(workflow.status === "satisfied", workflow.status === "running") }] : []),
+    ...(ws.policy?.requireCodeBreak !== false ? [{ id: "code-review", label: slices.length ? "Every slice reviewed against the current source" : "Independent review of the current source", state: state(currentCodeReview && slicesReviewed === slices.length, slicesReviewed > 0), done: slices.length ? slicesReviewed : Number(currentCodeReview), total: Math.max(1, slices.length) }] : []),
+    ...(obligations.length ? [{ id: "deferrals", label: "Required deferred commitments resolved", state: state(obligations.every(o => o.state === "resolved"), obligations.some(o => o.state === "resolved")), done: obligations.filter(o => o.state === "resolved").length, total: obligations.length }] : []),
+    ...(screenshotCount || !visualEvidence.ok ? [{ id: "screenshots", label: "Current screenshots for every required screen", state: state(visualEvidence.ok, visualEvidence.surfaces.some(surface => surface.satisfied)), done: visualEvidence.surfaces.filter(surface => surface.satisfied).length, total: Math.max(1, screenshotCount) }] : []),
+    ...(workflowSelected ? [{ id: "workflow", label: "Chosen workflow's required results recorded", state: state(workflow.status === "satisfied", workflow.status === "running"), done: workflowOutputs.length ? workflowOutputs.filter(output => output.satisfied).length : Number(workflow.status === "satisfied"), total: Math.max(1, workflowOutputs.length) }] : []),
   ]
 
   const completionReasons = [...attention, ...visualEvidence.reasons]

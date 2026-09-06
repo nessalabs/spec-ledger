@@ -1,0 +1,19 @@
+{
+  "action": "grant",
+  "mode": "request",
+  "workstreamId": "815c7a44-59df-8102-9769-bf8a74e49c0c",
+  "featureIds": [
+    "cli",
+    "client",
+    "turns",
+    "verify",
+    "lattice"
+  ],
+  "source": {
+    "kind": "agent-reported",
+    "reference": "User requests correcting progress against all tasks and explicitly directs amending its original spec as a fixup; continue existing verification and PR work."
+  },
+  "id": "67b02df0-446e-4d15-87ab-ea805baa6ced",
+  "schemaVersion": 1,
+  "createdAt": "2026-09-06T20:58:09.622Z"
+}

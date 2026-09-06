@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "requestId": "173aaa02-7eb7-4d17-b151-0aba17b93751",
+  "operation": "begin_work",
+  "inputDigest": "0a8263bf007b83c9217d7ee7cb38db8313112ecb72654b317d0d428c69294cd7",
+  "finishedAt": "2026-09-06T20:59:00.163Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "id": "259b685b-1331-4088-a691-d3fa16e57424",
+    "status": "open",
+    "openedAt": "2026-09-06T20:59:00.163Z",
+    "opened": {
+      "producedBy": "@nessalabs/spec-ledger@0.1.0",
+      "baseCommit": "dbbfddd7b040aa462281bf6fe2f136961a4f19a8",
+      "treeDigest": "552a99755059401484d4c02b837e38385fbbd4486460dd87cde8e4edcdf4584c",
+      "dirtyAtOpen": [
+        ".spec-ledger/authority/67b02df0-446e-4d15-87ab-ea805baa6ced.json",
+        ".spec-ledger/authority/97bd74bc-5717-4c0c-8164-27335ba83f22.json",
+        ".spec-ledger/decisions/5dd1e1ca-a98f-4d5a-a82d-82035dc40943/3ec7feb5-ac54-4aa3-9575-2a10f0a582e4.json",
+        ".spec-ledger/learnings/330fd73a-cb25-49f1-86a6-324d7aef45e5.json",
+        ".spec-ledger/reviews/workstreams/58acbc36-d5d8-450b-b955-a83e656a6e86/27136c13-7f94-4ee8-ab9e-c7290967b55d.json",
+        ".spec-ledger/reviews/workstreams/815c7a44-59df-8102-9769-bf8a74e49c0c/124458d6-6ef7-4709-ae53-78105bb9e76c.json",
+        ".spec-ledger/sources/5dd1e1ca-a98f-4d5a-a82d-82035dc40943/43f4b00b-931c-40d6-be30-2de896477726.json",
+        ".spec-ledger/turns/5dd1e1ca-a98f-4d5a-a82d-82035dc40943.json",
+        ".spec-ledger/workstreams/58acbc36-d5d8-450b-b955-a83e656a6e86.json",
+        ".spec-ledger/workstreams/58acbc36-d5d8-450b-b955-a83e656a6e86.seals/1.json",
+        ".spec-ledger/workstreams/815c7a44-59df-8102-9769-bf8a74e49c0c.json",
+        "docs/architecture/session.md",
+        "docs/workstreams/58acbc36-d5d8-450b-b955-a83e656a6e86-overall-work-progress/spec.md",
+        "docs/workstreams/815c7a44-59df-8102-9769-bf8a74e49c0c-shared-agent-workflows/spec.md",
+        "packages/ledger/src/session/project.ts",
+        "packages/ui/components/acceptance-progress.tsx",
+        "packages/ui/components/live-session.tsx",
+        "packages/ui/components/live-workstream-evidence.tsx",
+        "packages/ui/lib/acceptance-progress.ts"
+      ],
+      "contextDigest": "9673bce3abb39f688503581a4ccfee8209d297afed02e0cf66e796249a8a5484",
+      "contextWorkstreamId": "815c7a44-59df-8102-9769-bf8a74e49c0c",
+      "contextSliceId": "25eac677-2871-816d-956d-770bdcb61798",
+      "contextSealRevision": 2,
+      "contextGeneratedAt": "2026-09-06T20:59:00.163Z"
+    },
+    "intent": {
+      "userPrompt": "Fix the progress display to count all unfinished completion tasks. Amend the existing progress spec as a fixup, preserving prior history, and verify the UI and completion regressions.",
+      "restatedGoal": "Show progress across all completion tasks",
+      "changeType": "feature",
+      "riskLevel": "moderate",
+      "workstreamId": "815c7a44-59df-8102-9769-bf8a74e49c0c",
+      "sliceId": "25eac677-2871-816d-956d-770bdcb61798",
+      "featureIds": [
+        "cli",
+        "client",
+        "turns",
+        "verify",
+        "lattice"
+      ]
+    }
+  }
+}

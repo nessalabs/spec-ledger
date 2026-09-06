@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "requestId": "9e24c0b3-cfdc-43ca-b9a5-4ff0ee386b6e",
+  "operation": "record_progress",
+  "inputDigest": "29342cb603f0b8506be7752882756d8125d0fab3eff6dae4717f7c6071564985",
+  "finishedAt": "2026-09-06T21:11:48.605Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "turnId": "259b685b-1331-4088-a691-d3fa16e57424",
+    "decision": "Progress now counts all applicable completion tasks, with evidence counts separate and 100% reserved for eligible completion. The fix amends the original progress spec. Desktop, mobile, Overview and historical views were inspected; regression tests and all 35 saved requirement checks pass.",
+    "rationale": "Agent-reported progress; evidence is evaluated separately.",
+    "progress": {
+      "criterionIds": [
+        "25eac677-2871-816d-956d-770bdcb61798/AC-2",
+        "25eac677-2871-816d-956d-770bdcb61798/AC-3",
+        "25eac677-2871-816d-956d-770bdcb61798/AC-4"
+      ],
+      "implemented": true,
+      "revisionDigest": "d901a91669a2b44e8e6485c1a7410597227ca66c4ad9386122e364617ac5c655",
+      "sourceDigest": "b860fecaf0f21d922057b248c6d86cf680df6dfc52020ef2f5047de2fbe1f450"
+    },
+    "id": "bdbeee45-f145-4f12-b191-9875b89739be",
+    "recordedAt": "2026-09-06T21:11:48.605Z",
+    "sequence": 3
+  }
+}
