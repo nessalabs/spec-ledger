@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "requestId": "adc713a7-9aa5-405e-87c7-c6adf565fda0",
+  "operation": "record_review",
+  "inputDigest": "08a0b56984eceeb1e2f4eb6f639532cf4ffe895aa725b58e14be41145814c773",
+  "finishedAt": "2026-09-06T07:07:40.463Z",
+  "outcome": "succeeded",
+  "result": {
+    "kind": "adversarial",
+    "target": "code",
+    "reviewer": "agent:sl-dev-break:library",
+    "verdict": "approve",
+    "blocking": false,
+    "summary": "Bounded CI-fixture and W-014 compatibility review. Reproduced CI ERR_MODULE_NOT_FOUND zod/v4/core/json-schema.js through a synthetic pnpm-style identical-file hardlink and the unchanged real consumer import. Materializing dependency files before npm pack restores the test: pack concurrency/failure and episode closure tests 4/4 pass. Reviewed isolated Git maintenance settings and bounded cleanup retries; episode assertions unchanged. Root React/ReactDOM test dependencies are direct pinned devDependencies with lock entries. Existing SLC-01 library, SLC-02 real CLI/MCP boundaries, SLC-03 UI/navigation/API regressions pass 63/63. No production files changed.",
+    "plainSummary": "The CI fixtures now handle linked dependencies reliably, and the saved-workflow regression tests still pass.",
+    "killersCited": [
+      "packages/ledger/src/pack.concurrency.break.test.ts::overlapping npm packs preserve manifests and produce installable tarballs",
+      "packages/ledger/src/pack.concurrency.break.test.ts::a failed prepack build does not rewrite the source manifest",
+      "packages/ledger/src/episodes.write.test.ts::episode write CLIs leave digests on close",
+      "packages/ledger/src/workflows/library.break.test.ts",
+      "packages/ledger/src/workflows/library-storage.break.test.ts",
+      "packages/mcp/src/library.boundary.break.test.ts",
+      "packages/ui/lib/navigation.break.test.mjs",
+      "packages/ui/lib/workflow-api.break.test.mjs"
+    ],
+    "findings": [],
+    "alertOnSeverity": "high",
+    "residualRisks": [
+      "Local reproduction and fix run on macOS Node 26.8.1/npm 11.19.0; Linux Node 22/npm 10 validation remains the CI rerun.",
+      "Fixture now intentionally creates a same-content Zod hardlink before materialization so copy-based local installs exercise the pnpm layout.",
+      "Bounded existing regression rerun covers all three W-014 slices; no new browser end-to-end session because production is unchanged."
+    ],
+    "schemaVersion": 1,
+    "id": "T-047/R-02",
+    "turnId": "T-047",
+    "treeDigest": "47c70dc12fd9b447502a27da1f458a75ef70d5808408f28750350788a4b46a2e"
+  }
+}

@@ -1,0 +1,240 @@
+TAP version 13
+# Subtest: workflow editor boundary regressions
+    # Subtest: roundtrips bundled choices and hides symlinked discovery roots
+    ok 1 - roundtrips bundled choices and hides symlinked discovery roots
+      ---
+      duration_ms: 226.263958
+      type: 'test'
+      ...
+    # Subtest: rejects attestation substitutes for every mandatory stage output
+    ok 2 - rejects attestation substitutes for every mandatory stage output
+      ---
+      duration_ms: 138.441667
+      type: 'test'
+      ...
+    # Subtest: rejects changed skill content and stale amendment identity without replacing the selection
+    ok 3 - rejects changed skill content and stale amendment identity without replacing the selection
+      ---
+      duration_ms: 363.028625
+      type: 'test'
+      ...
+    # Subtest: rejects oversized and malformed browser actions without writes or execution
+    ok 4 - rejects oversized and malformed browser actions without writes or execution
+      ---
+      duration_ms: 170.142917
+      type: 'test'
+      ...
+    # Subtest: browser preview and apply share core state, deny foreign requests, and retry once
+    ok 5 - browser preview and apply share core state, deny foreign requests, and retry once
+      ---
+      duration_ms: 243.403541
+      type: 'test'
+      ...
+    1..5
+ok 1 - workflow editor boundary regressions
+  ---
+  duration_ms: 1142.080125
+  type: 'suite'
+  ...
+# Subtest: library operations preserve actor/reason, retry identity and independent pointer conflicts
+ok 2 - library operations preserve actor/reason, retry identity and independent pointer conflicts
+  ---
+  duration_ms: 126.603375
+  type: 'test'
+  ...
+# Subtest: local library route denies unsafe requests before mutation and accepts a valid save
+ok 3 - local library route denies unsafe requests before mutation and accepts a valid save
+  ---
+  duration_ms: 36.609292
+  type: 'test'
+  ...
+# Subtest: library refuses symlinked profile storage without touching external files
+ok 4 - library refuses symlinked profile storage without touching external files
+  ---
+  duration_ms: 35.709125
+  type: 'test'
+  ...
+# Subtest: a refused delete with an unsafe default pointer preserves the saved workflow
+ok 5 - a refused delete with an unsafe default pointer preserves the saved workflow
+  ---
+  duration_ms: 47.925917
+  type: 'test'
+  ...
+# Subtest: local library poison and cross-site requests cannot create profiles
+ok 6 - local library poison and cross-site requests cannot create profiles
+  ---
+  duration_ms: 46.893917
+  type: 'test'
+  ...
+# Subtest: a saved workflow applies to a spec whose requirements are numbered differently
+ok 7 - a saved workflow applies to a spec whose requirements are numbered differently
+  ---
+  duration_ms: 11.470458
+  type: 'test'
+  ...
+# Subtest: saving is create-only and refuses a workflow carrying another spec's requirement numbers
+ok 8 - saving is create-only and refuses a workflow carrying another spec's requirement numbers
+  ---
+  duration_ms: 5.399583
+  type: 'test'
+  ...
+# Subtest: adoption is refused when the workflow lacks a review stage the spec requires
+ok 9 - adoption is refused when the workflow lacks a review stage the spec requires
+  ---
+  duration_ms: 71.510709
+  type: 'test'
+  ...
+# Subtest: editing or deleting a saved workflow leaves an adopted spec running unchanged
+ok 10 - editing or deleting a saved workflow leaves an adopted spec running unchanged
+  ---
+  duration_ms: 51.652166
+  type: 'test'
+  ...
+# Subtest: editing and deleting require the version the caller read
+ok 11 - editing and deleting require the version the caller read
+  ---
+  duration_ms: 17.946667
+  type: 'test'
+  ...
+# Subtest: the normal workflow falls back to the bundled one when it is deleted
+ok 12 - the normal workflow falls back to the bundled one when it is deleted
+  ---
+  duration_ms: 16.389291
+  type: 'test'
+  ...
+# Subtest: a corrupt saved workflow is refused rather than silently adopted
+ok 13 - a corrupt saved workflow is refused rather than silently adopted
+  ---
+  duration_ms: 5.276084
+  type: 'test'
+  ...
+# Subtest: adopting a saved copy of the bundled workflow gates exactly like the bundled workflow
+ok 14 - adopting a saved copy of the bundled workflow gates exactly like the bundled workflow
+  ---
+  duration_ms: 61.1455
+  type: 'test'
+  ...
+# Subtest: a review stage somebody deliberately added still counts when policy is lax
+ok 15 - a review stage somebody deliberately added still counts when policy is lax
+  ---
+  duration_ms: 10.017958
+  type: 'test'
+  ...
+# Subtest: switching an adopted workflow needs a reason and the snapshot the caller saw
+ok 16 - switching an adopted workflow needs a reason and the snapshot the caller saw
+  ---
+  duration_ms: 11.958458
+  type: 'test'
+  ...
+# Subtest: a saved workflow whose skill file is gone is refused with its path, and listed as unusable
+ok 17 - a saved workflow whose skill file is gone is refused with its path, and listed as unusable
+  ---
+  duration_ms: 7.323167
+  type: 'test'
+  ...
+# Subtest: a hand-written workflow is untouched by library coverage binding
+ok 18 - a hand-written workflow is untouched by library coverage binding
+  ---
+  duration_ms: 5.251875
+  type: 'test'
+  ...
+# Subtest: custom workflow adversarial contracts
+    # Subtest: rejects unknown or empty output contracts and policy-breaking stage order before persistence
+    ok 1 - rejects unknown or empty output contracts and policy-breaking stage order before persistence
+      ---
+      duration_ms: 203.723833
+      type: 'test'
+      ...
+    # Subtest: confines workflow persistence when the workflow directory is an escaping symlink
+    ok 2 - confines workflow persistence when the workflow directory is an escaping symlink
+      ---
+      duration_ms: 175.240167
+      type: 'test'
+      ...
+    # Subtest: preserves selected skill bytes and rejects escaping or oversized replacements
+    ok 3 - preserves selected skill bytes and rejects escaping or oversized replacements
+      ---
+      duration_ms: 179.380667
+      type: 'test'
+      ...
+    # Subtest: gives every amendment a new execution identity and excludes prior attempts
+    ok 4 - gives every amendment a new execution identity and excludes prior attempts
+      ---
+      duration_ms: 341.634583
+      type: 'test'
+      ...
+    # Subtest: rejects a current code review that belongs to another workstream
+    ok 5 - rejects a current code review that belongs to another workstream
+      ---
+      duration_ms: 374.157708
+      type: 'test'
+      ...
+    # Subtest: does not relabel a review created before the current method attempt as that attempt's output
+    ok 6 - does not relabel a review created before the current method attempt as that attempt's output
+      ---
+      duration_ms: 309.702833
+      type: 'test'
+      ...
+    # Subtest: does not satisfy a code-review output while a later blocking review remains unresolved
+    ok 7 - does not satisfy a code-review output while a later blocking review remains unresolved
+      ---
+      duration_ms: 381.612708
+      type: 'test'
+      ...
+    # Subtest: requires behavioral result rows for every scoped criterion and never accepts attestation instead
+    ok 8 - requires behavioral result rows for every scoped criterion and never accepts attestation instead
+      ---
+      duration_ms: 325.621458
+      type: 'test'
+      ...
+    # Subtest: keeps an explicitly configured review stage applicable when project policy does not require one
+    ok 9 - keeps an explicitly configured review stage applicable when project policy does not require one
+      ---
+      duration_ms: 147.739166
+      type: 'test'
+      ...
+    # Subtest: does not make later steps in one ordered stage ready before earlier steps are satisfied
+    ok 10 - does not make later steps in one ordered stage ready before earlier steps are satisfied
+      ---
+      duration_ms: 135.75275
+      type: 'test'
+      ...
+    1..10
+ok 19 - custom workflow adversarial contracts
+  ---
+  duration_ms: 2575.688334
+  type: 'suite'
+  ...
+# Subtest: default workflow needs no configuration and preserves substantive bundled guidance
+ok 20 - default workflow needs no configuration and preserves substantive bundled guidance
+  ---
+  duration_ms: 5.742416
+  type: 'test'
+  ...
+# Subtest: custom workflow preserves exact local skill text and rejects unsafe or incompatible skills
+ok 21 - custom workflow preserves exact local skill text and rejects unsafe or incompatible skills
+  ---
+  duration_ms: 5.909875
+  type: 'test'
+  ...
+# Subtest: cli: follows a custom method through real records and preserves current evidence
+ok 22 - cli: follows a custom method through real records and preserves current evidence
+  ---
+  duration_ms: 5349.056625
+  type: 'test'
+  ...
+# Subtest: mcp: follows a custom method through real records and preserves current evidence
+ok 23 - mcp: follows a custom method through real records and preserves current evidence
+  ---
+  duration_ms: 2409.7475
+  type: 'test'
+  ...
+1..23
+# tests 36
+# suites 2
+# pass 36
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 7906.096958

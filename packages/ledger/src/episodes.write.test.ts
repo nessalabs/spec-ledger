@@ -21,6 +21,10 @@ test("episode write CLIs leave digests on close", () => {
     spawnSync("git", ["init"], { cwd: dir })
     spawnSync("git", ["config", "user.email", "t@e.com"], { cwd: dir })
     spawnSync("git", ["config", "user.name", "t"], { cwd: dir })
+    // The copied ledger can trigger detached Git maintenance during commit.
+    // Keep this disposable repository synchronous through its cleanup.
+    spawnSync("git", ["config", "gc.auto", "0"], { cwd: dir })
+    spawnSync("git", ["config", "maintenance.auto", "false"], { cwd: dir })
     spawnSync("git", ["add", "."], { cwd: dir })
     spawnSync("git", ["commit", "-m", "init"], { cwd: dir })
 
@@ -75,6 +79,6 @@ test("episode write CLIs leave digests on close", () => {
     assert.ok(closed.facts?.decisionsDigest)
     assert.ok(closed.facts?.sourcesDigest)
   } finally {
-    rmSync(dir, { recursive: true, force: true })
+    rmSync(dir, { recursive: true, force: true, maxRetries: 5, retryDelay: 100 })
   }
 })

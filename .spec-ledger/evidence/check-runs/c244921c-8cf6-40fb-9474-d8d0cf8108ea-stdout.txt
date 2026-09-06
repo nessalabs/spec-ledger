@@ -1,0 +1,131 @@
+TAP version 13
+# Subtest: workflow editor boundary regressions
+    # Subtest: roundtrips bundled choices and hides symlinked discovery roots
+    ok 1 - roundtrips bundled choices and hides symlinked discovery roots
+      ---
+      duration_ms: 193.20075
+      type: 'test'
+      ...
+    # Subtest: rejects attestation substitutes for every mandatory stage output
+    ok 2 - rejects attestation substitutes for every mandatory stage output
+      ---
+      duration_ms: 139.33875
+      type: 'test'
+      ...
+    # Subtest: rejects changed skill content and stale amendment identity without replacing the selection
+    ok 3 - rejects changed skill content and stale amendment identity without replacing the selection
+      ---
+      duration_ms: 333.733917
+      type: 'test'
+      ...
+    # Subtest: rejects oversized and malformed browser actions without writes or execution
+    ok 4 - rejects oversized and malformed browser actions without writes or execution
+      ---
+      duration_ms: 127.674875
+      type: 'test'
+      ...
+    # Subtest: browser preview and apply share core state, deny foreign requests, and retry once
+    ok 5 - browser preview and apply share core state, deny foreign requests, and retry once
+      ---
+      duration_ms: 197.485666
+      type: 'test'
+      ...
+    1..5
+ok 1 - workflow editor boundary regressions
+  ---
+  duration_ms: 992.256875
+  type: 'suite'
+  ...
+# Subtest: section history returns from execution to exact acceptance without hiding the evidence
+ok 2 - section history returns from execution to exact acceptance without hiding the evidence
+  ---
+  duration_ms: 21.90175
+  type: 'test'
+  ...
+# Subtest: unknown or obsolete fragments do not strand readers in an invisible section
+ok 3 - unknown or obsolete fragments do not strand readers in an invisible section
+  ---
+  duration_ms: 0.084625
+  type: 'test'
+  ...
+# Subtest: mobile navigation closes on same-page selection and route change but preserves modified clicks
+ok 4 - mobile navigation closes on same-page selection and route change but preserves modified clicks
+  ---
+  duration_ms: 26.710417
+  type: 'test'
+  ...
+# Subtest: change history is isolated from the live child list and renders without key warnings
+ok 5 - change history is isolated from the live child list and renders without key warnings
+  ---
+  duration_ms: 26.685458
+  type: 'test'
+  ...
+# Subtest: the in-page workflow retains its picker and process state when live data changes workstream
+ok 6 - the in-page workflow retains its picker and process state when live data changes workstream
+  ---
+  duration_ms: 9.20675
+  type: 'test'
+  ...
+# Subtest: a deleted library name stays visible with its preserved version while switching is pending
+ok 7 - a deleted library name stays visible with its preserved version while switching is pending
+  ---
+  duration_ms: 22.488708
+  type: 'test'
+  ...
+# Subtest: workflow definition has one library route and the old per-spec route no longer resolves
+ok 8 - workflow definition has one library route and the old per-spec route no longer resolves
+  ---
+  duration_ms: 0.306833
+  type: 'test'
+  ...
+# Subtest: overview keeps permission and problems visible with direct spec, evidence and history links
+ok 9 - overview keeps permission and problems visible with direct spec, evidence and history links
+  ---
+  duration_ms: 70.979208
+  type: 'test'
+  ...
+# Subtest: approved work does not request approval again and disconnected approval stays disabled
+ok 10 - approved work does not request approval again and disconnected approval stays disabled
+  ---
+  duration_ms: 48.827791
+  type: 'test'
+  ...
+# Subtest: lost reply survives reload and retry preserves the exact operation instead of accepting another edit
+ok 11 - lost reply survives reload and retry preserves the exact operation instead of accepting another edit
+  ---
+  duration_ms: 61.808542
+  type: 'test'
+  ...
+# Subtest: unknown and busy outcomes retain recovery but a definitive stale-version conflict releases the form
+ok 12 - unknown and busy outcomes retain recovery but a definitive stale-version conflict releases the form
+  ---
+  duration_ms: 34.596
+  type: 'test'
+  ...
+# Subtest: unreadable mutation response keeps the original request for recovery
+ok 13 - unreadable mutation response keeps the original request for recovery
+  ---
+  duration_ms: 10.036625
+  type: 'test'
+  ...
+# Subtest: a browser unable to persist recovery must not send an unrecoverable write
+ok 14 - a browser unable to persist recovery must not send an unrecoverable write
+  ---
+  duration_ms: 5.009542
+  type: 'test'
+  ...
+# Subtest: canvas opens only the selected stage drawer and closing restores the full canvas without mutating or executing
+ok 15 - canvas opens only the selected stage drawer and closing restores the full canvas without mutating or executing
+  ---
+  duration_ms: 96.010333
+  type: 'test'
+  ...
+1..15
+# tests 19
+# suites 1
+# pass 19
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1086.498666

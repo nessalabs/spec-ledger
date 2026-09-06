@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "id": "T-047/R-01",
+  "turnId": "T-047",
+  "workstreamId": "W-014",
+  "kind": "human",
+  "target": "code",
+  "reviewer": "agent:align",
+  "verdict": "approve",
+  "summary": "Fixture paths are covered; current waiver covers root React test dependencies needed for the explicit CI repair.",
+  "plainSummary": "The CI fixes cover test fixtures and the requested clean-install test setup.",
+  "treeDigest": "47c70dc12fd9b447502a27da1f458a75ef70d5808408f28750350788a4b46a2e",
+  "uncoveredPaths": [
+    "package.json",
+    "pnpm-lock.yaml"
+  ],
+  "coverageSource": "mixed",
+  "waiverIds": [
+    "T-047/AW-19"
+  ]
+}

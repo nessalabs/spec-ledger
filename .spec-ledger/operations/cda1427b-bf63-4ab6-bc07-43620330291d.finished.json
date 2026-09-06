@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "requestId": "cda1427b-bf63-4ab6-bc07-43620330291d",
+  "operation": "record_decision",
+  "inputDigest": "6c5abab1514888efb33cc25c8fbd25e57e351c2cc6b8093ed4f76f99895062ea",
+  "finishedAt": "2026-09-06T07:04:40.269Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "turnId": "T-046",
+    "decision": "Repair CI fixtures while preserving their behavioral assertions.",
+    "rationale": "User requests fixing PR 2 CI run 34017195787. Episode cleanup failed with ENOTEMPTY in temporary .git; packaged consumer import failed with a missing Zod module. Disable temporary-repository background Git maintenance and bound cleanup retries; independently repair dependency fixture. T-045 was abandoned because the initial CLI invocation omitted a workstream context; its small fixture edit is included in this context and review.",
+    "basis": {
+      "at": "2026-09-06T07:04:40.269Z",
+      "contextDigest": "b7fb5690becd1ca0f2d4ad3979c9cccf16d057832e005f6df6788d90bfb5aeb3",
+      "sealRevision": 1
+    },
+    "discovery": {
+      "kind": "verification-gap",
+      "reportedVia": "user",
+      "observation": "Linux Node 22 CI fails two test fixtures.",
+      "regression": "Affected tests on Node 22 and passing remote PR CI."
+    },
+    "id": "T-046/D-01"
+  }
+}

@@ -1,0 +1,29 @@
+TAP version 13
+# Subtest: read-only projection adversarial
+    # Subtest: HTTP and in-process reads never execute checks, persist reports, or resolve expired waits
+    ok 1 - HTTP and in-process reads never execute checks, persist reports, or resolve expired waits
+      ---
+      duration_ms: 475.801584
+      type: 'test'
+      ...
+    # Subtest: explicit CLI checks run commands, persist verdicts, and expose the recorded result to reads
+    ok 2 - explicit CLI checks run commands, persist verdicts, and expose the recorded result to reads
+      ---
+      duration_ms: 944.45375
+      type: 'test'
+      ...
+    1..2
+ok 1 - read-only projection adversarial
+  ---
+  duration_ms: 1421.115375
+  type: 'suite'
+  ...
+1..1
+# tests 2
+# suites 1
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1488.552125

@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "requestId": "a86f9d69-58f4-4cab-a77d-5f19d2f3cd0d",
+  "operation": "record_review",
+  "inputDigest": "cb628f9d83afa5a83d26e675c0815dac688d2ae6535bcac37543163b322fc8b4",
+  "finishedAt": "2026-09-06T07:07:17.465Z",
+  "outcome": "failed",
+  "error": {
+    "code": "prerequisite_missing",
+    "message": "turn T-046 is not open",
+    "retryable": false
+  }
+}
