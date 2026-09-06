@@ -49,7 +49,7 @@ function assertNoWorkspaceOrFile(deps: Record<string, string> | undefined, label
   }
 }
 
-describe("pack installable packages (SLC-02)", () => {
+describe("pack installable packages (92b26f1a-e5c0-5115-a2c0-6e80715259cd)", () => {
   it("packs ledger/client/server without workspace: or file: and bin runs outside monorepo", () => {
     const root = mkdtempSync(join(tmpdir(), "sl-pack-"))
     try {

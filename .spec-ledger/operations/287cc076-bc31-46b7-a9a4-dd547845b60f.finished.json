@@ -7,7 +7,7 @@
   "outcome": "succeeded",
   "result": {
     "schemaVersion": 1,
-    "id": "T-044",
+    "id": "b73479b8-7a81-84e9-84e8-efcd9c23e531",
     "status": "open",
     "openedAt": "2026-09-06T17:38:45.553Z",
     "opened": {
@@ -15,14 +15,14 @@
       "baseCommit": "7301403a60243d2b477dbd647e2f8a7b8e5dec04",
       "treeDigest": "e496f8f4eaaa1ac895265f702dc1815148701d3360fff2fd202f770fc8f7500c",
       "dirtyAtOpen": [
-        ".spec-ledger/authority/AUTH-0c01cde4-b0d5-4d92-bc01-a1b602937a3a.json",
-        ".spec-ledger/reviews/workstreams/W-014/SR-03.json",
-        ".spec-ledger/workstreams/W-014.json",
-        "docs/workstreams/W-014-follow-agent-experiments/spec.md"
+        ".spec-ledger/authority/058aee1c-62ab-8fa9-85e1-b79a85ca2523.json",
+        ".spec-ledger/reviews/workstreams/29c935b4-56bd-84a0-b887-e280d775f54d/78c87091-4e55-84e2-b7d4-57405d97d6b0.json",
+        ".spec-ledger/workstreams/29c935b4-56bd-84a0-b887-e280d775f54d.json",
+        "docs/workstreams/29c935b4-56bd-84a0-b887-e280d775f54d-follow-agent-experiments/spec.md"
       ],
       "contextDigest": "d41cce500e7b9df75938e80061f11e6c26cdda07443bfb43decb5f900507f980",
-      "contextWorkstreamId": "W-014",
-      "contextSliceId": "SLC-02",
+      "contextWorkstreamId": "29c935b4-56bd-84a0-b887-e280d775f54d",
+      "contextSliceId": "b21da6cf-af77-8a39-bf8e-bfdc0d5b3a95",
       "contextSealRevision": 3,
       "contextGeneratedAt": "2026-09-06T17:38:45.553Z"
     },
@@ -31,8 +31,8 @@
       "restatedGoal": "Read test results and visual evidence first",
       "changeType": "feature",
       "riskLevel": "moderate",
-      "workstreamId": "W-014",
-      "sliceId": "SLC-02",
+      "workstreamId": "29c935b4-56bd-84a0-b887-e280d775f54d",
+      "sliceId": "b21da6cf-af77-8a39-bf8e-bfdc0d5b3a95",
       "featureIds": [
         "turns",
         "lattice",

@@ -7,7 +7,7 @@
   "outcome": "succeeded",
   "result": {
     "schemaVersion": 1,
-    "id": "W-014",
+    "id": "29c935b4-56bd-84a0-b887-e280d775f54d",
     "status": "done",
     "createdAt": "2026-09-06T07:33:40.672522+00:00",
     "featureIds": [
@@ -18,7 +18,7 @@
     "title": "Follow agent experiments",
     "problem": "Iterative agent work lacks a durable goal and experiment history that people can inspect.",
     "objective": "See what an agent is improving, its experiment results, and what it learned.",
-    "specPath": "docs/workstreams/W-014-follow-agent-experiments/spec.md",
+    "specPath": "docs/workstreams/29c935b4-56bd-84a0-b887-e280d775f54d-follow-agent-experiments/spec.md",
     "changeType": "feature",
     "riskLevel": "moderate",
     "trust": {
@@ -43,7 +43,7 @@
     },
     "suggestedSlices": [
       {
-        "id": "SLC-01",
+        "id": "04932de5-9225-81d4-b42c-c13f79e6c5be",
         "title": "Record and inspect an agent’s experiments",
         "kind": "vertical",
         "acceptance": [
@@ -66,28 +66,28 @@
           "docs/**",
           "skills/**"
         ],
-        "codeBreakReviewId": "T-043/R-02"
+        "codeBreakReviewId": "2ce03cdd-2947-8a26-9330-baba074a016d"
       }
     ],
-    "specBreakReviewId": "W-014/SR-02",
+    "specBreakReviewId": "63956f68-2059-8423-bade-f6cd7da05023",
     "updatedAt": "2026-09-06T08:10:42.845Z",
     "seal": {
       "sealedAt": "2026-09-06T07:51:25.216Z",
-      "sealedBy": "agent:permission:AUTH-21ac919a-880c-411d-a3b0-3534b8634dc3",
-      "specDigest": "3f5503739b08f6b62be9b4d503bbcbc02b5f3fc26928af93eedd1626e93c4d47",
-      "snapshotPath": "workstreams/W-014.seals/2.json",
+      "sealedBy": "agent:permission:e4e8c4a1-b747-869a-a7b7-aee3ac248572",
+      "specDigest": "3ad5e9ddfa54ac72bae34eeb628d36381654f5767dcbbc5633cc1636fc8a209c",
+      "snapshotPath": "workstreams/29c935b4-56bd-84a0-b887-e280d775f54d.seals/2.json",
       "revision": 2,
       "specDocDigest": "e94f99159c92232d20dd21d3f3690c6fda0c31ab749e7d514bb4e61316bb5c0c"
     },
     "acceptanceClaimIds": {
-      "SLC-01/AC-1": [
-        "SL-032"
+      "04932de5-9225-81d4-b42c-c13f79e6c5be/AC-1": [
+        "1ea8304f-a051-8234-b7a7-ce31b25eccf2"
       ],
-      "SLC-01/AC-2": [
-        "SL-032"
+      "04932de5-9225-81d4-b42c-c13f79e6c5be/AC-2": [
+        "1ea8304f-a051-8234-b7a7-ce31b25eccf2"
       ],
-      "SLC-01/AC-3": [
-        "SL-032"
+      "04932de5-9225-81d4-b42c-c13f79e6c5be/AC-3": [
+        "1ea8304f-a051-8234-b7a7-ce31b25eccf2"
       ]
     }
   }

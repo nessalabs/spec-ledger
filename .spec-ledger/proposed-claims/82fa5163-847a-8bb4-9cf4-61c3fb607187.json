@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "82fa5163-847a-8bb4-9cf4-61c3fb607187",
+  "status": "proposed",
+  "statement": "Product path changes in a turn or push are either covered by the sealed workstream (graph node.locator under the turn's featureIds and/or slice expectedPaths) or accompanied by an explicit ledger align-waiver bound to the same treeDigest.",
+  "rationale": "4f850c5a-83ce-85c9-a081-b0a3e02d2811 forbids unsealed implementation in spirit; without a machine check, agents ship Lattice/UI and core changes with no plan trail. Coverage is path→plan/graph, not verify theater. expectedPaths is now on the workstream slice schema.",
+  "workstreamId": "76451749-a54f-8579-96f2-dcec19d79026",
+  "suggestedLiveId": "SL-009",
+  "requiredEvidence": [
+    "unit",
+    "integration"
+  ],
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/proposed-claims/PC-013.json",
+        "id": "PC-013",
+        "sha256": "7d9e67684b220566ebbaec8f84b56ae0aa68b6578c1925ba84b3cbc05a06b344"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/proposed-claims/PC-013.json",
+        "id": "PC-013",
+        "sha256": "7d9e67684b220566ebbaec8f84b56ae0aa68b6578c1925ba84b3cbc05a06b344"
+      }
+    },
+    "historical": true
+  }
+}

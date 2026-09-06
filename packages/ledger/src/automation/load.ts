@@ -1,3 +1,4 @@
+import { createEntityId, publishEntity } from "../identity/index.js"
 import { existsSync, mkdirSync, readdirSync, readFileSync } from "node:fs"
 import { join } from "node:path"
 import { findRepoRoot, ledgerRoot, writeJson } from "../fs/load.js"
@@ -33,16 +34,12 @@ export function writeAutomationEvent(
 ): AutomationEvent {
   const dir = automationEventsDir(repoRootInput)
   mkdirSync(dir, { recursive: true })
-  writeJson(join(dir, `${event.id}.json`), event)
+  publishEntity(join(dir, `${event.id}.json`), event)
   return event
 }
 
-export function nextAutomationEventId(repoRootInput: string): string {
-  const max = listAutomationEvents(repoRootInput).reduce((m, e) => {
-    const n = Number(e.id.replace(/^AE-/, ""))
-    return Number.isFinite(n) ? Math.max(m, n) : m
-  }, 0)
-  return `AE-${String(max + 1).padStart(3, "0")}`
+export function nextAutomationEventId(_repoRootInput: string): string {
+  return createEntityId()
 }
 
 /**
@@ -82,7 +79,8 @@ export function resumeAutomationEvents(
       resolvedBy: "system:timeout",
       note: e.note ?? "wait timeout applied on context/open",
     }
-    writeAutomationEvent(repoRootInput, updated)
+    // Timeout resolution updates an existing event; creation above remains no-replace.
+    writeJson(join(automationEventsDir(repoRootInput), `${e.id}.json`), updated)
     recent.push(updated)
   }
 

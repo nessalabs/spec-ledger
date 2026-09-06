@@ -33,9 +33,9 @@ function fixture(options: { openTurn?: boolean; authorized?: boolean } = {}): st
   git(root, "config", "user.name", "Fixture")
   initLedger(root, "operation boundary breaker")
   writeFileSync(join(root, "source.ts"), "export const behavior = true\n")
-  writeJson(join(root, ".spec-ledger/workstreams/W-001.json"), {
+  writeJson(join(root, ".spec-ledger/workstreams/2b74bc14-227a-5c05-b2ed-1c32d9703cad.json"), {
     schemaVersion: 1,
-    id: "W-001",
+    id: "2b74bc14-227a-5c05-b2ed-1c32d9703cad",
     status: "shaped",
     createdAt: "2026-09-05T00:00:00.000Z",
     title: "Operation boundary",
@@ -43,30 +43,30 @@ function fixture(options: { openTurn?: boolean; authorized?: boolean } = {}): st
     objective: "Rejected operations have no domain effects",
     featureIds: ["alpha"],
     policy: { requireSpecBreak: false, requireCodeBreak: true },
-    suggestedSlices: [{ id: "SLC-01", title: "Shared boundary", kind: "vertical", acceptance: ["Works"] }],
+    suggestedSlices: [{ id: "886b091f-57f9-5f69-9e74-f0b50275d693", title: "Shared boundary", kind: "vertical", acceptance: ["Works"] }],
   })
-  writeJson(join(root, ".spec-ledger/automation-events/AE-001.json"), {
+  writeJson(join(root, ".spec-ledger/automation-events/2f8186b0-45f4-563d-ac09-47fe12180c37.json"), {
     schemaVersion: 1,
-    id: "AE-001",
+    id: "2f8186b0-45f4-563d-ac09-47fe12180c37",
     kind: "review-alert",
     state: "waiting",
-    workstreamId: "W-001",
+    workstreamId: "2b74bc14-227a-5c05-b2ed-1c32d9703cad",
     openedAt: "2026-09-05T00:00:00.000Z",
     waitUntil: "2026-09-05T00:00:01.000Z",
     policySnapshot: { onAlertTimeout: "move" },
   })
   if (options.openTurn) {
-    writeJson(join(root, ".spec-ledger/turns/T-001.json"), {
+    writeJson(join(root, ".spec-ledger/turns/1c5a8e44-dd09-543a-97d5-bfe173becbaa.json"), {
       schemaVersion: 1,
-      id: "T-001",
+      id: "1c5a8e44-dd09-543a-97d5-bfe173becbaa",
       status: "open",
       openedAt: "2026-09-05T00:00:00.000Z",
       opened: { producedBy: "fixture", baseCommit: null, dirtyAtOpen: [] },
       intent: {
         userPrompt: "Exercise lifecycle operations",
         restatedGoal: "Preserve operation gates",
-        workstreamId: "W-001",
-        sliceId: "SLC-01",
+        workstreamId: "2b74bc14-227a-5c05-b2ed-1c32d9703cad",
+        sliceId: "886b091f-57f9-5f69-9e74-f0b50275d693",
         featureIds: ["alpha"],
       },
     })
@@ -75,10 +75,10 @@ function fixture(options: { openTurn?: boolean; authorized?: boolean } = {}): st
   git(root, "commit", "-qm", "fixture")
   if (options.authorized) {
     recordAuthority(root, {
-      id: "AUTH-fixture",
+      id: "e1f9cf52-7a50-5160-8cbc-8014fcec6249",
       action: "grant",
       mode: "request",
-      workstreamId: "W-001",
+      workstreamId: "2b74bc14-227a-5c05-b2ed-1c32d9703cad",
       featureIds: ["alpha"],
       source: { kind: "agent-reported", reference: "fixture authorization" },
     })
@@ -114,7 +114,7 @@ function cliOperation(root: string, operation: OperationName, input: unknown) {
 }
 
 function revision(root: string): string {
-  return planRevision(root, loadWorkstream(root, "W-001"))
+  return planRevision(root, loadWorkstream(root, "2b74bc14-227a-5c05-b2ed-1c32d9703cad"))
 }
 
 function source(root: string): string {
@@ -127,11 +127,11 @@ describe("shared operation boundary adversarial cases", () => {
   it("rejects an invalid slice through the actual CLI before sealing, opening, activating, or resuming", () => {
     const root = fixture({ authorized: true })
     try {
-      const eventBefore = readFileSync(join(root, ".spec-ledger/automation-events/AE-001.json"), "utf8")
+      const eventBefore = readFileSync(join(root, ".spec-ledger/automation-events/2f8186b0-45f4-563d-ac09-47fe12180c37.json"), "utf8")
       const result = cliOperation(root, "begin_work", {
         requestId: "invalid-slice-req-0001",
-        workstreamId: "W-001",
-        sliceId: "SLC-does-not-exist",
+        workstreamId: "2b74bc14-227a-5c05-b2ed-1c32d9703cad",
+        sliceId: "f9acf249-b3e5-5809-8b9b-6f076365c68b",
         goal: "Must be rejected",
         expectedRevisionDigest: revision(root),
         allowDirty: true,
@@ -139,10 +139,10 @@ describe("shared operation boundary adversarial cases", () => {
       assert.equal(result.status, 1, result.stderr)
       assert.equal(result.output.ok, false)
       assert.equal((result.output.error as Record<string, unknown>).code, "invalid_input")
-      assert.equal(loadWorkstream(root, "W-001").seal, undefined)
+      assert.equal(loadWorkstream(root, "2b74bc14-227a-5c05-b2ed-1c32d9703cad").seal, undefined)
       assert.deepEqual(jsonFiles(join(root, ".spec-ledger/turns")), [])
       assert.deepEqual(jsonFiles(join(root, ".spec-ledger/deferral-activations")), [])
-      assert.equal(readFileSync(join(root, ".spec-ledger/automation-events/AE-001.json"), "utf8"), eventBefore)
+      assert.equal(readFileSync(join(root, ".spec-ledger/automation-events/2f8186b0-45f4-563d-ac09-47fe12180c37.json"), "utf8"), eventBefore)
       assert.deepEqual(jsonFiles(join(root, ".spec-ledger/operations")), [])
     } finally {
       rmSync(root, { recursive: true, force: true })
@@ -155,7 +155,7 @@ describe("shared operation boundary adversarial cases", () => {
     try {
       const marker = join(outside, "sentinel.txt")
       writeFileSync(marker, "unchanged")
-      const result = cliOperation(root, "get_session", { workstreamId: "W-001", root: outside })
+      const result = cliOperation(root, "get_session", { workstreamId: "2b74bc14-227a-5c05-b2ed-1c32d9703cad", root: outside })
       assert.equal(result.status, 1, result.stderr)
       assert.equal((result.output.error as Record<string, unknown>).code, "invalid_input")
       assert.equal(readFileSync(marker, "utf8"), "unchanged")
@@ -172,12 +172,12 @@ describe("shared operation boundary adversarial cases", () => {
       try {
         const common = {
           requestId: `denied-${operation.replace("record_", "")}-0001`,
-          turnId: "T-001",
+          turnId: "1c5a8e44-dd09-543a-97d5-bfe173becbaa",
           expectedRevisionDigest: revision(root),
           expectedSourceDigest: source(root),
         }
         const input = operation === "record_progress" ? {
-          ...common, summary: "Denied progress", criterionIds: ["SLC-01/AC-1"], implemented: true,
+          ...common, summary: "Denied progress", criterionIds: ["886b091f-57f9-5f69-9e74-f0b50275d693/AC-1"], implemented: true,
         } : operation === "record_decision" ? {
           ...common, decision: "Denied decision", rationale: "No permission exists",
         } : {
@@ -188,9 +188,9 @@ describe("shared operation boundary adversarial cases", () => {
         }
         const error = errorFrom(() => executeOperation(root, operation, input))
         assert.equal(error.code, "permission_denied")
-        assert.deepEqual(jsonFiles(join(root, ".spec-ledger/decisions/T-001")), [])
-        assert.deepEqual(jsonFiles(join(root, ".spec-ledger/reviews/turns/T-001")), [])
-        assert.equal(loadWorkstream(root, "W-001").suggestedSlices?.[0].codeBreakReviewId, undefined)
+        assert.deepEqual(jsonFiles(join(root, ".spec-ledger/decisions/1c5a8e44-dd09-543a-97d5-bfe173becbaa")), [])
+        assert.deepEqual(jsonFiles(join(root, ".spec-ledger/reviews/turns/1c5a8e44-dd09-543a-97d5-bfe173becbaa")), [])
+        assert.equal(loadWorkstream(root, "2b74bc14-227a-5c05-b2ed-1c32d9703cad").suggestedSlices?.[0].codeBreakReviewId, undefined)
       } finally {
         rmSync(root, { recursive: true, force: true })
       }
@@ -202,7 +202,7 @@ describe("shared operation boundary adversarial cases", () => {
     try {
       const staleRevision = errorFrom(() => executeOperation(root, "record_decision", {
         requestId: "stale-revision-req-0001",
-        turnId: "T-001",
+        turnId: "1c5a8e44-dd09-543a-97d5-bfe173becbaa",
         decision: "Must remain stale",
         rationale: "The revision does not match",
         expectedRevisionDigest: "0".repeat(64),
@@ -213,7 +213,7 @@ describe("shared operation boundary adversarial cases", () => {
       const staleSource = cliOperation(root, "record_review", {
         requestId: "stale-source-review-0001",
         target: "code",
-        turnId: "T-001",
+        turnId: "1c5a8e44-dd09-543a-97d5-bfe173becbaa",
         expectedSourceDigest: "0".repeat(64),
         review: {
           kind: "adversarial", reviewer: "agent:fixture", verdict: "approve",
@@ -222,9 +222,9 @@ describe("shared operation boundary adversarial cases", () => {
       })
       assert.equal(staleSource.status, 1, staleSource.stderr)
       assert.equal((staleSource.output.error as Record<string, unknown>).code, "source_conflict")
-      assert.deepEqual(jsonFiles(join(root, ".spec-ledger/decisions/T-001")), [])
-      assert.deepEqual(jsonFiles(join(root, ".spec-ledger/reviews/turns/T-001")), [])
-      assert.equal(loadWorkstream(root, "W-001").suggestedSlices?.[0].codeBreakReviewId, undefined)
+      assert.deepEqual(jsonFiles(join(root, ".spec-ledger/decisions/1c5a8e44-dd09-543a-97d5-bfe173becbaa")), [])
+      assert.deepEqual(jsonFiles(join(root, ".spec-ledger/reviews/turns/1c5a8e44-dd09-543a-97d5-bfe173becbaa")), [])
+      assert.equal(loadWorkstream(root, "2b74bc14-227a-5c05-b2ed-1c32d9703cad").suggestedSlices?.[0].codeBreakReviewId, undefined)
     } finally {
       rmSync(root, { recursive: true, force: true })
     }
@@ -236,7 +236,7 @@ describe("shared operation boundary adversarial cases", () => {
       const error = errorFrom(() => executeOperation(root, "record_review", {
         requestId: "forged-human-review-0001",
         target: "code",
-        turnId: "T-001",
+        turnId: "1c5a8e44-dd09-543a-97d5-bfe173becbaa",
         expectedSourceDigest: source(root),
         review: {
           kind: "human",
@@ -248,8 +248,8 @@ describe("shared operation boundary adversarial cases", () => {
         },
       }))
       assert.equal(error.code, "invalid_input")
-      assert.deepEqual(jsonFiles(join(root, ".spec-ledger/reviews/turns/T-001")), [])
-      assert.equal(loadWorkstream(root, "W-001").suggestedSlices?.[0].codeBreakReviewId, undefined)
+      assert.deepEqual(jsonFiles(join(root, ".spec-ledger/reviews/turns/1c5a8e44-dd09-543a-97d5-bfe173becbaa")), [])
+      assert.equal(loadWorkstream(root, "2b74bc14-227a-5c05-b2ed-1c32d9703cad").suggestedSlices?.[0].codeBreakReviewId, undefined)
     } finally {
       rmSync(root, { recursive: true, force: true })
     }
@@ -261,10 +261,10 @@ describe("shared operation boundary adversarial cases", () => {
       const error = errorFrom(() => executeOperation(root, "record_review", {
         requestId: "wrong-review-scope-0001",
         target: "code",
-        turnId: "T-001",
+        turnId: "1c5a8e44-dd09-543a-97d5-bfe173becbaa",
         expectedSourceDigest: source(root),
         review: {
-          workstreamId: "W-999",
+          workstreamId: "4e3b2209-eab6-51a8-b990-7ccf4d79794c",
           kind: "adversarial",
           reviewer: "agent:fixture",
           verdict: "approve",
@@ -274,8 +274,8 @@ describe("shared operation boundary adversarial cases", () => {
         },
       }))
       assert.equal(error.code, "invalid_input")
-      assert.deepEqual(jsonFiles(join(root, ".spec-ledger/reviews/turns/T-001")), [])
-      assert.equal(loadWorkstream(root, "W-001").suggestedSlices?.[0].codeBreakReviewId, undefined)
+      assert.deepEqual(jsonFiles(join(root, ".spec-ledger/reviews/turns/1c5a8e44-dd09-543a-97d5-bfe173becbaa")), [])
+      assert.equal(loadWorkstream(root, "2b74bc14-227a-5c05-b2ed-1c32d9703cad").suggestedSlices?.[0].codeBreakReviewId, undefined)
     } finally {
       rmSync(root, { recursive: true, force: true })
     }
@@ -288,10 +288,10 @@ describe("shared operation boundary adversarial cases", () => {
       const written = executeOperation(root, "record_review", {
         requestId: "forged-tree-review-0001",
         target: "code",
-        turnId: "T-001",
+        turnId: "1c5a8e44-dd09-543a-97d5-bfe173becbaa",
         expectedSourceDigest: current,
         review: {
-          workstreamId: "W-001",
+          workstreamId: "2b74bc14-227a-5c05-b2ed-1c32d9703cad",
           treeDigest: "0".repeat(64),
           kind: "adversarial",
           reviewer: "agent:fixture",
@@ -301,7 +301,7 @@ describe("shared operation boundary adversarial cases", () => {
           killersCited: ["tree-stamp-killer"],
         },
       }) as { treeDigest: string; workstreamId: string }
-      assert.equal(written.workstreamId, "W-001")
+      assert.equal(written.workstreamId, "2b74bc14-227a-5c05-b2ed-1c32d9703cad")
       assert.equal(written.treeDigest, current)
       assert.notEqual(written.treeDigest, "0".repeat(64))
     } finally {
@@ -312,15 +312,13 @@ describe("shared operation boundary adversarial cases", () => {
   it("rejects a different request that reuses an existing review ID and preserves the first review", () => {
     const root = fixture({ openTurn: true, authorized: true })
     try {
-      const reviewPath = join(root, ".spec-ledger/reviews/turns/T-001/R-01.json")
-      executeOperation(root, "record_review", {
+      const first = executeOperation(root, "record_review", {
         requestId: "first-review-write-0001",
         target: "code",
-        turnId: "T-001",
+        turnId: "1c5a8e44-dd09-543a-97d5-bfe173becbaa",
         expectedSourceDigest: source(root),
         review: {
-          id: "T-001/R-01",
-          workstreamId: "W-001",
+          workstreamId: "2b74bc14-227a-5c05-b2ed-1c32d9703cad",
           kind: "adversarial",
           reviewer: "agent:first-reviewer",
           verdict: "approve",
@@ -329,16 +327,17 @@ describe("shared operation boundary adversarial cases", () => {
           killersCited: ["first-review-killer"],
         },
       })
+      const reviewPath=join(root,`.spec-ledger/reviews/turns/1c5a8e44-dd09-543a-97d5-bfe173becbaa/${(first as {id:string}).id}.json`)
       const firstBytes = readFileSync(reviewPath, "utf8")
 
       const error = errorFrom(() => executeOperation(root, "record_review", {
         requestId: "second-review-write-0002",
         target: "code",
-        turnId: "T-001",
+        turnId: "1c5a8e44-dd09-543a-97d5-bfe173becbaa",
         expectedSourceDigest: source(root),
         review: {
-          id: "T-001/R-01",
-          workstreamId: "W-001",
+          id: (first as {id:string}).id,
+          workstreamId: "2b74bc14-227a-5c05-b2ed-1c32d9703cad",
           kind: "adversarial",
           reviewer: "agent:second-reviewer",
           verdict: "request-changes",
@@ -347,9 +346,9 @@ describe("shared operation boundary adversarial cases", () => {
           findings: [],
         },
       }))
-      assert.equal(error.code, "idempotency_conflict")
+      assert.equal(error.code, "invalid_input")
       assert.equal(readFileSync(reviewPath, "utf8"), firstBytes)
-      assert.equal(loadWorkstream(root, "W-001").suggestedSlices?.[0].codeBreakReviewId, "T-001/R-01")
+      assert.equal(loadWorkstream(root, "2b74bc14-227a-5c05-b2ed-1c32d9703cad").suggestedSlices?.[0].codeBreakReviewId, (first as {id:string}).id)
     } finally {
       rmSync(root, { recursive: true, force: true })
     }

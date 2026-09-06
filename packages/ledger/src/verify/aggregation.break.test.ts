@@ -1,3 +1,4 @@
+import { randomUUID } from "node:crypto"
 import { describe, it } from "node:test"
 import assert from "node:assert/strict"
 import { mkdtempSync, rmSync } from "node:fs"
@@ -15,8 +16,8 @@ import type { EvidenceBinding, ResultsFile } from "../types.js"
 function fixture() {
   const root = mkdtempSync(join(tmpdir(), "sl-aggregate-break-"))
   initLedger(root, "aggregation breaker")
-  writeJson(join(root, ".spec-ledger/claims/SL-001.json"), {
-    id: "SL-001", statement: "All checks hold", required: true,
+  writeJson(join(root, ".spec-ledger/claims/02f2ae36-9568-53f9-bc0c-a25f0a7e3af4.json"), {
+    id: "02f2ae36-9568-53f9-bc0c-a25f0a7e3af4", statement: "All checks hold", required: true,
   })
   return root
 }
@@ -24,8 +25,10 @@ function permutations<T>(xs: T[]): T[][] {
   return xs.length < 2 ? [xs] : xs.flatMap((x, i) =>
     permutations(xs.filter((_, j) => i !== j)).map(rest => [x, ...rest]))
 }
+const bindingIds=new Map<string,string>()
+const bindingId=(name:string)=>{if(!bindingIds.has(name))bindingIds.set(name,randomUUID());return bindingIds.get(name)!}
 const binding = (id: string, locator: EvidenceBinding["locator"]): EvidenceBinding =>
-  ({ id, claimId: "SL-001", kind: "check", locator })
+  ({ id:bindingId(id), claimId: "02f2ae36-9568-53f9-bc0c-a25f0a7e3af4", kind: "check", locator })
 const rows = (values: ResultsFile["rows"]): ResultsFile => ({
   schemaVersion: 1, producedAt: "2026-09-04T00:00:00Z",
   producer: { name: "breaker", version: "1" }, rows: values,

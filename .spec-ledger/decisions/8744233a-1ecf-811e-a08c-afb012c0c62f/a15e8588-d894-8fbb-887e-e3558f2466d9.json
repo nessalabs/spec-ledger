@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "turnId": "8744233a-1ecf-811e-a08c-afb012c0c62f",
+  "decision": "The six planned capabilities are implemented, with behavioral checks and a verified session walkthrough.",
+  "rationale": "Agent-reported progress; evidence is evaluated separately.",
+  "progress": {
+    "criterionIds": [
+      "4bb567af-6d1e-8c2d-87f6-c9e72f27827a/AC-1",
+      "d9cb1d03-8f89-8a01-a54b-20d137493265/AC-1",
+      "88c72d83-aa21-8191-b6ed-64d088b99504/AC-1",
+      "44061bcc-deb1-8eeb-a20e-69cc18756bf3/AC-1",
+      "11dcdd45-4a20-8f4d-8c53-c4e92071939b/AC-1",
+      "782ababb-e2ba-8f93-8832-69a5c4334094/AC-1"
+    ],
+    "implemented": true,
+    "revisionDigest": "f8c6f8bfb42b36a27288d6e1841ccc5417c0972c6db15d936e3092bff2f23cab",
+    "sourceDigest": "b5d25e66897f1b13e2705e6899e139fd8ed88e49aa2dda65e3f9d1a49db0de88",
+    "preview": {
+      "url": "http://127.0.0.1:3737/",
+      "label": "Try this Spec Ledger checkout"
+    }
+  },
+  "id": "a15e8588-d894-8fbb-887e-e3558f2466d9",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/decisions/T-031/D-03.json",
+        "id": "T-031/D-03",
+        "sha256": "931f752b996c49d9b94262efe4d89792ca982448bcd3b2526b098dcb89aefbe2"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/decisions/T-031/D-03.json",
+        "id": "T-031/D-03",
+        "sha256": "931f752b996c49d9b94262efe4d89792ca982448bcd3b2526b098dcb89aefbe2"
+      }
+    },
+    "historical": true
+  },
+  "sequence": 3
+}

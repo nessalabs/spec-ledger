@@ -1,0 +1,315 @@
+{
+  "schemaVersion": 1,
+  "id": "d1be55a6-11bb-8460-8650-ddf0ecac8185",
+  "status": "done",
+  "createdAt": "2026-09-04T09:01:44.000Z",
+  "updatedAt": "2026-09-05T01:52:16.555Z",
+  "specBreakReviewId": "c63c8019-5352-819f-913d-0753f7a51fa0",
+  "amendedAfterSpecBreak": [
+    "cee6b88e-a62f-8821-9319-babc533e5522",
+    "a6580f17-131c-82a5-b548-5a4b4b3d50eb",
+    "e0f64191-27f8-83ee-942a-473bf1ab3bb6",
+    "5b790a52-349d-8536-9122-fab870709c14",
+    "dfb39021-e991-8c81-8b65-70c5f2e4f7b3"
+  ],
+  "specPath": "docs/workstreams/consumer-cli-and-npm-publish.md",
+  "featureIds": [
+    "cli",
+    "verify",
+    "client",
+    "server",
+    "lattice",
+    "turns"
+  ],
+  "primaryFeatureId": "cli",
+  "title": "Consumer CLI, npm publish, sealed plan digests",
+  "problem": "Other repos cannot adopt Spec Ledger without this monorepo; init is thin; packages/UI not on npm/Release; sealed pitch Markdown can change with no digest or amend trail.",
+  "objective": "Install from npm, init a full ledger, open Spec Ledger UI from a Release asset, and keep sealed plan docs digest-stamped with recorded amends.",
+  "appetite": "3–4 days",
+  "changeType": "feature",
+  "riskLevel": "elevated",
+  "trust": {
+    "deployTarget": "library-consumer",
+    "userFacing": true,
+    "performanceCritical": false,
+    "securitySensitive": false,
+    "correctnessCritical": true,
+    "requiredEvidence": [
+      "unit",
+      "integration",
+      "e2e"
+    ]
+  },
+  "policy": {
+    "alertOnSeverity": "high",
+    "onAlert": "wait",
+    "alertWaitMinutes": 10,
+    "onAlertTimeout": "move",
+    "onSealedSpecDeviation": "wait",
+    "sealedDeviationWaitMinutes": 10,
+    "onSealedDeviationTimeout": "move",
+    "requireSpecBreak": true,
+    "requireCodeBreak": true,
+    "requireAlignApprove": true,
+    "alignReviewerPrefix": "agent:align",
+    "allowExplicitAlignSkip": true,
+    "alignSkipMaxPerTurn": 1,
+    "alignWaiverMinReasonChars": 40
+  },
+  "acceptanceCriteria": [
+    "spec-ledger init creates exactly the normative skeleton table in docs/workstreams/consumer-cli-and-npm-publish.md; re-init refuses; ledger.json written last",
+    "After init, verify invents no claim pass and no binding carries status/pass (67609c19-de05-862c-8db7-e5dc95f38cee, 2884eafb-114e-85f1-ae07-ce1fbd140550)",
+    "Packed @nessalabs/spec-ledger@0.1.0-alpha.0 installs outside the monorepo; bin spec-ledger runs --help, init, verify",
+    "Packed client and server package.json contain no workspace: or file: deps; install resolves against packed ledger",
+    "Spec Ledger UI ships as GitHub Release asset only (not npm UI); artifact has zero file: or workspace: deps; README one-liner documents viewing a consumer ledger via published client/server",
+    ".github/workflows/publish.yml live-publishes only on release published to the nessalabs npm org/registry; optional workflow_dispatch dry-run; ci.yml does not publish; version must match release tag; NPM_TOKEN documented",
+    "workstream seal stamps seal.specDocDigest for specPath (immutable for that revision); sealed+specPath with no expected digest fails check-seal and audit (spec-doc-digest-missing) until workstream backfill-doc-digest writes a new seal revision; drift fails when expected digest exists; workstream amend appends postSealAmends without mutating seal; ## Modifications is the human log; audit error seal-digest-drift for JSON sealPayload vs snapshot",
+    "This bet is done with workflow+docs+dry-run + digest/amend gates; cutting the first Release is optional human action"
+  ],
+  "outOfScope": [
+    "Auto-publish on every main push",
+    "Publishing @nessalabs/spec-ledger-ui to npm",
+    "Publishing or replacing @nessalabs/ui",
+    "Installing sl-* skills into consumer repos",
+    "Multi-language CLIs",
+    "Bundling schemas/ into the npm tarball",
+    "Public marketing site beyond Spec Ledger UI",
+    "Verify inventing green for empty ledgers",
+    "Cutting the first alpha GitHub Release (optional human)",
+    "In-place mutation of old seals/N.json (backfill always writes a new revision)"
+  ],
+  "rabbitHoles": [
+    "How the Spec Ledger UI Release asset is built (Next standalone vs static) — pick smallest that runs without monorepo file: links",
+    "pnpm publish from workspace may need dedicated pack script to rewrite workspace:*"
+  ],
+  "expectedClaimIds": [
+    "67609c19-de05-862c-8db7-e5dc95f38cee",
+    "2884eafb-114e-85f1-ae07-ce1fbd140550",
+    "14d9b121-df2b-8ede-bce7-fdee648a4320"
+  ],
+  "proposedClaimIds": [
+    "628207d3-7b88-880b-abe1-acd523f8572f",
+    "ee4b88b6-f54b-8011-82e1-e4d44b94aaab",
+    "29a5b902-b969-823e-86f5-89b23debe467",
+    "74007d2e-7517-85a2-bd9c-390fae8871a4",
+    "1f1b46eb-ad28-8870-b46d-9826d55aaa1c"
+  ],
+  "suggestedSlices": [
+    {
+      "id": "141476c9-8a75-8ee1-8eb6-54aa420d3a07",
+      "title": "Full consumer init",
+      "kind": "vertical",
+      "acceptance": [
+        "Init matches normative path table (files vs empty dirs)",
+        "Re-init refused; ledger.json written last",
+        "Verify after init: no invented claim pass; no binding status/pass"
+      ],
+      "expectedClaimIds": [
+        "67609c19-de05-862c-8db7-e5dc95f38cee",
+        "2884eafb-114e-85f1-ae07-ce1fbd140550"
+      ],
+      "proposedClaimIds": [
+        "628207d3-7b88-880b-abe1-acd523f8572f"
+      ],
+      "evidence": [
+        "unit",
+        "integration"
+      ],
+      "expectedPaths": [
+        "packages/ledger/src/cli/**",
+        "packages/ledger/src/fs/**",
+        "packages/ledger/src/align/**",
+        "packages/ui/**",
+        "docs/**"
+      ],
+      "codeBreakReviewId": "3e7d9f55-e735-8c80-bfba-afc41b0819fa",
+      "notes": "Align coverage for dc39d41a-ed03-8e91-89b5-5daba10d0b74 includes UI rename + docs alongside init (human: include UI plus docs)."
+    },
+    {
+      "id": "520ff720-fc13-8275-b710-f677f8d2efb4",
+      "title": "Sealed plan digests and amends",
+      "kind": "vertical",
+      "acceptance": [
+        "seal with specPath stamps immutable seal.specDocDigest on seal + snapshot; missing file refuses seal",
+        "last expected = latest amend.afterDocDigest else seal.specDocDigest; sealed+specPath with none fails check-seal and audit until backfill-doc-digest writes a new revision",
+        "workstream amend requires expected digest; appends postSealAmends with before/after; refuses no-op; never mutates seal.specDocDigest; audit errors: spec-doc-digest-missing, spec-doc-digest-drift, seal-digest-drift",
+        "Pitch convention documents ## Modifications rows for any plan change; same commit carries doc + amend when amending"
+      ],
+      "expectedClaimIds": [],
+      "proposedClaimIds": [
+        "1f1b46eb-ad28-8870-b46d-9826d55aaa1c"
+      ],
+      "evidence": [
+        "unit",
+        "integration"
+      ],
+      "expectedPaths": [
+        "packages/ledger/src/workstream/**",
+        "packages/ledger/src/audit/**",
+        "packages/ledger/src/cli/**",
+        "schemas/workstream.json",
+        "docs/architecture/work-model.md",
+        "docs/workstreams/**"
+      ]
+    },
+    {
+      "id": "7274f0f7-06fc-809b-bf50-34149f1a028d",
+      "title": "Installable CLI and packable client/server",
+      "kind": "vertical",
+      "acceptance": [
+        "pnpm pack @nessalabs/spec-ledger installs outside monorepo; spec-ledger --help/init/verify work",
+        "Packed client and server have no workspace: or file: deps and install against packed ledger"
+      ],
+      "expectedClaimIds": [
+        "14d9b121-df2b-8ede-bce7-fdee648a4320"
+      ],
+      "proposedClaimIds": [
+        "ee4b88b6-f54b-8011-82e1-e4d44b94aaab"
+      ],
+      "evidence": [
+        "integration",
+        "e2e"
+      ],
+      "expectedPaths": [
+        "packages/ledger/package.json",
+        "packages/ledger/src/cli/**",
+        "packages/client/package.json",
+        "packages/server/package.json",
+        "packages/client/src/**",
+        "packages/server/src/**"
+      ]
+    },
+    {
+      "id": "6f2b8a6c-e341-8ca2-84c4-d4427e03529a",
+      "title": "Release to npm workflow",
+      "kind": "vertical",
+      "acceptance": [
+        "publish.yml triggers live publish only on release published",
+        "workflow_dispatch dry-run supported; ci.yml has no npm publish",
+        "Version must equal release tag; NPM_TOKEN documented; publishes to nessalabs org/registry"
+      ],
+      "expectedClaimIds": [],
+      "proposedClaimIds": [
+        "74007d2e-7517-85a2-bd9c-390fae8871a4"
+      ],
+      "evidence": [
+        "integration"
+      ],
+      "expectedPaths": [
+        ".github/workflows/publish.yml",
+        ".github/workflows/ci.yml",
+        "packages/ledger/package.json",
+        "packages/client/package.json",
+        "packages/server/package.json"
+      ]
+    },
+    {
+      "id": "4a65c48e-eaf5-8e43-b1b6-4c7bc8c793ca",
+      "title": "Spec Ledger UI Release asset",
+      "kind": "vertical",
+      "acceptance": [
+        "Release asset builds with zero file: or workspace: deps in the shipped tree",
+        "README documents one-liner: published client/server + Release Spec Ledger UI asset against a consumer .spec-ledger/"
+      ],
+      "expectedClaimIds": [
+        "14d9b121-df2b-8ede-bce7-fdee648a4320"
+      ],
+      "proposedClaimIds": [
+        "29a5b902-b969-823e-86f5-89b23debe467"
+      ],
+      "evidence": [
+        "integration",
+        "e2e"
+      ],
+      "expectedPaths": [
+        "packages/ui/**",
+        "packages/client/**",
+        "packages/server/**",
+        "README.md",
+        "docs/**"
+      ]
+    }
+  ],
+  "shapedBy": "agent:sl-plan-shape",
+  "attachmentIds": [],
+  "seal": {
+    "sealedAt": "2026-09-05T01:52:16.555Z",
+    "sealedBy": "agent:permission:4f09a0a4-dc11-8ae2-ba66-d3a96cd12f56",
+    "specDigest": "1c3fba1ebeeca74a7112bba40f6c06d4a80d74b3cdefbe46c7cf59c60cf7c390",
+    "snapshotPath": "workstreams/d1be55a6-11bb-8460-8650-ddf0ecac8185.seals/4.json",
+    "revision": 4,
+    "specDocDigest": "d16bea6e3aab53e4e364e854f7b92c5ceebf5c8307b9c2831cde048cfbfa0b8d"
+  },
+  "postSealAmends": [
+    {
+      "at": "2026-09-04T20:55:12.774Z",
+      "summary": "4a65c48e-eaf5-8e43-b1b6-4c7bc8c793ca complete: UI Release asset pack script + README client/server one-liner; Modifications log da84f6c1-3d94-8d66-8f41-dd67dfc07df0",
+      "humanConfirmed": true,
+      "sealedRevision": 3,
+      "beforeDocDigest": "9ab5deb8f129b131b1cc7e51efc9d4cf0d3560e6a4e8377309b32c6b6953b816",
+      "afterDocDigest": "dd6ee0c3262cad62795db5fb2ef4bd833cd14d4437402906cf6a8aeccc0c347d",
+      "actor": "agent:sl-dev-build",
+      "turnId": "da84f6c1-3d94-8d66-8f41-dd67dfc07df0"
+    },
+    {
+      "at": "2026-09-04T21:11:01.889Z",
+      "summary": "Apply user-authorized PR 1 fixes and clarify revision-scoped document amendments and immutable snapshot checking.",
+      "humanConfirmed": true,
+      "sealedRevision": 3,
+      "beforeDocDigest": "dd6ee0c3262cad62795db5fb2ef4bd833cd14d4437402906cf6a8aeccc0c347d",
+      "afterDocDigest": "4464b7e76bff19b1b78f2ad723b1a5574de1cbf3e924776146c76279fa9f5442",
+      "actor": "agent:sl-dev-build",
+      "turnId": "383eee85-f226-857a-a920-2f338ca83df4",
+      "decisionId": "edcedbe9-4ae2-8277-b6e9-f9d3f9ff19ca"
+    },
+    {
+      "at": "2026-09-04T21:15:20.554Z",
+      "summary": "Remove trailing whitespace in the user-authorized PR repair clarification.",
+      "humanConfirmed": true,
+      "sealedRevision": 3,
+      "beforeDocDigest": "4464b7e76bff19b1b78f2ad723b1a5574de1cbf3e924776146c76279fa9f5442",
+      "afterDocDigest": "d16bea6e3aab53e4e364e854f7b92c5ceebf5c8307b9c2831cde048cfbfa0b8d",
+      "actor": "agent:sl-dev-build",
+      "turnId": "383eee85-f226-857a-a920-2f338ca83df4",
+      "decisionId": "edcedbe9-4ae2-8277-b6e9-f9d3f9ff19ca"
+    }
+  ],
+  "acceptanceClaimIds": {
+    "AC-1": [
+      "259e1acf-d082-8bfe-b0ab-76fab45ae7d0"
+    ],
+    "AC-2": [
+      "259e1acf-d082-8bfe-b0ab-76fab45ae7d0"
+    ],
+    "AC-3": [
+      "4478b980-87e5-8f31-a57e-8c06246e0798"
+    ],
+    "AC-4": [
+      "4478b980-87e5-8f31-a57e-8c06246e0798"
+    ],
+    "AC-5": [
+      "ebc0a361-534e-8527-99a7-57611aae823d"
+    ],
+    "AC-6": [
+      "db092384-a2b9-8db4-b9b8-ff7b5e58f133"
+    ],
+    "AC-7": [
+      "505a71e7-37de-8e56-ae5c-467828201dba"
+    ]
+  },
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/workstreams/W-005.json",
+        "id": "W-005",
+        "sha256": "cdeef0268b2cc5efd82fabfaf92d364c4ba9f981b775aa67b945b6730406e46d"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/workstreams/W-005.json",
+        "id": "W-005",
+        "sha256": "cdeef0268b2cc5efd82fabfaf92d364c4ba9f981b775aa67b945b6730406e46d"
+      }
+    },
+    "historical": true
+  }
+}

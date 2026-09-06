@@ -7,7 +7,7 @@
   "outcome": "succeeded",
   "result": {
     "schemaVersion": 1,
-    "id": "T-043",
+    "id": "bce0f006-e044-807c-88dd-8e0fd6d9950f",
     "status": "open",
     "openedAt": "2026-09-06T07:35:15.146Z",
     "opened": {
@@ -15,15 +15,15 @@
       "baseCommit": "16bee63c4828ea06576936cfab8be5b2b5f1c21f",
       "treeDigest": "92ec78b31c234e9bdd47fe70b15d6bee32fffe3f67a5b10ee3cc7d2bd1cfbc83",
       "dirtyAtOpen": [
-        ".spec-ledger/authority/AUTH-21ac919a-880c-411d-a3b0-3534b8634dc3.json",
-        ".spec-ledger/reviews/workstreams/W-014/SR-01.json",
-        ".spec-ledger/workstreams/W-014.json",
+        ".spec-ledger/authority/e4e8c4a1-b747-869a-a7b7-aee3ac248572.json",
+        ".spec-ledger/reviews/workstreams/29c935b4-56bd-84a0-b887-e280d775f54d/e0439df8-7c1d-80d3-b2f0-f0d3efead3ad.json",
+        ".spec-ledger/workstreams/29c935b4-56bd-84a0-b887-e280d775f54d.json",
         "docs/workstreams/README.md",
-        "docs/workstreams/W-014-follow-agent-experiments/spec.md"
+        "docs/workstreams/29c935b4-56bd-84a0-b887-e280d775f54d-follow-agent-experiments/spec.md"
       ],
       "contextDigest": "e054598d1579c93450196a553a0b057e6213b74964977e8eaa5d685fcb01cb25",
-      "contextWorkstreamId": "W-014",
-      "contextSliceId": "SLC-01",
+      "contextWorkstreamId": "29c935b4-56bd-84a0-b887-e280d775f54d",
+      "contextSliceId": "04932de5-9225-81d4-b42c-c13f79e6c5be",
       "contextSealRevision": 1,
       "contextGeneratedAt": "2026-09-06T07:35:15.146Z"
     },
@@ -32,8 +32,8 @@
       "restatedGoal": "Follow an agent’s experiments and findings",
       "changeType": "feature",
       "riskLevel": "moderate",
-      "workstreamId": "W-014",
-      "sliceId": "SLC-01",
+      "workstreamId": "29c935b4-56bd-84a0-b887-e280d775f54d",
+      "sliceId": "04932de5-9225-81d4-b42c-c13f79e6c5be",
       "featureIds": [
         "turns",
         "lattice",

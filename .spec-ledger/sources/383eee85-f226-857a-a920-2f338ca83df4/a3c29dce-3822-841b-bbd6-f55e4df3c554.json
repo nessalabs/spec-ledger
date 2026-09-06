@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "turnId": "383eee85-f226-857a-a920-2f338ca83df4",
+  "kind": "user",
+  "ref": "https://github.com/nessalabs/spec-ledger/pull/1",
+  "note": "User authorized all five review fixes, appropriate CI regression tests, and updating PR 1. Scope includes ledger seal checks, package manifests and lockfile, packaging scripts/tests, CI/release workflows, and the documented clarification.",
+  "id": "a3c29dce-3822-841b-bbd6-f55e4df3c554",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/sources/T-025/S-01.json",
+        "id": "T-025/S-01",
+        "sha256": "94a35be7dee93cdc1e5bbb6365b40375438cf574011d4270054f68800f656e51"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/sources/T-025/S-01.json",
+        "id": "T-025/S-01",
+        "sha256": "94a35be7dee93cdc1e5bbb6365b40375438cf574011d4270054f68800f656e51"
+      }
+    },
+    "historical": true
+  }
+}

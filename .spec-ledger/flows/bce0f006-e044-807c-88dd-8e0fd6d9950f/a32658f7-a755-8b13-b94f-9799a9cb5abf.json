@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "turnId": "bce0f006-e044-807c-88dd-8e0fd6d9950f",
+  "title": "Follow iterative work alongside normal tasks",
+  "after": "flowchart LR; A[Existing task] --> B[Plan and implement] --> C[Review and verify]; B --> D[Optional iterative goal]; D --> E[Experiments and reported findings]; E --> F[Inspect progress and results]",
+  "before": "flowchart LR; A[Existing task] --> B[Plan and implement] --> C[Review and verify]; B --> D[Experiment findings scattered in messages]",
+  "narrative": "Normal tasks keep their current workflow. When the user or agent chooses iterative work, a linked goal preserves attempts and findings in a screenshot-readable inspect view.",
+  "id": "a32658f7-a755-8b13-b94f-9799a9cb5abf",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/flows/T-043/F-01.json",
+        "id": "T-043/F-01",
+        "sha256": "c94e4898844b1eba761efa546b8e2c92465fedda435ed62a8d572c0e649564bc"
+      }
+    },
+    "historical": true
+  }
+}

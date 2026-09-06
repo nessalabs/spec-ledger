@@ -7,8 +7,8 @@
   "outcome": "succeeded",
   "result": {
     "schemaVersion": 1,
-    "id": "W-010/SR-03",
-    "workstreamId": "W-010",
+    "id": "a6bf2f44-8c43-8065-9227-897f94e8e85e",
+    "workstreamId": "351e54ea-60e4-8384-826f-0616eaa89599",
     "kind": "adversarial",
     "target": "spec",
     "reviewer": "agent:turn-evidence-breaker",
@@ -16,12 +16,12 @@
     "blocking": false,
     "plainSummary": "The descriptions explain user-visible behavior while the linked technical contracts and checks remain intact.",
     "summary": "Reviewed latest user-authorized presentation amendment: Nessa syntax highlighting and plain claim descriptions with linked exact technical contracts. Reread AGENTS and refreshed related pack. Automated comparison confirmed all24 changed pre-existing claim statements appear verbatim under their IDs in docs/architecture/claim-contracts.md and each updated claim links that document. New SL027 remains saved-check contract. Reviewed all rewritten outcomes for consistency; no check commands or requirements were removed by copy edits. These statement changes affect check identities and require new verification rather than retaining earlier passes. Final code review and source-bound check execution remain separate.",
-    "supersedesReviewId": "W-010/SR-02",
+    "supersedesReviewId": "0845547d-9f1d-8cb4-89a8-205f7f0e3702",
     "findings": [],
     "residualRisks": [
       "Plain summaries are intentionally abbreviated; exact constraints remain in linked technical contracts and existing behavior checks.",
       "Current checks must rerun because claim text and source changes invalidate previous evidence identities."
     ],
-    "revisionDigest": "25d1ea56a5b5cf3c61aefe19838a80847ba36ecdb36a4909bd449eec83081533"
+    "revisionDigest": "926ea0b3eef0bb27ffcf55a672c5e909a292d2e0dded381ca57c4a2d2cd266b9"
   }
 }

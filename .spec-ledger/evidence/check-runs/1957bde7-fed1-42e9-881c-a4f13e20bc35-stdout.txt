@@ -1,0 +1,41 @@
+TAP version 13
+# Subtest: all-check aggregation adversarial
+    # Subtest: is invariant under every ordering of mixed evidence kinds
+    ok 1 - is invariant under every ordering of mixed evidence kinds
+      ---
+      duration_ms: 9036.911917
+      type: 'test'
+      ...
+    # Subtest: rejects agreeing duplicates and unused duplicates without silently choosing a row
+    ok 2 - rejects agreeing duplicates and unused duplicates without silently choosing a row
+      ---
+      duration_ms: 127.440584
+      type: 'test'
+      ...
+    # Subtest: cannot hide a malformed locator or invalid result outcome behind a passing check
+    ok 3 - cannot hide a malformed locator or invalid result outcome behind a passing check
+      ---
+      duration_ms: 165.288042
+      type: 'test'
+      ...
+    # Subtest: delivers failed reports and snapshots through actual HTTP and in-process clients
+    ok 4 - delivers failed reports and snapshots through actual HTTP and in-process clients
+      ---
+      duration_ms: 463.290542
+      type: 'test'
+      ...
+    1..4
+ok 1 - all-check aggregation adversarial
+  ---
+  duration_ms: 9794.024083
+  type: 'suite'
+  ...
+1..1
+# tests 4
+# suites 1
+# pass 4
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 9912.081792

@@ -7,14 +7,14 @@
   "outcome": "succeeded",
   "result": {
     "schemaVersion": 1,
-    "id": "W-009",
+    "id": "3ca37660-1506-8a85-80c6-410a024d9a9a",
     "status": "done",
     "title": "See what changed and what proves it works",
     "objective": "Read the outcome and its evidence directly on each change page.",
     "featureIds": [
       "lattice"
     ],
-    "specPath": "docs/workstreams/W-009-evidence-first-changes/spec.md",
+    "specPath": "docs/workstreams/3ca37660-1506-8a85-80c6-410a024d9a9a-evidence-first-changes/spec.md",
     "policy": {
       "requireSpecBreak": true,
       "requireCodeBreak": true,
@@ -31,7 +31,7 @@
     },
     "suggestedSlices": [
       {
-        "id": "SLC-01",
+        "id": "79c61989-9765-86e0-b429-2d97d4e38892",
         "title": "Put outcomes and evidence first on change pages",
         "kind": "vertical",
         "acceptance": [
@@ -45,25 +45,25 @@
           "schemas/**",
           "scripts/**"
         ],
-        "codeBreakReviewId": "T-039/R-01"
+        "codeBreakReviewId": "d119d169-d84c-8c8d-bee7-9c10c7cd9a5a"
       }
     ],
-    "specBreakReviewId": "W-009/SR-05",
+    "specBreakReviewId": "4b19569a-4cd9-836c-a351-bc2d3cc00792",
     "updatedAt": "2026-09-05T03:09:55.122Z",
     "seal": {
       "sealedAt": "2026-09-05T03:03:11.803Z",
-      "sealedBy": "agent:permission:AUTH-W009-REQUEST",
-      "specDigest": "260e9718e1f2cb939988c1f210702cab78f27b5ccd16ed7c67f872168de437f4",
-      "snapshotPath": "workstreams/W-009.seals/4.json",
+      "sealedBy": "agent:permission:e1effa81-01a5-8b51-bed7-a43b8363d1f7",
+      "specDigest": "1e0bf5213098c8b603e8491a143535a99116bf3e1bae3b8cbf327be244aefd7d",
+      "snapshotPath": "workstreams/3ca37660-1506-8a85-80c6-410a024d9a9a.seals/4.json",
       "revision": 4,
-      "specDocDigest": "b5b1f39a2b9abc8c593cb5e89d1ef26e42541719235b9d183d1ce3c1c6f148f5"
+      "specDocDigest": "b6fdc181fbe7e94f618361154a523270d6953486e6688b74cd94011d142d2252"
     },
     "acceptanceClaimIds": {
-      "SLC-01/AC-1": [
-        "SL-026"
+      "79c61989-9765-86e0-b429-2d97d4e38892/AC-1": [
+        "2bdf48ad-ad8b-86b1-a043-5b16496999b3"
       ],
-      "SLC-01/AC-2": [
-        "SL-028"
+      "79c61989-9765-86e0-b429-2d97d4e38892/AC-2": [
+        "fbe7ce66-ef39-848d-8426-b7f2643315b6"
       ]
     },
     "postSealAmends": [
@@ -73,9 +73,9 @@
         "humanConfirmed": true,
         "sealedRevision": 2,
         "beforeDocDigest": "989fb5418e9038b062be7b3ba7469e9eecd2dccd45e0e3aa276b883e8ce93f3b",
-        "afterDocDigest": "b5b1f39a2b9abc8c593cb5e89d1ef26e42541719235b9d183d1ce3c1c6f148f5",
+        "afterDocDigest": "b6fdc181fbe7e94f618361154a523270d6953486e6688b74cd94011d142d2252",
         "actor": "agent:user-request",
-        "turnId": "T-039"
+        "turnId": "9fa55cfe-6dd6-83c5-8b42-baf619c093c6"
       }
     ]
   }

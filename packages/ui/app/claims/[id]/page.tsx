@@ -39,13 +39,19 @@ export default async function ClaimPage({
   const history = turnsTouchingClaim(turns, id)
   const features =
     graph?.features.filter((f) => f.claimIds?.includes(id)) ?? []
+  const docs = (claim.links?.docs ?? []).map((path) => ({
+    path,
+    label: path.endsWith("claim-contracts.md")
+      ? "Detailed requirement contracts"
+      : "Requirement documentation",
+  }))
 
   return (
     <div className="mx-auto flex max-w-5xl flex-col gap-8">
       <header className="flex flex-col gap-2">
         <p className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
           <Link href="/claims" className="no-underline hover:underline">
-            Claims
+            Evidence
           </Link>
           {" / "}
           {claim.id}
@@ -75,34 +81,36 @@ export default async function ClaimPage({
         </p>
       </header>
 
+      <RelatedDocsList docs={docs} />
+
       <section className="space-y-4" aria-label="Inspect verification evidence">
         <h2 className="text-xl font-semibold">What proves this requirement?</h2>
         <p className="text-sm text-muted-foreground">Read the test, its expected behavior and actual run output. A passing command proves only the assertions it contains.</p>
         {claimBindings.length ? claimBindings.map(binding => <CheckEvidencePanel key={binding.id} bindingId={binding.id} defaultOpen />) : <p>No checks are linked to this requirement yet.</p>}
       </section>
-      <details className="space-y-4 rounded-xl border border-border p-4"><summary className="cursor-pointer text-sm">Check definitions</summary>
-      <Card>
-        <CardHeader>
-          <CardTitle>Bindings</CardTitle>
-          <CardDescription>How we intend to check this claim — no status.</CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-2 font-mono text-xs">
-          {claimBindings.length === 0 ? (
-            <p className="text-muted-foreground">No bindings</p>
-          ) : (
-            claimBindings.map((b) => (
-              <div key={b.id} className="rounded-md border border-border px-3 py-2">
-                <span className="text-foreground">{b.id}</span> · {b.kind} ·{" "}
-                {b.locator.type}
-                {b.locator.path ? ` · ${b.locator.path}` : ""}
-                {b.locator.command ? ` · ${b.locator.command}` : ""}
-              </div>
-            ))
-          )}
-        </CardContent>
-      </Card>
-      <RelatedDocsList docs={(claim.links?.docs ?? []).map(path => ({path, label: path.endsWith("claim-contracts.md") ? "Detailed requirement contracts" : "Requirement documentation"}))} />
-      </details>
+      {claimBindings.length ? (
+        <section className="space-y-3">
+          <h2 className="text-sm font-medium">How this is checked</h2>
+          <p className="text-sm text-muted-foreground">
+            The commands and files bound to this requirement. A binding is an
+            intent to check — it never carries a pass or fail of its own.
+          </p>
+          <ul className="divide-y divide-border rounded-lg border border-border">
+            {claimBindings.map((b) => (
+              <li key={b.id} className="space-y-1 px-3 py-2.5">
+                <p className="flex flex-wrap items-center gap-x-2 text-[11px] text-muted-foreground">
+                  <span className="font-mono text-foreground">{b.id}</span>
+                  <span>{b.kind}</span>
+                  <span>{b.locator.type}</span>
+                </p>
+                <p className="overflow-x-auto font-mono text-xs text-foreground">
+                  {b.locator.command ?? b.locator.path}
+                </p>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
 
       {features.length ? (
         <Card>

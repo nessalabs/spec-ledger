@@ -1,0 +1,731 @@
+{
+  "schemaVersion": 1,
+  "id": "ce974321-6cb8-8abb-9377-fe35739143ba",
+  "status": "closed",
+  "openedAt": "2026-09-04T20:13:24.780Z",
+  "opened": {
+    "producedBy": "@nessa/spec-ledger@0.1.0",
+    "baseCommit": "87d318701ebb987cd67babaeda38f6bf316d517f",
+    "treeDigest": "ac42d9f05f2aeb561a13c9dc3da98cba3eff52572a8d1cf225800728b0968045",
+    "dirtyAtOpen": [
+      ".gitignore",
+      ".spec-ledger/align-waivers/da8c9ddd-636c-8308-bc74-4bc3a56f6434.json",
+      ".spec-ledger/bindings/37455091-6c3b-827f-8ed3-f4737345e01c.json",
+      ".spec-ledger/claims/259e1acf-d082-8bfe-b0ab-76fab45ae7d0.json",
+      ".spec-ledger/flows/dc39d41a-ed03-8e91-89b5-5daba10d0b74/a4233d9e-2e95-888d-a1d2-6eccd1ed5935.json",
+      ".spec-ledger/graph/codebase-graph.json",
+      ".spec-ledger/proposed-claims/628207d3-7b88-880b-abe1-acd523f8572f.json",
+      ".spec-ledger/proposed-claims/ee4b88b6-f54b-8011-82e1-e4d44b94aaab.json",
+      ".spec-ledger/proposed-claims/29a5b902-b969-823e-86f5-89b23debe467.json",
+      ".spec-ledger/proposed-claims/74007d2e-7517-85a2-bd9c-390fae8871a4.json",
+      ".spec-ledger/proposed-claims/1f1b46eb-ad28-8870-b46d-9826d55aaa1c.json",
+      ".spec-ledger/reviews/turns/dc39d41a-ed03-8e91-89b5-5daba10d0b74/2c5f2caf-f980-84b3-917b-241759f1c137.json",
+      ".spec-ledger/reviews/turns/dc39d41a-ed03-8e91-89b5-5daba10d0b74/3e7d9f55-e735-8c80-bfba-afc41b0819fa.json",
+      ".spec-ledger/reviews/turns/dc39d41a-ed03-8e91-89b5-5daba10d0b74/3ff84d1b-60ed-8e70-b8d2-db44af85593c.json",
+      ".spec-ledger/reviews/workstreams/d1be55a6-11bb-8460-8650-ddf0ecac8185/cee6b88e-a62f-8821-9319-babc533e5522.json",
+      ".spec-ledger/reviews/workstreams/d1be55a6-11bb-8460-8650-ddf0ecac8185/a6580f17-131c-82a5-b548-5a4b4b3d50eb.json",
+      ".spec-ledger/reviews/workstreams/d1be55a6-11bb-8460-8650-ddf0ecac8185/e0f64191-27f8-83ee-942a-473bf1ab3bb6.json",
+      ".spec-ledger/reviews/workstreams/d1be55a6-11bb-8460-8650-ddf0ecac8185/5b790a52-349d-8536-9122-fab870709c14.json",
+      ".spec-ledger/reviews/workstreams/d1be55a6-11bb-8460-8650-ddf0ecac8185/dfb39021-e991-8c81-8b65-70c5f2e4f7b3.json",
+      ".spec-ledger/turns/dc39d41a-ed03-8e91-89b5-5daba10d0b74.json",
+      ".spec-ledger/workstreams/3317ada5-b347-894e-8c88-110b7b42d58b.json",
+      ".spec-ledger/workstreams/3317ada5-b347-894e-8c88-110b7b42d58b.seals/3.json",
+      ".spec-ledger/workstreams/e6213c3f-60e4-8ceb-9d6a-15c67833b383.json",
+      ".spec-ledger/workstreams/e6213c3f-60e4-8ceb-9d6a-15c67833b383.seals/3.json",
+      ".spec-ledger/workstreams/beee03a2-1e8d-8091-9ed9-b35bea93d6a3.json",
+      ".spec-ledger/workstreams/beee03a2-1e8d-8091-9ed9-b35bea93d6a3.seals/2.json",
+      ".spec-ledger/workstreams/76451749-a54f-8579-96f2-dcec19d79026.json",
+      ".spec-ledger/workstreams/76451749-a54f-8579-96f2-dcec19d79026.seals/2.json",
+      ".spec-ledger/workstreams/d1be55a6-11bb-8460-8650-ddf0ecac8185.json",
+      ".spec-ledger/workstreams/d1be55a6-11bb-8460-8650-ddf0ecac8185.seals/1.json",
+      ".spec-ledger/workstreams/d1be55a6-11bb-8460-8650-ddf0ecac8185.seals/2.json",
+      ".spec-ledger/workstreams/a32f3451-1b3d-8abf-bf0e-607ebf6e1a88.json",
+      "docs/workstreams/consumer-cli-and-npm-publish.md",
+      "docs/workstreams/trustworthy-autonomous-coding.md",
+      "packages/ledger/src/align/paths.ts",
+      "packages/ledger/src/cli/init.break.test.ts",
+      "packages/ledger/src/cli/init.test.ts",
+      "packages/ledger/src/cli/init.ts",
+      "packages/ledger/src/cli/main.ts",
+      "packages/ledger/src/fs/load.ts",
+      "packages/ledger/src/index.ts",
+      "packages/ui/app/claims/[id]/page.tsx",
+      "packages/ui/app/compass/page.tsx",
+      "packages/ui/app/contracts/page.tsx",
+      "packages/ui/app/features/[id]/page.tsx",
+      "packages/ui/app/globals.css",
+      "packages/ui/app/layout.tsx",
+      "packages/ui/app/nodes/[id]/page.tsx",
+      "packages/ui/app/page.tsx",
+      "packages/ui/app/turns/page.tsx",
+      "packages/ui/app/verify/page.tsx",
+      "packages/ui/app/workstreams/[id]/page.tsx",
+      "packages/ui/components/compact-turn-row.tsx",
+      "packages/ui/components/contracts-explorer.tsx",
+      "packages/ui/components/doc-reader-layout.tsx",
+      "packages/ui/components/freshness-badge.tsx",
+      "packages/ui/components/graph-workspace.tsx",
+      "packages/ui/components/lattice-shell.tsx",
+      "packages/ui/components/spec-doc.tsx",
+      "packages/ui/components/spec-ledger-shell.tsx",
+      "packages/ui/components/static-mermaid-inner.tsx",
+      "packages/ui/components/turn-detail.tsx",
+      "packages/ui/components/turn-files.tsx",
+      "packages/ui/components/turn-plan-section.tsx",
+      "packages/ui/next.config.mjs",
+      "packages/ui/package.json",
+      "skills/README.md",
+      "skills/sl-dev-break/SKILL.md",
+      "skills/sl-plan-break-spec/SKILL.md",
+      "skills/sl-plan-shape/SKILL.md",
+      "skills/sl-plan-vision/SKILL.md",
+      "skills/sl-security-review/SKILL.md",
+      "skills/sl-security-review/references/boundary-probes.md",
+      "skills/sl-security-review/references/research.md"
+    ],
+    "contextDigest": "dad83c3890234b2082668221db9f132980c89cf2d09af4cb4c68bc4f4c879277",
+    "contextWorkstreamId": "d1be55a6-11bb-8460-8650-ddf0ecac8185",
+    "contextSliceId": "520ff720-fc13-8275-b710-f677f8d2efb4",
+    "contextSealRevision": 2,
+    "contextGeneratedAt": "2026-09-04T20:13:24.780Z"
+  },
+  "intent": {
+    "userPrompt": "Implement d1be55a6-11bb-8460-8650-ddf0ecac8185 520ff720-fc13-8275-b710-f677f8d2efb4: seal.specDocDigest, check-seal doc check, backfill-doc-digest, workstream amend + postSealAmends, audit spec-doc-digest-missing/drift and seal-digest-drift.",
+    "restatedGoal": "Sealed plan Markdown is digest-stamped; silent edits fail until amend or backfill.",
+    "changeType": "feature",
+    "riskLevel": "moderate",
+    "workstreamId": "d1be55a6-11bb-8460-8650-ddf0ecac8185",
+    "sliceId": "520ff720-fc13-8275-b710-f677f8d2efb4",
+    "featureIds": [
+      "cli",
+      "turns"
+    ]
+  },
+  "closedAt": "2026-09-04T20:20:27.490Z",
+  "facts": {
+    "producedBy": "@nessa/spec-ledger@0.1.0",
+    "commit": "87d318701ebb987cd67babaeda38f6bf316d517f",
+    "files": [
+      {
+        "path": ".gitignore",
+        "kind": "modified",
+        "additions": 1,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/align-waivers/da8c9ddd-636c-8308-bc74-4bc3a56f6434.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/align-waivers/2703a41a-56e4-8344-97f7-af5f8fa9338e.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/bindings/37455091-6c3b-827f-8ed3-f4737345e01c.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/bindings/e49ce4da-8d40-855e-9c96-2f6723794a23.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/claims/259e1acf-d082-8bfe-b0ab-76fab45ae7d0.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/claims/505a71e7-37de-8e56-ae5c-467828201dba.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/flows/dc39d41a-ed03-8e91-89b5-5daba10d0b74/a4233d9e-2e95-888d-a1d2-6eccd1ed5935.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/flows/ce974321-6cb8-8abb-9377-fe35739143ba/e0891d84-da4a-8553-be6b-50c43c841196.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/graph/codebase-graph.json",
+        "kind": "modified",
+        "additions": 38,
+        "deletions": 6
+      },
+      {
+        "path": ".spec-ledger/proposed-claims/628207d3-7b88-880b-abe1-acd523f8572f.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/proposed-claims/ee4b88b6-f54b-8011-82e1-e4d44b94aaab.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/proposed-claims/29a5b902-b969-823e-86f5-89b23debe467.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/proposed-claims/74007d2e-7517-85a2-bd9c-390fae8871a4.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/proposed-claims/1f1b46eb-ad28-8870-b46d-9826d55aaa1c.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/turns/dc39d41a-ed03-8e91-89b5-5daba10d0b74/2c5f2caf-f980-84b3-917b-241759f1c137.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/turns/dc39d41a-ed03-8e91-89b5-5daba10d0b74/3e7d9f55-e735-8c80-bfba-afc41b0819fa.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/turns/dc39d41a-ed03-8e91-89b5-5daba10d0b74/3ff84d1b-60ed-8e70-b8d2-db44af85593c.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/turns/ce974321-6cb8-8abb-9377-fe35739143ba/c9e56d84-d2cc-8458-80ae-54ba984c9f5c.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/turns/ce974321-6cb8-8abb-9377-fe35739143ba/8363909a-89ee-8c37-89e6-b25051bc5dfe.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/turns/ce974321-6cb8-8abb-9377-fe35739143ba/d9965c79-8c50-8bc7-83d6-5013fb934b6f.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/workstreams/d1be55a6-11bb-8460-8650-ddf0ecac8185/cee6b88e-a62f-8821-9319-babc533e5522.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/workstreams/d1be55a6-11bb-8460-8650-ddf0ecac8185/a6580f17-131c-82a5-b548-5a4b4b3d50eb.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/workstreams/d1be55a6-11bb-8460-8650-ddf0ecac8185/e0f64191-27f8-83ee-942a-473bf1ab3bb6.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/workstreams/d1be55a6-11bb-8460-8650-ddf0ecac8185/5b790a52-349d-8536-9122-fab870709c14.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/workstreams/d1be55a6-11bb-8460-8650-ddf0ecac8185/dfb39021-e991-8c81-8b65-70c5f2e4f7b3.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/turns/dc39d41a-ed03-8e91-89b5-5daba10d0b74.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/turns/ce974321-6cb8-8abb-9377-fe35739143ba.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/workstreams/3317ada5-b347-894e-8c88-110b7b42d58b.json",
+        "kind": "modified",
+        "additions": 10,
+        "deletions": 9
+      },
+      {
+        "path": ".spec-ledger/workstreams/3317ada5-b347-894e-8c88-110b7b42d58b.seals/3.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/workstreams/3317ada5-b347-894e-8c88-110b7b42d58b.seals/4.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/workstreams/e6213c3f-60e4-8ceb-9d6a-15c67833b383.json",
+        "kind": "modified",
+        "additions": 9,
+        "deletions": 8
+      },
+      {
+        "path": ".spec-ledger/workstreams/e6213c3f-60e4-8ceb-9d6a-15c67833b383.seals/3.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/workstreams/e6213c3f-60e4-8ceb-9d6a-15c67833b383.seals/4.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/workstreams/beee03a2-1e8d-8091-9ed9-b35bea93d6a3.json",
+        "kind": "modified",
+        "additions": 8,
+        "deletions": 7
+      },
+      {
+        "path": ".spec-ledger/workstreams/beee03a2-1e8d-8091-9ed9-b35bea93d6a3.seals/2.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/workstreams/beee03a2-1e8d-8091-9ed9-b35bea93d6a3.seals/3.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/workstreams/76451749-a54f-8579-96f2-dcec19d79026.json",
+        "kind": "modified",
+        "additions": 13,
+        "deletions": 12
+      },
+      {
+        "path": ".spec-ledger/workstreams/76451749-a54f-8579-96f2-dcec19d79026.seals/2.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/workstreams/76451749-a54f-8579-96f2-dcec19d79026.seals/3.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/workstreams/d1be55a6-11bb-8460-8650-ddf0ecac8185.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/workstreams/d1be55a6-11bb-8460-8650-ddf0ecac8185.seals/1.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/workstreams/d1be55a6-11bb-8460-8650-ddf0ecac8185.seals/2.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/workstreams/a32f3451-1b3d-8abf-bf0e-607ebf6e1a88.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "docs/workstreams/consumer-cli-and-npm-publish.md",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "docs/workstreams/trustworthy-autonomous-coding.md",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/align/paths.ts",
+        "kind": "modified",
+        "additions": 2,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/audit/audit.ts",
+        "kind": "modified",
+        "additions": 51,
+        "deletions": 1
+      },
+      {
+        "path": "packages/ledger/src/cli/init.break.test.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/cli/init.test.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/cli/init.ts",
+        "kind": "modified",
+        "additions": 63,
+        "deletions": 21
+      },
+      {
+        "path": "packages/ledger/src/cli/main.ts",
+        "kind": "modified",
+        "additions": 43,
+        "deletions": 3
+      },
+      {
+        "path": "packages/ledger/src/context/vertical.test.ts",
+        "kind": "modified",
+        "additions": 4,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/fs/load.ts",
+        "kind": "modified",
+        "additions": 16,
+        "deletions": 3
+      },
+      {
+        "path": "packages/ledger/src/index.ts",
+        "kind": "modified",
+        "additions": 1,
+        "deletions": 1
+      },
+      {
+        "path": "packages/ledger/src/types.ts",
+        "kind": "modified",
+        "additions": 17,
+        "deletions": 1
+      },
+      {
+        "path": "packages/ledger/src/workstream/doc-digest.break.test.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/workstream/doc-digest.test.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/workstream/doc-digest.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/workstream/load.ts",
+        "kind": "modified",
+        "additions": 140,
+        "deletions": 3
+      },
+      {
+        "path": "packages/ui/app/claims/[id]/page.tsx",
+        "kind": "modified",
+        "additions": 1,
+        "deletions": 1
+      },
+      {
+        "path": "packages/ui/app/compass/page.tsx",
+        "kind": "modified",
+        "additions": 1,
+        "deletions": 1
+      },
+      {
+        "path": "packages/ui/app/contracts/page.tsx",
+        "kind": "modified",
+        "additions": 1,
+        "deletions": 1
+      },
+      {
+        "path": "packages/ui/app/features/[id]/page.tsx",
+        "kind": "modified",
+        "additions": 1,
+        "deletions": 1
+      },
+      {
+        "path": "packages/ui/app/globals.css",
+        "kind": "modified",
+        "additions": 2,
+        "deletions": 2
+      },
+      {
+        "path": "packages/ui/app/layout.tsx",
+        "kind": "modified",
+        "additions": 1,
+        "deletions": 1
+      },
+      {
+        "path": "packages/ui/app/nodes/[id]/page.tsx",
+        "kind": "modified",
+        "additions": 1,
+        "deletions": 1
+      },
+      {
+        "path": "packages/ui/app/page.tsx",
+        "kind": "modified",
+        "additions": 1,
+        "deletions": 1
+      },
+      {
+        "path": "packages/ui/app/turns/page.tsx",
+        "kind": "modified",
+        "additions": 1,
+        "deletions": 1
+      },
+      {
+        "path": "packages/ui/app/verify/page.tsx",
+        "kind": "modified",
+        "additions": 1,
+        "deletions": 1
+      },
+      {
+        "path": "packages/ui/app/workstreams/[id]/page.tsx",
+        "kind": "modified",
+        "additions": 1,
+        "deletions": 1
+      },
+      {
+        "path": "packages/ui/components/compact-turn-row.tsx",
+        "kind": "modified",
+        "additions": 1,
+        "deletions": 1
+      },
+      {
+        "path": "packages/ui/components/contracts-explorer.tsx",
+        "kind": "modified",
+        "additions": 1,
+        "deletions": 1
+      },
+      {
+        "path": "packages/ui/components/doc-reader-layout.tsx",
+        "kind": "modified",
+        "additions": 1,
+        "deletions": 1
+      },
+      {
+        "path": "packages/ui/components/freshness-badge.tsx",
+        "kind": "modified",
+        "additions": 1,
+        "deletions": 1
+      },
+      {
+        "path": "packages/ui/components/graph-workspace.tsx",
+        "kind": "modified",
+        "additions": 1,
+        "deletions": 1
+      },
+      {
+        "path": "packages/ui/components/lattice-shell.tsx",
+        "kind": "deleted",
+        "additions": 0,
+        "deletions": 202
+      },
+      {
+        "path": "packages/ui/components/spec-doc.tsx",
+        "kind": "modified",
+        "additions": 1,
+        "deletions": 1
+      },
+      {
+        "path": "packages/ui/components/spec-ledger-shell.tsx",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ui/components/static-mermaid-inner.tsx",
+        "kind": "modified",
+        "additions": 1,
+        "deletions": 1
+      },
+      {
+        "path": "packages/ui/components/turn-detail.tsx",
+        "kind": "modified",
+        "additions": 1,
+        "deletions": 1
+      },
+      {
+        "path": "packages/ui/components/turn-files.tsx",
+        "kind": "modified",
+        "additions": 1,
+        "deletions": 1
+      },
+      {
+        "path": "packages/ui/components/turn-plan-section.tsx",
+        "kind": "modified",
+        "additions": 1,
+        "deletions": 1
+      },
+      {
+        "path": "packages/ui/next.config.mjs",
+        "kind": "modified",
+        "additions": 4,
+        "deletions": 4
+      },
+      {
+        "path": "packages/ui/package.json",
+        "kind": "modified",
+        "additions": 2,
+        "deletions": 2
+      },
+      {
+        "path": "schemas/workstream.json",
+        "kind": "modified",
+        "additions": 31,
+        "deletions": 1
+      },
+      {
+        "path": "skills/README.md",
+        "kind": "modified",
+        "additions": 2,
+        "deletions": 0
+      },
+      {
+        "path": "skills/sl-dev-break/SKILL.md",
+        "kind": "modified",
+        "additions": 5,
+        "deletions": 0
+      },
+      {
+        "path": "skills/sl-plan-break-spec/SKILL.md",
+        "kind": "modified",
+        "additions": 5,
+        "deletions": 0
+      },
+      {
+        "path": "skills/sl-plan-shape/SKILL.md",
+        "kind": "modified",
+        "additions": 4,
+        "deletions": 0
+      },
+      {
+        "path": "skills/sl-plan-vision/SKILL.md",
+        "kind": "modified",
+        "additions": 6,
+        "deletions": 1
+      },
+      {
+        "path": "skills/sl-security-review/references/boundary-probes.md",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "skills/sl-security-review/references/research.md",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "skills/sl-security-review/SKILL.md",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      }
+    ],
+    "touchedNodeIds": [
+      "ledger-core",
+      "ledger-ui",
+      "schemas"
+    ],
+    "touchedFeatureIds": [
+      "cli",
+      "lattice",
+      "turns",
+      "verify"
+    ],
+    "touchedClaimIds": [
+      "77fb26cd-bc46-8037-a8f2-7573f7d6d33d",
+      "b69a663d-e2dd-8655-be45-0e07bfb45c89",
+      "a642f738-2313-853e-a94d-d9936dcbc596",
+      "259e1acf-d082-8bfe-b0ab-76fab45ae7d0",
+      "505a71e7-37de-8e56-ae5c-467828201dba"
+    ],
+    "blastRadius": {
+      "direct": [
+        "ledger-client",
+        "ledger-core",
+        "ledger-server"
+      ],
+      "transitive": [
+        "ledger-client",
+        "ledger-core",
+        "ledger-server",
+        "ledger-ui"
+      ]
+    },
+    "verify": {
+      "ok": true,
+      "ledgerDigest": "a6a622263c12fdcdc0844cd52ab092e666aa84f43e9c208ab0e769f6d40f3514",
+      "resultsDigest": "ded3eb2608a70a2e28040c5e1e7c4faa49be0d27b4ffc4d3e2a3ffb91bf72fbb",
+      "treeDigest": "f9af08db359683a16910887c7a4a12d7b93301853c614a0a29bc12af207aed0b",
+      "producedAt": "2026-09-04T20:20:27.065Z"
+    },
+    "schemaSurfaceChanged": true,
+    "reviewsDigest": "bd0a2a726ce10f7b8b611a8da2ca96ec098b38fc70b7814b185cc70cba213ad7",
+    "flowsDigest": "bcdcfb2610ec5bf6ca0692f9f74b695e4e1175cc0d6b9e897200273c9a483934"
+  },
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/turns/T-021.json",
+        "id": "T-021",
+        "sha256": "66be8dcd1f6cc9c265ec746d8d87e361bbaf18942e7b051ea70a2dee5f386e2b"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/turns/T-021.json",
+        "id": "T-021",
+        "sha256": "66be8dcd1f6cc9c265ec746d8d87e361bbaf18942e7b051ea70a2dee5f386e2b"
+      }
+    },
+    "historical": true
+  }
+}

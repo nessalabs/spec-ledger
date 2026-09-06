@@ -7,7 +7,7 @@
   "outcome": "succeeded",
   "result": {
     "schemaVersion": 1,
-    "turnId": "T-044",
+    "turnId": "b73479b8-7a81-84e9-84e8-efcd9c23e531",
     "decision": "Show captured results before implementation details; preview only bounded digest-checked local screenshots.",
     "rationale": "The user reviews test names, outcomes and visual evidence rather than source code. Keep run execution explicit and all verifier and historical evidence semantics unchanged.",
     "basis": {
@@ -15,6 +15,6 @@
       "contextDigest": "d41cce500e7b9df75938e80061f11e6c26cdda07443bfb43decb5f900507f980",
       "sealRevision": 3
     },
-    "id": "T-044/D-01"
+    "id": "ac8839cc-7e45-8d70-b806-1aa269106092"
   }
 }

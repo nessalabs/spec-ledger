@@ -1,0 +1,27 @@
+{
+  "id": "b69a663d-e2dd-8655-be45-0e07bfb45c89",
+  "kind": "absence",
+  "statement": "The website accesses your project through the supported connection, so another interface can use the same information.",
+  "area": "ui",
+  "required": true,
+  "links": {
+    "docs": [
+      "docs/architecture/claim-contracts.md"
+    ]
+  },
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/claims/SL-005.json",
+        "id": "SL-005",
+        "sha256": "eeb07630e8397caba822ee81f6cdf0f1844a3c7c210f597ab2ac70f28028d755"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/claims/SL-005.json",
+        "id": "SL-005",
+        "sha256": "eeb07630e8397caba822ee81f6cdf0f1844a3c7c210f597ab2ac70f28028d755"
+      }
+    },
+    "historical": true
+  }
+}

@@ -7,15 +7,15 @@
   "outcome": "succeeded",
   "result": {
     "schemaVersion": 1,
-    "id": "W-012/SR-01",
-    "workstreamId": "W-012",
+    "id": "a37bcf3e-71e9-8769-ba42-47ed14044ec1",
+    "workstreamId": "ba7715db-e75e-84e6-9d91-f9cc61b037a9",
     "target": "spec",
     "kind": "adversarial",
     "reviewer": "agent:workflow-editor-breaker",
     "verdict": "approve",
     "blocking": false,
     "plainSummary": "The plan lets users choose their agent’s steps while keeping approval and proof requirements intact.",
-    "summary": "Independent sl-plan-break-spec and security spec review used CLI related W-012 --worktrees pack (3 features, 11 claims, related W008 workflow and W010 browser-action boundaries, W011 navigation). Reviewed preview content identity, concurrent selection conflicts, repeated save identity, required typed review outputs, local skill path confinement and browser origin/token checks. Requested explicit security model; shaper added principals, untrusted inputs, enforcing components and persisted-selection negative assertions before this stamp. Stage order and missing mandatory output contracts must be enforced in workflow domain, not merely UI validation. UI-to-shared-operation save plus CLI/MCP observation, keyboard/narrow flow and stable section navigation are required acceptance evidence.",
+    "summary": "Independent sl-plan-break-spec and security spec review used CLI related ba7715db-e75e-84e6-9d91-f9cc61b037a9 --worktrees pack (3 features, 11 claims, related W008 workflow and W010 browser-action boundaries, W011 navigation). Reviewed preview content identity, concurrent selection conflicts, repeated save identity, required typed review outputs, local skill path confinement and browser origin/token checks. Requested explicit security model; shaper added principals, untrusted inputs, enforcing components and persisted-selection negative assertions before this stamp. Stage order and missing mandatory output contracts must be enforced in workflow domain, not merely UI validation. UI-to-shared-operation save plus CLI/MCP observation, keyboard/narrow flow and stable section navigation are required acceptance evidence.",
     "findings": [],
     "residualRisks": [
       "Tool related pack supplied a caution-only worktree note without scan status or entries; no sibling checkout state was used as authority.",

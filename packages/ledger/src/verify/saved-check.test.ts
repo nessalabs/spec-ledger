@@ -13,11 +13,11 @@ function fixture(command = "node check.cjs") {
     const root = mkdtempSync(join(tmpdir(), "sl-saved-check-"));
     initLedger(root, "saved check");
     writeFileSync(join(root, "check.cjs"), "console.log('actual: hello'); console.error('diagnostic');\n");
-    writeJson(join(root, ".spec-ledger/claims/C-1.json"), { id: "C-1", statement: "Greeting works", required: true });
-    writeJson(join(root, ".spec-ledger/bindings/B-1.json"), { id: "B-1", claimId: "C-1", kind: "test", test: { level: "unit", source: { path: "check.cjs" }, inputs: "No arguments", expected: "prints actual: hello" }, locator: { type: "command", command } });
+    writeJson(join(root, ".spec-ledger/claims/703aafd0-731d-4d4a-94d9-b2747efd92c1.json"), { id: "703aafd0-731d-4d4a-94d9-b2747efd92c1", statement: "Greeting works", required: true });
+    writeJson(join(root, ".spec-ledger/bindings/a9b55fac-93b9-4a7f-af87-4494822bff38.json"), { id: "a9b55fac-93b9-4a7f-af87-4494822bff38", claimId: "703aafd0-731d-4d4a-94d9-b2747efd92c1", kind: "test", test: { level: "unit", source: { path: "check.cjs" }, inputs: "No arguments", expected: "prints actual: hello" }, locator: { type: "command", command } });
     return root;
 }
-function request(root: string, id = "saved-check-request-0001") { const e = getCheckEvidence(root, "B-1"); return { requestId: id, bindingId: "B-1", expectedSourceDigest: e.sourceDigest!, expectedCheckDigest: e.checkDigest }; }
+function request(root: string, id = "saved-check-request-0001") { const e = getCheckEvidence(root, "a9b55fac-93b9-4a7f-af87-4494822bff38"); return { requestId: id, bindingId: "a9b55fac-93b9-4a7f-af87-4494822bff38", expectedSourceDigest: e.sourceDigest!, expectedCheckDigest: e.checkDigest }; }
 async function finish(root: string, id: string) { for (let i = 0; i < 150; i++) {
     const r = getCheckRun(root, id);
     if (r.state === "finished" || r.state === "unknown")
@@ -38,14 +38,14 @@ test("saved command returns promptly, preserves actual output, and retries do no
         assert.match(completed.stderr!.text!, /diagnostic/);
         assert.equal(completed.cwd, realpathSync(root));
         assert.ok(completed.durationMs! >= 0);
-        const evidence = getCheckEvidence(root, "B-1");
+        const evidence = getCheckEvidence(root, "a9b55fac-93b9-4a7f-af87-4494822bff38");
         assert.equal(evidence.currentOutcome, "pass");
         assert.match(evidence.source.text!, /console.log/);
         assert.equal(evidence.runs.length, 1);
         assert.throws(() => executeOperation(root, "run_saved_check", { ...input, expectedCheckDigest: "0".repeat(64) }), /requestId/);
         writeFileSync(join(root, ".spec-ledger/evidence/check-runs", `${run.runId}-stdout.txt`), "tampered");
         assert.equal(getCheckRun(root, run.runId).stdout?.status, "unavailable");
-        assert.notEqual(getCheckEvidence(root, "B-1").currentOutcome, "pass");
+        assert.notEqual(getCheckEvidence(root, "a9b55fac-93b9-4a7f-af87-4494822bff38").currentOutcome, "pass");
     }
     finally {
         rmSync(root, { recursive: true, force: true });
@@ -57,7 +57,7 @@ test("batch CLI runner records the same bounded logs and preserves unrelated row
         writeJson(join(root, ".spec-ledger/results/last.json"), { schemaVersion: 1, producedAt: new Date().toISOString(), producer: { name: "fixture", version: "1" }, rows: [{ key: "external", outcome: "attested" }] });
         assert.equal(checkLedger(root).claims[0].outcome, "pass");
         assert.equal(loadLedger(root).results!.rows.find(r => r.key === "external")?.outcome, "attested");
-        assert.match(getCheckEvidence(root, "B-1").runs[0].stdout!.text!, /actual: hello/);
+        assert.match(getCheckEvidence(root, "a9b55fac-93b9-4a7f-af87-4494822bff38").runs[0].stdout!.text!, /actual: hello/);
     }
     finally {
         rmSync(root, { recursive: true, force: true });
@@ -72,14 +72,14 @@ test("local bridge only runs the displayed saved definition and reads are passiv
         assert.equal((await bridge(new Request(url, { method: "POST", headers: { origin: "http://evil.example", "x-spec-ledger-token": token, "content-type": "application/json" }, body: JSON.stringify(input) }))).status, 403);
         const headers = { origin: "http://127.0.0.1:3737", "x-spec-ledger-token": token, "content-type": "application/json" };
         assert.equal((await bridge(new Request(url, { method: "POST", headers, body: JSON.stringify({ ...input, command: "echo injected" }) }))).status, 409);
-        assert.equal(getCheckEvidence(root, "B-1").runs.length, 0);
+        assert.equal(getCheckEvidence(root, "a9b55fac-93b9-4a7f-af87-4494822bff38").runs.length, 0);
         const response = await bridge(new Request(url, { method: "POST", headers, body: JSON.stringify(input) }));
         assert.equal(response.status, 202);
         const run = await response.json() as CheckRun;
         assert.equal((await finish(root, run.runId)).outcome, "pass");
-        assert.equal((await bridge(new Request(`${url}?bindingId=B-1`))).status, 200);
+        assert.equal((await bridge(new Request(`${url}?bindingId=a9b55fac-93b9-4a7f-af87-4494822bff38`))).status, 200);
         assert.equal((await bridge(new Request(`${url}?runId=${run.runId}`))).status, 200);
-        assert.equal(getCheckEvidence(root, "B-1").runs.length, 1);
+        assert.equal(getCheckEvidence(root, "a9b55fac-93b9-4a7f-af87-4494822bff38").runs.length, 1);
         assert.ok(readFileSync(join(root, ".spec-ledger/results/last.json"), "utf8").includes(run.runId));
     }
     finally {

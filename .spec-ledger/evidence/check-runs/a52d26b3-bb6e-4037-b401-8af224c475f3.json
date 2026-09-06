@@ -1,7 +1,7 @@
 {
   "runId": "a52d26b3-bb6e-4037-b401-8af224c475f3",
   "requestId": "batch-a52d26b3-bb6e-4037-b401-8af224c475f3",
-  "bindingId": "b-sl-032",
+  "bindingId": "479095fc-cc04-8104-8461-ce0edb86e9e6",
   "state": "finished",
   "command": "node --test packages/ledger/dist/optimization/*.test.js packages/mcp/dist/optimization.lifecycle.test.js packages/ui/lib/experiment-chart.test.mjs",
   "cwd": "/Users/nessa/.codex/worktrees/24db/spec-ledger",

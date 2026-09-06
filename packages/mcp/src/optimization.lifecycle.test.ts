@@ -30,30 +30,30 @@ test("MCP records iterative work and both client transports inspect the same rea
       assert.equal(envelope.ok, true, JSON.stringify(response))
       return envelope.result
     }
-    await call("create_goal", { goal: { id: "G-mcp", workstreamId: "W-001", turnId: "T-001", title: "Learn through MCP", objective: "Test the real adapter", stopWhen: "One useful finding", maxExperiments: 1 } })
-    await call("start_experiment", { experiment: { id: "X-mcp", goalId: "G-mcp", turnId: "T-001", hypothesis: "A smaller change is clearer", change: "Remove redundant wording" } })
-    await call("record_experiment_result", { result: { goalId: "G-mcp", experimentId: "X-mcp", turnId: "T-001", status: "completed", decision: "kept", findings: "The instruction is easier to follow" } })
-    await call("conclude_goal", { conclusion: { goalId: "G-mcp", turnId: "T-001", reason: "satisfied", summary: "Kept the clearer wording" } })
-    const expected = await call("get_goal", { goalId: "G-mcp" }, true) as GoalProjection
+    const created = await call("create_goal", { goal: { workstreamId: f.workstreamId, turnId: f.turnId, title: "Learn through MCP", objective: "Test the real adapter", stopWhen: "One useful finding", maxExperiments: 1 } }) as {id:string}
+    const attempt = await call("start_experiment", { experiment: { goalId: created.id, turnId: f.turnId, hypothesis: "A smaller change is clearer", change: "Remove redundant wording" } }) as {id:string}
+    await call("record_experiment_result", { result: { goalId: created.id, experimentId: attempt.id, turnId: f.turnId, status: "completed", decision: "kept", findings: "The instruction is easier to follow" } })
+    await call("conclude_goal", { conclusion: { goalId: created.id, turnId: f.turnId, reason: "satisfied", summary: "Kept the clearer wording" } })
+    const expected = await call("get_goal", { goalId: created.id }, true) as GoalProjection
     assert.equal(expected.status, "concluded"); assert.equal(expected.bestObserved, null)
     await server.listen(); listening = true
     const baseUrl = `http://127.0.0.1:${port}`
     const direct = createSpecLedgerClient({ kind: "inProcess", rootDir: f.root })
     const http = createSpecLedgerClient({ kind: "http", baseUrl })
-    assert.deepEqual(await direct.getGoal("G-mcp"), expected)
-    assert.deepEqual(await http.getGoal("G-mcp"), expected)
-    assert.deepEqual(await http.listGoals({ turnId: "T-001" }), [expected])
-    assert.deepEqual(await http.listGoals({ workstreamId: "W-999" }), [])
-    const rejected = await fetch(`${baseUrl}/v1/goals/G-mcp`, { method: "POST", body: "{}" })
+    assert.deepEqual(await direct.getGoal(created.id), expected)
+    assert.deepEqual(await http.getGoal(created.id), expected)
+    assert.deepEqual(await http.listGoals({ turnId: f.turnId }), [expected])
+    assert.deepEqual(await http.listGoals({ workstreamId: randomUUID() }), [])
+    const rejected = await fetch(`${baseUrl}/v1/goals/${created.id}`, { method: "POST", body: "{}" })
     assert.ok([404,405].includes(rejected.status))
     assert.equal((await fetch(`${baseUrl}/v1/goals/G-missing`)).status, 404)
-    assert.deepEqual(await direct.getGoal("G-mcp"), expected)
-    const goalPath = join(f.root, ".spec-ledger/optimization/G-mcp/goal.json")
+    assert.deepEqual(await direct.getGoal(created.id), expected)
+    const goalPath = join(f.root, `.spec-ledger/optimization/${created.id}/goal.json`)
     const original = readFileSync(goalPath, "utf8")
     writeFileSync(goalPath, "{invalid")
     assert.equal((await fetch(`${baseUrl}/v1/goals`)).status, 500)
     assert.equal((await fetch(`${baseUrl}/v1/health`)).status, 200)
     writeFileSync(goalPath, original)
-    assert.deepEqual(await http.getGoal("G-mcp"), expected)
+    assert.deepEqual(await http.getGoal(created.id), expected)
   } finally { await mcp.close(); if (listening) await server.close(); f.cleanup() }
 })

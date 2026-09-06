@@ -9,7 +9,7 @@ import type { EpisodeAttachment } from "../types.js"
 const png = Buffer.from("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+aP2kAAAAASUVORK5CYII=", "base64")
 function fixture() {
  const root=mkdtempSync(join(tmpdir(),"sl-visual-break-"))
- const record=(path:string, bytes:Buffer, mediaType="image/png")=>{writeFileSync(join(root,path),bytes);return {schemaVersion:1,id:"T-001/A-1",turnId:"T-001",path,mediaType,contentDigest:contentHash(bytes)} as EpisodeAttachment}
+ const record=(path:string, bytes:Buffer, mediaType="image/png")=>{writeFileSync(join(root,path),bytes);return {schemaVersion:1,id:"0588d0c0-0e40-5619-a485-c6094a07b6c7",turnId:"1c5a8e44-dd09-543a-97d5-bfe173becbaa",path,mediaType,contentDigest:contentHash(bytes)} as EpisodeAttachment}
  return {root,record,cleanup:()=>rmSync(root,{recursive:true,force:true})}
 }
 test("visual breaker: digest mismatch, remote paths, type mismatch and escaping symlinks never expose image bytes",()=>{

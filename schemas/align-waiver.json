@@ -14,17 +14,81 @@
     "createdAt"
   ],
   "properties": {
-    "schemaVersion": { "const": 1 },
-    "id": { "type": "string", "minLength": 1 },
-    "reason": { "type": "string", "minLength": 40 },
-    "actor": { "type": "string", "minLength": 1 },
-    "treeDigest": { "type": "string", "minLength": 16 },
-    "workstreamId": { "type": "string", "pattern": "^W-" },
-    "turnId": { "type": "string", "pattern": "^T-" },
-    "createdAt": { "type": "string", "format": "date-time" },
+    "schemaVersion": {
+      "const": 1
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    },
+    "reason": {
+      "type": "string",
+      "minLength": 40
+    },
+    "actor": {
+      "type": "string",
+      "minLength": 1
+    },
+    "treeDigest": {
+      "type": "string",
+      "minLength": 16
+    },
+    "workstreamId": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    },
+    "turnId": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
     "paths": {
       "type": "array",
-      "items": { "type": "string", "minLength": 1 }
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "migration": {
+      "type": "object",
+      "properties": {
+        "origins": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "required": [
+              "path",
+              "id",
+              "sha256"
+            ],
+            "properties": {
+              "path": {
+                "type": "string"
+              },
+              "id": {
+                "type": "string"
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "historical": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "origins",
+        "historical"
+      ],
+      "additionalProperties": false
     }
   }
 }

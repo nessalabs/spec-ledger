@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "turnId": "9fa55cfe-6dd6-83c5-8b42-baf619c093c6",
+  "path": "docs/workstreams/3ca37660-1506-8a85-80c6-410a024d9a9a-evidence-first-changes/evidence/9fa55cfe-6dd6-83c5-8b42-baf619c093c6/browser-check.md",
+  "kind": "log-excerpt",
+  "title": "Test code highlighting checked in the browser",
+  "mediaType": "text/markdown",
+  "id": "937e3d66-ec9d-8e06-8bcb-859259d508ff",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/attachments/T-039/A-03.json",
+        "id": "T-039/A-03",
+        "sha256": "d1d09debe8696506183849ac393027e1cb45689e6800be5f09e818d7004f7184"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/attachments/T-039/A-03.json",
+        "id": "T-039/A-03",
+        "sha256": "d1d09debe8696506183849ac393027e1cb45689e6800be5f09e818d7004f7184"
+      }
+    },
+    "historical": true
+  }
+}

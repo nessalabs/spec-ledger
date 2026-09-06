@@ -1,7 +1,7 @@
 # Consumer CLI, npm publish, and sealed plan digests
 
-**Workstream:** `W-005` · **Status:** spec_review (amended after SR-01 / SR-02; doc-digest fold-in)  
-**Agent metadata:** [`.spec-ledger/workstreams/W-005.json`](../../.spec-ledger/workstreams/W-005.json)
+**Workstream:** `d1be55a6-11bb-8460-8650-ddf0ecac8185` · **Status:** spec_review (amended after SR-01 / SR-02; doc-digest fold-in)  
+**Agent metadata:** [`.spec-ledger/workstreams/d1be55a6-11bb-8460-8650-ddf0ecac8185.json`](../../.spec-ledger/workstreams/d1be55a6-11bb-8460-8650-ddf0ecac8185.json)
 
 ---
 
@@ -37,7 +37,7 @@ digest-stamped so later edits require recorded amends (human Modifications log
 - Sealed-spec deviation: wait 10m → move  
 - Align approve required; slices name `expectedPaths`
 
-## Normative init skeleton (SLC-01 / PC-015)
+## Normative init skeleton (SLC-01 / 628207d3-7b88-880b-abe1-acd523f8572f)
 
 After `spec-ledger init [--name <name>]` succeeds, exactly these exist under
 `.spec-ledger/` (relative to repo root found by `findRepoRoot`, else cwd):
@@ -73,8 +73,8 @@ only; consumer verify uses in-package runtime validation already in dist.
 Bundling `schemas/` into the npm package is **out of scope** (follow-on).
 
 **Verify oracle after init:** `spec-ledger verify` runs; no claim outcome
-`pass` is invented; no binding may contain `status` / pass fields (SL-001,
-SL-002). Empty claims → ok or unbound/missing only, never greenwashed pass.
+`pass` is invented; no binding may contain `status` / pass fields (67609c19-de05-862c-8db7-e5dc95f38cee,
+2884eafb-114e-85f1-ae07-ce1fbd140550). Empty claims → ok or unbound/missing only, never greenwashed pass.
 
 ## Spec Ledger UI for consumers (SLC-03) — path B only
 
@@ -107,7 +107,7 @@ Packed `package.json` for npm packages must contain **no** `workspace:` or
 `file:` dependency protocols; `files` / `exports` / `bin` include runnable
 `dist`.
 
-## Release workflow (SLC-04 / PC-018)
+## Release workflow (SLC-04 / 74007d2e-7517-85a2-bd9c-390fae8871a4)
 
 - Workflow file: `.github/workflows/publish.yml`  
 - Triggers: `release: types: [published]` only for live publish; optional
@@ -121,7 +121,7 @@ Packed `package.json` for npm packages must contain **no** `workspace:` or
   first GitHub Release is an **optional human action** outside acceptance
   unless we explicitly choose to cut `0.1.0-alpha.0`.
 
-## Sealed plan digests + amends (SLC-05 / PC-019)
+## Sealed plan digests + amends (SLC-05 / 1f1b46eb-ad28-8870-b46d-9826d55aaa1c)
 
 **Problem today:** `specDigest` hashes workstream JSON only; Markdown at
 `specPath` can change silently. `postSealAmends` exists in the work model but
@@ -216,7 +216,7 @@ beyond `specPath`; UI editor for amends (CLI + audit first).
 
 ### SLC-01 — Full consumer init
 
-Normative skeleton + negatives + verify oracle (SL-001, SL-002).
+Normative skeleton + negatives + verify oracle (67609c19-de05-862c-8db7-e5dc95f38cee, 2884eafb-114e-85f1-ae07-ce1fbd140550).
 
 ### SLC-02 — Installable CLI (+ client/server pack oracles)
 
@@ -247,11 +247,11 @@ SLC-01 → SLC-05 → SLC-02 → SLC-04 → SLC-03
 
 ## Proposed claims
 
-- PC-015 — init skeleton + verify honesty  
-- PC-016 — installable ledger bin (+ client/server pack cleanliness)  
-- PC-017 — Spec Ledger UI Release asset (not npm UI)  
-- PC-018 — Release-only npm publish workflow for alpha packages  
-- PC-019 — sealed `specDocDigest` + amend trail + audit drift  
+- 628207d3-7b88-880b-abe1-acd523f8572f — init skeleton + verify honesty  
+- ee4b88b6-f54b-8011-82e1-e4d44b94aaab — installable ledger bin (+ client/server pack cleanliness)  
+- 29a5b902-b969-823e-86f5-89b23debe467 — Spec Ledger UI Release asset (not npm UI)  
+- 74007d2e-7517-85a2-bd9c-390fae8871a4 — Release-only npm publish workflow for alpha packages  
+- 1f1b46eb-ad28-8870-b46d-9826d55aaa1c — sealed `specDocDigest` + amend trail + audit drift  
 
 ## Modifications
 
@@ -260,7 +260,7 @@ SLC-01 → SLC-05 → SLC-02 → SLC-04 → SLC-03
 | 2026-09-04 | pre-seal amend (SR-02 follow-on) | Folded sealed plan `specDocDigest` + `postSealAmends` + audit + Modifications; product UI name Lattice → Spec Ledger in this pitch |
 | 2026-09-04 | pre-seal amend (SR-03) | Clarified immutable `seal.specDocDigest` + amend negatives + `seal-digest-drift` |
 | 2026-09-04 | pre-seal amend (consumer-generic) | Removed dogfood grandfather skip; sealed+specPath with no digest fails until `backfill-doc-digest` (any consumer); retrofit this repo via that path |
-| 2026-09-04 | T-022 | Publish scope is `@nessalabs/*` (not `@nessa/*`) for ledger, client, and server packages |
-| 2026-09-04 | T-024 | SLC-03 UI Release asset: pack-ui-release vendors @nessalabs/ui+client; README client/server one-liner; publish.yml uploads asset |
+| 2026-09-04 | 94dce089-0388-85af-b02f-ee8f5e0934c8 | Publish scope is `@nessalabs/*` (not `@nessa/*`) for ledger, client, and server packages |
+| 2026-09-04 | da84f6c1-3d94-8d66-8f41-dd67dfc07df0 | SLC-03 UI Release asset: pack-ui-release vendors @nessalabs/ui+client; README client/server one-liner; publish.yml uploads asset |
 
-| 2026-09-04 | T-025 | PR review fixes: scope amendments to their seal revision, validate immutable document pointers, remove mutating pack hooks, and make CI artifact tests self-contained; prepare the real UI asset before publishing. |
+| 2026-09-04 | 383eee85-f226-857a-a920-2f338ca83df4 | PR review fixes: scope amendments to their seal revision, validate immutable document pointers, remove mutating pack hooks, and make CI artifact tests self-contained; prepare the real UI asset before publishing. |

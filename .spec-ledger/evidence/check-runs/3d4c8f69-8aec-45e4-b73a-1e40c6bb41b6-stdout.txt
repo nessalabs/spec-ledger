@@ -1,0 +1,139 @@
+TAP version 13
+# Subtest: sl-dev-break sealed plan digests (T-021 / SLC-05)
+    # Subtest: missing specPath file refuses seal
+    ok 1 - missing specPath file refuses seal
+      ---
+      duration_ms: 71.790167
+      type: 'test'
+      ...
+    # Subtest: seal stamps digest on live seal AND snapshot; amend never mutates seal.specDocDigest
+    ok 2 - seal stamps digest on live seal AND snapshot; amend never mutates seal.specDocDigest
+      ---
+      duration_ms: 41.211041
+      type: 'test'
+      ...
+    # Subtest: latest amend.afterDocDigest wins over seal.specDocDigest and prior amends
+    ok 3 - latest amend.afterDocDigest wins over seal.specDocDigest and prior amends
+      ---
+      duration_ms: 42.536375
+      type: 'test'
+      ...
+    # Subtest: backfill does not mutate prior seals/N.json bytes
+    ok 4 - backfill does not mutate prior seals/N.json bytes
+      ---
+      duration_ms: 68.995417
+      type: 'test'
+      ...
+    # Subtest: audit seal-digest-drift: live≠snapshot body even if seal.specDigest forged to match live
+    ok 5 - audit seal-digest-drift: live≠snapshot body even if seal.specDigest forged to match live
+      ---
+      duration_ms: 39.6435
+      type: 'test'
+      ...
+    # Subtest: deleted spec file after seal fails check-seal and audit
+    ok 6 - deleted spec file after seal fails check-seal and audit
+      ---
+      duration_ms: 38.954084
+      type: 'test'
+      ...
+    # Subtest: CLI amend + check-seal round-trip (integration)
+    ok 7 - CLI amend + check-seal round-trip (integration)
+      ---
+      duration_ms: 551.567833
+      type: 'test'
+      ...
+    # Subtest: out-of-intent: empty afterDocDigest on latest amend must not fall back past prior amend
+    ok 8 - out-of-intent: empty afterDocDigest on latest amend must not fall back past prior amend
+      ---
+      duration_ms: 42.257458
+      type: 'test'
+      ...
+    # Subtest: out-of-intent: hostile specPath with .. refuses seal/read
+    ok 9 - out-of-intent: hostile specPath with .. refuses seal/read
+      ---
+      duration_ms: 40.514708
+      type: 'test'
+      ...
+    1..9
+ok 1 - sl-dev-break sealed plan digests (T-021 / SLC-05)
+  ---
+  duration_ms: 939.089792
+  type: 'suite'
+  ...
+# Subtest: sealed plan digests (SLC-05)
+    # Subtest: seal stamps specDocDigest; check-seal fails on silent edit; amend restores
+    ok 1 - seal stamps specDocDigest; check-seal fails on silent edit; amend restores
+      ---
+      duration_ms: 77.683541
+      type: 'test'
+      ...
+    # Subtest: missing expected digest fails until backfill
+    ok 2 - missing expected digest fails until backfill
+      ---
+      duration_ms: 44.1725
+      type: 'test'
+      ...
+    # Subtest: amend refuses no-op and requires backfill first
+    ok 3 - amend refuses no-op and requires backfill first
+      ---
+      duration_ms: 40.666417
+      type: 'test'
+      ...
+    # Subtest: seal-digest-drift when live payload diverges
+    ok 4 - seal-digest-drift when live payload diverges
+      ---
+      duration_ms: 63.3555
+      type: 'test'
+      ...
+    1..4
+ok 2 - sealed plan digests (SLC-05)
+  ---
+  duration_ms: 227.128375
+  type: 'suite'
+  ...
+# Subtest: PR \#1 seal integrity regressions (T-025)
+    # Subtest: resealing an amended document accepts the newly sealed bytes
+    ok 1 - resealing an amended document accepts the newly sealed bytes
+      ---
+      duration_ms: 86.174958
+      type: 'test'
+      ...
+    # Subtest: reverting to a prior revision amendment fails both seal check and audit
+    ok 2 - reverting to a prior revision amendment fails both seal check and audit
+      ---
+      duration_ms: 51.218458
+      type: 'test'
+      ...
+    # Subtest: a current amendment works after resealing but cannot hide a corrupted seal pointer
+    ok 3 - a current amendment works after resealing but cannot hide a corrupted seal pointer
+      ---
+      duration_ms: 87.505042
+      type: 'test'
+      ...
+    # Subtest: check-seal rejects rewriting only the live document digest
+    ok 4 - check-seal rejects rewriting only the live document digest
+      ---
+      duration_ms: 46.055709
+      type: 'test'
+      ...
+    # Subtest: audit rejects rewriting only the live document digest
+    ok 5 - audit rejects rewriting only the live document digest
+      ---
+      duration_ms: 50.660875
+      type: 'test'
+      ...
+    1..5
+ok 3 - PR \#1 seal integrity regressions (T-025)
+  ---
+  duration_ms: 322.387375
+  type: 'suite'
+  ...
+1..3
+# tests 18
+# suites 3
+# pass 18
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1008.350291

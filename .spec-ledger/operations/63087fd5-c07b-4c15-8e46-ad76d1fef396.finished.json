@@ -7,7 +7,7 @@
   "outcome": "succeeded",
   "result": {
     "schemaVersion": 1,
-    "turnId": "T-040",
+    "turnId": "d720cc6b-3fe9-89dd-8ef4-0c0416e1e35d",
     "kind": "adversarial",
     "target": "code",
     "reviewer": "agent:navigation-breaker",
@@ -19,7 +19,7 @@
       "packages/ui/lib/navigation.break.test.mjs::unknown or obsolete fragments do not strand readers in an invisible section",
       "packages/ui/lib/navigation.break.test.mjs::mobile navigation closes on same-page selection and route change but preserves modified clicks"
     ],
-    "id": "T-040/R-01",
+    "id": "5fd0f8e9-3bb6-80ab-b603-3c724e54b455",
     "treeDigest": "4ef07d00a4fe8da540580c59235fb3f0d46cb9b44911338718d9f21dd7f58f5d"
   }
 }

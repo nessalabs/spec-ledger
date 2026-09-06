@@ -7,7 +7,7 @@
   "outcome": "succeeded",
   "result": {
     "schemaVersion": 1,
-    "id": "T-035",
+    "id": "e563f833-7a78-88a7-ba59-28dd5790ae4f",
     "status": "closed",
     "openedAt": "2026-09-05T00:49:42.464Z",
     "opened": {
@@ -16,16 +16,16 @@
       "treeDigest": "e5abd70a9c07ed530f2cf0edca2fa0967362ad2a7550d214afcc6719f3310a76",
       "dirtyAtOpen": [],
       "contextDigest": "76461b6aea2f8a380f2ab37e0507a6a0780fc8bf2023ce16bff137ff2c594a7b",
-      "contextWorkstreamId": "W-008",
-      "contextSliceId": "SLC-02",
+      "contextWorkstreamId": "815c7a44-59df-8102-9769-bf8a74e49c0c",
+      "contextSliceId": "25eac677-2871-816d-956d-770bdcb61798",
       "contextSealRevision": 1,
       "contextGeneratedAt": "2026-09-05T00:49:42.464Z"
     },
     "intent": {
       "userPrompt": "Let users choose local engineering skills and ordered stages, preserve that method, and follow current typed outputs and evidence in the website through CLI or MCP.",
       "restatedGoal": "Choose engineering steps and see what each one proves",
-      "workstreamId": "W-008",
-      "sliceId": "SLC-02",
+      "workstreamId": "815c7a44-59df-8102-9769-bf8a74e49c0c",
+      "sliceId": "25eac677-2871-816d-956d-770bdcb61798",
       "featureIds": [
         "cli",
         "client",
@@ -42,37 +42,37 @@
       "commit": "c86c6539107ebb19fc9cebf0dcfe11c910660864",
       "files": [
         {
-          "path": ".spec-ledger/attachments/T-035/A-01.json",
+          "path": ".spec-ledger/attachments/e563f833-7a78-88a7-ba59-28dd5790ae4f/deb32bbf-a6aa-87bd-98fc-89a10f08b07f.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/attachments/T-035/A-02.json",
+          "path": ".spec-ledger/attachments/e563f833-7a78-88a7-ba59-28dd5790ae4f/ac2668c0-99a0-827a-b2fc-0471eaded832.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/bindings/B-SL-024.json",
+          "path": ".spec-ledger/bindings/35c8eb44-8d25-8185-82c2-bf645f8f0710.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/claims/SL-024.json",
+          "path": ".spec-ledger/claims/4d4f7c20-b7e0-86d8-9b17-f45053bbf43b.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/decisions/T-035/D-01.json",
+          "path": ".spec-ledger/decisions/e563f833-7a78-88a7-ba59-28dd5790ae4f/abf02c87-3e21-8f53-9671-bd6d59467e55.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/decisions/T-035/D-02.json",
+          "path": ".spec-ledger/decisions/e563f833-7a78-88a7-ba59-28dd5790ae4f/81550025-5c1d-810b-8f66-55d750963ab1.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
@@ -96,31 +96,31 @@
           "deletions": 1
         },
         {
-          "path": ".spec-ledger/proposed-claims/PC-021.json",
+          "path": ".spec-ledger/proposed-claims/0a8d514c-2350-8cb8-a34a-89e1b6e01084.json",
           "kind": "modified",
           "additions": 1,
           "deletions": 1
         },
         {
-          "path": ".spec-ledger/reviews/turns/T-035/R-01.json",
+          "path": ".spec-ledger/reviews/turns/e563f833-7a78-88a7-ba59-28dd5790ae4f/ac7404ab-031e-86d4-9172-209d5d5f167f.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/reviews/turns/T-035/R-02.json",
+          "path": ".spec-ledger/reviews/turns/e563f833-7a78-88a7-ba59-28dd5790ae4f/8eabd6e5-0f15-8b71-a13e-613136bd571a.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/turns/T-035.json",
+          "path": ".spec-ledger/turns/e563f833-7a78-88a7-ba59-28dd5790ae4f.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/workstreams/W-008.json",
+          "path": ".spec-ledger/workstreams/815c7a44-59df-8102-9769-bf8a74e49c0c.json",
           "kind": "modified",
           "additions": 3,
           "deletions": 2
@@ -144,13 +144,13 @@
           "deletions": 0
         },
         {
-          "path": "docs/workstreams/W-008-shared-agent-workflows/evidence/T-035/browser-check.md",
+          "path": "docs/workstreams/815c7a44-59df-8102-9769-bf8a74e49c0c-shared-agent-workflows/evidence/e563f833-7a78-88a7-ba59-28dd5790ae4f/browser-check.md",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": "docs/workstreams/W-008-shared-agent-workflows/evidence/T-035/regression-tests.txt",
+          "path": "docs/workstreams/815c7a44-59df-8102-9769-bf8a74e49c0c-shared-agent-workflows/evidence/e563f833-7a78-88a7-ba59-28dd5790ae4f/regression-tests.txt",
           "kind": "added",
           "additions": 0,
           "deletions": 0
@@ -332,11 +332,11 @@
         "verify"
       ],
       "touchedClaimIds": [
-        "SL-003",
-        "SL-004",
-        "SL-021",
-        "SL-022",
-        "SL-024"
+        "14d9b121-df2b-8ede-bce7-fdee648a4320",
+        "77fb26cd-bc46-8037-a8f2-7573f7d6d33d",
+        "9767b1da-9568-8e2f-ad2a-c2c3eb3e424c",
+        "dd5caaee-dace-8f53-bff5-65b6a7646b6d",
+        "4d4f7c20-b7e0-86d8-9b17-f45053bbf43b"
       ],
       "blastRadius": {
         "direct": [
@@ -362,8 +362,8 @@
       },
       "schemaSurfaceChanged": true,
       "decisionIds": [
-        "T-035/D-01",
-        "T-035/D-02"
+        "abf02c87-3e21-8f53-9671-bd6d59467e55",
+        "81550025-5c1d-810b-8f66-55d750963ab1"
       ],
       "decisionsDigest": "89685f218ebe69edf96ed194d1f5ce70e1823e42386ad3063b8fb816f5641e4d",
       "attachmentsDigest": "14c32e706e6540a9cc8f32994a2b51359afb877523738d59df63531cb1238d51",

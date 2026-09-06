@@ -5,6 +5,9 @@ import type { SessionProjection } from "@nessalabs/spec-ledger-client"
 
 export type SessionConnectionState = "connected" | "loading" | "disconnected"
 
+const POLL_MS = 5000
+const REQUEST_TIMEOUT_MS = 8000
+
 /** Observe one session projection while retaining the last successful response. */
 export function useSessionObservation(
   initial: SessionProjection,
@@ -20,10 +23,18 @@ export function useSessionObservation(
     let timer: ReturnType<typeof setTimeout>
     let controller: AbortController | undefined
 
+    function schedule(delay: number) {
+      clearTimeout(timer)
+      if (!cancelled) timer = setTimeout(observe, delay)
+    }
+
     async function observe() {
+      // A hidden tab cannot show the result, so wait for it to come back
+      // rather than polling the ledger forever in the background.
+      if (document.hidden) return
       const epoch = observationEpoch.current
       controller = new AbortController()
-      const timeout = setTimeout(() => controller?.abort(), 8000)
+      const timeout = setTimeout(() => controller?.abort(), REQUEST_TIMEOUT_MS)
       try {
         const query = workstreamId
           ? `?workstream=${encodeURIComponent(workstreamId)}`
@@ -45,9 +56,14 @@ export function useSessionObservation(
         }
       } finally {
         clearTimeout(timeout)
-        if (!cancelled) timer = setTimeout(observe, 5000)
+        schedule(POLL_MS)
       }
     }
+
+    // Resume immediately when the tab is shown again, so a returning reader
+    // never waits a full interval for current data.
+    const onVisible = () => { if (!document.hidden) schedule(0) }
+    document.addEventListener("visibilitychange", onVisible)
 
     setState("loading")
     void observe()
@@ -55,6 +71,7 @@ export function useSessionObservation(
       cancelled = true
       clearTimeout(timer)
       controller?.abort()
+      document.removeEventListener("visibilitychange", onVisible)
     }
   }, [workstreamId])
 
@@ -69,11 +86,5 @@ export function useSessionObservation(
     observationEpoch.current++
   }
 
-  return {
-    data,
-    state,
-    observed,
-    replaceData,
-    invalidateObservation,
-  }
+  return { data, state, observed, replaceData, invalidateObservation }
 }

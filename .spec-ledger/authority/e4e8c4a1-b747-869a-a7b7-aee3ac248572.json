@@ -1,0 +1,27 @@
+{
+  "action": "grant",
+  "mode": "request",
+  "workstreamId": "29c935b4-56bd-84a0-b887-e280d775f54d",
+  "featureIds": [
+    "turns",
+    "lattice",
+    "cli"
+  ],
+  "source": {
+    "kind": "agent-reported",
+    "reference": "User explicitly delegated shaping and implementation of iterative goal and experiment tracking with an inspect chart/table in task 01a075a1-7906-7570-be88-36726818ded5; no deployment or push."
+  },
+  "id": "e4e8c4a1-b747-869a-a7b7-aee3ac248572",
+  "schemaVersion": 1,
+  "createdAt": "2026-09-06T07:34:40.062Z",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/authority/AUTH-21ac919a-880c-411d-a3b0-3534b8634dc3.json",
+        "id": "AUTH-21ac919a-880c-411d-a3b0-3534b8634dc3",
+        "sha256": "e26dbdb0430fc776bf5ff9a7f044e8728a866a2fd791f10a962a1429c565dccf"
+      }
+    },
+    "historical": true
+  }
+}

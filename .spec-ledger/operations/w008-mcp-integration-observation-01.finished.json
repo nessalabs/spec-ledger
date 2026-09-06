@@ -7,14 +7,14 @@
   "outcome": "succeeded",
   "result": {
     "schemaVersion": 1,
-    "turnId": "T-034",
+    "turnId": "7a56453a-0979-8b0a-a4fe-ddbc9aab354a",
     "decision": "The local MCP executable exposes the same current workstream observation.",
-    "rationale": "A real stdio client listed the tools and read W-008 with T-034 open and zero passing requirements. This confirms transport connectivity, not completion of the revamp.",
+    "rationale": "A real stdio client listed the tools and read 815c7a44-59df-8102-9769-bf8a74e49c0c with 7a56453a-0979-8b0a-a4fe-ddbc9aab354a open and zero passing requirements. This confirms transport connectivity, not completion of the revamp.",
     "basis": {
       "at": "2026-09-05T00:23:39.587Z",
       "contextDigest": "aaa63c9cd99afe977a474f8a17cb4aaafe7ae07e298330282fbd4f1a3a971304",
       "sealRevision": 1
     },
-    "id": "T-034/D-02"
+    "id": "62e27ee1-a423-8bd8-8cbd-1b0717231ff2"
   }
 }

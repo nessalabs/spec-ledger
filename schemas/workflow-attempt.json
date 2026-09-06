@@ -4,10 +4,89 @@
   "title": "Spec Ledger workflow attempt",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schemaVersion", "id", "workstreamId", "stageId", "stepId", "snapshotDigest", "revisionDigest", "sourceDigest", "startedAt"],
+  "required": [
+    "schemaVersion",
+    "id",
+    "workstreamId",
+    "stageId",
+    "stepId",
+    "snapshotDigest",
+    "revisionDigest",
+    "sourceDigest",
+    "startedAt"
+  ],
   "properties": {
-    "schemaVersion": { "const": 1 }, "id": { "type": "string" }, "workstreamId": { "type": "string" }, "stageId": { "type": "string" }, "stepId": { "type": "string" },
-    "snapshotDigest": { "type": "string", "pattern": "^[a-f0-9]{64}$" }, "revisionDigest": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
-    "sourceDigest": { "type": "string", "pattern": "^[a-f0-9]{64}$" }, "startedAt": { "type": "string" }, "reason": { "type": "string" }
+    "schemaVersion": {
+      "const": 1
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    },
+    "workstreamId": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    },
+    "stageId": {
+      "type": "string"
+    },
+    "stepId": {
+      "type": "string"
+    },
+    "snapshotDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "revisionDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "sourceDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "startedAt": {
+      "type": "string"
+    },
+    "reason": {
+      "type": "string"
+    },
+    "migration": {
+      "type": "object",
+      "properties": {
+        "origins": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "required": [
+              "path",
+              "id",
+              "sha256"
+            ],
+            "properties": {
+              "path": {
+                "type": "string"
+              },
+              "id": {
+                "type": "string"
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "historical": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "origins",
+        "historical"
+      ],
+      "additionalProperties": false
+    }
   }
 }

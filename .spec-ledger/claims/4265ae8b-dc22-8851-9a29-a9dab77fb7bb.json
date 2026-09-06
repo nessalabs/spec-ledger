@@ -1,0 +1,28 @@
+{
+  "id": "4265ae8b-dc22-8851-9a29-a9dab77fb7bb",
+  "kind": "invariant",
+  "statement": "Show every required check result, and never hide a failure just because another check passes.",
+  "required": true,
+  "area": "core",
+  "links": {
+    "docs": [
+      "docs/workstreams/a32f3451-1b3d-8abf-bf0e-607ebf6e1a88-trustworthy-autonomous-coding/spec.md",
+      "docs/architecture/claim-contracts.md"
+    ]
+  },
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/claims/SL-016.json",
+        "id": "SL-016",
+        "sha256": "4c13d909606ebfe69ba1b56090c335d11c6ca51ff144f106f02f586477e7f3df"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/claims/SL-016.json",
+        "id": "SL-016",
+        "sha256": "4c13d909606ebfe69ba1b56090c335d11c6ca51ff144f106f02f586477e7f3df"
+      }
+    },
+    "historical": true
+  }
+}

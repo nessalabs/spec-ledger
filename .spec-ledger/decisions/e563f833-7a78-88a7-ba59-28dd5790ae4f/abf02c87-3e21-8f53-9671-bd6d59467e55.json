@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "turnId": "e563f833-7a78-88a7-ba59-28dd5790ae4f",
+  "decision": "Let users choose engineering steps while keeping the evidence contracts fixed.",
+  "rationale": "The shared workflow evaluator owns stage prerequisites and typed output currentness. Profiles replace guidance, not permission or proof. Preserve local skill text in immutable snapshots; retry attempts refer to existing evidence records. CLI and MCP call the same operations, and the UI only renders the shared projection.",
+  "id": "abf02c87-3e21-8f53-9671-bd6d59467e55",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/decisions/T-035/D-01.json",
+        "id": "T-035/D-01",
+        "sha256": "ac9f3c3f523ea9dd9ab744988e065cccd3a1c2979b821432773187f3ed075819"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/decisions/T-035/D-01.json",
+        "id": "T-035/D-01",
+        "sha256": "ac9f3c3f523ea9dd9ab744988e065cccd3a1c2979b821432773187f3ed075819"
+      }
+    },
+    "historical": true
+  },
+  "sequence": 1
+}

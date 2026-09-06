@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "turnId": "a2340a88-188e-87da-8cee-96c5126cef29",
+  "decision": "Retrofit only acceptance mappings supported by behavioral checks and preserve earlier completion as history.",
+  "rationale": "User requested verification and data retrofit. Audit found missing mappings and structural-only checks, plus superseded historical requirements. W005 AC1-7 gains tested mappings; unsupported criteria remain unknown. No historical facts or approvals are rewritten.",
+  "discovery": {
+    "kind": "verification-gap",
+    "reportedVia": "user",
+    "observation": "Completed workstreams showed 0% or blocked without explaining missing or stale evidence.",
+    "cause": "Legacy data lacked acceptance mappings; close captured previous HEAD; turn view omitted attached evidence.",
+    "regression": "Independent Git, evidence scoping and rendered ordering tests; current behavioral check rerun."
+  },
+  "id": "cee203d4-a6f0-8332-92dd-86f69065e508",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/decisions/T-037/D-01.json",
+        "id": "T-037/D-01",
+        "sha256": "907e998fce497129bc27dd32af7880e0d81e375822b68ec3ba642729100e04ce"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/decisions/T-037/D-01.json",
+        "id": "T-037/D-01",
+        "sha256": "907e998fce497129bc27dd32af7880e0d81e375822b68ec3ba642729100e04ce"
+      }
+    },
+    "historical": true
+  },
+  "sequence": 1
+}

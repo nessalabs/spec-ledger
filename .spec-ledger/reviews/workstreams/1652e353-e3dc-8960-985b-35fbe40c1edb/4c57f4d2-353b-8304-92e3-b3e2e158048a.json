@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "4c57f4d2-353b-8304-92e3-b3e2e158048a",
+  "workstreamId": "1652e353-e3dc-8960-985b-35fbe40c1edb",
+  "kind": "adversarial",
+  "target": "spec",
+  "reviewer": "agent:evidence-review",
+  "verdict": "approve",
+  "blocking": false,
+  "summary": "Related pack 1652e353-e3dc-8960-985b-35fbe40c1edb links verify/client/lattice and a32f3451-1b3d-8abf-bf0e-607ebf6e1a88 evidence contracts. Acceptance preserves verifier authority, separates historical results, confines local text artifacts, prohibits remote fetch and read side effects; workflow changes are proposal-only.",
+  "plainSummary": "The plan makes evidence inspectable without turning historical results or untrusted artifacts into proof.",
+  "findings": [],
+  "residualRisks": [
+    "Workflow proposal still requires independent design review; this approval does not authorize a workflow engine.",
+    "The related pack supplied no worktree scan metadata; parallel checkout review is not claimed."
+  ],
+  "revisionDigest": "4bb0a99ac51830d59c924180d7397da0bd166f72ce505d839f74736191cf55a2",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/reviews/workstreams/W-007/SR-01.json",
+        "id": "W-007/SR-01",
+        "sha256": "9d570cbf65881a70ae2b6637e3263616dcb2705f5274f687bf66f45cc69ce6cc"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/reviews/workstreams/W-007/SR-01.json",
+        "id": "W-007/SR-01",
+        "sha256": "9d570cbf65881a70ae2b6637e3263616dcb2705f5274f687bf66f45cc69ce6cc"
+      }
+    },
+    "historical": true
+  }
+}

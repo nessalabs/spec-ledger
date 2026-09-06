@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "requestId": "8265ce30-51f1-412f-af76-f1affafbea16",
+  "operation": "begin_work",
+  "inputDigest": "d9af436b50ff2f8100f9dc01537ec68f4ebaa0ff2b0929b0284c7dab74808fdd",
+  "finishedAt": "2026-09-06T07:04:19.447Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "id": "f452f323-83c6-83e0-9ce2-faae3f1a3772",
+    "status": "open",
+    "openedAt": "2026-09-06T07:04:19.446Z",
+    "opened": {
+      "producedBy": "@nessalabs/spec-ledger@0.1.0",
+      "baseCommit": "56d6ab11d684d654f6d09cbed531238823a72229",
+      "treeDigest": "53dca0fb41950aca1a0761fba7b4fb57523ebdbad3594dba99a47641a3ef67db",
+      "dirtyAtOpen": [
+        ".spec-ledger/evidence/check-runs/10ac0b8a-ce00-4aec-a173-9bc53753ce8b-stderr.txt",
+        ".spec-ledger/evidence/check-runs/10ac0b8a-ce00-4aec-a173-9bc53753ce8b-stdout.txt",
+        ".spec-ledger/evidence/check-runs/10ac0b8a-ce00-4aec-a173-9bc53753ce8b.json",
+        ".spec-ledger/evidence/runs/10ac0b8a-ce00-4aec-a173-9bc53753ce8b.json",
+        ".spec-ledger/turns/5bfd91de-8592-889f-954b-26c28d6b02c3.json",
+        "packages/ledger/src/episodes.write.test.ts"
+      ],
+      "contextDigest": "b7fb5690becd1ca0f2d4ad3979c9cccf16d057832e005f6df6788d90bfb5aeb3",
+      "contextWorkstreamId": "ef172105-4f40-8bbb-8abe-d1cd11ae618a",
+      "contextSliceId": "ef669c8c-b701-85d9-b2da-638757fed84e",
+      "contextSealRevision": 1,
+      "contextGeneratedAt": "2026-09-06T07:04:19.446Z"
+    },
+    "intent": {
+      "userPrompt": "Fix PR 2 CI failures in episode fixture cleanup and packaged dependency imports.",
+      "restatedGoal": "Make the PR verification pass reliably",
+      "changeType": "fix",
+      "riskLevel": "moderate",
+      "workstreamId": "ef172105-4f40-8bbb-8abe-d1cd11ae618a",
+      "sliceId": "ef669c8c-b701-85d9-b2da-638757fed84e",
+      "featureIds": [
+        "client",
+        "cli",
+        "lattice"
+      ]
+    }
+  }
+}

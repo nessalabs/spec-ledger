@@ -1,0 +1,19 @@
+{
+  "id": "39fc903d-08ba-8a0c-a5d4-f9995941fd94",
+  "kind": "invariant",
+  "statement": "Changing, renaming or removing a saved way of working leaves every spec that already adopted it running the steps it copied, with its progress and evidence unchanged.",
+  "required": true,
+  "links": [
+    "docs/workstreams/ef172105-4f40-8bbb-8abe-d1cd11ae618a-named-workflows/spec.md"
+  ],
+  "migration": {
+    "origins": {
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/claims/SL-033.json",
+        "id": "SL-033",
+        "sha256": "7cde375aadda53f68b37f85b7f3098803b3d63a14d6f2a2923d7efc5d8cc49a7"
+      }
+    },
+    "historical": true
+  }
+}

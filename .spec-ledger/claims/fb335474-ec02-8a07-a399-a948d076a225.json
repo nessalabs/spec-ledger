@@ -1,0 +1,28 @@
+{
+  "id": "fb335474-ec02-8a07-a399-a948d076a225",
+  "kind": "invariant",
+  "statement": "Agents work within your permission and respect your corrections, denials, and withdrawals.",
+  "required": true,
+  "area": "core",
+  "links": {
+    "docs": [
+      "docs/workstreams/a32f3451-1b3d-8abf-bf0e-607ebf6e1a88-trustworthy-autonomous-coding/spec.md",
+      "docs/architecture/claim-contracts.md"
+    ]
+  },
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/claims/SL-019.json",
+        "id": "SL-019",
+        "sha256": "a9519972decbdb76de563c06ab76e08355383e909c20f7185426d946dbd27e4a"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/claims/SL-019.json",
+        "id": "SL-019",
+        "sha256": "a9519972decbdb76de563c06ab76e08355383e909c20f7185426d946dbd27e4a"
+      }
+    },
+    "historical": true
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "aae49e39-2b5e-8e27-9378-2a136cce5c93",
+  "status": "accepted",
+  "workstreamId": "815c7a44-59df-8102-9769-bf8a74e49c0c",
+  "suggestedLiveId": "2f8cf085-d7a5-83b9-89f8-9d0754cb16a0",
+  "statement": "CLI and MCP share validation, permission, persistence and completion gates with equivalent lifecycle outcomes and retry behavior.",
+  "requiredEvidence": [
+    "unit",
+    "integration",
+    "e2e"
+  ],
+  "liveId": "2f8cf085-d7a5-83b9-89f8-9d0754cb16a0",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/proposed-claims/PC-020.json",
+        "id": "PC-020",
+        "sha256": "4e568828d53bdc185a208e21d5ef8cd98613a98d1eb45e1a69f6309ee466650c"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/proposed-claims/PC-020.json",
+        "id": "PC-020",
+        "sha256": "4e568828d53bdc185a208e21d5ef8cd98613a98d1eb45e1a69f6309ee466650c"
+      }
+    },
+    "historical": true
+  }
+}

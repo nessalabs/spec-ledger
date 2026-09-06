@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "turnId": "21e1bd8d-8745-8900-b8a5-249314d027be",
+  "path": "docs/workstreams/351e54ea-60e4-8384-826f-0616eaa89599-inspect-and-run-checks/evidence/21e1bd8d-8745-8900-b8a5-249314d027be/browser-check.md",
+  "kind": "log-excerpt",
+  "title": "Browser proof: inspect source, run the check, and compare expected with actual output",
+  "mediaType": "text/markdown",
+  "id": "d3b7ae44-4f0a-81ce-a11b-0eb9b6f94a43",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/attachments/T-038/A-01.json",
+        "id": "T-038/A-01",
+        "sha256": "be8e1074d74b4155dcb3204b176ae1f36fa35e1b334120cde9f1daa3de611959"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/attachments/T-038/A-01.json",
+        "id": "T-038/A-01",
+        "sha256": "be8e1074d74b4155dcb3204b176ae1f36fa35e1b334120cde9f1daa3de611959"
+      }
+    },
+    "historical": true
+  }
+}

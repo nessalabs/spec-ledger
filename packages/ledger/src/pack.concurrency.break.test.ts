@@ -1,6 +1,6 @@
 import { describe, it } from "node:test"
 import assert from "node:assert/strict"
-import { cpSync, existsSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, realpathSync, rmSync, writeFileSync } from "node:fs"
+import { cpSync, existsSync, linkSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, realpathSync, rmSync, writeFileSync } from "node:fs"
 import { tmpdir } from "node:os"
 import { dirname, join } from "node:path"
 import { spawn, spawnSync } from "node:child_process"
@@ -70,8 +70,21 @@ describe("pack concurrency and failure isolation", () => {
       const dependencyOut = join(root, "dependency-out")
       mkdirSync(dependencyOut)
       const repoRequire = createRequire(join(REPO, "packages/ledger/package.json"))
-      const zodDir = dirname(repoRequire.resolve("zod/package.json"))
-      sync("npm", ["pack", "--ignore-scripts", "--pack-destination", dependencyOut], zodDir)
+      const installedZod = dirname(repoRequire.resolve("zod/package.json"))
+      const zodDir = join(root, "installed-zod")
+      cpSync(installedZod, zodDir, { recursive: true })
+      // pnpm can deduplicate identical package files with hardlinks on Linux.
+      // Reproduce that layout even when this checkout uses independent files.
+      const emptyModule = join(zodDir, "v3/helpers/enumUtil.js")
+      const schemaModule = join(zodDir, "v4/core/json-schema.js")
+      assert.equal(readFileSync(emptyModule, "utf8"), readFileSync(schemaModule, "utf8"))
+      rmSync(schemaModule)
+      linkSync(emptyModule, schemaModule)
+      // npm pack retains hardlink entries, but npm install skips those entries.
+      // Materialize each installed file before making an offline dependency tarball.
+      const materializedZod = join(root, "materialized-zod")
+      cpSync(zodDir, materializedZod, { recursive: true })
+      sync("npm", ["pack", "--ignore-scripts", "--pack-destination", dependencyOut], materializedZod)
       tarballs.push(join(dependencyOut, readdirSync(dependencyOut).find((p) => p.endsWith(".tgz"))!))
 
       for (const name of ["client", "server"]) {

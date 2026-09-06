@@ -1,0 +1,26 @@
+{
+  "id": "fbe7ce66-ef39-848d-8426-b7f2643315b6",
+  "kind": "invariant",
+  "statement": "Every earlier requirement has been examined, with its supporting checks or remaining gap clearly recorded.",
+  "required": true,
+  "links": {
+    "docs": [
+      "docs/workstreams/3ca37660-1506-8a85-80c6-410a024d9a9a-evidence-first-changes/spec.md"
+    ]
+  },
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/claims/SL-028.json",
+        "id": "SL-028",
+        "sha256": "fb9d25aa754f317f050540da5f3f5efc259e72d42d434c6723199dd46b7e35bf"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/claims/SL-028.json",
+        "id": "SL-028",
+        "sha256": "fb9d25aa754f317f050540da5f3f5efc259e72d42d434c6723199dd46b7e35bf"
+      }
+    },
+    "historical": true
+  }
+}

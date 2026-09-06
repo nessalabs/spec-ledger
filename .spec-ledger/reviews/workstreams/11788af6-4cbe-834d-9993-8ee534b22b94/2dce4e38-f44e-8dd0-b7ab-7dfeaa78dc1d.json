@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "2dce4e38-f44e-8dd0-b7ab-7dfeaa78dc1d",
+  "workstreamId": "11788af6-4cbe-834d-9993-8ee534b22b94",
+  "target": "spec",
+  "kind": "adversarial",
+  "reviewer": "agent:feature-view-breaker",
+  "verdict": "approve",
+  "blocking": false,
+  "plainSummary": "The simpler feature view keeps progress and problems visible while making proof easier to inspect.",
+  "summary": "Independent review used related W013 pack: lattice feature and SL021/SL022 honest evidence, SL029 navigation and SL030 workflow placement. Bounded UI-only simplification preserves existing domain behavior. Acceptance requires visible current evidence counts and actionable failures, while details may expand; missing evidence and historical completion cannot become passing or complete by copy changes. Sol initial live audit and browser walkthrough complement rendered mixed-state tests; a text snapshot alone does not establish reduced navigation burden. Mapping names SL031, to be materialized with behavioral UI binding before verification. No new auth or execution boundary introduced.",
+  "findings": [],
+  "residualRisks": [
+    "Related tool supplied only a caution-only worktree note; sibling state was not treated as authority.",
+    "Rendered tests cannot establish usability alone; independent Sol observations and live walkthrough remain required."
+  ],
+  "revisionDigest": "da886054e0edc5e999474177d9fa912dc92b32823edb6abeec5529d20beb9137",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/reviews/workstreams/W-013/SR-01.json",
+        "id": "W-013/SR-01",
+        "sha256": "13cd536acace2bd995180c4c9ff037876c515a5c206f31b053d80b916d385827"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/reviews/workstreams/W-013/SR-01.json",
+        "id": "W-013/SR-01",
+        "sha256": "13cd536acace2bd995180c4c9ff037876c515a5c206f31b053d80b916d385827"
+      }
+    },
+    "historical": true
+  }
+}

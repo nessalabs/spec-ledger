@@ -1,7 +1,7 @@
 {
   "runId": "be56f6fd-fa1d-45ad-8e0d-60bfae2b0f5d",
   "requestId": "batch-be56f6fd-fa1d-45ad-8e0d-60bfae2b0f5d",
-  "bindingId": "b-sl-033",
+  "bindingId": "3f81aa45-3462-88ec-a993-6c666ffda16a",
   "state": "finished",
   "command": "node --test packages/ledger/dist/evidence/visual.test.js packages/ledger/dist/evidence/visual.break.test.js packages/mcp/dist/visual.lifecycle.test.js",
   "cwd": "/Users/nessa/.codex/worktrees/24db/spec-ledger",

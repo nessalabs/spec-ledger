@@ -2,20 +2,20 @@
 
 Paths under repo root. Contract: [`docs/architecture/work-model.md`](../../docs/architecture/work-model.md).
 
-## `.spec-ledger/workstreams/W-001.json`
+## `.spec-ledger/workstreams/<workstream-uuid>.json`
 
 **Product defaults** already filled in `policy` below — override only if the human asks.
 
 ```json
 {
   "schemaVersion": 1,
-  "id": "W-001",
+  "id": "<workstream-uuid>",
   "status": "draft",
   "createdAt": "2026-09-02T00:00:00.000Z",
   "featureIds": ["verify"],
   "primaryFeatureId": "verify",
   "title": "Short bet title",
-  "specPath": "docs/workstreams/W-001-short-bet-title/spec.md",
+  "specPath": "docs/workstreams/<workstream-uuid>-short-bet-title/spec.md",
   "problem": "One-line agent summary (full prose in specPath Markdown)",
   "objective": "One-line agent summary (full prose in specPath Markdown)",
   "appetite": "1–2 days",
@@ -49,7 +49,7 @@ Paths under repo root. Contract: [`docs/architecture/work-model.md`](../../docs/
   "proposedClaimIds": ["PC-001"],
   "suggestedSlices": [
     {
-      "id": "SLC-01",
+      "id": "<slice-uuid>",
       "title": "Isolated vertical with e2e-checkable outcome",
       "kind": "vertical",
       "acceptance": [
@@ -79,7 +79,7 @@ Statuses: `draft` → `shaped` → `spec_review` → `sealed` → `active` → `
   "status": "proposed",
   "statement": "Standing obligation once promoted",
   "rationale": "Why we expect to need this claim",
-  "workstreamId": "W-001",
+  "workstreamId": "<workstream-uuid>",
   "suggestedLiveId": "SL-006",
   "requiredEvidence": ["unit", "property"]
 }

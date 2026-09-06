@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "id": "4eadde69-2098-8bc4-a8b0-cdae81708e4e",
+  "turnId": "c048a8e1-d33f-8625-85e3-24a0470b3da7",
+  "kind": "adversarial",
+  "target": "code",
+  "reviewer": "agent:sl-dev-break",
+  "verdict": "approve",
+  "summary": "Plan/Pitch are path + Read only; full Markdown only after SplitView open. Related docs use Read too.",
+  "plainSummary": "Plan is a link you Read into the side pane, not a second full dump.",
+  "killersCited": [
+    "curl:/turns/f413d965-4b38-89aa-85bd-aae03d8d9aef#Plan-Read-no-inline-pitch",
+    "grep:turn-plan-section#Read"
+  ],
+  "findings": [
+    {
+      "id": "6b9f1421-046b-8e4a-806e-cec242315f3c",
+      "severity": "moderate",
+      "gap": "Plan must not inline SpecDoc: User wants doc link + Read opening side pane, not dual rendering.",
+      "plainImpact": "The turn page would dump the whole plan twice instead of opening it on the side.",
+      "evidence": {
+        "kind": "command",
+        "command": "curl -s http://127.0.0.1:3737/turns/f413d965-4b38-89aa-85bd-aae03d8d9aef | grep -oE 'Plan|Read|Human vs agent surfaces' | sort | uniq -c",
+        "observedOutput": "Plan section has path+Read; no inline Human vs agent in Plan card body; 5 Read buttons",
+        "exitCode": 0
+      }
+    }
+  ],
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/reviews/turns/T-013/R-01.json",
+        "id": "T-013/R-01",
+        "sha256": "70ba0b2564bbacecb87b7e6b467cf547d5f7b9c59f481e8b5886380b9af7d6bf"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/reviews/turns/T-013/R-01.json",
+        "id": "T-013/R-01",
+        "sha256": "70ba0b2564bbacecb87b7e6b467cf547d5f7b9c59f481e8b5886380b9af7d6bf"
+      }
+    },
+    "historical": true
+  }
+}

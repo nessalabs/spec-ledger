@@ -14,9 +14,9 @@
     "summary": "Bounded hunt ran pnpm --filter @nessalabs/spec-ledger build && node --test packages/ledger/dist/evidence/visual.break.test.js; 4 pass, 1 fails. Greedy digest consumption rejects Desktop[A,B], Mobile[A] despite valid assignment Desktop=B, Mobile=A.",
     "findings": [
       {
-        "id": "F-01",
+        "id": "5a1c9d04-d7ea-84b2-8156-4e1819adbc26",
         "severity": "medium",
-        "claimId": "SL-033",
+        "claimId": "ca2529a5-cf17-821c-ae1f-ac3e56178bf2",
         "gap": "checkVisualEvidence assigns the first eligible digest to each surface without reassigning earlier choices, so a full unique matching can be rejected.",
         "plainImpact": "An agent can be prevented from finishing even after it supplies valid distinct screenshots for every required surface.",
         "fixProposal": "Find a matching between required surfaces and valid image digests; allow alternate captures to free a digest needed by a later surface.",
@@ -34,8 +34,8 @@
       "One out-of-intent killer: alternate image allocation across surfaces. Final screenshot visual review still pending."
     ],
     "schemaVersion": 1,
-    "id": "T-045/R-01",
-    "turnId": "T-045",
+    "id": "e5869657-5c9f-8acb-b287-9befc67a9816",
+    "turnId": "da66d16d-d4e0-837e-a34b-fb7cec0d855d",
     "target": "code",
     "treeDigest": "e5819268ea555bbab6817a14b2e5fac26955cc12b50388a01686f14e4a433595"
   }

@@ -1,0 +1,24 @@
+{
+  "id": "fd2e4b30-9808-820b-8713-c338c4493f08",
+  "statement": "Evidence screens should lead with test descriptions, captured test results and visual observations; test source and commands are secondary details, and rerun is a compact action.",
+  "workstreamId": "29c935b4-56bd-84a0-b887-e280d775f54d",
+  "featureIds": [
+    "lattice"
+  ],
+  "source": {
+    "kind": "user-reported",
+    "reference": "User explained they will read test names and standard output rather than test code, requested screenshot evidence and simpler cards, then explicitly asked to fix the layout."
+  },
+  "schemaVersion": 1,
+  "createdAt": "2026-09-06T17:43:00.667Z",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/learnings/LN-results-first.json",
+        "id": "LN-results-first",
+        "sha256": "dc8443cfde841d11dd3cbe8b98ebeff6102fdd6c7e1ad7a575061a3f61ebb233"
+      }
+    },
+    "historical": true
+  }
+}

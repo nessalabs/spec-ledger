@@ -7,7 +7,7 @@
   "outcome": "succeeded",
   "result": {
     "schemaVersion": 1,
-    "id": "T-044",
+    "id": "b73479b8-7a81-84e9-84e8-efcd9c23e531",
     "status": "closed",
     "openedAt": "2026-09-06T17:38:45.553Z",
     "opened": {
@@ -15,14 +15,14 @@
       "baseCommit": "7301403a60243d2b477dbd647e2f8a7b8e5dec04",
       "treeDigest": "e496f8f4eaaa1ac895265f702dc1815148701d3360fff2fd202f770fc8f7500c",
       "dirtyAtOpen": [
-        ".spec-ledger/authority/AUTH-0c01cde4-b0d5-4d92-bc01-a1b602937a3a.json",
-        ".spec-ledger/reviews/workstreams/W-014/SR-03.json",
-        ".spec-ledger/workstreams/W-014.json",
-        "docs/workstreams/W-014-follow-agent-experiments/spec.md"
+        ".spec-ledger/authority/058aee1c-62ab-8fa9-85e1-b79a85ca2523.json",
+        ".spec-ledger/reviews/workstreams/29c935b4-56bd-84a0-b887-e280d775f54d/78c87091-4e55-84e2-b7d4-57405d97d6b0.json",
+        ".spec-ledger/workstreams/29c935b4-56bd-84a0-b887-e280d775f54d.json",
+        "docs/workstreams/29c935b4-56bd-84a0-b887-e280d775f54d-follow-agent-experiments/spec.md"
       ],
       "contextDigest": "d41cce500e7b9df75938e80061f11e6c26cdda07443bfb43decb5f900507f980",
-      "contextWorkstreamId": "W-014",
-      "contextSliceId": "SLC-02",
+      "contextWorkstreamId": "29c935b4-56bd-84a0-b887-e280d775f54d",
+      "contextSliceId": "b21da6cf-af77-8a39-bf8e-bfdc0d5b3a95",
       "contextSealRevision": 3,
       "contextGeneratedAt": "2026-09-06T17:38:45.553Z"
     },
@@ -31,8 +31,8 @@
       "restatedGoal": "Read test results and visual evidence first",
       "changeType": "feature",
       "riskLevel": "moderate",
-      "workstreamId": "W-014",
-      "sliceId": "SLC-02",
+      "workstreamId": "29c935b4-56bd-84a0-b887-e280d775f54d",
+      "sliceId": "b21da6cf-af77-8a39-bf8e-bfdc0d5b3a95",
       "featureIds": [
         "turns",
         "lattice",
@@ -45,31 +45,31 @@
       "commit": "7301403a60243d2b477dbd647e2f8a7b8e5dec04",
       "files": [
         {
-          "path": ".spec-ledger/attachments/T-044/A-01.json",
+          "path": ".spec-ledger/attachments/b73479b8-7a81-84e9-84e8-efcd9c23e531/392b79da-04c3-8d85-97ff-9bbbf0a21f62.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/authority/AUTH-0c01cde4-b0d5-4d92-bc01-a1b602937a3a.json",
+          "path": ".spec-ledger/authority/058aee1c-62ab-8fa9-85e1-b79a85ca2523.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/bindings/B-SL-031.json",
+          "path": ".spec-ledger/bindings/b43b216b-a9dd-8b90-a3f5-851f6fa9be9f.json",
           "kind": "modified",
           "additions": 1,
           "deletions": 1
         },
         {
-          "path": ".spec-ledger/decisions/T-044/D-01.json",
+          "path": ".spec-ledger/decisions/b73479b8-7a81-84e9-84e8-efcd9c23e531/ac8839cc-7e45-8d70-b806-1aa269106092.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/decisions/T-044/D-02.json",
+          "path": ".spec-ledger/decisions/b73479b8-7a81-84e9-84e8-efcd9c23e531/7fedcb52-7714-84c6-9a22-40d6ccb54949.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
@@ -603,13 +603,13 @@
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/flows/T-044/F-01.json",
+          "path": ".spec-ledger/flows/b73479b8-7a81-84e9-84e8-efcd9c23e531/00bd95bf-168a-852a-adfd-9dcf6ca7d862.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/learnings/LN-results-first.json",
+          "path": ".spec-ledger/learnings/fd2e4b30-9808-820b-8713-c338c4493f08.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
@@ -621,61 +621,61 @@
           "deletions": 1
         },
         {
-          "path": ".spec-ledger/reviews/turns/T-044/R-01.json",
+          "path": ".spec-ledger/reviews/turns/b73479b8-7a81-84e9-84e8-efcd9c23e531/a6ff95f0-d4a4-8723-a890-9b46eda52db3.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/reviews/turns/T-044/R-02.json",
+          "path": ".spec-ledger/reviews/turns/b73479b8-7a81-84e9-84e8-efcd9c23e531/52ac5c69-b96f-84c0-b3f0-7f334c579ca6.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/reviews/workstreams/W-014/SR-03.json",
+          "path": ".spec-ledger/reviews/workstreams/29c935b4-56bd-84a0-b887-e280d775f54d/78c87091-4e55-84e2-b7d4-57405d97d6b0.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/turns/T-044.json",
+          "path": ".spec-ledger/turns/b73479b8-7a81-84e9-84e8-efcd9c23e531.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/workstreams/W-014.json",
+          "path": ".spec-ledger/workstreams/29c935b4-56bd-84a0-b887-e280d775f54d.json",
           "kind": "modified",
           "additions": 50,
           "deletions": 11
         },
         {
-          "path": ".spec-ledger/workstreams/W-014.seals/3.json",
+          "path": ".spec-ledger/workstreams/29c935b4-56bd-84a0-b887-e280d775f54d.seals/3.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": "docs/workstreams/W-014-follow-agent-experiments/evidence/T-044/browser-check.md",
+          "path": "docs/workstreams/29c935b4-56bd-84a0-b887-e280d775f54d-follow-agent-experiments/evidence/b73479b8-7a81-84e9-84e8-efcd9c23e531/browser-check.md",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": "docs/workstreams/W-014-follow-agent-experiments/evidence/T-044/regression-tests.txt",
+          "path": "docs/workstreams/29c935b4-56bd-84a0-b887-e280d775f54d-follow-agent-experiments/evidence/b73479b8-7a81-84e9-84e8-efcd9c23e531/regression-tests.txt",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": "docs/workstreams/W-014-follow-agent-experiments/evidence/T-044/validation.md",
+          "path": "docs/workstreams/29c935b4-56bd-84a0-b887-e280d775f54d-follow-agent-experiments/evidence/b73479b8-7a81-84e9-84e8-efcd9c23e531/validation.md",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": "docs/workstreams/W-014-follow-agent-experiments/spec.md",
+          "path": "docs/workstreams/29c935b4-56bd-84a0-b887-e280d775f54d-follow-agent-experiments/spec.md",
           "kind": "modified",
           "additions": 8,
           "deletions": 0
@@ -752,13 +752,13 @@
         "verify"
       ],
       "touchedClaimIds": [
-        "SL-004",
-        "SL-021",
-        "SL-022",
-        "SL-029",
-        "SL-030",
-        "SL-031",
-        "SL-032"
+        "77fb26cd-bc46-8037-a8f2-7573f7d6d33d",
+        "9767b1da-9568-8e2f-ad2a-c2c3eb3e424c",
+        "dd5caaee-dace-8f53-bff5-65b6a7646b6d",
+        "93abee59-3e8d-809f-a140-d86105b0d865",
+        "3cb6214c-8605-80e6-b73b-d20b9025023f",
+        "d62365fc-02af-826c-b961-8942c540bddf",
+        "1ea8304f-a051-8234-b7a7-ce31b25eccf2"
       ],
       "blastRadius": {
         "direct": [
@@ -779,8 +779,8 @@
       },
       "schemaSurfaceChanged": true,
       "decisionIds": [
-        "T-044/D-01",
-        "T-044/D-02"
+        "ac8839cc-7e45-8d70-b806-1aa269106092",
+        "7fedcb52-7714-84c6-9a22-40d6ccb54949"
       ],
       "decisionsDigest": "ba231489b21c153cd66c70c86d82856aa3ddbe437aafc27f1b9343bd17bfe777",
       "attachmentsDigest": "24b9cb768d5e1d9df116f91bd56ede8d35fcb1fcfe7e0d560fa1fb3aefb29702",

@@ -1,0 +1,41 @@
+Audit inventory checked: 51 criteria in 8 workstreams. Gaps remain explicitly recorded; this does not prove all historical features pass.
+TAP version 13
+# Subtest: audit cannot relabel another workstream or erase a mapped requirement
+ok 1 - audit cannot relabel another workstream or erase a mapped requirement
+  ---
+  duration_ms: 0.442375
+  type: 'test'
+  ...
+# Subtest: audit summary counts and scope must agree with its inspected inventory
+ok 2 - audit summary counts and scope must agree with its inspected inventory
+  ---
+  duration_ms: 0.394875
+  type: 'test'
+  ...
+# Subtest: a complete audit can acknowledge missing feature evidence
+ok 3 - a complete audit can acknowledge missing feature evidence
+  ---
+  duration_ms: 0.561375
+  type: 'test'
+  ...
+# Subtest: rejects missing, duplicate, rewritten and falsely mapped audit entries
+ok 4 - rejects missing, duplicate, rewritten and falsely mapped audit entries
+  ---
+  duration_ms: 0.210208
+  type: 'test'
+  ...
+# Subtest: requires explained judgments and readable evidence references
+ok 5 - requires explained judgments and readable evidence references
+  ---
+  duration_ms: 0.058792
+  type: 'test'
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 5
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 67.153375

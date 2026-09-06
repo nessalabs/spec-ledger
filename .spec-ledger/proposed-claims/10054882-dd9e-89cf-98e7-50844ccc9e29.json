@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "id": "10054882-dd9e-89cf-98e7-50844ccc9e29",
+  "statement": "spec-ledger audit fails the process when policy.failOn severities are present.",
+  "status": "accepted",
+  "workstreamId": "e6213c3f-60e4-8ceb-9d6a-15c67833b383",
+  "severity": "medium",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/proposed-claims/PC-012.json",
+        "id": "PC-012",
+        "sha256": "cf86d147d3c705c10b66a99551a2cd78491c99d69633e004761162cec9f52c72"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/proposed-claims/PC-012.json",
+        "id": "PC-012",
+        "sha256": "cf86d147d3c705c10b66a99551a2cd78491c99d69633e004761162cec9f52c72"
+      }
+    },
+    "historical": true
+  }
+}

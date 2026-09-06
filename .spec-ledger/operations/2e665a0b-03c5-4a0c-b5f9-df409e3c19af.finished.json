@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "requestId": "2e665a0b-03c5-4a0c-b5f9-df409e3c19af",
+  "operation": "record_progress",
+  "inputDigest": "83b804772e0d6cb1b13b85d7cf239cc5f62db3bb6f6ea11d735ba8ae3f4863c8",
+  "finishedAt": "2026-09-06T07:08:17.096Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "turnId": "12494adf-1065-80ed-b949-f346a6334018",
+    "decision": "Revalidated all 17 workflow requirements after CI-only fixture and test dependency repairs. Independent review 8b55bd25-43d0-81cc-946d-da9bf44b5f28 covers all three slices with 63 passing regression tests; evidence is refreshed separately.",
+    "rationale": "Agent-reported progress; evidence is evaluated separately.",
+    "progress": {
+      "criterionIds": [
+        "11519a1a-0d18-889b-8422-9bb8accc4483/AC-1",
+        "11519a1a-0d18-889b-8422-9bb8accc4483/AC-2",
+        "11519a1a-0d18-889b-8422-9bb8accc4483/AC-3",
+        "11519a1a-0d18-889b-8422-9bb8accc4483/AC-4",
+        "11519a1a-0d18-889b-8422-9bb8accc4483/AC-5",
+        "11519a1a-0d18-889b-8422-9bb8accc4483/AC-6",
+        "11519a1a-0d18-889b-8422-9bb8accc4483/AC-7",
+        "ef669c8c-b701-85d9-b2da-638757fed84e/AC-1",
+        "ef669c8c-b701-85d9-b2da-638757fed84e/AC-2",
+        "ef669c8c-b701-85d9-b2da-638757fed84e/AC-3",
+        "ef669c8c-b701-85d9-b2da-638757fed84e/AC-4",
+        "ef669c8c-b701-85d9-b2da-638757fed84e/AC-5",
+        "ef669c8c-b701-85d9-b2da-638757fed84e/AC-6",
+        "b37364e8-36d3-8901-a879-3a6e32f21210/AC-1",
+        "b37364e8-36d3-8901-a879-3a6e32f21210/AC-2",
+        "b37364e8-36d3-8901-a879-3a6e32f21210/AC-3",
+        "b37364e8-36d3-8901-a879-3a6e32f21210/AC-4"
+      ],
+      "implemented": true,
+      "revisionDigest": "0dab67a31f295e21fac35419b36da2e7198798fa14ebedcae416d350ff34dc02",
+      "sourceDigest": "47c70dc12fd9b447502a27da1f458a75ef70d5808408f28750350788a4b46a2e"
+    },
+    "id": "ea5b1b1f-8797-891b-9837-fe99d1992cf1"
+  }
+}

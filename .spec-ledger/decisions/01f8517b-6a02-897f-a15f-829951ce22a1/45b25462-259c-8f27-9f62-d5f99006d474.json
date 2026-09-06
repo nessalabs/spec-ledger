@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "turnId": "01f8517b-6a02-897f-a15f-829951ce22a1",
+  "decision": "Fix the mobile rail offset as a code defect; record discovery without changing intended layout behavior.",
+  "rationale": "At a 655px viewport the sidebar is fixed with width56 while the main region begins at x0. Reserve collapsed-rail space below48rem. The user can report bugs in the active conversation; only changed/missing requirements need a spec amendment. Repeated issue categories are candidates for reviewed process improvements, not automatic global instructions.",
+  "discovery": {
+    "kind": "code-defect",
+    "reportedVia": "user",
+    "observation": "Turn content is hidden under the collapsed navigation rail in a narrow panel.",
+    "cause": "The library fixes its mobile icon rail but the consuming shell does not offset the main region.",
+    "specRef": "a32f3451-1b3d-8abf-bf0e-607ebf6e1a88/AC-07",
+    "regression": "Browser check at narrow width: main left edge must be at or after rail right edge; expanded/desktop and reader layout remain usable."
+  },
+  "basis": {
+    "sealRevision": 1,
+    "at": "2026-09-04T21:52:31.945Z"
+  },
+  "id": "45b25462-259c-8f27-9f62-d5f99006d474",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/decisions/T-029/D-01.json",
+        "id": "T-029/D-01",
+        "sha256": "0a26eec9932a3869e42d78ebb6f8915238f542257b6e902272fa27279d19f030"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/decisions/T-029/D-01.json",
+        "id": "T-029/D-01",
+        "sha256": "0a26eec9932a3869e42d78ebb6f8915238f542257b6e902272fa27279d19f030"
+      }
+    },
+    "historical": true
+  },
+  "sequence": 1
+}

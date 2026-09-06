@@ -1,0 +1,21 @@
+{
+  "id": "62aff7bc-4503-8c03-8403-da7a5da7c8f3",
+  "statement": "Iterative optimization is an optional addition to the existing task system. The user can request it, or the agent can identify work that benefits from experiments; ordinary tasks keep their current workflow.",
+  "workstreamId": "29c935b4-56bd-84a0-b887-e280d775f54d",
+  "source": {
+    "kind": "user-reported",
+    "reference": "User clarified in this task: this is in addition to the current system; the agent decides the type of task or the user mentions it."
+  },
+  "schemaVersion": 1,
+  "createdAt": "2026-09-06T07:43:16.783Z",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/learnings/LN-W014-ADDITIVE.json",
+        "id": "LN-W014-ADDITIVE",
+        "sha256": "be26ffa96cb0fb6d22d208ef008bdb453cc8b5df25d09dcfc9860b84e15ef4e4"
+      }
+    },
+    "historical": true
+  }
+}

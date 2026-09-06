@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "turnId": "0fc5ce0a-1a93-8929-ae8c-1fc80861dc8e",
+  "title": "episode close",
+  "after": "flowchart TD; Open-->Write-->Break-->Close",
+  "id": "b0a30ae2-411e-8173-8e43-3e957b11eb11",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/flows/T-005/F-01.json",
+        "id": "T-005/F-01",
+        "sha256": "532f07c019b766e6c2f88a388ccb39761b31175262b9d114738e78a4a4d3c369"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/flows/T-005/F-01.json",
+        "id": "T-005/F-01",
+        "sha256": "532f07c019b766e6c2f88a388ccb39761b31175262b9d114738e78a4a4d3c369"
+      }
+    },
+    "historical": true
+  }
+}

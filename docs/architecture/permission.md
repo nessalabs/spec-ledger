@@ -1,14 +1,14 @@
 # Permission and correction context
 
-Intent, permission, and evidence are separate records. `spec-ledger plan --workstream W-001` shows the current plan, related context, permission, and next action. `work --workstream W-001 --slice SLC-01 --goal "…"` is the portable entry point for opening an implementing turn. Existing commands remain available.
+Intent, permission, and evidence are separate records. `spec-ledger plan --workstream 3317ada5-b347-894e-8c88-110b7b42d58b` shows the current plan, related context, permission, and next action. `work --workstream 3317ada5-b347-894e-8c88-110b7b42d58b --slice SLC-01 --goal "…"` is the portable entry point for opening an implementing turn. Existing commands remain available.
 
-Use `permission status --workstream W-001` to inspect the exact revision fingerprint. Approval and denial require that fingerprint:
+Use `permission status --workstream 3317ada5-b347-894e-8c88-110b7b42d58b` to inspect the exact revision fingerprint. Approval and denial require that fingerprint:
 
 ```sh
-spec-ledger permission approve --workstream W-001 --revision <digest> --source 'User approved this revision in the current conversation'
-spec-ledger permission delegate --workstream W-001 --features verify,cli --source 'User delegated this request'
+spec-ledger permission approve --workstream 3317ada5-b347-894e-8c88-110b7b42d58b --revision <digest> --source 'User approved this revision in the current conversation'
+spec-ledger permission delegate --workstream 3317ada5-b347-894e-8c88-110b7b42d58b --features verify,cli --source 'User delegated this request'
 spec-ledger permission delegate --features verify,cli --exclude-features payments --source 'User delegated these features until revoked'
-spec-ledger permission deny --workstream W-001 --revision <digest> --source 'User rejected this revision'
+spec-ledger permission deny --workstream 3317ada5-b347-894e-8c88-110b7b42d58b --revision <digest> --source 'User rejected this revision'
 spec-ledger permission revoke --id AUTH-… --source 'User revoked this delegation'
 ```
 

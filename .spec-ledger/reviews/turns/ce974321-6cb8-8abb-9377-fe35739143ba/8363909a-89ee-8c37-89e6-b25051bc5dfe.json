@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "id": "8363909a-89ee-8c37-89e6-b25051bc5dfe",
+  "turnId": "ce974321-6cb8-8abb-9377-fe35739143ba",
+  "workstreamId": "d1be55a6-11bb-8460-8650-ddf0ecac8185",
+  "kind": "adversarial",
+  "target": "code",
+  "reviewer": "agent:sl-dev-break",
+  "verdict": "approve",
+  "blocking": false,
+  "treeDigest": "f9af08db359683a16910887c7a4a12d7b93301853c614a0a29bc12af207aed0b",
+  "alertOnSeverity": "high",
+  "resolvesReviewId": "c9e56d84-d2cc-8458-80ae-54ba984c9f5c",
+  "resolvesFindingIds": [
+    "c9e56d84-d2cc-8458-80ae-54ba984c9f5c#aeaed946-911c-818f-a975-1544f6c8fe0e",
+    "c9e56d84-d2cc-8458-80ae-54ba984c9f5c#f62ad558-5c27-8cbf-aa1a-70e7fa00ff22"
+  ],
+  "summary": "Re-ran 520ff720-fc13-8275-b710-f677f8d2efb4 break killers after F-01 (audit live+pointer vs snapshot.specDigest) and F-02 (lastExpectedDocDigest always uses latest afterDocDigest, no truthy fallthrough). All 9 killers green; 64/64 ledger tests pass.",
+  "plainSummary": "Silent plan edits still fail until amend or backfill, and forged seal hashes no longer greenwash audit.",
+  "findings": [],
+  "killersCited": [
+    "packages/ledger/src/workstream/doc-digest.break.test.ts::missing specPath file refuses seal",
+    "packages/ledger/src/workstream/doc-digest.break.test.ts::seal stamps digest on live seal AND snapshot; amend never mutates seal.specDocDigest",
+    "packages/ledger/src/workstream/doc-digest.break.test.ts::latest amend.afterDocDigest wins over seal.specDocDigest and prior amends",
+    "packages/ledger/src/workstream/doc-digest.break.test.ts::backfill does not mutate prior seals/N.json bytes",
+    "packages/ledger/src/workstream/doc-digest.break.test.ts::audit seal-digest-drift: live≠snapshot body even if seal.specDigest forged to match live",
+    "packages/ledger/src/workstream/doc-digest.break.test.ts::deleted spec file after seal fails check-seal and audit",
+    "packages/ledger/src/workstream/doc-digest.break.test.ts::CLI amend + check-seal round-trip (integration)",
+    "packages/ledger/src/workstream/doc-digest.break.test.ts::out-of-intent: empty afterDocDigest on latest amend must not fall back past prior amend",
+    "packages/ledger/src/workstream/doc-digest.break.test.ts::out-of-intent: hostile specPath with .. refuses seal/read"
+  ],
+  "residualRisks": [
+    "Hunt budget: two out-of-intent killers (correctnessCritical) — both green after fix."
+  ],
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/reviews/turns/T-021/R-02.json",
+        "id": "T-021/R-02",
+        "sha256": "93c16e22e5e56e66c64e8f89afb0fb7af8d6508b4d0a77f4f4c993e36de36e0d"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/reviews/turns/T-021/R-02.json",
+        "id": "T-021/R-02",
+        "sha256": "93c16e22e5e56e66c64e8f89afb0fb7af8d6508b4d0a77f4f4c993e36de36e0d"
+      }
+    },
+    "historical": true
+  }
+}

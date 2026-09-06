@@ -104,7 +104,7 @@ export function getVerticalContext(
         t.intent.claimedFeatureIds?.some((f) => featureIds.has(f)) ||
         t.facts?.touchedFeatureIds.some((f) => featureIds.has(f)),
     )
-    .sort((a, b) => b.id.localeCompare(a.id))
+    .sort((a, b) => b.openedAt.localeCompare(a.openedAt) || b.id.localeCompare(a.id))
     .slice(0, 10)
 
   const decisions = priorTurns.flatMap((t) =>

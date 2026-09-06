@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "3357520d-1b6b-41c1-b5e4-88aec07686b8",
+  "turnId": "8ec915a9-0248-8e58-a479-a67d4c27223b",
+  "kind": "image",
+  "title": "Integrated workflow library",
+  "path": ".spec-ledger/evidence/screenshots/uuid-workflows.png",
+  "mediaType": "image/jpeg",
+  "byteLength": 38085,
+  "contentDigest": "dedf4d8301cbc0d8162c3958fe4edb7582d0c0206a574a9843ff257ffab80bfa",
+  "visualEvidence": {
+    "sliceId": "596b8830-61c6-887a-b6c3-9ae0561f2761",
+    "surface": "Integrated workflow library",
+    "sourceDigest": "33c0154adae867718148d5db7540f8a190ee585ee7db06737d5c78c2a1e92e28",
+    "revisionDigest": "8e73475305d4952bb9e2aa6318ae4742b205dd92e1a86f81e32751928ff7bdc2",
+    "recordedAt": "2026-09-06T19:30:33.976Z"
+  },
+  "note": "Recorded visual coverage; image adequacy is assessed in review."
+}

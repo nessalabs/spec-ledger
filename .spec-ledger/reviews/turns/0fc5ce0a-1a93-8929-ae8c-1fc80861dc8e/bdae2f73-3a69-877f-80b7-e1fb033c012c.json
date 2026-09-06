@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "bdae2f73-3a69-877f-80b7-e1fb033c012c",
+  "turnId": "0fc5ce0a-1a93-8929-ae8c-1fc80861dc8e",
+  "kind": "adversarial",
+  "target": "code",
+  "reviewer": "agent:sl-dev-break",
+  "verdict": "approve",
+  "summary": "JCS + episode write tests green",
+  "plainSummary": "Digest and episode write tests passed; this slice may ship.",
+  "killersCited": [
+    "packages/ledger/src/jcs.test.ts::RFC 8785 JCS key order",
+    "packages/ledger/src/episodes.write.test.ts::episode write CLIs leave digests on close"
+  ],
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/reviews/turns/T-005/R-01.json",
+        "id": "T-005/R-01",
+        "sha256": "8e768749d154689fefa6d9b8b32fc97383723896e07330ec78def657bfa18a4b"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/reviews/turns/T-005/R-01.json",
+        "id": "T-005/R-01",
+        "sha256": "8e768749d154689fefa6d9b8b32fc97383723896e07330ec78def657bfa18a4b"
+      }
+    },
+    "historical": true
+  }
+}

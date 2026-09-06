@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "29a5b902-b969-823e-86f5-89b23debe467",
+  "status": "promoted",
+  "statement": "Spec Ledger UI for consumers is delivered as a GitHub Release asset (not an npm @nessalabs/spec-ledger-ui package in this bet); the shipped tree has zero file: or workspace: dependency protocols; README documents a one-liner to view a consumer .spec-ledger/ using published client/server plus that asset.",
+  "rationale": "Website remains part of the product via Release artifact; design-system may not be on public npm.",
+  "workstreamId": "d1be55a6-11bb-8460-8650-ddf0ecac8185",
+  "suggestedLiveId": "ebc0a361-534e-8527-99a7-57611aae823d",
+  "requiredEvidence": [
+    "integration",
+    "e2e"
+  ],
+  "liveId": "ebc0a361-534e-8527-99a7-57611aae823d",
+  "updatedAt": "2026-09-04T20:34:19.673Z",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/proposed-claims/PC-017.json",
+        "id": "PC-017",
+        "sha256": "f429fbb0070d8bcd989bfed04f223cfdf0489d8462a77cf20f71f78b83868317"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/proposed-claims/PC-017.json",
+        "id": "PC-017",
+        "sha256": "f429fbb0070d8bcd989bfed04f223cfdf0489d8462a77cf20f71f78b83868317"
+      }
+    },
+    "historical": true
+  }
+}

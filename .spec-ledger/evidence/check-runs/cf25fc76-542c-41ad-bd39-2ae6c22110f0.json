@@ -1,7 +1,7 @@
 {
   "runId": "cf25fc76-542c-41ad-bd39-2ae6c22110f0",
   "requestId": "batch-cf25fc76-542c-41ad-bd39-2ae6c22110f0",
-  "bindingId": "b-sl-029",
+  "bindingId": "b9215e80-1cbf-8bbf-83dc-63ceab15c182",
   "state": "finished",
   "command": "node --test packages/ui/lib/navigation*.test.mjs",
   "cwd": "/Users/nessa/.codex/worktrees/24db/spec-ledger",

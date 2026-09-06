@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "f92f85de-1e99-855b-b750-225f42af5f81",
+  "statement": "When honesty and convenience conflict, prefer honest digests over green theater",
+  "scope": "product",
+  "status": "active",
+  "origin": "user",
+  "weight": "must",
+  "confirmedAt": "2026-09-03T04:00:00.000Z",
+  "confirmedBy": "human",
+  "createdAt": "2026-09-03T04:00:00.000Z",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/tenets/TN-001.json",
+        "id": "TN-001",
+        "sha256": "01a0fc8822025dce4baed4395f0150c80ae990187510c676d206136b28bf17b8"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/tenets/TN-001.json",
+        "id": "TN-001",
+        "sha256": "01a0fc8822025dce4baed4395f0150c80ae990187510c676d206136b28bf17b8"
+      }
+    },
+    "historical": true
+  }
+}

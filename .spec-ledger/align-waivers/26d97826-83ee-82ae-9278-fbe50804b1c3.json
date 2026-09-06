@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "26d97826-83ee-82ae-9278-fbe50804b1c3",
+  "reason": "94dce089-0388-85af-b02f-ee8f5e0934c8 surface is packable @nessalabs packages and rewrite script; residual dirty UI/skills/.gitignore/.github from parallel slices waived for this turn.",
+  "actor": "human",
+  "treeDigest": "48f55e3b6e8e2daff01e2ead78c1e3cdaa076cd206e9061f8f91722ab7e109ea",
+  "createdAt": "2026-09-04T20:28:37.128Z",
+  "workstreamId": "d1be55a6-11bb-8460-8650-ddf0ecac8185",
+  "turnId": "94dce089-0388-85af-b02f-ee8f5e0934c8",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/align-waivers/AW-05.json",
+        "id": "T-022/AW-05",
+        "sha256": "adb84eada3170ae6a15c22cf1ffc08f832bf6ebd44a0cbc1de1ccd93bae04160"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/align-waivers/AW-05.json",
+        "id": "T-022/AW-05",
+        "sha256": "adb84eada3170ae6a15c22cf1ffc08f832bf6ebd44a0cbc1de1ccd93bae04160"
+      }
+    },
+    "historical": true
+  }
+}

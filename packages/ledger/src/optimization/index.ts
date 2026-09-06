@@ -1,3 +1,4 @@
+import { createEntityId } from "../identity/index.js"
 import { loadLedger } from "../fs/load.js"
 import { permissionStatus, planRevision } from "../permission/authority.js"
 import { loadWorkstream, checkSeal } from "../workstream/load.js"
@@ -71,7 +72,7 @@ function assertActive(goal: GoalProjection) { if (goal.conclusion) throw new Err
 
 /** Application-only writers: call under runMutation and after source fingerprint validation. */
 export function createOptimizationGoal(root: string, raw: unknown, expected: OptimizationStamp): OptimizationGoal {
-  const input = goalInputSchema.parse(raw)
+  const input = { ...goalInputSchema.parse(raw), id: createEntityId() }
   const path = recordPath(root, input.id, "goal")
   const prior = assertSameInput(readRecord(path, goalSchema), input)
   if (prior) return prior
@@ -79,7 +80,7 @@ export function createOptimizationGoal(root: string, raw: unknown, expected: Opt
   return publishRecord(path, goalSchema.parse({ ...input, ...stamp(expected) }))
 }
 export function startOptimizationExperiment(root: string, raw: unknown, expected: OptimizationStamp) {
-  const input = experimentInputSchema.parse(raw)
+  const input = { ...experimentInputSchema.parse(raw), id: createEntityId() }
   const path = recordPath(root, input.goalId, "experiments", input.id)
   const prior = assertSameInput(readRecord(path, experimentSchema), input)
   if (prior) return prior

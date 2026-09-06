@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "requestId": "c5101078-cc2e-4d47-8aef-9291e135c2a2",
+  "operation": "record_review",
+  "inputDigest": "bff6f3a7e1aaf82bbecd4f72ea9023dea24c3d2959ed7fd92e53a529642dd4c7",
+  "finishedAt": "2026-09-06T05:45:23.048Z",
+  "outcome": "succeeded",
+  "result": {
+    "kind": "adversarial",
+    "target": "code",
+    "reviewer": "agent:sl-dev-break:library",
+    "verdict": "request-changes",
+    "blocking": true,
+    "summary": "Initial run found deletion committed before validating the default pointer (4 pass/1 fail); recorded after the operation lock released. Builder preflight fix now passes the unchanged killer; follow-up approval will resolve this finding.",
+    "plainSummary": "Deleting a workflow can report failure after the workflow has already disappeared.",
+    "findings": [
+      {
+        "id": "bd3a61de-f2a7-87e7-94ff-98c99ade0c51",
+        "severity": "high",
+        "claimId": "89ab5a3f-2aea-8b44-a9b8-6cedccb52979",
+        "gap": "deleteWorkflowProfile removes the record before defaultWorkflowProfileId validates pointer storage. A symlink pointer throws only after deletion.",
+        "plainImpact": "A rejected delete can still erase a saved workflow, leaving the user with a misleading failure and lost data.",
+        "fixProposal": "Validate and prepare all pointer handling before deleting the profile; reject unsafe or malformed pointer storage without deleting the record.",
+        "evidence": {
+          "kind": "test",
+          "citedTest": "packages/ledger/src/workflows/library-storage.break.test.ts::a refused delete with an unsafe default pointer preserves the saved workflow",
+          "ran": true,
+          "command": "node --test packages/ledger/dist/workflows/library-storage.break.test.js packages/mcp/dist/library.boundary.break.test.js",
+          "observedOutput": "AssertionError: a rejected operation must not delete the profile; false !== true; 4 pass, 1 fail"
+        }
+      }
+    ],
+    "alertOnSeverity": "high",
+    "residualRisks": [
+      "Bounded hunt: partial failure, local route poison/cross-site, storage confinement, and actual CLI/MCP retries and stale versions."
+    ],
+    "schemaVersion": 1,
+    "id": "763cf81f-c7d3-8c90-b260-9816dcb9735e",
+    "turnId": "04950e3b-cb26-8f4a-b697-4ba532189238",
+    "treeDigest": "ba844f3d36db65f90547ba661e8265b694f58d7536aa4e035c153b435b814854"
+  }
+}

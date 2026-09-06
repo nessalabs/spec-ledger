@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "5db94dbb-1f61-8834-a9f5-9eabe0faea6c",
+  "reason": "61614817-7e84-8b87-985b-33531845b15c ships align-check honor of approve/waiver for CI exit; residual uncovered paths (skills, AGENTS, align-waiver schema) remain Phase II companions already waived under f5dfe9a8-ba0e-8b0c-ac75-8889d96457f5 — re-attest for this treeDigest.",
+  "actor": "agent:composer",
+  "treeDigest": "51bf73938c3f02c58d3ef935b7759d8c26c26934f445363079181eee3c6dd034",
+  "createdAt": "2026-09-03T08:43:31.581Z",
+  "workstreamId": "76451749-a54f-8579-96f2-dcec19d79026",
+  "turnId": "61614817-7e84-8b87-985b-33531845b15c",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/align-waivers/AW-02.json",
+        "id": "T-017/AW-02",
+        "sha256": "25ed33c5ff1389782b009ace53797b4f79c64fa2687284733bcb756f49b0d062"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/align-waivers/AW-02.json",
+        "id": "T-017/AW-02",
+        "sha256": "25ed33c5ff1389782b009ace53797b4f79c64fa2687284733bcb756f49b0d062"
+      }
+    },
+    "historical": true
+  }
+}

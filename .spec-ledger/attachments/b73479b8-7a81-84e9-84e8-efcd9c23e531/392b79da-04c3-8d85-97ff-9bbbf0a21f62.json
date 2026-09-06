@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "turnId": "b73479b8-7a81-84e9-84e8-efcd9c23e531",
+  "kind": "image",
+  "path": "docs/workstreams/29c935b4-56bd-84a0-b887-e280d775f54d-follow-agent-experiments/evidence/bce0f006-e044-807c-88dd-8e0fd6d9950f/experiments-overview.png",
+  "mediaType": "image/png",
+  "title": "Experiments UI — saved demo screenshot",
+  "contentDigest": "707b4a700fd98e453184f7bb9e9bcbcab726751f8870dfe98203a8cf302d50ea",
+  "byteLength": 218596,
+  "note": "Captured during the earlier experiment UI validation using a labeled demonstration fixture. This is historical visual evidence, not a screenshot of the current evidence-card layout.",
+  "id": "392b79da-04c3-8d85-97ff-9bbbf0a21f62",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/attachments/T-044/A-01.json",
+        "id": "T-044/A-01",
+        "sha256": "cdb435f01e15e7de2dddf60f6c882b6ff734c85dd3055b55ac856bf084588a0f"
+      }
+    },
+    "historical": true
+  }
+}

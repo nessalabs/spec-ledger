@@ -5,7 +5,7 @@ import { join } from "node:path"
 
 const REPO = join(import.meta.dirname, "../../..")
 
-describe("publish workflow (SLC-04)", () => {
+describe("publish workflow (4d4a1476-aa94-5d68-aa73-54c5531aded7)", () => {
   it("publish.yml exists with release-only live publish and dry-run dispatch", () => {
     const path = join(REPO, ".github/workflows/publish.yml")
     assert.ok(existsSync(path))

@@ -1,0 +1,28 @@
+{
+  "id": "4d4f7c20-b7e0-86d8-9b17-f45053bbf43b",
+  "kind": "invariant",
+  "statement": "Choose your own engineering steps and see the evidence that each step has been completed.",
+  "required": true,
+  "area": "client",
+  "links": {
+    "docs": [
+      "docs/workstreams/815c7a44-59df-8102-9769-bf8a74e49c0c-shared-agent-workflows/spec.md",
+      "docs/architecture/claim-contracts.md"
+    ]
+  },
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/claims/SL-024.json",
+        "id": "SL-024",
+        "sha256": "55f0ebb0803ec2d359c02db55b585b3ebabc30ab22dd9a33735ecb8f0b3e81ae"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/claims/SL-024.json",
+        "id": "SL-024",
+        "sha256": "55f0ebb0803ec2d359c02db55b585b3ebabc30ab22dd9a33735ecb8f0b3e81ae"
+      }
+    },
+    "historical": true
+  }
+}

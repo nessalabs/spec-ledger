@@ -1,0 +1,25 @@
+✔ library operations preserve actor/reason, retry identity and independent pointer conflicts (94.662459ms)
+✔ local library route denies unsafe requests before mutation and accepts a valid save (31.091291ms)
+✔ library refuses symlinked profile storage without touching external files (25.931583ms)
+✔ a refused delete with an unsafe default pointer preserves the saved workflow (49.141542ms)
+✔ local library poison and cross-site requests cannot create profiles (31.868417ms)
+✔ a saved workflow applies to a spec whose requirements are numbered differently (7.96075ms)
+✔ saving is create-only and refuses a workflow carrying another spec's requirement numbers (4.833417ms)
+✔ adoption is refused when the workflow lacks a review stage the spec requires (45.085125ms)
+✔ editing or deleting a saved workflow leaves an adopted spec running unchanged (35.551333ms)
+✔ editing and deleting require the version the caller read (20.425042ms)
+✔ the normal workflow falls back to the bundled one when it is deleted (12.4105ms)
+✔ a corrupt saved workflow is refused rather than silently adopted (12.159083ms)
+✔ adopting a saved copy of the bundled workflow gates exactly like the bundled workflow (43.887917ms)
+✔ a review stage somebody deliberately added still counts when policy is lax (4.5895ms)
+✔ switching an adopted workflow needs a reason and the snapshot the caller saw (6.217708ms)
+✔ a saved workflow whose skill file is gone is refused with its path, and listed as unusable (4.048334ms)
+✔ a hand-written workflow is untouched by library coverage binding (3.494292ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 17
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 246.9655

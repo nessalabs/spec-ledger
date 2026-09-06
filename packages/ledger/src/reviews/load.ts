@@ -1,5 +1,6 @@
+import { assertEntityId, createEntityId, publishEntity } from "../identity/index.js"
 import { computeTreeDigest } from "../git/tree.js"
-import { existsSync, mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from "node:fs"
+import { existsSync, mkdirSync, readdirSync, readFileSync, statSync } from "node:fs"
 import { join } from "node:path"
 import { findRepoRoot, ledgerRoot } from "../fs/load.js"
 import { assertReviewLatticeCopy } from "./lattice-copy.js"
@@ -34,13 +35,8 @@ export function listReviewsForTurn(repoRootInput: string, turnId: string): Revie
 }
 
 /** Next R-NN id for a turn (local filename stem). */
-export function nextReviewId(repoRootInput: string, turnId: string): string {
-  const existing = listReviewsForTurn(repoRootInput, turnId)
-  const max = existing.reduce((m, r) => {
-    const n = Number(r.id.split("/").at(-1)?.replace(/^R-/, ""))
-    return Number.isFinite(n) ? Math.max(m, n) : m
-  }, 0)
-  return `${turnId}/R-${String(max + 1).padStart(2, "0")}`
+export function nextReviewId(_repoRootInput: string, _turnId: string): string {
+  return createEntityId()
 }
 
 function walkReviewJsonFiles(dir: string): string[] {
@@ -60,6 +56,8 @@ export function listAllReviews(repoRootInput: string): Review[] {
 }
 
 export function writeReview(repoRootInput: string, review: Review): Review {
+  assertEntityId(review.id, "review id")
+  assertEntityId(review.turnId, "turn id")
   if (!review.turnId) throw new Error("review.turnId required for turn reviews")
   if (review.target !== "spec" && review.kind === "adversarial") review = {...review, treeDigest: computeTreeDigest(findRepoRoot(repoRootInput))}
   assertReviewLatticeCopy(review)
@@ -67,10 +65,7 @@ export function writeReview(repoRootInput: string, review: Review): Review {
   mkdirSync(dir, { recursive: true })
   const fileStem = review.id.includes("/") ? review.id.split("/").at(-1)! : review.id
   try {
-    writeFileSync(join(dir, `${fileStem}.json`), `${JSON.stringify(review, null, 2)}\n`, {
-      encoding: "utf8",
-      flag: "wx",
-    })
+    publishEntity(join(dir, `${fileStem}.json`),review)
   } catch (error) {
     if ((error as NodeJS.ErrnoException).code === "EEXIST") {
       throw new Error(`review id already exists: ${review.id}`)

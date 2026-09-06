@@ -1,0 +1,28 @@
+{
+  "id": "2f8cf085-d7a5-83b9-89f8-9d0754cb16a0",
+  "kind": "invariant",
+  "statement": "Get the same checked result whether your agent uses the terminal or its tool connection, including when it retries a request.",
+  "required": true,
+  "area": "cli",
+  "links": {
+    "docs": [
+      "docs/workstreams/815c7a44-59df-8102-9769-bf8a74e49c0c-shared-agent-workflows/spec.md",
+      "docs/architecture/claim-contracts.md"
+    ]
+  },
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/claims/SL-023.json",
+        "id": "SL-023",
+        "sha256": "10821befaa855cf97da3c42af7cf8a1b7d736b78565a7c18722b701f1def163c"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/claims/SL-023.json",
+        "id": "SL-023",
+        "sha256": "10821befaa855cf97da3c42af7cf8a1b7d736b78565a7c18722b701f1def163c"
+      }
+    },
+    "historical": true
+  }
+}

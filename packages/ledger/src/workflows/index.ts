@@ -1,4 +1,5 @@
-import { existsSync, lstatSync, mkdirSync, readFileSync, readdirSync, realpathSync, renameSync, writeFileSync } from "node:fs"
+import { assertEntityId, createEntityId, derivedEntityId } from "../identity/index.js"
+import { existsSync, lstatSync, mkdirSync, readFileSync, readdirSync, realpathSync, renameSync, rmSync, writeFileSync } from "node:fs"
 import { dirname, isAbsolute, join, relative, resolve } from "node:path"
 import { createHash, randomUUID } from "node:crypto"
 import { ledgerRoot, sha256Stable } from "../fs/load.js"
@@ -13,13 +14,13 @@ import type { Workstream } from "../types.js"
 import type {
   ResolvedWorkflowSkill, ResolvedWorkflowStage, WorkflowAttempt, WorkflowAttemptReport,
   WorkflowOutputKind, WorkflowOutputProjection, WorkflowOutputReference,
-  WorkflowProfile, WorkflowProjection, WorkflowSnapshot, WorkflowStageRole,
+  WorkflowProfile, WorkflowProfileSource, WorkflowProfileStage, WorkflowProjection,
+  SavedWorkflowProfile, WorkflowLibraryEntry, WorkflowSnapshot, WorkflowStageRole,
 } from "./types.js"
 export * from "./types.js"
 
 const MAX_SKILL_BYTES = 64 * 1024
 const MAX_TOTAL_SKILL_BYTES = 512 * 1024
-const ID = /^[a-zA-Z0-9][a-zA-Z0-9_-]{0,79}$/
 const BUNDLED: Record<string, { content: string; capabilities: WorkflowOutputKind[] }> = {
   plan: { content: `# Plan
 
@@ -41,7 +42,8 @@ Review the current source as an adversary. Start with permission and data-integr
 function defaultStages(ws: Workstream): ResolvedWorkflowStage[] {
   const stage = (id: string, title: string, role: WorkflowStageRole, kind: WorkflowOutputKind): ResolvedWorkflowStage => {
     const bundled = BUNDLED[id]!
-    return { id, title, role, steps: [{ id, title, outputs: [{ kind }], skill: {
+    const stageId=derivedEntityId("spec-ledger:bundled-stage",id),stepId=derivedEntityId("spec-ledger:bundled-step",id)
+    return { id:stageId, title, role, steps: [{ id:stepId, title, outputs: [{ kind }], skill: {
       id, source: "bundled", digest: sha256Stable(bundled.content), content: bundled.content,
       capabilities: bundled.capabilities, capability: "declared", uncertaintyAcknowledged: false,
     } }] }
@@ -61,7 +63,7 @@ function criterionIds(ws: Workstream): string[] {
 }
 
 function assertId(value: string, label: string): void {
-  if (!ID.test(value)) throw new Error(`${label} must be a bounded identifier`)
+  assertEntityId(value,label)
 }
 
 function localSkill(root: string, id: string, ref: { path: string; capabilities?: WorkflowOutputKind[]; acknowledgeUncertain?: boolean }): ResolvedWorkflowSkill {
@@ -82,15 +84,30 @@ function localSkill(root: string, id: string, ref: { path: string; capabilities?
     capabilities, capability: capabilities.length ? "declared" : "uncertain", uncertaintyAcknowledged: ref.acknowledgeUncertain === true }
 }
 
-export function resolveWorkflow(root: string, workstreamId: string, profile?: WorkflowProfile): Omit<WorkflowSnapshot, "snapshotId" | "createdAt" | "reason" | "supersedesSnapshotDigest"> {
-  const ws = loadWorkstream(root, workstreamId)
+export interface ResolveWorkflowOrigin {
+  /** Provenance for the snapshot; never affects gating. */
+  source: WorkflowProfileSource
+  profileDigest?: string
+}
+
+export function resolveWorkflow(
+  root: string,
+  workstreamId: string,
+  profile?: WorkflowProfile,
+  origin?: ResolveWorkflowOrigin,
+): Omit<WorkflowSnapshot, "snapshotId" | "createdAt" | "reason" | "supersedesSnapshotDigest"> {
+  return resolveForSpec(root, loadWorkstream(root, workstreamId), profile, origin)
+}
+
+function resolveForSpec(root: string, ws: Workstream, profile?: WorkflowProfile, origin?: ResolveWorkflowOrigin): Omit<WorkflowSnapshot, "snapshotId" | "createdAt" | "reason" | "supersedesSnapshotDigest"> {
+  const workstreamId = ws.id
   const revisionDigest = planRevision(root, ws)
   let stages = defaultStages(ws)
-  let source: "default" | "custom" = "default"
+  let source: WorkflowProfileSource = "default"
   let profileId = "spec-ledger/default"
   let title = "Spec Ledger default"
   if (profile) {
-    source = "custom"; profileId = profile.id; title = profile.title
+    source = origin?.source ?? "custom"; profileId = profile.id; title = profile.title
     assertId(profile.id, "profile id")
     if (profile.extends && profile.extends !== "spec-ledger/default") throw new Error("workflow may only extend spec-ledger/default")
     const aliases = profile.skills ?? {}
@@ -123,7 +140,12 @@ export function resolveWorkflow(root: string, workstreamId: string, profile?: Wo
           }
           return { ...step, skill }
         })
-        return { ...stage, steps }
+        // Resolve `required` once, here, so gating reads a single field. A stage
+        // written out by hand has always counted even when policy is lax, and
+        // existing profiles say so by omission; a library profile means the
+        // opposite by omission, so a saved copy of the bundled workflow gates
+        // exactly like the bundled workflow.
+        return { ...stage, required: stage.required ?? (source === "library" ? undefined : true), steps }
       })
       if (stepCount > 50 || totalBytes > MAX_TOTAL_SKILL_BYTES) throw new Error("workflow skill content exceeds the bounded limit")
     } else if (profile.extends === "spec-ledger/default") {
@@ -139,7 +161,12 @@ export function resolveWorkflow(root: string, workstreamId: string, profile?: Wo
     }
   }
   validateOrder(stages, ws)
-  const body = { schemaVersion: 1 as const, workstreamId, revisionDigest, profile: { id: profileId, title, source }, stages }
+  if (source === "library") stages = bindCoverage(stages, ws)
+  const body = {
+    schemaVersion: 1 as const, workstreamId, revisionDigest,
+    profile: { id: profileId, title, source, ...(origin?.profileDigest ? { profileDigest: origin.profileDigest } : {}) },
+    stages,
+  }
   return { ...body, snapshotDigest: sha256Stable(body) }
 }
 
@@ -160,6 +187,35 @@ function validateOrder(stages: ResolvedWorkflowStage[], ws: Workstream): void {
   if (roles.indexOf("verify") < implement || (roles.includes("code-review") && roles.indexOf("code-review") < roles.indexOf("verify"))) throw new Error("verification and code review must follow implementation in order")
   if (!roles.includes("verify")) throw new Error("workflow requires a verification stage")
   if (ws.policy?.requireCodeBreak !== false && !roles.includes("code-review")) throw new Error("policy requires a code-review stage")
+}
+
+/**
+ * Saved profiles carry no criterion ids — they are counted per workstream and
+ * mean nothing outside the spec they came from. Adoption attaches the adopting
+ * workstream's own criteria to the outputs that are scoped by them, leaving any
+ * coverage an author narrowed by hand alone.
+ */
+const SCOPED_OUTPUTS: WorkflowOutputKind[] = ["implementation-report", "check-results"]
+function bindCoverage(stages: ResolvedWorkflowStage[], ws: Workstream): ResolvedWorkflowStage[] {
+  const criteria = criterionIds(ws)
+  return stages.map(stage => ({ ...stage, steps: stage.steps.map(step => ({ ...step, outputs: step.outputs.map(output =>
+    SCOPED_OUTPUTS.includes(output.kind) && output.criterionIds === undefined ? { ...output, criterionIds: criteria } : output,
+  ) })) }))
+}
+
+/** Strip per-workstream coverage so a snapshot can be saved as a reusable profile. */
+export function portableStages(stages: ResolvedWorkflowStage[]): WorkflowProfileStage[] {
+  return stages.map(stage => ({
+    id: stage.id, title: stage.title, role: stage.role, required: stage.required,
+    steps: stage.steps.map(step => ({
+      id: step.id, title: step.title,
+      skill: step.skill.source === "bundled" ? `spec-ledger/${step.skill.id}` : {
+        path: step.skill.path!,
+        ...(step.skill.capabilities.length ? { capabilities: step.skill.capabilities } : { acknowledgeUncertain: step.skill.uncertaintyAcknowledged }),
+      },
+      outputs: step.outputs.map(({ kind }) => ({ kind })),
+    })),
+  }))
 }
 
 function base(root: string) {
@@ -190,14 +246,13 @@ export function selectedWorkflow(root: string, workstreamId: string): WorkflowSn
   return snapshot
 }
 
-export function preserveWorkflow(root: string, workstreamId: string, profile: WorkflowProfile | undefined, reason: string | undefined, expectedSnapshotDigest?: string): WorkflowSnapshot {
+export function preserveWorkflow(root: string, workstreamId: string, profile: WorkflowProfile | undefined, reason: string | undefined, expectedSnapshotDigest?: string, origin?: ResolveWorkflowOrigin): WorkflowSnapshot {
   const current = selectedWorkflow(root, workstreamId)
   if (current && expectedSnapshotDigest !== current.snapshotDigest) throw new Error("workflow snapshot has changed")
   if (current && !reason?.trim()) throw new Error("workflow amendment requires a reason")
   if (!current && expectedSnapshotDigest) throw new Error("no workflow snapshot exists for expectedSnapshotDigest")
-  const resolved = resolveWorkflow(root, workstreamId, profile)
-  const existing = listJson<WorkflowSnapshot>(join(base(root), "snapshots", workstreamId))
-  const snapshotId = `${workstreamId}/M-${String(existing.length + 1).padStart(2, "0")}`
+  const resolved = resolveWorkflow(root, workstreamId, profile, origin)
+  const snapshotId = createEntityId()
   const { snapshotDigest: _configurationDigest, ...resolvedBody } = resolved
   void _configurationDigest
   const snapshotBody = { ...resolvedBody, snapshotId, createdAt: new Date().toISOString(), ...(reason ? { reason } : {}), ...(current ? { supersedesSnapshotDigest: current.snapshotDigest } : {}) }
@@ -205,6 +260,157 @@ export function preserveWorkflow(root: string, workstreamId: string, profile: Wo
   immutable(join(base(root), "snapshots", workstreamId, `${snapshotId.split("/").at(-1)}.json`), snapshot)
   replace(selectionPath(root, workstreamId), { schemaVersion: 1, workstreamId, snapshotId, snapshotDigest: snapshot.snapshotDigest })
   return snapshot
+}
+
+const LIBRARY_DIR = "library"
+const DEFAULT_POINTER = "default-profile.json"
+const MAX_PROFILES = 200
+
+function safeLibraryPath(root: string, ...parts: string[]) {
+  const directory = base(root), target = join(directory, ...parts)
+  let current = directory
+  for (const part of parts) {
+    current = join(current, part)
+    // Refuse even an internal symlink: records must be ordinary checkout files.
+    try { if (lstatSync(current).isSymbolicLink()) throw new Error("workflow library storage must not contain symlinks") }
+    catch (error) { if ((error as NodeJS.ErrnoException).code !== "ENOENT") throw error }
+  }
+  return target
+}
+function libraryDir(root: string) { return safeLibraryPath(root, LIBRARY_DIR) }
+function profilePath(root: string, id: string) { return safeLibraryPath(root, LIBRARY_DIR, `${id}.json`) }
+function defaultPointerPath(root: string) { return safeLibraryPath(root, DEFAULT_POINTER) }
+
+function profileDigest(record: Omit<SavedWorkflowProfile, "digest">): string { return sha256Stable(record) }
+
+/** Read one saved profile, refusing a record whose digest does not match. */
+export function readWorkflowProfile(root: string, id: string): SavedWorkflowProfile {
+  assertId(id, "profile id")
+  const path = profilePath(root, id)
+  if (!existsSync(path)) throw new Error(`saved workflow not found: ${id}`)
+  const record = JSON.parse(readFileSync(path, "utf8")) as SavedWorkflowProfile
+  const { digest, ...body } = record
+  if (profileDigest(body) !== digest) throw new Error(`saved workflow is corrupt: ${id}`)
+  return record
+}
+
+export function listWorkflowProfiles(root: string): SavedWorkflowProfile[] {
+  return existsSync(libraryDir(root)) ? readdirSync(libraryDir(root)).filter(name => name.endsWith(".json")).sort().map(name => readWorkflowProfile(root, name.slice(0, -5))) : []
+}
+
+export function defaultWorkflowProfileId(root: string): string | null {
+  const path = defaultPointerPath(root)
+  if (!existsSync(path)) return null
+  const id = (JSON.parse(readFileSync(path, "utf8")) as { profileId?: string }).profileId ?? null
+  // A pointer at a profile somebody deleted falls back to the bundled workflow
+  // rather than failing every read.
+  return id && existsSync(profilePath(root, id)) ? id : null
+}
+
+/** Version the pointer itself, including dangling/deleted values. */
+export function workflowDefault(root: string) {
+  const path = defaultPointerPath(root)
+  const pointer = existsSync(path) ? JSON.parse(readFileSync(path, "utf8")) : null
+  return { profileId: defaultWorkflowProfileId(root), digest: sha256Stable(pointer) }
+}
+
+export function setDefaultWorkflowProfile(root: string, id: string | null): void {
+  if (id === null) { const path = defaultPointerPath(root); if (existsSync(path)) replace(path, { schemaVersion: 1 }); return }
+  readWorkflowProfile(root, id)
+  replace(defaultPointerPath(root), { schemaVersion: 1, profileId: id })
+}
+
+export function validateLibraryProfile(root: string, profile: WorkflowProfile) {
+  assertProfileShape(profile)
+  return resolveForSpec(root, { schemaVersion: 1, id: "library", status: "shaped", title: "Workflow library", createdAt: "2026-01-01T00:00:00.000Z", problem: "Reusable workflows", objective: "Validate reusable steps", featureIds: [], policy: { requireSpecBreak: false, requireCodeBreak: false } }, profile, { source: "library" })
+}
+
+export function libraryTemplate(root: string): WorkflowProfile {
+  const snapshot = resolveForSpec(root, { schemaVersion: 1, id: "library", status: "shaped", title: "Workflow library", createdAt: "2026-01-01T00:00:00.000Z", problem: "Reusable workflows", objective: "Validate reusable steps", featureIds: [] })
+  return { id: derivedEntityId("spec-ledger:template","default"), title: "My workflow", stages: portableStages(snapshot.stages) }
+}
+
+function assertProfileShape(profile: WorkflowProfile): void {
+  assertId(profile.id, "profile id")
+  if (profile.id === DEFAULT_POINTER.replace(/\.json$/, "")) throw new Error("saved workflow id is reserved")
+  if (!profile.title.trim() || profile.title.length > 200) throw new Error("saved workflow needs a title of 1-200 characters")
+  if (!profile.stages?.length) throw new Error("saved workflow needs at least one stage")
+  for (const stage of profile.stages) {
+    for (const step of stage.steps) {
+      if (step.outputs.some(output => output.criterionIds !== undefined)) {
+        throw new Error("a saved workflow must not carry another spec's criterion ids")
+      }
+    }
+  }
+}
+
+/** Save a new named workflow. Create-only: an existing id is refused. */
+export function saveWorkflowProfile(root: string, profile: WorkflowProfile): SavedWorkflowProfile {
+  validateLibraryProfile(root, profile)
+  if (listWorkflowProfiles(root).length >= MAX_PROFILES) throw new Error("saved workflow limit reached")
+  const now = new Date().toISOString()
+  const body = {
+    schemaVersion: 1 as const, id: profile.id, title: profile.title,
+    ...(profile.skills ? { skills: profile.skills } : {}),
+    stages: profile.stages!, createdAt: now, updatedAt: now,
+  }
+  const record: SavedWorkflowProfile = { ...body, digest: profileDigest(body) }
+  immutable(profilePath(root, profile.id), record)
+  return record
+}
+
+/** Replace a saved workflow. The caller must pin the version it read. */
+export function updateWorkflowProfile(root: string, profile: WorkflowProfile, expectedDigest: string): SavedWorkflowProfile {
+  validateLibraryProfile(root, profile)
+  const current = readWorkflowProfile(root, profile.id)
+  if (current.digest !== expectedDigest) throw new Error("saved workflow has changed")
+  const body = {
+    schemaVersion: 1 as const, id: current.id, title: profile.title,
+    ...(profile.skills ? { skills: profile.skills } : {}),
+    stages: profile.stages!, createdAt: current.createdAt, updatedAt: new Date().toISOString(),
+  }
+  const record: SavedWorkflowProfile = { ...body, digest: profileDigest(body) }
+  replace(profilePath(root, profile.id), record)
+  return record
+}
+
+export function deleteWorkflowProfile(root: string, id: string, expectedDigest: string): void {
+  const current = readWorkflowProfile(root, id)
+  if (current.digest !== expectedDigest) throw new Error("saved workflow has changed")
+  workflowDefault(root) // Validate the pointer before deleting any profile.
+  rmSync(profilePath(root, id))
+  if (defaultWorkflowProfileId(root) === null && existsSync(defaultPointerPath(root))) setDefaultWorkflowProfile(root, null)
+}
+
+/** A saved profile as the engine would run it for one workstream. */
+export function profileAsProfile(record: SavedWorkflowProfile): WorkflowProfile {
+  return { id: record.id, title: record.title, ...(record.skills ? { skills: record.skills } : {}), stages: record.stages }
+}
+
+/**
+ * Why this workstream cannot adopt this profile, or null when it can. Read-only:
+ * resolution is attempted and its refusal reported, never stored.
+ */
+export function profileUnusableReason(root: string, workstreamId: string, record: SavedWorkflowProfile): string | null {
+  try { resolveWorkflow(root, workstreamId, profileAsProfile(record), { source: "library", profileDigest: record.digest }); return null }
+  catch (error) { return error instanceof Error ? error.message : "cannot be used here" }
+}
+
+export function workflowLibrary(root: string, workstreamId?: string): WorkflowLibraryEntry[] {
+  const defaultId = defaultWorkflowProfileId(root)
+  return listWorkflowProfiles(root).map(record => ({
+    id: record.id, title: record.title, digest: record.digest, updatedAt: record.updatedAt,
+    isDefault: record.id === defaultId,
+    unusableReason: workstreamId ? profileUnusableReason(root, workstreamId, record) : null,
+  }))
+}
+
+/** Adopt a saved workflow for a workstream by name. */
+export function adoptWorkflowProfile(root: string, workstreamId: string, profileId: string, reason?: string, expectedSnapshotDigest?: string): WorkflowSnapshot {
+  const record = readWorkflowProfile(root, profileId)
+  return preserveWorkflow(root, workstreamId, profileAsProfile(record), reason, expectedSnapshotDigest, {
+    source: "library", profileDigest: record.digest,
+  })
 }
 
 export function listWorkflowAttempts(root: string, ws: string): WorkflowAttempt[] { return listJson(join(base(root), "attempts", ws)) }
@@ -227,8 +433,8 @@ export function startWorkflowStep(root: string, args: { workstreamId: string; st
   if (priorAttempt && !args.reason?.trim()) {
     throw new Error("a new workflow attempt requires a reason")
   }
-  const id = args.attemptId ?? `${args.workstreamId}/A-${String(attempts.length + 1).padStart(3, "0")}`
-  if (!new RegExp(`^${args.workstreamId}/A-[0-9]{3,}$`).test(id)) throw new Error("invalid workflow attempt id")
+  const id = createEntityId()
+  assertEntityId(id)
   const attempt: WorkflowAttempt = { schemaVersion: 1, id, workstreamId: args.workstreamId, stageId: args.stageId, stepId: args.stepId,
     snapshotDigest: snapshot.snapshotDigest, revisionDigest: snapshot.revisionDigest, sourceDigest: computeTreeDigest(root), startedAt: new Date().toISOString(), ...(args.reason ? { reason: args.reason } : {}) }
   immutable(join(base(root), "attempts", args.workstreamId, `${id.split("/").at(-1)}.json`), attempt); return attempt
@@ -256,7 +462,7 @@ export function addWorkflowOutput(root: string, args: Omit<WorkflowOutputReferen
     revisionDigest: snapshot.revisionDigest, sourceDigest: computeTreeDigest(root), recordedAt: new Date().toISOString() }
   const evaluated = evaluateRef(root, probe, snapshot)
   if (!evaluated.current) throw new Error(`workflow output is not current: ${evaluated.reason}`)
-  const outputs = listWorkflowOutputs(root, args.workstreamId); const id = `${args.workstreamId}/O-${String(outputs.length + 1).padStart(3, "0")}`
+  const id = createEntityId()
   const output = { ...probe, id }; immutable(join(base(root), "outputs", args.workstreamId, `${id.split("/").at(-1)}.json`), output); return output
 }
 
@@ -301,7 +507,20 @@ function evaluateRef(root: string, ref: WorkflowOutputReference, snapshot: Workf
   return { ...ref, current, attested: ref.kind === "attestation", reason }
 }
 
-function roleApplicable(role: WorkflowStageRole, ws: Workstream, custom = false): boolean { if (custom) return true; if (role === "spec-review") return ws.policy?.requireSpecBreak !== false; if (role === "code-review") return ws.policy?.requireCodeBreak !== false; return true }
+function policyRequiresRole(role: WorkflowStageRole, ws: Workstream): boolean {
+  if (role === "spec-review") return ws.policy?.requireSpecBreak !== false
+  if (role === "code-review") return ws.policy?.requireCodeBreak !== false
+  return true
+}
+/**
+ * A stage that states whether it is required is believed; otherwise workstream
+ * policy decides. Deliberately independent of `profile.source`, so adopting a
+ * saved copy of the bundled workflow gates exactly like the bundled workflow,
+ * while a hand-added review stage still counts when policy is lax.
+ */
+function stageApplicable(stage: { role: WorkflowStageRole; required?: boolean }, ws: Workstream): boolean {
+  return stage.required ?? policyRequiresRole(stage.role, ws)
+}
 
 export function projectWorkflow(root: string, workstreamId: string): WorkflowProjection {
   const ws = loadWorkstream(root, workstreamId); const selected = selectedWorkflow(root, workstreamId)
@@ -310,7 +529,7 @@ export function projectWorkflow(root: string, workstreamId: string): WorkflowPro
   const outputs = listWorkflowOutputs(root, workstreamId).filter(o => o.snapshotDigest === snapshot.snapshotDigest).map(o => evaluateRef(root, o, snapshot))
   const reports = listWorkflowReports(root, workstreamId); let priorSatisfied = true
   let stages: WorkflowProjection["stages"] = snapshot.stages.map(stage => {
-    const applicable = roleApplicable(stage.role, ws, snapshot.profile.source === "custom"); const stageBlockers: string[] = []
+    const applicable = stageApplicable(snapshot.stages.find(c => c.id === stage.id) ?? stage, ws); const stageBlockers: string[] = []
     if (!priorSatisfied && applicable) stageBlockers.push("A previous workflow stage is not satisfied.")
     let priorStepSatisfied = priorSatisfied
     const steps = stage.steps.map(step => {
@@ -380,8 +599,8 @@ function inferDefaultStages(root: string, ws: Workstream, snapshot: WorkflowSnap
   }
   let prior = true
   return stages.map(stage => {
-    const applicable = roleApplicable(stage.role, ws)
     const snapshotStage = snapshot.stages.find(candidate => candidate.id === stage.id)!
+    const applicable = stageApplicable(snapshotStage, ws)
     const refsByStep = new Map(snapshotStage.steps.map(step => [step.id, step.outputs.map(inferContract)]))
     const steps = stage.steps.map(step => {
       const refs = refsByStep.get(step.id) ?? []; const satisfied = !applicable || refs.every(ref => ref.current)

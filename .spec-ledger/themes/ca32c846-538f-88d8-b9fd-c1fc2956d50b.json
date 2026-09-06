@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "id": "ca32c846-538f-88d8-b9fd-c1fc2956d50b",
+  "title": "Make agent work reviewable",
+  "summary": "Claims, episodes, and Lattice so humans can trust agent output without greenwashing.",
+  "status": "active",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/themes/TH-001.json",
+        "id": "TH-001",
+        "sha256": "c06ccdcffaaa679f59835a33111fa6e262cfaec7c409f9c7bcbf8b31d8ebedb3"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/themes/TH-001.json",
+        "id": "TH-001",
+        "sha256": "c06ccdcffaaa679f59835a33111fa6e262cfaec7c409f9c7bcbf8b31d8ebedb3"
+      }
+    },
+    "historical": true
+  }
+}

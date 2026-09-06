@@ -1,0 +1,34 @@
+{
+  "id": "bfd1e091-65c9-8870-8ec7-2cf1c3047f5f",
+  "claimId": "3d819ad1-8f9b-893c-a5bf-92d67c933cd3",
+  "kind": "test",
+  "locator": {
+    "type": "command",
+    "command": "node --test packages/ledger/dist/verify/saved-check*.test.js packages/mcp/dist/saved-check.test.js packages/ui/lib/check-evidence.test.mjs"
+  },
+  "test": {
+    "level": "integration",
+    "description": "Run saved checks through actual CLI, MCP and local HTTP adapters; attack request boundaries and render the evidence panel.",
+    "source": {
+      "path": "packages/ledger/src/verify/saved-check.break.test.ts",
+      "name": "Independent boundary regressions; the command also runs transport and rendered UI tests."
+    },
+    "inputs": "Temporary repositories, successful and failing commands, stale identities, duplicate requests, overlapping runs, large output and escaped artifact paths.",
+    "expected": "Only the saved command runs in its checkout. Repeated requests reuse a run. Output is bounded and integrity checked. Stale evidence cannot pass; unrelated results survive. UI keeps authored expectations separate from actual logs."
+  },
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/bindings/B-SL-027.json",
+        "id": "b-sl-027",
+        "sha256": "65aaf7cee913ba39b6010e0e022f06a0b2d6af3ab5f297b48b12ad872711b3d3"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/bindings/B-SL-027.json",
+        "id": "b-sl-027",
+        "sha256": "65aaf7cee913ba39b6010e0e022f06a0b2d6af3ab5f297b48b12ad872711b3d3"
+      }
+    },
+    "historical": true
+  }
+}

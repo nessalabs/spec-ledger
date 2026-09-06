@@ -1,3 +1,4 @@
+import { isEntityId, derivedEntityId } from "../identity/index.js"
 import { randomBytes } from "node:crypto"
 import { sha256Stable } from "../fs/load.js"
 import { loadWorkstream } from "../workstream/load.js"
@@ -48,7 +49,7 @@ export function createLocalApprovalBridge(root: string) {
     if (!input || Array.isArray(input) || typeof input !== "object" ||
         Object.keys(input).some(key => !["action", "workstreamId", "revisionDigest", "authorityDigest", "requestId"].includes(key)) ||
         !["approve", "deny"].includes(input.action as string) ||
-        typeof input.workstreamId !== "string" || !/^W-\d{3,}$/.test(input.workstreamId) ||
+        typeof input.workstreamId !== "string" || !isEntityId(input.workstreamId) ||
         typeof input.revisionDigest !== "string" || !/^[a-f0-9]{64}$/.test(input.revisionDigest) ||
         typeof input.authorityDigest !== "string" || !/^[a-f0-9]{64}$/.test(input.authorityDigest) ||
         typeof input.requestId !== "string" || !/^[a-zA-Z0-9-]{16,80}$/.test(input.requestId)) {
@@ -58,7 +59,7 @@ export function createLocalApprovalBridge(root: string) {
       const ws = loadWorkstream(root, input.workstreamId)
       if (ws.status === "done" || ws.status === "cancelled") return json(409, { error: "This workstream is no longer awaiting a decision" })
       if (planRevision(root, ws) !== input.revisionDigest) return json(409, { error: "The spec changed. Review the current revision before deciding." })
-      const id = `AUTH-UI-${input.requestId}`
+      const id = derivedEntityId("spec-ledger:local-approval", input.requestId)
       const existing = listAuthorities(root)
       const prior = existing.find(a => a.id === id)
       if (prior) {

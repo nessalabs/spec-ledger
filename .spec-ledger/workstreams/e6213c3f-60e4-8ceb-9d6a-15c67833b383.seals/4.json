@@ -1,0 +1,131 @@
+{
+  "schemaVersion": 1,
+  "workstreamId": "e6213c3f-60e4-8ceb-9d6a-15c67833b383",
+  "revision": 4,
+  "sealedAt": "2026-09-04T20:15:19.775Z",
+  "sealedBy": "human",
+  "specDigest": "7053c5a132c071bfe3c13436a46e93721ce3122614777eb5eea7569bf53261f4",
+  "specDocDigest": "6ddb7ba2def9cf0c52b7065f888ae0f490262096b02d71d02e2dee8dd549424f",
+  "body": {
+    "id": "e6213c3f-60e4-8ceb-9d6a-15c67833b383",
+    "featureIds": [
+      "turns",
+      "lattice",
+      "verify",
+      "client",
+      "server"
+    ],
+    "primaryFeatureId": "turns",
+    "title": "Full builder runtime",
+    "problem": "Builder loop exists but turn check/abandon, automation resume, HTTP context, related pack, episode side collections, audit/CI, and compass/timeline are missing — product stops at 3317ada5-b347-894e-8c88-110b7b42d58b.",
+    "objective": "Context, automation, episodes, audit, and compass — dogfood end to end.",
+    "specPath": "docs/workstreams/p0-p3-runtime-and-dogfood.md",
+    "appetite": "1–2 weeks continuous",
+    "changeType": "feature",
+    "riskLevel": "elevated",
+    "trust": {
+      "deployTarget": "library-consumer",
+      "userFacing": true,
+      "performanceCritical": false,
+      "securitySensitive": false,
+      "correctnessCritical": true,
+      "requiredEvidence": [
+        "unit",
+        "integration",
+        "e2e"
+      ]
+    },
+    "policy": {
+      "alertOnSeverity": "high",
+      "onAlert": "wait",
+      "alertWaitMinutes": 10,
+      "onAlertTimeout": "move",
+      "onSealedSpecDeviation": "wait",
+      "sealedDeviationWaitMinutes": 10,
+      "onSealedDeviationTimeout": "move",
+      "requireSpecBreak": false,
+      "requireCodeBreak": true,
+      "onAwaitingSeal": "block"
+    },
+    "acceptanceCriteria": [
+      "turn check recomputes facts without writing; turn abandon writes facts with status abandoned",
+      "open stamps treeDigest; refuses dirty unless --allow-dirty",
+      "GET /v1/context returns VerticalContext; client HTTP path works",
+      "automation events resume timeouts on context/open; close refuses blocked events",
+      "spec-ledger related --workstream returns claims/features/turns/docs pack",
+      "decisions/sources/attachments/probes/flows loadable; decision basis stamped on close when present",
+      "spec-ledger audit + policy/audit.json; CI runs verify + audit + test",
+      "Lattice /compass and /timeline render vision/tenets/turns",
+      "proposed-claims dir + list; themes optional; dogfood turn under e6213c3f-60e4-8ceb-9d6a-15c67833b383"
+    ],
+    "outOfScope": [
+      "full RFC 8785 JCS (keep sha256Stable)",
+      "write HTTP endpoints",
+      "compass editing UI",
+      "PR bot / merge queue",
+      "multi-repo federation"
+    ],
+    "proposedClaimIds": [
+      "6c8db1ed-e5ff-8cce-85a8-9839064072c8",
+      "1488c77e-bc62-8057-9b2e-707be0af6af7",
+      "10054882-dd9e-89cf-98e7-50844ccc9e29"
+    ],
+    "suggestedSlices": [
+      {
+        "id": "b531f0e9-0768-8e61-821a-dd82767dff67",
+        "title": "Turn ops + HTTP context + automation + related",
+        "kind": "vertical",
+        "acceptance": [
+          "check/abandon/treeDigest/allow-dirty",
+          "/v1/context",
+          "automation resume",
+          "related pack"
+        ],
+        "evidence": [
+          "unit",
+          "integration"
+        ],
+        "expectedClaimIds": [
+          "67609c19-de05-862c-8db7-e5dc95f38cee",
+          "14d9b121-df2b-8ede-bce7-fdee648a4320"
+        ],
+        "expectedPaths": []
+      },
+      {
+        "id": "995a1189-1acf-8f63-a1c5-4016519bc05d",
+        "title": "Episode side collections + decision basis",
+        "kind": "vertical",
+        "acceptance": [
+          "load decisions/sources/attachments/probes/flows",
+          "close stamps collection digests when present"
+        ],
+        "evidence": [
+          "unit",
+          "integration"
+        ],
+        "expectedClaimIds": [
+          "67609c19-de05-862c-8db7-e5dc95f38cee"
+        ],
+        "expectedPaths": []
+      },
+      {
+        "id": "24246a4b-6dff-8c20-9f58-971241820473",
+        "title": "Audit + CI + Lattice compass/timeline + dogfood",
+        "kind": "vertical",
+        "acceptance": [
+          "audit CLI + CI workflow",
+          "/compass /timeline",
+          "closed e6213c3f-60e4-8ceb-9d6a-15c67833b383 turn"
+        ],
+        "evidence": [
+          "e2e",
+          "integration"
+        ],
+        "expectedClaimIds": [
+          "b69a663d-e2dd-8655-be45-0e07bfb45c89"
+        ],
+        "expectedPaths": []
+      }
+    ]
+  }
+}

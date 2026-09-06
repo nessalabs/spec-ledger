@@ -7,19 +7,19 @@
   "outcome": "succeeded",
   "result": {
     "schemaVersion": 1,
-    "id": "T-045/A-888325b2-114e-41eb-b2f0-b56ae75de793",
-    "turnId": "T-045",
+    "id": "d6717e3c-b20a-8049-a283-901082225ec3",
+    "turnId": "da66d16d-d4e0-837e-a34b-fb7cec0d855d",
     "kind": "image",
     "title": "Expanded evidence — desktop",
-    "path": ".spec-ledger/evidence/screenshots/T-045-desktop.png",
+    "path": ".spec-ledger/evidence/screenshots/da66d16d-d4e0-837e-a34b-fb7cec0d855d-desktop.png",
     "mediaType": "image/png",
     "byteLength": 153084,
     "contentDigest": "fda58b7aa62acfcdc0457a2c4a4be6bfe06a8c0aa73f68608b61ee0a4656f14f",
     "visualEvidence": {
-      "sliceId": "SLC-03",
+      "sliceId": "d67e07f2-7343-88d2-afeb-0fe6f3c8c377",
       "surface": "Expanded evidence — desktop",
       "sourceDigest": "e1b00fc86c55eea046dfadb4e8e1cc3cceb2d916543549c9542441569460e6fd",
-      "revisionDigest": "9ff6ab20b5d25d4e3ccd43c812ae08cca5615aff5686d7dc3fb4128c33b44f65",
+      "revisionDigest": "1ff6ee182547ae8f2e982b3d76a17396e7ac970f2b5ac4a62019209c18f52143",
       "recordedAt": "2026-09-06T18:18:34.600Z"
     },
     "note": "Recorded visual coverage; image adequacy is assessed in review."

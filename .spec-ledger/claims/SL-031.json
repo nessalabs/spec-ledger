@@ -1,9 +1,0 @@
-{
-  "id": "SL-031",
-  "statement": "Understand a feature and inspect its proof without repeated explanations or technical clutter.",
-  "required": true,
-  "kind": "invariant",
-  "links": [
-    "docs/workstreams/W-013-simple-feature-view/spec.md"
-  ]
-}

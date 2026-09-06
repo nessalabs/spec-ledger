@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "39c1d2ba-edc5-880b-922d-aafadfa04a59",
+  "reason": "User explicitly requested the narrow-panel UI bug fix during permission work; two UI verdict pages carry earlier 4bb567af-6d1e-8c2d-87f6-c9e72f27827a work. These four UI paths are bounded carryover covered by a32f3451-1b3d-8abf-bf0e-607ebf6e1a88 782ababb-e2ba-8f93-8832-69a5c4334094, not an exemption from evidence or permission checks.",
+  "actor": "agent:user-request-scope",
+  "treeDigest": "daa3ec3387cc58e0ded9db9c526a3086c465f6f660fabf3a61356da131a518ae",
+  "createdAt": "2026-09-04T22:02:09.443Z",
+  "workstreamId": "a32f3451-1b3d-8abf-bf0e-607ebf6e1a88",
+  "turnId": "01f8517b-6a02-897f-a15f-829951ce22a1",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/align-waivers/AW-10.json",
+        "id": "T-029/AW-10",
+        "sha256": "8f35b7afb911176bbd805894dff6864b07323e1babdfac6ab3580a3c17984983"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/align-waivers/AW-10.json",
+        "id": "T-029/AW-10",
+        "sha256": "8f35b7afb911176bbd805894dff6864b07323e1babdfac6ab3580a3c17984983"
+      }
+    },
+    "historical": true
+  }
+}

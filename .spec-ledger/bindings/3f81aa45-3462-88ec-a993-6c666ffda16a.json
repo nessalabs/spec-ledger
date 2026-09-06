@@ -1,0 +1,28 @@
+{
+  "id": "3f81aa45-3462-88ec-a993-6c666ffda16a",
+  "claimId": "ca2529a5-cf17-821c-ae1f-ac3e56178bf2",
+  "kind": "test",
+  "locator": {
+    "type": "command",
+    "command": "node --test packages/ledger/dist/evidence/visual.test.js packages/ledger/dist/evidence/visual.break.test.js packages/mcp/dist/visual.lifecycle.test.js"
+  },
+  "test": {
+    "level": "integration",
+    "description": "Require current screenshot coverage for visual work through CLI, MCP and completion gates.",
+    "source": {
+      "path": "packages/ledger/src/evidence/visual.test.ts"
+    },
+    "inputs": "Missing, stale, changed, duplicate and current screenshots for declared UI surfaces; nonvisual work.",
+    "expected": "Visual work cannot finish without all required current screenshots; other tasks remain compatible."
+  },
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/bindings/B-SL-033.json",
+        "id": "b-sl-033",
+        "sha256": "671ab1977b552c3e49230b18e032ac5f81ba2814a0b0d6580635d5294ea10c5e"
+      }
+    },
+    "historical": true
+  }
+}

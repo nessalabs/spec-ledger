@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "requestId": "1c16b8a2-6906-42a9-bf32-b76dee322c14",
+  "operation": "approve_alignment",
+  "inputDigest": "fef72721c4cfcbccd93416061aed76741daff873c25ce73a519b26cf0b6fc327",
+  "finishedAt": "2026-09-06T08:08:53.340Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "id": "50471349-96c0-87b8-8d88-c4a4b05afdaf",
+    "turnId": "ee4292d1-b9ee-8e3e-8a5a-57cf6155baf3",
+    "workstreamId": "ef172105-4f40-8bbb-8abe-d1cd11ae618a",
+    "kind": "human",
+    "target": "code",
+    "reviewer": "agent:align:user-scoped-ci-fix",
+    "verdict": "approve",
+    "summary": "The final packaging-test change uses an OS-assigned port and directly owns the installed server process. It remains within packages/ledger/** coverage and the user CI-fix request.",
+    "plainSummary": "The packaging test stops its server and avoids port conflicts with other test runs.",
+    "treeDigest": "7b5255fade858f944617f2fc83523c7d685a5929a42a8a1d8c544cb66cf4d350",
+    "uncoveredPaths": [],
+    "coverageSource": "mixed"
+  }
+}

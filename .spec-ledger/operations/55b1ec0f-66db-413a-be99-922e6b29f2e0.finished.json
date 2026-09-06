@@ -7,15 +7,15 @@
   "outcome": "succeeded",
   "result": {
     "schemaVersion": 1,
-    "id": "W-009/SR-01",
-    "workstreamId": "W-009",
+    "id": "7fb2d19a-03d1-89a4-b4b9-123b2f66b1bd",
+    "workstreamId": "3ca37660-1506-8a85-80c6-410a024d9a9a",
     "kind": "adversarial",
     "target": "spec",
     "reviewer": "agent:turn-evidence-breaker",
     "verdict": "approve",
     "blocking": false,
     "plainSummary": "The plan makes proof visible without pretending older completion records verify today’s code.",
-    "summary": "Reviewed written W-009 plan and tool-built related pack (1 feature, 3 claims, 38 docs, 20 turns). Compatible with SL-021 separation and SL-022 integrity-checked evidence: slice-scoped current checks are distinct from recorded artifacts, missing mappings stay explicit, exact SL-Turn joins replace pre-close HEAD attribution, and historical completion never restamps proof. Acceptance names temporary Git histories, failing/stale/missing cases and rendered/browser ordering. No blocking spec gaps.",
+    "summary": "Reviewed written 3ca37660-1506-8a85-80c6-410a024d9a9a plan and tool-built related pack (1 feature, 3 claims, 38 docs, 20 turns). Compatible with 9767b1da-9568-8e2f-ad2a-c2c3eb3e424c separation and dd5caaee-dace-8f53-bff5-65b6a7646b6d integrity-checked evidence: slice-scoped current checks are distinct from recorded artifacts, missing mappings stay explicit, exact SL-Turn joins replace pre-close HEAD attribution, and historical completion never restamps proof. Acceptance names temporary Git histories, failing/stale/missing cases and rendered/browser ordering. No blocking spec gaps.",
     "findings": [],
     "residualRisks": [
       "Related pack supplies only a caution-only worktree scan notice, not verified sibling-worktree findings.",

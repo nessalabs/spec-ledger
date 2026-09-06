@@ -1,9 +1,0 @@
-{
-  "schemaVersion": 1,
-  "id": "PC-024",
-  "status": "proposed",
-  "workstreamId": "W-015",
-  "kind": "invariant",
-  "statement": "Spec Ledger creates UUID identities and migrates parallel histories without collisions or fabricated evidence.",
-  "required": true
-}

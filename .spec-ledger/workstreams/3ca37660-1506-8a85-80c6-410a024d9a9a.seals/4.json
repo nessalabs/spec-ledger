@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "workstreamId": "3ca37660-1506-8a85-80c6-410a024d9a9a",
+  "revision": 4,
+  "sealedAt": "2026-09-05T03:03:11.803Z",
+  "sealedBy": "agent:permission:e1effa81-01a5-8b51-bed7-a43b8363d1f7",
+  "specDigest": "1e0bf5213098c8b603e8491a143535a99116bf3e1bae3b8cbf327be244aefd7d",
+  "specDocDigest": "b6fdc181fbe7e94f618361154a523270d6953486e6688b74cd94011d142d2252",
+  "body": {
+    "id": "3ca37660-1506-8a85-80c6-410a024d9a9a",
+    "featureIds": [
+      "lattice"
+    ],
+    "primaryFeatureId": null,
+    "title": "See what changed and what proves it works",
+    "objective": "Read the outcome and its evidence directly on each change page.",
+    "specPath": "docs/workstreams/3ca37660-1506-8a85-80c6-410a024d9a9a-evidence-first-changes/spec.md",
+    "appetite": null,
+    "changeType": null,
+    "riskLevel": null,
+    "trust": {
+      "userFacing": true,
+      "correctnessCritical": true,
+      "requiredEvidence": [
+        "unit",
+        "integration",
+        "e2e"
+      ]
+    },
+    "policy": {
+      "requireSpecBreak": true,
+      "requireCodeBreak": true,
+      "requireAlignApprove": true
+    },
+    "acceptanceCriteria": [],
+    "acceptanceClaimIds": {
+      "79c61989-9765-86e0-b429-2d97d4e38892/AC-1": [
+        "2bdf48ad-ad8b-86b1-a043-5b16496999b3"
+      ],
+      "79c61989-9765-86e0-b429-2d97d4e38892/AC-2": [
+        "fbe7ce66-ef39-848d-8426-b7f2643315b6"
+      ]
+    },
+    "outOfScope": [],
+    "proposedClaimIds": [],
+    "suggestedSlices": [
+      {
+        "id": "79c61989-9765-86e0-b429-2d97d4e38892",
+        "title": "Put outcomes and evidence first on change pages",
+        "kind": "vertical",
+        "acceptance": [
+          "Change pages show scoped evidence and artifacts first, distinguish historical observations, and associate only commits with an exact matching turn trailer. Previously completed workstreams with stale prerequisites are clearly labeled as historical completion needing revalidation.",
+          "Previously completed workstreams are audited against current code and behavioral evidence; missing acceptance mappings are retrofitted only where tests support them, with current change-aware verification and explicit residual gaps."
+        ],
+        "evidence": [],
+        "expectedClaimIds": [],
+        "expectedPaths": [
+          "packages/**",
+          "docs/**",
+          "skills/**",
+          "schemas/**",
+          "scripts/**"
+        ]
+      }
+    ]
+  }
+}

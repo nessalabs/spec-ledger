@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "turnId": "21e1bd8d-8745-8900-b8a5-249314d027be",
+  "decision": "Read plain feature requirements, inspect highlighted test code, and rerun a saved check to see its actual output.",
+  "rationale": "Agent-reported progress; evidence is evaluated separately.",
+  "progress": {
+    "criterionIds": [
+      "31586ff0-42d1-85f6-8733-49244fa3d467/AC-1"
+    ],
+    "implemented": true,
+    "revisionDigest": "926ea0b3eef0bb27ffcf55a672c5e909a292d2e0dded381ca57c4a2d2cd266b9",
+    "sourceDigest": "1928c529067013cc45fdbdf5153d5496b2f07bd62e5de9a327f1938374c1a746",
+    "preview": {
+      "url": "http://127.0.0.1:3737/claims/2bdf48ad-ad8b-86b1-a043-5b16496999b3",
+      "label": "See the updated requirement and its evidence"
+    }
+  },
+  "id": "670288a1-d70f-8cef-8de6-ea3092212694",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/decisions/T-038/D-04.json",
+        "id": "T-038/D-04",
+        "sha256": "bb21bad37aee0d2631a560858083cc90f6512f385bd758ffe194d4f520b91119"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/decisions/T-038/D-04.json",
+        "id": "T-038/D-04",
+        "sha256": "bb21bad37aee0d2631a560858083cc90f6512f385bd758ffe194d4f520b91119"
+      }
+    },
+    "historical": true
+  },
+  "sequence": 4
+}

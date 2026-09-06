@@ -1,0 +1,42 @@
+{
+  "id": "92e44229-095f-8288-bb7f-ddaf5a1dc131",
+  "workstreamId": "351e54ea-60e4-8384-826f-0616eaa89599",
+  "kind": "adversarial",
+  "target": "code",
+  "reviewer": "agent:turn-evidence-breaker",
+  "verdict": "approve",
+  "blocking": false,
+  "supersedesReviewId": "a27110cb-c381-8a51-96b7-9ac9944b3807",
+  "treeDigest": "1928c529067013cc45fdbdf5153d5496b2f07bd62e5de9a327f1938374c1a746",
+  "plainSummary": "Tests and commands are easier to read, and plain descriptions still link to their exact requirements.",
+  "summary": "Refreshed final code approval after user-requested syntax highlighting, plain claim outcomes, exact-contract documentation links and future-copy guidance. Verified final source digest. Reviewed Nessa CodeBlock API usage for filename language inference, line numbers and escaped string content; claim page keeps inspectable checks first and detailed contract links in collapsed definitions. Independently reran all three UI evidence tests, including escaped source, honest failed/tampered output and uncertain-response request reuse. Prior R01 independent worker and boundary review remains applicable to unchanged core code. SR03 separately confirmed exact preservation and linking of all 24 modified pre-existing technical contracts. Root reports final UI tests/typecheck and highlighted production build/browser passed. Final claim batch is still running; this approval does not claim that pending run passed.",
+  "killersCited": [
+    "packages/ui/lib/check-evidence.test.mjs: passive evidence render keeps authored expectations distinct and escapes test source",
+    "packages/ui/lib/check-evidence.test.mjs: actual failures and tampered logs remain visible independently of a described expectation",
+    "packages/ui/lib/check-evidence.test.mjs: uncertain HTTP response reconnects with the same request identity",
+    "packages/ledger/src/verify/saved-check.break.test.ts: symlinked receipt directory cannot receive check writes outside the checkout"
+  ],
+  "findings": [],
+  "residualRisks": [
+    "Final explicit claim execution must pass before closure; the earlier UI-release timeout under concurrent build load is not treated as passing evidence.",
+    "Saved repository commands are trusted host code, not sandboxed execution.",
+    "Plain summaries abbreviate requirements; linked exact contracts and unchanged checks remain authoritative."
+  ],
+  "schemaVersion": 1,
+  "turnId": "21e1bd8d-8745-8900-b8a5-249314d027be",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/reviews/turns/T-038/R-03.json",
+        "id": "T-038/R-03",
+        "sha256": "472998f2d2e2471ecf2158963450901566d88d6de9eb2f99794d60bb58578e11"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/reviews/turns/T-038/R-03.json",
+        "id": "T-038/R-03",
+        "sha256": "472998f2d2e2471ecf2158963450901566d88d6de9eb2f99794d60bb58578e11"
+      }
+    },
+    "historical": true
+  }
+}

@@ -1,3 +1,4 @@
+import { assertEntityId, isEntityId } from "../identity/index.js"
 import { closeSync, existsSync, fsyncSync, linkSync, lstatSync, mkdirSync, openSync, readFileSync, readdirSync, unlinkSync, writeFileSync } from "node:fs"
 import { dirname, join } from "node:path"
 import { randomUUID } from "node:crypto"
@@ -26,7 +27,7 @@ export function recordPath(root: string, goalId: string, collection: "goal" | "e
   if (collection === "goal" || collection === "conclusion") {
     const path = join(dir, `${collection}.json`); assertRegularPath(path, "file"); return path
   }
-  if (!id || !/^X-[A-Za-z0-9][A-Za-z0-9_-]{0,79}$/.test(id)) throw new Error("invalid experiment id")
+  assertEntityId(id, "experiment id")
   const subdir = join(dir, collection); assertRegularPath(subdir, "directory")
   const path = join(subdir, `${id}.json`); assertRegularPath(path, "file"); return path
 }
@@ -40,8 +41,8 @@ export function goalIds(root: string): string[] {
     .filter(id => existsSync(recordPath(root, id, "goal"))).sort() : []
 }
 export function recordIds(root: string, goalId: string, collection: "experiments" | "results"): string[] {
-  const dir = dirname(recordPath(root, goalId, collection, "X-probe"))
-  return existsSync(dir) ? readdirSync(dir).filter(n => /^X-[A-Za-z0-9][A-Za-z0-9_-]{0,79}\.json$/.test(n)).map(n => n.slice(0, -5)).sort() : []
+  const dir = dirname(recordPath(root, goalId, collection, "00000000-0000-4000-8000-000000000001"))
+  return existsSync(dir) ? readdirSync(dir).filter(n => n.endsWith(".json") && isEntityId(n.slice(0,-5))).map(n => n.slice(0, -5)).sort() : []
 }
 
 /** The application mutation lock serializes validation + publication. Readers see complete bytes. */

@@ -7,7 +7,7 @@
   "outcome": "succeeded",
   "result": {
     "schemaVersion": 1,
-    "id": "T-045",
+    "id": "da66d16d-d4e0-837e-a34b-fb7cec0d855d",
     "status": "closed",
     "openedAt": "2026-09-06T17:59:28.618Z",
     "opened": {
@@ -15,15 +15,15 @@
       "baseCommit": "704aef05ecef7aed357353964fb128d65286bf41",
       "treeDigest": "f6a9036139b2c5b101c913d5da0e968bb779a6a790dbeec425a388b0f8d07adc",
       "dirtyAtOpen": [
-        ".spec-ledger/authority/AUTH-4456a531-3f83-49e5-8389-a1af6891887a.json",
-        ".spec-ledger/proposed-claims/PC-023.json",
-        ".spec-ledger/reviews/workstreams/W-014/SR-04.json",
-        ".spec-ledger/workstreams/W-014.json",
-        "docs/workstreams/W-014-follow-agent-experiments/spec.md"
+        ".spec-ledger/authority/f18752a1-6dbd-8d90-b9aa-296b6994935e.json",
+        ".spec-ledger/proposed-claims/5418d06f-8b16-8d64-b004-408d9eb0f5a9.json",
+        ".spec-ledger/reviews/workstreams/29c935b4-56bd-84a0-b887-e280d775f54d/87dc2941-f56d-84c0-bb35-1447bf06bb7f.json",
+        ".spec-ledger/workstreams/29c935b4-56bd-84a0-b887-e280d775f54d.json",
+        "docs/workstreams/29c935b4-56bd-84a0-b887-e280d775f54d-follow-agent-experiments/spec.md"
       ],
       "contextDigest": "f03aa05e523d4e1e31f2abdbf69fde693b1878c7b8714fca475429f2c4457b13",
-      "contextWorkstreamId": "W-014",
-      "contextSliceId": "SLC-03",
+      "contextWorkstreamId": "29c935b4-56bd-84a0-b887-e280d775f54d",
+      "contextSliceId": "d67e07f2-7343-88d2-afeb-0fe6f3c8c377",
       "contextSealRevision": 4,
       "contextGeneratedAt": "2026-09-06T17:59:28.618Z"
     },
@@ -32,8 +32,8 @@
       "restatedGoal": "Require screenshots for visual work and remove repeated passing details",
       "changeType": "feature",
       "riskLevel": "moderate",
-      "workstreamId": "W-014",
-      "sliceId": "SLC-03",
+      "workstreamId": "29c935b4-56bd-84a0-b887-e280d775f54d",
+      "sliceId": "d67e07f2-7343-88d2-afeb-0fe6f3c8c377",
       "featureIds": [
         "turns",
         "lattice",
@@ -46,49 +46,49 @@
       "commit": "704aef05ecef7aed357353964fb128d65286bf41",
       "files": [
         {
-          "path": ".spec-ledger/attachments/T-045/A-290ed9a8-4d5f-4bd2-b420-c69e20f2d5b7.json",
+          "path": ".spec-ledger/attachments/da66d16d-d4e0-837e-a34b-fb7cec0d855d/b9c03614-5617-86ad-9817-e15a86bdb682.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/attachments/T-045/A-6648e527-71d4-4bb1-aa61-9e953b3b4f95.json",
+          "path": ".spec-ledger/attachments/da66d16d-d4e0-837e-a34b-fb7cec0d855d/9fedc76e-bd7b-80e9-b2d3-d3587862233c.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/attachments/T-045/A-888325b2-114e-41eb-b2f0-b56ae75de793.json",
+          "path": ".spec-ledger/attachments/da66d16d-d4e0-837e-a34b-fb7cec0d855d/d6717e3c-b20a-8049-a283-901082225ec3.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/authority/AUTH-4456a531-3f83-49e5-8389-a1af6891887a.json",
+          "path": ".spec-ledger/authority/f18752a1-6dbd-8d90-b9aa-296b6994935e.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/bindings/B-SL-033.json",
+          "path": ".spec-ledger/bindings/3f81aa45-3462-88ec-a993-6c666ffda16a.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/claims/SL-033.json",
+          "path": ".spec-ledger/claims/ca2529a5-cf17-821c-ae1f-ac3e56178bf2.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/decisions/T-045/D-01.json",
+          "path": ".spec-ledger/decisions/da66d16d-d4e0-837e-a34b-fb7cec0d855d/377e675a-fd62-8670-a968-a41e6a8aeaaa.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/decisions/T-045/D-02.json",
+          "path": ".spec-ledger/decisions/da66d16d-d4e0-837e-a34b-fb7cec0d855d/a33cc346-43c2-8942-86e4-9ad031d30e63.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
@@ -1750,31 +1750,31 @@
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/evidence/screenshots/T-045-desktop.png",
+          "path": ".spec-ledger/evidence/screenshots/da66d16d-d4e0-837e-a34b-fb7cec0d855d-desktop.png",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/evidence/screenshots/T-045-missing.png",
+          "path": ".spec-ledger/evidence/screenshots/da66d16d-d4e0-837e-a34b-fb7cec0d855d-missing.png",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/evidence/screenshots/T-045-mobile.png",
+          "path": ".spec-ledger/evidence/screenshots/da66d16d-d4e0-837e-a34b-fb7cec0d855d-mobile.png",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/flows/T-045/F-01.json",
+          "path": ".spec-ledger/flows/da66d16d-d4e0-837e-a34b-fb7cec0d855d/c8a6f3e4-b34b-8270-9d16-8f3373fb9eeb.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/learnings/LN-visual-evidence-required.json",
+          "path": ".spec-ledger/learnings/735fd8e1-ee5a-8663-b80d-4f94d1ae1bb0.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
@@ -1786,43 +1786,43 @@
           "deletions": 1
         },
         {
-          "path": ".spec-ledger/proposed-claims/PC-023.json",
+          "path": ".spec-ledger/proposed-claims/5418d06f-8b16-8d64-b004-408d9eb0f5a9.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/reviews/turns/T-045/R-01.json",
+          "path": ".spec-ledger/reviews/turns/da66d16d-d4e0-837e-a34b-fb7cec0d855d/e5869657-5c9f-8acb-b287-9befc67a9816.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/reviews/turns/T-045/R-02.json",
+          "path": ".spec-ledger/reviews/turns/da66d16d-d4e0-837e-a34b-fb7cec0d855d/5f73944e-2229-8cdb-a215-21cd45bb3463.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/reviews/workstreams/W-014/SR-04.json",
+          "path": ".spec-ledger/reviews/workstreams/29c935b4-56bd-84a0-b887-e280d775f54d/87dc2941-f56d-84c0-bb35-1447bf06bb7f.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/turns/T-045.json",
+          "path": ".spec-ledger/turns/da66d16d-d4e0-837e-a34b-fb7cec0d855d.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/workstreams/W-014.json",
+          "path": ".spec-ledger/workstreams/29c935b4-56bd-84a0-b887-e280d775f54d.json",
           "kind": "modified",
           "additions": 71,
           "deletions": 11
         },
         {
-          "path": ".spec-ledger/workstreams/W-014.seals/4.json",
+          "path": ".spec-ledger/workstreams/29c935b4-56bd-84a0-b887-e280d775f54d.seals/4.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
@@ -1834,25 +1834,25 @@
           "deletions": 0
         },
         {
-          "path": "docs/workstreams/W-014-follow-agent-experiments/evidence/T-045/browser-check.md",
+          "path": "docs/workstreams/29c935b4-56bd-84a0-b887-e280d775f54d-follow-agent-experiments/evidence/da66d16d-d4e0-837e-a34b-fb7cec0d855d/browser-check.md",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": "docs/workstreams/W-014-follow-agent-experiments/evidence/T-045/regression-tests.txt",
+          "path": "docs/workstreams/29c935b4-56bd-84a0-b887-e280d775f54d-follow-agent-experiments/evidence/da66d16d-d4e0-837e-a34b-fb7cec0d855d/regression-tests.txt",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": "docs/workstreams/W-014-follow-agent-experiments/evidence/T-045/validation.md",
+          "path": "docs/workstreams/29c935b4-56bd-84a0-b887-e280d775f54d-follow-agent-experiments/evidence/da66d16d-d4e0-837e-a34b-fb7cec0d855d/validation.md",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": "docs/workstreams/W-014-follow-agent-experiments/spec.md",
+          "path": "docs/workstreams/29c935b4-56bd-84a0-b887-e280d775f54d-follow-agent-experiments/spec.md",
           "kind": "modified",
           "additions": 14,
           "deletions": 0
@@ -2033,18 +2033,18 @@
         "verify"
       ],
       "touchedClaimIds": [
-        "SL-004",
-        "SL-011",
-        "SL-015",
-        "SL-019",
-        "SL-021",
-        "SL-022",
-        "SL-023",
-        "SL-029",
-        "SL-030",
-        "SL-031",
-        "SL-032",
-        "SL-033"
+        "77fb26cd-bc46-8037-a8f2-7573f7d6d33d",
+        "259e1acf-d082-8bfe-b0ab-76fab45ae7d0",
+        "505a71e7-37de-8e56-ae5c-467828201dba",
+        "fb335474-ec02-8a07-a399-a948d076a225",
+        "9767b1da-9568-8e2f-ad2a-c2c3eb3e424c",
+        "dd5caaee-dace-8f53-bff5-65b6a7646b6d",
+        "2f8cf085-d7a5-83b9-89f8-9d0754cb16a0",
+        "93abee59-3e8d-809f-a140-d86105b0d865",
+        "3cb6214c-8605-80e6-b73b-d20b9025023f",
+        "d62365fc-02af-826c-b961-8942c540bddf",
+        "1ea8304f-a051-8234-b7a7-ce31b25eccf2",
+        "ca2529a5-cf17-821c-ae1f-ac3e56178bf2"
       ],
       "blastRadius": {
         "direct": [
@@ -2070,8 +2070,8 @@
       },
       "schemaSurfaceChanged": true,
       "decisionIds": [
-        "T-045/D-01",
-        "T-045/D-02"
+        "377e675a-fd62-8670-a968-a41e6a8aeaaa",
+        "a33cc346-43c2-8942-86e4-9ad031d30e63"
       ],
       "decisionsDigest": "cfa2aaefb4692f23d7340a7a1f6dd203be6ecfda21bcfdd70d72ca114ef74bb5",
       "attachmentsDigest": "8e5bd1336b89810cd3fca4e6f3c6d1666cce02a7909104bfbba13ddd011f54e7",

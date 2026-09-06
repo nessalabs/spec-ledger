@@ -1,0 +1,24 @@
+{
+  "id": "3cb6214c-8605-80e6-b73b-d20b9025023f",
+  "kind": "invariant",
+  "statement": "Choose the steps and skills your agent follows while keeping required reviews and evidence in place.",
+  "required": true,
+  "links": [
+    "docs/workstreams/ba7715db-e75e-84e6-9d91-f9cc61b037a9-choose-your-workflow/spec.md"
+  ],
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/claims/SL-030.json",
+        "id": "SL-030",
+        "sha256": "518f3ea12dbb322179f30c1baac07a632aff8204b02ca55d454d8ad776fada67"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/claims/SL-030.json",
+        "id": "SL-030",
+        "sha256": "518f3ea12dbb322179f30c1baac07a632aff8204b02ca55d454d8ad776fada67"
+      }
+    },
+    "historical": true
+  }
+}

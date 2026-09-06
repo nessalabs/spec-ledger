@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "4f966094-14f7-8759-9730-e7534dc73f8a",
+  "turnId": "db62d47d-d33a-8e81-a965-8f33a75f8c49",
+  "workstreamId": "76451749-a54f-8579-96f2-dcec19d79026",
+  "kind": "human",
+  "target": "code",
+  "reviewer": "agent:align",
+  "verdict": "approve",
+  "summary": "Coverage intent: db62d47d-d33a-8e81-a965-8f33a75f8c49 fixes Fable code-break findings F-01..F-10 on align stack; paths covered by graph+expectedPaths.",
+  "plainSummary": "Product files in this turn are covered by the sealed plan (or skipped in writing).",
+  "treeDigest": "257ef1ad1c5c9c953f133a88e1b08bdc8ebba3ff0189d4998aa3f9a0a5a48f9e",
+  "uncoveredPaths": [],
+  "coverageSource": "mixed",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/reviews/turns/T-019/R-03.json",
+        "id": "T-019/R-03",
+        "sha256": "a1fa542435cc18c87eab64a12ecbb48a69a95f0994f1651985f200561d7ee498"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/reviews/turns/T-019/R-03.json",
+        "id": "T-019/R-03",
+        "sha256": "a1fa542435cc18c87eab64a12ecbb48a69a95f0994f1651985f200561d7ee498"
+      }
+    },
+    "historical": true
+  }
+}

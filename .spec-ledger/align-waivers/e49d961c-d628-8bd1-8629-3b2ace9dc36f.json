@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "e49d961c-d628-8bd1-8629-3b2ace9dc36f",
+  "reason": "The user explicitly requested the shared CLI/MCP architecture revamp and end-to-end UI integration. DESIGN.md documents this authorized boundary change but sits outside the slice docs/** pattern.",
+  "actor": "agent:coverage-of-user-request",
+  "treeDigest": "4991707ac7b32c34ae2297305a8826703f5fba6493bd353ba0bde9ed06fe5d0d",
+  "createdAt": "2026-09-05T00:37:49.715Z",
+  "workstreamId": "815c7a44-59df-8102-9769-bf8a74e49c0c",
+  "turnId": "7a56453a-0979-8b0a-a4fe-ddbc9aab354a",
+  "paths": [
+    "DESIGN.md"
+  ],
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/align-waivers/AW-15.json",
+        "id": "T-034/AW-15",
+        "sha256": "0a91792b281d50372842ca68acce5acf57c95a810114dd50e578824c31de6fbf"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/align-waivers/AW-15.json",
+        "id": "T-034/AW-15",
+        "sha256": "0a91792b281d50372842ca68acce5acf57c95a810114dd50e578824c31de6fbf"
+      }
+    },
+    "historical": true
+  }
+}

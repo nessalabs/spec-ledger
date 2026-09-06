@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "requestId": "d6ca1c21-1ab2-4194-b2c4-c378daab5fb1",
+  "operation": "record_review",
+  "inputDigest": "9285482bffcff1af3098f239ae9675797fa63fb491b1444203ef242632e7b313",
+  "finishedAt": "2026-09-06T07:22:07.805Z",
+  "outcome": "succeeded",
+  "result": {
+    "kind": "adversarial",
+    "target": "code",
+    "reviewer": "agent:sl-dev-break:library",
+    "verdict": "approve",
+    "blocking": false,
+    "summary": "Only eight CI YAML lines changed; production and all test assertions unchanged. Parsed the actual workflow GIT_CONFIG environment and exercised inherited Node -> shell -> Git in a disposable repo with conflicting local settings: git reports command-scope gc.auto=0 and maintenance.auto=false, while local values remain unchanged afterward. Saved-check worker and command spawn paths inherit process.env. Under the exact overrides, turn-close tests plus existing 11519a1a-0d18-889b-8422-9bb8accc4483 library, ef669c8c-b701-85d9-b2da-638757fed84e actual CLI/MCP, and b37364e8-36d3-8901-a879-3a6e32f21210 UI/navigation/API regression suites pass 67/67. This is current-source compatibility coverage for all ef172105-4f40-8bbb-8abe-d1cd11ae618a slices.",
+    "plainSummary": "CI passes its Git maintenance settings to test processes without changing repository settings or weakening checks.",
+    "killersCited": [
+      "command: actual CI YAML environment inherited through Node -> shell -> Git overrides conflicting local config without rewriting it",
+      "packages/ledger/src/turns/close.test.ts",
+      "packages/ledger/src/workflows/library.break.test.ts",
+      "packages/ledger/src/workflows/library-storage.break.test.ts",
+      "packages/mcp/src/library.boundary.break.test.ts",
+      "packages/ui/lib/navigation.break.test.mjs",
+      "packages/ui/lib/workflow-api.break.test.mjs"
+    ],
+    "findings": [],
+    "alertOnSeverity": "high",
+    "residualRisks": [
+      "The CI rerun remains the Linux validation of detached-maintenance cleanup; bounded local checks prove inherited configuration and regression compatibility.",
+      "No browser rerun because the only source change is CI job environment."
+    ],
+    "schemaVersion": 1,
+    "id": "3a3fe1ba-0237-8efc-b0e8-06d77cac1336",
+    "turnId": "c27931c8-b548-81c7-a660-ee6bf9e61466",
+    "treeDigest": "5da35595ece444f4b6f1b69c56ed2c89b4583ea26e1b065be4f37c6e42f8395e"
+  }
+}

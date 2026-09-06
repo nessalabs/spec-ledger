@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "turnId": "2660d32a-4964-8155-adf0-456687f45a9a",
+  "kind": "user",
+  "note": "User requested implementation of the proposed a32f3451-1b3d-8abf-bf0e-607ebf6e1a88 direction and chose portable CLI handoff first. Source is this conversation, agent-reported.",
+  "id": "88a6ba97-cd76-821f-bbb6-a508dd77f3e3",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/sources/T-026/S-01.json",
+        "id": "T-026/S-01",
+        "sha256": "68315f04df464fba5f75b0f08171bbac5e9c2b9887518571b8787a9381fd013d"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/sources/T-026/S-01.json",
+        "id": "T-026/S-01",
+        "sha256": "68315f04df464fba5f75b0f08171bbac5e9c2b9887518571b8787a9381fd013d"
+      }
+    },
+    "historical": true
+  }
+}

@@ -165,8 +165,7 @@ If the killer proves behavior the sealed workstream did not allow:
 ```json
 {
   "schemaVersion": 1,
-  "id": "T-00N/R-01",
-  "turnId": "T-00N",
+  "turnId": "<turn-uuid>",
   "kind": "adversarial",
   "target": "code",
   "reviewer": "agent:sl-dev-break",
@@ -176,9 +175,8 @@ If the killer proves behavior the sealed workstream did not allow:
   "plainSummary": "A failed ingest could still look like a passing verify.",
   "findings": [
     {
-      "id": "F-01",
       "severity": "high",
-      "claimId": "SL-00N",
+      "claimId": "<claim-uuid>",
       "gap": "When bindings ingest throws mid-batch, report still ok:true",
       "plainImpact": "Verify would say pass even though some required evidence never landed.",
       "fixProposal": "Fail closed; do not write ok:true on partial ingest",
@@ -201,8 +199,7 @@ If the killer proves behavior the sealed workstream did not allow:
 ```json
 {
   "schemaVersion": 1,
-  "id": "T-00N/R-02",
-  "turnId": "T-00N",
+  "turnId": "<turn-uuid>",
   "kind": "adversarial",
   "target": "code",
   "reviewer": "agent:sl-dev-break",
@@ -223,7 +220,7 @@ If the killer proves behavior the sealed workstream did not allow:
 ## Exit summary
 
 ```
-code-break: T-00N / SLC-01
+code-break: <turn-uuid> / <slice-uuid>
 verdict: request-changes|approve
 killersCited: …
 evidence_runs: N

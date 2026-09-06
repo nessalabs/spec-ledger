@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "6b210ddc-0fca-8e13-b7b3-fddd48b29ab5",
+  "workstreamId": "815c7a44-59df-8102-9769-bf8a74e49c0c",
+  "kind": "adversarial",
+  "target": "spec",
+  "reviewer": "agent:sl-plan-break-spec:w008",
+  "verdict": "approve",
+  "blocking": false,
+  "alertOnSeverity": "high",
+  "plainSummary": "The plan keeps CLI and MCP behavior aligned while custom methods and activity remain unable to invent permission, evidence, completion, or recovery.",
+  "summary": "Independent review approves 815c7a44-59df-8102-9769-bf8a74e49c0c after amendments. The current related pack covers five live features (cli, client, turns, verify, lattice), fifteen live claims including 67609c19-de05-862c-8db7-e5dc95f38cee/003/011/015/017/018/019/020/021/022, three proposed claims aae49e39-2b5e-8e27-9378-2a136cce5c93..022, seven prior workstreams, twenty turns, and twenty-eight docs. 26c9bf2f-a090-8415-bd2b-f46dff6af4f7 now requires actual CLI and MCP executables across the lifecycle with matched denial, stale-input, missing-evidence, retry-conflict, idempotency, and no-unintended-side-effect behavior. Started-before-effect and completed-after-effect operation receipts, immutable request digests, unfinished-as-unknown retries, and cross-process serialization bound uncertain execution without unsafe lock stealing. 25eac677-2871-816d-956d-770bdcb61798 defines a finite typed output registry whose satisfaction is derived from current revision/source-bound records and keeps attestation distinct. 87ce7ed9-a607-8425-a475-173f8953ffaf keeps activity observational and recovery unavailable without verified host capability. The security model identifies the fixed-checkout, permission/evidence, skill-path, activity-spoofing, and process-control boundaries and requires real-boundary negative evidence. Criteria map to proposed standing claims 2f8cf085-d7a5-83b9-89f8-9d0754cb16a0..025; live promotion remains builder work.",
+  "findings": [],
+  "residualRisks": [
+    "This is a specification review; implementation parity, browser behavior, protocol behavior, and security denials still require run-backed evidence and independent code-break review in each vertical.",
+    "The related command returned only a caution string for sibling worktrees and no structured scan or skippedReason, so this review makes no claim about unpublished parallel checkout state.",
+    "No supported host recovery or cancellation adapter is promised by this revision; 87ce7ed9-a607-8425-a475-173f8953ffaf must display those capabilities as unavailable unless a concrete owned adapter is implemented and verified."
+  ],
+  "revisionDigest": "631ba496f0816511b043042299190dca445c4a040c64d95a96666dbd4daf1b20",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/reviews/workstreams/W-008/SR-01.json",
+        "id": "W-008/SR-01",
+        "sha256": "cd0a2e3e860abfc89970b0f4df06501068d64d286114700387163caef397be05"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/reviews/workstreams/W-008/SR-01.json",
+        "id": "W-008/SR-01",
+        "sha256": "cd0a2e3e860abfc89970b0f4df06501068d64d286114700387163caef397be05"
+      }
+    },
+    "historical": true
+  }
+}

@@ -1,9 +1,0 @@
-{
-  "id": "b-sl-014",
-  "claimId": "SL-014",
-  "kind": "test",
-  "locator": {
-    "type": "command",
-    "command": "node --test packages/ledger/dist/publish.workflow.test.js packages/ledger/dist/publish.workflow.break.test.js"
-  }
-}

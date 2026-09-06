@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "turnId": "9d65b345-19e2-8652-8af7-b7cf95acb7ca",
+  "decision": "Read the feature outcome and current checks without repeated technical explanations; open proof directly.",
+  "rationale": "Agent-reported progress; evidence is evaluated separately.",
+  "progress": {
+    "criterionIds": [
+      "c95eb099-a8bc-8bbf-8079-82b53d19036c/AC-1",
+      "c95eb099-a8bc-8bbf-8079-82b53d19036c/AC-2"
+    ],
+    "implemented": true,
+    "revisionDigest": "da886054e0edc5e999474177d9fa912dc92b32823edb6abeec5529d20beb9137",
+    "sourceDigest": "9881b7b494b232b8822f6737e35b563d44277a21b5056966ec794a7e2c882adf"
+  },
+  "id": "cfbc04f7-de59-8474-85f4-5b20808e77ff",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/decisions/T-042/D-01.json",
+        "id": "T-042/D-01",
+        "sha256": "0da47be99804a27ed36b96d48662fd134ff94bdda94459e7953de0fc7c51f944"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/decisions/T-042/D-01.json",
+        "id": "T-042/D-01",
+        "sha256": "0da47be99804a27ed36b96d48662fd134ff94bdda94459e7953de0fc7c51f944"
+      }
+    },
+    "historical": true
+  },
+  "sequence": 1
+}

@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "7cdafe3b-9084-8c7d-940a-4d3aa53c12d8",
+  "reason": "W006 implementation is explicitly authorized. Two UI files are unchanged carry-over from reviewed T026/SLC01 empty-ledger display, pending the combined implementation commit. Waive only this cross-slice path mismatch, not evidence or review freshness.",
+  "actor": "agent:sl-dev-build",
+  "treeDigest": "7d73478b08a2a66ae925a726487fc1d744b5738f2e7a2c5b92db3264949e2897",
+  "createdAt": "2026-09-04T21:39:40.371Z",
+  "workstreamId": "a32f3451-1b3d-8abf-bf0e-607ebf6e1a88",
+  "turnId": "2818ba02-24f9-863d-bc18-2b727b455498",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/align-waivers/AW-09.json",
+        "id": "T-028/AW-09",
+        "sha256": "5313b1fc0c1c91deca24b69c3ab526960d15fe9a5d5314203b07ba1b847124f4"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/align-waivers/AW-09.json",
+        "id": "T-028/AW-09",
+        "sha256": "5313b1fc0c1c91deca24b69c3ab526960d15fe9a5d5314203b07ba1b847124f4"
+      }
+    },
+    "historical": true
+  }
+}

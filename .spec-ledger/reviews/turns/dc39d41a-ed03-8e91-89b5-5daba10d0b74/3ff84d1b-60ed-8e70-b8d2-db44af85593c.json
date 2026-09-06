@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "id": "3ff84d1b-60ed-8e70-b8d2-db44af85593c",
+  "turnId": "dc39d41a-ed03-8e91-89b5-5daba10d0b74",
+  "workstreamId": "d1be55a6-11bb-8460-8650-ddf0ecac8185",
+  "kind": "human",
+  "target": "code",
+  "reviewer": "agent:align",
+  "verdict": "approve",
+  "summary": "user intent: include UI plus docs with init; waiver da8c9ddd-636c-8308-bc74-4bc3a56f6434 for skills/.gitignore tooling paths",
+  "plainSummary": "Init CLI, Spec Ledger UI, and docs in this turn are covered by the sealed plan; skills leftovers waived.",
+  "treeDigest": "ac42d9f05f2aeb561a13c9dc3da98cba3eff52572a8d1cf225800728b0968045",
+  "uncoveredPaths": [
+    ".gitignore",
+    "skills/README.md",
+    "skills/sl-dev-break/SKILL.md",
+    "skills/sl-plan-break-spec/SKILL.md",
+    "skills/sl-plan-shape/SKILL.md",
+    "skills/sl-plan-vision/SKILL.md",
+    "skills/sl-security-review/SKILL.md",
+    "skills/sl-security-review/references/boundary-probes.md",
+    "skills/sl-security-review/references/research.md"
+  ],
+  "coverageSource": "mixed",
+  "waiverIds": [
+    "da8c9ddd-636c-8308-bc74-4bc3a56f6434"
+  ],
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/reviews/turns/T-020/R-03.json",
+        "id": "T-020/R-03",
+        "sha256": "55717a3a89097e703994cc193019055064fb92e59f26325b6bea0efb9cc97df1"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/reviews/turns/T-020/R-03.json",
+        "id": "T-020/R-03",
+        "sha256": "55717a3a89097e703994cc193019055064fb92e59f26325b6bea0efb9cc97df1"
+      }
+    },
+    "historical": true
+  }
+}

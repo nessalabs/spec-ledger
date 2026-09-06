@@ -16,13 +16,13 @@ test("MCP exposes missing screenshot guidance and records the same guarded visua
       const envelope = JSON.parse((response.content as { text: string }[])[0].text)
       assert.equal(envelope.ok, true, JSON.stringify(response)); return envelope.result
     }
-    const missing = await call("check_visual_evidence", { workstreamId: "W-001", turnId: "T-001" })
+    const missing = await call("check_visual_evidence", { workstreamId: f.workstreamId, turnId: f.turnId })
     assert.equal(missing.ok, false); assert.match(missing.reasons[0], /Attach screenshots of all relevant UI/)
-    const args = { requestId: randomUUID(), ...f.guards(), turnId: "T-001", surface: "Desktop", path: f.capture("desktop") }
+    const args = { requestId: randomUUID(), ...f.guards(), turnId: f.turnId, surface: "Desktop", path: f.capture("desktop") }
     const a = await call("record_screenshot", args)
     assert.deepEqual(await call("record_screenshot", args), a)
-    assert.equal((await call("check_visual_evidence", { workstreamId: "W-001" })).ok, true)
-    const session = await call("get_session", { workstreamId: "W-001" })
+    assert.equal((await call("check_visual_evidence", { workstreamId: f.workstreamId })).ok, true)
+    const session = await call("get_session", { workstreamId: f.workstreamId })
     assert.equal(session.session.visualEvidence.ok, true)
     assert.match(session.session.artifacts[0].imageDataUrl, /^data:image\/png/)
   } finally { await client.close(); f.cleanup() }

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "turnId": "eb02e4af-5c85-89fa-8aad-70f0444297f7",
+  "decision": "Open New workflow and Edit in a dedicated Nessa UI canvas builder.",
+  "rationale": "User explicitly corrected the inline editor. learning:d73b4c93-b796-8d7e-bb01-2614ec2ab79e records the requested builder. Preserve linear execution and shared validation; canvas edges represent stage order and do not introduce branching. This explicit instruction authorizes the post-seal UI amendment.",
+  "basis": {
+    "at": "2026-09-06T06:10:52.482Z",
+    "contextDigest": "a557f0b19c339a49718ef31120a2e5415ae03b9897014d355044949722b38562",
+    "sealRevision": 1
+  },
+  "discovery": {
+    "kind": "spec-conflict",
+    "reportedVia": "user",
+    "observation": "The sealed document prescribes an ordered list; the user requires the Nessa UI workflow builder.",
+    "regression": "Verify New workflow navigation, canvas stage editing, preview and save."
+  },
+  "id": "17198f98-504e-865e-869f-1be8078ace33",
+  "migration": {
+    "origins": {
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/decisions/T-044/D-01.json",
+        "id": "T-044/D-01",
+        "sha256": "6dd2227ea9f9c749c2097aaf696be0ab0be0b0115127ff17d498ef47b8ec30b0"
+      }
+    },
+    "historical": true
+  },
+  "sequence": 1
+}

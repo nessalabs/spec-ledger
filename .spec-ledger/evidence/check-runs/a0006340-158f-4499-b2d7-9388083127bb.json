@@ -1,7 +1,7 @@
 {
   "runId": "a0006340-158f-4499-b2d7-9388083127bb",
   "requestId": "batch-a0006340-158f-4499-b2d7-9388083127bb",
-  "bindingId": "b-sl-014",
+  "bindingId": "835c6845-b9f1-8359-b222-271c56dbad45",
   "state": "finished",
   "command": "node --test packages/ledger/dist/publish.workflow.test.js packages/ledger/dist/publish.workflow.break.test.js",
   "cwd": "/Users/nessa/Documents/NessaLabs/spec-ledger",

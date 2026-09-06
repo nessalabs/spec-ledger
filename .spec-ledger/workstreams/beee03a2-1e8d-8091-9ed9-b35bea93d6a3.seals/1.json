@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "workstreamId": "beee03a2-1e8d-8091-9ed9-b35bea93d6a3",
+  "revision": 1,
+  "sealedAt": "2026-09-03T05:07:07.151Z",
+  "sealedBy": "human",
+  "specDigest": "b8efa6653f2b1e450156d698708ba9ac86572cb12f5d1307fa89138f799cc302",
+  "body": {
+    "id": "beee03a2-1e8d-8091-9ed9-b35bea93d6a3",
+    "featureIds": [
+      "lattice",
+      "turns",
+      "client"
+    ],
+    "primaryFeatureId": "lattice",
+    "title": "Spec Ledger dogfood UI",
+    "problem": "The UI is a verify dashboard; workstreams, open turns, and episode trails are not the hero — Spec Ledger does not feel like our own tool when opened in the browser.",
+    "objective": "Read-only Spec Ledger UI: home = active bet + open turn + verify badge; /workstreams list+detail; turn pages show reviews/decisions/attachments metadata — dogfood this repo.",
+    "appetite": "1 day",
+    "changeType": "feature",
+    "riskLevel": "moderate",
+    "trust": {
+      "deployTarget": "library-consumer",
+      "userFacing": true,
+      "performanceCritical": false,
+      "securitySensitive": false,
+      "correctnessCritical": false,
+      "requiredEvidence": [
+        "integration",
+        "e2e"
+      ]
+    },
+    "policy": {
+      "alertOnSeverity": "high",
+      "onAlert": "wait",
+      "alertWaitMinutes": 10,
+      "onAlertTimeout": "move",
+      "onSealedSpecDeviation": "wait",
+      "sealedDeviationWaitMinutes": 10,
+      "onSealedDeviationTimeout": "move",
+      "requireSpecBreak": false,
+      "requireCodeBreak": true,
+      "onAwaitingSeal": "block"
+    },
+    "acceptanceCriteria": [
+      "pnpm lattice boots against this repo .spec-ledger",
+      "/ shows workstream pulse + open turn or empty state + live verify badge",
+      "/workstreams and /workstreams/[id] show status, seal, slices, linked turns",
+      "/turns/[id] shows workstream/slice/contextDigest + reviews/decisions/attachments",
+      "Nav includes Workstreams; product chrome says Spec Ledger not Lattice",
+      "Client listWorkstreams/getWorkstream + turn episode helpers; UI uses client only"
+    ],
+    "outOfScope": [
+      "Write/mutate UI",
+      "Media player / upload",
+      "Compass edit",
+      "Spec Ledger UI in GitHub CI",
+      "New design system"
+    ],
+    "proposedClaimIds": [],
+    "suggestedSlices": [
+      {
+        "id": "8cb59bde-7f40-8f13-a458-1735d47b3aa4",
+        "title": "Client + workstream routes + home rewrite",
+        "kind": "vertical",
+        "acceptance": [
+          "listWorkstreams/getWorkstream/getTurnEpisode on client+HTTP",
+          "home + /workstreams + turn episode trail",
+          "chrome branded Spec Ledger"
+        ],
+        "evidence": [
+          "integration",
+          "e2e"
+        ],
+        "expectedClaimIds": [
+          "b69a663d-e2dd-8655-be45-0e07bfb45c89"
+        ]
+      }
+    ]
+  }
+}

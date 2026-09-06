@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "turnId": "e563f833-7a78-88a7-ba59-28dd5790ae4f",
+  "kind": "log-excerpt",
+  "title": "Custom method browser walkthrough: updates, failure, and disconnection",
+  "path": "docs/workstreams/815c7a44-59df-8102-9769-bf8a74e49c0c-shared-agent-workflows/evidence/e563f833-7a78-88a7-ba59-28dd5790ae4f/browser-check.md",
+  "mediaType": "text/markdown",
+  "contentDigest": "8a003c024652dea0fc0538bb3a9b3921338e517e91fcde8f39173a408bbe6963",
+  "byteLength": 1461,
+  "id": "deb32bbf-a6aa-87bd-98fc-89a10f08b07f",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/attachments/T-035/A-01.json",
+        "id": "T-035/A-01",
+        "sha256": "1a4c66462aa217d8547ebaa2028511448698a4acf39a23c9ed1effe684cf4a4c"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/attachments/T-035/A-01.json",
+        "id": "T-035/A-01",
+        "sha256": "1a4c66462aa217d8547ebaa2028511448698a4acf39a23c9ed1effe684cf4a4c"
+      }
+    },
+    "historical": true
+  }
+}

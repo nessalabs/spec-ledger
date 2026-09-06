@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "ffe69c37-b08a-8449-9f08-070232073a62",
+  "reason": "Phase II dogfood under f5dfe9a8-ba0e-8b0c-ac75-8889d96457f5 spans sealed 97bf91dc-b772-84fa-9a73-c4fe453839e9..04: uncovered paths are cd25a530-33a4-8e92-aad7-1f07c3e8fa79/04 artifacts (skill, AGENTS, hooks, CI, package.json, align-waiver schema) outside 97bf91dc-b772-84fa-9a73-c4fe453839e9 expectedPaths; coverage intent is full 76451749-a54f-8579-96f2-dcec19d79026 Phase II verticals in one turn per user drive-to-completion.",
+  "actor": "agent:composer",
+  "treeDigest": "51bf73938c3f02c58d3ef935b7759d8c26c26934f445363079181eee3c6dd034",
+  "createdAt": "2026-09-03T08:41:08.121Z",
+  "workstreamId": "76451749-a54f-8579-96f2-dcec19d79026",
+  "turnId": "f5dfe9a8-ba0e-8b0c-ac75-8889d96457f5",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/align-waivers/AW-01.json",
+        "id": "T-016/AW-01",
+        "sha256": "7e66bc00f9b93319c5e0c51213f7541fadf16d1954ad8d609469ac28b6554b74"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/align-waivers/AW-01.json",
+        "id": "T-016/AW-01",
+        "sha256": "7e66bc00f9b93319c5e0c51213f7541fadf16d1954ad8d609469ac28b6554b74"
+      }
+    },
+    "historical": true
+  }
+}

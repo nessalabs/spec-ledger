@@ -67,7 +67,7 @@ export function recordProgress(root: string, input: {
 export function getSession(root: string, workstreamId?: string) {
   const workstreams = listWorkstreams(root)
   const active = workstreams.filter(w => ["active", "sealed", "shaped", "draft"].includes(w.status))
-  const choices = workstreams.filter(w => w.status !== "cancelled").sort((a,b) => b.id.localeCompare(a.id))
+  const choices = workstreams.filter(w => w.status !== "cancelled").sort((a,b) => (b.createdAt ?? "").localeCompare(a.createdAt ?? "") || b.id.localeCompare(a.id))
   const selected = workstreamId ?? (active.length === 1 ? active[0].id : active.length === 0 ? choices.find(w => w.status === "done")?.id : undefined)
   if (!selected) return {
     observedAt: new Date().toISOString(), selectionRequired: active.length > 1,
@@ -81,7 +81,7 @@ export function getSession(root: string, workstreamId?: string) {
   const sourceDigest = computeTreeDigest(root)
   const turns = ledger.turns.filter(t => t.intent.workstreamId === selected)
   const decisions = turns.flatMap(t => listDecisionsForTurn(root, t.id) as ProgressDecision[])
-    .sort((a,b) => a.id.localeCompare(b.id, undefined, { numeric: true }))
+    .sort((a,b) => (turns.findIndex(t=>t.id===a.turnId)-turns.findIndex(t=>t.id===b.turnId)) || (a.sequence ?? 0)-(b.sequence ?? 0) || (a.recordedAt ?? "").localeCompare(b.recordedAt ?? ""))
   const current = decisions.filter(d => d.progress?.revisionDigest === revisionDigest && d.progress.sourceDigest === sourceDigest)
   const mapping = ws.acceptanceClaimIds ?? {}
   const criteria = acceptanceItems(ws).map(c => {
@@ -107,15 +107,43 @@ export function getSession(root: string, workstreamId?: string) {
   if (unresolvedBlockingReviews(reviews).length) attention.push("Blocking review findings remain unresolved.")
   if (ws.policy?.requireCodeBreak !== false && !codeBreakSatisfied(reviews, sourceDigest)) attention.push("A code review of the current source is required.")
   const visualEvidence = checkVisualEvidence(root, selected)
-  const completionReasons = [...attention, ...visualEvidence.reasons]
-  if (!checkSeal(root, selected).ok) completionReasons.push("The spec snapshot is missing or has changed.")
-  if (!criteria.length || criteria.some(c => !c.implemented || c.evidence !== "pass")) completionReasons.push("Every acceptance criterion needs current implementation and passing evidence.")
-  if (turns.some(t => t.status === "open")) completionReasons.push("Close the open turn before completing the workstream.")
-  if (ws.policy?.requireSpecBreak !== false && !reviews.some(r => r.id === ws.specBreakReviewId && r.target === "spec" && r.verdict === "approve" && (r.revisionDigest === revisionDigest || (!r.revisionDigest && permission.mode === "legacy-seal")))) completionReasons.push("The current spec needs its recorded independent review.")
-  if (ws.policy?.requireCodeBreak !== false && (ws.suggestedSlices ?? []).some(s => !reviews.some(r => r.id === s.codeBreakReviewId && codeBreakSatisfied([r], sourceDigest)))) completionReasons.push("Every slice needs a review covering the current source.")
-  const reportedPreview = [...current].reverse().find(d => d.progress?.preview)?.progress?.preview
   const workflow = projectWorkflow(root, selected)
-  if (workflow.profile.snapshotId && workflow.status !== "satisfied") completionReasons.push("The selected workflow still has required current outputs.")
+  const sealOk = checkSeal(root, selected).ok
+  const criteriaDone = criteria.length > 0 && criteria.every(c => c.implemented && c.evidence === "pass")
+  const criteriaStarted = criteria.some(c => c.implemented || c.evidence === "pass")
+  const turnOpen = turns.some(t => t.status === "open")
+  const specReviewed = reviews.some(r => r.id === ws.specBreakReviewId && r.target === "spec" && r.verdict === "approve" && (r.revisionDigest === revisionDigest || (!r.revisionDigest && permission.mode === "legacy-seal")))
+  const slices = ws.suggestedSlices ?? []
+  const slicesReviewed = slices.filter(sl => reviews.some(r => r.id === sl.codeBreakReviewId && codeBreakSatisfied([r], sourceDigest))).length
+  const workflowSelected = Boolean(workflow.profile.snapshotId)
+
+  /**
+   * The same conditions the reasons list uses, evaluated both ways so a reader
+   * can see what is already done rather than only what is missing. "started"
+   * means real progress exists but the requirement is not met yet — it never
+   * stands in for a passing check.
+   */
+  const state = (done: boolean, started = false): CompletionState => done ? "done" : started ? "in-progress" : "todo"
+  const checklist: CompletionChecklistItem[] = [
+    // Anything already demanding attention is a real outstanding item, so it
+    // belongs in the one list rather than repeated underneath it.
+    ...[...attention, ...visualEvidence.reasons].map((label, index) => ({ id: `attention-${index}`, label, state: "todo" as CompletionState })),
+    { id: "seal", label: "Spec snapshot recorded and unchanged", state: state(sealOk) },
+    { id: "criteria", label: "Every requirement implemented with passing evidence", state: state(criteriaDone, criteriaStarted), done: criteria.filter(c => c.implemented && c.evidence === "pass").length, total: criteria.length },
+    { id: "turn", label: "No turn left open", state: state(!turnOpen) },
+    ...(ws.policy?.requireSpecBreak !== false ? [{ id: "spec-review", label: "Independent review of the current spec", state: state(specReviewed) }] : []),
+    ...(ws.policy?.requireCodeBreak !== false ? [{ id: "code-review", label: "Every slice reviewed against the current source", state: state(slicesReviewed === slices.length && slices.length > 0, slicesReviewed > 0), done: slicesReviewed, total: slices.length }] : []),
+    ...(workflowSelected ? [{ id: "workflow", label: "Chosen workflow's required results recorded", state: state(workflow.status === "satisfied", workflow.status === "running") }] : []),
+  ]
+
+  const completionReasons = [...attention, ...visualEvidence.reasons]
+  if (!sealOk) completionReasons.push("The spec snapshot is missing or has changed.")
+  if (!criteriaDone) completionReasons.push("Every acceptance criterion needs current implementation and passing evidence.")
+  if (turnOpen) completionReasons.push("Close the open turn before completing the workstream.")
+  if (ws.policy?.requireSpecBreak !== false && !specReviewed) completionReasons.push("The current spec needs its recorded independent review.")
+  if (ws.policy?.requireCodeBreak !== false && slicesReviewed !== slices.length) completionReasons.push("Every slice needs a review covering the current source.")
+  const reportedPreview = [...current].reverse().find(d => d.progress?.preview)?.progress?.preview
+  if (workflowSelected && workflow.status !== "satisfied") completionReasons.push("The selected workflow still has required current outputs.")
   const executionActivity = projectExecution(root, selected, { eligible: permission.allowed && completionReasons.length === 0, reasons: completionReasons, remaining: criteria.filter(c => !c.implemented || c.evidence !== "pass").map(c => `${c.id}: ${c.text} (implemented: ${c.implemented ? "reported" : "unconfirmed"}; evidence: ${c.evidence})`) })
   let latestPreview: ProgressUpdate["preview"]
   if (reportedPreview) {
@@ -143,13 +171,24 @@ export function getSession(root: string, workstreamId?: string) {
         current: r.target === "spec" ? r.revisionDigest === revisionDigest : Boolean(sourceDigest && r.treeDigest === sourceDigest) })),
       artifacts: (() => { const budget = { remaining: 2 * 1024 * 1024 }; return turns.flatMap(t => listAttachmentsForTurn(root, t.id)).map(a => attachmentEvidence(root, a, budget)) })(),
       visualEvidence, permission, authorityDigest: authorityStateDigest(root), attention, criteria, activity, obligations, workflow, executionActivity,
-      completion: { eligible: permission.allowed && completionReasons.length === 0, reasons: completionReasons },
+      completion: { eligible: permission.allowed && completionReasons.length === 0, reasons: completionReasons, checklist },
       openTurnIds: turns.filter(t => t.status === "open").map(t => t.id),
       evidenceCount: criteria.filter(c => c.evidence === "pass").length,
       preview: latestPreview ? { ...latestPreview, availability: "unconfirmed", revisionDigest, sourceDigest } : null,
       handoff: { provenance: "portable-cli", approve: handoff("approve"), deny: handoff("deny") },
     },
   }
+}
+
+export type CompletionState = "done" | "in-progress" | "todo"
+
+export interface CompletionChecklistItem {
+  id: string
+  label: string
+  state: CompletionState
+  /** Present when the requirement counts parts, e.g. 3 of 5 slices reviewed. */
+  done?: number
+  total?: number
 }
 
 export type SessionProjection = ReturnType<typeof getSession>

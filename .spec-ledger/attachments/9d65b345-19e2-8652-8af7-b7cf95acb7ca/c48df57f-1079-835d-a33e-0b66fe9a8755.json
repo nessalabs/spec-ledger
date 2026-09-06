@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "turnId": "9d65b345-19e2-8652-8af7-b7cf95acb7ca",
+  "path": "docs/workstreams/11788af6-4cbe-834d-9993-8ee534b22b94-simple-feature-view/evidence/9d65b345-19e2-8652-8af7-b7cf95acb7ca/browser-check.md",
+  "kind": "log-excerpt",
+  "title": "Sol recheck and interactive proof walkthrough",
+  "mediaType": "text/markdown",
+  "id": "c48df57f-1079-835d-a33e-0b66fe9a8755",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/attachments/T-042/A-02.json",
+        "id": "T-042/A-02",
+        "sha256": "407b14c5057a4531fae7aa971ff4e4b0b8d40e1bc767319a48f68458e98363bf"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/attachments/T-042/A-02.json",
+        "id": "T-042/A-02",
+        "sha256": "407b14c5057a4531fae7aa971ff4e4b0b8d40e1bc767319a48f68458e98363bf"
+      }
+    },
+    "historical": true
+  }
+}

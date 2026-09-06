@@ -21,7 +21,7 @@
     {
       "id": "client",
       "name": "Client",
-      "blurb": "Typed SDK \u2014 only gateway for UIs"
+      "blurb": "Typed SDK — only gateway for UIs"
     },
     {
       "id": "server",
@@ -36,24 +36,24 @@
     {
       "id": "ui",
       "name": "UI",
-      "blurb": "Reference Spec Ledger UI \u2014 replaceable"
+      "blurb": "Reference Spec Ledger UI — replaceable"
     }
   ],
   "features": [
     {
       "id": "verify",
       "name": "Claim verification",
-      "summary": "Bindings + ingested results \u2192 provenance-bearing report.",
+      "summary": "Bindings + ingested results → provenance-bearing report.",
       "claimIds": [
-        "SL-001",
-        "SL-002",
-        "SL-003",
-        "SL-008",
-        "SL-016",
-        "SL-017",
-        "SL-018",
-        "SL-027",
-        "SL-028"
+        "67609c19-de05-862c-8db7-e5dc95f38cee",
+        "2884eafb-114e-85f1-ae07-ce1fbd140550",
+        "14d9b121-df2b-8ede-bce7-fdee648a4320",
+        "a642f738-2313-853e-a94d-d9936dcbc596",
+        "4265ae8b-dc22-8851-9a29-a9dab77fb7bb",
+        "d6bec874-d62d-850e-bf0f-f19d5b07f7a9",
+        "ef771e69-a55e-8f9c-8c2b-b5238a3fcff3",
+        "3d819ad1-8f9b-893c-a5bf-92d67c933cd3",
+        "fbe7ce66-ef39-848d-8426-b7f2643315b6"
       ],
       "entryPoints": [
         "packages/ledger/src/verify/verify.ts",
@@ -72,13 +72,13 @@
       "name": "Spec Ledger UI",
       "summary": "Feature/module graph, blast radius, layer policy, and Spec Ledger viewing surface.",
       "claimIds": [
-        "SL-004",
-        "SL-021",
-        "SL-022",
-        "SL-029",
-        "SL-030",
-        "SL-031",
-        "SL-032"
+        "77fb26cd-bc46-8037-a8f2-7573f7d6d33d",
+        "9767b1da-9568-8e2f-ad2a-c2c3eb3e424c",
+        "dd5caaee-dace-8f53-bff5-65b6a7646b6d",
+        "93abee59-3e8d-809f-a140-d86105b0d865",
+        "3cb6214c-8605-80e6-b73b-d20b9025023f",
+        "d62365fc-02af-826c-b961-8942c540bddf",
+        "1ea8304f-a051-8234-b7a7-ce31b25eccf2"
       ],
       "entryPoints": [
         "packages/ledger/src/graph/impact.ts",
@@ -98,11 +98,11 @@
       "name": "Turn change log",
       "summary": "Intent authored; facts from turn close (git + verify digests).",
       "claimIds": [
-        "SL-001",
-        "SL-003",
-        "SL-006",
-        "SL-020",
-        "SL-032"
+        "67609c19-de05-862c-8db7-e5dc95f38cee",
+        "14d9b121-df2b-8ede-bce7-fdee648a4320",
+        "f0309cdb-3ac5-8d55-a06a-f7b71e5c06ad",
+        "5287dabc-25de-8934-a4bb-364acca2b942",
+        "1ea8304f-a051-8234-b7a7-ce31b25eccf2"
       ],
       "entryPoints": [
         "packages/ledger/src/turns/close.ts",
@@ -118,12 +118,12 @@
     {
       "id": "client",
       "name": "Typed client",
-      "summary": "Transport-agnostic SDK \u2014 only gateway for UIs.",
+      "summary": "Transport-agnostic SDK — only gateway for UIs.",
       "claimIds": [
-        "SL-003",
-        "SL-024",
-        "SL-025",
-        "SL-030"
+        "14d9b121-df2b-8ede-bce7-fdee648a4320",
+        "4d4f7c20-b7e0-86d8-9b17-f45053bbf43b",
+        "a3c38839-cf13-837c-8866-ce46af309e15",
+        "3cb6214c-8605-80e6-b73b-d20b9025023f"
       ],
       "entryPoints": [
         "packages/client/src/index.ts",
@@ -139,10 +139,10 @@
     {
       "id": "server",
       "name": "Read-only HTTP",
-      "summary": "GET-only projection of the ledger (SL-003).",
+      "summary": "GET-only projection of the ledger (14d9b121-df2b-8ede-bce7-fdee648a4320).",
       "claimIds": [
-        "SL-003",
-        "SL-007"
+        "14d9b121-df2b-8ede-bce7-fdee648a4320",
+        "e7222390-759f-8d86-9f2c-1115b9b20261"
       ],
       "entryPoints": [
         "packages/server/src/routes.ts"
@@ -158,11 +158,11 @@
       "name": "Consumer CLI",
       "summary": "CLI and local MCP adapters over shared work, evidence and completion operations.",
       "claimIds": [
-        "SL-011",
-        "SL-015",
-        "SL-019",
-        "SL-023",
-        "SL-030"
+        "259e1acf-d082-8bfe-b0ab-76fab45ae7d0",
+        "505a71e7-37de-8e56-ae5c-467828201dba",
+        "fb335474-ec02-8a07-a399-a948d076a225",
+        "2f8cf085-d7a5-83b9-89f8-9d0754cb16a0",
+        "3cb6214c-8605-80e6-b73b-d20b9025023f"
       ],
       "entryPoints": [
         "packages/ledger/src/cli/main.ts",
@@ -231,7 +231,7 @@
       "featureIds": [
         "lattice"
       ],
-      "purpose": "Spec Ledger UI \u2014 presentation only"
+      "purpose": "Spec Ledger UI — presentation only"
     },
     {
       "id": "ledger-mcp",

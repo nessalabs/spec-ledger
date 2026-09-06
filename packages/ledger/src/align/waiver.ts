@@ -1,6 +1,7 @@
+import { createEntityId, publishEntity } from "../identity/index.js"
 import { existsSync, mkdirSync, readdirSync, readFileSync } from "node:fs"
 import { join } from "node:path"
-import { findRepoRoot, ledgerRoot, writeJson } from "../fs/load.js"
+import { findRepoRoot, ledgerRoot } from "../fs/load.js"
 import type { LedgerRootConfig } from "../types.js"
 
 export interface AlignWaiver {
@@ -42,15 +43,8 @@ export function listAlignWaiversForTurn(
   return listAlignWaivers(repoRootInput).filter((w) => w.turnId === turnId)
 }
 
-export function nextAlignWaiverId(repoRootInput: string, turnId?: string): string {
-  const existing = listAlignWaivers(repoRootInput)
-  const max = existing.reduce((m, w) => {
-    const stem = w.id.includes("/") ? w.id.split("/").at(-1)! : w.id
-    const n = Number(stem.replace(/^AW-/, ""))
-    return Number.isFinite(n) ? Math.max(m, n) : m
-  }, 0)
-  const id = `AW-${String(max + 1).padStart(2, "0")}`
-  return turnId ? `${turnId}/${id}` : id
+export function nextAlignWaiverId(_repoRootInput: string, _turnId?: string): string {
+  return createEntityId()
 }
 
 export function writeAlignWaiver(
@@ -100,6 +94,6 @@ export function writeAlignWaiver(
   const dir = waiversDir(repoRootInput)
   mkdirSync(dir, { recursive: true })
   const fileStem = full.id.includes("/") ? full.id.split("/").at(-1)! : full.id
-  writeJson(join(dir, `${fileStem}.json`), full)
+  publishEntity(join(dir, `${fileStem}.json`), full)
   return full
 }

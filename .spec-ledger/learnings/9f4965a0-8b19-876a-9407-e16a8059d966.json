@@ -1,0 +1,28 @@
+{
+  "id": "9f4965a0-8b19-876a-9407-e16a8059d966",
+  "statement": "A user may approve a particular revision, delegate a specific request, or establish standing scoped delegation. Preserve a spec snapshot and explicit permission; never silently rewrite past approvals.",
+  "source": {
+    "kind": "user-reported",
+    "reference": "User discussion for a32f3451-1b3d-8abf-bf0e-607ebf6e1a88: autonomous coding can be approved for a given request or in general; implementation requested September 4, 2026."
+  },
+  "supersedesTenetIds": [
+    "4f850c5a-83ce-85c9-a081-b0a3e02d2811"
+  ],
+  "schemaVersion": 1,
+  "createdAt": "2026-09-04T21:44:45.485Z",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/learnings/LN-004.json",
+        "id": "LN-004",
+        "sha256": "97759c40984aea136a242a95f09f816c35e12fc5f778f98fd244f8af8607eca6"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/learnings/LN-004.json",
+        "id": "LN-004",
+        "sha256": "97759c40984aea136a242a95f09f816c35e12fc5f778f98fd244f8af8607eca6"
+      }
+    },
+    "historical": true
+  }
+}

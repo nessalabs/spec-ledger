@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "requestId": "aaa6e805-8fd3-4c00-8641-a7d2e8472c14",
+  "operation": "approve_alignment",
+  "inputDigest": "2540cd4f839c5eb27b6f7eb57c718f132d770d58fbf74957bdb4780710a31c93",
+  "finishedAt": "2026-09-06T07:07:38.102Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "id": "7719a05c-4c36-8e63-8089-7a351eb8a215",
+    "turnId": "12494adf-1065-80ed-b949-f346a6334018",
+    "workstreamId": "ef172105-4f40-8bbb-8abe-d1cd11ae618a",
+    "kind": "human",
+    "target": "code",
+    "reviewer": "agent:align",
+    "verdict": "approve",
+    "summary": "Fixture paths are covered; current waiver covers root React test dependencies needed for the explicit CI repair.",
+    "plainSummary": "The CI fixes cover test fixtures and the requested clean-install test setup.",
+    "treeDigest": "47c70dc12fd9b447502a27da1f458a75ef70d5808408f28750350788a4b46a2e",
+    "uncoveredPaths": [
+      "package.json",
+      "pnpm-lock.yaml"
+    ],
+    "coverageSource": "mixed",
+    "waiverIds": [
+      "bcd05bf1-663c-8137-8d90-ef04fd9a6a9f"
+    ]
+  }
+}

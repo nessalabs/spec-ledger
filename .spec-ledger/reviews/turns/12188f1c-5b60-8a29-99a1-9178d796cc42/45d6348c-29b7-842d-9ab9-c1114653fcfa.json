@@ -1,0 +1,35 @@
+{
+  "kind": "adversarial",
+  "target": "code",
+  "reviewer": "agent:sl-dev-break:library",
+  "verdict": "approve",
+  "blocking": false,
+  "summary": "Diagnostics-only review: sole source diff adds failure()-conditioned upload-artifact v4 for hidden .spec-ledger/evidence/check-runs with seven-day retention. Asserted no continue-on-error and no product/test changes; existing gates still fail normally. All three ef172105-4f40-8bbb-8abe-d1cd11ae618a slices are unchanged from prior approved library/CLI/MCP/UI behavior. Two independent sequential existing server-pack smoke runs pass locally on Node26/npm11 with no listener surviving on8799; parent current-source SL012 saved check passed14.2sec. This approval covers retaining failure evidence, not a fix for the unresolved Linux SL012 failure; no unproven test changes made.",
+  "plainSummary": "Failed CI runs will retain their verification logs without hiding failures or changing workflow behavior.",
+  "killersCited": [
+    "command: sole diff is CI diagnostics; failure-only upload includes hidden check-runs with bounded retention and no continue-on-error",
+    "packages/ledger/src/pack.break.test.ts::after pnpm pack install, client and server modules import and run (two sequential local passes; no surviving8799listener)",
+    "command: parent current-source saved check 0e24eba8-4721-8373-ba7d-0f18be5063fc pass14230ms (/tmp/ci-diagnostics-refresh.log)"
+  ],
+  "findings": [],
+  "alertOnSeverity": "high",
+  "residualRisks": [
+    "Latest Linux SL012 failure remains undiagnosed because its original per-test logs were not retained; the next CI artifact is needed.",
+    "Server-wrapper orphan hypothesis was not reproduced locally. Node22/npm10 exact sequential repeats are pending avoidance of concurrent packaging.",
+    "All3 compatibility is unchanged-source assessment backed by prior63 library/MCP/UI regressions and latestCI full-test success, not a new UI session."
+  ],
+  "schemaVersion": 1,
+  "id": "45d6348c-29b7-842d-9ab9-c1114653fcfa",
+  "turnId": "12188f1c-5b60-8a29-99a1-9178d796cc42",
+  "treeDigest": "c9761aa9bd002b5641166c9d2928d4d7841c2172254d871d2f2c429c3f0a1739",
+  "migration": {
+    "origins": {
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/reviews/turns/T-050/R-02.json",
+        "id": "T-050/R-02",
+        "sha256": "6f9a6cb6ecdd5f9590787e3ea7122f76c2614ea3b0a197e63eeb9b5ea080f02e"
+      }
+    },
+    "historical": true
+  }
+}

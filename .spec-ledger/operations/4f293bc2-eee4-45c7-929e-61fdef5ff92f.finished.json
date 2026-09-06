@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "requestId": "4f293bc2-eee4-45c7-929e-61fdef5ff92f",
+  "operation": "approve_alignment",
+  "inputDigest": "8bd78d50fa5873b6761b21c98543f1ec9ff3307e9cee0370aa6cff54bfbaf322",
+  "finishedAt": "2026-09-06T07:21:19.892Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "id": "8f1fa94c-1b19-8956-95ef-a0736e56f99e",
+    "turnId": "c27931c8-b548-81c7-a660-ee6bf9e61466",
+    "workstreamId": "ef172105-4f40-8bbb-8abe-d1cd11ae618a",
+    "kind": "human",
+    "target": "code",
+    "reviewer": "agent:align",
+    "verdict": "approve",
+    "summary": "align: path coverage OK",
+    "plainSummary": "The CI job configuration change is necessary for the requested verification fix.",
+    "treeDigest": "5da35595ece444f4b6f1b69c56ed2c89b4583ea26e1b065be4f37c6e42f8395e",
+    "uncoveredPaths": [
+      ".github/workflows/ci.yml"
+    ],
+    "coverageSource": "mixed",
+    "waiverIds": [
+      "6458250e-a605-8e79-a72e-6829104b43d9"
+    ]
+  }
+}

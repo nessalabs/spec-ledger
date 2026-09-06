@@ -67,7 +67,7 @@ export function ExecutionActivitySummary({
         <p className="text-sm">Waiting for user{execution.waiting.reason ? ` · ${execution.waiting.reason}` : ""}</p>
       ) : null}
       {execution.timeout.warnings.length ? (
-        <p className="text-sm text-amber-600">{execution.timeout.warnings.length} tool duration warning{execution.timeout.warnings.length === 1 ? "" : "s"}</p>
+        <p className="text-sm text-amber-600 dark:text-amber-400">{execution.timeout.warnings.length} tool duration warning{execution.timeout.warnings.length === 1 ? "" : "s"}</p>
       ) : null}
       <Link className="text-sm underline" href={`/workstreams/${encodeURIComponent(workstreamId)}#execution-activity`}>
         Inspect execution signals and continuation limits
@@ -198,7 +198,7 @@ export function ExecutionActivityDetails({ execution }: { execution: Execution }
           Warning {execution.timeout.warningAfterMs === null ? "off" : `after ${durationLabel(execution.timeout.warningAfterMs)}`} · enforced timeout {execution.timeout.enforceAfterMs === null ? "off" : `after ${durationLabel(execution.timeout.enforceAfterMs)}`}
         </p>
         {execution.timeout.warnings.map((warning) => (
-          <p key={`${warning.invocationId}/${warning.thresholdMs}`} className="text-sm text-amber-600">
+          <p key={`${warning.invocationId}/${warning.thresholdMs}`} className="text-sm text-amber-600 dark:text-amber-400">
             {warning.invocationId} has run {durationLabel(warning.elapsedMs)} · warning threshold {durationLabel(warning.thresholdMs)}
           </p>
         ))}

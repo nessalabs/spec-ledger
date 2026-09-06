@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "requestId": "f8d479d1-9c00-4c9d-b274-761f5076e7ef",
+  "operation": "record_decision",
+  "inputDigest": "9f70f677b519a1edbe876e8733c2144f8ed3ac98641a7923ac73d511ec9eeb62",
+  "finishedAt": "2026-09-06T08:09:12.086Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "turnId": "ee4292d1-b9ee-8e3e-8a5a-57cf6155baf3",
+    "decision": "Use an OS-assigned test port together with direct server process ownership and termination assertions.",
+    "rationale": "An independent test campaign in another checkout was concurrently using the same fixed port during local validation. PORT=0 isolates concurrent runs; directly launching the installed bin and requiring ETIMEDOUT, SIGTERM and ESRCH independently proves cleanup. The startup assertion remains after the real server listen completes.",
+    "basis": {
+      "at": "2026-09-06T08:09:12.085Z",
+      "contextDigest": "059b739f8553561d8a20a00557d2f371fc9a8f6b5315928702b84b98c8620e82",
+      "sealRevision": 1
+    },
+    "id": "cdb0c983-7f00-8672-8aea-aefbbd1fa0c5"
+  }
+}

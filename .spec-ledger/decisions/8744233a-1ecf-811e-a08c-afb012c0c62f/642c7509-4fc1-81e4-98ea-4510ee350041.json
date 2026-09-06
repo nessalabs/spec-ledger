@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "turnId": "8744233a-1ecf-811e-a08c-afb012c0c62f",
+  "decision": "Reject incomplete graph display data before rendering the graph workspace.",
+  "rationale": "The temporary session fixture omitted graph.layers and system; the existing viewer assumed both were present.",
+  "discovery": {
+    "kind": "code-defect",
+    "reportedVia": "user",
+    "observation": "Graph route crashed with graph.layers is not iterable.",
+    "cause": "Incomplete graph fixture exposed an unchecked display boundary.",
+    "specRef": "a32f3451-1b3d-8abf-bf0e-607ebf6e1a88/782ababb-e2ba-8f93-8832-69a5c4334094",
+    "regression": "graph/display.test.ts covers missing layers, malformed entries and valid empty graphs; browser confirms incomplete notice."
+  },
+  "id": "642c7509-4fc1-81e4-98ea-4510ee350041",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/decisions/T-031/D-02.json",
+        "id": "T-031/D-02",
+        "sha256": "391f6554d95c9541e2eb9fbb290ba52f8ca5dcaa0409f5c1b52f34d50afe4485"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/decisions/T-031/D-02.json",
+        "id": "T-031/D-02",
+        "sha256": "391f6554d95c9541e2eb9fbb290ba52f8ca5dcaa0409f5c1b52f34d50afe4485"
+      }
+    },
+    "historical": true
+  },
+  "sequence": 2
+}

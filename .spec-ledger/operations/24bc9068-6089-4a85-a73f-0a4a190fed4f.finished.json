@@ -10,11 +10,11 @@
     "reviewer": "agent:sl-dev-break",
     "verdict": "approve",
     "blocking": false,
-    "resolvesReviewId": "T-044/R-01",
+    "resolvesReviewId": "a6ff95f0-d4a4-8723-a890-9b46eda52db3",
     "resolvesFindingIds": [
-      "T-044/R-01#F-01"
+      "a6ff95f0-d4a4-8723-a890-9b46eda52db3#c880586b-3177-8ebe-919a-f41084fa36d1"
     ],
-    "summary": "Covers W-014 SLC-01 and SLC-02 together on current source. Rerun: node --test packages/ledger/dist/session/visual-evidence.break.test.js packages/ledger/dist/session/evidence.break.test.js packages/ui/lib/simplicity.break.test.mjs packages/ui/lib/check-evidence.test.mjs packages/ledger/dist/optimization/*.test.js packages/mcp/dist/optimization.lifecycle.test.js packages/ui/lib/experiment-chart.test.mjs; exit 0, 35 tests passed. Unchanged truncated-image killer now passes after builder added bounded PNG chunks and JPEG frame/scan/end validation. Inspected parser and persistent mounted proof. Existing experiment primitives and opt-in additive workflow pass original tests; UI tests preserve missing/fail/attested/historical evidence, passive reads and uncertain-request identity. Breaker changed tests and review only.",
+    "summary": "Covers 29c935b4-56bd-84a0-b887-e280d775f54d 04932de5-9225-81d4-b42c-c13f79e6c5be and b21da6cf-af77-8a39-bf8e-bfdc0d5b3a95 together on current source. Rerun: node --test packages/ledger/dist/session/visual-evidence.break.test.js packages/ledger/dist/session/evidence.break.test.js packages/ui/lib/simplicity.break.test.mjs packages/ui/lib/check-evidence.test.mjs packages/ledger/dist/optimization/*.test.js packages/mcp/dist/optimization.lifecycle.test.js packages/ui/lib/experiment-chart.test.mjs; exit 0, 35 tests passed. Unchanged truncated-image killer now passes after builder added bounded PNG chunks and JPEG frame/scan/end validation. Inspected parser and persistent mounted proof. Existing experiment primitives and opt-in additive workflow pass original tests; UI tests preserve missing/fail/attested/historical evidence, passive reads and uncertain-request identity. Breaker changed tests and review only.",
     "plainSummary": "Damaged image headers are rejected, evidence stays honest, and the existing experiment workflow still passes its checks.",
     "killersCited": [
       "packages/ledger/src/optimization/optimization.break.test.ts::breaker: a rejected stale-source write leaves no experiment and can retry with fresh guards",
@@ -40,8 +40,8 @@
       "Browser interaction and narrow-screen verification remain builder-owned; independent checks exercised component behavior and real ledger/client/MCP paths."
     ],
     "schemaVersion": 1,
-    "id": "T-044/R-02",
-    "turnId": "T-044",
+    "id": "52ac5c69-b96f-84c0-b3f0-7f334c579ca6",
+    "turnId": "b73479b8-7a81-84e9-84e8-efcd9c23e531",
     "target": "code",
     "treeDigest": "98dd50aa8b389be4d774c93bbf2e095a8c43b5007bf2a458f6d0b469544f47b0"
   }

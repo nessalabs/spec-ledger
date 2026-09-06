@@ -38,12 +38,7 @@ export default async function ContractsPage() {
   return (
     <div className="mx-auto flex max-w-5xl flex-col gap-8">
       <header className="flex flex-col gap-2">
-        <p className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
-          Contracts
-        </p>
-        <h1 className="text-2xl font-semibold tracking-tight">
-          Spec Ledger’s own contracts
-        </h1>
+        <h1 className="text-2xl font-semibold tracking-tight">Reference</h1>
         <p className="max-w-2xl text-sm text-muted-foreground">
           JSON Schema files under <code className="text-foreground">schemas/</code> are
           the SSOT for claims, bindings, results, reports, and the graph. The HTTP

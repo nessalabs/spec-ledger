@@ -5,7 +5,7 @@ description: Plan a Spec Ledger feature against existing specs, corrections, bac
 
 # Plan
 
-Read the user's request and applicable vision, then use `spec-ledger plan --workstream W-NNN`. Inspect related specs and unresolved deferrals even when their originating turns are old. Feature links are deterministic retrieval hints; also research semantic interactions and record missing links. Local backlog candidates are optional suggestions; activated commitments have explicit completion gates. External discovery marked not-configured is not evidence of an empty external backlog.
+Read the user's request and applicable vision, then use `spec-ledger plan --workstream <workstream-uuid>`. Inspect related specs and unresolved deferrals even when their originating turns are old. Feature links are deterministic retrieval hints; also research semantic interactions and record missing links. Local backlog candidates are optional suggestions; activated commitments have explicit completion gates. External discovery marked not-configured is not evidence of an empty external backlog.
 
 For missing vision use [sl-plan-vision](../sl-plan-vision/SKILL.md); for ambiguous or multiple slices use [sl-plan-shape](../sl-plan-shape/SKILL.md). Preserve [cheap-to-change](../references/cheap-to-change.md). Read the effective method through `get_workflow` (MCP or `spec-ledger operation get_workflow --file ...`). Follow its selected planning and review skills; use [sl-plan-break-spec](../sl-plan-break-spec/SKILL.md) when the default method calls for it. Required independent review remains a policy gate regardless of skill selection.
 

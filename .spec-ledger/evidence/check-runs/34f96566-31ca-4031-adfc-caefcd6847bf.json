@@ -1,7 +1,7 @@
 {
   "runId": "34f96566-31ca-4031-adfc-caefcd6847bf",
   "requestId": "batch-34f96566-31ca-4031-adfc-caefcd6847bf",
-  "bindingId": "b-sl-022",
+  "bindingId": "823982ba-7fa8-8c9d-9721-f2b128d0db00",
   "state": "finished",
   "command": "node --test packages/ledger/dist/session/evidence.break.test.js",
   "cwd": "/Users/nessa/.codex/worktrees/24db/spec-ledger",

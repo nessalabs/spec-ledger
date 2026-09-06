@@ -1,7 +1,7 @@
 {
   "runId": "850bd249-fa35-43b9-ab17-8ee1c707a442",
   "requestId": "batch-850bd249-fa35-43b9-ab17-8ee1c707a442",
-  "bindingId": "b-sl-016",
+  "bindingId": "8a0f4b13-b869-8d0e-bbd0-59000d824efe",
   "state": "finished",
   "command": "node --test packages/ledger/dist/verify/aggregation.break.test.js",
   "cwd": "/Users/nessa/.codex/worktrees/24db/spec-ledger",

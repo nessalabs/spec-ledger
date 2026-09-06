@@ -1,0 +1,29 @@
+{
+  "id": "2884eafb-114e-85f1-ae07-ce1fbd140550",
+  "kind": "absence",
+  "statement": "A planned test is not proof that a feature works. Only recorded results can show a pass or failure.",
+  "area": "core",
+  "required": true,
+  "links": {
+    "docs": [
+      "DESIGN.md",
+      "schemas/binding.json",
+      "docs/architecture/claim-contracts.md"
+    ]
+  },
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/claims/SL-002.json",
+        "id": "SL-002",
+        "sha256": "4a78ccfabb350dd898748376530ace77c742f41527abfe869feca8d686ea53a4"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/claims/SL-002.json",
+        "id": "SL-002",
+        "sha256": "4a78ccfabb350dd898748376530ace77c742f41527abfe869feca8d686ea53a4"
+      }
+    },
+    "historical": true
+  }
+}

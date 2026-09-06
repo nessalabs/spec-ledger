@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "turnId": "50a92ff8-1d8a-8671-ba7e-5679d6c916cc",
+  "kind": "log-excerpt",
+  "title": "815c7a44-59df-8102-9769-bf8a74e49c0c outcomes, evidence and supported capabilities",
+  "path": "docs/workstreams/815c7a44-59df-8102-9769-bf8a74e49c0c-shared-agent-workflows/evidence/50a92ff8-1d8a-8671-ba7e-5679d6c916cc/completion-audit.md",
+  "mediaType": "text/markdown",
+  "contentDigest": "f1ebd2eba8ba25b549cfd964f0766b6fa1295d9671fc177efcb04ac76485e4a9",
+  "byteLength": 2145,
+  "id": "a304d0b7-2f51-892c-bfec-2016a84e5561",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/attachments/T-036/A-03.json",
+        "id": "T-036/A-03",
+        "sha256": "f879dc399bef1cf93daf6cdcf4bd8714ec6cf3bcb1454d21d93cf56826dfe125"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/attachments/T-036/A-03.json",
+        "id": "T-036/A-03",
+        "sha256": "f879dc399bef1cf93daf6cdcf4bd8714ec6cf3bcb1454d21d93cf56826dfe125"
+      }
+    },
+    "historical": true
+  }
+}

@@ -1,0 +1,17 @@
+✔ section history returns from execution to exact acceptance without hiding the evidence (10.683583ms)
+✔ unknown or obsolete fragments do not strand readers in an invisible section (0.063583ms)
+✔ mobile navigation closes on same-page selection and route change but preserves modified clicks (11.203709ms)
+✔ change history is isolated from the live child list and renders without key warnings (12.816958ms)
+✔ the in-page workflow retains its picker and process state when live data changes workstream (2.070083ms)
+✔ a deleted library name stays visible with its preserved version while switching is pending (6.29825ms)
+✔ workflow definition has one library route and the old per-spec route no longer resolves (0.176834ms)
+✔ overview keeps permission and problems visible with direct spec, evidence and history links (37.387667ms)
+✔ approved work does not request approval again and disconnected approval stays disabled (14.905167ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 163.726417

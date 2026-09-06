@@ -1,0 +1,158 @@
+{
+  "schemaVersion": 1,
+  "id": "f452f323-83c6-83e0-9ce2-faae3f1a3772",
+  "status": "abandoned",
+  "openedAt": "2026-09-06T07:04:19.446Z",
+  "opened": {
+    "producedBy": "@nessalabs/spec-ledger@0.1.0",
+    "baseCommit": "56d6ab11d684d654f6d09cbed531238823a72229",
+    "treeDigest": "53dca0fb41950aca1a0761fba7b4fb57523ebdbad3594dba99a47641a3ef67db",
+    "dirtyAtOpen": [
+      ".spec-ledger/evidence/check-runs/10ac0b8a-ce00-4aec-a173-9bc53753ce8b-stderr.txt",
+      ".spec-ledger/evidence/check-runs/10ac0b8a-ce00-4aec-a173-9bc53753ce8b-stdout.txt",
+      ".spec-ledger/evidence/check-runs/10ac0b8a-ce00-4aec-a173-9bc53753ce8b.json",
+      ".spec-ledger/evidence/runs/10ac0b8a-ce00-4aec-a173-9bc53753ce8b.json",
+      ".spec-ledger/turns/5bfd91de-8592-889f-954b-26c28d6b02c3.json",
+      "packages/ledger/src/episodes.write.test.ts"
+    ],
+    "contextDigest": "b7fb5690becd1ca0f2d4ad3979c9cccf16d057832e005f6df6788d90bfb5aeb3",
+    "contextWorkstreamId": "ef172105-4f40-8bbb-8abe-d1cd11ae618a",
+    "contextSliceId": "ef669c8c-b701-85d9-b2da-638757fed84e",
+    "contextSealRevision": 1,
+    "contextGeneratedAt": "2026-09-06T07:04:19.446Z"
+  },
+  "intent": {
+    "userPrompt": "Fix PR 2 CI failures in episode fixture cleanup and packaged dependency imports.",
+    "restatedGoal": "Make the PR verification pass reliably",
+    "changeType": "fix",
+    "riskLevel": "moderate",
+    "workstreamId": "ef172105-4f40-8bbb-8abe-d1cd11ae618a",
+    "sliceId": "ef669c8c-b701-85d9-b2da-638757fed84e",
+    "featureIds": [
+      "client",
+      "cli",
+      "lattice"
+    ]
+  },
+  "closedAt": "2026-09-06T07:07:13.381Z",
+  "facts": {
+    "producedBy": "@nessalabs/spec-ledger@0.1.0",
+    "commit": "56d6ab11d684d654f6d09cbed531238823a72229",
+    "files": [
+      {
+        "path": ".spec-ledger/align-waivers/00bfd6e8-56e6-8a6f-8e19-ed04de22179e.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/decisions/f452f323-83c6-83e0-9ce2-faae3f1a3772/a0adad6a-f6d8-8344-a355-f68763086406.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/evidence/check-runs/10ac0b8a-ce00-4aec-a173-9bc53753ce8b-stderr.txt",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/evidence/check-runs/10ac0b8a-ce00-4aec-a173-9bc53753ce8b-stdout.txt",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/evidence/check-runs/10ac0b8a-ce00-4aec-a173-9bc53753ce8b.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/evidence/runs/10ac0b8a-ce00-4aec-a173-9bc53753ce8b.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/turns/5bfd91de-8592-889f-954b-26c28d6b02c3.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/turns/f452f323-83c6-83e0-9ce2-faae3f1a3772.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "package.json",
+        "kind": "modified",
+        "additions": 4,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/episodes.write.test.ts",
+        "kind": "modified",
+        "additions": 5,
+        "deletions": 1
+      },
+      {
+        "path": "packages/ledger/src/pack.concurrency.break.test.ts",
+        "kind": "modified",
+        "additions": 16,
+        "deletions": 3
+      },
+      {
+        "path": "pnpm-lock.yaml",
+        "kind": "modified",
+        "additions": 29,
+        "deletions": 1
+      }
+    ],
+    "touchedNodeIds": [
+      "ledger-core"
+    ],
+    "touchedFeatureIds": [
+      "cli",
+      "lattice",
+      "turns",
+      "verify"
+    ],
+    "touchedClaimIds": [],
+    "blastRadius": {
+      "direct": [
+        "ledger-mcp",
+        "ledger-server"
+      ],
+      "transitive": [
+        "ledger-mcp",
+        "ledger-server"
+      ]
+    },
+    "verify": {
+      "ok": false,
+      "ledgerDigest": "32c985682c27c3449b2e9a945229faaa505e0ba6c2e25bfbbcde817ac5d68e49",
+      "resultsDigest": "3fadbb5f499801380062ba020d9dab76f9737bcd9d2d744a74ff8511650eb4fb",
+      "treeDigest": "47c70dc12fd9b447502a27da1f458a75ef70d5808408f28750350788a4b46a2e",
+      "producedAt": "2026-09-06T07:07:13.346Z"
+    },
+    "schemaSurfaceChanged": false,
+    "decisionIds": [
+      "a0adad6a-f6d8-8344-a355-f68763086406"
+    ],
+    "decisionsDigest": "4e87e6aae8f532055bad285d3345a8836ab60130e459973d854eba1bf4d471fd"
+  },
+  "migration": {
+    "origins": {
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/turns/T-046.json",
+        "id": "T-046",
+        "sha256": "63aae14d9fdc11cc7c64c8c034eb7ba56fec0e72b2219abf4c4f4d34cc657212"
+      }
+    },
+    "historical": true
+  }
+}

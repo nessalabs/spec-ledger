@@ -1,0 +1,112 @@
+TAP version 13
+# Subtest: passive evidence render keeps authored expectations distinct and escapes test source
+ok 1 - passive evidence render keeps authored expectations distinct and escapes test source
+  ---
+  duration_ms: 5.396667
+  type: 'test'
+  ...
+# Subtest: actual failures and tampered logs remain visible independently of a described expectation
+ok 2 - actual failures and tampered logs remain visible independently of a described expectation
+  ---
+  duration_ms: 1.362584
+  type: 'test'
+  ...
+# Subtest: uncertain HTTP response reconnects with the same request identity
+ok 3 - uncertain HTTP response reconnects with the same request identity
+  ---
+  duration_ms: 4.806916
+  type: 'test'
+  ...
+# Subtest: section history returns from execution to exact acceptance without hiding the evidence
+ok 4 - section history returns from execution to exact acceptance without hiding the evidence
+  ---
+  duration_ms: 12.096417
+  type: 'test'
+  ...
+# Subtest: unknown or obsolete fragments do not strand readers in an invisible section
+ok 5 - unknown or obsolete fragments do not strand readers in an invisible section
+  ---
+  duration_ms: 0.059292
+  type: 'test'
+  ...
+# Subtest: mobile navigation closes on same-page selection and route change but preserves modified clicks
+ok 6 - mobile navigation closes on same-page selection and route change but preserves modified clicks
+  ---
+  duration_ms: 18.703916
+  type: 'test'
+  ...
+# Subtest: change history is isolated from the live child list and renders without key warnings
+ok 7 - change history is isolated from the live child list and renders without key warnings
+  ---
+  duration_ms: 19.762917
+  type: 'test'
+  ...
+# Subtest: the in-page workflow retains its picker and process state when live data changes workstream
+ok 8 - the in-page workflow retains its picker and process state when live data changes workstream
+  ---
+  duration_ms: 2.926333
+  type: 'test'
+  ...
+# Subtest: a deleted library name stays visible with its preserved version while switching is pending
+ok 9 - a deleted library name stays visible with its preserved version while switching is pending
+  ---
+  duration_ms: 10.639625
+  type: 'test'
+  ...
+# Subtest: workflow definition has one library route and the old per-spec route no longer resolves
+ok 10 - workflow definition has one library route and the old per-spec route no longer resolves
+  ---
+  duration_ms: 0.175792
+  type: 'test'
+  ...
+# Subtest: overview keeps permission and problems visible with direct spec, evidence and history links
+ok 11 - overview keeps permission and problems visible with direct spec, evidence and history links
+  ---
+  duration_ms: 42.242792
+  type: 'test'
+  ...
+# Subtest: approved work does not request approval again and disconnected approval stays disabled
+ok 12 - approved work does not request approval again and disconnected approval stays disabled
+  ---
+  duration_ms: 23.889125
+  type: 'test'
+  ...
+# Subtest: simpler progress keeps incomplete and historical limits visible even when all checks pass
+ok 13 - simpler progress keeps incomplete and historical limits visible even when all checks pass
+  ---
+  duration_ms: 1.007
+  type: 'test'
+  ...
+# Subtest: failed missing attested and unmapped requirements keep their limitations beside expandable proof
+ok 14 - failed missing attested and unmapped requirements keep their limitations beside expandable proof
+  ---
+  duration_ms: 1.114125
+  type: 'test'
+  ...
+# Subtest: simplified feature observation still exposes disconnection without replacing the requested spec
+ok 15 - simplified feature observation still exposes disconnection without replacing the requested spec
+  ---
+  duration_ms: 3.858708
+  type: 'test'
+  ...
+# Subtest: opening proof reads evidence without posting a command
+ok 16 - opening proof reads evidence without posting a command
+  ---
+  duration_ms: 17.842916
+  type: 'test'
+  ...
+# Subtest: completion keeps finished planning ahead of implementation and never changes supplied states or counts
+ok 17 - completion keeps finished planning ahead of implementation and never changes supplied states or counts
+  ---
+  duration_ms: 0.821542
+  type: 'test'
+  ...
+1..17
+# tests 17
+# suites 0
+# pass 17
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 202.75575

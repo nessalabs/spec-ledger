@@ -483,6 +483,9 @@ export interface AutomationEvent {
 }
 
 export interface EpisodeDecision {
+  /** Ordering within the owning turn, independent of opaque identity. */
+  sequence?: number
+  recordedAt?: string
   deferral?: import("./deferrals/index.js").DeferredCommitment
   deferralResolution?: import("./deferrals/index.js").DeferralResolution
   progress?: import("./session/project.js").ProgressUpdate

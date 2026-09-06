@@ -7,24 +7,24 @@
   "outcome": "succeeded",
   "result": {
     "schemaVersion": 1,
-    "id": "W-014/SR-04",
-    "workstreamId": "W-014",
+    "id": "87dc2941-f56d-84c0-bb35-1447bf06bb7f",
+    "workstreamId": "29c935b4-56bd-84a0-b887-e280d775f54d",
     "kind": "adversarial",
     "target": "spec",
     "reviewer": "agent:sl-plan-break-spec",
     "verdict": "approve",
     "blocking": false,
     "plainSummary": "Visual work must show current screenshots of every declared surface, while passing result cards lose redundant metadata.",
-    "summary": "Independent SLC-03/PC-023 spec review grounded in related pack (3 features, 15 live claims, 1 proposed claim, 50 docs) and shared operation/read-only/verification contracts. Confirmed screenshot provenance is workflow coverage, never behavioral pass; declarations are preserved under trust and missing declarations fail closed when screenshot evidence is required. Builder clarified current completion reevaluation after turn close, refresh from later authorized turns without editing closed facts, and three concrete captures including missing-screenshot guidance before this revision was stamped. Scope extends workflow gates only under explicit user amendment. No alert-threshold spec gaps remain.",
+    "summary": "Independent d67e07f2-7343-88d2-afeb-0fe6f3c8c377/5418d06f-8b16-8d64-b004-408d9eb0f5a9 spec review grounded in related pack (3 features, 15 live claims, 1 proposed claim, 50 docs) and shared operation/read-only/verification contracts. Confirmed screenshot provenance is workflow coverage, never behavioral pass; declarations are preserved under trust and missing declarations fail closed when screenshot evidence is required. Builder clarified current completion reevaluation after turn close, refresh from later authorized turns without editing closed facts, and three concrete captures including missing-screenshot guidance before this revision was stamped. Scope extends workflow gates only under explicit user amendment. No alert-threshold spec gaps remain.",
     "alertOnSeverity": "high",
     "findings": [],
-    "supersedesReviewId": "W-014/SR-03",
+    "supersedesReviewId": "78c87091-4e55-84e2-b7d4-57405d97d6b0",
     "residualRisks": [
       "Machine provenance cannot prove that raster contents show the declared UI surface or were freshly captured; actual visual adequacy remains an independent review obligation stated in the spec.",
       "Code-break should attack source/file changes after successful close and completion, cross-workstream and cross-slice attachment confusion, missing/duplicate/unknown declarations, and abandoned/nonvisual compatibility.",
       "Evidence-only screenshot recording must preserve source identity while edits to product code still invalidate coverage; test both directions rather than broadly excluding new files.",
       "The current related CLI supplies only generic worktree caution text; actual sibling-path scan coverage remains unavailable."
     ],
-    "revisionDigest": "9ff6ab20b5d25d4e3ccd43c812ae08cca5615aff5686d7dc3fb4128c33b44f65"
+    "revisionDigest": "1ff6ee182547ae8f2e982b3d76a17396e7ac970f2b5ac4a62019209c18f52143"
   }
 }

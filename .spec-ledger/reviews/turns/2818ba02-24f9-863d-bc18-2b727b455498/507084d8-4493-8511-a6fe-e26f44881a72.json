@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "id": "507084d8-4493-8511-a6fe-e26f44881a72",
+  "turnId": "2818ba02-24f9-863d-bc18-2b727b455498",
+  "workstreamId": "a32f3451-1b3d-8abf-bf0e-607ebf6e1a88",
+  "kind": "human",
+  "target": "code",
+  "reviewer": "agent:align",
+  "verdict": "approve",
+  "summary": "Current code-break R01 passed; two carried-over SLC01 UI paths explicitly waived.",
+  "plainSummary": "Evidence changes are covered; the two earlier UI edits remain within the authorized workstream.",
+  "treeDigest": "7d73478b08a2a66ae925a726487fc1d744b5738f2e7a2c5b92db3264949e2897",
+  "uncoveredPaths": [
+    "packages/ui/app/page.tsx",
+    "packages/ui/app/verify/page.tsx"
+  ],
+  "coverageSource": "mixed",
+  "waiverIds": [
+    "7cdafe3b-9084-8c7d-940a-4d3aa53c12d8"
+  ],
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/reviews/turns/T-028/R-02.json",
+        "id": "T-028/R-02",
+        "sha256": "3257f90991fdabc06e5cc902f51b463c942df70670bbaf3bfad001327f525cee"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/reviews/turns/T-028/R-02.json",
+        "id": "T-028/R-02",
+        "sha256": "3257f90991fdabc06e5cc902f51b463c942df70670bbaf3bfad001327f525cee"
+      }
+    },
+    "historical": true
+  }
+}

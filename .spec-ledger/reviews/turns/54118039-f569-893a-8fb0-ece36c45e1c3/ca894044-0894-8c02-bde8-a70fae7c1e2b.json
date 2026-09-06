@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "id": "ca894044-0894-8c02-bde8-a70fae7c1e2b",
+  "turnId": "54118039-f569-893a-8fb0-ece36c45e1c3",
+  "kind": "adversarial",
+  "target": "code",
+  "reviewer": "agent:sl-dev-break",
+  "verdict": "approve",
+  "summary": "Doc reader lives in SpecLedgerShell with tabs; /api/repo-file serves DESIGN.md; page nav no longer owns the pane.",
+  "plainSummary": "The doc reader stays open when you change pages.",
+  "killersCited": [
+    "curl:/api/repo-file?path=DESIGN.md",
+    "grep:lattice-shell#DocReaderProvider"
+  ],
+  "findings": [
+    {
+      "id": "639963a3-2e04-8721-b9d9-250efb3886f5",
+      "severity": "moderate",
+      "gap": "Reader must persist across routes: Page-local TurnDocSplit cleared the right pane on navigation.",
+      "plainImpact": "Changing pages would close the document you were reading.",
+      "evidence": {
+        "kind": "command",
+        "command": "curl -s 'http://127.0.0.1:3737/api/repo-file?path=DESIGN.md' | head -c 40; rg -n DocReaderProvider packages/ui/components/lattice-shell.tsx",
+        "observedOutput": "DESIGN.md body returned; DocReaderProvider wraps shell inset",
+        "exitCode": 0
+      }
+    }
+  ],
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/reviews/turns/T-015/R-01.json",
+        "id": "T-015/R-01",
+        "sha256": "6c96ee114d9811e6a86a63fc473968e356b416e80ce786f9ba694595e7d545a8"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/reviews/turns/T-015/R-01.json",
+        "id": "T-015/R-01",
+        "sha256": "6c96ee114d9811e6a86a63fc473968e356b416e80ce786f9ba694595e7d545a8"
+      }
+    },
+    "historical": true
+  }
+}

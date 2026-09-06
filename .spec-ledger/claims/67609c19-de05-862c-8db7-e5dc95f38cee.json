@@ -1,0 +1,28 @@
+{
+  "id": "67609c19-de05-862c-8db7-e5dc95f38cee",
+  "kind": "invariant",
+  "statement": "Verification results identify what was checked and change only when the project, requirements, or evidence changes.",
+  "area": "core",
+  "required": true,
+  "links": {
+    "docs": [
+      "DESIGN.md",
+      "docs/architecture/claim-contracts.md"
+    ]
+  },
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/claims/SL-001.json",
+        "id": "SL-001",
+        "sha256": "4b0c34d6b027f70c078bee34f08b0ca401f744df2086959bad3b445c15d0fe26"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/claims/SL-001.json",
+        "id": "SL-001",
+        "sha256": "4b0c34d6b027f70c078bee34f08b0ca401f744df2086959bad3b445c15d0fe26"
+      }
+    },
+    "historical": true
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "id": "a6142cb0-3a77-8f1b-abf5-c55c4ac04d4c",
+  "turnId": "da84f6c1-3d94-8d66-8f41-dd67dfc07df0",
+  "workstreamId": "d1be55a6-11bb-8460-8650-ddf0ecac8185",
+  "kind": "human",
+  "target": "code",
+  "reviewer": "agent:align",
+  "verdict": "approve",
+  "summary": "coverage intent: 4a65c48e-eaf5-8e43-b1b6-4c7bc8c793ca UI Release asset (README + pack-ui-release + publish UI upload); residual uncovered (scripts outside expectedPaths, skills, lockfile, prior dirt) via a9097278-3a9d-81fa-8a5b-720babfaf1e0",
+  "plainSummary": "Consumers can download the Spec Ledger UI Release asset and pair it with published @nessalabs client/server.",
+  "treeDigest": "3e6411676a1964a6a66af9dc6cf567478222965d85438710b68f154f71d1b775",
+  "uncoveredPaths": [
+    ".github/workflows/publish.yml",
+    ".gitignore",
+    "AGENTS.md",
+    "DESIGN.md",
+    "package.json",
+    "pnpm-lock.yaml",
+    "schemas/workstream.json",
+    "scripts/pack-ui-release.mjs",
+    "scripts/rewrite-workspace-deps.mjs",
+    "skills/README.md",
+    "skills/sl-dev-break/SKILL.md",
+    "skills/sl-plan-break-spec/SKILL.md",
+    "skills/sl-plan-shape/SKILL.md",
+    "skills/sl-plan-shape/workstream-template.md",
+    "skills/sl-plan-vision/SKILL.md",
+    "skills/sl-security-review/SKILL.md",
+    "skills/sl-security-review/references/boundary-probes.md",
+    "skills/sl-security-review/references/research.md"
+  ],
+  "coverageSource": "mixed",
+  "waiverIds": [
+    "a9097278-3a9d-81fa-8a5b-720babfaf1e0"
+  ],
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/reviews/turns/T-024/R-04.json",
+        "id": "T-024/R-04",
+        "sha256": "1f73b9278895a4ae3c8a8ec4cfde670fea2d5b6c4df38033fc16f98edf02ab20"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/reviews/turns/T-024/R-04.json",
+        "id": "T-024/R-04",
+        "sha256": "1f73b9278895a4ae3c8a8ec4cfde670fea2d5b6c4df38033fc16f98edf02ab20"
+      }
+    },
+    "historical": true
+  }
+}

@@ -7,7 +7,7 @@
   "outcome": "succeeded",
   "result": {
     "schemaVersion": 1,
-    "id": "T-039",
+    "id": "9fa55cfe-6dd6-83c5-8b42-baf619c093c6",
     "status": "open",
     "openedAt": "2026-09-05T02:55:47.534Z",
     "opened": {
@@ -16,8 +16,8 @@
       "treeDigest": "1928c529067013cc45fdbdf5153d5496b2f07bd62e5de9a327f1938374c1a746",
       "dirtyAtOpen": [],
       "contextDigest": "626235e204fa103471915737dc0cb78e5b3580ab5e25ff3bf811f92b39eac101",
-      "contextWorkstreamId": "W-009",
-      "contextSliceId": "SLC-01",
+      "contextWorkstreamId": "3ca37660-1506-8a85-80c6-410a024d9a9a",
+      "contextSliceId": "79c61989-9765-86e0-b429-2d97d4e38892",
       "contextSealRevision": 2,
       "contextGeneratedAt": "2026-09-05T02:55:47.534Z"
     },
@@ -26,8 +26,8 @@
       "restatedGoal": "Finish the evidence audit and make test code readable",
       "changeType": "feature",
       "riskLevel": "moderate",
-      "workstreamId": "W-009",
-      "sliceId": "SLC-01",
+      "workstreamId": "3ca37660-1506-8a85-80c6-410a024d9a9a",
+      "sliceId": "79c61989-9765-86e0-b429-2d97d4e38892",
       "featureIds": [
         "lattice"
       ]

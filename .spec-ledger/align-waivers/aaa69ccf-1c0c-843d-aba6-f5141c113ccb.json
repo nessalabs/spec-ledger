@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "aaa69ccf-1c0c-843d-aba6-f5141c113ccb",
+  "reason": "User requested evidence in the workstream UI; schemas/report.json exposes the same verifier check outcomes to portable consumers. This exact output-schema path was omitted from the slice paths; no other paths or unrelated work are waived.",
+  "actor": "agent:align:user-requested-evidence-ui",
+  "treeDigest": "d7fdea43922377f2d293b60668d4371ce13415328ae4335816359bb73a18bc17",
+  "createdAt": "2026-09-04T23:22:21.953Z",
+  "workstreamId": "1652e353-e3dc-8960-985b-35fbe40c1edb",
+  "turnId": "a4ac3301-09fd-84e5-a54e-d91df8ffe307",
+  "paths": [
+    "schemas/report.json"
+  ],
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/align-waivers/AW-14.json",
+        "id": "T-033/AW-14",
+        "sha256": "75c99ca5e509cbe3c4e24c2559afcc266fe7cc0f68ee68294d1832bcb276af6e"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/align-waivers/AW-14.json",
+        "id": "T-033/AW-14",
+        "sha256": "75c99ca5e509cbe3c4e24c2559afcc266fe7cc0f68ee68294d1832bcb276af6e"
+      }
+    },
+    "historical": true
+  }
+}

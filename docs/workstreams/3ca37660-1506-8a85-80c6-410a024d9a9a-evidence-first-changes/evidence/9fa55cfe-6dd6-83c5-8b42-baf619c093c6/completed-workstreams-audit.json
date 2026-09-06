@@ -1,0 +1,1396 @@
+{
+  "observedAt": "2026-09-05T02:56:38.622Z",
+  "provenance": {
+    "commit": "a5d5c8507c9f2353044f8f9cb83c66137e6e075f",
+    "ledgerDigest": "9dd2b0f3ab16f91698d72eea3d34d37cf1f5a0b76d2dbb3415d48394016c12b4",
+    "resultsDigest": "f8e0a5154b97c5f94ca05b23bda4436a8860f460f6b5f42a37d140d2930775ce",
+    "treeHint": "/Users/nessa/Documents/NessaLabs/spec-ledger",
+    "sourceDigest": "18ef608f0589d32101c58ae46cd71d1f60f4ec54d28ebc768210a2602fbb99aa"
+  },
+  "workstreams": [
+    {
+      "id": "3317ada5-b347-894e-8c88-110b7b42d58b",
+      "title": "Honest builder turns",
+      "status": "done",
+      "revisionDigest": "e7370848e6846cbc514b010965f4d28f5f3f11c7c1e79d5365143a331b6578d5",
+      "criteria": [
+        {
+          "id": "AC-1",
+          "text": "workstream seal + check-seal with immutable seals/1.json",
+          "mappedClaimIds": [],
+          "currentEvidence": [
+            {
+              "outcome": "missing",
+              "detail": "No claim mapping represents this entire preserved criterion. This does not establish that the feature was never built."
+            }
+          ],
+          "assessment": "gap",
+          "rationale": "Existing 505a71e7-37de-8e56-ae5c-467828201dba overlaps digest preservation but does not fully name seal lifecycle; new scoped claim needed.",
+          "suggestedClaimIds": [],
+          "evidenceSources": [
+            "packages/ledger/src/workstream/doc-digest.break.test.ts",
+            "packages/ledger/src/workstream/doc-digest.test.ts"
+          ],
+          "savedChecks": [],
+          "nextAction": "Keep this gap visible; add the named missing behavioral or browser verification and a precise claim before mapping."
+        },
+        {
+          "id": "AC-2",
+          "text": "spec-ledger context and getVerticalContext share contextDigest",
+          "mappedClaimIds": [],
+          "currentEvidence": [
+            {
+              "outcome": "missing",
+              "detail": "No claim mapping represents this entire preserved criterion. This does not establish that the feature was never built."
+            }
+          ],
+          "assessment": "gap",
+          "rationale": "Stable API context tested; exact CLI/API equality not asserted by this test.",
+          "suggestedClaimIds": [],
+          "evidenceSources": [
+            "packages/ledger/src/context/vertical.test.ts"
+          ],
+          "savedChecks": [],
+          "nextAction": "Keep this gap visible; add the named missing behavioral or browser verification and a precise claim before mapping."
+        },
+        {
+          "id": "AC-3",
+          "text": "turn open --workstream stamps opened.contextDigest; unsealed open refused",
+          "mappedClaimIds": [],
+          "currentEvidence": [
+            {
+              "outcome": "missing",
+              "detail": "No claim mapping represents this entire preserved criterion. This does not establish that the feature was never built."
+            }
+          ],
+          "assessment": "gap",
+          "rationale": "Behavior test exists, but f0309cdb-3ac5-8d55-a06a-f7b71e5c06ad only describes dirty/tree gate. Add scoped claim before mapping.",
+          "suggestedClaimIds": [],
+          "evidenceSources": [
+            "packages/ledger/src/turns/close.test.ts"
+          ],
+          "savedChecks": [],
+          "nextAction": "Keep this gap visible; add the named missing behavioral or browser verification and a precise claim before mapping."
+        },
+        {
+          "id": "AC-4",
+          "text": "turn close can refuse missing code-break for workstream turns",
+          "mappedClaimIds": [],
+          "currentEvidence": [
+            {
+              "outcome": "missing",
+              "detail": "No claim mapping represents this entire preserved criterion. This does not establish that the feature was never built."
+            }
+          ],
+          "assessment": "gap",
+          "rationale": "Behavior test exists; no standing claim precisely represents review-close gate.",
+          "suggestedClaimIds": [],
+          "evidenceSources": [
+            "packages/ledger/src/turns/close.test.ts"
+          ],
+          "savedChecks": [],
+          "nextAction": "Keep this gap visible; add the named missing behavioral or browser verification and a precise claim before mapping."
+        },
+        {
+          "id": "AC-5",
+          "text": "closed workstream turn visible on existing Lattice feature/turn pages",
+          "mappedClaimIds": [],
+          "currentEvidence": [
+            {
+              "outcome": "missing",
+              "detail": "No claim mapping represents this entire preserved criterion. This does not establish that the feature was never built."
+            }
+          ],
+          "assessment": "gap",
+          "rationale": "Feature detail filters linked turns with turnsTouchingFeature and renders TurnSummaryCard; turn detail reads getTurnEpisode and its workstream. Current source supports navigation, but a closed-workstream browser fixture after the UI changes is still needed.",
+          "suggestedClaimIds": [],
+          "evidenceSources": [
+            "packages/ui/app/features/[id]/page.tsx",
+            "packages/ui/app/turns/[id]/page.tsx"
+          ],
+          "savedChecks": [],
+          "nextAction": "Keep this gap visible; add the named missing behavioral or browser verification and a precise claim before mapping."
+        },
+        {
+          "id": "AC-6",
+          "text": "workstream/context files do not change verify ledgerDigest",
+          "mappedClaimIds": [],
+          "currentEvidence": [
+            {
+              "outcome": "missing",
+              "detail": "No claim mapping represents this entire preserved criterion. This does not establish that the feature was never built."
+            }
+          ],
+          "assessment": "gap",
+          "rationale": "Existing test calls verifier twice without changing metadata: insufficient assertion of independence. Add mutation-based test.",
+          "suggestedClaimIds": [],
+          "evidenceSources": [
+            "packages/ledger/src/context/vertical.test.ts"
+          ],
+          "savedChecks": [],
+          "nextAction": "Keep this gap visible; add the named missing behavioral or browser verification and a precise claim before mapping."
+        }
+      ]
+    },
+    {
+      "id": "e6213c3f-60e4-8ceb-9d6a-15c67833b383",
+      "title": "Full builder runtime",
+      "status": "done",
+      "revisionDigest": "61ebf4b1f3a15e14f7d57ad70660f3bdd12c3f9417e8c9e1683b6d80db434f83",
+      "criteria": [
+        {
+          "id": "AC-1",
+          "text": "turn check recomputes facts without writing; turn abandon writes facts with status abandoned",
+          "mappedClaimIds": [],
+          "currentEvidence": [
+            {
+              "outcome": "missing",
+              "detail": "No claim mapping represents this entire preserved criterion. This does not establish that the feature was never built."
+            }
+          ],
+          "assessment": "gap",
+          "rationale": "No direct check-no-write/abandon facts behavior assertion found.",
+          "suggestedClaimIds": [],
+          "evidenceSources": [
+            "packages/ledger/src/episodes.write.test.ts"
+          ],
+          "savedChecks": [],
+          "nextAction": "Keep this gap visible; add the named missing behavioral or browser verification and a precise claim before mapping."
+        },
+        {
+          "id": "AC-2",
+          "text": "open stamps treeDigest; refuses dirty unless --allow-dirty",
+          "mappedClaimIds": [],
+          "currentEvidence": [
+            {
+              "outcome": "missing",
+              "detail": "No claim mapping represents this entire preserved criterion. This does not establish that the feature was never built."
+            }
+          ],
+          "assessment": "gap",
+          "rationale": "Upgrade f0309cdb-3ac5-8d55-a06a-f7b71e5c06ad path binding and add explicit dirty-refusal test if not in latest suite; current named turn test permits dirty.",
+          "suggestedClaimIds": [],
+          "evidenceSources": [
+            "packages/ledger/src/git/tree.test.ts",
+            "packages/ledger/src/turns/close.test.ts"
+          ],
+          "savedChecks": [],
+          "nextAction": "Keep this gap visible; add the named missing behavioral or browser verification and a precise claim before mapping."
+        },
+        {
+          "id": "AC-3",
+          "text": "GET /v1/context returns VerticalContext; client HTTP path works",
+          "mappedClaimIds": [],
+          "currentEvidence": [
+            {
+              "outcome": "missing",
+              "detail": "No claim mapping represents this entire preserved criterion. This does not establish that the feature was never built."
+            }
+          ],
+          "assessment": "gap",
+          "rationale": "e7222390-759f-8d86-9f2c-1115b9b20261 binding is only routes.ts existence. Need actual HTTP client context test.",
+          "suggestedClaimIds": [],
+          "evidenceSources": [
+            "packages/ledger/src/context/vertical.test.ts"
+          ],
+          "savedChecks": [],
+          "nextAction": "Keep this gap visible; add the named missing behavioral or browser verification and a precise claim before mapping."
+        },
+        {
+          "id": "AC-4",
+          "text": "automation events resume timeouts on context/open; close refuses blocked events",
+          "mappedClaimIds": [],
+          "currentEvidence": [
+            {
+              "outcome": "missing",
+              "detail": "No claim mapping represents this entire preserved criterion. This does not establish that the feature was never built."
+            }
+          ],
+          "assessment": "superseded",
+          "rationale": "Original resume-on-context behavior intentionally superseded by W006 read purity. Do not claim old acceptance passing; record supersession. This audit records the conflict with later authorized behavior; it does not silently amend the preserved requirement.",
+          "suggestedClaimIds": [],
+          "evidenceSources": [
+            "packages/ledger/src/runtime.p0.test.ts",
+            "packages/ledger/src/verify/readonly.break.test.ts"
+          ],
+          "savedChecks": [],
+          "nextAction": "Record the newer requirement as superseding this historical contract; retain old evidence/history."
+        },
+        {
+          "id": "AC-5",
+          "text": "spec-ledger related --workstream returns claims/features/turns/docs pack",
+          "mappedClaimIds": [],
+          "currentEvidence": [
+            {
+              "outcome": "missing",
+              "detail": "No claim mapping represents this entire preserved criterion. This does not establish that the feature was never built."
+            }
+          ],
+          "assessment": "gap",
+          "rationale": "Related function checked, not CLI shape. No exact standing claim.",
+          "suggestedClaimIds": [],
+          "evidenceSources": [
+            "packages/ledger/src/runtime.p0.test.ts"
+          ],
+          "savedChecks": [],
+          "nextAction": "Keep this gap visible; add the named missing behavioral or browser verification and a precise claim before mapping."
+        },
+        {
+          "id": "AC-6",
+          "text": "decisions/sources/attachments/probes/flows loadable; decision basis stamped on close when present",
+          "mappedClaimIds": [],
+          "currentEvidence": [
+            {
+              "outcome": "missing",
+              "detail": "No claim mapping represents this entire preserved criterion. This does not establish that the feature was never built."
+            }
+          ],
+          "assessment": "gap",
+          "rationale": "Test runs real side-collection CLI and close; add scoped claim for mapping.",
+          "suggestedClaimIds": [],
+          "evidenceSources": [
+            "packages/ledger/src/episodes.write.test.ts"
+          ],
+          "savedChecks": [],
+          "nextAction": "Keep this gap visible; add the named missing behavioral or browser verification and a precise claim before mapping."
+        },
+        {
+          "id": "AC-7",
+          "text": "spec-ledger audit + policy/audit.json; CI runs verify + audit + test",
+          "mappedClaimIds": [],
+          "currentEvidence": [
+            {
+              "outcome": "missing",
+              "detail": "No claim mapping represents this entire preserved criterion. This does not establish that the feature was never built."
+            }
+          ],
+          "assessment": "gap",
+          "rationale": "Current test checks audit shape only, not policy nonzero exit. a642f738-2313-853e-a94d-d9936dcbc596 path binding insufficient; CI config inspection required.",
+          "suggestedClaimIds": [],
+          "evidenceSources": [
+            "packages/ledger/src/runtime.p0.test.ts"
+          ],
+          "savedChecks": [],
+          "nextAction": "Keep this gap visible; add the named missing behavioral or browser verification and a precise claim before mapping."
+        },
+        {
+          "id": "AC-8",
+          "text": "Lattice /compass and /timeline render vision/tenets/turns",
+          "mappedClaimIds": [],
+          "currentEvidence": [
+            {
+              "outcome": "missing",
+              "detail": "No claim mapping represents this entire preserved criterion. This does not establish that the feature was never built."
+            }
+          ],
+          "assessment": "gap",
+          "rationale": "Compass renders vision, tenets and themes from getCompass. The /timeline route redirects to /turns via the redirects() table in next.config.mjs. A browser observation of populated compass and redirected turn history is missing; the original route no longer renders its own timeline.",
+          "suggestedClaimIds": [],
+          "evidenceSources": [
+            "packages/ui/app/compass/page.tsx",
+            "packages/ui/next.config.mjs"
+          ],
+          "savedChecks": [],
+          "nextAction": "Keep this gap visible; add the named missing behavioral or browser verification and a precise claim before mapping."
+        },
+        {
+          "id": "AC-9",
+          "text": "proposed-claims dir + list; themes optional; dogfood turn under e6213c3f-60e4-8ceb-9d6a-15c67833b383",
+          "mappedClaimIds": [],
+          "currentEvidence": [
+            {
+              "outcome": "missing",
+              "detail": "No claim mapping represents this entire preserved criterion. This does not establish that the feature was never built."
+            }
+          ],
+          "assessment": "gap",
+          "rationale": "Dogfood turn metadata can establish historical use; proposals/themes behavior not meaningfully asserted.",
+          "suggestedClaimIds": [],
+          "evidenceSources": [
+            "packages/ledger/src/runtime.p0.test.ts"
+          ],
+          "savedChecks": [],
+          "nextAction": "Keep this gap visible; add the named missing behavioral or browser verification and a precise claim before mapping."
+        }
+      ]
+    },
+    {
+      "id": "beee03a2-1e8d-8091-9ed9-b35bea93d6a3",
+      "title": "Spec Ledger in the browser",
+      "status": "done",
+      "revisionDigest": "ce22f32a68419a7751ee2e00a811b4df3c8e912a083ac2d8e94321a47af1dcb3",
+      "criteria": [
+        {
+          "id": "AC-1",
+          "text": "pnpm lattice boots against this repo .spec-ledger",
+          "mappedClaimIds": [],
+          "currentEvidence": [
+            {
+              "outcome": "missing",
+              "detail": "No claim mapping represents this entire preserved criterion. This does not establish that the feature was never built."
+            }
+          ],
+          "assessment": "superseded",
+          "rationale": "The root package scripts contain ui and ui:prod, but no lattice. This records the naming successor and conflict with the preserved command; it does not claim the literal original command passes.",
+          "suggestedClaimIds": [],
+          "evidenceSources": [
+            "package.json"
+          ],
+          "savedChecks": [],
+          "nextAction": "Record the newer requirement as superseding this historical contract; retain old evidence/history."
+        },
+        {
+          "id": "AC-2",
+          "text": "/ shows workstream pulse + open turn or empty state + live verify badge",
+          "mappedClaimIds": [],
+          "currentEvidence": [
+            {
+              "outcome": "missing",
+              "detail": "No claim mapping represents this entire preserved criterion. This does not establish that the feature was never built."
+            }
+          ],
+          "assessment": "superseded",
+          "rationale": "The home route now loads getSession and renders LiveSession. W009 expressly specifies current acceptance evidence and historical completion revalidation on Now; this replaces the old pulse/open-turn/live-badge layout. The old layout is not being passed retroactively.",
+          "suggestedClaimIds": [],
+          "evidenceSources": [
+            "packages/ui/app/page.tsx",
+            "docs/workstreams/3ca37660-1506-8a85-80c6-410a024d9a9a-evidence-first-changes/spec.md"
+          ],
+          "savedChecks": [],
+          "nextAction": "Record the newer requirement as superseding this historical contract; retain old evidence/history."
+        },
+        {
+          "id": "AC-3",
+          "text": "/workstreams and /workstreams/[id] show status, seal, slices, linked turns",
+          "mappedClaimIds": [],
+          "currentEvidence": [
+            {
+              "outcome": "missing",
+              "detail": "No claim mapping represents this entire preserved criterion. This does not establish that the feature was never built."
+            }
+          ],
+          "assessment": "gap",
+          "rationale": "The index uses listWorkstreams; detail reads status, seal metadata, current evidence, and turns filtered by workstreamId. No current browser fixture establishes every original slice/status/link requirement; preserve this gap.",
+          "suggestedClaimIds": [],
+          "evidenceSources": [
+            "packages/ui/app/workstreams/page.tsx",
+            "packages/ui/app/workstreams/[id]/page.tsx"
+          ],
+          "savedChecks": [],
+          "nextAction": "Keep this gap visible; add the named missing behavioral or browser verification and a precise claim before mapping."
+        },
+        {
+          "id": "AC-4",
+          "text": "/turns/[id] shows workstream/slice/contextDigest + reviews/decisions/attachments",
+          "mappedClaimIds": [],
+          "currentEvidence": [
+            {
+              "outcome": "missing",
+              "detail": "No claim mapping represents this entire preserved criterion. This does not establish that the feature was never built."
+            }
+          ],
+          "assessment": "gap",
+          "rationale": "The route reads getTurnEpisode and workstream; TurnDetail renders the scoped plan, reviews, decisions and evidence. Its Ledger internals shows ledgerDigest/resultsDigest, but no explicit contextDigest display was found. The full original metadata/artifact contract needs a focused browser assertion and possibly a display correction.",
+          "suggestedClaimIds": [],
+          "evidenceSources": [
+            "packages/ui/app/turns/[id]/page.tsx",
+            "packages/ui/components/turn-detail.tsx"
+          ],
+          "savedChecks": [],
+          "nextAction": "Keep this gap visible; add the named missing behavioral or browser verification and a precise claim before mapping."
+        },
+        {
+          "id": "AC-5",
+          "text": "Nav includes Workstreams; product chrome says Spec Ledger not Lattice",
+          "mappedClaimIds": [],
+          "currentEvidence": [
+            {
+              "outcome": "missing",
+              "detail": "No claim mapping represents this entire preserved criterion. This does not establish that the feature was never built."
+            }
+          ],
+          "assessment": "gap",
+          "rationale": "The WORK navigation contains Workstreams; the shell visibly renders specLedger and uses Spec Ledger in its tooltip. This source inspection supports the current brand/navigation but is not a complete browser or all-copy assertion, especially for preserved historical prose.",
+          "suggestedClaimIds": [],
+          "evidenceSources": [
+            "packages/ui/components/spec-ledger-shell.tsx"
+          ],
+          "savedChecks": [],
+          "nextAction": "Keep this gap visible; add the named missing behavioral or browser verification and a precise claim before mapping."
+        },
+        {
+          "id": "AC-6",
+          "text": "Client listWorkstreams/getWorkstream + turn episode helpers; UI uses client only",
+          "mappedClaimIds": [],
+          "currentEvidence": [
+            {
+              "outcome": "missing",
+              "detail": "No claim mapping represents this entire preserved criterion. This does not establish that the feature was never built."
+            }
+          ],
+          "assessment": "gap",
+          "rationale": "The client implements listWorkstreams, getWorkstream and getTurnEpisode for local and HTTP surfaces; inspected UI routes use the client facade. These source examples do not establish a repository-wide import boundary or complete behavioral API contract. A precise claim and focused tests remain needed.",
+          "suggestedClaimIds": [],
+          "evidenceSources": [
+            "packages/client/src/index.ts",
+            "packages/ui/app/workstreams/[id]/page.tsx",
+            "packages/ui/app/turns/[id]/page.tsx"
+          ],
+          "savedChecks": [],
+          "nextAction": "Keep this gap visible; add the named missing behavioral or browser verification and a precise claim before mapping."
+        }
+      ]
+    },
+    {
+      "id": "76451749-a54f-8579-96f2-dcec19d79026",
+      "title": "Spec and code stay coupled",
+      "status": "done",
+      "revisionDigest": "e693d457b2e3a201402471045b36ce5f20744cd2e7ed4da43c2c5d7579488e08",
+      "criteria": [
+        {
+          "id": "AC-1",
+          "text": "Human-reviewed bet prose lives under docs/workstreams/ as a title-slug Markdown file; .spec-ledger holds JSON metadata only and links via specPath (repo-relative)",
+          "mappedClaimIds": [],
+          "currentEvidence": [
+            {
+              "outcome": "missing",
+              "detail": "No claim mapping represents this entire preserved criterion. This does not establish that the feature was never built."
+            }
+          ],
+          "assessment": "superseded",
+          "rationale": "W006 explicitly assigns main prose to docs/workstreams/W-…/spec.md and artifacts to evidence/<run-id>/. This later directory contract supersedes the original flat title-slug shape; the preserved requirement is not silently changed or passed.",
+          "suggestedClaimIds": [],
+          "evidenceSources": [
+            "docs/workstreams/a32f3451-1b3d-8abf-bf0e-607ebf6e1a88-trustworthy-autonomous-coding/spec.md"
+          ],
+          "savedChecks": [],
+          "nextAction": "Record the newer requirement as superseding this historical contract; retain old evidence/history."
+        },
+        {
+          "id": "AC-2",
+          "text": "Sidebar wordmark is specLedger (bold 'spec', regular 'Ledger'); no 'Bets → turns → claims' subtitle under the brand",
+          "mappedClaimIds": [],
+          "currentEvidence": [
+            {
+              "outcome": "missing",
+              "detail": "No claim mapping represents this entire preserved criterion. This does not establish that the feature was never built."
+            }
+          ],
+          "assessment": "gap",
+          "rationale": "The current shell still renders spec with font-semibold and Ledger with font-normal, without a subtitle. The original typography has not actually been superseded. Source supports it; a focused rendered observation is absent, so retain a verification gap.",
+          "suggestedClaimIds": [],
+          "evidenceSources": [
+            "packages/ui/components/spec-ledger-shell.tsx"
+          ],
+          "savedChecks": [],
+          "nextAction": "Observe the current wordmark in the browser and attach a scoped verification record."
+        },
+        {
+          "id": "AC-3",
+          "text": "Turn detail leads with plan loaded from workstream specPath Markdown (before/after + ask), before→after diagram or flows, commit subject/body, related docs; FileDiffCard lists product files; build artifacts (.next, node_modules) excluded from impact lists",
+          "mappedClaimIds": [],
+          "currentEvidence": [
+            {
+              "outcome": "missing",
+              "detail": "No claim mapping represents this entire preserved criterion. This does not establish that the feature was never built."
+            }
+          ],
+          "assessment": "superseded",
+          "rationale": "W009 explicitly requires evidence before secondary technical details. TurnDetail places TurnEvidence directly below its header, before before/after and plan details. This is a documented successor to original plan-first order, not proof of the original ordering.",
+          "suggestedClaimIds": [],
+          "evidenceSources": [
+            "docs/workstreams/3ca37660-1506-8a85-80c6-410a024d9a9a-evidence-first-changes/spec.md",
+            "packages/ui/components/turn-detail.tsx"
+          ],
+          "savedChecks": [],
+          "nextAction": "Record the newer requirement as superseding this historical contract; retain old evidence/history."
+        },
+        {
+          "id": "AC-4",
+          "text": "Architecture touch shows workstream link + named features (+ claim count), not only bare node ids",
+          "mappedClaimIds": [],
+          "currentEvidence": [
+            {
+              "outcome": "missing",
+              "detail": "No claim mapping represents this entire preserved criterion. This does not establish that the feature was never built."
+            }
+          ],
+          "assessment": "gap",
+          "rationale": "Architecture touch renders the workstream link, named feature badges, node lists and claim chips; its summary counts workstreams/features, but an explicit claim count is not rendered by ChipRow. A targeted UI check and a decision on the original claim-count expectation remain needed.",
+          "suggestedClaimIds": [],
+          "evidenceSources": [
+            "packages/ui/components/turn-detail.tsx"
+          ],
+          "savedChecks": [],
+          "nextAction": "Keep this gap visible; add the named missing behavioral or browser verification and a precise claim before mapping."
+        },
+        {
+          "id": "AC-5",
+          "text": "Verify page: covered totals (e.g. required pass/total) plus each verdict row shows claim statement primary and id secondary",
+          "mappedClaimIds": [],
+          "currentEvidence": [
+            {
+              "outcome": "missing",
+              "detail": "No claim mapping represents this entire preserved criterion. This does not establish that the feature was never built."
+            }
+          ],
+          "assessment": "gap",
+          "rationale": "The evidence page renders Required covered as requiredPass/required.length, and ClaimsList puts claim.statement ahead of secondary id/kind/detail. This is inspected implementation support; no focused current rendered assertion is attached to this criterion.",
+          "suggestedClaimIds": [],
+          "evidenceSources": [
+            "packages/ui/app/claims/page.tsx",
+            "packages/ui/components/claims-list.tsx"
+          ],
+          "savedChecks": [],
+          "nextAction": "Keep this gap visible; add the named missing behavioral or browser verification and a precise claim before mapping."
+        },
+        {
+          "id": "AC-6",
+          "text": "Claims/features/bets/turns index rows stay compact",
+          "mappedClaimIds": [],
+          "currentEvidence": [
+            {
+              "outcome": "missing",
+              "detail": "No claim mapping represents this entire preserved criterion. This does not establish that the feature was never built."
+            }
+          ],
+          "assessment": "gap",
+          "rationale": "ClaimsList and features use divided compact rows; workstreams uses WorkstreamsList and turns passes compact to TurnSummaryCard. Source supports the row approach, but the full responsive/browser acceptance remains unverified.",
+          "suggestedClaimIds": [],
+          "evidenceSources": [
+            "packages/ui/components/claims-list.tsx",
+            "packages/ui/app/features/page.tsx",
+            "packages/ui/app/workstreams/page.tsx",
+            "packages/ui/app/turns/page.tsx"
+          ],
+          "savedChecks": [],
+          "nextAction": "Keep this gap visible; add the named missing behavioral or browser verification and a precise claim before mapping."
+        },
+        {
+          "id": "AC-7",
+          "text": "Align coverage: product path is covered if it matches a graph node.locator under the turn's featureIds OR a slice expectedPaths[] entry; .spec-ledger/** and ignore globs exempt; uncovered paths reported",
+          "mappedClaimIds": [],
+          "currentEvidence": [
+            {
+              "outcome": "missing",
+              "detail": "No claim mapping represents this entire preserved criterion. This does not establish that the feature was never built."
+            }
+          ],
+          "assessment": "gap",
+          "rationale": "Behavior suites exist but no SL-009 claim is present: create scoped coverage claim.",
+          "suggestedClaimIds": [],
+          "evidenceSources": [
+            "packages/ledger/src/align/check.break.test.ts",
+            "packages/ledger/src/align/check.test.ts"
+          ],
+          "savedChecks": [],
+          "nextAction": "Keep this gap visible; add the named missing behavioral or browser verification and a precise claim before mapping."
+        },
+        {
+          "id": "AC-8",
+          "text": "Code-target align approve requires treeDigest, coverageSource, uncoveredPaths (empty) or waiverIds; reviewer starts with policy.alignReviewerPrefix and must not equal turn producer",
+          "mappedClaimIds": [],
+          "currentEvidence": [
+            {
+              "outcome": "missing",
+              "detail": "No claim mapping represents this entire preserved criterion. This does not establish that the feature was never built."
+            }
+          ],
+          "assessment": "gap",
+          "rationale": "Behavior suites exist but no SL-010 claim is present: create scoped approval claim.",
+          "suggestedClaimIds": [],
+          "evidenceSources": [
+            "packages/ledger/src/align/approve.test.ts",
+            "packages/ledger/src/align/break.test.ts"
+          ],
+          "savedChecks": [],
+          "nextAction": "Keep this gap visible; add the named missing behavioral or browser verification and a precise claim before mapping."
+        },
+        {
+          "id": "AC-9",
+          "text": "Explicit skip writes align-waiver JSON: reason (>= policy.alignWaiverMinReasonChars), actor, treeDigest, workstreamId/turnId; max alignSkipMaxPerTurn; silence is not skip; audit lists waivers",
+          "mappedClaimIds": [],
+          "currentEvidence": [
+            {
+              "outcome": "missing",
+              "detail": "No claim mapping represents this entire preserved criterion. This does not establish that the feature was never built."
+            }
+          ],
+          "assessment": "gap",
+          "rationale": "Existing suites cover forged/invalid waiver refs; add direct minimum reason/max-per-turn and waiver audit tests if mapping full criterion.",
+          "suggestedClaimIds": [],
+          "evidenceSources": [
+            "packages/ledger/src/align/break.test.ts",
+            "packages/ledger/src/align/check.break.test.ts"
+          ],
+          "savedChecks": [],
+          "nextAction": "Keep this gap visible; add the named missing behavioral or browser verification and a precise claim before mapping."
+        },
+        {
+          "id": "AC-10",
+          "text": "turn close refuses product-file turns without covering align-approve or waiver for that treeDigest when requireAlignApprove",
+          "mappedClaimIds": [],
+          "currentEvidence": [
+            {
+              "outcome": "missing",
+              "detail": "No claim mapping represents this entire preserved criterion. This does not establish that the feature was never built."
+            }
+          ],
+          "assessment": "gap",
+          "rationale": "Existing align suites exercise refusal; needs scoped align gate claim.",
+          "suggestedClaimIds": [],
+          "evidenceSources": [
+            "packages/ledger/src/align/break.test.ts",
+            "packages/ledger/src/align/check.break.test.ts"
+          ],
+          "savedChecks": [],
+          "nextAction": "Keep this gap visible; add the named missing behavioral or browser verification and a precise claim before mapping."
+        },
+        {
+          "id": "AC-11",
+          "text": "scripts/git-hooks pre-push (+ documented pre-PR) and CI step 'pnpm ledger:align' fail without approve/waiver for product diffs; pnpm verify / verify workflow remain claims-pure and separate",
+          "mappedClaimIds": [],
+          "currentEvidence": [
+            {
+              "outcome": "missing",
+              "detail": "No claim mapping represents this entire preserved criterion. This does not establish that the feature was never built."
+            }
+          ],
+          "assessment": "gap",
+          "rationale": "The pre-push hook executes align check and fails on error; CI runs ledger:align separately from verify and audit. This inspection does not execute a rejecting push/PR fixture or establish that hooks are installed in every checkout. Keep the end-to-end gate gap.",
+          "suggestedClaimIds": [],
+          "evidenceSources": [
+            "scripts/git-hooks/pre-push",
+            ".github/workflows/ci.yml"
+          ],
+          "savedChecks": [],
+          "nextAction": "Keep this gap visible; add the named missing behavioral or browser verification and a precise claim before mapping."
+        },
+        {
+          "id": "AC-12",
+          "text": "skills/sl-dev-align/SKILL.md exists and AGENTS.md points hosts at it: cheap/Haiku-class model, ask user for coverage intent before approve",
+          "mappedClaimIds": [],
+          "currentEvidence": [
+            {
+              "outcome": "missing",
+              "detail": "No claim mapping represents this entire preserved criterion. This does not establish that the feature was never built."
+            }
+          ],
+          "assessment": "gap",
+          "rationale": "The skill specifies cheap coverage review, source/claim rationale and user coverage intent; AGENTS links it before close/push. This is directly inspected guidance, not behavioral proof that any agent follows it. Existing session authorization can supply intent under the current skill.",
+          "suggestedClaimIds": [],
+          "evidenceSources": [
+            "skills/sl-dev-align/SKILL.md",
+            "AGENTS.md"
+          ],
+          "savedChecks": [],
+          "nextAction": "Keep this gap visible; add the named missing behavioral or browser verification and a precise claim before mapping."
+        }
+      ]
+    },
+    {
+      "id": "d1be55a6-11bb-8460-8650-ddf0ecac8185",
+      "title": "Consumer CLI, npm publish, sealed plan digests",
+      "status": "done",
+      "revisionDigest": "faa09bfe7d58ce063117acaa6e61a55f294eff4e9d5a5bca168fe36a09eb9708",
+      "criteria": [
+        {
+          "id": "AC-1",
+          "text": "spec-ledger init creates exactly the normative skeleton table in docs/workstreams/consumer-cli-and-npm-publish.md; re-init refuses; ledger.json written last",
+          "mappedClaimIds": [
+            "259e1acf-d082-8bfe-b0ab-76fab45ae7d0"
+          ],
+          "currentEvidence": [
+            {
+              "claimId": "259e1acf-d082-8bfe-b0ab-76fab45ae7d0",
+              "outcome": "missing",
+              "detail": "37455091-6c3b-827f-8ed3-f4737345e01c: evidence is stale for the current source or check"
+            }
+          ],
+          "assessment": "mapped",
+          "rationale": "Existing acceptance mapping is supported by the saved behavioral command suites listed below. Current passing evidence must be recomputed after 9fa55cfe-6dd6-83c5-8b42-baf619c093c6 changes; mapping is not a passing outcome.",
+          "suggestedClaimIds": [
+            "259e1acf-d082-8bfe-b0ab-76fab45ae7d0"
+          ],
+          "evidenceSources": [
+            "packages/ledger/src/cli/init.break.test.ts",
+            "packages/ledger/src/cli/init.test.ts"
+          ],
+          "savedChecks": [
+            {
+              "bindingId": "37455091-6c3b-827f-8ed3-f4737345e01c",
+              "claimId": "259e1acf-d082-8bfe-b0ab-76fab45ae7d0",
+              "kind": "test",
+              "locator": {
+                "type": "command",
+                "command": "node --test packages/ledger/dist/cli/init.test.js packages/ledger/dist/cli/init.break.test.js"
+              }
+            }
+          ],
+          "nextAction": "Retain mapping; run its saved checks after source changes and inspect current results."
+        },
+        {
+          "id": "AC-2",
+          "text": "After init, verify invents no claim pass and no binding carries status/pass (67609c19-de05-862c-8db7-e5dc95f38cee, 2884eafb-114e-85f1-ae07-ce1fbd140550)",
+          "mappedClaimIds": [
+            "259e1acf-d082-8bfe-b0ab-76fab45ae7d0"
+          ],
+          "currentEvidence": [
+            {
+              "claimId": "259e1acf-d082-8bfe-b0ab-76fab45ae7d0",
+              "outcome": "missing",
+              "detail": "37455091-6c3b-827f-8ed3-f4737345e01c: evidence is stale for the current source or check"
+            }
+          ],
+          "assessment": "mapped",
+          "rationale": "Existing acceptance mapping is supported by the saved behavioral command suites listed below. Current passing evidence must be recomputed after 9fa55cfe-6dd6-83c5-8b42-baf619c093c6 changes; mapping is not a passing outcome.",
+          "suggestedClaimIds": [
+            "259e1acf-d082-8bfe-b0ab-76fab45ae7d0"
+          ],
+          "evidenceSources": [
+            "packages/ledger/src/cli/init.break.test.ts",
+            "packages/ledger/src/cli/init.test.ts"
+          ],
+          "savedChecks": [
+            {
+              "bindingId": "37455091-6c3b-827f-8ed3-f4737345e01c",
+              "claimId": "259e1acf-d082-8bfe-b0ab-76fab45ae7d0",
+              "kind": "test",
+              "locator": {
+                "type": "command",
+                "command": "node --test packages/ledger/dist/cli/init.test.js packages/ledger/dist/cli/init.break.test.js"
+              }
+            }
+          ],
+          "nextAction": "Retain mapping; run its saved checks after source changes and inspect current results."
+        },
+        {
+          "id": "AC-3",
+          "text": "Packed @nessalabs/spec-ledger@0.1.0-alpha.0 installs outside the monorepo; bin spec-ledger runs --help, init, verify",
+          "mappedClaimIds": [
+            "4478b980-87e5-8f31-a57e-8c06246e0798"
+          ],
+          "currentEvidence": [
+            {
+              "claimId": "4478b980-87e5-8f31-a57e-8c06246e0798",
+              "outcome": "missing",
+              "detail": "0e24eba8-4721-8373-ba7d-0f18be5063fc: evidence is stale for the current source or check"
+            }
+          ],
+          "assessment": "mapped",
+          "rationale": "Existing acceptance mapping is supported by the saved behavioral command suites listed below. Current passing evidence must be recomputed after 9fa55cfe-6dd6-83c5-8b42-baf619c093c6 changes; mapping is not a passing outcome.",
+          "suggestedClaimIds": [
+            "4478b980-87e5-8f31-a57e-8c06246e0798"
+          ],
+          "evidenceSources": [
+            "packages/ledger/src/pack.break.test.ts",
+            "packages/ledger/src/pack.concurrency.break.test.ts",
+            "packages/ledger/src/pack.smoke.test.ts"
+          ],
+          "savedChecks": [
+            {
+              "bindingId": "0e24eba8-4721-8373-ba7d-0f18be5063fc",
+              "claimId": "4478b980-87e5-8f31-a57e-8c06246e0798",
+              "kind": "test",
+              "locator": {
+                "type": "command",
+                "command": "node --test packages/ledger/dist/pack.smoke.test.js packages/ledger/dist/pack.break.test.js packages/ledger/dist/pack.concurrency.break.test.js"
+              }
+            }
+          ],
+          "nextAction": "Retain mapping; run its saved checks after source changes and inspect current results."
+        },
+        {
+          "id": "AC-4",
+          "text": "Packed client and server package.json contain no workspace: or file: deps; install resolves against packed ledger",
+          "mappedClaimIds": [
+            "4478b980-87e5-8f31-a57e-8c06246e0798"
+          ],
+          "currentEvidence": [
+            {
+              "claimId": "4478b980-87e5-8f31-a57e-8c06246e0798",
+              "outcome": "missing",
+              "detail": "0e24eba8-4721-8373-ba7d-0f18be5063fc: evidence is stale for the current source or check"
+            }
+          ],
+          "assessment": "mapped",
+          "rationale": "Existing acceptance mapping is supported by the saved behavioral command suites listed below. Current passing evidence must be recomputed after 9fa55cfe-6dd6-83c5-8b42-baf619c093c6 changes; mapping is not a passing outcome.",
+          "suggestedClaimIds": [
+            "4478b980-87e5-8f31-a57e-8c06246e0798"
+          ],
+          "evidenceSources": [
+            "packages/ledger/src/pack.break.test.ts",
+            "packages/ledger/src/pack.concurrency.break.test.ts",
+            "packages/ledger/src/pack.smoke.test.ts"
+          ],
+          "savedChecks": [
+            {
+              "bindingId": "0e24eba8-4721-8373-ba7d-0f18be5063fc",
+              "claimId": "4478b980-87e5-8f31-a57e-8c06246e0798",
+              "kind": "test",
+              "locator": {
+                "type": "command",
+                "command": "node --test packages/ledger/dist/pack.smoke.test.js packages/ledger/dist/pack.break.test.js packages/ledger/dist/pack.concurrency.break.test.js"
+              }
+            }
+          ],
+          "nextAction": "Retain mapping; run its saved checks after source changes and inspect current results."
+        },
+        {
+          "id": "AC-5",
+          "text": "Spec Ledger UI ships as GitHub Release asset only (not npm UI); artifact has zero file: or workspace: deps; README one-liner documents viewing a consumer ledger via published client/server",
+          "mappedClaimIds": [
+            "ebc0a361-534e-8527-99a7-57611aae823d"
+          ],
+          "currentEvidence": [
+            {
+              "claimId": "ebc0a361-534e-8527-99a7-57611aae823d",
+              "outcome": "missing",
+              "detail": "aed9b13d-bbde-8d48-8e4b-e02a3ad64a11: evidence is stale for the current source or check"
+            }
+          ],
+          "assessment": "mapped",
+          "rationale": "Existing acceptance mapping is supported by the saved behavioral command suites listed below. Current passing evidence must be recomputed after 9fa55cfe-6dd6-83c5-8b42-baf619c093c6 changes; mapping is not a passing outcome.",
+          "suggestedClaimIds": [
+            "ebc0a361-534e-8527-99a7-57611aae823d"
+          ],
+          "evidenceSources": [
+            "packages/ledger/src/ui-release.break.test.ts",
+            "packages/ledger/src/ui-release.smoke.test.ts"
+          ],
+          "savedChecks": [
+            {
+              "bindingId": "aed9b13d-bbde-8d48-8e4b-e02a3ad64a11",
+              "claimId": "ebc0a361-534e-8527-99a7-57611aae823d",
+              "kind": "test",
+              "locator": {
+                "type": "command",
+                "command": "node --test packages/ledger/dist/ui-release.smoke.test.js packages/ledger/dist/ui-release.break.test.js"
+              }
+            }
+          ],
+          "nextAction": "Retain mapping; run its saved checks after source changes and inspect current results."
+        },
+        {
+          "id": "AC-6",
+          "text": ".github/workflows/publish.yml live-publishes only on release published to the nessalabs npm org/registry; optional workflow_dispatch dry-run; ci.yml does not publish; version must match release tag; NPM_TOKEN documented",
+          "mappedClaimIds": [
+            "db092384-a2b9-8db4-b9b8-ff7b5e58f133"
+          ],
+          "currentEvidence": [
+            {
+              "claimId": "db092384-a2b9-8db4-b9b8-ff7b5e58f133",
+              "outcome": "missing",
+              "detail": "835c6845-b9f1-8359-b222-271c56dbad45: evidence is stale for the current source or check"
+            }
+          ],
+          "assessment": "mapped",
+          "rationale": "Existing acceptance mapping is supported by the saved behavioral command suites listed below. Current passing evidence must be recomputed after 9fa55cfe-6dd6-83c5-8b42-baf619c093c6 changes; mapping is not a passing outcome.",
+          "suggestedClaimIds": [
+            "db092384-a2b9-8db4-b9b8-ff7b5e58f133"
+          ],
+          "evidenceSources": [
+            "packages/ledger/src/publish.workflow.break.test.ts",
+            "packages/ledger/src/publish.workflow.test.ts"
+          ],
+          "savedChecks": [
+            {
+              "bindingId": "835c6845-b9f1-8359-b222-271c56dbad45",
+              "claimId": "db092384-a2b9-8db4-b9b8-ff7b5e58f133",
+              "kind": "test",
+              "locator": {
+                "type": "command",
+                "command": "node --test packages/ledger/dist/publish.workflow.test.js packages/ledger/dist/publish.workflow.break.test.js"
+              }
+            }
+          ],
+          "nextAction": "Retain mapping; run its saved checks after source changes and inspect current results."
+        },
+        {
+          "id": "AC-7",
+          "text": "workstream seal stamps seal.specDocDigest for specPath (immutable for that revision); sealed+specPath with no expected digest fails check-seal and audit (spec-doc-digest-missing) until workstream backfill-doc-digest writes a new seal revision; drift fails when expected digest exists; workstream amend appends postSealAmends without mutating seal; ## Modifications is the human log; audit error seal-digest-drift for JSON sealPayload vs snapshot",
+          "mappedClaimIds": [
+            "505a71e7-37de-8e56-ae5c-467828201dba"
+          ],
+          "currentEvidence": [
+            {
+              "claimId": "505a71e7-37de-8e56-ae5c-467828201dba",
+              "outcome": "missing",
+              "detail": "e49ce4da-8d40-855e-9c96-2f6723794a23: evidence is stale for the current source or check"
+            }
+          ],
+          "assessment": "mapped",
+          "rationale": "Existing acceptance mapping is supported by the saved behavioral command suites listed below. Current passing evidence must be recomputed after 9fa55cfe-6dd6-83c5-8b42-baf619c093c6 changes; mapping is not a passing outcome.",
+          "suggestedClaimIds": [
+            "505a71e7-37de-8e56-ae5c-467828201dba"
+          ],
+          "evidenceSources": [
+            "packages/ledger/src/workstream/doc-digest.break.test.ts",
+            "packages/ledger/src/workstream/doc-digest.test.ts",
+            "packages/ledger/src/workstream/pr1-regressions.break.test.ts"
+          ],
+          "savedChecks": [
+            {
+              "bindingId": "e49ce4da-8d40-855e-9c96-2f6723794a23",
+              "claimId": "505a71e7-37de-8e56-ae5c-467828201dba",
+              "kind": "test",
+              "locator": {
+                "type": "command",
+                "command": "node --test packages/ledger/dist/workstream/doc-digest.test.js packages/ledger/dist/workstream/doc-digest.break.test.js packages/ledger/dist/workstream/pr1-regressions.break.test.js"
+              }
+            }
+          ],
+          "nextAction": "Retain mapping; run its saved checks after source changes and inspect current results."
+        },
+        {
+          "id": "AC-8",
+          "text": "This bet is done with workflow+docs+dry-run + digest/amend gates; cutting the first Release is optional human action",
+          "mappedClaimIds": [],
+          "currentEvidence": [
+            {
+              "outcome": "missing",
+              "detail": "No claim mapping represents this entire preserved criterion. This does not establish that the feature was never built."
+            }
+          ],
+          "assessment": "gap",
+          "rationale": "The source spec explicitly makes cutting the first GitHub Release an optional human action outside acceptance. This is a scope condition, not a command result. Workflow/dry-run evidence remains under AC6; actual publication is not established.",
+          "suggestedClaimIds": [],
+          "evidenceSources": [
+            "docs/workstreams/consumer-cli-and-npm-publish.md"
+          ],
+          "savedChecks": [],
+          "nextAction": "Keep this gap visible; add the named missing behavioral or browser verification and a precise claim before mapping."
+        }
+      ]
+    },
+    {
+      "id": "a32f3451-1b3d-8abf-bf0e-607ebf6e1a88",
+      "title": "Trustworthy autonomous coding",
+      "status": "done",
+      "revisionDigest": "022971e1176e6947fca28ac728ce7658103427198ef40d1e9d9d188ce302b6cd",
+      "criteria": [
+        {
+          "id": "4bb567af-6d1e-8c2d-87f6-c9e72f27827a/AC-1",
+          "text": "AC-05: Fail dominates missing, which dominates attested, which dominates pass; order never changes the result. Duplicate result keys are rejected. Empty ledgers show no requirements checked.",
+          "mappedClaimIds": [
+            "4265ae8b-dc22-8851-9a29-a9dab77fb7bb"
+          ],
+          "currentEvidence": [
+            {
+              "claimId": "4265ae8b-dc22-8851-9a29-a9dab77fb7bb",
+              "outcome": "missing",
+              "detail": "8a0f4b13-b869-8d0e-bbd0-59000d824efe: evidence is stale for the current source or check"
+            }
+          ],
+          "assessment": "mapped",
+          "rationale": "Rerun after final source freeze; old implementation reports/reviews are historical. Do not mark current implementation merely from old done status.",
+          "suggestedClaimIds": [
+            "4265ae8b-dc22-8851-9a29-a9dab77fb7bb"
+          ],
+          "evidenceSources": [
+            "packages/ledger/src/verify/aggregation.break.test.ts"
+          ],
+          "savedChecks": [
+            {
+              "bindingId": "8a0f4b13-b869-8d0e-bbd0-59000d824efe",
+              "claimId": "4265ae8b-dc22-8851-9a29-a9dab77fb7bb",
+              "kind": "test",
+              "locator": {
+                "type": "command",
+                "command": "node --test packages/ledger/dist/verify/aggregation.break.test.js"
+              }
+            }
+          ],
+          "nextAction": "Retain mapping; run its saved checks after source changes and inspect current results."
+        },
+        {
+          "id": "d9cb1d03-8f89-8a01-a54b-20d137493265/AC-1",
+          "text": "AC-06: CLI execution and report persistence are explicit; client/server/context reads do not run commands, write reports, or resume automation.",
+          "mappedClaimIds": [
+            "d6bec874-d62d-850e-bf0f-f19d5b07f7a9"
+          ],
+          "currentEvidence": [
+            {
+              "claimId": "d6bec874-d62d-850e-bf0f-f19d5b07f7a9",
+              "outcome": "missing",
+              "detail": "7f011d7f-e2d9-8ea9-99ae-7450d7879e2e: evidence is stale for the current source or check"
+            }
+          ],
+          "assessment": "mapped",
+          "rationale": "Rerun after final source freeze; old implementation reports/reviews are historical. Do not mark current implementation merely from old done status.",
+          "suggestedClaimIds": [
+            "d6bec874-d62d-850e-bf0f-f19d5b07f7a9"
+          ],
+          "evidenceSources": [
+            "packages/ledger/src/verify/readonly.break.test.ts"
+          ],
+          "savedChecks": [
+            {
+              "bindingId": "7f011d7f-e2d9-8ea9-99ae-7450d7879e2e",
+              "claimId": "d6bec874-d62d-850e-bf0f-f19d5b07f7a9",
+              "kind": "test",
+              "locator": {
+                "type": "command",
+                "command": "node --test packages/ledger/dist/verify/readonly.break.test.js"
+              }
+            }
+          ],
+          "nextAction": "Retain mapping; run its saved checks after source changes and inspect current results."
+        },
+        {
+          "id": "88c72d83-aa21-8191-b6ed-64d088b99504/AC-1",
+          "text": "AC-06/09: Relevant dirty and untracked content changes invalidate results and reviews; metadata-only changes and content-preserving commits do not. Artifact references are confined and integrity checked.",
+          "mappedClaimIds": [
+            "ef771e69-a55e-8f9c-8c2b-b5238a3fcff3"
+          ],
+          "currentEvidence": [
+            {
+              "claimId": "ef771e69-a55e-8f9c-8c2b-b5238a3fcff3",
+              "outcome": "missing",
+              "detail": "537947a3-37ec-86ab-9f87-ac54e50d1796: evidence is stale for the current source or check"
+            }
+          ],
+          "assessment": "mapped",
+          "rationale": "Rerun after final source freeze; old implementation reports/reviews are historical. Do not mark current implementation merely from old done status.",
+          "suggestedClaimIds": [
+            "ef771e69-a55e-8f9c-8c2b-b5238a3fcff3"
+          ],
+          "evidenceSources": [
+            "packages/ledger/src/evidence/fingerprint.break.test.ts"
+          ],
+          "savedChecks": [
+            {
+              "bindingId": "537947a3-37ec-86ab-9f87-ac54e50d1796",
+              "claimId": "ef771e69-a55e-8f9c-8c2b-b5238a3fcff3",
+              "kind": "test",
+              "locator": {
+                "type": "command",
+                "command": "node --test packages/ledger/dist/evidence/fingerprint.break.test.js"
+              }
+            }
+          ],
+          "nextAction": "Retain mapping; run its saved checks after source changes and inspect current results."
+        },
+        {
+          "id": "44061bcc-deb1-8eeb-a20e-69cc18756bf3/AC-1",
+          "text": "AC-01/02: Revision approval, request and standing delegation are distinct; denial/revocation blocks affected work. Corrections are scoped, provenance is honest, context hashes content.",
+          "mappedClaimIds": [
+            "fb335474-ec02-8a07-a399-a948d076a225"
+          ],
+          "currentEvidence": [
+            {
+              "claimId": "fb335474-ec02-8a07-a399-a948d076a225",
+              "outcome": "missing",
+              "detail": "82c028b6-b26e-82af-bb28-80b57bda6576: evidence is stale for the current source or check"
+            }
+          ],
+          "assessment": "mapped",
+          "rationale": "Rerun after final source freeze; old implementation reports/reviews are historical. Do not mark current implementation merely from old done status.",
+          "suggestedClaimIds": [
+            "fb335474-ec02-8a07-a399-a948d076a225"
+          ],
+          "evidenceSources": [
+            "packages/ledger/src/permission/authority.break.test.ts"
+          ],
+          "savedChecks": [
+            {
+              "bindingId": "82c028b6-b26e-82af-bb28-80b57bda6576",
+              "claimId": "fb335474-ec02-8a07-a399-a948d076a225",
+              "kind": "test",
+              "locator": {
+                "type": "command",
+                "command": "node --test packages/ledger/dist/permission/authority.break.test.js"
+              }
+            }
+          ],
+          "nextAction": "Retain mapping; run its saved checks after source changes and inspect current results."
+        },
+        {
+          "id": "11dcdd45-4a20-8f4d-8c53-c4e92071939b/AC-1",
+          "text": "AC-03/04: Old unresolved linked deferrals appear independent of recent history; activation is persistent and idempotent, unknown inputs stay unknown, completion requires a valid response. Backlog projects drafts and deferrals.",
+          "mappedClaimIds": [
+            "5287dabc-25de-8934-a4bb-364acca2b942"
+          ],
+          "currentEvidence": [
+            {
+              "claimId": "5287dabc-25de-8934-a4bb-364acca2b942",
+              "outcome": "missing",
+              "detail": "5e20c4c0-c26d-8662-93b0-59575a838f83: evidence is stale for the current source or check"
+            }
+          ],
+          "assessment": "mapped",
+          "rationale": "Rerun after final source freeze; old implementation reports/reviews are historical. Do not mark current implementation merely from old done status.",
+          "suggestedClaimIds": [
+            "5287dabc-25de-8934-a4bb-364acca2b942"
+          ],
+          "evidenceSources": [
+            "packages/ledger/src/deferrals/deferrals.break.test.ts",
+            "packages/ledger/src/deferrals/index.test.ts",
+            "packages/ledger/src/deferrals/portability.test.ts"
+          ],
+          "savedChecks": [
+            {
+              "bindingId": "5e20c4c0-c26d-8662-93b0-59575a838f83",
+              "claimId": "5287dabc-25de-8934-a4bb-364acca2b942",
+              "kind": "test",
+              "locator": {
+                "type": "command",
+                "command": "node --test packages/ledger/dist/deferrals/index.test.js packages/ledger/dist/deferrals/deferrals.break.test.js packages/ledger/dist/deferrals/portability.test.js"
+              }
+            }
+          ],
+          "nextAction": "Retain mapping; run its saved checks after source changes and inspect current results."
+        },
+        {
+          "id": "782ababb-e2ba-8f93-8832-69a5c4334094/AC-1",
+          "text": "AC-07/08: Session shows meaningful progress, current evidence, and approval state. Local UI records revision-bound approve/deny; approved work has no repeated prompt. Portable CLI remains available.",
+          "mappedClaimIds": [
+            "9767b1da-9568-8e2f-ad2a-c2c3eb3e424c"
+          ],
+          "currentEvidence": [
+            {
+              "claimId": "9767b1da-9568-8e2f-ad2a-c2c3eb3e424c",
+              "outcome": "missing",
+              "detail": "dea7dcb9-9337-8e8a-9d0d-db2816e25612: evidence is stale for the current source or check"
+            }
+          ],
+          "assessment": "mapped",
+          "rationale": "Rerun after final source freeze; old implementation reports/reviews are historical. Do not mark current implementation merely from old done status.",
+          "suggestedClaimIds": [
+            "9767b1da-9568-8e2f-ad2a-c2c3eb3e424c"
+          ],
+          "evidenceSources": [
+            "packages/ledger/src/graph/display.test.ts",
+            "packages/ledger/src/permission/local-ui.break.test.ts",
+            "packages/ledger/src/session/session.break.test.ts"
+          ],
+          "savedChecks": [
+            {
+              "bindingId": "dea7dcb9-9337-8e8a-9d0d-db2816e25612",
+              "claimId": "9767b1da-9568-8e2f-ad2a-c2c3eb3e424c",
+              "kind": "test",
+              "locator": {
+                "type": "command",
+                "command": "node --test packages/ledger/dist/session/session.break.test.js packages/ledger/dist/graph/display.test.js packages/ledger/dist/permission/local-ui.break.test.js"
+              }
+            }
+          ],
+          "nextAction": "Retain mapping; run its saved checks after source changes and inspect current results."
+        }
+      ]
+    },
+    {
+      "id": "1652e353-e3dc-8960-985b-35fbe40c1edb",
+      "title": "Review evidence in one place",
+      "status": "done",
+      "revisionDigest": "a79dea647f19ccd716d73c94a9e56f3fc6f64c2349e2304cb391d0cb55385177",
+      "criteria": [
+        {
+          "id": "1cc99a13-3a0e-8451-a8b8-17e8d35a933d/AC-1",
+          "text": "Workstream evidence explains current verdicts, recorded checks, reviews and safe artifacts; custom workflows have a concrete proposal.",
+          "mappedClaimIds": [
+            "dd5caaee-dace-8f53-bff5-65b6a7646b6d"
+          ],
+          "currentEvidence": [
+            {
+              "claimId": "dd5caaee-dace-8f53-bff5-65b6a7646b6d",
+              "outcome": "missing",
+              "detail": "823982ba-7fa8-8c9d-9721-f2b128d0db00: evidence is stale for the current source or check"
+            }
+          ],
+          "assessment": "mapped",
+          "rationale": "Rerun after final source freeze; old implementation reports/reviews are historical. Do not mark current implementation merely from old done status.",
+          "suggestedClaimIds": [
+            "dd5caaee-dace-8f53-bff5-65b6a7646b6d"
+          ],
+          "evidenceSources": [
+            "packages/ledger/src/session/evidence.break.test.ts"
+          ],
+          "savedChecks": [
+            {
+              "bindingId": "823982ba-7fa8-8c9d-9721-f2b128d0db00",
+              "claimId": "dd5caaee-dace-8f53-bff5-65b6a7646b6d",
+              "kind": "test",
+              "locator": {
+                "type": "command",
+                "command": "node --test packages/ledger/dist/session/evidence.break.test.js"
+              }
+            }
+          ],
+          "nextAction": "Retain mapping; run its saved checks after source changes and inspect current results."
+        }
+      ]
+    },
+    {
+      "id": "815c7a44-59df-8102-9769-bf8a74e49c0c",
+      "title": "Guide agents and follow verified work",
+      "status": "done",
+      "revisionDigest": "631ba496f0816511b043042299190dca445c4a040c64d95a96666dbd4daf1b20",
+      "criteria": [
+        {
+          "id": "26c9bf2f-a090-8415-bd2b-f46dff6af4f7/AC-1",
+          "text": "A real CLI and MCP work loop has equivalent validation, effects and evidence gates and appears in the existing session view.",
+          "mappedClaimIds": [
+            "2f8cf085-d7a5-83b9-89f8-9d0754cb16a0"
+          ],
+          "currentEvidence": [
+            {
+              "claimId": "2f8cf085-d7a5-83b9-89f8-9d0754cb16a0",
+              "outcome": "missing",
+              "detail": "240c8922-405a-824b-a2d4-e8ecbb5be6bd: evidence is stale for the current source or check"
+            }
+          ],
+          "assessment": "mapped",
+          "rationale": "Rerun after final source freeze; old implementation reports/reviews are historical. Do not mark current implementation merely from old done status.",
+          "suggestedClaimIds": [
+            "2f8cf085-d7a5-83b9-89f8-9d0754cb16a0"
+          ],
+          "evidenceSources": [
+            "packages/ledger/src/application/operations.break.test.ts",
+            "packages/ledger/src/application/receipts.break.test.ts",
+            "packages/mcp/src/lifecycle.test.ts"
+          ],
+          "savedChecks": [
+            {
+              "bindingId": "240c8922-405a-824b-a2d4-e8ecbb5be6bd",
+              "claimId": "2f8cf085-d7a5-83b9-89f8-9d0754cb16a0",
+              "kind": "test",
+              "locator": {
+                "type": "command",
+                "command": "node --test packages/ledger/dist/application/*.break.test.js packages/mcp/dist/lifecycle.test.js"
+              }
+            }
+          ],
+          "nextAction": "Retain mapping; run its saved checks after source changes and inspect current results."
+        },
+        {
+          "id": "25eac677-2871-816d-956d-770bdcb61798/AC-1",
+          "text": "Default and custom local methods preserve snapshots, enforce typed output gates and show live progress and inspectable evidence in the UI.",
+          "mappedClaimIds": [
+            "4d4f7c20-b7e0-86d8-9b17-f45053bbf43b"
+          ],
+          "currentEvidence": [
+            {
+              "claimId": "4d4f7c20-b7e0-86d8-9b17-f45053bbf43b",
+              "outcome": "missing",
+              "detail": "35c8eb44-8d25-8185-82c2-bf645f8f0710: evidence is stale for the current source or check"
+            }
+          ],
+          "assessment": "mapped",
+          "rationale": "Rerun after final source freeze; old implementation reports/reviews are historical. Do not mark current implementation merely from old done status.",
+          "suggestedClaimIds": [
+            "4d4f7c20-b7e0-86d8-9b17-f45053bbf43b"
+          ],
+          "evidenceSources": [
+            "packages/ledger/src/workflows/workflow.break.test.ts",
+            "packages/ledger/src/workflows/workflow.test.ts",
+            "packages/mcp/src/workflow.lifecycle.test.ts"
+          ],
+          "savedChecks": [
+            {
+              "bindingId": "35c8eb44-8d25-8185-82c2-bf645f8f0710",
+              "claimId": "4d4f7c20-b7e0-86d8-9b17-f45053bbf43b",
+              "kind": "test",
+              "locator": {
+                "type": "command",
+                "command": "node --test packages/ledger/dist/workflows/*.test.js packages/mcp/dist/workflow.lifecycle.test.js"
+              }
+            }
+          ],
+          "nextAction": "Retain mapping; run its saved checks after source changes and inspect current results."
+        },
+        {
+          "id": "87ce7ed9-a607-8425-a475-173f8953ffaf/AC-1",
+          "text": "Execution associations and bounded activity handle missing and duplicated signals honestly; optional recovery readiness honors policy and available host capabilities.",
+          "mappedClaimIds": [
+            "a3c38839-cf13-837c-8866-ce46af309e15"
+          ],
+          "currentEvidence": [
+            {
+              "claimId": "a3c38839-cf13-837c-8866-ce46af309e15",
+              "outcome": "missing",
+              "detail": "bc2c8e56-0cda-8b8a-a9a0-bafe5989265f: evidence is stale for the current source or check"
+            }
+          ],
+          "assessment": "mapped",
+          "rationale": "Rerun after final source freeze; old implementation reports/reviews are historical. Do not mark current implementation merely from old done status.",
+          "suggestedClaimIds": [
+            "a3c38839-cf13-837c-8866-ce46af309e15"
+          ],
+          "evidenceSources": [
+            "packages/ledger/src/execution/execution.break.test.ts",
+            "packages/mcp/src/execution.lifecycle.test.ts"
+          ],
+          "savedChecks": [
+            {
+              "bindingId": "bc2c8e56-0cda-8b8a-a9a0-bafe5989265f",
+              "claimId": "a3c38839-cf13-837c-8866-ce46af309e15",
+              "kind": "test",
+              "locator": {
+                "type": "command",
+                "command": "node --test packages/ledger/dist/execution/*.test.js packages/mcp/dist/execution.lifecycle.test.js"
+              }
+            }
+          ],
+          "nextAction": "Retain mapping; run its saved checks after source changes and inspect current results."
+        }
+      ]
+    }
+  ],
+  "schemaVersion": 1,
+  "scope": {
+    "workstreamIds": [
+      "3317ada5-b347-894e-8c88-110b7b42d58b",
+      "e6213c3f-60e4-8ceb-9d6a-15c67833b383",
+      "beee03a2-1e8d-8091-9ed9-b35bea93d6a3",
+      "76451749-a54f-8579-96f2-dcec19d79026",
+      "d1be55a6-11bb-8460-8650-ddf0ecac8185",
+      "a32f3451-1b3d-8abf-bf0e-607ebf6e1a88",
+      "1652e353-e3dc-8960-985b-35fbe40c1edb",
+      "815c7a44-59df-8102-9769-bf8a74e49c0c"
+    ],
+    "criterionCount": 51,
+    "mappedCriteria": 17,
+    "supersededCriteria": 5,
+    "gapCriteria": 29
+  },
+  "limitations": [
+    "Audit completeness is separate from proving every old criterion passes. A criterion may be fully audited and remain an explicit gap.",
+    "Current evidence in this artifact is a point-in-time observation during 9fa55cfe-6dd6-83c5-8b42-baf619c093c6 editing. Final check execution and the live UI establish later freshness.",
+    "No spec, completion status, historical facts, reviews or acceptance mappings were changed by this audit agent.",
+    "No additional legacy mapping beyond W005 AC1-7 is justified without the missing verification identified per criterion."
+  ],
+  "mcp": {
+    "status": "implemented-and-tested",
+    "package": "@nessalabs/spec-ledger-mcp",
+    "entrypoint": "spec-ledger-mcp --root <checkout>",
+    "transport": "local stdio",
+    "command": "node --test packages/mcp/dist/lifecycle.test.js packages/mcp/dist/workflow.lifecycle.test.js packages/mcp/dist/execution.lifecycle.test.js packages/mcp/dist/saved-check.test.js",
+    "result": {
+      "tests": 11,
+      "passed": 11,
+      "failed": 0,
+      "skipped": 0,
+      "durationMs": 12836.395417
+    },
+    "logPath": "docs/workstreams/3ca37660-1506-8a85-80c6-410a024d9a9a-evidence-first-changes/evidence/9fa55cfe-6dd6-83c5-8b42-baf619c093c6/mcp-verification.txt",
+    "verifiedBehaviors": [
+      "Actual CLI/MCP lifecycle parity through executable processes, including finish and completion gates.",
+      "Matching structured denials, idempotency conflicts, stale/malformed inputs and missing-evidence rejection.",
+      "Packed MCP executable installs and runs in a temporary consumer environment.",
+      "Custom local workflow skills/stages run through real records and preserve current evidence.",
+      "Execution registration and best-effort collector signals preserve proof separation and cannot grant host recovery authority.",
+      "Saved command checks launch via both CLI and MCP and expose actual captured stdout/stderr with one identity on retry."
+    ],
+    "notImplemented": [
+      "Automatic host-agent invocation, resumption or nudging.",
+      "Verified host liveness, native session ownership or cancellation of an external agent tool.",
+      "Authenticated host opt-in adapter; portable policy fields remain requests only."
+    ],
+    "notEstablished": [
+      "Installation/configuration in this user's MCP host.",
+      "Publication of this version to npm or a production release."
+    ],
+    "distinction": "The saved-check worker can time out its own child process. That is not cancellation of an external agent or its tools."
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "id": "e1effa81-01a5-8b51-bed7-a43b8363d1f7",
+  "action": "grant",
+  "mode": "request",
+  "workstreamId": "3ca37660-1506-8a85-80c6-410a024d9a9a",
+  "featureIds": [
+    "lattice"
+  ],
+  "source": {
+    "kind": "agent-reported",
+    "reference": "User requests fixing turn evidence UI, verifying all older workstreams and retrofitting supported records, accounting for current changes."
+  },
+  "schemaVersion": 1,
+  "createdAt": "2026-09-05T01:46:17.562Z",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/authority/AUTH-W009-REQUEST.json",
+        "id": "AUTH-W009-REQUEST",
+        "sha256": "c09304ed001f1dcbca6858c80c8aff319ee8ee1f12b9909f73effe6bd6f1afd7"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/authority/AUTH-W009-REQUEST.json",
+        "id": "AUTH-W009-REQUEST",
+        "sha256": "c09304ed001f1dcbca6858c80c8aff319ee8ee1f12b9909f73effe6bd6f1afd7"
+      }
+    },
+    "historical": true
+  }
+}

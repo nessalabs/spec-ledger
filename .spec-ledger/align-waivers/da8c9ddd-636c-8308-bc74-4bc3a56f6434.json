@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "da8c9ddd-636c-8308-bc74-4bc3a56f6434",
+  "reason": "dc39d41a-ed03-8e91-89b5-5daba10d0b74 coverage intent is init CLI plus Spec Ledger UI rename and docs; skills markdown and .gitignore (.pnpm-store ignore) are session tooling leftovers outside that product surface.",
+  "actor": "human",
+  "treeDigest": "ac42d9f05f2aeb561a13c9dc3da98cba3eff52572a8d1cf225800728b0968045",
+  "createdAt": "2026-09-04T20:12:35.925Z",
+  "workstreamId": "d1be55a6-11bb-8460-8650-ddf0ecac8185",
+  "turnId": "dc39d41a-ed03-8e91-89b5-5daba10d0b74",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/align-waivers/AW-03.json",
+        "id": "T-020/AW-03",
+        "sha256": "64be0d96409229ae67c83625c8a34a0fc1fa472d47eb935b8151dae55876e4c4"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/align-waivers/AW-03.json",
+        "id": "T-020/AW-03",
+        "sha256": "64be0d96409229ae67c83625c8a34a0fc1fa472d47eb935b8151dae55876e4c4"
+      }
+    },
+    "historical": true
+  }
+}

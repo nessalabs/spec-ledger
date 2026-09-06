@@ -8,7 +8,7 @@
   "result": {
     "action": "grant",
     "mode": "request",
-    "workstreamId": "W-014",
+    "workstreamId": "29c935b4-56bd-84a0-b887-e280d775f54d",
     "featureIds": [
       "turns",
       "lattice",
@@ -18,7 +18,7 @@
       "kind": "agent-reported",
       "reference": "User explicitly requested removing repeated pass and exit metadata and enforcing screenshots of all relevant UI through evidence checks with actionable agent errors."
     },
-    "id": "AUTH-4456a531-3f83-49e5-8389-a1af6891887a",
+    "id": "f18752a1-6dbd-8d90-b9aa-296b6994935e",
     "schemaVersion": 1,
     "createdAt": "2026-09-06T17:57:23.066Z"
   }

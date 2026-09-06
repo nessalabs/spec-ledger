@@ -104,15 +104,22 @@ number each question; give your recommended answer; wait.
 
 ## On-disk artifacts
 
-Prefer CLI when available. Human pitch Markdown under **`docs/workstreams/W-00N-<title-slug>/spec.md`**
+Prefer CLI when available. Human pitch Markdown under **`docs/workstreams/<workstream-uuid>-<title-slug>/spec.md`**
 first; then JSON per [workstream-template.md](workstream-template.md) with `specPath`
-pointing at that file (`.spec-ledger` = metadata only):
+pointing at that file (`.spec-ledger` = metadata only).
 
-- Pitch → `docs/workstreams/W-00N-<title-slug>/spec.md`
-- Workstream → `.spec-ledger/workstreams/W-00N.json` (`status: shaped` after confirm, `specPath` set)
-- Proposed claim → `.spec-ledger/proposed-claims/PC-00N.json` (`status: "proposed"`)
+Write the pitch in **plain English** — it is what the human reads before
+approving the bet. Follow the spec-document rules in
+[`../references/plain-titles.md`](../references/plain-titles.md): name the
+consequence rather than the mechanism, give every decision its “or else”, and
+keep field names, digests, claim ids and HTTP verbs in the JSON and linked
+technical docs instead of the pitch.
 
-Pick the next free `W-` / `PC-` id by listing those directories. Keep optional
+- Pitch → `docs/workstreams/<workstream-uuid>-<title-slug>/spec.md`
+- Workstream → `.spec-ledger/workstreams/<workstream-uuid>.json` (`status: shaped` after confirm, `specPath` set)
+- Proposed claim → `.spec-ledger/proposed-claims/<proposed-claim-uuid>.json` (`status: "proposed"`)
+
+Use `spec-ledger workstream create --file draft.json` with title, problem, objective, featureIds and slices, omitting all IDs. Save its returned UUIDs. Use `spec-ledger claim propose --workstream <workstream-uuid> --file claim.json` for proposed claims. Spec Ledger generates identities; never choose counters or generate UUIDs in an agent. Keep optional
 supporting notes beside `spec.md` and link the main spec from
 [`docs/workstreams/README.md`](../../docs/workstreams/README.md). Preserve existing
 sealed paths unless an explicit recorded migration covers the move.
@@ -124,12 +131,12 @@ sealed paths unless an explicit recorded migration covers the move.
 3. Summarize:
 
 ```
-workstream: W-00N (shaped)
+workstream: <workstream-uuid> (shaped)
 trust: deploy=… perf=… security=… correctness=… evidence=…
 policy: alertOnSeverity=… onAlert=… onSealedSpecDeviation=…
 featureIds: …
 proposedClaimIds: …
-verticals: SLC-01 … (acceptance each)
+verticals: <slice-uuid> … (acceptance each)
 next: sl-plan-break-spec → revision approval or applicable delegation → sl-work
 ```
 

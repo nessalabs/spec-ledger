@@ -4,15 +4,15 @@
   "properties": {
     "id": {
       "type": "string",
-      "pattern": "^X-[A-Za-z0-9][A-Za-z0-9_-]{0,79}$"
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
     },
     "goalId": {
       "type": "string",
-      "pattern": "^G-[A-Za-z0-9][A-Za-z0-9_-]{0,79}$"
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
     },
     "turnId": {
       "type": "string",
-      "pattern": "^T-[0-9]{3,}$"
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
     },
     "hypothesis": {
       "type": "string",
@@ -26,7 +26,7 @@
     },
     "parentExperimentId": {
       "type": "string",
-      "pattern": "^X-[A-Za-z0-9][A-Za-z0-9_-]{0,79}$"
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
     },
     "schemaVersion": {
       "type": "number",
@@ -49,6 +49,43 @@
       "type": "integer",
       "exclusiveMinimum": 0,
       "maximum": 9007199254740991
+    },
+    "migration": {
+      "type": "object",
+      "properties": {
+        "origins": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "required": [
+              "path",
+              "id",
+              "sha256"
+            ],
+            "properties": {
+              "path": {
+                "type": "string"
+              },
+              "id": {
+                "type": "string"
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "historical": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "origins",
+        "historical"
+      ],
+      "additionalProperties": false
     }
   },
   "required": [

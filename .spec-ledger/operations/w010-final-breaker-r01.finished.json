@@ -6,8 +6,8 @@
   "finishedAt": "2026-09-05T02:21:27.611Z",
   "outcome": "succeeded",
   "result": {
-    "id": "T-038/R-01",
-    "workstreamId": "W-010",
+    "id": "a27110cb-c381-8a51-96b7-9ac9944b3807",
+    "workstreamId": "351e54ea-60e4-8384-826f-0616eaa89599",
     "kind": "adversarial",
     "target": "code",
     "reviewer": "agent:turn-evidence-breaker",
@@ -31,6 +31,6 @@
       "Historical discarded logs cannot be reconstructed; authored inputs/expectations remain descriptions rather than reporter-produced assertion results."
     ],
     "schemaVersion": 1,
-    "turnId": "T-038"
+    "turnId": "21e1bd8d-8745-8900-b8a5-249314d027be"
   }
 }

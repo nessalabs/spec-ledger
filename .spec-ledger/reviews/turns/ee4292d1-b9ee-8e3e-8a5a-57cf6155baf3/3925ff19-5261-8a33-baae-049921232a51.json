@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "3925ff19-5261-8a33-baae-049921232a51",
+  "turnId": "ee4292d1-b9ee-8e3e-8a5a-57cf6155baf3",
+  "workstreamId": "ef172105-4f40-8bbb-8abe-d1cd11ae618a",
+  "kind": "human",
+  "target": "code",
+  "reviewer": "agent:align:user-scoped-ci-fix",
+  "verdict": "approve",
+  "summary": "The changed packaging test lies within the existing packages/ledger/** coverage and directly repairs the user-reported CI failure.",
+  "plainSummary": "The fix only changes how the packaging test starts and stops its server.",
+  "treeDigest": "146ff75db0913f1707bed73a6c57d9f6ca8a12f778c83ce3505aeb633f92ed6d",
+  "uncoveredPaths": [],
+  "coverageSource": "mixed",
+  "migration": {
+    "origins": {
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/reviews/turns/T-051/R-01.json",
+        "id": "T-051/R-01",
+        "sha256": "1977af2c96ebd3bba896898b3eb37b4f621fc4c09bd1c5e35f434b864b47b4cd"
+      }
+    },
+    "historical": true
+  }
+}

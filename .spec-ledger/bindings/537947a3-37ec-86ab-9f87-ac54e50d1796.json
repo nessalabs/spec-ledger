@@ -1,0 +1,24 @@
+{
+  "id": "537947a3-37ec-86ab-9f87-ac54e50d1796",
+  "claimId": "ef771e69-a55e-8f9c-8c2b-b5238a3fcff3",
+  "kind": "test",
+  "locator": {
+    "type": "command",
+    "command": "node --test packages/ledger/dist/evidence/fingerprint.break.test.js"
+  },
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/bindings/b-sl-018.json",
+        "id": "b-sl-018",
+        "sha256": "71db02b4820cdd1d017e8685f4439c59ef3c9344b7054d7b22398bef1e7a8b28"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/bindings/b-sl-018.json",
+        "id": "b-sl-018",
+        "sha256": "71db02b4820cdd1d017e8685f4439c59ef3c9344b7054d7b22398bef1e7a8b28"
+      }
+    },
+    "historical": true
+  }
+}

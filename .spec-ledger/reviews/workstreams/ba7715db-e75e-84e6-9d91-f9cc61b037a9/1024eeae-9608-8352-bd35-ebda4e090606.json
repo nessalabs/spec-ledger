@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "1024eeae-9608-8352-bd35-ebda4e090606",
+  "workstreamId": "ba7715db-e75e-84e6-9d91-f9cc61b037a9",
+  "target": "spec",
+  "kind": "adversarial",
+  "reviewer": "agent:workflow-editor-breaker",
+  "verdict": "approve",
+  "blocking": false,
+  "plainSummary": "Workflow setup has its own page, with a clear route back to the spec and its evidence.",
+  "summary": "Reviewed explicit user placement correction: workflow editor, selected steps, process requirements and agent activity now belong to /workflows/[id], index /workflows reachable from navigation, and spec Process details links there. Back-to-spec evidence link keeps context. Existing shared operation, preview freshness, permission, typed outputs and security invariants unchanged. Browser proof must now exercise dedicated route and return to associated spec, including narrow layout. Acceptance mapping remains SL030.",
+  "findings": [],
+  "residualRisks": [
+    "Tool related pack supplied a caution-only worktree note without scan status or entries; no sibling checkout state was used as authority.",
+    "No code has been independently verified at spec review time; cross-origin rejection and unchanged selections require runtime negative tests.",
+    "Saving guidance does not establish agent compliance or launch a host runner; local filesystem writers remain outside the cooperative boundary."
+  ],
+  "supersedesReviewId": "2afdd2f2-1d66-829b-bfe6-d17251a78160",
+  "revisionDigest": "3939da26750223505d6c83ce9c69f1f4ed60694ef987e2f41519d6c89fa6b744",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/reviews/workstreams/W-012/SR-03.json",
+        "id": "W-012/SR-03",
+        "sha256": "9751893f1cdac63edb6dd094ee789c1f23b628bf74954722de1d3d6d79ad0aec"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/reviews/workstreams/W-012/SR-03.json",
+        "id": "W-012/SR-03",
+        "sha256": "9751893f1cdac63edb6dd094ee789c1f23b628bf74954722de1d3d6d79ad0aec"
+      }
+    },
+    "historical": true
+  }
+}

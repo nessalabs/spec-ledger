@@ -7,7 +7,7 @@
   "outcome": "succeeded",
   "result": {
     "schemaVersion": 1,
-    "id": "W-014",
+    "id": "29c935b4-56bd-84a0-b887-e280d775f54d",
     "status": "done",
     "createdAt": "2026-09-06T07:33:40.672522+00:00",
     "featureIds": [
@@ -18,7 +18,7 @@
     "title": "Follow agent experiments",
     "problem": "Iterative agent work lacks a durable goal and experiment history that people can inspect.",
     "objective": "See what an agent is improving, its experiment results, and what it learned.",
-    "specPath": "docs/workstreams/W-014-follow-agent-experiments/spec.md",
+    "specPath": "docs/workstreams/29c935b4-56bd-84a0-b887-e280d775f54d-follow-agent-experiments/spec.md",
     "changeType": "feature",
     "riskLevel": "moderate",
     "trust": {
@@ -30,7 +30,7 @@
         "e2e"
       ],
       "visualEvidence": {
-        "SLC-03": [
+        "d67e07f2-7343-88d2-afeb-0fe6f3c8c377": [
           "Expanded evidence — desktop",
           "Expanded evidence — mobile",
           "Missing screenshot guidance"
@@ -50,7 +50,7 @@
     },
     "suggestedSlices": [
       {
-        "id": "SLC-01",
+        "id": "04932de5-9225-81d4-b42c-c13f79e6c5be",
         "title": "Record and inspect an agent’s experiments",
         "kind": "vertical",
         "acceptance": [
@@ -73,10 +73,10 @@
           "docs/**",
           "skills/**"
         ],
-        "codeBreakReviewId": "T-045/R-02"
+        "codeBreakReviewId": "5f73944e-2229-8cdb-a215-21cd45bb3463"
       },
       {
-        "id": "SLC-02",
+        "id": "b21da6cf-af77-8a39-bf8e-bfdc0d5b3a95",
         "title": "Read test results and visual evidence first",
         "kind": "vertical",
         "acceptance": [
@@ -95,10 +95,10 @@
           "docs/**",
           "schemas/**"
         ],
-        "codeBreakReviewId": "T-045/R-02"
+        "codeBreakReviewId": "5f73944e-2229-8cdb-a215-21cd45bb3463"
       },
       {
-        "id": "SLC-03",
+        "id": "d67e07f2-7343-88d2-afeb-0fe6f3c8c377",
         "title": "Require screenshots for visual work",
         "kind": "vertical",
         "acceptance": [
@@ -118,43 +118,43 @@
           "skills/**",
           "docs/**"
         ],
-        "codeBreakReviewId": "T-045/R-02"
+        "codeBreakReviewId": "5f73944e-2229-8cdb-a215-21cd45bb3463"
       }
     ],
-    "specBreakReviewId": "W-014/SR-04",
+    "specBreakReviewId": "87dc2941-f56d-84c0-bb35-1447bf06bb7f",
     "updatedAt": "2026-09-06T18:19:48.362Z",
     "seal": {
       "sealedAt": "2026-09-06T17:59:28.466Z",
-      "sealedBy": "agent:permission:AUTH-0c01cde4-b0d5-4d92-bc01-a1b602937a3a",
-      "specDigest": "48f42d99bfae95d51591cdec3e0ca462a5d309c01335772b2f837b13263189bc",
-      "snapshotPath": "workstreams/W-014.seals/4.json",
+      "sealedBy": "agent:permission:058aee1c-62ab-8fa9-85e1-b79a85ca2523",
+      "specDigest": "55bfed61bea2dc824525ee6efe04617857b5f50086cab73de09bd64dcb31ea7f",
+      "snapshotPath": "workstreams/29c935b4-56bd-84a0-b887-e280d775f54d.seals/4.json",
       "revision": 4,
       "specDocDigest": "3e99a31f42a0ec95b390321fa394a0c5486b92d61674e716f452a7e7e59284e9"
     },
     "acceptanceClaimIds": {
-      "SLC-01/AC-1": [
-        "SL-032"
+      "04932de5-9225-81d4-b42c-c13f79e6c5be/AC-1": [
+        "1ea8304f-a051-8234-b7a7-ce31b25eccf2"
       ],
-      "SLC-01/AC-2": [
-        "SL-032"
+      "04932de5-9225-81d4-b42c-c13f79e6c5be/AC-2": [
+        "1ea8304f-a051-8234-b7a7-ce31b25eccf2"
       ],
-      "SLC-01/AC-3": [
-        "SL-032"
+      "04932de5-9225-81d4-b42c-c13f79e6c5be/AC-3": [
+        "1ea8304f-a051-8234-b7a7-ce31b25eccf2"
       ],
-      "SLC-02/AC-1": [
-        "SL-031"
+      "b21da6cf-af77-8a39-bf8e-bfdc0d5b3a95/AC-1": [
+        "d62365fc-02af-826c-b961-8942c540bddf"
       ],
-      "SLC-02/AC-2": [
-        "SL-031"
+      "b21da6cf-af77-8a39-bf8e-bfdc0d5b3a95/AC-2": [
+        "d62365fc-02af-826c-b961-8942c540bddf"
       ],
-      "SLC-03/AC-1": [
-        "SL-031"
+      "d67e07f2-7343-88d2-afeb-0fe6f3c8c377/AC-1": [
+        "d62365fc-02af-826c-b961-8942c540bddf"
       ],
-      "SLC-03/AC-2": [
-        "SL-033"
+      "d67e07f2-7343-88d2-afeb-0fe6f3c8c377/AC-2": [
+        "ca2529a5-cf17-821c-ae1f-ac3e56178bf2"
       ],
-      "SLC-03/AC-3": [
-        "SL-033"
+      "d67e07f2-7343-88d2-afeb-0fe6f3c8c377/AC-3": [
+        "ca2529a5-cf17-821c-ae1f-ac3e56178bf2"
       ]
     },
     "postSealAmends": [
@@ -187,7 +187,7 @@
       }
     ],
     "proposedClaimIds": [
-      "PC-023"
+      "5418d06f-8b16-8d64-b004-408d9eb0f5a9"
     ]
   }
 }

@@ -193,8 +193,8 @@ Spec Ledger’s write path is **this checkout’s** `.spec-ledger/` + tree. It d
 **related-spec pack** and hands the agent paths + summaries:
 
 ```bash
-spec-ledger related --workstream W-001 [--worktrees] [--json]
-# or: spec-ledger related --feature verify [--claim SL-001] [--json]
+spec-ledger related --workstream 3317ada5-b347-894e-8c88-110b7b42d58b [--worktrees] [--json]
+# or: spec-ledger related --feature verify [--claim 67609c19-de05-862c-8db7-e5dc95f38cee] [--json]
 ```
 
 | Tool includes (this checkout) | Optional `--worktrees` (same machine) | Cannot promise |
@@ -366,14 +366,14 @@ Establish at project start; amend rarely and with human confirm.
 
 #### Tenet — `schemas/tenet.json`
 
-Path: `.spec-ledger/tenets/TN-001.json`
+Path: `.spec-ledger/tenets/f92f85de-1e99-855b-b750-225f42af5f81.json`
 
 A tenet is a **durable weighing rule** (“when X conflicts with Y, prefer X”).
 
 ```ts
 Tenet {
   schemaVersion: 1
-  id: string                       // "TN-001"
+  id: string                       // "f92f85de-1e99-855b-b750-225f42af5f81"
   statement: string                // imperative, testable in judgment
   rationale?: string
   scope: "product" | "feature"
@@ -451,7 +451,7 @@ Keep the learning `status: promoted` + `promotedTenetId` for Spec Ledger UI hist
 ```ts
 Theme {
   schemaVersion: 1
-  id: string                       // "TH-001" or slug
+  id: string                       // "ca32c846-538f-88d8-b9fd-c1fc2956d50b" or slug
   title: string
   summary: string
   featureIds?: string[]
@@ -491,7 +491,7 @@ Promote by moving into `claims/` and adding bindings in the implementing turn.
 ```ts
 Workstream {
   schemaVersion: 1
-  id: string                       // "W-001"
+  id: string                       // "3317ada5-b347-894e-8c88-110b7b42d58b"
   status: "draft"|"shaped"|"spec_review"|"sealed"|"active"|"done"|"cancelled"
   createdAt: datetime
   updatedAt?: datetime
@@ -544,7 +544,7 @@ Workstream {
     sealedAt: datetime
     sealedBy: string               // human (required unless policy explicitly allows agent+human)
     specDigest: string             // canonical hash — see §5.3
-    snapshotPath: string           // "workstreams/W-001.seals/{revision}.json"
+    snapshotPath: string           // "workstreams/3317ada5-b347-894e-8c88-110b7b42d58b.seals/{revision}.json"
     attachmentDigests?: { id: string; digest: string }[]
     proposedClaimDigests?: { id: string; digest: string }[]
     specBreakReviewId?: string
@@ -584,7 +584,7 @@ Workstream {
 }
 ```
 
-Path: `.spec-ledger/workstreams/W-001.json`
+Path: `.spec-ledger/workstreams/3317ada5-b347-894e-8c88-110b7b42d58b.json`
 
 ```
 draft → shaped → spec_review → sealed → active → done
@@ -706,14 +706,14 @@ Agents do **not** sleep for 10 minutes; the next invocation applies the timeout.
 **Paths (never overwrite):**
 
 ```
-workstreams/W-001.json                 # live metadata (points at current seal)
-workstreams/W-001.seals/1.json         # immutable snapshot revision 1
-workstreams/W-001.seals/2.json         # revision 2 after explicit re-seal
+workstreams/3317ada5-b347-894e-8c88-110b7b42d58b.json                 # live metadata (points at current seal)
+workstreams/3317ada5-b347-894e-8c88-110b7b42d58b.seals/1.json         # immutable snapshot revision 1
+workstreams/3317ada5-b347-894e-8c88-110b7b42d58b.seals/2.json         # revision 2 after explicit re-seal
 ```
 
-`seal.snapshotPath` = `workstreams/W-001.seals/{revision}.json`.
+`seal.snapshotPath` = `workstreams/3317ada5-b347-894e-8c88-110b7b42d58b.seals/{revision}.json`.
 `seal.revision` increments only on explicit `workstream seal`. Prior revision
-files are retained forever (git history + on-disk). Live `W-001.json` may update
+files are retained forever (git history + on-disk). Live `3317ada5-b347-894e-8c88-110b7b42d58b.json` may update
 `seal` pointer; never mutate a seals/N.json file.
 
 `workstream check-seal` recomputes digest from the pointed snapshot.
@@ -763,14 +763,14 @@ audit): see [`episodes.md`](./episodes.md).
 ```
 .spec-ledger/
   vision.json
-  tenets/TN-001.json
+  tenets/f92f85de-1e99-855b-b750-225f42af5f81.json
   learnings/LN-001.json
-  themes/TH-001.json
-  workstreams/W-001.json
-  workstreams/W-001.seals/1.json       # immutable seal revision 1
+  themes/ca32c846-538f-88d8-b9fd-c1fc2956d50b.json
+  workstreams/3317ada5-b347-894e-8c88-110b7b42d58b.json
+  workstreams/3317ada5-b347-894e-8c88-110b7b42d58b.seals/1.json       # immutable seal revision 1
   proposed-claims/PC-001.json
   automation-events/AE-….json
-  attachments/workstreams/W-001/…
+  attachments/workstreams/3317ada5-b347-894e-8c88-110b7b42d58b/…
 ```
 
 `ledger.json`: `visionPath`, `tenetsDir`, `learningsDir`, `themesDir`,
@@ -785,12 +785,12 @@ Verify **ignores** compass + workstreams + proposed-claims + themes + events.
 # Compass
 spec-ledger vision init --summary "…" [--north-star-file vision.md]
 spec-ledger tenet add --statement "…" --origin user|agent-confirmed [--scope product|feature]
-spec-ledger tenet confirm TN-001
+spec-ledger tenet confirm f92f85de-1e99-855b-b750-225f42af5f81
 spec-ledger learning add --statement "…" --kind correction [--turn T-00N] [--json]
 spec-ledger learning promote LN-001 --to-tenet TN-00N
 
 # Agent context (required before implement)
-spec-ledger context --workstream W-001 --slice SLC-01 [--json]
+spec-ledger context --workstream 3317ada5-b347-894e-8c88-110b7b42d58b --slice SLC-01 [--json]
 # optional: --feature verify  (defaults from workstream)
 # returns VerticalContext — see §9
 
@@ -805,14 +805,14 @@ spec-ledger workstream check-seal <W-id> [--json]
 spec-ledger workstream unseal <W-id> --by <human> --reason "…"   # rare; audit
 
 # Turns
-spec-ledger turn open --workstream W-001 --feature verify \
+spec-ledger turn open --workstream 3317ada5-b347-894e-8c88-110b7b42d58b --feature verify \
   --goal "…" [--prompt "…"] [--slice SLC-01] [--json]
 spec-ledger turn close [--id T-00N] [--slice SLC-01]
-spec-ledger impact --feature verify [--claim SL-001] [--json]   # predicted blast radius
-spec-ledger related --workstream W-001 [--worktrees] [--json]   # spec-break / shape pack
-# related --feature verify [--claim SL-001]  — same neighborhood without a workstream
+spec-ledger impact --feature verify [--claim 67609c19-de05-862c-8db7-e5dc95f38cee] [--json]   # predicted blast radius
+spec-ledger related --workstream 3317ada5-b347-894e-8c88-110b7b42d58b [--worktrees] [--json]   # spec-break / shape pack
+# related --feature verify [--claim 67609c19-de05-862c-8db7-e5dc95f38cee]  — same neighborhood without a workstream
 
-spec-ledger claim promote PC-001 --to SL-006
+spec-ledger claim promote PC-001 --to f0309cdb-3ac5-8d55-a06a-f7b71e5c06ad
 ```
 
 Shape skill writes via workstream commands; it does **not** call `turn open`.
@@ -1008,7 +1008,7 @@ turn.workstreamId, skills, Spec Ledger UI timeline
 
 **P4 — Dogfood this repo** (after P0–P1 runtime; docs layout already started):
 
-Claims SL-001…005 + a couple turns exist; themes/workstreams/seal not dogfooded
+Claims 67609c19-de05-862c-8db7-e5dc95f38cee…005 + a couple turns exist; themes/workstreams/seal not dogfooded
 yet. Packages are cut well.
 
 Docs layout (done): `docs/architecture|research` + [`../README.md`](../README.md).

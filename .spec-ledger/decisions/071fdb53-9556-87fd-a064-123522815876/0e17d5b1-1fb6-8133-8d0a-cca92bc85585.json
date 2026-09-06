@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "0e17d5b1-1fb6-8133-8d0a-cca92bc85585",
+  "turnId": "071fdb53-9556-87fd-a064-123522815876",
+  "decision": "Keep sha256Stable for seal digests until RFC 8785 JCS lands",
+  "rationale": "Stable stringify is good enough for pre-alpha dogfood; JCS is explicit out-of-scope for e6213c3f-60e4-8ceb-9d6a-15c67833b383.",
+  "alternativesRejected": [
+    "Block ship on full JCS"
+  ],
+  "basis": {
+    "at": "2026-09-03T04:40:00.000Z",
+    "sealRevision": 1
+  },
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/decisions/T-003/D-001.json",
+        "id": "D-001",
+        "sha256": "6677b83f8a5abcd52075d8da4c1358c75ad6790f0de723b7f4d3bb8992389bea"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/decisions/T-003/D-001.json",
+        "id": "D-001",
+        "sha256": "6677b83f8a5abcd52075d8da4c1358c75ad6790f0de723b7f4d3bb8992389bea"
+      }
+    },
+    "historical": true
+  },
+  "sequence": 1
+}

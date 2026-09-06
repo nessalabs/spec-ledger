@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "workstreamId": "0f65234d-cf94-8f8d-a7c9-0ce6ef01e073",
+  "revision": 1,
+  "sealedAt": "2026-09-05T03:25:20.453Z",
+  "sealedBy": "agent:permission:ba52f9d6-c484-898d-9dc3-034af46da76c",
+  "specDigest": "40daae6eabb358d1d7c25104faae743e871d5028ccc58279ce2dfce67d38755b",
+  "specDocDigest": "a451b321d106746918efcaad96ae13ed336811394c26e55db0b6b2ae730608a2",
+  "body": {
+    "id": "0f65234d-cf94-8f8d-a7c9-0ce6ef01e073",
+    "featureIds": [
+      "lattice"
+    ],
+    "primaryFeatureId": null,
+    "title": "Find the spec, progress and proof easily",
+    "objective": "Navigate between the spec, current progress and evidence without wading through internal details.",
+    "specPath": "docs/workstreams/0f65234d-cf94-8f8d-a7c9-0ce6ef01e073-simple-navigation/spec.md",
+    "appetite": null,
+    "changeType": null,
+    "riskLevel": null,
+    "trust": {
+      "userFacing": true,
+      "correctnessCritical": true,
+      "requiredEvidence": [
+        "unit",
+        "integration",
+        "e2e"
+      ]
+    },
+    "policy": {
+      "requireSpecBreak": true,
+      "requireCodeBreak": true,
+      "requireAlignApprove": true
+    },
+    "acceptanceCriteria": [],
+    "outOfScope": [],
+    "proposedClaimIds": [],
+    "suggestedSlices": [
+      {
+        "id": "67f295ed-b0ec-8e83-aa58-1c11d7cb8f4c",
+        "title": "Navigate work and inspect its proof",
+        "kind": "vertical",
+        "acceptance": [
+          "Open the selected spec and its evidence from a focused overview, with three main navigation choices and reachable secondary pages on keyboard and narrow screens.",
+          "Switch between evidence, history and process without losing deep links or browser history; preserve permission, evidence freshness and explicit test execution."
+        ],
+        "evidence": [],
+        "expectedClaimIds": [],
+        "expectedPaths": [
+          "packages/ui/**",
+          "docs/**"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "requestId": "7f00444b-2bcd-485c-8b82-b50e42700f92",
+  "operation": "begin_work",
+  "inputDigest": "49e51dc8be44673e7d770ac550710f4edc588910fab2917fd9ac9fe97c6d0431",
+  "finishedAt": "2026-09-06T07:27:58.966Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "id": "5289b54d-6551-8eae-9780-c7cfc17dc651",
+    "status": "open",
+    "openedAt": "2026-09-06T07:27:58.966Z",
+    "opened": {
+      "producedBy": "@nessalabs/spec-ledger@0.1.0",
+      "baseCommit": "b9ff5c83877d6851534ee23e0ce85cc63b291b7b",
+      "treeDigest": "5da35595ece444f4b6f1b69c56ed2c89b4583ea26e1b065be4f37c6e42f8395e",
+      "dirtyAtOpen": [],
+      "contextDigest": "ff233d9c0b0be1f5a541cc006d4596c43ac33d71231a1f7637ae7fa73973fc47",
+      "contextWorkstreamId": "ef172105-4f40-8bbb-8abe-d1cd11ae618a",
+      "contextSliceId": "ef669c8c-b701-85d9-b2da-638757fed84e",
+      "contextSealRevision": 1,
+      "contextGeneratedAt": "2026-09-06T07:27:58.966Z"
+    },
+    "intent": {
+      "userPrompt": "Finish fixing PR 2 CI by declaring the remaining UI test dependency and validating a clean checkout.",
+      "restatedGoal": "Run all UI tests from a clean CI install",
+      "changeType": "fix",
+      "riskLevel": "moderate",
+      "workstreamId": "ef172105-4f40-8bbb-8abe-d1cd11ae618a",
+      "sliceId": "ef669c8c-b701-85d9-b2da-638757fed84e",
+      "featureIds": [
+        "client",
+        "cli",
+        "lattice"
+      ]
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "turnId": "7a56453a-0979-8b0a-a4fe-ddbc9aab354a",
+  "kind": "log-excerpt",
+  "title": "Actual MCP executable observation",
+  "path": "docs/workstreams/815c7a44-59df-8102-9769-bf8a74e49c0c-shared-agent-workflows/evidence/7a56453a-0979-8b0a-a4fe-ddbc9aab354a/mcp-smoke.md",
+  "mediaType": "text/plain",
+  "contentDigest": "31be56fd7622d90f854727091c15bc64e4ae686195e508051692b0d9d50d3d00",
+  "byteLength": 1164,
+  "id": "638b5f0e-216e-89cd-908e-ad4046df4364",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/attachments/T-034/A-03.json",
+        "id": "T-034/A-03",
+        "sha256": "76d1ec320ccc85208423797165c5d195e392ce70684348dc62b8bccb701f14cd"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/attachments/T-034/A-03.json",
+        "id": "T-034/A-03",
+        "sha256": "76d1ec320ccc85208423797165c5d195e392ce70684348dc62b8bccb701f14cd"
+      }
+    },
+    "historical": true
+  }
+}

@@ -40,7 +40,7 @@ describe("turns", () => {
       restatedGoal: "Change hello.txt",
     }, { allowDirty: true })
     assert.equal(opened.status, "open")
-    assert.equal(opened.id, "T-001")
+    assert.match(opened.id, /^[0-9a-f-]{36}$/)
 
     const closed = closeTurn(dir)
     assert.equal(closed.status, "closed")
@@ -59,9 +59,9 @@ describe("turns", () => {
     const files = collectGitFiles(dir)
     const derived = deriveTouched(ledger, [
       ...files,
-      { path: ".spec-ledger/claims/SL-001.json", kind: "added" },
+      { path: ".spec-ledger/claims/5e852279-c620-5042-b952-b015a4c32e20.json", kind: "added" },
     ])
-    assert.ok(derived.touchedClaimIds.includes("SL-001"))
+    assert.ok(derived.touchedClaimIds.includes("5e852279-c620-5042-b952-b015a4c32e20"))
   })
 
   it("workstream open stamps contextDigest; unsealed refused", () => {
@@ -82,21 +82,21 @@ describe("turns", () => {
         {
           userPrompt: "stamp context",
           restatedGoal: "Open with sealed slice",
-          workstreamId: "W-001",
-          sliceId: "SLC-02",
+          workstreamId: "3317ada5-b347-894e-8c88-110b7b42d58b",
+          sliceId: "bec491ff-a422-808c-b304-89a166f5e466",
           featureIds: ["turns"],
         },
-        { workstreamId: "W-001", sliceId: "SLC-02", featureIds: ["turns"], allowDirty: true },
+        { workstreamId: "3317ada5-b347-894e-8c88-110b7b42d58b", sliceId: "bec491ff-a422-808c-b304-89a166f5e466", featureIds: ["turns"], allowDirty: true },
       )
-      assert.equal(opened.opened?.contextWorkstreamId, "W-001")
-      assert.equal(opened.opened?.contextSliceId, "SLC-02")
+      assert.equal(opened.opened?.contextWorkstreamId, "3317ada5-b347-894e-8c88-110b7b42d58b")
+      assert.equal(opened.opened?.contextSliceId, "bec491ff-a422-808c-b304-89a166f5e466")
       assert.equal(opened.opened?.contextDigest?.length, 64)
       assert.equal(opened.opened?.treeDigest?.length, 64)
 
       // close needs code-break; abandon by deleting for next fixture step
       rmSync(join(dir, ".spec-ledger/turns", `${opened.id}.json`))
 
-      const wsPath = join(dir, ".spec-ledger/workstreams/W-001.json")
+      const wsPath = join(dir, ".spec-ledger/workstreams/3317ada5-b347-894e-8c88-110b7b42d58b.json")
       const ws = JSON.parse(readFileSync(wsPath, "utf8")) as Workstream
       ws.status = "shaped"
       delete ws.seal
@@ -108,10 +108,10 @@ describe("turns", () => {
             {
               userPrompt: "unsealed",
               restatedGoal: "should fail",
-              workstreamId: "W-001",
-              sliceId: "SLC-02",
+              workstreamId: "3317ada5-b347-894e-8c88-110b7b42d58b",
+              sliceId: "bec491ff-a422-808c-b304-89a166f5e466",
             },
-            { workstreamId: "W-001", sliceId: "SLC-02", allowDirty: true },
+            { workstreamId: "3317ada5-b347-894e-8c88-110b7b42d58b", sliceId: "bec491ff-a422-808c-b304-89a166f5e466", allowDirty: true },
           ),
         /sealed/,
       )
@@ -134,24 +134,24 @@ describe("turns", () => {
       spawnSync("git", ["add", "."], { cwd: dir })
       spawnSync("git", ["commit", "-m", "init"], { cwd: dir })
 
-      openTurn(
+      const opened = openTurn(
         dir,
         {
           userPrompt: "gate close",
           restatedGoal: "Require code break",
-          workstreamId: "W-001",
-          sliceId: "SLC-02",
+          workstreamId: "3317ada5-b347-894e-8c88-110b7b42d58b",
+          sliceId: "bec491ff-a422-808c-b304-89a166f5e466",
           featureIds: ["turns"],
         },
-        { workstreamId: "W-001", sliceId: "SLC-02", featureIds: ["turns"], allowDirty: true },
+        { workstreamId: "3317ada5-b347-894e-8c88-110b7b42d58b", sliceId: "bec491ff-a422-808c-b304-89a166f5e466", featureIds: ["turns"], allowDirty: true },
       )
 
       assert.throws(() => closeTurn(dir), /requireCodeBreak/)
 
       writeReview(dir, {
         schemaVersion: 1,
-        id: "T-001/R-01",
-        turnId: "T-001",
+        id: "978fb18b-7dc9-520b-9fb5-0413b7b983bf",
+        turnId: opened.id,
         kind: "adversarial",
         target: "code",
         reviewer: "agent:test",
@@ -163,8 +163,8 @@ describe("turns", () => {
 
       writeReview(dir, {
         schemaVersion: 1,
-        id: "T-001/R-02",
-        turnId: "T-001",
+        id: "c3c1d77f-ef8b-5a5c-914d-b9dd795a9654",
+        turnId: opened.id,
         kind: "adversarial",
         target: "code",
         reviewer: "agent:test",

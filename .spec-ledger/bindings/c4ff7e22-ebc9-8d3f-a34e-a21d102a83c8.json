@@ -1,0 +1,33 @@
+{
+  "id": "c4ff7e22-ebc9-8d3f-a34e-a21d102a83c8",
+  "claimId": "2bdf48ad-ad8b-86b1-a043-5b16496999b3",
+  "kind": "test",
+  "locator": {
+    "type": "command",
+    "command": "node --test packages/ui/lib/turn-evidence.break.test.mjs"
+  },
+  "test": {
+    "level": "integration",
+    "description": "Render the change page and test evidence scoping against real Git histories.",
+    "source": {
+      "path": "packages/ui/lib/turn-evidence.break.test.mjs"
+    },
+    "inputs": "Multiple slices and claims, failed/missing evidence, legacy turns and temporary commits with matching, adjacent or prose-only turn identifiers.",
+    "expected": "Evidence appears before collapsed technical details; only scoped criteria appear; commits require the exact trailer; historical completion is not presented as current proof."
+  },
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/bindings/B-SL-026.json",
+        "id": "b-sl-026",
+        "sha256": "a668ac55ad5347d8d54d3c2f95ac4902b8d95b1bf4b5e62f2e98bafc9829d276"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/bindings/B-SL-026.json",
+        "id": "b-sl-026",
+        "sha256": "a668ac55ad5347d8d54d3c2f95ac4902b8d95b1bf4b5e62f2e98bafc9829d276"
+      }
+    },
+    "historical": true
+  }
+}

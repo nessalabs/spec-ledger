@@ -30,13 +30,13 @@ function fixture(label: string) {
   writeFileSync(join(root, 'skills/team.md'), '# Team method\nExplain the claim, exercise the behavior, and retain the evidence.\n')
   writeFileSync(join(root, 'behavior.cjs'), 'module.exports = { greeting: name => `Hello ${name}` }\n')
   writeFileSync(join(root, 'check.cjs'), 'const assert = require("node:assert/strict"); assert.equal(require("./behavior.cjs").greeting("Ada"), "Hello Ada");\n')
-  writeFileSync(join(root, '.spec-ledger/claims/SL-001.json'), JSON.stringify({ id: 'SL-001', statement: 'Greeting includes the supplied name', required: true }))
-  writeFileSync(join(root, '.spec-ledger/bindings/greeting.json'), JSON.stringify({ id: 'greeting', claimId: 'SL-001', kind: 'test', locator: { type: 'command', command: `${process.execPath} check.cjs` } }))
-  writeFileSync(join(root, '.spec-ledger/workstreams/W-001.json'), JSON.stringify({
-    schemaVersion: 1, id: 'W-001', status: 'shaped', title: 'Team greeting', objective: 'Greet the supplied name', featureIds: ['alpha'],
-    acceptanceCriteria: ['Greeting includes the supplied name'], acceptanceClaimIds: { 'AC-1': ['SL-001'] },
+  writeFileSync(join(root, '.spec-ledger/claims/5e852279-c620-5042-b952-b015a4c32e20.json'), JSON.stringify({ id: '5e852279-c620-5042-b952-b015a4c32e20', statement: 'Greeting includes the supplied name', required: true }))
+  writeFileSync(join(root, '.spec-ledger/bindings/3da287bc-1ddf-4c6a-a23b-dc1eaf95d2bb.json'), JSON.stringify({ id: '3da287bc-1ddf-4c6a-a23b-dc1eaf95d2bb', claimId: '5e852279-c620-5042-b952-b015a4c32e20', kind: 'test', locator: { type: 'command', command: `${process.execPath} check.cjs` } }))
+  writeFileSync(join(root, '.spec-ledger/workstreams/6fbba68d-7164-55a6-80f9-18dea06c91ce.json'), JSON.stringify({
+    schemaVersion: 1, id: '6fbba68d-7164-55a6-80f9-18dea06c91ce', status: 'shaped', title: 'Team greeting', objective: 'Greet the supplied name', featureIds: ['alpha'],
+    acceptanceCriteria: ['Greeting includes the supplied name'], acceptanceClaimIds: { 'AC-1': ['5e852279-c620-5042-b952-b015a4c32e20'] },
     policy: { requireSpecBreak: true, requireCodeBreak: true, requireAlignApprove: true }, trust: {},
-    suggestedSlices: [{ id: 'SLC-01', title: 'Greeting', kind: 'vertical', acceptance: ['Greeting works'], expectedPaths: ['**'] }],
+    suggestedSlices: [{ id: '0d0038da-bb13-561e-ac49-570f6ed0f334', title: 'Greeting', kind: 'vertical', acceptance: ['Greeting works'], expectedPaths: ['**'] }],
   }))
   run(root, 'git', ['add', '.'])
   run(root, 'git', ['commit', '-qm', 'fixture'])
@@ -83,18 +83,18 @@ function domain(root: string) {
 async function preparedExecution(root: string, call: Caller, surface: string) {
   let sequence = 0
   const request = () => `execution-${surface}-request-${String(++sequence).padStart(4, '0')}`
-  const current = () => ({ expectedRevisionDigest: planRevision(root, loadWorkstream(root, 'W-001')), expectedSourceDigest: sourceFingerprint(root)! })
+  const current = () => ({ expectedRevisionDigest: planRevision(root, loadWorkstream(root, '6fbba68d-7164-55a6-80f9-18dea06c91ce')), expectedSourceDigest: sourceFingerprint(root)! })
   const invoke = async (operation: string, input: Record<string, unknown>) => {
     const envelope = await call(operation, input)
     assert.equal(envelope.ok, true, `${operation}: ${JSON.stringify(envelope)}`)
     return envelope.result
   }
-  await invoke('record_permission', { requestId: request(), authority: { id: 'AUTH-execution', action: 'grant', mode: 'request', workstreamId: 'W-001', featureIds: ['alpha'], source: { kind: 'agent-reported', reference: 'Owned integration fixture request' } } })
-  await invoke('record_review', { requestId: request(), target: 'spec', workstreamId: 'W-001', expectedRevisionDigest: current().expectedRevisionDigest, review: { kind: 'adversarial', reviewer: 'fixture-reviewer', verdict: 'approve', summary: 'The fixture is bounded.', plainSummary: 'The fixture is ready to build.' } })
-  await invoke('begin_work', { requestId: request(), workstreamId: 'W-001', sliceId: 'SLC-01', goal: 'Track the owned fixture session', allowDirty: true, expectedRevisionDigest: current().expectedRevisionDigest })
+  const authority = await invoke('record_permission', { requestId: request(), authority: { action: 'grant', mode: 'request', workstreamId: '6fbba68d-7164-55a6-80f9-18dea06c91ce', featureIds: ['alpha'], source: { kind: 'agent-reported', reference: 'Owned integration fixture request' } } })
+  await invoke('record_review', { requestId: request(), target: 'spec', workstreamId: '6fbba68d-7164-55a6-80f9-18dea06c91ce', expectedRevisionDigest: current().expectedRevisionDigest, review: { kind: 'adversarial', reviewer: 'fixture-reviewer', verdict: 'approve', summary: 'The fixture is bounded.', plainSummary: 'The fixture is ready to build.' } })
+  const opened = await invoke('begin_work', { requestId: request(), workstreamId: '6fbba68d-7164-55a6-80f9-18dea06c91ce', sliceId: '0d0038da-bb13-561e-ac49-570f6ed0f334', goal: 'Track the owned fixture session', allowDirty: true, expectedRevisionDigest: current().expectedRevisionDigest })
   await invoke('run_checks', { requestId: request(), expectedSourceDigest: current().expectedSourceDigest })
-  const registration = await invoke('register_execution', { requestId: request(), workstreamId: 'W-001', turnId: 'T-001', hostSessionRef: `fixture:${surface}`, ...current() })
-  return { invoke, request, current, registration }
+  const registration = await invoke('register_execution', { requestId: request(), workstreamId: '6fbba68d-7164-55a6-80f9-18dea06c91ce', turnId: opened.id, hostSessionRef: `fixture:${surface}`, ...current() })
+  return { invoke, request, current, registration, authority }
 }
 
 for (const surface of ['cli', 'mcp'] as const) {
@@ -102,7 +102,7 @@ for (const surface of ['cli', 'mcp'] as const) {
     const root = fixture(surface)
     const transport = await adapter(root, surface)
     try {
-      const { invoke, request, current, registration } = await preparedExecution(root, transport.call, surface)
+      const { invoke, request, current, registration, authority } = await preparedExecution(root, transport.call, surface)
       const registrationId = registration.registrationId
       const initialSource = current().expectedSourceDigest
       const receipts = () => readdirSync(join(root, '.spec-ledger/operations')).sort()
@@ -122,7 +122,7 @@ for (const surface of ['cli', 'mcp'] as const) {
       assert.equal(running.hostCapabilities.resume, false)
       assert.deepEqual(receipts(), beforeEvents, 'Transient signals and observations must not accumulate durable operation receipts')
       assert.equal(current().expectedSourceDigest, initialSource)
-      const unchanged = (await invoke('get_session', { workstreamId: 'W-001' })).session
+      const unchanged = (await invoke('get_session', { workstreamId: '6fbba68d-7164-55a6-80f9-18dea06c91ce' })).session
       assert.equal(unchanged.criteria[0].evidence, 'pass', 'Activity does not stale source evidence')
       assert.equal(unchanged.completion.eligible, false, 'Activity does not complete the work')
 
@@ -153,7 +153,7 @@ for (const surface of ['cli', 'mcp'] as const) {
       assert.equal(stopped.continuation.effective, false)
       assert.ok(stopped.continuation.reasons.includes('explicitly-stopped'))
       assert.equal(stopped.inflightInvocations.length, 1, 'A resume report cannot finish an unfinished tool')
-      await invoke('record_permission', { requestId: request(), authority: { id: 'AUTH-execution-revoke', action: 'revoke', targetId: 'AUTH-execution', source: { kind: 'agent-reported', reference: 'Fixture revocation' } } })
+      await invoke('record_permission', { requestId: request(), authority: { action: 'revoke', targetId: authority.id, source: { kind: 'agent-reported', reference: 'Fixture revocation' } } })
       const revoked = await invoke('get_execution', { registrationId })
       assert.ok(revoked.continuation.reasons.includes('permission-revoked'))
       assert.equal(revoked.continuation.effective, false)

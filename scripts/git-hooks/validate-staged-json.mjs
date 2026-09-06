@@ -20,7 +20,7 @@ function fail(file, msg) {
 function checkTurn(file, data) {
   let ok = true
   if (data.schemaVersion !== 1) ok = fail(file, "schemaVersion must be 1") || ok
-  if (typeof data.id !== "string" || !/^T-[0-9]{3,}/.test(data.id))
+  if (typeof data.id !== "string" || !/^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/.test(data.id))
     ok = fail(file, "id must match T-NNN") || ok
   if (data.status !== "open" && data.status !== "closed")
     ok = fail(file, 'status must be "open" or "closed"') || ok

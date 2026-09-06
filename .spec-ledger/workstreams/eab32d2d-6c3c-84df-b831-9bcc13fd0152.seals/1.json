@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "workstreamId": "eab32d2d-6c3c-84df-b831-9bcc13fd0152",
+  "revision": 1,
+  "sealedAt": "2026-09-06T18:36:28.382Z",
+  "sealedBy": "agent:permission:4e6cc9b2-c4e1-8671-9676-99a44a454eac",
+  "specDigest": "2ccffd0296e952184e3f980cce9e94a396acc997c5a17feaceb46879a522cb0f",
+  "specDocDigest": "455a563aabf26bf1444ad06d52dc2749708f5247ddd5da45058bd1dc197afd00",
+  "body": {
+    "id": "eab32d2d-6c3c-84df-b831-9bcc13fd0152",
+    "featureIds": [
+      "turns",
+      "lattice",
+      "cli",
+      "verify"
+    ],
+    "primaryFeatureId": null,
+    "title": "Give concurrent work distinct identities",
+    "problem": "Parallel agents mint overlapping numbered identities and prevent lossless integration.",
+    "objective": "Create and inspect concurrent work without identity collisions.",
+    "specPath": "docs/workstreams/eab32d2d-6c3c-84df-b831-9bcc13fd0152-concurrent-identities/spec.md",
+    "appetite": null,
+    "changeType": "migration",
+    "riskLevel": "high",
+    "trust": {
+      "deployTarget": "library-consumer",
+      "userFacing": true,
+      "requiredEvidence": [
+        "unit",
+        "integration",
+        "e2e"
+      ],
+      "visualEvidence": {
+        "596b8830-61c6-887a-b6c3-9ae0561f2761": [
+          "UUID work list — desktop",
+          "UUID work details — mobile",
+          "Integrated experiments",
+          "Integrated workflow library"
+        ]
+      }
+    },
+    "policy": {
+      "alertOnSeverity": "high",
+      "onAlert": "wait",
+      "alertWaitMinutes": 10,
+      "onAlertTimeout": "move",
+      "onSealedSpecDeviation": "wait",
+      "sealedDeviationWaitMinutes": 10,
+      "onSealedDeviationTimeout": "move",
+      "requireSpecBreak": true,
+      "requireCodeBreak": true
+    },
+    "acceptanceCriteria": [],
+    "acceptanceClaimIds": {
+      "596b8830-61c6-887a-b6c3-9ae0561f2761/AC-1": [
+        "39e43d1e-6e29-8983-8c0e-e55c2beabcc6"
+      ],
+      "596b8830-61c6-887a-b6c3-9ae0561f2761/AC-2": [
+        "39e43d1e-6e29-8983-8c0e-e55c2beabcc6"
+      ],
+      "596b8830-61c6-887a-b6c3-9ae0561f2761/AC-3": [
+        "39e43d1e-6e29-8983-8c0e-e55c2beabcc6"
+      ],
+      "596b8830-61c6-887a-b6c3-9ae0561f2761/AC-4": [
+        "db092384-a2b9-8db4-b9b8-ff7b5e58f133"
+      ]
+    },
+    "outOfScope": [],
+    "proposedClaimIds": [
+      "efc1f0a4-7911-8163-b194-906c6ae5f62a"
+    ],
+    "suggestedSlices": [
+      {
+        "id": "596b8830-61c6-887a-b6c3-9ae0561f2761",
+        "title": "Create and inspect concurrent work safely",
+        "kind": "vertical",
+        "acceptance": [
+          "Concurrent creation generates distinct UUIDs while retries preserve one record.",
+          "Both branches integrate with migrated references and preserved historical provenance.",
+          "People inspect titled work, results and screenshots; agents use generated identities.",
+          "Publishing uses the organization credential and passes dry-run validation without releasing."
+        ],
+        "evidence": [
+          "unit",
+          "integration",
+          "e2e",
+          "screenshot"
+        ],
+        "expectedClaimIds": [],
+        "expectedPaths": [
+          "packages/**",
+          "schemas/**",
+          "skills/**",
+          "docs/**",
+          "scripts/**",
+          ".github/**",
+          "package.json",
+          "pnpm-lock.yaml",
+          ".npmrc"
+        ]
+      }
+    ]
+  }
+}

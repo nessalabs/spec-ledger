@@ -1,0 +1,71 @@
+▶ workflow editor boundary regressions
+  ✔ roundtrips bundled choices and hides symlinked discovery roots (213.527625ms)
+  ✔ rejects attestation substitutes for every mandatory stage output (121.270375ms)
+  ✔ rejects changed skill content and stale amendment identity without replacing the selection (291.139208ms)
+  ✔ rejects oversized and malformed browser actions without writes or execution (116.023625ms)
+  ✔ browser preview and apply share core state, deny foreign requests, and retry once (217.843959ms)
+✔ workflow editor boundary regressions (960.489041ms)
+✔ library operations preserve actor/reason, retry identity and independent pointer conflicts (125.736041ms)
+✔ local library route denies unsafe requests before mutation and accepts a valid save (40.82675ms)
+✔ library refuses symlinked profile storage without touching external files (40.595834ms)
+✖ a refused delete with an unsafe default pointer preserves the saved workflow (71.722375ms)
+✔ local library poison and cross-site requests cannot create profiles (49.288625ms)
+✔ a saved workflow applies to a spec whose requirements are numbered differently (11.717583ms)
+✔ saving is create-only and refuses a workflow carrying another spec's requirement numbers (5.156917ms)
+✔ adoption is refused when the workflow lacks a review stage the spec requires (63.700208ms)
+✔ editing or deleting a saved workflow leaves an adopted spec running unchanged (49.859ms)
+✔ editing and deleting require the version the caller read (30.650209ms)
+✔ the normal workflow falls back to the bundled one when it is deleted (11.235041ms)
+✔ a corrupt saved workflow is refused rather than silently adopted (6.533458ms)
+✔ adopting a saved copy of the bundled workflow gates exactly like the bundled workflow (52.97725ms)
+✔ a review stage somebody deliberately added still counts when policy is lax (6.241917ms)
+✔ switching an adopted workflow needs a reason and the snapshot the caller saw (8.023917ms)
+✔ a saved workflow whose skill file is gone is refused with its path, and listed as unusable (7.266917ms)
+✔ a hand-written workflow is untouched by library coverage binding (7.243416ms)
+▶ custom workflow adversarial contracts
+  ✔ rejects unknown or empty output contracts and policy-breaking stage order before persistence (215.766458ms)
+  ✔ confines workflow persistence when the workflow directory is an escaping symlink (136.6375ms)
+  ✔ preserves selected skill bytes and rejects escaping or oversized replacements (138.172708ms)
+  ✔ gives every amendment a new execution identity and excludes prior attempts (248.98525ms)
+  ✔ rejects a current code review that belongs to another workstream (316.68825ms)
+  ✔ does not relabel a review created before the current method attempt as that attempt's output (244.604042ms)
+  ✔ does not satisfy a code-review output while a later blocking review remains unresolved (309.965917ms)
+  ✔ requires behavioral result rows for every scoped criterion and never accepts attestation instead (243.342417ms)
+  ✔ keeps an explicitly configured review stage applicable when project policy does not require one (120.625875ms)
+  ✔ does not make later steps in one ordered stage ready before earlier steps are satisfied (120.460792ms)
+✔ custom workflow adversarial contracts (2096.32175ms)
+✔ default workflow needs no configuration and preserves substantive bundled guidance (7.175625ms)
+✔ custom workflow preserves exact local skill text and rejects unsafe or incompatible skills (6.560667ms)
+✔ cli: follows a custom method through real records and preserves current evidence (4765.003791ms)
+✔ mcp: follows a custom method through real records and preserves current evidence (2446.477959ms)
+ℹ tests 36
+ℹ suites 2
+ℹ pass 35
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7344.126083
+
+✖ failing tests:
+
+test at packages/ledger/dist/workflows/library-storage.break.test.js:28:1
+✖ a refused delete with an unsafe default pointer preserves the saved workflow (71.722375ms)
+  AssertionError [ERR_ASSERTION]: a rejected operation must not delete the profile
+  
+  false !== true
+  
+      at TestContext.<anonymous> (file:///Users/nessa/Documents/NessaLabs/spec-ledger-workflow-library/packages/ledger/dist/workflows/library-storage.break.test.js:37:16)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

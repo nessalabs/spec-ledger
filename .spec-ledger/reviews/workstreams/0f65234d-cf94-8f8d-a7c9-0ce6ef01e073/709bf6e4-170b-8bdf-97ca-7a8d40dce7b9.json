@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "709bf6e4-170b-8bdf-97ca-7a8d40dce7b9",
+  "workstreamId": "0f65234d-cf94-8f8d-a7c9-0ce6ef01e073",
+  "kind": "adversarial",
+  "target": "spec",
+  "reviewer": "agent:navigation-breaker",
+  "verdict": "approve",
+  "blocking": false,
+  "plainSummary": "The navigation requirements point to checks for finding evidence and keeping approval problems visible.",
+  "summary": "Reviewed W011 acceptance mapping to SL029 and b9215e80-1cbf-8bbf-83dc-63ceab15c182 navigation*.test.mjs. Both criteria concern one navigation composition; component interaction tests exercise legacy hashes, browser history and evidence visibility, while overview render checks retain permission, connection and attention states. Browser walkthrough remains required for three primary destinations, keyboard/narrow behavior and real evidence interaction; the command alone does not prove layout usability. Existing W010 saved-check tests preserve explicit execution behavior. The mapping is compatible with the preserved UI-only plan.",
+  "findings": [],
+  "residualRisks": [
+    "Component tests are complemented by the required live browser walkthrough; they do not establish mobile layout by themselves."
+  ],
+  "supersedesReviewId": "d2b34ecb-cb0a-8aa0-955e-221e99d37751",
+  "revisionDigest": "b52e2f3a59eab34a931fc0edec56d472fdd49228fc6abd7829333ab1cb4119cb",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/reviews/workstreams/W-011/SR-02.json",
+        "id": "W-011/SR-02",
+        "sha256": "06f26d84533b238268b6231b9f3857fd23a04a4843e57cdca58ed3346d5d9993"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/reviews/workstreams/W-011/SR-02.json",
+        "id": "W-011/SR-02",
+        "sha256": "06f26d84533b238268b6231b9f3857fd23a04a4843e57cdca58ed3346d5d9993"
+      }
+    },
+    "historical": true
+  }
+}

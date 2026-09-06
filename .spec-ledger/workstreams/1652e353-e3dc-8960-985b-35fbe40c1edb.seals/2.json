@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "workstreamId": "1652e353-e3dc-8960-985b-35fbe40c1edb",
+  "revision": 2,
+  "sealedAt": "2026-09-04T23:21:15.708Z",
+  "sealedBy": "agent:permission:7a81ffaf-80f0-8063-89e3-5ac9a630d44d",
+  "specDigest": "d2e679ecd54293401a03a32ba095f1d69d185068322f4da33f5384f557c9a05d",
+  "specDocDigest": "adb9123ba1e3fb5850385c851bff98131c6de545c77b553ea490f1f92f0cfeb6",
+  "body": {
+    "id": "1652e353-e3dc-8960-985b-35fbe40c1edb",
+    "featureIds": [
+      "lattice",
+      "verify",
+      "client"
+    ],
+    "primaryFeatureId": "lattice",
+    "title": "Review evidence in one place",
+    "problem": "Evidence is hidden behind shipped history.",
+    "objective": "Review each requirement with its current evidence and propose customizable engineering workflows.",
+    "specPath": "docs/workstreams/1652e353-e3dc-8960-985b-35fbe40c1edb-evidence-and-custom-workflows/spec.md",
+    "appetite": null,
+    "changeType": "feature",
+    "riskLevel": null,
+    "trust": null,
+    "policy": {
+      "requireSpecBreak": true,
+      "requireCodeBreak": true,
+      "requireAlignApprove": true,
+      "allowExplicitAlignSkip": true,
+      "onAlert": "block",
+      "onSealedSpecDeviation": "block"
+    },
+    "acceptanceCriteria": [],
+    "acceptanceClaimIds": {
+      "1cc99a13-3a0e-8451-a8b8-17e8d35a933d/AC-1": [
+        "dd5caaee-dace-8f53-bff5-65b6a7646b6d"
+      ]
+    },
+    "outOfScope": [],
+    "proposedClaimIds": [],
+    "suggestedSlices": [
+      {
+        "id": "1cc99a13-3a0e-8451-a8b8-17e8d35a933d",
+        "title": "Read evidence beside requirements",
+        "kind": "vertical",
+        "acceptance": [
+          "Workstream evidence explains current verdicts, recorded checks, reviews and safe artifacts; custom workflows have a concrete proposal."
+        ],
+        "evidence": [
+          "unit",
+          "integration"
+        ],
+        "expectedClaimIds": [],
+        "expectedPaths": [
+          "packages/ledger/src/**",
+          "packages/client/**",
+          "packages/ui/**",
+          "docs/**"
+        ]
+      }
+    ]
+  }
+}

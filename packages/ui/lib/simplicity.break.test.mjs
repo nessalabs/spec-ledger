@@ -1,3 +1,4 @@
+import {randomUUID} from 'node:crypto'
 import {test} from 'node:test'
 import assert from 'node:assert/strict'
 import {readFileSync} from 'node:fs'
@@ -22,7 +23,7 @@ test('simpler progress keeps incomplete and historical limits visible even when 
 })
 
 test('failed missing attested and unmapped requirements keep honest statuses on expandable requirements',()=>{
- const criteria=['fail','missing','attested','missing'].map((evidence,i)=>({id:`AC-${i}`,text:`Behavior ${i}`,evidence,implemented:true,claims:i===3?[]:[{id:`C-${i}`,statement:'Expected behavior',checks:[{id:`B-${i}`,kind:'test',outcome:evidence,definition:{type:'command',command:'run-check'},recorded:[]}]}]}))
+ const criteria=['fail','missing','attested','missing'].map((evidence,i)=>({id:`AC-${i}`,text:`Behavior ${i}`,evidence,implemented:true,claims:i===3?[]:[{id:randomUUID(),statement:'Expected behavior',checks:[{id:randomUUID(),kind:'test',outcome:evidence,definition:{type:'command',command:'run-check'},recorded:[]}]}]}))
  const tree=Evidence({session:{criteria,reviews:[],artifacts:[]},observedAt:'now'})
  const visible=text(tree,true)
  for(const s of ['Failed','Evidence needed','Attested only'])assert.ok(visible.includes(s),s)
@@ -40,10 +41,10 @@ test('failed missing attested and unmapped requirements keep honest statuses on 
 })
 
 test('simplified feature observation still exposes disconnection without replacing the requested spec',()=>{
- const initial={session:{workstreamId:'W-one',title:'Feature',criteria:[],evidenceCount:0,completion:{reasons:[]},activity:[]}}
+ const initial={session:{workstreamId:'1b97ba60-2cb1-5cb1-9e50-895290ac231f',title:'Feature',criteria:[],evidenceCount:0,completion:{reasons:[]},activity:[]}}
  const Empty=()=>null
- const Live=load('../components/live-workstream-evidence.tsx',{'next/link':{default:Empty},'@/components/spec-sections':{SpecSections:Empty},'@/components/acceptance-progress':{AcceptanceProgress:Empty},'@/components/workstream-evidence':{WorkstreamEvidence:Empty},'@/components/use-session-observation':{useSessionObservation:()=>({data:{session:{workstreamId:'W-other'}},state:'disconnected',observed:'old observation'})}}).LiveWorkstreamEvidence
- assert.match(text(Live({initial,workstreamId:'W-one'}),true),/disconnected.*last observation/)
+ const Live=load('../components/live-workstream-evidence.tsx',{'next/link':{default:Empty},'@/components/live-workflow':{LiveWorkflow:Empty},'@/components/spec-sections':{SpecSections:Empty},'@/components/acceptance-progress':{AcceptanceProgress:Empty},'@/components/workstream-evidence':{WorkstreamEvidence:Empty},'@/components/use-session-observation':{useSessionObservation:()=>({data:{session:{workstreamId:'0f12d4b7-acb6-5536-96ff-70fa7138f541'}},state:'disconnected',observed:'old observation'})}}).LiveWorkstreamEvidence
+ assert.match(text(Live({initial,workstreamId:'1b97ba60-2cb1-5cb1-9e50-895290ac231f'}),true),/disconnected.*last observation/)
 })
 
 test('opening proof reads evidence without posting a command',async()=>{
@@ -51,11 +52,11 @@ test('opening proof reads evidence without posting a command',async()=>{
  const Panel=load('../components/check-evidence.tsx',{'react':{...React,useState:value=>[value,()=>{}],useRef:value=>({current:value}),useEffect:fn=>effects.push(fn)},'next/navigation':{useRouter:()=>({refresh(){}})},'@nessalabs/ui':{Button:()=>null,Badge:()=>null,CodeBlock:()=>null,preloadCodeHighlighter:()=>Promise.resolve()}}).CheckEvidencePanel
  try{
   globalThis.fetch=async(url,options)=>{requests.push({url,options});return {ok:true,json:async()=>({runs:[]})}}
-  Panel({bindingId:'B-example',defaultOpen:true,label:'View proof'})
+  Panel({bindingId:'f37a7568-5eff-5d83-b6f8-714ff9384d50',defaultOpen:true,label:'View proof'})
   const cleanups=effects.map(fn=>fn())
   await new Promise(resolve=>setImmediate(resolve))
   assert.equal(requests.length,1)
-  assert.equal(requests[0].url,'/api/checks?bindingId=B-example')
+  assert.equal(requests[0].url,'/api/checks?bindingId=f37a7568-5eff-5d83-b6f8-714ff9384d50')
   assert.equal(requests[0].options.method,undefined)
   cleanups.forEach(fn=>fn?.())
  }finally{globalThis.fetch=originalFetch}
@@ -80,9 +81,9 @@ test('requirement expansion mounts proof only on demand and screenshot labels ne
 })
 
 test('passing run metadata stays collapsed while output failures and historical warnings remain visible',()=>{
- const evidence={bindingId:'b',command:'saved-command',cwd:'/fixture',sourceDigest:'current',checkDigest:'check',currentOutcome:'pass',source:{status:'not-recorded'},test:{level:'integration',description:'Verifies behavior'},runs:[]}
+ const evidence={bindingId:'a56b72e7-48a0-5cd6-b5c2-20eb12257138',command:'saved-command',cwd:'/fixture',sourceDigest:'current',checkDigest:'check',currentOutcome:'pass',source:{status:'not-recorded'},test:{level:'integration',description:'Verifies behavior'},runs:[]}
  const base={runId:'run',state:'finished',outcome:'pass',reason:'Command exited successfully',startedAt:'2026-09-06',finishedAt:'2026-09-06',exitCode:0,sourceDigest:'current',checkDigest:'check',command:'saved-command',stdout:{status:'intact',text:'Meaningful test output'},stderr:{status:'intact',text:''}}
- const render=run=>{let index=0;const Panel=load('../components/check-evidence.tsx',{'react':{...React,useState:v=>[index++===2?run:v,()=>{}],useRef:v=>({current:v}),useEffect:()=>{}},'next/navigation':{useRouter:()=>({refresh(){}})},'@nessalabs/ui':{Button:props=>React.createElement('button',props,props.children),Badge:props=>React.createElement('span',props,props.children),CodeBlock:()=>null}}).CheckEvidencePanel;return Panel({bindingId:'b',initial:evidence,defaultOpen:true,embedded:true})}
+ const render=run=>{let index=0;const Panel=load('../components/check-evidence.tsx',{'react':{...React,useState:v=>[index++===2?run:v,()=>{}],useRef:v=>({current:v}),useEffect:()=>{}},'next/navigation':{useRouter:()=>({refresh(){}})},'@nessalabs/ui':{Button:props=>React.createElement('button',props,props.children),Badge:props=>React.createElement('span',props,props.children),CodeBlock:()=>null}}).CheckEvidencePanel;return Panel({bindingId:'a56b72e7-48a0-5cd6-b5c2-20eb12257138',initial:evidence,defaultOpen:true,embedded:true})}
  const passing=render(base),visible=text(passing,true)
  assert.match(visible,/Meaningful test output/)
  assert.doesNotMatch(visible,/Current evidence: pass|Command exited successfully|Actual run result|finished|exit 0|Started/)
@@ -96,4 +97,15 @@ test('passing run metadata stays collapsed while output failures and historical 
  assert.match(missing,/Historical run/)
  assert.match(missing,/integrity could not be verified/)
  assert.doesNotMatch(missing,/FORGED/)
+})
+
+test('completion keeps finished planning ahead of implementation and never changes supplied states or counts',()=>{
+ const checklist=[{id:'turn',label:'Close turn',state:'not-started'},{id:'criteria',label:'Build criteria',state:'in-progress'},{id:'spec-review',label:'Review plan',state:'done'},{id:'seal',label:'Preserve plan',state:'done'},{id:'code-review',label:'Review code',state:'not-started'},{id:'workflow',label:'Complete workflow',state:'not-started'}]
+ const original=structuredClone(checklist)
+ const tree=Progress({total:17,verified:3,implemented:4,checklist})
+ const rows=nodes(tree,n=>n.type==='li')
+ assert.deepEqual(rows.map(n=>text(n).replace(/\s+/g,' ').trim()),['Preserve plan','Review plan','Build criteria','Review code','Complete workflow','Close turn'])
+ assert.deepEqual(checklist,original)
+ assert.match(text(tree),/3\s*\/\s*17\s+verified/)
+ assert.deepEqual(rows.map(n=>nodes(n,x=>x.props?.state)[0].props.state),['done','done','in-progress','not-started','not-started','not-started'])
 })

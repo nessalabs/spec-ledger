@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "id": "b5808f49-c36b-80dc-b62e-239f8c0f16ee",
+  "turnId": "d7e50697-01ae-8412-850b-746bf171e540",
+  "workstreamId": "a32f3451-1b3d-8abf-bf0e-607ebf6e1a88",
+  "kind": "adversarial",
+  "target": "code",
+  "reviewer": "agent:sl-dev-break:readonly",
+  "verdict": "approve",
+  "blocking": false,
+  "alertOnSeverity": "high",
+  "treeDigest": "65104238988a09dd2fcf7d936a58e529bfc521f31eb3ce2f811dff030d8e09f8",
+  "plainSummary": "Reading status leaves checks and pending waits untouched, while explicit checks run and save their results.",
+  "summary": "Independent readonly.break.test.ts passed both tests through actual production HTTP routes, HTTP and in-process clients, CLI context, and CLI check/legacy verify. The fixture includes a sentinel command and expired waiting automation event. Full recursive byte snapshots before/after reads prove no command execution, report/result persistence, or timeout transition; required command evidence stays missing until execution. Explicit check and verify execute exactly once each, persist reports, and subsequent reads reuse their recorded outcome without running commands. Reproduced prior verifier from 27f8935 in an isolated temporary dist: readOutcome=pass, commandExecuted=true, reportWritten=true. Final command: node --test packages/ledger/dist/verify/readonly.break.test.js, 2 pass, 0 fail, 0 skip. Breaker owns only new test and review artifacts.",
+  "killersCited": [
+    "packages/ledger/src/verify/readonly.break.test.ts::HTTP and in-process reads never execute checks, persist reports, or resolve expired waits",
+    "packages/ledger/src/verify/readonly.break.test.ts::explicit CLI checks run commands, persist verdicts, and expose the recorded result to reads"
+  ],
+  "findings": [],
+  "residualRisks": [
+    "This approval is bounded to d9cb1d03-8f89-8a01-a54b-20d137493265 read/write separation. Recorded command results have no source/check freshness guarantee until 88c72d83-aa21-8191-b6ed-64d088b99504; no freshness claim is made here.",
+    "Filesystem owner and explicit CLI command caller are trusted per the sealed model. This is not a sandbox for untrusted execution.",
+    "Stored-report history versus current evaluation remains intentionally distinct; tests prove no read writes, not that historical evidence is current.",
+    "HTTP tests exercise production buildRoutes with a temporary server; server startup lifecycle is outside this bounded test."
+  ],
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/reviews/turns/T-027/R-01.json",
+        "id": "T-027/R-01",
+        "sha256": "19764be319be4061c328df4ab53d8410fa68ec59301555c80ff0c0cf568537e0"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/reviews/turns/T-027/R-01.json",
+        "id": "T-027/R-01",
+        "sha256": "19764be319be4061c328df4ab53d8410fa68ec59301555c80ff0c0cf568537e0"
+      }
+    },
+    "historical": true
+  }
+}

@@ -1,0 +1,150 @@
+{
+  "schemaVersion": 1,
+  "id": "815c7a44-59df-8102-9769-bf8a74e49c0c",
+  "status": "done",
+  "createdAt": "2026-09-05T00:05:59.832Z",
+  "title": "Guide agents and follow verified work",
+  "featureIds": [
+    "cli",
+    "client",
+    "turns",
+    "verify",
+    "lattice"
+  ],
+  "primaryFeatureId": "client",
+  "specPath": "docs/workstreams/815c7a44-59df-8102-9769-bf8a74e49c0c-shared-agent-workflows/spec.md",
+  "problem": "Agents need interchangeable tools and configurable methods; users need current progress and evidence together.",
+  "objective": "Use CLI or MCP to follow a chosen engineering method and inspect its progress and evidence in one place.",
+  "changeType": "feature",
+  "shapedBy": "agent:sl-plan-shape",
+  "policy": {
+    "requireSpecBreak": true,
+    "requireCodeBreak": true,
+    "requireAlignApprove": true,
+    "allowExplicitAlignSkip": true,
+    "onAlert": "block",
+    "onSealedSpecDeviation": "block",
+    "alertOnSeverity": "high"
+  },
+  "suggestedSlices": [
+    {
+      "id": "26c9bf2f-a090-8415-bd2b-f46dff6af4f7",
+      "title": "Use CLI and MCP for the same work",
+      "kind": "vertical",
+      "acceptance": [
+        "A real CLI and MCP work loop has equivalent validation, effects and evidence gates and appears in the existing session view."
+      ],
+      "expectedPaths": [
+        "packages/**",
+        "schemas/**",
+        "scripts/**",
+        ".github/**",
+        "docs/**",
+        "skills/**",
+        "package.json",
+        "pnpm-workspace.yaml",
+        "pnpm-lock.yaml"
+      ],
+      "evidence": [
+        "unit",
+        "integration"
+      ],
+      "codeBreakReviewId": "9d79e552-50e2-8cfc-aaa2-d5d6f1e80ba0"
+    },
+    {
+      "id": "25eac677-2871-816d-956d-770bdcb61798",
+      "title": "Follow a chosen method and inspect its evidence",
+      "kind": "vertical",
+      "acceptance": [
+        "Default and custom local methods preserve snapshots, enforce typed output gates and show live progress and inspectable evidence in the UI."
+      ],
+      "expectedPaths": [
+        "packages/**",
+        "schemas/**",
+        "docs/**",
+        "skills/**"
+      ],
+      "evidence": [
+        "unit",
+        "integration",
+        "e2e"
+      ],
+      "codeBreakReviewId": "9d79e552-50e2-8cfc-aaa2-d5d6f1e80ba0"
+    },
+    {
+      "id": "87ce7ed9-a607-8425-a475-173f8953ffaf",
+      "title": "Track activity without inventing completion",
+      "kind": "vertical",
+      "acceptance": [
+        "Execution associations and bounded activity handle missing and duplicated signals honestly; optional recovery readiness honors policy and available host capabilities."
+      ],
+      "expectedPaths": [
+        "packages/**",
+        "schemas/**",
+        "docs/**",
+        "skills/**",
+        ".gitignore"
+      ],
+      "evidence": [
+        "unit",
+        "integration",
+        "e2e"
+      ],
+      "codeBreakReviewId": "9d79e552-50e2-8cfc-aaa2-d5d6f1e80ba0"
+    }
+  ],
+  "riskLevel": "high",
+  "trust": {
+    "deployTarget": "library-consumer",
+    "userFacing": true,
+    "securitySensitive": true,
+    "correctnessCritical": true,
+    "performanceCritical": false,
+    "requiredEvidence": [
+      "unit",
+      "integration",
+      "e2e"
+    ]
+  },
+  "proposedClaimIds": [
+    "aae49e39-2b5e-8e27-9378-2a136cce5c93",
+    "0a8d514c-2350-8cb8-a34a-89e1b6e01084",
+    "6fe07f4c-eb28-89a9-8097-a148a477ada3"
+  ],
+  "acceptanceClaimIds": {
+    "26c9bf2f-a090-8415-bd2b-f46dff6af4f7/AC-1": [
+      "2f8cf085-d7a5-83b9-89f8-9d0754cb16a0"
+    ],
+    "25eac677-2871-816d-956d-770bdcb61798/AC-1": [
+      "4d4f7c20-b7e0-86d8-9b17-f45053bbf43b"
+    ],
+    "87ce7ed9-a607-8425-a475-173f8953ffaf/AC-1": [
+      "a3c38839-cf13-837c-8866-ce46af309e15"
+    ]
+  },
+  "specBreakReviewId": "6b210ddc-0fca-8e13-b7b3-fddd48b29ab5",
+  "updatedAt": "2026-09-05T01:37:46.459Z",
+  "seal": {
+    "sealedAt": "2026-09-05T00:11:54.849Z",
+    "sealedBy": "agent:permission:ee883853-332b-8c71-b6db-d9c78e5dc4f2",
+    "specDigest": "2c6cca7456d2cf694efe5143250a8ddacedf8f5c25dbf258e7731f167dad73bd",
+    "snapshotPath": "workstreams/815c7a44-59df-8102-9769-bf8a74e49c0c.seals/1.json",
+    "revision": 1,
+    "specDocDigest": "7c479e9d5ef9742fd1ebcf176091e94389c35cd73e2e729aa3ab843bd118e2da"
+  },
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/workstreams/W-008.json",
+        "id": "W-008",
+        "sha256": "fc92ac7f1f54170fa7d1484d8c65be860e5fe07916d1269386b9c50bd53a6859"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/workstreams/W-008.json",
+        "id": "W-008",
+        "sha256": "fc92ac7f1f54170fa7d1484d8c65be860e5fe07916d1269386b9c50bd53a6859"
+      }
+    },
+    "historical": true
+  }
+}

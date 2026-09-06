@@ -7,7 +7,7 @@
   "outcome": "succeeded",
   "result": {
     "schemaVersion": 1,
-    "id": "T-042",
+    "id": "9d65b345-19e2-8652-8af7-b7cf95acb7ca",
     "status": "open",
     "openedAt": "2026-09-05T04:50:23.009Z",
     "opened": {
@@ -15,15 +15,15 @@
       "baseCommit": "c86c0e0a3f33c798614bdca410f83ba78baa5ede",
       "treeDigest": "138fefafb4be53a10401a5b5069563b7b2eafee27322bced29c37f680f34c7e2",
       "dirtyAtOpen": [
-        ".spec-ledger/authority/AUTH-W013-REQUEST.json",
-        ".spec-ledger/reviews/workstreams/W-013/SR-01.json",
-        ".spec-ledger/workstreams/W-013.json",
-        ".spec-ledger/workstreams/W-013.seals/1.json",
-        "docs/workstreams/W-013-simple-feature-view/spec.md"
+        ".spec-ledger/authority/4ad4d056-7238-8bdf-b686-62cc8a8f55bb.json",
+        ".spec-ledger/reviews/workstreams/11788af6-4cbe-834d-9993-8ee534b22b94/2dce4e38-f44e-8dd0-b7ab-7dfeaa78dc1d.json",
+        ".spec-ledger/workstreams/11788af6-4cbe-834d-9993-8ee534b22b94.json",
+        ".spec-ledger/workstreams/11788af6-4cbe-834d-9993-8ee534b22b94.seals/1.json",
+        "docs/workstreams/11788af6-4cbe-834d-9993-8ee534b22b94-simple-feature-view/spec.md"
       ],
       "contextDigest": "7d0a2295891249b786e0931782b520b214424c5233453f6c52c3fdc5fea5d230",
-      "contextWorkstreamId": "W-013",
-      "contextSliceId": "SLC-01",
+      "contextWorkstreamId": "11788af6-4cbe-834d-9993-8ee534b22b94",
+      "contextSliceId": "c95eb099-a8bc-8bbf-8079-82b53d19036c",
       "contextSealRevision": 1,
       "contextGeneratedAt": "2026-09-05T04:50:23.009Z"
     },
@@ -32,8 +32,8 @@
       "restatedGoal": "Understand features and inspect proof without extra noise",
       "changeType": "feature",
       "riskLevel": "moderate",
-      "workstreamId": "W-013",
-      "sliceId": "SLC-01",
+      "workstreamId": "11788af6-4cbe-834d-9993-8ee534b22b94",
+      "sliceId": "c95eb099-a8bc-8bbf-8079-82b53d19036c",
       "featureIds": [
         "lattice"
       ]

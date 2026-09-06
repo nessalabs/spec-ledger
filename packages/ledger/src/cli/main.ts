@@ -1,8 +1,9 @@
 #!/usr/bin/env node
+import { stageIdentityMigration, publishIdentityMigration } from "../identity/migrate.js"
 import { readFileSync } from "node:fs"
 import { backlog, evaluateDeferrals, recordDeferredDecision, recordDeferralResolution } from "../deferrals/index.js"
 import { permissionStatus, planRevision, type Authority } from "../permission/authority.js"
-import { listLearnings, recordLearning, type Learning } from "../compass/learnings.js"
+import { listLearnings } from "../compass/learnings.js"
 import { resolve } from "node:path"
 import { initLedgerDetailed } from "./init.js"
 import { loadLedger } from "../fs/load.js"
@@ -86,6 +87,9 @@ Usage:
   spec-ledger evidence check --workstream W-… | evidence screenshot --turn T-… --surface <name> --path <file>
   spec-ledger permission status|approve|deny|delegate|revoke|record …
   spec-ledger learning list|record --file <json>
+  spec-ledger workstream|claim|binding|tenet|theme create --file <json-without-id>
+  spec-ledger identity migrate --stage <external-dir> --ours <commit> --theirs <commit> --base <commit> [--resolutions <json>]
+  spec-ledger identity migrate --stage <external-dir> --publish
   spec-ledger review add|list …
   spec-ledger session | complete --workstream W-…
   spec-ledger progress --file <json>
@@ -138,6 +142,34 @@ async function main(): Promise<void> {
   if (!cmd || cmd === "-h" || cmd === "--help") usage()
 
   const root = resolve(argValue(argv, "--root") ?? process.cwd())
+
+  if (cmd === "identity" && argv[1] === "migrate") {
+    const stage=argValue(argv,"--stage"); if(!stage)throw new Error("identity migrate requires --stage outside the checkout")
+    if(argv.includes("--publish")){publishIdentityMigration(root,stage);console.log(JSON.stringify({published:true,stage}));return}
+    const ours=argValue(argv,"--ours"),theirs=argValue(argv,"--theirs"),base=argValue(argv,"--base")
+    if(!ours||!theirs||!base)throw new Error("Migration staging requires --ours, --theirs and --base Git commits")
+    const file=argValue(argv,"--resolutions")
+    const resolutions=file?JSON.parse(readFileSync(resolve(file),"utf8")):undefined
+    const repairs=argValue(argv,"--reconciliations"),reconciliations=repairs?JSON.parse(readFileSync(resolve(repairs),"utf8")):undefined
+    console.log(JSON.stringify(stageIdentityMigration({root,stage,ours,theirs,base,resolutions,reconciliations}),null,2));return
+  }
+
+  if ((["tenet","theme"].includes(cmd) && argv[1] === "create") || (cmd === "learning" && argv[1] === "record")) {
+    const file=argValue(argv,"--file"); if(!file) throw new Error("Creation requires --file, omitting id")
+    const record=JSON.parse(readFileSync(resolve(file),"utf8"))
+    const operation=cmd==="tenet" ? "create_tenet" : cmd==="theme" ? "create_theme" : "record_learning"
+    console.log(JSON.stringify(executeOperation(root,operation,{requestId:argValue(argv,"--request-id") ?? newRequestId(),[cmd]:record}),null,2));return
+  }
+
+  if ((cmd === "workstream" && argv[1] === "create") || (cmd === "claim" && argv[1] === "create") || (cmd === "claim" && argv[1] === "propose") || (cmd === "binding" && argv[1] === "create")) {
+    const file = argValue(argv, "--file")
+    if (!file) throw new Error("Creation requires --file with record fields, omitting id; Spec Ledger returns the generated UUID")
+    const record = JSON.parse(readFileSync(resolve(file), "utf8"))
+    const requestId = argValue(argv, "--request-id") ?? newRequestId()
+    const operation = cmd === "workstream" ? "create_workstream" : cmd === "binding" ? "create_binding" : argv[1] === "propose" ? "create_proposed_claim" : "create_claim"
+    const input = operation === "create_workstream" ? {requestId, workstream:record} : operation === "create_proposed_claim" ? {requestId,workstreamId:argValue(argv,"--workstream"),claim:record} : operation === "create_claim" ? {requestId,turnId:argValue(argv,"--turn"),claim:record} : {requestId,turnId:argValue(argv,"--turn"),binding:record}
+    console.log(JSON.stringify(executeOperation(root, operation, input),null,2)); return
+  }
 
   if (cmd === "operation") {
     const operation = argv[1] as OperationName | undefined
@@ -280,7 +312,7 @@ async function main(): Promise<void> {
     if (argv[1] === "list") { console.log(JSON.stringify(listLearnings(root),null,2));return }
     const file=argValue(argv,"--file")
     if (argv[1] !== "record" || !file) throw new Error("learning record requires --file")
-    console.log(JSON.stringify(recordLearning(root,JSON.parse(readFileSync(resolve(file),"utf8")) as Learning),null,2)); return
+    throw new Error("Use learning record --file")
   }
 
   if (cmd === "fingerprint") {
@@ -561,7 +593,7 @@ async function main(): Promise<void> {
         process.exit(2)
       }
       const prompt = argValue(argv, "--prompt") ?? goal
-      const id = argValue(argv, "--id")
+      if (argValue(argv, "--id")) throw new Error("Spec Ledger generates turn IDs; provide --goal as the short title")
       const workstreamId = argValue(argv, "--workstream")
       const sliceId = argValue(argv, "--slice")
       const feature = argValue(argv, "--feature")
@@ -582,7 +614,6 @@ async function main(): Promise<void> {
             sliceId,
             goal,
             prompt,
-            turnId:id,
             featureIds,
             changeType:intent.changeType,
             riskLevel:intent.riskLevel,
@@ -592,7 +623,6 @@ async function main(): Promise<void> {
             expectedRevisionDigest:planRevision(root,loadWorkstream(root,workstreamId)),
           })
         : openTurn(root, intent, {
-            idHint: id,
             featureIds,
             allowDirty: hasFlag(argv, "--allow-dirty"),
           })

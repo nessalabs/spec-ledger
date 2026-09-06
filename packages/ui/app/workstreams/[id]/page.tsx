@@ -58,7 +58,7 @@ export default async function WorkstreamPage({
             Specs
           </Link>
           {" / "}
-          {ws.id}
+          {presentationCopy(ws.title)}
         </p>
         <div className="flex flex-wrap items-center gap-2">
           <h1 className="text-2xl font-semibold tracking-tight">{presentationCopy(ws.title)}</h1>
@@ -70,7 +70,8 @@ export default async function WorkstreamPage({
             Version details
             {ws.seal ? ` · sealed rev ${ws.seal.revision}` : " · unsealed"}
           </summary>
-          <div className="mt-2 space-y-1 rounded-md border border-border/60 px-3 py-2 font-mono">
+          <div className="mt-2 space-y-1 break-all rounded-md border border-border/60 px-3 py-2 font-mono">
+            <p>Reference: {ws.id}</p>
             {ws.seal ? (
               <>
                 <p>sealed by {ws.seal.sealedBy}</p>

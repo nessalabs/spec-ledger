@@ -1,8 +1,0 @@
-{
-  "schemaVersion": 1,
-  "turnId": "T-044",
-  "title": "Review evidence at a glance",
-  "after": "flowchart LR; A[Requirement and status] --> B[Expand results]; B --> C[Captured output]; B --> D[Optional source details]; E[Saved UI screenshot] --> F[Enlarge image]",
-  "before": "flowchart LR; A[Requirement] --> B[View proof box] --> C[Test source] --> D[Run output]",
-  "id": "T-044/F-01"
-}

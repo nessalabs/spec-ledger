@@ -102,7 +102,7 @@ package layout.
 
 ```
 verticals:
-  SLC-01 — <title>
+  <slice-uuid> — <title>
     acceptance: […]
     evidence: […]
     expectedClaimIds: […]

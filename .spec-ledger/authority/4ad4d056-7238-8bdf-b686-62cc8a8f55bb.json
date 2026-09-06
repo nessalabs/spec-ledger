@@ -1,0 +1,30 @@
+{
+  "id": "4ad4d056-7238-8bdf-b686-62cc8a8f55bb",
+  "action": "grant",
+  "mode": "request",
+  "workstreamId": "11788af6-4cbe-834d-9993-8ee534b22b94",
+  "featureIds": [
+    "lattice"
+  ],
+  "source": {
+    "kind": "agent-reported",
+    "reference": "User requested removing unnecessary text and simplifying the UI based on GPT5.6 Sol independent website navigation."
+  },
+  "schemaVersion": 1,
+  "createdAt": "2026-09-05T04:50:22.753Z",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/authority/AUTH-W013-REQUEST.json",
+        "id": "AUTH-W013-REQUEST",
+        "sha256": "c86af843292141be467c3762c6c90fa76a470e24a4f735542fa1ece8d013dcee"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/authority/AUTH-W013-REQUEST.json",
+        "id": "AUTH-W013-REQUEST",
+        "sha256": "c86af843292141be467c3762c6c90fa76a470e24a4f735542fa1ece8d013dcee"
+      }
+    },
+    "historical": true
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "workstreamId": "351e54ea-60e4-8384-826f-0616eaa89599",
+  "revision": 1,
+  "sealedAt": "2026-09-05T02:01:38.417Z",
+  "sealedBy": "agent:permission:c5157d54-3272-8c33-abbf-b446e7202e95",
+  "specDigest": "64c8e07f5f2c7d183c78bcef8efb249de738a3b715fac2e2ca2dc7b62900650f",
+  "specDocDigest": "caff47784ff8ba6726b3e6d85954844ffd5a48343e95cf5b3ed8ac7e0d48fc75",
+  "body": {
+    "id": "351e54ea-60e4-8384-826f-0616eaa89599",
+    "featureIds": [
+      "cli",
+      "client",
+      "verify",
+      "lattice"
+    ],
+    "primaryFeatureId": null,
+    "title": "Inspect a test and run it again",
+    "objective": "Read what a test checks, inspect its source and actual output, and rerun the saved check from the website.",
+    "specPath": "docs/workstreams/351e54ea-60e4-8384-826f-0616eaa89599-inspect-and-run-checks/spec.md",
+    "appetite": null,
+    "changeType": null,
+    "riskLevel": null,
+    "trust": {
+      "userFacing": true,
+      "securitySensitive": true,
+      "correctnessCritical": true,
+      "requiredEvidence": [
+        "unit",
+        "integration",
+        "e2e"
+      ]
+    },
+    "policy": {
+      "requireSpecBreak": true,
+      "requireCodeBreak": true,
+      "requireAlignApprove": true
+    },
+    "acceptanceCriteria": [],
+    "outOfScope": [],
+    "proposedClaimIds": [],
+    "suggestedSlices": [
+      {
+        "id": "31586ff0-42d1-85f6-8733-49244fa3d467",
+        "title": "Inspect and rerun a saved check with real output",
+        "kind": "vertical",
+        "acceptance": [
+          "CLI, MCP and local UI run the same saved check with bounded inspectable output, current source/check provenance, honest metadata, retry safety and passive read surfaces."
+        ],
+        "evidence": [],
+        "expectedClaimIds": [],
+        "expectedPaths": [
+          "packages/**",
+          "schemas/**",
+          "docs/**",
+          "skills/**"
+        ]
+      }
+    ]
+  }
+}

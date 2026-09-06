@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "id": "2caf88b5-cf21-8f86-a415-f5a5406ed93d",
+  "turnId": "8744233a-1ecf-811e-a08c-afb012c0c62f",
+  "workstreamId": "a32f3451-1b3d-8abf-bf0e-607ebf6e1a88",
+  "kind": "human",
+  "target": "code",
+  "reviewer": "agent:align",
+  "verdict": "approve",
+  "summary": "User authorized all a32f3451-1b3d-8abf-bf0e-607ebf6e1a88 slices, chose portable CLI handoff, and added rail clipping and incomplete graph fixes.",
+  "plainSummary": "The complete implementation and reported UI fixes match the requested scope.",
+  "treeDigest": "b5d25e66897f1b13e2705e6899e139fd8ed88e49aa2dda65e3f9d1a49db0de88",
+  "uncoveredPaths": [
+    "AGENTS.md",
+    "DESIGN.md"
+  ],
+  "coverageSource": "mixed",
+  "waiverIds": [
+    "dad1fdd7-83b8-86f4-a25e-c61cd34db848"
+  ],
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/reviews/turns/T-031/R-03.json",
+        "id": "T-031/R-03",
+        "sha256": "2204a759c8ae20c18de0fee04bebeefb75eacf1cda65a1caa1687add34f42d75"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/reviews/turns/T-031/R-03.json",
+        "id": "T-031/R-03",
+        "sha256": "2204a759c8ae20c18de0fee04bebeefb75eacf1cda65a1caa1687add34f42d75"
+      }
+    },
+    "historical": true
+  }
+}

@@ -1,6 +1,6 @@
 # Shared CLI and MCP operations
 
-W-008 implementation contract. Transport wiring and acceptance evidence are recorded with that workstream; customizable methods are described in [engineering methods](workflows.md); activity is described in [task activity](execution-activity.md).
+815c7a44-59df-8102-9769-bf8a74e49c0c implementation contract. Transport wiring and acceptance evidence are recorded with that workstream; customizable methods are described in [engineering methods](workflows.md); activity is described in [task activity](execution-activity.md).
 
 ## Ownership
 

@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "turnId": "da66d16d-d4e0-837e-a34b-fb7cec0d855d",
+  "decision": "Current checks and all required screenshots cover the visual evidence changes and prior experiment behavior.",
+  "rationale": "Agent-reported progress; evidence is evaluated separately.",
+  "progress": {
+    "criterionIds": [
+      "04932de5-9225-81d4-b42c-c13f79e6c5be/AC-1",
+      "04932de5-9225-81d4-b42c-c13f79e6c5be/AC-2",
+      "04932de5-9225-81d4-b42c-c13f79e6c5be/AC-3",
+      "b21da6cf-af77-8a39-bf8e-bfdc0d5b3a95/AC-1",
+      "b21da6cf-af77-8a39-bf8e-bfdc0d5b3a95/AC-2",
+      "d67e07f2-7343-88d2-afeb-0fe6f3c8c377/AC-1",
+      "d67e07f2-7343-88d2-afeb-0fe6f3c8c377/AC-2",
+      "d67e07f2-7343-88d2-afeb-0fe6f3c8c377/AC-3"
+    ],
+    "implemented": true,
+    "revisionDigest": "1ff6ee182547ae8f2e982b3d76a17396e7ac970f2b5ac4a62019209c18f52143",
+    "sourceDigest": "e1b00fc86c55eea046dfadb4e8e1cc3cceb2d916543549c9542441569460e6fd"
+  },
+  "id": "a33cc346-43c2-8942-86e4-9ad031d30e63",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/decisions/T-045/D-02.json",
+        "id": "T-045/D-02",
+        "sha256": "d1cba973039856e56de24795c5e50d3743a01a88838bd35b7b233ea85d084545"
+      }
+    },
+    "historical": true
+  },
+  "sequence": 2
+}

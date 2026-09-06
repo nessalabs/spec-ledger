@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "18732359-1708-8d56-a695-9af6151cf2aa",
+  "turnId": "7a56453a-0979-8b0a-a4fe-ddbc9aab354a",
+  "workstreamId": "815c7a44-59df-8102-9769-bf8a74e49c0c",
+  "kind": "human",
+  "target": "code",
+  "reviewer": "agent:align",
+  "verdict": "approve",
+  "summary": "User requested the shared tools and live evidence revamp, then explicitly added acceptance percentage; DESIGN.md is covered by the exact-path waiver.",
+  "plainSummary": "The shared CLI/MCP tools and acceptance progress display match the authorized work.",
+  "treeDigest": "e5abd70a9c07ed530f2cf0edca2fa0967362ad2a7550d214afcc6719f3310a76",
+  "uncoveredPaths": [
+    "DESIGN.md"
+  ],
+  "coverageSource": "mixed",
+  "waiverIds": [
+    "ddcd1283-1035-8b00-b1f7-9e1e8bd9cc76"
+  ],
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/reviews/turns/T-034/R-04.json",
+        "id": "T-034/R-04",
+        "sha256": "9ebeac54d35d7db7369b025a0a6b9f84716e00c126369d044d00c9c52436cc12"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/reviews/turns/T-034/R-04.json",
+        "id": "T-034/R-04",
+        "sha256": "9ebeac54d35d7db7369b025a0a6b9f84716e00c126369d044d00c9c52436cc12"
+      }
+    },
+    "historical": true
+  }
+}

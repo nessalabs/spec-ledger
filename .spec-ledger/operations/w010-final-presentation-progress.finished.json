@@ -7,21 +7,21 @@
   "outcome": "succeeded",
   "result": {
     "schemaVersion": 1,
-    "turnId": "T-038",
+    "turnId": "21e1bd8d-8745-8900-b8a5-249314d027be",
     "decision": "Read plain feature requirements, inspect highlighted test code, and rerun a saved check to see its actual output.",
     "rationale": "Agent-reported progress; evidence is evaluated separately.",
     "progress": {
       "criterionIds": [
-        "SLC-01/AC-1"
+        "31586ff0-42d1-85f6-8733-49244fa3d467/AC-1"
       ],
       "implemented": true,
-      "revisionDigest": "25d1ea56a5b5cf3c61aefe19838a80847ba36ecdb36a4909bd449eec83081533",
+      "revisionDigest": "926ea0b3eef0bb27ffcf55a672c5e909a292d2e0dded381ca57c4a2d2cd266b9",
       "sourceDigest": "1928c529067013cc45fdbdf5153d5496b2f07bd62e5de9a327f1938374c1a746",
       "preview": {
-        "url": "http://127.0.0.1:3737/claims/SL-026",
+        "url": "http://127.0.0.1:3737/claims/2bdf48ad-ad8b-86b1-a043-5b16496999b3",
         "label": "See the updated requirement and its evidence"
       }
     },
-    "id": "T-038/D-04"
+    "id": "670288a1-d70f-8cef-8de6-ea3092212694"
   }
 }

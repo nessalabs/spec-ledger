@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "id": "892f83d0-eb85-8374-b33f-56296a0edf60",
+  "turnId": "7a56453a-0979-8b0a-a4fe-ddbc9aab354a",
+  "workstreamId": "815c7a44-59df-8102-9769-bf8a74e49c0c",
+  "kind": "adversarial",
+  "target": "code",
+  "reviewer": "agent:sl-dev-break:w008-slc01",
+  "verdict": "approve",
+  "blocking": false,
+  "alertOnSeverity": "high",
+  "resolvesReviewId": "bb841b14-6082-8016-971b-a025621fe7c3",
+  "supersedesReviewId": "76fa3ede-653d-8dbc-a5dd-8cb4a2394aad",
+  "resolvesFindingIds": [
+    "bb841b14-6082-8016-971b-a025621fe7c3#43ba6379-4428-8692-9349-9440c6353046",
+    "bb841b14-6082-8016-971b-a025621fe7c3#79a2ed24-4a83-86e6-9874-8a6b66bde28c",
+    "bb841b14-6082-8016-971b-a025621fe7c3#7a5c0b98-85ad-8eb0-a9e9-7113f50e6ba2"
+  ],
+  "plainSummary": "The shared CLI and MCP work loop now preserves permission, immutable review history, retry safety, equivalent lifecycle outcomes, and clear verified progress under the tested attacks.",
+  "summary": "Final 26c9bf2f-a090-8415-bd2b-f46dff6af4f7 approval on the combined frozen source. The unchanged operation breakers pass 10/10, including all R-01 permission and provenance fixes, wrong-workstream rejection, current tree stamping, and a different-request collision on an existing review ID that must return idempotency_conflict while preserving the first review bytes and pointer. Receipt breakers pass 6/6, and the core immutable-writer test passes 1/1. Actual CLI/MCP executable lifecycle, equivalent denial/no-effects, retry/stale/malformed/missing-evidence, and packed installation pass 4/4. The UI acceptance-progress tests pass 3/3, separating verified from reported counts, keeping empty criteria indeterminate, and reaching 100 only when every criterion is verified; root also confirmed the home-page progress bar in a production build. R-02 remains historical for its earlier tree digest and is superseded by this current-tree review.",
+  "findings": [],
+  "killersCited": [
+    "packages/ledger/src/application/operations.break.test.ts::rejects an invalid slice through the actual CLI before sealing, opening, activating, or resuming",
+    "packages/ledger/src/application/operations.break.test.ts::rejects a caller-supplied root field and cannot touch that checkout",
+    "packages/ledger/src/application/operations.break.test.ts::denies record_progress without current permission and creates no domain record",
+    "packages/ledger/src/application/operations.break.test.ts::denies record_decision without current permission and creates no domain record",
+    "packages/ledger/src/application/operations.break.test.ts::denies record_review without current permission and creates no domain record",
+    "packages/ledger/src/application/operations.break.test.ts::stale revision and source inputs leave decisions and reviews unchanged",
+    "packages/ledger/src/application/operations.break.test.ts::does not accept portable review fields that claim human provenance",
+    "packages/ledger/src/application/operations.break.test.ts::does not let a code review claim a workstream other than its turn",
+    "packages/ledger/src/application/operations.break.test.ts::replaces a caller-supplied review tree digest with the current source digest",
+    "packages/ledger/src/application/operations.break.test.ts::rejects a different request that reuses an existing review ID and preserves the first review",
+    "packages/ledger/src/application/receipts.break.test.ts::runs one effect for concurrent identical requests and replays its result",
+    "packages/ledger/src/application/receipts.break.test.ts::serializes different request IDs and rejects reuse with changed input",
+    "packages/ledger/src/application/receipts.break.test.ts::never treats a corrupt finished receipt as a successful replay",
+    "packages/ledger/src/application/receipts.break.test.ts::does not repeat an effect when only its started receipt remains",
+    "packages/ledger/src/application/receipts.break.test.ts::reports unknown when completion publication fails after the effect and never reruns it",
+    "packages/ledger/src/application/receipts.break.test.ts::reports an unknown lock as busy without stealing it or running effects",
+    "packages/ledger/src/reviews/immutable.test.ts::turn review IDs are immutable",
+    "packages/mcp/src/lifecycle.test.ts::completes the same verified lifecycle through both executables",
+    "packages/mcp/src/lifecycle.test.ts::returns the same structured denial and leaves domain state unchanged",
+    "packages/mcp/src/lifecycle.test.ts::rejects retries, stale inputs, malformed inputs, and missing evidence with the same contracts",
+    "packages/mcp/src/lifecycle.test.ts::installs and invokes the packed executable",
+    "packages/ui/lib/acceptance-progress.test.mjs::acceptance progress is indeterminate without criteria",
+    "packages/ui/lib/acceptance-progress.test.mjs::acceptance progress separates verified evidence from reported implementation",
+    "packages/ui/lib/acceptance-progress.test.mjs::acceptance progress reaches 100 only when every criterion is verified"
+  ],
+  "residualRisks": [
+    "Portable reviewer labels remain agent-reported attribution; authenticated human identity still depends on a trusted host boundary.",
+    "The receipt protocol coordinates participating application callers and does not claim atomicity against arbitrary direct filesystem edits.",
+    "Activity, recovery, and customizable workflow profiles remain assigned to later 815c7a44-59df-8102-9769-bf8a74e49c0c slices and were not graded in 26c9bf2f-a090-8415-bd2b-f46dff6af4f7."
+  ],
+  "treeDigest": "e5abd70a9c07ed530f2cf0edca2fa0967362ad2a7550d214afcc6719f3310a76",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/reviews/turns/T-034/R-03.json",
+        "id": "T-034/R-03",
+        "sha256": "9bbe99b41a7b4f88ee26776f5c1d8ded3cce17c94c3f761748bb55bd2484572f"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/reviews/turns/T-034/R-03.json",
+        "id": "T-034/R-03",
+        "sha256": "9bbe99b41a7b4f88ee26776f5c1d8ded3cce17c94c3f761748bb55bd2484572f"
+      }
+    },
+    "historical": true
+  }
+}

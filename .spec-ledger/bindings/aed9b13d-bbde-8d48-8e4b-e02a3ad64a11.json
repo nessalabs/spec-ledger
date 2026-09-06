@@ -1,0 +1,24 @@
+{
+  "id": "aed9b13d-bbde-8d48-8e4b-e02a3ad64a11",
+  "claimId": "ebc0a361-534e-8527-99a7-57611aae823d",
+  "kind": "test",
+  "locator": {
+    "type": "command",
+    "command": "node --test packages/ledger/dist/ui-release.smoke.test.js packages/ledger/dist/ui-release.break.test.js"
+  },
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/bindings/b-sl-013.json",
+        "id": "b-sl-013",
+        "sha256": "55a62c13c4ded858e0babe6460b2464118ff4400cd0bc3d0627fc909dddcc6d4"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/bindings/b-sl-013.json",
+        "id": "b-sl-013",
+        "sha256": "55a62c13c4ded858e0babe6460b2464118ff4400cd0bc3d0627fc909dddcc6d4"
+      }
+    },
+    "historical": true
+  }
+}

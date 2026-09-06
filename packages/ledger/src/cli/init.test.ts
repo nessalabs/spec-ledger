@@ -21,7 +21,7 @@ function freshDir(): string {
   return dir
 }
 
-describe("spec-ledger init (SLC-01)", () => {
+describe("spec-ledger init (0d0038da-bb13-561e-ac49-570f6ed0f334)", () => {
   it("creates the normative skeleton and writes ledger.json last-safe", () => {
     const dir = freshDir()
     const { path, warnings } = initLedgerDetailed(dir, "consumer")

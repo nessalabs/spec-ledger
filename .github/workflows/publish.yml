@@ -92,7 +92,9 @@ jobs:
           else
             DRY_RUN=false
           fi
-          FLAGS=(--access public --no-git-checks)
+          DIST_TAG=latest
+          if [[ "${{ steps.ver.outputs.version }}" == *-* ]]; then DIST_TAG=next; fi
+          FLAGS=(--access public --no-git-checks --tag "$DIST_TAG")
           if [ "${DRY_RUN}" = "true" ]; then
             FLAGS+=(--dry-run)
             echo "dry-run: will not write to npm"

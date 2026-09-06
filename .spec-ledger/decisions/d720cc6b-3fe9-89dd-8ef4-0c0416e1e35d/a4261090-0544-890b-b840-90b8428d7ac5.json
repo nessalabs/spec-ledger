@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "turnId": "d720cc6b-3fe9-89dd-8ef4-0c0416e1e35d",
+  "decision": "Use three main destinations, open the spec and evidence directly, and switch sections without losing your place.",
+  "rationale": "Agent-reported progress; evidence is evaluated separately.",
+  "progress": {
+    "criterionIds": [
+      "67f295ed-b0ec-8e83-aa58-1c11d7cb8f4c/AC-1",
+      "67f295ed-b0ec-8e83-aa58-1c11d7cb8f4c/AC-2"
+    ],
+    "implemented": true,
+    "revisionDigest": "b52e2f3a59eab34a931fc0edec56d472fdd49228fc6abd7829333ab1cb4119cb",
+    "sourceDigest": "4ef07d00a4fe8da540580c59235fb3f0d46cb9b44911338718d9f21dd7f58f5d"
+  },
+  "id": "a4261090-0544-890b-b840-90b8428d7ac5",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/decisions/T-040/D-01.json",
+        "id": "T-040/D-01",
+        "sha256": "caeb92a74cfec664211fe6c083e3a1742cb020cb7a4ef4f2f51b4fde46450260"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/decisions/T-040/D-01.json",
+        "id": "T-040/D-01",
+        "sha256": "caeb92a74cfec664211fe6c083e3a1742cb020cb7a4ef4f2f51b4fde46450260"
+      }
+    },
+    "historical": true
+  },
+  "sequence": 1
+}

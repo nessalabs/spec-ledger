@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "turnId": "eb02e4af-5c85-89fa-8aad-70f0444297f7",
+  "decision": "Fill the builder view with the canvas and open stage details in a Nessa UI drawer.",
+  "rationale": "Explicit user clarification supersedes the permanently visible inspector. learning:aaccfa61-c663-8a0e-9d91-ac9783f96aab. Workflow settings and save preview also use drawers to keep the canvas full-view. Linear ordering and validation are unchanged.",
+  "basis": {
+    "at": "2026-09-06T06:14:15.801Z",
+    "contextDigest": "a557f0b19c339a49718ef31120a2e5415ae03b9897014d355044949722b38562",
+    "sealRevision": 1
+  },
+  "discovery": {
+    "kind": "spec-conflict",
+    "reportedVia": "user",
+    "observation": "User requires full-view canvas with click-to-open detail drawers, rather than inline stage settings.",
+    "regression": "Open a stage drawer, edit, close, and verify canvas stays full-view on narrow screens."
+  },
+  "id": "8735bfb7-ba19-8c47-8fc8-e75cb0403daa",
+  "migration": {
+    "origins": {
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/decisions/T-044/D-02.json",
+        "id": "T-044/D-02",
+        "sha256": "325d45f8dd80e428427ef5a9a07daad272eafb127fa802bff17e7299fd42dded"
+      }
+    },
+    "historical": true
+  },
+  "sequence": 2
+}

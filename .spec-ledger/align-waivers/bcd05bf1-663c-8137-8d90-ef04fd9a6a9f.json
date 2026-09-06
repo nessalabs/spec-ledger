@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "id": "bcd05bf1-663c-8137-8d90-ef04fd9a6a9f",
+  "reason": "User requested fixing PR 2 CI; root package.json and pnpm-lock.yaml add locked React dependencies needed by the root UI test suite on clean CI. This scoped setup repair is necessary for that explicit request.",
+  "actor": "agent:user-request",
+  "treeDigest": "47c70dc12fd9b447502a27da1f458a75ef70d5808408f28750350788a4b46a2e",
+  "createdAt": "2026-09-06T07:07:13.719Z",
+  "workstreamId": "ef172105-4f40-8bbb-8abe-d1cd11ae618a",
+  "turnId": "12494adf-1065-80ed-b949-f346a6334018",
+  "migration": {
+    "origins": {
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/align-waivers/AW-19.json",
+        "id": "T-047/AW-19",
+        "sha256": "71a145336da431619278617d2b7028288108f311904c662459ceb62678976dbf"
+      }
+    },
+    "historical": true
+  }
+}

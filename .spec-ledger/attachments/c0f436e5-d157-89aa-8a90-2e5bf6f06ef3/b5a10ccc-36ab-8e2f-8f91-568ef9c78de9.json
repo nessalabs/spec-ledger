@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "turnId": "c0f436e5-d157-89aa-8a90-2e5bf6f06ef3",
+  "path": "docs/workstreams/ba7715db-e75e-84e6-9d91-f9cc61b037a9-choose-your-workflow/evidence/c0f436e5-d157-89aa-8a90-2e5bf6f06ef3/regression-tests.txt",
+  "kind": "log-excerpt",
+  "title": "Navigation and editor regression results",
+  "mediaType": "text/plain",
+  "id": "b5a10ccc-36ab-8e2f-8f91-568ef9c78de9",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/attachments/T-041/A-02.json",
+        "id": "T-041/A-02",
+        "sha256": "368d20a6d91d6cb2cd27f27baad87088a7abff4a3d2ed12461e62a24d48ecd2f"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/attachments/T-041/A-02.json",
+        "id": "T-041/A-02",
+        "sha256": "368d20a6d91d6cb2cd27f27baad87088a7abff4a3d2ed12461e62a24d48ecd2f"
+      }
+    },
+    "historical": true
+  }
+}

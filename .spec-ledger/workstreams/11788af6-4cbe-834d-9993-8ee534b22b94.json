@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "id": "11788af6-4cbe-834d-9993-8ee534b22b94",
+  "status": "done",
+  "title": "Understand a feature at a glance",
+  "objective": "See what a feature does, what is ready, and the proof without wading through technical detail.",
+  "specPath": "docs/workstreams/11788af6-4cbe-834d-9993-8ee534b22b94-simple-feature-view/spec.md",
+  "featureIds": [
+    "lattice"
+  ],
+  "policy": {
+    "requireSpecBreak": true,
+    "requireCodeBreak": true,
+    "requireAlignApprove": true
+  },
+  "trust": {
+    "userFacing": true,
+    "requiredEvidence": [
+      "unit",
+      "e2e"
+    ]
+  },
+  "suggestedSlices": [
+    {
+      "id": "c95eb099-a8bc-8bbf-8079-82b53d19036c",
+      "title": "Simplify feature and evidence screens",
+      "kind": "vertical",
+      "acceptance": [
+        "Read the outcome, current progress and proof without repeated explanations or internal labels.",
+        "Keep problems, historical completion and evidence limitations honest and directly inspectable."
+      ],
+      "expectedPaths": [
+        "packages/ui/**",
+        "docs/**"
+      ],
+      "codeBreakReviewId": "dcd79264-1acd-80ca-a27f-a2c62fb42435"
+    }
+  ],
+  "acceptanceClaimIds": {
+    "c95eb099-a8bc-8bbf-8079-82b53d19036c/AC-1": [
+      "d62365fc-02af-826c-b961-8942c540bddf"
+    ],
+    "c95eb099-a8bc-8bbf-8079-82b53d19036c/AC-2": [
+      "d62365fc-02af-826c-b961-8942c540bddf"
+    ]
+  },
+  "specBreakReviewId": "2dce4e38-f44e-8dd0-b7ab-7dfeaa78dc1d",
+  "updatedAt": "2026-09-05T05:02:13.002Z",
+  "seal": {
+    "sealedAt": "2026-09-05T04:50:22.761Z",
+    "sealedBy": "agent:permission:4ad4d056-7238-8bdf-b686-62cc8a8f55bb",
+    "specDigest": "90be7c71ab345d2fb7f6c753db833cc415d4c80dcf31f55a17de8b89a2f11012",
+    "snapshotPath": "workstreams/11788af6-4cbe-834d-9993-8ee534b22b94.seals/1.json",
+    "revision": 1,
+    "specDocDigest": "18a062154ba0c1d0b70079c0f93b8f9a3eb15c8a7c651cf242cc199385b2d7e7"
+  },
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/workstreams/W-013.json",
+        "id": "W-013",
+        "sha256": "b455fa7dc96508f43585756814c82580e5fe4ce0706a25b51e60482de0452511"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/workstreams/W-013.json",
+        "id": "W-013",
+        "sha256": "b455fa7dc96508f43585756814c82580e5fe4ce0706a25b51e60482de0452511"
+      }
+    },
+    "historical": true
+  }
+}

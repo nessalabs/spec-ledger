@@ -15,8 +15,8 @@ test("turn review IDs are immutable", () => {
     initLedger(root, "immutable reviews")
     const original: Review = {
       schemaVersion: 1,
-      id: "T-001/R-01",
-      turnId: "T-001",
+      id: "978fb18b-7dc9-520b-9fb5-0413b7b983bf",
+      turnId: "bcbf5513-797b-5a84-b5cf-eb04b5444708",
       kind: "adversarial",
       target: "code",
       reviewer: "agent:breaker",
@@ -29,7 +29,7 @@ test("turn review IDs are immutable", () => {
       () => writeReview(root, { ...original, reviewer: "agent:other", summary: "Conflicting replacement" }),
       /review id already exists/,
     )
-    const [stored] = listReviewsForTurn(root, "T-001")
+    const [stored] = listReviewsForTurn(root, "bcbf5513-797b-5a84-b5cf-eb04b5444708")
     assert.equal(stored?.reviewer, original.reviewer)
     assert.equal(stored?.summary, original.summary)
   } finally {

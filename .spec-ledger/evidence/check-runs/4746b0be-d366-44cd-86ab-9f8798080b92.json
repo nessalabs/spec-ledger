@@ -1,7 +1,7 @@
 {
   "runId": "4746b0be-d366-44cd-86ab-9f8798080b92",
   "requestId": "batch-4746b0be-d366-44cd-86ab-9f8798080b92",
-  "bindingId": "b-sl-020",
+  "bindingId": "5e20c4c0-c26d-8662-93b0-59575a838f83",
   "state": "finished",
   "command": "node --test packages/ledger/dist/deferrals/index.test.js packages/ledger/dist/deferrals/deferrals.break.test.js packages/ledger/dist/deferrals/portability.test.js",
   "cwd": "/Users/nessa/.codex/worktrees/24db/spec-ledger",

@@ -1,14 +1,14 @@
 # P0–P3 runtime + dogfood
 
-**Workstream:** `W-002` · **Status:** done (retrofit pitch — prose extracted from metadata for human navigation)  
-**Agent metadata:** [`.spec-ledger/workstreams/W-002.json`](../../.spec-ledger/workstreams/W-002.json)  
+**Workstream:** `e6213c3f-60e4-8ceb-9d6a-15c67833b383` · **Status:** done (retrofit pitch — prose extracted from metadata for human navigation)  
+**Agent metadata:** [`.spec-ledger/workstreams/e6213c3f-60e4-8ceb-9d6a-15c67833b383.json`](../../.spec-ledger/workstreams/e6213c3f-60e4-8ceb-9d6a-15c67833b383.json)  
 **Note:** Historical seal digests predate this Markdown; `specPath` is a live pointer only.
 
 ---
 
 ## Problem
 
-The builder loop existed, but turn check/abandon, automation resume, HTTP context, related pack, episode side collections, audit/CI, and compass/timeline were missing — the product stopped at W-001.
+The builder loop existed, but turn check/abandon, automation resume, HTTP context, related pack, episode side collections, audit/CI, and compass/timeline were missing — the product stopped at 3317ada5-b347-894e-8c88-110b7b42d58b.
 
 ## Objective
 
@@ -30,7 +30,7 @@ Ship remaining architecture through P3: turn ops + automation + HTTP context + r
 - Decisions/sources/attachments/probes/flows loadable; decision basis stamped on close when present  
 - `spec-ledger audit` + policy; CI runs verify + audit + test  
 - Lattice `/compass` and `/timeline` render vision/tenets/turns  
-- Proposed-claims dir + list; themes optional; dogfood turn under W-002  
+- Proposed-claims dir + list; themes optional; dogfood turn under e6213c3f-60e4-8ceb-9d6a-15c67833b383  
 
 ## Out of scope
 
@@ -48,4 +48,4 @@ Load decisions/sources/attachments/probes/flows · close stamps collection diges
 
 ### SLC-03 — Audit + CI + Lattice compass/timeline + dogfood
 
-Audit CLI + CI workflow · `/compass` `/timeline` · closed W-002 turn  
+Audit CLI + CI workflow · `/compass` `/timeline` · closed e6213c3f-60e4-8ceb-9d6a-15c67833b383 turn  

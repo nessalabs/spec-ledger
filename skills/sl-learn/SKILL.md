@@ -59,7 +59,7 @@ Contract: [`docs/architecture/work-model.md`](../../docs/architecture/work-model
   "scope": "product",
   "status": "active",
   "origin": "agent-confirmed",
-  "turnId": "T-00N",
+  "turnId": "<turn-uuid>",
   "evidence": "User corrected: don’t show pass when digest mismatches",
   "createdAt": "2026-09-02T00:00:00.000Z",
   "confirmedAt": "2026-09-02T00:00:00.000Z",

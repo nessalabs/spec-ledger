@@ -1,11 +1,11 @@
 import * as z from "zod/v4"
 
-export const goalIdSchema = z.string().regex(/^G-[A-Za-z0-9][A-Za-z0-9_-]{0,79}$/)
-export const experimentIdSchema = z.string().regex(/^X-[A-Za-z0-9][A-Za-z0-9_-]{0,79}$/)
+export const goalIdSchema = z.string().uuid()
+export const experimentIdSchema = z.string().uuid()
 const text = z.string().trim().min(1).max(4000)
 const digest = z.string().regex(/^[a-f0-9]{64}$/)
-const turnId = z.string().regex(/^T-[0-9]{3,}$/)
-const workstreamId = z.string().regex(/^W-[0-9]{3,}$/)
+const turnId = z.string().uuid()
+const workstreamId = z.string().uuid()
 const metric = z.object({
   name: z.string().trim().min(1).max(100), unit: z.string().trim().max(40),
   direction: z.enum(["minimize", "maximize"]), protocol: text,
@@ -13,12 +13,12 @@ const metric = z.object({
 }).strict()
 
 export const goalInputSchema = z.object({
-  id: goalIdSchema, workstreamId, turnId, title: z.string().trim().min(1).max(200),
+  workstreamId, turnId, title: z.string().trim().min(1).max(200),
   objective: text, stopWhen: text, maxExperiments: z.number().int().min(1).max(10000).optional(),
   metric: metric.optional(),
 }).strict()
 export const experimentInputSchema = z.object({
-  id: experimentIdSchema, goalId: goalIdSchema, turnId,
+  goalId: goalIdSchema, turnId,
   hypothesis: text, change: text, parentExperimentId: experimentIdSchema.optional(),
 }).strict()
 export const resultInputSchema = z.object({
@@ -33,8 +33,8 @@ export const conclusionInputSchema = z.object({
   goalId: goalIdSchema, turnId, reason: z.enum(["satisfied", "budget", "stopped"]), summary: text,
 }).strict()
 const stamp = { schemaVersion: z.literal(1), createdAt: z.string().datetime(), sourceDigest: digest, revisionDigest: digest }
-export const goalSchema = goalInputSchema.extend(stamp)
-export const experimentSchema = experimentInputSchema.extend({ ...stamp, sequence: z.number().int().positive() })
+export const goalSchema = goalInputSchema.extend({ ...stamp, id: goalIdSchema })
+export const experimentSchema = experimentInputSchema.extend({ ...stamp, id: experimentIdSchema, sequence: z.number().int().positive() })
 export const resultSchema = resultInputSchema.safeExtend(stamp)
 export const conclusionSchema = conclusionInputSchema.extend(stamp)
 export type OptimizationGoal = z.infer<typeof goalSchema>

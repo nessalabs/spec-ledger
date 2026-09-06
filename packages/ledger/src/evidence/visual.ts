@@ -1,3 +1,4 @@
+import { assertEntityId, createEntityId } from "../identity/index.js"
 import { existsSync, mkdirSync, realpathSync, writeFileSync, linkSync, unlinkSync } from "node:fs"
 import { dirname, isAbsolute, join, relative } from "node:path"
 import { randomUUID } from "node:crypto"
@@ -94,7 +95,7 @@ export function recordScreenshot(root: string, input: { requestId: string; turnI
   const ledger = loadLedger(root)
   const turn = ledger.turns.find(t => t.id === input.turnId)
   if (!turn || turn.status !== "open" || !turn.intent.workstreamId) throw new Error("Record screenshots on an open workstream turn.")
-  if (!/^T-[A-Za-z0-9_-]+$/.test(turn.id)) throw new Error("Invalid screenshot turn identity.")
+  assertEntityId(turn.id, "screenshot turn id")
   const ws = loadWorkstream(root, turn.intent.workstreamId)
   const sliceId = input.sliceId ?? turn.intent.sliceId
   if (!visualRequirements(ws).some(r => r.sliceId === sliceId && r.surface === input.surface)) throw new Error("Screenshot surface must match a declared visual requirement in this workstream.")
@@ -102,7 +103,7 @@ export function recordScreenshot(root: string, input: { requestId: string; turnI
   const bytes = readBounded(root, input.path, 512 * 1024)
   const mediaType = bytes[0] === 137 ? "image/png" : "image/jpeg"
   if (!supportedRaster(bytes, mediaType)) throw new Error("Attach a valid PNG/JPEG screenshot of the relevant UI (at most 512 KiB and 16 million pixels).")
-  const attachment: EpisodeAttachment = { schemaVersion: 1, id: `${turn.id}/A-${input.requestId}`, turnId: turn.id,
+  const attachment: EpisodeAttachment = { schemaVersion: 1, id: createEntityId(), turnId: turn.id,
     kind: "image", title: input.title ?? input.surface, path: input.path, mediaType, byteLength: bytes.length, contentDigest: contentHash(bytes),
     visualEvidence: { sliceId: sliceId!, surface: input.surface, sourceDigest: input.expectedSourceDigest, revisionDigest: input.expectedRevisionDigest, recordedAt: new Date().toISOString() },
     note: "Recorded visual coverage; image adequacy is assessed in review." }
@@ -115,7 +116,7 @@ export function recordScreenshot(root: string, input: { requestId: string; turnI
   if (!confined(ancestor) && realpathSync(ancestor) !== base) throw new Error("Screenshot attachment directory escapes the checkout.")
   mkdirSync(directory, { recursive: true })
   if (!confined(directory)) throw new Error("Screenshot attachment directory escapes the checkout.")
-  const target = join(realpathSync(directory), `A-${input.requestId}.json`)
+  const target = join(realpathSync(directory), `${attachment.id}.json`)
   const temporary = `${target}.${randomUUID()}.tmp`
   writeFileSync(temporary, JSON.stringify(attachment, null, 2) + "\n", { flag: "wx" })
   try { linkSync(temporary, target) } finally { unlinkSync(temporary) }

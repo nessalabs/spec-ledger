@@ -1,4 +1,4 @@
-// sl-dev-break killers (T-020 / W-005 SLC-01) — falsify init against sealed path table.
+// sl-dev-break killers (749cd8fa-88c5-587d-a7a3-bbb309fb467d / d80732c1-ab98-55d9-9a9d-cbf6befe3ed1 886b091f-57f9-5f69-9e74-f0b50275d693) — falsify init against sealed path table.
 import { describe, it } from "node:test"
 import assert from "node:assert/strict"
 import {
@@ -58,7 +58,7 @@ function listRecursiveFiles(root: string, rel = ""): string[] {
   return out.sort()
 }
 
-describe("sl-dev-break init (T-020 / SLC-01)", () => {
+describe("sl-dev-break init (749cd8fa-88c5-587d-a7a3-bbb309fb467d / 886b091f-57f9-5f69-9e74-f0b50275d693)", () => {
   it("exact normative top-level set — no extras, no missing", () => {
     const dir = freshGit()
     const { path } = initLedgerDetailed(dir, "exact")

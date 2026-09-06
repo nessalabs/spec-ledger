@@ -1,0 +1,28 @@
+{
+  "id": "479095fc-cc04-8104-8461-ce0edb86e9e6",
+  "claimId": "1ea8304f-a051-8234-b7a7-ce31b25eccf2",
+  "kind": "test",
+  "locator": {
+    "type": "command",
+    "command": "node --test packages/ledger/dist/optimization/*.test.js packages/mcp/dist/optimization.lifecycle.test.js packages/ui/lib/experiment-chart.test.mjs"
+  },
+  "test": {
+    "level": "integration",
+    "description": "Record and inspect optional iterative work through shared operations and transport boundaries.",
+    "source": {
+      "path": "packages/ledger/src/optimization/optimization.test.ts"
+    },
+    "inputs": "Numeric and qualitative goals, failed/pending/discarded attempts, retries, stale/closed/revoked tasks and poisoned records.",
+    "expected": "Durable validated history and honest progress, with no change to ordinary task verification."
+  },
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/bindings/B-SL-032.json",
+        "id": "b-sl-032",
+        "sha256": "b3b5f5107e337b3b67d191c4e6aa6cfb4927ac34ae2c38c55f06d207e6a3d234"
+      }
+    },
+    "historical": true
+  }
+}

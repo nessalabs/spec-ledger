@@ -1,0 +1,29 @@
+▶ workflow editor boundary regressions
+  ✔ roundtrips bundled choices and hides symlinked discovery roots (141.53725ms)
+  ✔ rejects attestation substitutes for every mandatory stage output (76.075917ms)
+  ✔ rejects changed skill content and stale amendment identity without replacing the selection (343.578667ms)
+  ✔ rejects oversized and malformed browser actions without writes or execution (80.624625ms)
+  ✔ browser preview and apply share core state, deny foreign requests, and retry once (142.737625ms)
+✔ workflow editor boundary regressions (785.089708ms)
+✔ section history returns from execution to exact acceptance without hiding the evidence (11.437125ms)
+✔ unknown or obsolete fragments do not strand readers in an invisible section (0.066583ms)
+✔ mobile navigation closes on same-page selection and route change but preserves modified clicks (17.788792ms)
+✔ change history is isolated from the live child list and renders without key warnings (19.792875ms)
+✔ the in-page workflow retains its picker and process state when live data changes workstream (3.295041ms)
+✔ a deleted library name stays visible with its preserved version while switching is pending (8.807625ms)
+✔ workflow definition has one library route and the old per-spec route no longer resolves (0.282583ms)
+✔ overview keeps permission and problems visible with direct spec, evidence and history links (40.840959ms)
+✔ approved work does not request approval again and disconnected approval stays disabled (16.417208ms)
+✔ lost reply survives reload and retry preserves the exact operation instead of accepting another edit (45.764125ms)
+✔ unknown and busy outcomes retain recovery but a definitive stale-version conflict releases the form (11.9815ms)
+✔ unreadable mutation response keeps the original request for recovery (2.757541ms)
+✔ a browser unable to persist recovery must not send an unrecoverable write (3.572125ms)
+✔ canvas opens only the selected stage drawer and closing restores the full canvas without mutating or executing (70.381875ms)
+ℹ tests 19
+ℹ suites 1
+ℹ pass 19
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 868.87875

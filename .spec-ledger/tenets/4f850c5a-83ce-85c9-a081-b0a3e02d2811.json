@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "4f850c5a-83ce-85c9-a081-b0a3e02d2811",
+  "statement": "When agent speed and a sealed spec conflict, do not implement unsealed work; never silently rewrite a seal",
+  "scope": "product",
+  "status": "active",
+  "origin": "user",
+  "weight": "must",
+  "confirmedAt": "2026-09-03T04:00:00.000Z",
+  "confirmedBy": "human",
+  "createdAt": "2026-09-03T04:00:00.000Z",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/tenets/TN-002.json",
+        "id": "TN-002",
+        "sha256": "ac2fbcde31a552b7c1ebcba188a669f4d61df0d34716c3abe0c2e01aa18af85a"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/tenets/TN-002.json",
+        "id": "TN-002",
+        "sha256": "ac2fbcde31a552b7c1ebcba188a669f4d61df0d34716c3abe0c2e01aa18af85a"
+      }
+    },
+    "historical": true
+  }
+}

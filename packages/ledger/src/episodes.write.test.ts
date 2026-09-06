@@ -21,37 +21,41 @@ test("episode write CLIs leave digests on close", () => {
     spawnSync("git", ["init"], { cwd: dir })
     spawnSync("git", ["config", "user.email", "t@e.com"], { cwd: dir })
     spawnSync("git", ["config", "user.name", "t"], { cwd: dir })
+    // The copied ledger can trigger detached Git maintenance during commit.
+    // Keep this disposable repository synchronous through its cleanup.
+    spawnSync("git", ["config", "gc.auto", "0"], { cwd: dir })
+    spawnSync("git", ["config", "maintenance.auto", "false"], { cwd: dir })
     spawnSync("git", ["add", "."], { cwd: dir })
     spawnSync("git", ["commit", "-m", "init"], { cwd: dir })
 
-    openTurn(
+    const opened = openTurn(
       dir,
       {
         userPrompt: "episode writes",
         restatedGoal: "Write side collections",
-        workstreamId: "W-002",
-        sliceId: "SLC-02",
+        workstreamId: "e6213c3f-60e4-8ceb-9d6a-15c67833b383",
+        sliceId: "b531f0e9-0768-8e61-821a-dd82767dff67",
         featureIds: ["turns"],
       },
-      { workstreamId: "W-002", sliceId: "SLC-02", featureIds: ["turns"], allowDirty: true },
+      { workstreamId: "e6213c3f-60e4-8ceb-9d6a-15c67833b383", sliceId: "b531f0e9-0768-8e61-821a-dd82767dff67", featureIds: ["turns"], allowDirty: true },
     )
 
     writeDecision(dir, {
-      turnId: "T-001",
+      turnId: opened.id,
       decision: "Use JCS for digests",
       rationale: "Matches work-model",
       basis: { at: new Date().toISOString(), sealRevision: 1 },
     })
-    writeSource(dir, { turnId: "T-001", kind: "doc", ref: "docs/architecture/work-model.md" })
-    writeAttachment(dir, { turnId: "T-001", path: "docs/ci/github-actions.yml" })
-    writeProbe(dir, { turnId: "T-001", question: "Does close stamp digests?", outcome: "yes" })
+    writeSource(dir, { turnId: opened.id, kind: "doc", ref: "docs/architecture/work-model.md" })
+    writeAttachment(dir, { turnId: opened.id, path: "docs/ci/github-actions.yml" })
+    writeProbe(dir, { turnId: opened.id, question: "Does close stamp digests?", outcome: "yes" })
     writeFlow(dir, {
-      turnId: "T-001",
+      turnId: opened.id,
       title: "close path",
       after: "flowchart TD; A-->B",
     })
 
-    const digests = episodeDigestsForTurn(dir, "T-001")
+    const digests = episodeDigestsForTurn(dir, opened.id)
     assert.ok(digests.decisionsDigest)
     assert.ok(digests.sourcesDigest)
     assert.ok(digests.attachmentsDigest)
@@ -60,8 +64,8 @@ test("episode write CLIs leave digests on close", () => {
 
     writeReview(dir, {
       schemaVersion: 1,
-      id: "T-001/R-01",
-      turnId: "T-001",
+      id: "978fb18b-7dc9-520b-9fb5-0413b7b983bf",
+      turnId: opened.id,
       kind: "adversarial",
       target: "code",
       reviewer: "agent:test",
@@ -75,6 +79,6 @@ test("episode write CLIs leave digests on close", () => {
     assert.ok(closed.facts?.decisionsDigest)
     assert.ok(closed.facts?.sourcesDigest)
   } finally {
-    rmSync(dir, { recursive: true, force: true })
+    rmSync(dir, { recursive: true, force: true, maxRetries: 5, retryDelay: 100 })
   }
 })

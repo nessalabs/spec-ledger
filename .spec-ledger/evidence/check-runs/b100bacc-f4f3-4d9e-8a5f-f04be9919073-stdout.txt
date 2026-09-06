@@ -1,0 +1,23 @@
+✔ graph display rejects the incomplete session fixture instead of iterating missing layers (0.622208ms)
+▶ local UI approval boundary adversarial
+  ✔ supports Next-normalized loopback URLs while binding origin to the external Host and port (14.04325ms)
+  ✔ denies cross-origin and rebinding requests without ledger effects (6.162834ms)
+  ✔ rejects unsupported methods, bodies, arbitrary commands, and oversized input before mutation (3.654375ms)
+  ✔ rejects stale revision and authority state instead of silently approving new work (4.314666ms)
+  ✔ retries exactly once, rejects request ID reuse, and reports revocation after an old retry (5.963459ms)
+  ✔ supports intentional denial replacement only against the newly observed state (5.212166ms)
+✔ local UI approval boundary adversarial (39.860666ms)
+▶ session projection adversarial
+  ✔ serves identical session state through both clients without writes (195.81725ms)
+  ✔ rechecks revoked permission before completing otherwise finished work (164.105417ms)
+  ✔ permits completion after implementation, current evidence, and turn closure all satisfy policy (279.087083ms)
+  ✔ does not turn agent progress into proof and stales progress/preview after source changes (154.088041ms)
+✔ session projection adversarial (793.568083ms)
+ℹ tests 11
+ℹ suites 2
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 841.802083

@@ -8,7 +8,7 @@
   "result": {
     "action": "grant",
     "mode": "request",
-    "workstreamId": "W-015",
+    "workstreamId": "eab32d2d-6c3c-84df-b831-9bcc13fd0152",
     "featureIds": [
       "turns",
       "lattice",
@@ -19,7 +19,7 @@
       "kind": "agent-reported",
       "reference": "User explicitly requested generated UUID identities with short titles, migration of existing data without backward compatibility, reconciliation of concurrent histories, and organization-wide npm publishing secret wiring."
     },
-    "id": "AUTH-31281e8f-2bd5-453a-95b9-41f8b2f16832",
+    "id": "4e6cc9b2-c4e1-8671-9676-99a44a454eac",
     "schemaVersion": 1,
     "createdAt": "2026-09-06T18:36:28.226Z"
   }

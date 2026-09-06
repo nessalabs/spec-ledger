@@ -30,13 +30,13 @@ function fixture(label: string) {
   writeFileSync(join(root, 'skills/team.md'), '# Team method\nExplain the claim, exercise the behavior, and retain the evidence.\n')
   writeFileSync(join(root, 'behavior.cjs'), 'module.exports = { greeting: name => `Hello ${name}` }\n')
   writeFileSync(join(root, 'check.cjs'), 'const assert = require("node:assert/strict"); assert.equal(require("./behavior.cjs").greeting("Ada"), "Hello Ada");\n')
-  writeFileSync(join(root, '.spec-ledger/claims/SL-001.json'), JSON.stringify({ id: 'SL-001', statement: 'Greeting includes the supplied name', required: true }))
-  writeFileSync(join(root, '.spec-ledger/bindings/greeting.json'), JSON.stringify({ id: 'greeting', claimId: 'SL-001', kind: 'test', locator: { type: 'command', command: `${process.execPath} check.cjs` } }))
-  writeFileSync(join(root, '.spec-ledger/workstreams/W-001.json'), JSON.stringify({
-    schemaVersion: 1, id: 'W-001', status: 'shaped', title: 'Team greeting', objective: 'Greet the supplied name', featureIds: ['alpha'],
-    acceptanceCriteria: ['Greeting includes the supplied name'], acceptanceClaimIds: { 'AC-1': ['SL-001'] },
+  writeFileSync(join(root, '.spec-ledger/claims/5e852279-c620-5042-b952-b015a4c32e20.json'), JSON.stringify({ id: '5e852279-c620-5042-b952-b015a4c32e20', statement: 'Greeting includes the supplied name', required: true }))
+  writeFileSync(join(root, '.spec-ledger/bindings/b8aa9b00-acee-47d8-8a53-addbe1211dc6.json'), JSON.stringify({ id: 'b8aa9b00-acee-47d8-8a53-addbe1211dc6', claimId: '5e852279-c620-5042-b952-b015a4c32e20', kind: 'test', locator: { type: 'command', command: `${process.execPath} check.cjs` } }))
+  writeFileSync(join(root, '.spec-ledger/workstreams/6fbba68d-7164-55a6-80f9-18dea06c91ce.json'), JSON.stringify({
+    schemaVersion: 1, id: '6fbba68d-7164-55a6-80f9-18dea06c91ce', status: 'shaped', title: 'Team greeting', objective: 'Greet the supplied name', featureIds: ['alpha'],
+    acceptanceCriteria: ['Greeting includes the supplied name'], acceptanceClaimIds: { 'AC-1': ['5e852279-c620-5042-b952-b015a4c32e20'] },
     policy: { requireSpecBreak: true, requireCodeBreak: true, requireAlignApprove: true }, trust: {},
-    suggestedSlices: [{ id: 'SLC-01', title: 'Greeting', kind: 'vertical', acceptance: ['Greeting works'], expectedPaths: ['**'] }],
+    suggestedSlices: [{ id: '0d0038da-bb13-561e-ac49-570f6ed0f334', title: 'Greeting', kind: 'vertical', acceptance: ['Greeting works'], expectedPaths: ['**'] }],
   }))
   run(root, 'git', ['add', '.'])
   run(root, 'git', ['commit', '-qm', 'fixture'])
@@ -80,14 +80,14 @@ function domain(root: string) {
 }
 
 const teamProfile = {
-  id: 'team-greeting', title: 'Team greeting method',
+  id: 'e0492b58-282b-4728-b358-17d38d333abf', title: 'Team greeting method',
   skills: { team: { path: 'skills/team.md', acknowledgeUncertain: true } },
   stages: [
-    { id: 'plan', title: 'Plan', role: 'plan', steps: [{ id: 'scope', title: 'Preserve the intent', skill: 'team', outputs: [{ kind: 'spec-revision' }] }] },
-    { id: 'grill', title: 'Challenge the plan', role: 'spec-review', steps: [{ id: 'review', title: 'Review the intent', skill: 'team', outputs: [{ kind: 'spec-review' }] }, { id: 'edge-cases', title: 'Describe the edge cases', skill: 'team', outputs: [{ kind: 'attestation' }] }] },
-    { id: 'build', title: 'Implement', role: 'implement', steps: [{ id: 'code', title: 'Implement the greeting', skill: 'team', outputs: [{ kind: 'implementation-report', criterionIds: ['AC-1'] }] }] },
-    { id: 'verify', title: 'Verify', role: 'verify', steps: [{ id: 'test', title: 'Exercise the greeting', skill: 'team', outputs: [{ kind: 'check-results', criterionIds: ['AC-1'] }] }] },
-    { id: 'review', title: 'Review code', role: 'code-review', steps: [{ id: 'break', title: 'Challenge the implementation', skill: 'team', outputs: [{ kind: 'code-review' }] }] },
+    { id: 'c40819ed-896d-4ad8-bfe2-fcf1af668830', title: 'Plan', role: 'plan', steps: [{ id: '7bcbe87a-0a55-4afd-bc52-3267c986b546', title: 'Preserve the intent', skill: 'team', outputs: [{ kind: 'spec-revision' }] }] },
+    { id: 'f9cac0bf-93a8-45df-940c-baccec31f341', title: 'Challenge the plan', role: 'spec-review', steps: [{ id: '39279a49-4a6d-4b37-832f-6821165722af', title: 'Review the intent', skill: 'team', outputs: [{ kind: 'spec-review' }] }, { id: 'ab4e8a4b-2880-4f8b-a3e3-ee4d8f7116f9', title: 'Describe the edge cases', skill: 'team', outputs: [{ kind: 'attestation' }] }] },
+    { id: '84912bf9-6997-4c9c-917a-17222976c0ab', title: 'Implement', role: 'implement', steps: [{ id: 'ad492861-2d10-401a-9e01-00cda7640974', title: 'Implement the greeting', skill: 'team', outputs: [{ kind: 'implementation-report', criterionIds: ['AC-1'] }] }] },
+    { id: '5d2d6a53-b806-4a5e-9af5-09a9bfd54c47', title: 'Verify', role: 'verify', steps: [{ id: '98287e76-40d3-4c9b-b012-adc71738ec29', title: 'Exercise the greeting', skill: 'team', outputs: [{ kind: 'check-results', criterionIds: ['AC-1'] }] }] },
+    { id: '39279a49-4a6d-4b37-832f-6821165722af', title: 'Review code', role: 'code-review', steps: [{ id: 'c32f4cf5-1ee3-4063-93c5-505529a36e93', title: 'Challenge the implementation', skill: 'team', outputs: [{ kind: 'code-review' }] }] },
   ],
 }
 
@@ -97,53 +97,53 @@ for (const surface of ['cli', 'mcp'] as const) {
     const transport = await adapter(root, surface)
     let counter = 0
     const requestId = () => `method-${surface}-request-${String(++counter).padStart(4, '0')}`
-    const current = () => ({ expectedRevisionDigest: planRevision(root, loadWorkstream(root, 'W-001')), expectedSourceDigest: sourceFingerprint(root)! })
+    const current = () => ({ expectedRevisionDigest: planRevision(root, loadWorkstream(root, '6fbba68d-7164-55a6-80f9-18dea06c91ce')), expectedSourceDigest: sourceFingerprint(root)! })
     const invoke = async (operation: string, input: Record<string, unknown>) => {
       const envelope = await transport.call(operation, input)
       assert.equal(envelope.ok, true, `${operation}: ${JSON.stringify(envelope)}`)
       return envelope.result
     }
     try {
-      await invoke('record_permission', { requestId: requestId(), authority: { id: 'AUTH-team', action: 'grant', mode: 'request', workstreamId: 'W-001', featureIds: ['alpha'], source: { kind: 'agent-reported', reference: 'Fixture user request' } } })
-      await invoke('record_review', { requestId: requestId(), target: 'spec', workstreamId: 'W-001', expectedRevisionDigest: current().expectedRevisionDigest, review: { kind: 'adversarial', reviewer: 'fixture-spec-review', verdict: 'approve', summary: 'The greeting has bounded acceptance and a behavioral check.', plainSummary: 'The greeting plan is ready to build.' } })
-      await invoke('begin_work', { requestId: requestId(), workstreamId: 'W-001', sliceId: 'SLC-01', goal: 'Implement the named greeting', allowDirty: true, expectedRevisionDigest: current().expectedRevisionDigest })
-      const selectionInput = { requestId: requestId(), workstreamId: 'W-001', ...current(), profile: teamProfile }
+      await invoke('record_permission', { requestId: requestId(), authority: { action: 'grant', mode: 'request', workstreamId: '6fbba68d-7164-55a6-80f9-18dea06c91ce', featureIds: ['alpha'], source: { kind: 'agent-reported', reference: 'Fixture user request' } } })
+      await invoke('record_review', { requestId: requestId(), target: 'spec', workstreamId: '6fbba68d-7164-55a6-80f9-18dea06c91ce', expectedRevisionDigest: current().expectedRevisionDigest, review: { kind: 'adversarial', reviewer: 'fixture-spec-review', verdict: 'approve', summary: 'The greeting has bounded acceptance and a behavioral check.', plainSummary: 'The greeting plan is ready to build.' } })
+      const opened = await invoke('begin_work', { requestId: requestId(), workstreamId: '6fbba68d-7164-55a6-80f9-18dea06c91ce', sliceId: '0d0038da-bb13-561e-ac49-570f6ed0f334', goal: 'Implement the named greeting', allowDirty: true, expectedRevisionDigest: current().expectedRevisionDigest })
+      const selectionInput = { requestId: requestId(), workstreamId: '6fbba68d-7164-55a6-80f9-18dea06c91ce', ...current(), profile: teamProfile }
       const selected = await invoke('set_workflow', selectionInput)
       assert.match(selected.snapshotDigest, /^[a-f0-9]{64}$/)
       const selectedDomain = domain(root)
       assert.deepEqual(await invoke('set_workflow', selectionInput), selected)
       assert.deepEqual(domain(root), selectedDomain)
-      const methodInput = () => ({ workstreamId: 'W-001', ...current(), expectedSnapshotDigest: selected.snapshotDigest })
+      const methodInput = () => ({ workstreamId: '6fbba68d-7164-55a6-80f9-18dea06c91ce', ...current(), expectedSnapshotDigest: selected.snapshotDigest })
       const begin = (stageId: string, stepId: string) => invoke('begin_workflow_step', { requestId: requestId(), ...methodInput(), stageId, stepId })
       const output = (attemptId: string, kind: string, recordType: string, recordIds: string[], criterionIds?: string[]) => invoke('record_workflow_output', { requestId: requestId(), ...methodInput(), attemptId, kind, recordType, recordIds, ...(criterionIds ? { criterionIds } : {}) })
 
       const beforeSkip = domain(root)
-      const skip = await transport.call('begin_workflow_step', { requestId: requestId(), ...methodInput(), stageId: 'build', stepId: 'code' })
+      const skip = await transport.call('begin_workflow_step', { requestId: requestId(), ...methodInput(), stageId: '84912bf9-6997-4c9c-917a-17222976c0ab', stepId: 'ad492861-2d10-401a-9e01-00cda7640974' })
       assert.equal(skip.ok, false, 'Custom grilling prerequisites must prevent early implementation step')
       assert.deepEqual(domain(root), beforeSkip)
 
-      const plan = await begin('plan', 'scope')
-      await output(plan.id, 'spec-revision', 'snapshot', [loadWorkstream(root, 'W-001').seal!.snapshotPath!])
-      const grill = await begin('grill', 'review')
-      const specReview = await invoke('record_review', { requestId: requestId(), target: 'spec', workstreamId: 'W-001', expectedRevisionDigest: current().expectedRevisionDigest, review: { kind: 'adversarial', reviewer: 'fixture-method-review', verdict: 'approve', summary: 'Reviewed the greeting plan under the selected team method.', plainSummary: 'The team method confirms the plan is ready.' } })
+      const plan = await begin('c40819ed-896d-4ad8-bfe2-fcf1af668830', '7bcbe87a-0a55-4afd-bc52-3267c986b546')
+      await output(plan.id, 'spec-revision', 'snapshot', [loadWorkstream(root, '6fbba68d-7164-55a6-80f9-18dea06c91ce').seal!.snapshotPath!])
+      const grill = await begin('f9cac0bf-93a8-45df-940c-baccec31f341', '39279a49-4a6d-4b37-832f-6821165722af')
+      const specReview = await invoke('record_review', { requestId: requestId(), target: 'spec', workstreamId: '6fbba68d-7164-55a6-80f9-18dea06c91ce', expectedRevisionDigest: current().expectedRevisionDigest, review: { kind: 'adversarial', reviewer: 'fixture-method-review', verdict: 'approve', summary: 'Reviewed the greeting plan under the selected team method.', plainSummary: 'The team method confirms the plan is ready.' } })
       await output(grill.id, 'spec-review', 'review', [specReview.id])
-      const edgeCases = await begin('grill', 'edge-cases')
-      const attestation = await invoke('record_decision', { requestId: requestId(), turnId: 'T-001', ...current(), decision: 'Preserve the supplied name, including an empty name.', rationale: 'This is a reported edge-case assessment, not passing test evidence.' })
+      const edgeCases = await begin('f9cac0bf-93a8-45df-940c-baccec31f341', 'ab4e8a4b-2880-4f8b-a3e3-ee4d8f7116f9')
+      const attestation = await invoke('record_decision', { requestId: requestId(), turnId: opened.id, ...current(), decision: 'Preserve the supplied name, including an empty name.', rationale: 'This is a reported edge-case assessment, not passing test evidence.' })
       await output(edgeCases.id, 'attestation', 'decision', [attestation.id])
-      const implementation = await begin('build', 'code')
-      const progress = await invoke('record_progress', { requestId: requestId(), turnId: 'T-001', ...current(), summary: 'The greeting includes the supplied name.', criterionIds: ['AC-1'], implemented: true })
+      const implementation = await begin('84912bf9-6997-4c9c-917a-17222976c0ab', 'ad492861-2d10-401a-9e01-00cda7640974')
+      const progress = await invoke('record_progress', { requestId: requestId(), turnId: opened.id, ...current(), summary: 'The greeting includes the supplied name.', criterionIds: ['AC-1'], implemented: true })
       await output(implementation.id, 'implementation-report', 'decision', [progress.id], ['AC-1'])
-      const checks = await begin('verify', 'test')
+      const checks = await begin('5d2d6a53-b806-4a5e-9af5-09a9bfd54c47', '98287e76-40d3-4c9b-b012-adc71738ec29')
       await invoke('run_checks', { requestId: requestId(), expectedSourceDigest: current().expectedSourceDigest })
-      await output(checks.id, 'check-results', 'result', ['command:greeting'], ['AC-1'])
-      const codeReview = await begin('review', 'break')
-      const review = await invoke('record_review', { requestId: requestId(), target: 'code', turnId: 'T-001', expectedSourceDigest: current().expectedSourceDigest, review: { kind: 'adversarial', reviewer: 'fixture-code-review', verdict: 'approve', summary: 'The named greeting passed the independent behavioral fixture.', plainSummary: 'The greeting implementation is ready.', killersCited: ['check.cjs checks exact output for Ada'] } })
+      await output(checks.id, 'check-results', 'result', ['command:b8aa9b00-acee-47d8-8a53-addbe1211dc6'], ['AC-1'])
+      const codeReview = await begin('39279a49-4a6d-4b37-832f-6821165722af', 'c32f4cf5-1ee3-4063-93c5-505529a36e93')
+      const review = await invoke('record_review', { requestId: requestId(), target: 'code', turnId: opened.id, expectedSourceDigest: current().expectedSourceDigest, review: { kind: 'adversarial', reviewer: 'fixture-code-review', verdict: 'approve', summary: 'The named greeting passed the independent behavioral fixture.', plainSummary: 'The greeting implementation is ready.', killersCited: ['check.cjs checks exact output for Ada'] } })
       await output(codeReview.id, 'code-review', 'review', [review.id])
-      await invoke('approve_alignment', { requestId: requestId(), turnId: 'T-001', expectedSourceDigest: current().expectedSourceDigest, reviewer: 'agent:align:fixture', summary: 'All product paths are within the fixture plan.', plainSummary: 'Changed files match the plan.' })
+      await invoke('approve_alignment', { requestId: requestId(), turnId: opened.id, expectedSourceDigest: current().expectedSourceDigest, reviewer: 'agent:align:fixture', summary: 'All product paths are within the fixture plan.', plainSummary: 'Changed files match the plan.' })
 
       const observedDomain = domain(root)
-      const workflow = await invoke('get_workflow', { workstreamId: 'W-001' })
-      const session = (await invoke('get_session', { workstreamId: 'W-001' })).session
+      const workflow = await invoke('get_workflow', { workstreamId: '6fbba68d-7164-55a6-80f9-18dea06c91ce' })
+      const session = (await invoke('get_session', { workstreamId: '6fbba68d-7164-55a6-80f9-18dea06c91ce' })).session
       assert.deepEqual(domain(root), observedDomain, 'Workflow/session reads must be passive')
       assert.equal(session.criteria[0].evidence, 'pass')
       assert.ok(session.workflow, 'The same method must be visible in the session projection')
@@ -154,19 +154,19 @@ for (const surface of ['cli', 'mcp'] as const) {
 
       // A source change invalidates prior reports and proof without any output rewrite.
       writeFileSync(join(root, 'behavior.cjs'), 'module.exports = { greeting: name => `Hi ${name}` }\n')
-      const changed = (await invoke('get_session', { workstreamId: 'W-001' })).session
+      const changed = (await invoke('get_session', { workstreamId: '6fbba68d-7164-55a6-80f9-18dea06c91ce' })).session
       assert.notEqual(changed.criteria[0].evidence, 'pass')
       assert.equal(changed.completion.eligible, false)
       const staleBefore = domain(root)
-      const stale = await transport.call('record_workflow_output', { requestId: requestId(), ...methodInput(), expectedSourceDigest: selectionInput.expectedSourceDigest, attemptId: checks.id, kind: 'check-results', recordType: 'result', recordIds: ['command:greeting'], criterionIds: ['AC-1'] })
+      const stale = await transport.call('record_workflow_output', { requestId: requestId(), ...methodInput(), expectedSourceDigest: selectionInput.expectedSourceDigest, attemptId: checks.id, kind: 'check-results', recordType: 'result', recordIds: ['command:b8aa9b00-acee-47d8-8a53-addbe1211dc6'], criterionIds: ['AC-1'] })
       assert.equal(stale.ok, false)
       assert.deepEqual(domain(root), staleBefore)
 
       // Restore identical content: existing evidence remains tied to content, not commit identity.
       writeFileSync(join(root, 'behavior.cjs'), 'module.exports = { greeting: name => `Hello ${name}` }\n')
-      await invoke('finish_turn', { requestId: requestId(), turnId: 'T-001', action: 'close', expectedSourceDigest: current().expectedSourceDigest })
-      await invoke('complete_work', { requestId: requestId(), workstreamId: 'W-001', ...current() })
-      const finished = (await invoke('get_session', { workstreamId: 'W-001' })).session
+      await invoke('finish_turn', { requestId: requestId(), turnId: opened.id, action: 'close', expectedSourceDigest: current().expectedSourceDigest })
+      await invoke('complete_work', { requestId: requestId(), workstreamId: '6fbba68d-7164-55a6-80f9-18dea06c91ce', ...current() })
+      const finished = (await invoke('get_session', { workstreamId: '6fbba68d-7164-55a6-80f9-18dea06c91ce' })).session
       assert.equal(finished.status, 'done')
       assert.equal(finished.completion.eligible, true)
     } finally {

@@ -36,9 +36,9 @@ function fixture(policy: { requireSpecBreak?: boolean; requireCodeBreak?: boolea
   mkdirSync(join(root, "skills"), { recursive: true })
   writeFileSync(join(root, "skills/team.md"), "# Team method\nPreserve the contract and cite current evidence.\n")
   writeFileSync(join(root, "source.ts"), "export const behavior = true\n")
-  writeJson(join(root, ".spec-ledger/workstreams/W-001.json"), {
+  writeJson(join(root, ".spec-ledger/workstreams/2b74bc14-227a-5c05-b2ed-1c32d9703cad.json"), {
     schemaVersion: 1,
-    id: "W-001",
+    id: "2b74bc14-227a-5c05-b2ed-1c32d9703cad",
     status: "shaped",
     createdAt: "2026-09-05T00:00:00.000Z",
     title: "Workflow boundary",
@@ -46,17 +46,17 @@ function fixture(policy: { requireSpecBreak?: boolean; requireCodeBreak?: boolea
     objective: "Keep custom method evidence current and scoped",
     featureIds: ["alpha"],
     acceptanceCriteria: ["The behavior is verified"],
-    acceptanceClaimIds: { "AC-1": ["SL-001"] },
+    acceptanceClaimIds: { "AC-1": ["02f2ae36-9568-53f9-bc0c-a25f0a7e3af4"] },
     policy: { requireSpecBreak: policy.requireSpecBreak ?? false, requireCodeBreak: policy.requireCodeBreak ?? false },
-    suggestedSlices: [{ id: "SLC-01", title: "Method", kind: "vertical", acceptance: ["Works"] }],
+    suggestedSlices: [{ id: "886b091f-57f9-5f69-9e74-f0b50275d693", title: "Method", kind: "vertical", acceptance: ["Works"] }],
   })
   git(root, "add", ".")
   git(root, "commit", "-qm", "fixture")
   recordAuthority(root, {
-    id: "AUTH-workflow-breaker",
+    id: "7d138abd-5221-541d-be22-d9965932d8a2",
     action: "grant",
     mode: "request",
-    workstreamId: "W-001",
+    workstreamId: "2b74bc14-227a-5c05-b2ed-1c32d9703cad",
     featureIds: ["alpha"],
     source: { kind: "agent-reported", reference: "fixture authorization" },
   })
@@ -70,7 +70,7 @@ function source(root: string): string {
 }
 
 function revision(root: string): string {
-  return planRevision(root, loadWorkstream(root, "W-001"))
+  return planRevision(root, loadWorkstream(root, "2b74bc14-227a-5c05-b2ed-1c32d9703cad"))
 }
 
 let requestSequence = 0
@@ -87,7 +87,7 @@ const allCapabilities = ["spec-revision", "spec-review", "implementation-report"
 
 function profile(stages: WorkflowProfile["stages"]): WorkflowProfile {
   return {
-    id: "breaker-method",
+    id: "c179921a-5d7a-5c40-ba8e-14d93acd7d04",
     title: "Breaker method",
     skills: { team: { path: "skills/team.md", capabilities: [...allCapabilities] } },
     stages,
@@ -97,7 +97,7 @@ function profile(stages: WorkflowProfile["stages"]): WorkflowProfile {
 function select(root: string, method: WorkflowProfile, extra: Record<string, unknown> = {}): WorkflowSnapshot {
   return executeOperation(root, "set_workflow", {
     requestId: requestId("select-workflow"),
-    workstreamId: "W-001",
+    workstreamId: "2b74bc14-227a-5c05-b2ed-1c32d9703cad",
     expectedRevisionDigest: revision(root),
     expectedSourceDigest: source(root),
     profile: method,
@@ -107,8 +107,8 @@ function select(root: string, method: WorkflowProfile, extra: Record<string, unk
 
 function minimalStages(firstOutputs: Array<{ kind: "attestation" | "code-review" }>): NonNullable<WorkflowProfile["stages"]> {
   return [
-    { id: "build", title: "Build", role: "implement", steps: [{ id: "work", title: "Work", skill: "team", outputs: [{ kind: "implementation-report" }, ...firstOutputs] }] },
-    { id: "verify", title: "Verify", role: "verify", steps: [{ id: "confirm", title: "Confirm", skill: "team", outputs: [{ kind: "check-results" }] }] },
+    { id: "831b3255-def4-5e09-b436-c62d83469fef", title: "Build", role: "implement", steps: [{ id: "8dc5fc60-62d2-5472-8fe3-cdc007d43488", title: "Work", skill: "team", outputs: [{ kind: "implementation-report" }, ...firstOutputs] }] },
+    { id: "e0cf05f4-c1d8-566c-8236-389c6b7363a3", title: "Verify", role: "verify", steps: [{ id: "a737dae6-4250-589e-8117-287567c975bf", title: "Confirm", skill: "team", outputs: [{ kind: "check-results" }] }] },
   ]
 }
 
@@ -122,9 +122,9 @@ describe("workflow editor boundary regressions", () => {
       symlinkSync(outside, join(root, ".agents"), "dir")
       mkdirSync(join(root, "skills/local"))
       writeFileSync(join(root, "skills/local/SKILL.md"), "local guidance")
-      const options = workflowOptions(root, "W-001")
+      const options = workflowOptions(root, "2b74bc14-227a-5c05-b2ed-1c32d9703cad")
       assert.deepEqual(options.localSkills, ["skills/local/SKILL.md"])
-      const preview = executeOperation(root, "preview_workflow", { workstreamId: "W-001", profile: options.defaultProfile }) as WorkflowSnapshot
+      const preview = executeOperation(root, "preview_workflow", { workstreamId: "2b74bc14-227a-5c05-b2ed-1c32d9703cad", profile: options.defaultProfile }) as WorkflowSnapshot
       assert.ok(preview.stages.every(stage => stage.steps.every(step => step.skill.source === "bundled")))
       assert.equal(entryCount(join(root, ".spec-ledger/workflows")), 0)
     } finally { rmSync(root,{recursive:true,force:true}); rmSync(outside,{recursive:true,force:true}) }
@@ -133,13 +133,13 @@ describe("workflow editor boundary regressions", () => {
   it("rejects attestation substitutes for every mandatory stage output", () => {
     const root = fixture({requireSpecBreak:true,requireCodeBreak:true})
     try {
-      const valid = workflowOptions(root,"W-001").defaultProfile
+      const valid = workflowOptions(root,"2b74bc14-227a-5c05-b2ed-1c32d9703cad").defaultProfile
       for (const role of ["spec-review","implement","verify","code-review"]) {
         const invalid = structuredClone(valid)
         const stage = invalid.stages!.find(s=>s.role===role)!
         // A local skill declaring every capability isolates the role/output gate.
-        stage.steps = [{id:"substitute",title:"Substitute",skill:{path:"skills/team.md",capabilities:[...allCapabilities]},outputs:[{kind:"attestation"}]}]
-        assert.throws(()=>executeOperation(root,"preview_workflow",{workstreamId:"W-001",profile:invalid}), /requires .* output/)
+        stage.steps = [{id:"5dcb0414-7f61-54f8-9620-9450794a142a",title:"Substitute",skill:{path:"skills/team.md",capabilities:[...allCapabilities]},outputs:[{kind:"attestation"}]}]
+        assert.throws(()=>executeOperation(root,"preview_workflow",{workstreamId:"2b74bc14-227a-5c05-b2ed-1c32d9703cad",profile:invalid}), /requires .* output/)
       }
       assert.equal(entryCount(join(root,".spec-ledger/workflows")),0)
     } finally { rmSync(root,{recursive:true,force:true}) }
@@ -149,7 +149,7 @@ describe("workflow editor boundary regressions", () => {
     const root=fixture()
     try {
       const method=profile(minimalStages([]))
-      const preview=executeOperation(root,"preview_workflow",{workstreamId:"W-001",profile:method}) as WorkflowSnapshot
+      const preview=executeOperation(root,"preview_workflow",{workstreamId:"2b74bc14-227a-5c05-b2ed-1c32d9703cad",profile:method}) as WorkflowSnapshot
       writeFileSync(join(root,"skills/team.md"),"Changed since the user previewed it")
       assert.throws(()=>select(root,method,{expectedConfigurationDigest:preview.snapshotDigest}),/guidance changed/)
       assert.equal(entryCount(join(root,".spec-ledger/workflows")),0)
@@ -157,23 +157,23 @@ describe("workflow editor boundary regressions", () => {
       const second=select(root,method,{expectedSnapshotDigest:first.snapshotDigest,reason:"Update chosen guidance"})
       assert.throws(()=>select(root,method,{expectedSnapshotDigest:first.snapshotDigest,reason:"Stale second browser"}),/snapshot has changed/)
       assert.throws(()=>select(root,method,{expectedSnapshotDigest:second.snapshotDigest}),/requires a reason/)
-      assert.equal(entryCount(join(root,".spec-ledger/workflows/snapshots/W-001")),2)
-      assert.equal((executeOperation(root,"get_workflow",{workstreamId:"W-001"}) as {profile:{snapshotDigest:string}}).profile.snapshotDigest,second.snapshotDigest)
+      assert.equal(entryCount(join(root,".spec-ledger/workflows/snapshots/2b74bc14-227a-5c05-b2ed-1c32d9703cad")),2)
+      assert.equal((executeOperation(root,"get_workflow",{workstreamId:"2b74bc14-227a-5c05-b2ed-1c32d9703cad"}) as {profile:{snapshotDigest:string}}).profile.snapshotDigest,second.snapshotDigest)
     } finally { rmSync(root,{recursive:true,force:true}) }
   })
 
   it("rejects oversized and malformed browser actions without writes or execution", async () => {
     const root=fixture()
     try {
-      const bridge=createLocalWorkflowBridge(root), url="http://localhost:3737/api/workflow?workstreamId=W-001"
+      const bridge=createLocalWorkflowBridge(root), url="http://localhost:3737/api/workflow?workstreamId=2b74bc14-227a-5c05-b2ed-1c32d9703cad"
       const {token}=await (await bridge(new Request(url))).json()
       const headers={origin:"http://localhost:3737","content-type":"application/json","x-spec-ledger-token":token}
       assert.equal((await bridge(new Request(url,{method:"POST",headers,body:"x".repeat(131073)}))).status,413)
-      for(const body of ["null","[]","1","{",JSON.stringify({action:"begin_workflow_step",input:{workstreamId:"W-001"}})]) {
+      for(const body of ["null","[]","1","{",JSON.stringify({action:"begin_workflow_step",input:{workstreamId:"2b74bc14-227a-5c05-b2ed-1c32d9703cad"}})]) {
         const response=await bridge(new Request(url,{method:"POST",headers,body}))
         assert.ok(response.status>=400)
       }
-      assert.equal((await bridge(new Request("http://attacker.example:3737/api/workflow?workstreamId=W-001",{headers:{host:"localhost:3737"}}))).status,403)
+      assert.equal((await bridge(new Request("http://attacker.example:3737/api/workflow?workstreamId=2b74bc14-227a-5c05-b2ed-1c32d9703cad",{headers:{host:"localhost:3737"}}))).status,403)
       assert.equal(entryCount(join(root,".spec-ledger/workflows")),0)
     } finally { rmSync(root,{recursive:true,force:true}) }
   })
@@ -182,14 +182,14 @@ describe("workflow editor boundary regressions", () => {
     const root = fixture()
     try {
       const bridge = createLocalWorkflowBridge(root)
-      const url = "http://127.0.0.1:3737/api/workflow?workstreamId=W-001"
+      const url = "http://127.0.0.1:3737/api/workflow?workstreamId=2b74bc14-227a-5c05-b2ed-1c32d9703cad"
       const get = await bridge(new Request(url)); assert.equal(get.status,200)
       const {token,options} = await get.json() as {token:string;options:ReturnType<typeof workflowOptions>}
       assert.equal(entryCount(join(root,".spec-ledger/workflows")),0)
       const send = (action:string,input:unknown,headers:Record<string,string>={})=>bridge(new Request(url,{method:"POST",headers:{origin:"http://127.0.0.1:3737","content-type":"application/json","x-spec-ledger-token":token,...headers},body:JSON.stringify({action,input})}))
-      const previewResponse = await send("preview",{workstreamId:"W-001",profile:options.profile});assert.equal(previewResponse.status,200)
+      const previewResponse = await send("preview",{workstreamId:"2b74bc14-227a-5c05-b2ed-1c32d9703cad",profile:options.profile});assert.equal(previewResponse.status,200)
       const {preview} = await previewResponse.json() as {preview:WorkflowSnapshot}
-      const input = {requestId:requestId("bridge-save"),workstreamId:"W-001",profile:options.profile,expectedRevisionDigest:options.expectedRevisionDigest,expectedSourceDigest:options.expectedSourceDigest,expectedConfigurationDigest:preview.snapshotDigest}
+      const input = {requestId:requestId("bridge-save"),workstreamId:"2b74bc14-227a-5c05-b2ed-1c32d9703cad",profile:options.profile,expectedRevisionDigest:options.expectedRevisionDigest,expectedSourceDigest:options.expectedSourceDigest,expectedConfigurationDigest:preview.snapshotDigest}
       for (const headers of [{origin:"https://unrelated.example"},{"x-spec-ledger-token":"wrong"}] as Record<string,string>[]) {
         assert.equal((await send("apply",input,headers)).status,403)
         assert.equal(entryCount(join(root,".spec-ledger/workflows")),0)
@@ -200,12 +200,12 @@ describe("workflow editor boundary regressions", () => {
       const saved = await send("apply",input);assert.equal(saved.status,200)
       const first = await saved.json()
       assert.deepEqual(await (await send("apply",input)).json(),first)
-      assert.equal(entryCount(join(root,".spec-ledger/workflows/snapshots/W-001")),1)
-      const observed = executeOperation(root,"get_workflow",{workstreamId:"W-001"}) as {profile:{snapshotDigest:string}}
+      assert.equal(entryCount(join(root,".spec-ledger/workflows/snapshots/2b74bc14-227a-5c05-b2ed-1c32d9703cad")),1)
+      const observed = executeOperation(root,"get_workflow",{workstreamId:"2b74bc14-227a-5c05-b2ed-1c32d9703cad"}) as {profile:{snapshotDigest:string}}
       assert.equal(observed.profile.snapshotDigest,first.snapshotDigest)
       const changed = {...input,requestId:requestId("stale-preview"),profile:{...options.profile,title:"Changed"}}
       assert.equal((await send("apply",changed)).status,409)
-      assert.equal(entryCount(join(root,".spec-ledger/workflows/snapshots/W-001")),1)
+      assert.equal(entryCount(join(root,".spec-ledger/workflows/snapshots/2b74bc14-227a-5c05-b2ed-1c32d9703cad")),1)
     } finally { rmSync(root,{recursive:true,force:true}) }
   })
 })

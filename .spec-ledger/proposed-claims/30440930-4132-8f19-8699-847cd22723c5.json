@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "id": "30440930-4132-8f19-8699-847cd22723c5",
+  "status": "proposed",
+  "workstreamId": "ef172105-4f40-8bbb-8abe-d1cd11ae618a",
+  "suggestedLiveId": "89ab5a3f-2aea-8b44-a9b8-6cedccb52979",
+  "statement": "A saved way of working is refused, with the reason named, when it does not fit the spec choosing it or when someone else changed it first, and nothing is stored.",
+  "requiredEvidence": [
+    "unit",
+    "integration"
+  ],
+  "migration": {
+    "origins": {
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/proposed-claims/PC-025.json",
+        "id": "PC-025",
+        "sha256": "917b666f5e7836af377d58ea8831346f676c5ae4a01a9d24a415871076b1dc76"
+      }
+    },
+    "historical": true
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "id": "6458250e-a605-8e79-a72e-6829104b43d9",
+  "reason": "User explicitly requested fixing PR 2 CI; .github/workflows/ci.yml must configure the job Git subprocesses to prevent automatic background maintenance racing disposable repository cleanup throughout the suite.",
+  "actor": "agent:user-request",
+  "treeDigest": "5da35595ece444f4b6f1b69c56ed2c89b4583ea26e1b065be4f37c6e42f8395e",
+  "createdAt": "2026-09-06T07:21:19.717Z",
+  "workstreamId": "ef172105-4f40-8bbb-8abe-d1cd11ae618a",
+  "turnId": "c27931c8-b548-81c7-a660-ee6bf9e61466",
+  "migration": {
+    "origins": {
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/align-waivers/AW-20.json",
+        "id": "T-048/AW-20",
+        "sha256": "1cc14192ea13147ec292f4f2422ab2ef2a7834fdac971272829c1eff16e70673"
+      }
+    },
+    "historical": true
+  }
+}

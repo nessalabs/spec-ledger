@@ -1,3 +1,4 @@
+import { assertEntityId } from "../identity/index.js"
 import { createHash } from "node:crypto"
 import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from "node:fs"
 import { dirname, join, resolve } from "node:path"
@@ -58,7 +59,7 @@ function loadJsonDir<T>(dir: string): T[] {
   return readdirSync(dir)
     .filter((f) => f.endsWith(".json"))
     .sort()
-    .map((f) => readJson<T>(join(dir, f)))
+    .map((f) => { const value = readJson<T>(join(dir, f)); const entity = value as { id?: unknown }; assertEntityId(entity.id); if (f !== `${entity.id}.json`) throw new Error(`Entity filename does not match id: ${f}`); return value })
 }
 
 export function loadLedger(repoRootInput: string): LoadedLedger {
@@ -82,7 +83,7 @@ export function loadLedger(repoRootInput: string): LoadedLedger {
     config,
     claims: loadJsonDir<Claim>(claimsDir),
     bindings: loadJsonDir<EvidenceBinding>(bindingsDir),
-    turns: loadJsonDir<Turn>(turnsDirectory).sort((a, b) => a.id.localeCompare(b.id)),
+    turns: loadJsonDir<Turn>(turnsDirectory).sort((a, b) => a.openedAt.localeCompare(b.openedAt) || a.id.localeCompare(b.id)),
     graph: existsSync(graphPath) ? readJson<CodebaseGraph>(graphPath) : null,
     policy: existsSync(policyPath) ? readJson<LayerPolicy>(policyPath) : null,
     results: existsSync(resultsPath) ? readJson<ResultsFile>(resultsPath) : null,

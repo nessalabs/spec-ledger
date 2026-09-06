@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "id": "14a02231-23f5-875e-9229-a64e9a0ebaaf",
+  "status": "proposed",
+  "workstreamId": "ef172105-4f40-8bbb-8abe-d1cd11ae618a",
+  "suggestedLiveId": "2456326e-b918-84bc-a5cb-ac1fd3b8aaf2",
+  "statement": "A way of working saved under a name in the project can be applied to any spec by name, and that spec records which saved workflow and which version it copied.",
+  "requiredEvidence": [
+    "unit",
+    "integration"
+  ],
+  "migration": {
+    "origins": {
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/proposed-claims/PC-023.json",
+        "id": "PC-023",
+        "sha256": "385bef7a8912a8b978176232c67c8681c71928ec8d0648158afe98f5441df377"
+      }
+    },
+    "historical": true
+  }
+}

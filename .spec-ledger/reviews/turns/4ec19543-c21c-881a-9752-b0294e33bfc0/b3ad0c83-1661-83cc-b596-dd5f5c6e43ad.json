@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "id": "b3ad0c83-1661-83cc-b596-dd5f5c6e43ad",
+  "turnId": "4ec19543-c21c-881a-9752-b0294e33bfc0",
+  "kind": "adversarial",
+  "target": "code",
+  "reviewer": "agent:sl-dev-break",
+  "verdict": "approve",
+  "summary": "/turns rows show workstream Badge pills (3317ada5-b347-894e-8c88-110b7b42d58b…76451749-a54f-8579-96f2-dcec19d79026) linking to workstream pages.",
+  "plainSummary": "The turns list shows which workstream each change belongs to.",
+  "killersCited": [
+    "curl:/turns#76451749-a54f-8579-96f2-dcec19d79026-pill"
+  ],
+  "findings": [
+    {
+      "id": "f4124bd2-941e-8ad4-b5cf-86d075ae3a95",
+      "severity": "low",
+      "gap": "Turns list must show workstream parent: Flat goal-only rows hid the workstream join.",
+      "plainImpact": "You would not see which bet a turn belonged to from the list.",
+      "evidence": {
+        "kind": "command",
+        "command": "curl -s http://127.0.0.1:3737/turns | grep -oE 'W-00[1-4]' | sort | uniq -c",
+        "observedOutput": "3317ada5-b347-894e-8c88-110b7b42d58b…76451749-a54f-8579-96f2-dcec19d79026 present as outline Badge pills; HTTP 200",
+        "exitCode": 0
+      }
+    }
+  ],
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/reviews/turns/T-014/R-01.json",
+        "id": "T-014/R-01",
+        "sha256": "57371f9e64b42ca328a81b76c4a3f5ffa34b8664664a7357464a1a57632d5da9"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/reviews/turns/T-014/R-01.json",
+        "id": "T-014/R-01",
+        "sha256": "57371f9e64b42ca328a81b76c4a3f5ffa34b8664664a7357464a1a57632d5da9"
+      }
+    },
+    "historical": true
+  }
+}

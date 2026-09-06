@@ -1,0 +1,24 @@
+{
+  "id": "d62365fc-02af-826c-b961-8942c540bddf",
+  "statement": "Understand a feature and inspect its proof without repeated explanations or technical clutter.",
+  "required": true,
+  "kind": "invariant",
+  "links": [
+    "docs/workstreams/11788af6-4cbe-834d-9993-8ee534b22b94-simple-feature-view/spec.md"
+  ],
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/claims/SL-031.json",
+        "id": "SL-031",
+        "sha256": "64076511619f0730292440d909be4cbe3d8f3266f2664c7bc8075349520064a9"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/claims/SL-031.json",
+        "id": "SL-031",
+        "sha256": "64076511619f0730292440d909be4cbe3d8f3266f2664c7bc8075349520064a9"
+      }
+    },
+    "historical": true
+  }
+}

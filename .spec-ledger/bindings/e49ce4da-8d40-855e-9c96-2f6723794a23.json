@@ -1,0 +1,24 @@
+{
+  "id": "e49ce4da-8d40-855e-9c96-2f6723794a23",
+  "claimId": "505a71e7-37de-8e56-ae5c-467828201dba",
+  "kind": "test",
+  "locator": {
+    "type": "command",
+    "command": "node --test packages/ledger/dist/workstream/doc-digest.test.js packages/ledger/dist/workstream/doc-digest.break.test.js packages/ledger/dist/workstream/pr1-regressions.break.test.js"
+  },
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/bindings/b-sl-015.json",
+        "id": "b-sl-015",
+        "sha256": "b0303bd94b5fe3b578f1cf48aff6ce48b18101dabb000aefe828c4c0dee67ee3"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/bindings/b-sl-015.json",
+        "id": "b-sl-015",
+        "sha256": "b0303bd94b5fe3b578f1cf48aff6ce48b18101dabb000aefe828c4c0dee67ee3"
+      }
+    },
+    "historical": true
+  }
+}

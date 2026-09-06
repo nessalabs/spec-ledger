@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "e7222390-759f-8d86-9f2c-1115b9b20261",
+  "statement": "An agent can retrieve the agreed plan for the part it is working on and identify the version it received.",
+  "severity": "high",
+  "required": true,
+  "kind": "invariant",
+  "links": {
+    "docs": [
+      "docs/architecture/claim-contracts.md"
+    ]
+  },
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/claims/SL-007.json",
+        "id": "SL-007",
+        "sha256": "402596c3fb1be35da97d8dc27d71e5223a5f89536b69b85b179133ae8d0241b5"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/claims/SL-007.json",
+        "id": "SL-007",
+        "sha256": "402596c3fb1be35da97d8dc27d71e5223a5f89536b69b85b179133ae8d0241b5"
+      }
+    },
+    "historical": true
+  }
+}

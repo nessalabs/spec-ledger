@@ -32,15 +32,15 @@ function fixture(label: string): string {
   git(root, "config", "user.name", "Fixture")
   initLedger(root, label)
   writeFileSync(join(root, "source.ts"), "export const behavior = true\n")
-  writeFileSync(join(root, ".spec-ledger/claims/SL-001.json"), JSON.stringify({ id: "SL-001", statement: "Behavior works", required: true }))
-  writeFileSync(join(root, ".spec-ledger/claims/SL-002.json"), JSON.stringify({ id: "SL-002", statement: "Command check runs", required: true }))
-  writeFileSync(join(root, ".spec-ledger/bindings/result.json"), JSON.stringify({ id: "result", claimId: "SL-001", kind: "check", locator: { type: "results-row", resultsKey: "behavior" } }))
-  writeFileSync(join(root, ".spec-ledger/bindings/command.json"), JSON.stringify({ id: "command", claimId: "SL-002", kind: "check", locator: { type: "command", command: `${process.execPath} -e \"process.exit(0)\"` } }))
-  writeFileSync(join(root, ".spec-ledger/workstreams/W-001.json"), JSON.stringify({
-    schemaVersion: 1, id: "W-001", status: "shaped", title: "Shared work", objective: "Finish through either adapter",
-    featureIds: ["alpha"], acceptanceCriteria: ["Behavior works"], acceptanceClaimIds: { "AC-1": ["SL-001"] },
+  writeFileSync(join(root, ".spec-ledger/claims/5e852279-c620-5042-b952-b015a4c32e20.json"), JSON.stringify({ id: "5e852279-c620-5042-b952-b015a4c32e20", statement: "Behavior works", required: true }))
+  writeFileSync(join(root, ".spec-ledger/claims/48cc88b5-b35b-5236-9e5b-b845d2319792.json"), JSON.stringify({ id: "48cc88b5-b35b-5236-9e5b-b845d2319792", statement: "Command check runs", required: true }))
+  writeFileSync(join(root, ".spec-ledger/bindings/fbb2b406-1c10-4c9c-a42e-f069d61d5ba3.json"), JSON.stringify({ id: "fbb2b406-1c10-4c9c-a42e-f069d61d5ba3", claimId: "5e852279-c620-5042-b952-b015a4c32e20", kind: "check", locator: { type: "results-row", resultsKey: "behavior" } }))
+  writeFileSync(join(root, ".spec-ledger/bindings/769dad0a-f802-4c16-9f8a-d0f4f087384a.json"), JSON.stringify({ id: "769dad0a-f802-4c16-9f8a-d0f4f087384a", claimId: "48cc88b5-b35b-5236-9e5b-b845d2319792", kind: "check", locator: { type: "command", command: `${process.execPath} -e \"process.exit(0)\"` } }))
+  writeFileSync(join(root, ".spec-ledger/workstreams/6fbba68d-7164-55a6-80f9-18dea06c91ce.json"), JSON.stringify({
+    schemaVersion: 1, id: "6fbba68d-7164-55a6-80f9-18dea06c91ce", status: "shaped", title: "Shared work", objective: "Finish through either adapter",
+    featureIds: ["alpha"], acceptanceCriteria: ["Behavior works"], acceptanceClaimIds: { "AC-1": ["5e852279-c620-5042-b952-b015a4c32e20"] },
     policy: { requireSpecBreak: true, requireCodeBreak: true, requireAlignApprove: true }, trust: {},
-    suggestedSlices: [{ id: "SLC-01", title: "Build", kind: "vertical", acceptance: ["Behavior works"], expectedPaths: ["**"] }],
+    suggestedSlices: [{ id: "0d0038da-bb13-561e-ac49-570f6ed0f334", title: "Build", kind: "vertical", acceptance: ["Behavior works"], expectedPaths: ["**"] }],
   }))
   git(root, "add", ".")
   git(root, "commit", "-qm", "fixture")
@@ -102,37 +102,37 @@ async function lifecycle(root: string, call: Caller, label: string) {
     assert.equal(envelope.ok, true, JSON.stringify(envelope))
     return envelope.result as Record<string, unknown>
   }
-  const revision = planRevision(root, loadWorkstream(root, "W-001"))
-  await invoke("plan_work", { workstreamId: "W-001" })
+  const revision = planRevision(root, loadWorkstream(root, "6fbba68d-7164-55a6-80f9-18dea06c91ce"))
+  await invoke("plan_work", { workstreamId: "6fbba68d-7164-55a6-80f9-18dea06c91ce" })
   await invoke("record_permission", {
     requestId: request(label, n += 1),
-    authority: { id: `AUTH-${label}`, action: "grant", mode: "request", workstreamId: "W-001", featureIds: ["alpha"], source: { kind: "agent-reported", reference: "fixture authorization" } },
+    authority: { action: "grant", mode: "request", workstreamId: "6fbba68d-7164-55a6-80f9-18dea06c91ce", featureIds: ["alpha"], source: { kind: "agent-reported", reference: "fixture authorization" } },
   })
   await invoke("record_review", {
-    requestId: request(label, n += 1), target: "spec", workstreamId: "W-001", expectedRevisionDigest: revision,
+    requestId: request(label, n += 1), target: "spec", workstreamId: "6fbba68d-7164-55a6-80f9-18dea06c91ce", expectedRevisionDigest: revision,
     review: { kind: "adversarial", reviewer: "fixture-spec-reviewer", verdict: "approve", summary: "The executable plan has bounded acceptance.", plainSummary: "The plan is clear enough to build safely." },
   })
-  await invoke("begin_work", { requestId: request(label, n += 1), workstreamId: "W-001", sliceId: "SLC-01", goal: "Finish shared work", allowDirty: true, expectedRevisionDigest: revision })
-  await invoke("get_context", { workstreamId: "W-001", sliceId: "SLC-01" })
+  const opened = await invoke("begin_work", { requestId: request(label, n += 1), workstreamId: "6fbba68d-7164-55a6-80f9-18dea06c91ce", sliceId: "0d0038da-bb13-561e-ac49-570f6ed0f334", goal: "Finish shared work", allowDirty: true, expectedRevisionDigest: revision })
+  await invoke("get_context", { workstreamId: "6fbba68d-7164-55a6-80f9-18dea06c91ce", sliceId: "0d0038da-bb13-561e-ac49-570f6ed0f334" })
   let source = sourceFingerprint(root)!
-  const currentRevision = planRevision(root, loadWorkstream(root, "W-001"))
-  await invoke("record_progress", { requestId: request(label, n += 1), turnId: "T-001", summary: "Behavior implemented", criterionIds: ["AC-1"], implemented: true, expectedRevisionDigest: currentRevision, expectedSourceDigest: source })
+  const currentRevision = planRevision(root, loadWorkstream(root, "6fbba68d-7164-55a6-80f9-18dea06c91ce"))
+  await invoke("record_progress", { requestId: request(label, n += 1), turnId: opened.id, summary: "Behavior implemented", criterionIds: ["AC-1"], implemented: true, expectedRevisionDigest: currentRevision, expectedSourceDigest: source })
   source = sourceFingerprint(root)!
-  await invoke("record_decision", { requestId: request(label, n += 1), turnId: "T-001", decision: "Keep the adapter thin", rationale: "Both transports must share application behavior.", expectedRevisionDigest: currentRevision, expectedSourceDigest: source })
+  await invoke("record_decision", { requestId: request(label, n += 1), turnId: opened.id, decision: "Keep the adapter thin", rationale: "Both transports must share application behavior.", expectedRevisionDigest: currentRevision, expectedSourceDigest: source })
   source = sourceFingerprint(root)!
   const ledger = loadLedger(root)
-  await invoke("record_evidence", { requestId: request(label, n += 1), evidence: { bindingId: "result", outcome: "pass", sourceDigest: source, checkDigest: checkFingerprint(ledger.claims.find((claim) => claim.id === "SL-001")!, ledger.bindings.find((binding) => binding.id === "result")!), producer: { name: "fixture", version: "1" }, runId: `${label}-evidence` } })
+  await invoke("record_evidence", { requestId: request(label, n += 1), evidence: { bindingId: "fbb2b406-1c10-4c9c-a42e-f069d61d5ba3", outcome: "pass", sourceDigest: source, checkDigest: checkFingerprint(ledger.claims.find((claim) => claim.id === "5e852279-c620-5042-b952-b015a4c32e20")!, ledger.bindings.find((binding) => binding.id === "fbb2b406-1c10-4c9c-a42e-f069d61d5ba3")!), producer: { name: "fixture", version: "1" }, runId: `${label}-evidence` } })
   source = sourceFingerprint(root)!
   await invoke("run_checks", { requestId: request(label, n += 1), expectedSourceDigest: source })
   source = sourceFingerprint(root)!
-  await invoke("record_review", { requestId: request(label, n += 1), target: "code", turnId: "T-001", expectedSourceDigest: source, review: { kind: "adversarial", reviewer: "fixture-code-reviewer", verdict: "approve", summary: "The lifecycle passed its independent integration review.", plainSummary: "The shared lifecycle is ready to close.", killersCited: ["actual-executable-lifecycle"] } })
+  await invoke("record_review", { requestId: request(label, n += 1), target: "code", turnId: opened.id, expectedSourceDigest: source, review: { kind: "adversarial", reviewer: "fixture-code-reviewer", verdict: "approve", summary: "The lifecycle passed its independent integration review.", plainSummary: "The shared lifecycle is ready to close.", killersCited: ["actual-executable-lifecycle"] } })
   source = sourceFingerprint(root)!
-  await invoke("approve_alignment", { requestId: request(label, n += 1), turnId: "T-001", expectedSourceDigest: source, reviewer: "agent:align:fixture", summary: "All changed product paths are covered by the plan.", plainSummary: "The changed product files are covered by the plan." })
+  await invoke("approve_alignment", { requestId: request(label, n += 1), turnId: opened.id, expectedSourceDigest: source, reviewer: "agent:align:fixture", summary: "All changed product paths are covered by the plan.", plainSummary: "The changed product files are covered by the plan." })
   source = sourceFingerprint(root)!
-  await invoke("finish_turn", { requestId: request(label, n += 1), turnId: "T-001", action: "close", expectedSourceDigest: source })
+  await invoke("finish_turn", { requestId: request(label, n += 1), turnId: opened.id, action: "close", expectedSourceDigest: source })
   source = sourceFingerprint(root)!
-  await invoke("complete_work", { requestId: request(label, n += 1), workstreamId: "W-001", expectedRevisionDigest: currentRevision, expectedSourceDigest: source })
-  return invoke("get_session", { workstreamId: "W-001" })
+  await invoke("complete_work", { requestId: request(label, n += 1), workstreamId: "6fbba68d-7164-55a6-80f9-18dea06c91ce", expectedRevisionDigest: currentRevision, expectedSourceDigest: source })
+  return invoke("get_session", { workstreamId: "6fbba68d-7164-55a6-80f9-18dea06c91ce" })
 }
 
 describe("actual CLI and MCP lifecycle parity", () => {
@@ -162,7 +162,7 @@ describe("actual CLI and MCP lifecycle parity", () => {
     const mcpRoot = fixture("mcp-denied")
     const mcp = await mcpCaller(mcpRoot)
     try {
-      const inputs = (root: string, label: string) => ({ requestId: request(label, 1), workstreamId: "W-001", sliceId: "SLC-01", goal: "Must remain denied", allowDirty: true, expectedRevisionDigest: planRevision(root, loadWorkstream(root, "W-001")) })
+      const inputs = (root: string, label: string) => ({ requestId: request(label, 1), workstreamId: "6fbba68d-7164-55a6-80f9-18dea06c91ce", sliceId: "0d0038da-bb13-561e-ac49-570f6ed0f334", goal: "Must remain denied", allowDirty: true, expectedRevisionDigest: planRevision(root, loadWorkstream(root, "6fbba68d-7164-55a6-80f9-18dea06c91ce")) })
       const cli = await cliCaller(cliRoot)("begin_work", inputs(cliRoot, "cli-denied"))
       const remote = await mcp.call("begin_work", inputs(mcpRoot, "mcp-denied"))
       assert.equal(cli.ok, false)
@@ -170,7 +170,7 @@ describe("actual CLI and MCP lifecycle parity", () => {
       assert.equal((cli.error as Record<string, unknown>).code, "permission_denied")
       assert.equal((remote.error as Record<string, unknown>).code, "permission_denied")
       for (const root of [cliRoot, mcpRoot]) {
-        assert.equal(loadWorkstream(root, "W-001").seal, undefined)
+        assert.equal(loadWorkstream(root, "6fbba68d-7164-55a6-80f9-18dea06c91ce").seal, undefined)
         assert.equal(loadLedger(root).turns.length, 0)
       }
     } finally {
@@ -191,7 +191,7 @@ describe("actual CLI and MCP lifecycle parity", () => {
       ] as const) {
         const permissionInput = {
           requestId: request(label, 1),
-          authority: { id: `AUTH-${label}`, action: "grant", mode: "request", workstreamId: "W-001", featureIds: ["alpha"], source: { kind: "agent-reported", reference: "fixture authorization" } },
+          authority: { action: "grant", mode: "request", workstreamId: "6fbba68d-7164-55a6-80f9-18dea06c91ce", featureIds: ["alpha"], source: { kind: "agent-reported", reference: "fixture authorization" } },
         }
         assert.equal((await call("record_permission", permissionInput)).ok, true)
         const afterPermission = domainSnapshot(root)
@@ -205,25 +205,27 @@ describe("actual CLI and MCP lifecycle parity", () => {
         assert.equal((conflict.error as Record<string, unknown>).code, "idempotency_conflict")
         assert.deepEqual(domainSnapshot(root), afterPermission)
 
-        const revision = planRevision(root, loadWorkstream(root, "W-001"))
+        const revision = planRevision(root, loadWorkstream(root, "6fbba68d-7164-55a6-80f9-18dea06c91ce"))
         assert.equal((await call("record_review", {
-          requestId: request(label, 2), target: "spec", workstreamId: "W-001", expectedRevisionDigest: revision,
+          requestId: request(label, 2), target: "spec", workstreamId: "6fbba68d-7164-55a6-80f9-18dea06c91ce", expectedRevisionDigest: revision,
           review: { kind: "adversarial", reviewer: "fixture-spec-reviewer", verdict: "approve", summary: "The plan is bounded.", plainSummary: "The plan is ready for implementation." },
         })).ok, true)
-        assert.equal((await call("begin_work", { requestId: request(label, 3), workstreamId: "W-001", sliceId: "SLC-01", goal: "Exercise negative contracts", allowDirty: true, expectedRevisionDigest: revision })).ok, true)
-        const currentRevision = planRevision(root, loadWorkstream(root, "W-001"))
+        const openedEnvelope = await call("begin_work", { requestId: request(label, 3), workstreamId: "6fbba68d-7164-55a6-80f9-18dea06c91ce", sliceId: "0d0038da-bb13-561e-ac49-570f6ed0f334", goal: "Exercise negative contracts", allowDirty: true, expectedRevisionDigest: revision })
+        assert.equal(openedEnvelope.ok,true)
+        const opened = openedEnvelope.result as {id:string}
+        const currentRevision = planRevision(root, loadWorkstream(root, "6fbba68d-7164-55a6-80f9-18dea06c91ce"))
         const currentSource = sourceFingerprint(root)!
         const beforeRejected = domainSnapshot(root)
-        const staleRevision = await call("record_decision", { requestId: request(label, 4), turnId: "T-001", decision: "Must reject", rationale: "The revision is stale.", expectedRevisionDigest: "0".repeat(64), expectedSourceDigest: currentSource })
+        const staleRevision = await call("record_decision", { requestId: request(label, 4), turnId: opened.id, decision: "Must reject", rationale: "The revision is stale.", expectedRevisionDigest: "0".repeat(64), expectedSourceDigest: currentSource })
         assert.equal((staleRevision.error as Record<string, unknown>).code, "revision_conflict")
-        const staleSource = await call("record_progress", { requestId: request(label, 5), turnId: "T-001", summary: "Must reject", criterionIds: ["AC-1"], implemented: true, expectedRevisionDigest: currentRevision, expectedSourceDigest: "0".repeat(64) })
+        const staleSource = await call("record_progress", { requestId: request(label, 5), turnId: opened.id, summary: "Must reject", criterionIds: ["AC-1"], implemented: true, expectedRevisionDigest: currentRevision, expectedSourceDigest: "0".repeat(64) })
         assert.equal((staleSource.error as Record<string, unknown>).code, "source_conflict")
-        const malformed = await call("record_progress", { requestId: request(label, 6), turnId: "T-001", summary: "Missing source digest", criterionIds: ["AC-1"], implemented: true, expectedRevisionDigest: currentRevision })
+        const malformed = await call("record_progress", { requestId: request(label, 6), turnId: opened.id, summary: "Missing source digest", criterionIds: ["AC-1"], implemented: true, expectedRevisionDigest: currentRevision })
         assert.equal((malformed.error as Record<string, unknown>).code, "invalid_input")
         assert.deepEqual(domainSnapshot(root), beforeRejected)
 
         const beforeRead = readdirSync(join(root, ".spec-ledger/operations")).sort()
-        const sessionEnvelope = await call("get_session", { workstreamId: "W-001" })
+        const sessionEnvelope = await call("get_session", { workstreamId: "6fbba68d-7164-55a6-80f9-18dea06c91ce" })
         const session = (sessionEnvelope.result as Record<string, unknown>).session as Record<string, unknown>
         assert.equal((session.completion as Record<string, unknown>).eligible, false)
         assert.equal((session.criteria as Array<Record<string, unknown>>)[0].evidence, "missing")
@@ -261,7 +263,7 @@ describe("MCP package", () => {
     const transport = new StdioClientTransport({ command: join(install, "node_modules/.bin/spec-ledger-mcp"), args: ["--root", root], stderr: "pipe" })
     try {
       await client.connect(transport)
-      const result = await client.callTool({ name: "get_session", arguments: { workstreamId: "W-001" } })
+      const result = await client.callTool({ name: "get_session", arguments: { workstreamId: "6fbba68d-7164-55a6-80f9-18dea06c91ce" } })
       assert.equal((result.structuredContent as Record<string, unknown>).ok, true)
     } finally {
       await client.close()

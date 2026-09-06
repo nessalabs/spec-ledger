@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "id": "429e0468-7bba-8492-a715-e15f2628520f",
+  "turnId": "383eee85-f226-857a-a920-2f338ca83df4",
+  "workstreamId": "d1be55a6-11bb-8460-8650-ddf0ecac8185",
+  "kind": "adversarial",
+  "target": "code",
+  "reviewer": "agent:sl-dev-break:seals",
+  "verdict": "approve",
+  "blocking": false,
+  "plainSummary": "Newly approved spec revisions remain authoritative, and changing a live document hash cannot conceal drift.",
+  "summary": "Bounded 520ff720-fc13-8275-b710-f677f8d2efb4 review of revision-scoped document amendments and snapshot-backed document digest validation. Breaker-owned initial regression tests ran red before production changes: node --test packages/ledger/dist/workstream/pr1-regressions.break.test.js exited 1, 0 passed / 4 failed for the intended assertions. After production fix, compiled with node packages/ledger/node_modules/typescript/bin/tsc -p packages/ledger/tsconfig.json (exit 0) and ran node --test packages/ledger/dist/workstream/doc-digest.test.js packages/ledger/dist/workstream/doc-digest.break.test.js packages/ledger/dist/workstream/pr1-regressions.break.test.js (exit 0): 18 tests passed, 0 failed. The four original killers were not weakened. One additional composition probe verifies a legitimate amendment after reseal still succeeds and cannot mask mutation of the underlying seal pointer.",
+  "killersCited": [
+    "packages/ledger/src/workstream/pr1-regressions.break.test.ts::resealing an amended document accepts the newly sealed bytes",
+    "packages/ledger/src/workstream/pr1-regressions.break.test.ts::reverting to a prior revision amendment fails both seal check and audit",
+    "packages/ledger/src/workstream/pr1-regressions.break.test.ts::check-seal rejects rewriting only the live document digest",
+    "packages/ledger/src/workstream/pr1-regressions.break.test.ts::audit rejects rewriting only the live document digest",
+    "packages/ledger/src/workstream/pr1-regressions.break.test.ts::a current amendment works after resealing but cannot hide a corrupted seal pointer",
+    "packages/ledger/src/workstream/doc-digest.break.test.ts::out-of-intent: empty afterDocDigest on latest amend must not fall back past prior amend"
+  ],
+  "findings": [],
+  "alertOnSeverity": "high",
+  "residualRisks": [
+    "Scope is the two document-seal regressions and neighboring seal/backfill/amend checks; release packaging and CI changes require their separate review.",
+    "Snapshot validation detects divergence from the committed snapshot; it does not authenticate a principal or protect against simultaneous rewriting of both live records and snapshot history.",
+    "Breaker owned regression tests and this review only; production changes were independently owned by the builder."
+  ],
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/reviews/turns/T-025/R-01.json",
+        "id": "T-025/R-01",
+        "sha256": "0db3505c079819f07cb716f4a37f6e17be3f01d49b9182a684c48f019df62d5a"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/reviews/turns/T-025/R-01.json",
+        "id": "T-025/R-01",
+        "sha256": "0db3505c079819f07cb716f4a37f6e17be3f01d49b9182a684c48f019df62d5a"
+      }
+    },
+    "historical": true
+  }
+}

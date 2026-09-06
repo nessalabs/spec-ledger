@@ -1,0 +1,78 @@
+TAP version 13
+# Subtest: publish workflow break (SLC-04 / SL-014)
+    # Subtest: live publish only on release: workflow_dispatch must always dry-run (cannot live via dry_run=false)
+    ok 1 - live publish only on release: workflow_dispatch must always dry-run (cannot live via dry_run=false)
+      ---
+      duration_ms: 0.655917
+      type: 'test'
+      ...
+    # Subtest: release types are exclusively [published] (no created/edited/prereleased)
+    ok 2 - release types are exclusively [published] (no created/edited/prereleased)
+      ---
+      duration_ms: 0.4325
+      type: 'test'
+      ...
+    # Subtest: on: triggers are only release + workflow_dispatch (no push/pull_request siblings)
+    ok 3 - on: triggers are only release + workflow_dispatch (no push/pull_request siblings)
+      ---
+      duration_ms: 0.095667
+      type: 'test'
+      ...
+    # Subtest: dry_run input defaults to true
+    ok 4 - dry_run input defaults to true
+      ---
+      duration_ms: 0.073416
+      type: 'test'
+      ...
+    # Subtest: version mismatch fails closed before publish
+    ok 5 - version mismatch fails closed before publish
+      ---
+      duration_ms: 0.060625
+      type: 'test'
+      ...
+    # Subtest: NPM_TOKEN required for live publish; ci.yml never publishes
+    ok 6 - NPM_TOKEN required for live publish; ci.yml never publishes
+      ---
+      duration_ms: 0.081791
+      type: 'test'
+      ...
+    # Subtest: published package names are @nessalabs/* and UI is not in the publish loop
+    ok 7 - published package names are @nessalabs/* and UI is not in the publish loop
+      ---
+      duration_ms: 0.244584
+      type: 'test'
+      ...
+    1..7
+ok 1 - publish workflow break (SLC-04 / SL-014)
+  ---
+  duration_ms: 2.089417
+  type: 'suite'
+  ...
+# Subtest: publish workflow (SLC-04)
+    # Subtest: publish.yml exists with release-only live publish and dry-run dispatch
+    ok 1 - publish.yml exists with release-only live publish and dry-run dispatch
+      ---
+      duration_ms: 0.375375
+      type: 'test'
+      ...
+    # Subtest: ci.yml does not publish to npm
+    ok 2 - ci.yml does not publish to npm
+      ---
+      duration_ms: 0.077167
+      type: 'test'
+      ...
+    1..2
+ok 2 - publish workflow (SLC-04)
+  ---
+  duration_ms: 0.993833
+  type: 'suite'
+  ...
+1..2
+# tests 9
+# suites 2
+# pass 9
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 31.574625

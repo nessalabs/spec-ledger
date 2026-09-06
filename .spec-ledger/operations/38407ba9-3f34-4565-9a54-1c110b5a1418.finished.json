@@ -7,7 +7,7 @@
   "outcome": "succeeded",
   "result": {
     "schemaVersion": 1,
-    "id": "T-039",
+    "id": "9fa55cfe-6dd6-83c5-8b42-baf619c093c6",
     "status": "closed",
     "openedAt": "2026-09-05T02:55:47.534Z",
     "opened": {
@@ -16,8 +16,8 @@
       "treeDigest": "1928c529067013cc45fdbdf5153d5496b2f07bd62e5de9a327f1938374c1a746",
       "dirtyAtOpen": [],
       "contextDigest": "626235e204fa103471915737dc0cb78e5b3580ab5e25ff3bf811f92b39eac101",
-      "contextWorkstreamId": "W-009",
-      "contextSliceId": "SLC-01",
+      "contextWorkstreamId": "3ca37660-1506-8a85-80c6-410a024d9a9a",
+      "contextSliceId": "79c61989-9765-86e0-b429-2d97d4e38892",
       "contextSealRevision": 2,
       "contextGeneratedAt": "2026-09-05T02:55:47.534Z"
     },
@@ -26,8 +26,8 @@
       "restatedGoal": "Finish the evidence audit and make test code readable",
       "changeType": "feature",
       "riskLevel": "moderate",
-      "workstreamId": "W-009",
-      "sliceId": "SLC-01",
+      "workstreamId": "3ca37660-1506-8a85-80c6-410a024d9a9a",
+      "sliceId": "79c61989-9765-86e0-b429-2d97d4e38892",
       "featureIds": [
         "lattice"
       ]
@@ -38,43 +38,43 @@
       "commit": "a5d5c8507c9f2353044f8f9cb83c66137e6e075f",
       "files": [
         {
-          "path": ".spec-ledger/attachments/T-039/A-01.json",
+          "path": ".spec-ledger/attachments/9fa55cfe-6dd6-83c5-8b42-baf619c093c6/407a3c75-d968-857a-8313-7577d289ff42.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/attachments/T-039/A-02.json",
+          "path": ".spec-ledger/attachments/9fa55cfe-6dd6-83c5-8b42-baf619c093c6/54a93bc3-df3c-8154-8883-a483beadcf9d.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/attachments/T-039/A-03.json",
+          "path": ".spec-ledger/attachments/9fa55cfe-6dd6-83c5-8b42-baf619c093c6/937e3d66-ec9d-8e06-8bcb-859259d508ff.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/bindings/B-SL-028.json",
+          "path": ".spec-ledger/bindings/a69fc4b7-ac59-8d37-954c-2e53efd1bda6.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/claims/SL-028.json",
+          "path": ".spec-ledger/claims/fbe7ce66-ef39-848d-8426-b7f2643315b6.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/decisions/T-039/D-01.json",
+          "path": ".spec-ledger/decisions/9fa55cfe-6dd6-83c5-8b42-baf619c093c6/73c87cb3-fc3a-86c2-99a7-8fdb8e2c8398.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/decisions/T-039/D-02.json",
+          "path": ".spec-ledger/decisions/9fa55cfe-6dd6-83c5-8b42-baf619c093c6/a3a44354-7ec0-8b24-8aeb-2265929a0379.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
@@ -524,79 +524,79 @@
           "deletions": 1
         },
         {
-          "path": ".spec-ledger/reviews/turns/T-039/R-01.json",
+          "path": ".spec-ledger/reviews/turns/9fa55cfe-6dd6-83c5-8b42-baf619c093c6/d119d169-d84c-8c8d-bee7-9c10c7cd9a5a.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/reviews/turns/T-039/R-02.json",
+          "path": ".spec-ledger/reviews/turns/9fa55cfe-6dd6-83c5-8b42-baf619c093c6/973d7786-847d-87dc-ab68-6e20be78a69a.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/reviews/workstreams/W-009/SR-04.json",
+          "path": ".spec-ledger/reviews/workstreams/3ca37660-1506-8a85-80c6-410a024d9a9a/5e5d4c15-7c82-886a-a828-718c33e69a7d.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/reviews/workstreams/W-009/SR-05.json",
+          "path": ".spec-ledger/reviews/workstreams/3ca37660-1506-8a85-80c6-410a024d9a9a/4b19569a-4cd9-836c-a351-bc2d3cc00792.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/turns/T-039.json",
+          "path": ".spec-ledger/turns/9fa55cfe-6dd6-83c5-8b42-baf619c093c6.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/workstreams/W-009.json",
+          "path": ".spec-ledger/workstreams/3ca37660-1506-8a85-80c6-410a024d9a9a.json",
           "kind": "modified",
           "additions": 26,
           "deletions": 10
         },
         {
-          "path": ".spec-ledger/workstreams/W-009.seals/3.json",
+          "path": ".spec-ledger/workstreams/3ca37660-1506-8a85-80c6-410a024d9a9a.seals/3.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": ".spec-ledger/workstreams/W-009.seals/4.json",
+          "path": ".spec-ledger/workstreams/3ca37660-1506-8a85-80c6-410a024d9a9a.seals/4.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": "docs/workstreams/W-009-evidence-first-changes/evidence/T-039/browser-check.md",
+          "path": "docs/workstreams/3ca37660-1506-8a85-80c6-410a024d9a9a-evidence-first-changes/evidence/9fa55cfe-6dd6-83c5-8b42-baf619c093c6/browser-check.md",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": "docs/workstreams/W-009-evidence-first-changes/evidence/T-039/completed-workstreams-audit.json",
+          "path": "docs/workstreams/3ca37660-1506-8a85-80c6-410a024d9a9a-evidence-first-changes/evidence/9fa55cfe-6dd6-83c5-8b42-baf619c093c6/completed-workstreams-audit.json",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": "docs/workstreams/W-009-evidence-first-changes/evidence/T-039/completed-workstreams-audit.md",
+          "path": "docs/workstreams/3ca37660-1506-8a85-80c6-410a024d9a9a-evidence-first-changes/evidence/9fa55cfe-6dd6-83c5-8b42-baf619c093c6/completed-workstreams-audit.md",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": "docs/workstreams/W-009-evidence-first-changes/evidence/T-039/mcp-verification.txt",
+          "path": "docs/workstreams/3ca37660-1506-8a85-80c6-410a024d9a9a-evidence-first-changes/evidence/9fa55cfe-6dd6-83c5-8b42-baf619c093c6/mcp-verification.txt",
           "kind": "added",
           "additions": 0,
           "deletions": 0
         },
         {
-          "path": "docs/workstreams/W-009-evidence-first-changes/spec.md",
+          "path": "docs/workstreams/3ca37660-1506-8a85-80c6-410a024d9a9a-evidence-first-changes/spec.md",
           "kind": "modified",
           "additions": 5,
           "deletions": 0
@@ -633,10 +633,10 @@
         "lattice"
       ],
       "touchedClaimIds": [
-        "SL-004",
-        "SL-021",
-        "SL-022",
-        "SL-028"
+        "77fb26cd-bc46-8037-a8f2-7573f7d6d33d",
+        "9767b1da-9568-8e2f-ad2a-c2c3eb3e424c",
+        "dd5caaee-dace-8f53-bff5-65b6a7646b6d",
+        "fbe7ce66-ef39-848d-8426-b7f2643315b6"
       ],
       "blastRadius": {
         "direct": [],
@@ -651,8 +651,8 @@
       },
       "schemaSurfaceChanged": true,
       "decisionIds": [
-        "T-039/D-01",
-        "T-039/D-02"
+        "73c87cb3-fc3a-86c2-99a7-8fdb8e2c8398",
+        "a3a44354-7ec0-8b24-8aeb-2265929a0379"
       ],
       "decisionsDigest": "cf0d500745b40a781d67a1875860908b6e3ffbf4636b116ff87d03d52f1baad5",
       "attachmentsDigest": "4958c9e90833b095823539e147c85a88fef609978c3ecf3142f9ef831af2b0e4",

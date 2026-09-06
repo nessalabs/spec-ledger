@@ -6,10 +6,10 @@
   "finishedAt": "2026-09-05T02:01:38.312Z",
   "outcome": "succeeded",
   "result": {
-    "id": "AUTH-W010-REQUEST",
+    "id": "c5157d54-3272-8c33-abbf-b446e7202e95",
     "action": "grant",
     "mode": "request",
-    "workstreamId": "W-010",
+    "workstreamId": "351e54ea-60e4-8384-826f-0616eaa89599",
     "featureIds": [
       "cli",
       "client",

@@ -1,7 +1,7 @@
 {
   "runId": "3147cec3-df43-4bee-957c-eab0d381625d",
   "requestId": "batch-3147cec3-df43-4bee-957c-eab0d381625d",
-  "bindingId": "b-sl-017",
+  "bindingId": "7f011d7f-e2d9-8ea9-99ae-7450d7879e2e",
   "state": "finished",
   "command": "node --test packages/ledger/dist/verify/readonly.break.test.js",
   "cwd": "/Users/nessa/Documents/NessaLabs/spec-ledger",

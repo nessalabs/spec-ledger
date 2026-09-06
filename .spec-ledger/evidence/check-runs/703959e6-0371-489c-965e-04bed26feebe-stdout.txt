@@ -1,0 +1,107 @@
+TAP version 13
+# Subtest: deferred commitments adversarial
+    # Subtest: resolves implementation only with current behavior evidence and becomes due after code changes
+    ok 1 - resolves implementation only with current behavior evidence and becomes due after code changes
+      ---
+      duration_ms: 109.432208
+      type: 'test'
+      ...
+    # Subtest: activates idempotently and cannot erase the commitment by removing its feature or decision
+    ok 2 - activates idempotently and cannot erase the commitment by removing its feature or decision
+      ---
+      duration_ms: 156.363417
+      type: 'test'
+      ...
+    # Subtest: retrieves old commitments without recent turns and keeps backlog candidates optional
+    ok 3 - retrieves old commitments without recent turns and keeps backlog candidates optional
+      ---
+      duration_ms: 50.246625
+      type: 'test'
+      ...
+    # Subtest: refuses hard-requirement dismissal and path-only green evidence
+    ok 4 - refuses hard-requirement dismissal and path-only green evidence
+      ---
+      duration_ms: 94.250125
+      type: 'test'
+      ...
+    # Subtest: requires applicable current authority for revisit and reopens after revocation
+    ok 5 - requires applicable current authority for revisit and reopens after revocation
+      ---
+      duration_ms: 117.967375
+      type: 'test'
+      ...
+    # Subtest: projects missing references and malformed commitments as unknown
+    ok 6 - projects missing references and malformed commitments as unknown
+      ---
+      duration_ms: 41.855459
+      type: 'test'
+      ...
+    1..6
+ok 1 - deferred commitments adversarial
+  ---
+  duration_ms: 570.58225
+  type: 'suite'
+  ...
+# Subtest: old deferrals appear in planning without activating or making backlog candidates mandatory
+ok 2 - old deferrals appear in planning without activating or making backlog candidates mandatory
+  ---
+  duration_ms: 62.075834
+  type: 'test'
+  ...
+# Subtest: activation survives retries, feature removal, and source decision deletion
+ok 3 - activation survives retries, feature removal, and source decision deletion
+  ---
+  duration_ms: 164.986292
+  type: 'test'
+  ...
+# Subtest: missing trigger, origin, and claim references remain unknown
+ok 4 - missing trigger, origin, and claim references remain unknown
+  ---
+  duration_ms: 62.957083
+  type: 'test'
+  ...
+# Subtest: hard implementation gates require current behavior evidence and reject re-deferral
+ok 5 - hard implementation gates require current behavior evidence and reject re-deferral
+  ---
+  duration_ms: 120.302417
+  type: 'test'
+  ...
+# Subtest: revisit resolution records real current authority, rejects invented authority and revoked approval
+ok 6 - revisit resolution records real current authority, rejects invented authority and revoked approval
+  ---
+  duration_ms: 118.578458
+  type: 'test'
+  ...
+# Subtest: re-deferring a revisit preserves its history and gates the replacement when its feature arrives
+ok 7 - re-deferring a revisit preserves its history and gates the replacement when its feature arrives
+  ---
+  duration_ms: 152.977333
+  type: 'test'
+  ...
+# Subtest: malformed text, schema, activation, and resolution records never produce satisfaction
+ok 8 - malformed text, schema, activation, and resolution records never produce satisfaction
+  ---
+  duration_ms: 154.223542
+  type: 'test'
+  ...
+# Subtest: portable work opens a clean delegated plan without treating its own snapshot as dirty user work
+ok 9 - portable work opens a clean delegated plan without treating its own snapshot as dirty user work
+  ---
+  duration_ms: 437.364708
+  type: 'test'
+  ...
+# Subtest: portable work refuses pre-existing dirty source before creating a delegated snapshot
+ok 10 - portable work refuses pre-existing dirty source before creating a delegated snapshot
+  ---
+  duration_ms: 269.92525
+  type: 'test'
+  ...
+1..10
+# tests 15
+# suites 1
+# pass 15
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 871.473417

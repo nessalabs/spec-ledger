@@ -1,0 +1,7 @@
+{
+  "schemaVersion": 1,
+  "requestId": "check-finalize-46f6fd57-20d1-4b94-899a-1cde669cf8e9",
+  "operation": "finish_saved_check",
+  "inputDigest": "887000289f7f751b985154463acd3bdedc72d6746f066d8554772d40edfe2522",
+  "startedAt": "2026-09-06T07:24:19.328Z"
+}

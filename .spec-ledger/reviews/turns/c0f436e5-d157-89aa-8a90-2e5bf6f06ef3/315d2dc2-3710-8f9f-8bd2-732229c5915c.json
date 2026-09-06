@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "315d2dc2-3710-8f9f-8bd2-732229c5915c",
+  "turnId": "c0f436e5-d157-89aa-8a90-2e5bf6f06ef3",
+  "workstreamId": "ba7715db-e75e-84e6-9d91-f9cc61b037a9",
+  "kind": "human",
+  "target": "code",
+  "reviewer": "agent:align",
+  "verdict": "approve",
+  "summary": "User requested custom skills and steps through shared CLI/MCP, a dedicated workflow page and stable section navigation. All 26 product paths are covered.",
+  "plainSummary": "Workflow pages, shared agent tools and tests match the requested workflow editor and navigation fixes.",
+  "treeDigest": "251e9c1b4f3b6dedf6ce0ee30a075c05a39a5f998bb2c93dc90c2d829376320c",
+  "uncoveredPaths": [],
+  "coverageSource": "mixed",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/reviews/turns/T-041/R-02.json",
+        "id": "T-041/R-02",
+        "sha256": "8771365f51298f813cfe4302cbeb4fe60cd2510e94b5cd71d079f0482c2ae903"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/reviews/turns/T-041/R-02.json",
+        "id": "T-041/R-02",
+        "sha256": "8771365f51298f813cfe4302cbeb4fe60cd2510e94b5cd71d079f0482c2ae903"
+      }
+    },
+    "historical": true
+  }
+}

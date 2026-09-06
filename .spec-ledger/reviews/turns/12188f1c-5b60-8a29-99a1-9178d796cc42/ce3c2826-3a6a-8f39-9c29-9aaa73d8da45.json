@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "ce3c2826-3a6a-8f39-9c29-9aaa73d8da45",
+  "turnId": "12188f1c-5b60-8a29-99a1-9178d796cc42",
+  "workstreamId": "ef172105-4f40-8bbb-8abe-d1cd11ae618a",
+  "kind": "human",
+  "target": "code",
+  "reviewer": "agent:align:user-scoped-ci-fix",
+  "verdict": "approve",
+  "summary": "The only new source change is CI failure diagnostics, within the user request to repair PR 2 CI; workflow behavior is unchanged.",
+  "plainSummary": "Keep the error details needed to fix the remaining CI failure.",
+  "treeDigest": "c9761aa9bd002b5641166c9d2928d4d7841c2172254d871d2f2c429c3f0a1739",
+  "uncoveredPaths": [
+    ".github/workflows/ci.yml"
+  ],
+  "coverageSource": "mixed",
+  "waiverIds": [
+    "0a3b270f-410e-8033-94ee-cd53c2919bc9"
+  ],
+  "migration": {
+    "origins": {
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/reviews/turns/T-050/R-01.json",
+        "id": "T-050/R-01",
+        "sha256": "91dcf1b98db33d9b50510703815934299aa5181e2d81e39168408bd69b095420"
+      }
+    },
+    "historical": true
+  }
+}

@@ -7,7 +7,7 @@
   "outcome": "succeeded",
   "result": {
     "schemaVersion": 1,
-    "id": "T-037",
+    "id": "a2340a88-188e-87da-8cee-96c5126cef29",
     "status": "open",
     "openedAt": "2026-09-05T01:46:40.364Z",
     "opened": {
@@ -15,16 +15,16 @@
       "baseCommit": "6d71f8164fdaaf9c151573f33011db70ecd5df6d",
       "treeDigest": "ac6ce49752215858811f2bac2c0429c4da521d8296a68434d8b5f96595034771",
       "dirtyAtOpen": [
-        ".spec-ledger/authority/AUTH-UI-05cc970d-0c16-41a4-aa68-36fb14b025a9.json",
-        ".spec-ledger/authority/AUTH-W009-REQUEST.json",
-        ".spec-ledger/reviews/workstreams/W-009/SR-01.json",
-        ".spec-ledger/reviews/workstreams/W-009/SR-02.json",
-        ".spec-ledger/workstreams/W-009.json",
-        "docs/workstreams/W-009-evidence-first-changes/spec.md"
+        ".spec-ledger/authority/fe55a4c9-b163-8399-9176-98b0472955cb.json",
+        ".spec-ledger/authority/e1effa81-01a5-8b51-bed7-a43b8363d1f7.json",
+        ".spec-ledger/reviews/workstreams/3ca37660-1506-8a85-80c6-410a024d9a9a/7fb2d19a-03d1-89a4-b4b9-123b2f66b1bd.json",
+        ".spec-ledger/reviews/workstreams/3ca37660-1506-8a85-80c6-410a024d9a9a/d8d99c3c-a263-8c85-9b27-97cf80d854f2.json",
+        ".spec-ledger/workstreams/3ca37660-1506-8a85-80c6-410a024d9a9a.json",
+        "docs/workstreams/3ca37660-1506-8a85-80c6-410a024d9a9a-evidence-first-changes/spec.md"
       ],
       "contextDigest": "1c62c4828c99bd5d3b60a96156cf2f45b5a195d4a850b51c37e1e8df51e79c76",
-      "contextWorkstreamId": "W-009",
-      "contextSliceId": "SLC-01",
+      "contextWorkstreamId": "3ca37660-1506-8a85-80c6-410a024d9a9a",
+      "contextSliceId": "79c61989-9765-86e0-b429-2d97d4e38892",
       "contextSealRevision": 1,
       "contextGeneratedAt": "2026-09-05T01:46:40.364Z"
     },
@@ -33,8 +33,8 @@
       "restatedGoal": "See each change and the evidence that it works",
       "changeType": "fix",
       "riskLevel": "moderate",
-      "workstreamId": "W-009",
-      "sliceId": "SLC-01",
+      "workstreamId": "3ca37660-1506-8a85-80c6-410a024d9a9a",
+      "sliceId": "79c61989-9765-86e0-b429-2d97d4e38892",
       "featureIds": [
         "lattice"
       ]

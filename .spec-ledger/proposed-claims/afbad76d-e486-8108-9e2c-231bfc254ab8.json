@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "afbad76d-e486-8108-9e2c-231bfc254ab8",
+  "status": "proposed",
+  "statement": "When workstream or repo policy requireAlignApprove is true, turn close and push/PR/CI (pnpm ledger:align) of product changes require a code-target review with verdict approve bound to treeDigest, coverageSource, and uncoveredPaths=[] (or waiverIds) from an align reviewer (identity prefix distinct from the turn producer), or an explicit align-waiver with minimum reason length; missing artifact fails the gate — silence is not skip. Align findings must not affect verify.ok.",
+  "rationale": "Cheap align agents write structured JSON approval; builder must not self-approve; hooks and CI enforce. review.schema now admits treeDigest/uncoveredPaths/coverageSource/waiverIds for implementation in cd25a530-33a4-8e92-aad7-1f07c3e8fa79.",
+  "workstreamId": "76451749-a54f-8579-96f2-dcec19d79026",
+  "suggestedLiveId": "SL-010",
+  "requiredEvidence": [
+    "unit",
+    "integration"
+  ],
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/proposed-claims/PC-014.json",
+        "id": "PC-014",
+        "sha256": "277d9c7c0f0ff2590f4088ee02eddbaaaa643d0f52d4f169fc1e31986dfe905f"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/proposed-claims/PC-014.json",
+        "id": "PC-014",
+        "sha256": "277d9c7c0f0ff2590f4088ee02eddbaaaa643d0f52d4f169fc1e31986dfe905f"
+      }
+    },
+    "historical": true
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "id": "259e1acf-d082-8bfe-b0ab-76fab45ae7d0",
+  "kind": "invariant",
+  "statement": "Set up a new project without overwriting an existing one or claiming that untested work already passes.",
+  "area": "core",
+  "required": true,
+  "links": {
+    "docs": [
+      "docs/workstreams/consumer-cli-and-npm-publish.md",
+      "docs/architecture/claim-contracts.md"
+    ],
+    "proposedClaimId": "628207d3-7b88-880b-abe1-acd523f8572f"
+  },
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/claims/SL-011.json",
+        "id": "SL-011",
+        "sha256": "2e39394605bcb4afa8b421c5c6e868e54769b48a53d65d82cd7cfbde7ba2571d"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/claims/SL-011.json",
+        "id": "SL-011",
+        "sha256": "2e39394605bcb4afa8b421c5c6e868e54769b48a53d65d82cd7cfbde7ba2571d"
+      }
+    },
+    "historical": true
+  }
+}

@@ -7,19 +7,19 @@
   "outcome": "succeeded",
   "result": {
     "schemaVersion": 1,
-    "id": "T-045/A-290ed9a8-4d5f-4bd2-b420-c69e20f2d5b7",
-    "turnId": "T-045",
+    "id": "b9c03614-5617-86ad-9817-e15a86bdb682",
+    "turnId": "da66d16d-d4e0-837e-a34b-fb7cec0d855d",
     "kind": "image",
     "title": "Expanded evidence — mobile",
-    "path": ".spec-ledger/evidence/screenshots/T-045-mobile.png",
+    "path": ".spec-ledger/evidence/screenshots/da66d16d-d4e0-837e-a34b-fb7cec0d855d-mobile.png",
     "mediaType": "image/png",
     "byteLength": 71687,
     "contentDigest": "fee9164d35daac6cb824935bd2d9821bc815bb3f6b857dfda4858bdaebe100d2",
     "visualEvidence": {
-      "sliceId": "SLC-03",
+      "sliceId": "d67e07f2-7343-88d2-afeb-0fe6f3c8c377",
       "surface": "Expanded evidence — mobile",
       "sourceDigest": "e1b00fc86c55eea046dfadb4e8e1cc3cceb2d916543549c9542441569460e6fd",
-      "revisionDigest": "9ff6ab20b5d25d4e3ccd43c812ae08cca5615aff5686d7dc3fb4128c33b44f65",
+      "revisionDigest": "1ff6ee182547ae8f2e982b3d76a17396e7ac970f2b5ac4a62019209c18f52143",
       "recordedAt": "2026-09-06T18:18:34.735Z"
     },
     "note": "Recorded visual coverage; image adequacy is assessed in review."

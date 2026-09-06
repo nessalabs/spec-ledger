@@ -24,8 +24,8 @@ Follow the existing shape/permission/build process first. On an authorized open 
 ```json
 {
   "id": "G-evaluation-speed",
-  "workstreamId": "W-014",
-  "turnId": "T-043",
+  "workstreamId": "29c935b4-56bd-84a0-b887-e280d775f54d",
+  "turnId": "bce0f006-e044-807c-88dd-8e0fd6d9950f",
   "title": "Make evaluation faster",
   "objective": "Reduce evaluation time while retaining identical outputs.",
   "stopWhen": "Stop after eight attempts or when a safe candidate is under 100 ms.",
@@ -50,7 +50,7 @@ spec-ledger experiment start --file /tmp/attempt.json
 # and run the task's existing correctness checks separately.
 spec-ledger experiment result --file /tmp/result.json
 spec-ledger goal show --id G-evaluation-speed
-spec-ledger goal list --turn T-043
+spec-ledger goal list --turn bce0f006-e044-807c-88dd-8e0fd6d9950f
 spec-ledger goal conclude --file /tmp/conclusion.json
 ```
 
@@ -60,7 +60,7 @@ An attempt input:
 {
   "id": "X-cache-parsing",
   "goalId": "G-evaluation-speed",
-  "turnId": "T-043",
+  "turnId": "bce0f006-e044-807c-88dd-8e0fd6d9950f",
   "hypothesis": "Reusing parsed inputs will remove repeated work.",
   "change": "Cache parsed inputs for the lifetime of one evaluation."
 }
@@ -72,7 +72,7 @@ A result input:
 {
   "goalId": "G-evaluation-speed",
   "experimentId": "X-cache-parsing",
-  "turnId": "T-043",
+  "turnId": "bce0f006-e044-807c-88dd-8e0fd6d9950f",
   "status": "completed",
   "decision": "kept",
   "measurement": 130,
@@ -86,7 +86,7 @@ A conclusion input:
 ```json
 {
   "goalId": "G-evaluation-speed",
-  "turnId": "T-043",
+  "turnId": "bce0f006-e044-807c-88dd-8e0fd6d9950f",
   "reason": "stopped",
   "summary": "Kept parsing reuse; stopped before more invasive changes."
 }
@@ -104,7 +104,7 @@ Open **Experiments** in the existing UI, or navigate directly to `/experiments/G
 
 A headless agent can run the existing UI against a synced checkout (`SPEC_LEDGER_ROOT`) and capture `/experiments/<goal-id>` with a browser screenshot tool. The screen has no dependency on a local editor or agent host. The agent/user chooses how to share that screenshot; this feature does not send or upload it. A remote checkout sees history only after the Git files reach it; automatic repository synchronization is out of scope.
 
-For a synthetic demonstration, build the packages and run `node docs/workstreams/W-014-follow-agent-experiments/demo.mjs`. It creates and prints a temporary fixture root, without modifying the real ledger. Start the UI with that root and inspect `/experiments/G-demo-speed`. All demo goal titles are labeled.
+For a synthetic demonstration, build the packages and run `node docs/workstreams/29c935b4-56bd-84a0-b887-e280d775f54d-follow-agent-experiments/demo.mjs`. It creates and prints a temporary fixture root, without modifying the real ledger. Start the UI with that root and inspect `/experiments/G-demo-speed`. All demo goal titles are labeled.
 
 ## Storage and deletion
 

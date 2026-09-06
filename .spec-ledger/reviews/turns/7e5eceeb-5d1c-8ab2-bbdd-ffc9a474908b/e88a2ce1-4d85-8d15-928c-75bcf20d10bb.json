@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "id": "e88a2ce1-4d85-8d15-928c-75bcf20d10bb",
+  "turnId": "7e5eceeb-5d1c-8ab2-bbdd-ffc9a474908b",
+  "workstreamId": "a32f3451-1b3d-8abf-bf0e-607ebf6e1a88",
+  "kind": "human",
+  "target": "code",
+  "reviewer": "agent:align",
+  "verdict": "approve",
+  "summary": "User authorized implementation of the full a32f3451-1b3d-8abf-bf0e-607ebf6e1a88 proposal and portable CLI handoff; carryover scope is explicitly recorded.",
+  "plainSummary": "Deferred commitments and their session integration fit the requested plan.",
+  "treeDigest": "176ce1b2734003743f950d8e7a0db7872dc7069d4302d444b8c18e78174a58be",
+  "uncoveredPaths": [
+    "AGENTS.md",
+    "DESIGN.md"
+  ],
+  "coverageSource": "mixed",
+  "waiverIds": [
+    "bd0b6749-d0f6-8b48-b452-104638f30b64"
+  ],
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/reviews/turns/T-030/R-04.json",
+        "id": "T-030/R-04",
+        "sha256": "a5c14a367ed4cf376c374c91143ed2cb9da51b34aae00b9a433ad81ab1c98e49"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/reviews/turns/T-030/R-04.json",
+        "id": "T-030/R-04",
+        "sha256": "a5c14a367ed4cf376c374c91143ed2cb9da51b34aae00b9a433ad81ab1c98e49"
+      }
+    },
+    "historical": true
+  }
+}

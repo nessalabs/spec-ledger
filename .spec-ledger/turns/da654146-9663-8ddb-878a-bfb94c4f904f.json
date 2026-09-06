@@ -1,0 +1,552 @@
+{
+  "schemaVersion": 1,
+  "id": "da654146-9663-8ddb-878a-bfb94c4f904f",
+  "status": "closed",
+  "openedAt": "2026-09-03T07:19:15.679Z",
+  "opened": {
+    "producedBy": "@nessa/spec-ledger@0.1.0",
+    "baseCommit": "491ca29479e04b1de8dd20577754992310af2f2b",
+    "treeDigest": "fbfd9e604c5d9686726b995498584ce9ece49a8b7a0d5d8e136b01ab1c521ee5",
+    "dirtyAtOpen": [
+      ".spec-ledger/proposed-claims/82fa5163-847a-8bb4-9cf4-61c3fb607187.json",
+      ".spec-ledger/proposed-claims/afbad76d-e486-8108-9e2c-231bfc254ab8.json",
+      ".spec-ledger/reviews/turns/f413d965-4b38-89aa-85bd-aae03d8d9aef/2ddda9dd-7526-839c-9844-199b543f59ba.json",
+      ".spec-ledger/reviews/turns/aa9eaf8d-f0f6-8039-ab93-3967acc596f4/de1490fb-f0c7-8d34-8dc3-d275a7c5e1e5.json",
+      ".spec-ledger/reviews/turns/f1be3685-cdec-81f6-a240-f435ff5c9f36/5038b55b-2018-899a-b897-8112e6f4254f.json",
+      ".spec-ledger/reviews/turns/0650e1d5-4674-8317-a8f6-cf9d9cef08c4/5db637a1-4599-8f4e-8b45-f38bb80c28cc.json",
+      ".spec-ledger/reviews/workstreams/76451749-a54f-8579-96f2-dcec19d79026/449c5d79-aef1-84ba-92c5-4c7d15d5c1f5.json",
+      ".spec-ledger/reviews/workstreams/76451749-a54f-8579-96f2-dcec19d79026/bbdc547e-1a24-8c0f-a4e4-9c96dccb4281.json",
+      ".spec-ledger/reviews/workstreams/76451749-a54f-8579-96f2-dcec19d79026/5efd0ede-3a89-8d86-b186-805803acad4a.json",
+      ".spec-ledger/turns/f413d965-4b38-89aa-85bd-aae03d8d9aef.json",
+      ".spec-ledger/turns/aa9eaf8d-f0f6-8039-ab93-3967acc596f4.json",
+      ".spec-ledger/turns/f1be3685-cdec-81f6-a240-f435ff5c9f36.json",
+      ".spec-ledger/turns/0650e1d5-4674-8317-a8f6-cf9d9cef08c4.json",
+      ".spec-ledger/vision.json",
+      ".spec-ledger/workstreams/3317ada5-b347-894e-8c88-110b7b42d58b.json",
+      ".spec-ledger/workstreams/e6213c3f-60e4-8ceb-9d6a-15c67833b383.json",
+      ".spec-ledger/workstreams/beee03a2-1e8d-8091-9ed9-b35bea93d6a3.json",
+      ".spec-ledger/workstreams/76451749-a54f-8579-96f2-dcec19d79026.json",
+      ".spec-ledger/workstreams/76451749-a54f-8579-96f2-dcec19d79026.seals/1.json",
+      "docs/README.md",
+      "docs/compass/README.md",
+      "docs/compass/vision.md",
+      "docs/workstreams/README.md",
+      "docs/workstreams/builder-episode-loop.md",
+      "docs/workstreams/p0-p3-runtime-and-dogfood.md",
+      "docs/workstreams/spec-code-coupling-and-honest-lattice-trail.md",
+      "docs/workstreams/spec-ledger-dogfood-ui.md",
+      "package.json",
+      "packages/ledger/src/types.ts",
+      "packages/ledger/src/workstream/load.ts",
+      "packages/ui/app/claims/[id]/page.tsx",
+      "packages/ui/app/claims/page.tsx",
+      "packages/ui/app/compass/page.tsx",
+      "packages/ui/app/contracts/page.tsx",
+      "packages/ui/app/features/[id]/page.tsx",
+      "packages/ui/app/features/page.tsx",
+      "packages/ui/app/graph/page.tsx",
+      "packages/ui/app/layout.tsx",
+      "packages/ui/app/nodes/[id]/page.tsx",
+      "packages/ui/app/page.tsx",
+      "packages/ui/app/timeline/page.tsx",
+      "packages/ui/app/turns/[id]/page.tsx",
+      "packages/ui/app/turns/page.tsx",
+      "packages/ui/app/verify/page.tsx",
+      "packages/ui/app/workstreams/[id]/page.tsx",
+      "packages/ui/app/workstreams/page.tsx",
+      "packages/ui/components/claims-list.tsx",
+      "packages/ui/components/graph-workspace.tsx",
+      "packages/ui/components/lattice-shell.tsx",
+      "packages/ui/components/spec-doc.tsx",
+      "packages/ui/components/static-mermaid-inner.tsx",
+      "packages/ui/components/static-mermaid.tsx",
+      "packages/ui/components/turn-detail.tsx",
+      "packages/ui/components/turn-files.tsx",
+      "packages/ui/lib/git.ts",
+      "packages/ui/lib/impact.ts",
+      "packages/ui/lib/ledger.ts",
+      "packages/ui/lib/spec-md.ts",
+      "packages/ui/next.config.mjs",
+      "packages/ui/package.json",
+      "schemas/review.json",
+      "schemas/workstream.json",
+      "skills/sl-plan-shape/SKILL.md",
+      "skills/sl-plan-shape/workstream-template.md"
+    ],
+    "contextDigest": "24899fdb27d08a37aafb4e01fffcbc15aee9a13d60d91c06132caf3a41db6da7",
+    "contextWorkstreamId": "76451749-a54f-8579-96f2-dcec19d79026",
+    "contextSliceId": "8e34ebbd-c0cb-888c-95b8-0eaf07ecb634",
+    "contextSealRevision": 1,
+    "contextGeneratedAt": "2026-09-03T07:19:15.678Z"
+  },
+  "intent": {
+    "userPrompt": "Turn page: SplitView + FilePreview for related docs on the right",
+    "restatedGoal": "Open related docs beside the turn",
+    "changeType": "feature",
+    "riskLevel": "moderate",
+    "workstreamId": "76451749-a54f-8579-96f2-dcec19d79026",
+    "sliceId": "8e34ebbd-c0cb-888c-95b8-0eaf07ecb634",
+    "featureIds": [
+      "lattice"
+    ]
+  },
+  "closedAt": "2026-09-03T07:21:44.400Z",
+  "facts": {
+    "producedBy": "@nessa/spec-ledger@0.1.0",
+    "commit": "491ca29479e04b1de8dd20577754992310af2f2b",
+    "files": [
+      {
+        "path": ".spec-ledger/proposed-claims/82fa5163-847a-8bb4-9cf4-61c3fb607187.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/proposed-claims/afbad76d-e486-8108-9e2c-231bfc254ab8.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/turns/f413d965-4b38-89aa-85bd-aae03d8d9aef/2ddda9dd-7526-839c-9844-199b543f59ba.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/turns/aa9eaf8d-f0f6-8039-ab93-3967acc596f4/de1490fb-f0c7-8d34-8dc3-d275a7c5e1e5.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/turns/f1be3685-cdec-81f6-a240-f435ff5c9f36/5038b55b-2018-899a-b897-8112e6f4254f.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/turns/0650e1d5-4674-8317-a8f6-cf9d9cef08c4/5db637a1-4599-8f4e-8b45-f38bb80c28cc.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/turns/da654146-9663-8ddb-878a-bfb94c4f904f/b4e23404-93bb-891c-bac9-69c942a19621.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/workstreams/76451749-a54f-8579-96f2-dcec19d79026/449c5d79-aef1-84ba-92c5-4c7d15d5c1f5.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/workstreams/76451749-a54f-8579-96f2-dcec19d79026/bbdc547e-1a24-8c0f-a4e4-9c96dccb4281.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/reviews/workstreams/76451749-a54f-8579-96f2-dcec19d79026/5efd0ede-3a89-8d86-b186-805803acad4a.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/turns/f413d965-4b38-89aa-85bd-aae03d8d9aef.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/turns/aa9eaf8d-f0f6-8039-ab93-3967acc596f4.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/turns/f1be3685-cdec-81f6-a240-f435ff5c9f36.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/turns/0650e1d5-4674-8317-a8f6-cf9d9cef08c4.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/turns/da654146-9663-8ddb-878a-bfb94c4f904f.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/vision.json",
+        "kind": "modified",
+        "additions": 2,
+        "deletions": 1
+      },
+      {
+        "path": ".spec-ledger/workstreams/3317ada5-b347-894e-8c88-110b7b42d58b.json",
+        "kind": "modified",
+        "additions": 1,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/workstreams/e6213c3f-60e4-8ceb-9d6a-15c67833b383.json",
+        "kind": "modified",
+        "additions": 1,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/workstreams/beee03a2-1e8d-8091-9ed9-b35bea93d6a3.json",
+        "kind": "modified",
+        "additions": 1,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/workstreams/76451749-a54f-8579-96f2-dcec19d79026.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": ".spec-ledger/workstreams/76451749-a54f-8579-96f2-dcec19d79026.seals/1.json",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "docs/compass/README.md",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "docs/compass/vision.md",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "docs/README.md",
+        "kind": "modified",
+        "additions": 2,
+        "deletions": 0
+      },
+      {
+        "path": "docs/workstreams/builder-episode-loop.md",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "docs/workstreams/p0-p3-runtime-and-dogfood.md",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "docs/workstreams/README.md",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "docs/workstreams/spec-code-coupling-and-honest-lattice-trail.md",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "docs/workstreams/spec-ledger-dogfood-ui.md",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "package.json",
+        "kind": "modified",
+        "additions": 1,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/types.ts",
+        "kind": "modified",
+        "additions": 7,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ledger/src/workstream/load.ts",
+        "kind": "modified",
+        "additions": 2,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ui/app/claims/[id]/page.tsx",
+        "kind": "modified",
+        "additions": 2,
+        "deletions": 2
+      },
+      {
+        "path": "packages/ui/app/claims/page.tsx",
+        "kind": "modified",
+        "additions": 3,
+        "deletions": 4
+      },
+      {
+        "path": "packages/ui/app/compass/page.tsx",
+        "kind": "modified",
+        "additions": 1,
+        "deletions": 1
+      },
+      {
+        "path": "packages/ui/app/contracts/page.tsx",
+        "kind": "modified",
+        "additions": 18,
+        "deletions": 4
+      },
+      {
+        "path": "packages/ui/app/features/[id]/page.tsx",
+        "kind": "modified",
+        "additions": 2,
+        "deletions": 2
+      },
+      {
+        "path": "packages/ui/app/features/page.tsx",
+        "kind": "modified",
+        "additions": 38,
+        "deletions": 46
+      },
+      {
+        "path": "packages/ui/app/graph/page.tsx",
+        "kind": "modified",
+        "additions": 13,
+        "deletions": 1
+      },
+      {
+        "path": "packages/ui/app/layout.tsx",
+        "kind": "modified",
+        "additions": 2,
+        "deletions": 15
+      },
+      {
+        "path": "packages/ui/app/nodes/[id]/page.tsx",
+        "kind": "modified",
+        "additions": 2,
+        "deletions": 2
+      },
+      {
+        "path": "packages/ui/app/page.tsx",
+        "kind": "modified",
+        "additions": 63,
+        "deletions": 10
+      },
+      {
+        "path": "packages/ui/app/timeline/page.tsx",
+        "kind": "modified",
+        "additions": 4,
+        "deletions": 81
+      },
+      {
+        "path": "packages/ui/app/turns/[id]/page.tsx",
+        "kind": "modified",
+        "additions": 79,
+        "deletions": 6
+      },
+      {
+        "path": "packages/ui/app/turns/page.tsx",
+        "kind": "modified",
+        "additions": 62,
+        "deletions": 10
+      },
+      {
+        "path": "packages/ui/app/verify/page.tsx",
+        "kind": "modified",
+        "additions": 80,
+        "deletions": 92
+      },
+      {
+        "path": "packages/ui/app/workstreams/[id]/page.tsx",
+        "kind": "modified",
+        "additions": 66,
+        "deletions": 91
+      },
+      {
+        "path": "packages/ui/app/workstreams/page.tsx",
+        "kind": "modified",
+        "additions": 35,
+        "deletions": 41
+      },
+      {
+        "path": "packages/ui/components/claims-list.tsx",
+        "kind": "modified",
+        "additions": 46,
+        "deletions": 40
+      },
+      {
+        "path": "packages/ui/components/graph-workspace.tsx",
+        "kind": "modified",
+        "additions": 41,
+        "deletions": 34
+      },
+      {
+        "path": "packages/ui/components/lattice-shell.tsx",
+        "kind": "modified",
+        "additions": 80,
+        "deletions": 45
+      },
+      {
+        "path": "packages/ui/components/spec-doc.tsx",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ui/components/static-mermaid-inner.tsx",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ui/components/static-mermaid.tsx",
+        "kind": "modified",
+        "additions": 12,
+        "deletions": 68
+      },
+      {
+        "path": "packages/ui/components/turn-detail.tsx",
+        "kind": "modified",
+        "additions": 500,
+        "deletions": 380
+      },
+      {
+        "path": "packages/ui/components/turn-doc-split.tsx",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ui/components/turn-files.tsx",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ui/lib/git.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ui/lib/impact.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ui/lib/ledger.ts",
+        "kind": "modified",
+        "additions": 10,
+        "deletions": 3
+      },
+      {
+        "path": "packages/ui/lib/spec-md.ts",
+        "kind": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ui/next.config.mjs",
+        "kind": "modified",
+        "additions": 10,
+        "deletions": 0
+      },
+      {
+        "path": "packages/ui/package.json",
+        "kind": "modified",
+        "additions": 1,
+        "deletions": 1
+      },
+      {
+        "path": "schemas/review.json",
+        "kind": "modified",
+        "additions": 18,
+        "deletions": 0
+      },
+      {
+        "path": "schemas/workstream.json",
+        "kind": "modified",
+        "additions": 11,
+        "deletions": 0
+      },
+      {
+        "path": "skills/sl-plan-shape/SKILL.md",
+        "kind": "modified",
+        "additions": 5,
+        "deletions": 3
+      },
+      {
+        "path": "skills/sl-plan-shape/workstream-template.md",
+        "kind": "modified",
+        "additions": 3,
+        "deletions": 2
+      }
+    ],
+    "touchedNodeIds": [
+      "ledger-core",
+      "ledger-ui",
+      "schemas"
+    ],
+    "touchedFeatureIds": [
+      "lattice",
+      "turns",
+      "verify"
+    ],
+    "touchedClaimIds": [
+      "b69a663d-e2dd-8655-be45-0e07bfb45c89"
+    ],
+    "blastRadius": {
+      "direct": [
+        "ledger-client",
+        "ledger-core",
+        "ledger-server"
+      ],
+      "transitive": [
+        "ledger-client",
+        "ledger-core",
+        "ledger-server",
+        "ledger-ui"
+      ]
+    },
+    "verify": {
+      "ok": true,
+      "ledgerDigest": "9731a4d02e58971ec6e340a4385d32d9fc3c09ad55c0a7f2c137cbc356c9052a",
+      "resultsDigest": "ded3eb2608a70a2e28040c5e1e7c4faa49be0d27b4ffc4d3e2a3ffb91bf72fbb",
+      "treeDigest": "17198d0e26bcff4a738cb2211923349dbf01361260202b3c43e8962083182de0",
+      "producedAt": "2026-09-03T07:21:44.327Z"
+    },
+    "schemaSurfaceChanged": true,
+    "reviewsDigest": "5598e8f9644fe311888b2b04799e149ecfcd8c7fd540c1e4aeb1a9411df4f860"
+  },
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/turns/T-011.json",
+        "id": "T-011",
+        "sha256": "e18db61dbefa7f07584308bbd2cdb05f24a2173b49a71f3fad7d060bb61275c4"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/turns/T-011.json",
+        "id": "T-011",
+        "sha256": "e18db61dbefa7f07584308bbd2cdb05f24a2173b49a71f3fad7d060bb61275c4"
+      }
+    },
+    "historical": true
+  }
+}

@@ -6,10 +6,10 @@
   "finishedAt": "2026-09-05T03:24:05.128Z",
   "outcome": "succeeded",
   "result": {
-    "id": "AUTH-W011-REQUEST",
+    "id": "ba52f9d6-c484-898d-9dc3-034af46da76c",
     "action": "grant",
     "mode": "request",
-    "workstreamId": "W-011",
+    "workstreamId": "0f65234d-cf94-8f8d-a7c9-0ce6ef01e073",
     "featureIds": [
       "lattice"
     ],

@@ -1,7 +1,11 @@
+import { recordLearning } from "../compass/learnings.js"
+import { createWorkstream, createClaim, createProposedClaim, createBinding, createCompassRecord } from "../identity/creation.js"
+import { createEntityId } from "../identity/index.js"
 import { checkVisualEvidence, recordScreenshot } from "../evidence/visual.js"
 import { assertOptimizationReceiptStorage } from "../optimization/store.js"
 import { listOptimizationGoals, getOptimizationGoal, createOptimizationGoal, startOptimizationExperiment, recordOptimizationResult, concludeOptimizationGoal } from "../optimization/index.js"
-import { workflowOptions } from "../workflows/options.js"
+import { validateLibraryProfile, profileAsProfile, workflowLibrary, workflowDefault, readWorkflowProfile, saveWorkflowProfile, updateWorkflowProfile, deleteWorkflowProfile, setDefaultWorkflowProfile } from "../workflows/index.js"
+import { libraryOptions, workflowOptions } from "../workflows/options.js"
 import { startSavedCheck, getCheckRun, getCheckEvidence, validateCheckStorage } from "../verify/saved-check.js"
 import { randomUUID } from "node:crypto"
 import { dirname, isAbsolute, join, relative, resolve } from "node:path"
@@ -22,7 +26,7 @@ import {
   type Authority,
 } from "../permission/authority.js"
 import { getRelatedPack } from "../related/pack.js"
-import { listAllReviews, nextReviewId, writeReview } from "../reviews/load.js"
+import { nextReviewId, writeReview } from "../reviews/load.js"
 import {
   completeWorkstream,
   getSession,
@@ -172,9 +176,17 @@ export function observeSession(root: string, raw: unknown = {}) {
   return getSession(root, stringField(input, "workstreamId", true))
 }
 
+function workflowChoice(root: string, input: Record<string, unknown>) {
+  if (input.profileId !== undefined && input.profile !== undefined) throw operationError("invalid_input", "Choose a saved workflow or an authored profile, not both")
+  if (!input.profileId || input.profileId === "spec-ledger/default") return { profile: input.profile as WorkflowProfile | undefined, origin: undefined }
+  const record = readWorkflowProfile(root, input.profileId as string)
+  return { profile: profileAsProfile(record), origin: { source: "library" as const, profileDigest: record.digest } }
+}
+
 export function previewWorkflow(root: string, raw: unknown) {
   const input = validated(root, "preview_workflow", raw)
-  return resolveWorkflow(root, stringField(input, "workstreamId")!, input.profile as WorkflowProfile | undefined)
+  const choice = workflowChoice(root, input)
+  return resolveWorkflow(root, stringField(input, "workstreamId")!, choice.profile, choice.origin)
 }
 
 export function getWorkflow(root: string, raw: unknown) {
@@ -198,6 +210,7 @@ export function submitPermission(root: string, raw: unknown) {
   const input = mutationInput(root, "record_permission", raw)
   const authority = input.authority
   assertObject(authority)
+  if (authority.id !== undefined) throw operationError("invalid_input", "Spec Ledger generates authority identities; omit id")
   return runMutation({
     root,
     requestId: input.requestId,
@@ -261,7 +274,6 @@ export function beginWork(root: string, raw: unknown) {
       featureIds,
     }
     return openTurn(root, intent, {
-      idHint: stringField(input, "turnId", true),
       workstreamId,
       sliceId,
       featureIds,
@@ -348,11 +360,17 @@ export function submitEvidence(root: string, raw: unknown) {
   })
 }
 
+function generatedFindings(review:Record<string,unknown>):Record<string,unknown> {
+  if (review.findings !== undefined && !Array.isArray(review.findings)) throw operationError("invalid_input","review findings must be an array")
+  return {...review, ...(Array.isArray(review.findings) ? {findings:review.findings.map(f=>{assertObject(f);return {...f,id:createEntityId()}})} : {})}
+}
+
 export function submitReview(root: string, raw: unknown) {
   const input = mutationInput(root, "record_review", raw)
   const target = stringField(input, "target")!
   const reviewInput = input.review
   assertObject(reviewInput)
+  if (reviewInput.id !== undefined) throw operationError("invalid_input", "Spec Ledger generates review identities; omit id")
   if (reviewInput.kind === "human") {
     throw operationError("invalid_input", "record_review cannot claim human review provenance")
   }
@@ -360,14 +378,12 @@ export function submitReview(root: string, raw: unknown) {
     if (target === "spec") {
       const workstreamId = stringField(input, "workstreamId")!
       assertRevision(root, workstreamId, stringField(input, "expectedRevisionDigest")!)
-      const review = reviewInput
+      const review = generatedFindings(reviewInput)
       if (review.workstreamId !== undefined && review.workstreamId !== workstreamId) {
         throw operationError("invalid_input", "spec review workstreamId must match the operation target")
       }
-      const sequence = listAllReviews(root)
-        .filter((candidate) => candidate.workstreamId === workstreamId && candidate.target === "spec")
-        .reduce((max, candidate) => Math.max(max, Number(candidate.id.split("-").at(-1)) || 0), 0) + 1
-      const id = (review.id as string | undefined) ?? `${workstreamId}/SR-${String(sequence).padStart(2, "0")}`
+      if (review.id !== undefined) throw operationError("invalid_input", "Spec Ledger generates review identities; omit id")
+      const id = createEntityId()
       const written = recordSpecReview(root, { ...review, schemaVersion: 1, id, workstreamId, target: "spec" } as unknown as Review)
       if (written.verdict === "approve") {
         const workstream = loadWorkstream(root, workstreamId)
@@ -383,7 +399,7 @@ export function submitReview(root: string, raw: unknown) {
     if (turn.status !== "open") throw operationError("prerequisite_missing", `turn ${turnId} is not open`)
     if (!turn.intent.workstreamId) throw operationError("invalid_input", "turn has no workstream")
     assertPermission(root, turn.intent.workstreamId)
-    const review = reviewInput
+    const review = generatedFindings(reviewInput)
     if (review.workstreamId !== undefined && review.workstreamId !== turn.intent.workstreamId) {
       throw operationError("invalid_input", "code review workstreamId must match its turn")
     }
@@ -395,7 +411,7 @@ export function submitReview(root: string, raw: unknown) {
     const written = writeReview(root, {
       ...review,
       schemaVersion: 1,
-      id: (review.id as string | undefined) ?? nextReviewId(root, turnId),
+      id: createEntityId(),
       turnId,
       kind: (review.kind as Review["kind"] | undefined) ?? "adversarial",
       target: "code",
@@ -494,9 +510,10 @@ export function setWorkflow(root: string, raw: unknown) {
     assertRevision(root, workstreamId, stringField(input, "expectedRevisionDigest")!)
     assertSource(root, stringField(input, "expectedSourceDigest")!)
     assertPermission(root, workstreamId)
-    if (input.expectedConfigurationDigest && resolveWorkflow(root, workstreamId, input.profile as WorkflowProfile | undefined).snapshotDigest !== input.expectedConfigurationDigest) throw operationError("revision_conflict", "Workflow guidance changed. Preview it again before applying.", false)
-    return preserveWorkflow(root, workstreamId, input.profile as WorkflowProfile | undefined,
-      stringField(input, "reason", true), stringField(input, "expectedSnapshotDigest", true))
+    const choice = workflowChoice(root, input)
+    if (input.expectedConfigurationDigest && resolveWorkflow(root, workstreamId, choice.profile, choice.origin).snapshotDigest !== input.expectedConfigurationDigest) throw operationError("revision_conflict", "Workflow guidance changed. Preview it again before applying.", false)
+    return preserveWorkflow(root, workstreamId, choice.profile,
+      stringField(input, "reason", true), stringField(input, "expectedSnapshotDigest", true), choice.origin)
   } })
 }
 
@@ -591,12 +608,63 @@ function writeOptimization(root: string, operation: "create_goal" | "start_exper
   } })
 }
 
+/** Library writes compose the existing serialized, retry-safe operation boundary. */
+function mutateWorkflowLibrary(root: string, operation: OperationName, raw: unknown) {
+  const input = mutationInput(root, operation, raw)
+  return runMutation({ root, requestId: input.requestId, operation, input, effect: () => {
+    const actor = stringField(input, "actor")!, reason = stringField(input, "reason")!
+    let value: unknown
+    if (operation === "set_default_workflow_profile") {
+      if (workflowDefault(root).digest !== input.expectedDigest) throw operationError("revision_conflict", "Default workflow has changed")
+      setDefaultWorkflowProfile(root, input.profileId as string | null)
+      value = workflowDefault(root)
+    } else if (operation === "save_workflow_profile") {
+      const draft=input.profile as Omit<WorkflowProfile,"id">
+      value = saveWorkflowProfile(root, { ...draft, id:createEntityId(), stages:draft.stages?.map(stage=>({...stage,id:createEntityId(),steps:stage.steps.map(step=>({...step,id:createEntityId()}))})) })
+    } else {
+      const id = operation === "update_workflow_profile" ? (input.profile as WorkflowProfile).id : input.profileId as string
+      if (readWorkflowProfile(root, id).digest !== input.expectedDigest) throw operationError("revision_conflict", "Saved workflow has changed")
+      if (operation === "update_workflow_profile") value = updateWorkflowProfile(root, input.profile as WorkflowProfile, input.expectedDigest as string)
+      else { deleteWorkflowProfile(root, id, input.expectedDigest as string); value = { deleted: id } }
+    }
+    // The finished operation receipt preserves actor/reason with the actual effect.
+    return JSON.parse(JSON.stringify({ actor, reason, value }))
+  } })
+}
+
+function createRecord(root: string, operation: "create_workstream" | "create_claim" | "create_proposed_claim" | "create_binding" | "create_tenet" | "create_theme" | "record_learning", raw: unknown) {
+  const input = mutationInput(root, operation, raw)
+  return runMutation({ root, requestId: input.requestId, operation, input, effect: () => {
+    switch (operation) {
+      case "create_tenet": return createCompassRecord(root,"tenet",input.tenet)
+      case "create_theme": return createCompassRecord(root,"theme",input.theme)
+      case "record_learning": return recordLearning(root,input.learning as Parameters<typeof recordLearning>[1])
+      case "create_workstream": return createWorkstream(root, input.workstream)
+      case "create_claim": return createClaim(root, input.claim, input.turnId as string)
+      case "create_proposed_claim": return createProposedClaim(root, input.claim, input.workstreamId as string)
+      case "create_binding": return createBinding(root, input.binding, input.turnId as string)
+    }
+  } })
+}
+
 export function executeOperation(root: string, operation: OperationName, input: unknown): unknown {
   try {
     switch (operation) {
+      case "create_workstream": case "create_claim": case "create_proposed_claim": case "create_binding": case "create_tenet": case "create_theme": case "record_learning": return createRecord(root, operation, input)
       case "list_goals": return listOptimizationGoals(root, validated(root, operation, input))
       case "get_goal": return getOptimizationGoal(root, stringField(validated(root, operation, input), "goalId")!)
       case "create_goal": case "start_experiment": case "record_experiment_result": case "conclude_goal": return writeOptimization(root, operation, input)
+      case "get_workflow_library_options": validated(root, operation, input); return libraryOptions(root)
+      case "preview_workflow_profile": return validateLibraryProfile(root, validated(root, operation, input).profile as WorkflowProfile)
+      case "list_workflow_profiles": {
+        const args = validated(root, operation, input)
+        return { entries: workflowLibrary(root, args.workstreamId as string | undefined), default: workflowDefault(root) }
+      }
+      case "get_workflow_profile": return readWorkflowProfile(root, validated(root, operation, input).profileId as string)
+      case "save_workflow_profile":
+      case "update_workflow_profile":
+      case "delete_workflow_profile":
+      case "set_default_workflow_profile": return mutateWorkflowLibrary(root, operation, input)
       case "plan_work": return planWork(root, input)
       case "get_context": return getContext(root, input)
       case "get_session": return observeSession(root, input)

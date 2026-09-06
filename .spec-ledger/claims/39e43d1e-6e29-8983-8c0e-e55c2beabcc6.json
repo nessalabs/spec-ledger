@@ -1,0 +1,22 @@
+{
+  "id": "39e43d1e-6e29-8983-8c0e-e55c2beabcc6",
+  "kind": "invariant",
+  "statement": "Concurrent work receives generated UUID identities; migration preserves both histories and never fabricates current evidence.",
+  "required": true,
+  "area": "core",
+  "links": {
+    "docs": [
+      "docs/workstreams/eab32d2d-6c3c-84df-b831-9bcc13fd0152-concurrent-identities/spec.md"
+    ]
+  },
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/claims/SL-034.json",
+        "id": "SL-034",
+        "sha256": "572ca473b1678fa2ba79f6aa8953a162198ba357b577980bef16664eb62f1147"
+      }
+    },
+    "historical": true
+  }
+}

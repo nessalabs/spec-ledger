@@ -196,7 +196,7 @@ export function WorkflowSummary({ workflow, workstreamId }: { workflow: Workflow
           <h2 className="font-semibold">Workflow steps</h2>
           <p className="text-sm">{workflow.profile.title}</p>
           <p className="text-xs text-muted-foreground">
-            {workflow.profile.source === "default" ? "Default" : "Custom"} · method {digestLabel(workflow.profile.snapshotDigest)}
+            {workflow.profile.source === "default" ? "Bundled" : workflow.profile.source === "library" ? "Saved workflow" : "Custom"} · method {digestLabel(workflow.profile.snapshotDigest)}
           </p>
         </div>
         <StatusBadge status={workflow.status} />
@@ -207,7 +207,7 @@ export function WorkflowSummary({ workflow, workstreamId }: { workflow: Workflow
       {workflow.blockers.length ? (
         <p className="text-sm text-destructive">{workflow.blockers.length} method blocker{workflow.blockers.length === 1 ? "" : "s"}</p>
       ) : null}
-      <Link className="text-sm underline" href={`/workflows/${encodeURIComponent(workstreamId)}`}>
+      <Link className="text-sm underline" href={`/workstreams/${encodeURIComponent(workstreamId)}#workflow`}>
         Open workflow
       </Link>
     </section>
@@ -221,7 +221,7 @@ export function WorkflowDetails({ workflow, criteria }: { workflow: Workflow; cr
       <div className="space-y-2">
         <div className="flex flex-wrap items-center gap-2">
           <h2 className="text-xl font-semibold">Workflow steps</h2>
-          <Badge variant="outline">{workflow.profile.source === "default" ? "Default" : "Custom"}</Badge>
+          <Badge variant="outline">{workflow.profile.source === "default" ? "Bundled" : workflow.profile.source === "library" ? "Saved workflow" : "Custom"}</Badge>
           <StatusBadge status={workflow.status} />
         </div>
         <p className="text-sm">{workflow.profile.title}</p>

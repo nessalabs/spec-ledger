@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "bbdc547e-1a24-8c0f-a4e4-9c96dccb4281",
+  "workstreamId": "76451749-a54f-8579-96f2-dcec19d79026",
+  "kind": "adversarial",
+  "target": "spec",
+  "reviewer": "agent:sl-plan-break-spec",
+  "verdict": "comment",
+  "blocking": false,
+  "summary": "Human confirmed amend-after-review. 76451749-a54f-8579-96f2-dcec19d79026 body updated for SR-01 F1–F8 + brand wordmark + human Verify. Schema: expectedPaths on slices; review treeDigest/uncoveredPaths/coverageSource/waiverIds. Ready for human seal — not sealed by agent.",
+  "plainSummary": "The plan was amended after review; a human still needs to seal it.",
+  "resolvesReviewId": "449c5d79-aef1-84ba-92c5-4c7d15d5c1f5",
+  "resolvesFindingIds": [
+    "449c5d79-aef1-84ba-92c5-4c7d15d5c1f5#00222ac1-ca5f-8c2c-8d0e-f309b1e35620",
+    "449c5d79-aef1-84ba-92c5-4c7d15d5c1f5#b2024ae5-1097-8de8-bfc8-ae06eca9d682",
+    "449c5d79-aef1-84ba-92c5-4c7d15d5c1f5#44ba9c56-37ac-82d0-8171-85c172ece81d",
+    "449c5d79-aef1-84ba-92c5-4c7d15d5c1f5#1f88a0da-094e-8e68-ae45-d977e637596b",
+    "449c5d79-aef1-84ba-92c5-4c7d15d5c1f5#59c6fa5f-506e-8097-b7f0-3f30b832a171",
+    "449c5d79-aef1-84ba-92c5-4c7d15d5c1f5#71750def-4027-89d2-a422-8a6b8e4ba952",
+    "449c5d79-aef1-84ba-92c5-4c7d15d5c1f5#9330dd26-7728-8626-9b8c-f4436031c042",
+    "449c5d79-aef1-84ba-92c5-4c7d15d5c1f5#5781a89f-55bd-8587-b89a-3435acb296b2",
+    "449c5d79-aef1-84ba-92c5-4c7d15d5c1f5#6e910719-eecf-8560-87ce-f80a000b23f7"
+  ],
+  "findings": [
+    {
+      "id": "833921f1-adff-8f91-a33d-c43571213e29",
+      "severity": "low",
+      "gap": "Awaiting human seal via: pnpm exec / node packages/ledger/dist/cli/main.js workstream seal 76451749-a54f-8579-96f2-dcec19d79026 --by <you>",
+      "plainImpact": "Until a human seals, builders must not treat this bet as approved to implement.",
+      "fixProposal": "Human reads 76451749-a54f-8579-96f2-dcec19d79026 + 82fa5163-847a-8bb4-9cf4-61c3fb607187/014 + SR-01/02 then seals."
+    }
+  ],
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/reviews/workstreams/W-004/SR-02.json",
+        "id": "W-004/SR-02",
+        "sha256": "8a89d39062ebdcd79a891ff065411e4e590a65b37c3bad3ed4c60a2ca22a7bba"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/reviews/workstreams/W-004/SR-02.json",
+        "id": "W-004/SR-02",
+        "sha256": "8a89d39062ebdcd79a891ff065411e4e590a65b37c3bad3ed4c60a2ca22a7bba"
+      }
+    },
+    "historical": true
+  }
+}

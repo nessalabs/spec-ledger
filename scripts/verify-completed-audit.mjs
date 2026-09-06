@@ -31,8 +31,8 @@ export function validateAudit(report, expected, inspectSource) {
  return errors
 }
 export function checkRepository(root){
- const expected=Array.from({length:8},(_,i)=>{const id=`W-${String(i+1).padStart(3,'0')}`,ws=loadWorkstream(root,id);return{id,criteria:acceptanceItems(ws).map(c=>({...c,mappedClaimIds:ws.acceptanceClaimIds?.[c.id]??[]}))}})
- const report=JSON.parse(readFileSync(resolve(root,'docs/workstreams/W-009-evidence-first-changes/evidence/T-039/completed-workstreams-audit.json'),'utf8'))
+ const expected=['3317ada5-b347-894e-8c88-110b7b42d58b','e6213c3f-60e4-8ceb-9d6a-15c67833b383','beee03a2-1e8d-8091-9ed9-b35bea93d6a3','76451749-a54f-8579-96f2-dcec19d79026','d1be55a6-11bb-8460-8650-ddf0ecac8185','a32f3451-1b3d-8abf-bf0e-607ebf6e1a88','1652e353-e3dc-8960-985b-35fbe40c1edb','815c7a44-59df-8102-9769-bf8a74e49c0c'].map(id=>{const ws=loadWorkstream(root,id);return{id,criteria:acceptanceItems(ws).map(c=>({...c,mappedClaimIds:ws.acceptanceClaimIds?.[c.id]??[]}))}})
+ const report=JSON.parse(readFileSync(resolve(root,'docs/workstreams/3ca37660-1506-8a85-80c6-410a024d9a9a-evidence-first-changes/evidence/9fa55cfe-6dd6-83c5-8b42-baf619c093c6/completed-workstreams-audit.json'),'utf8'))
  const errors=validateAudit(report,expected,path=>{if(typeof path!=='string'||isAbsolute(path))throw Error();const full=realpathSync(resolve(root,path)),rel=relative(realpathSync(root),full);if(rel.startsWith('..')||isAbsolute(rel)||!statSync(full).isFile())throw Error()})
  if(errors.length)throw new Error(errors.join('\n'))
  return `Audit inventory checked: ${expected.reduce((n,w)=>n+w.criteria.length,0)} criteria in 8 workstreams. Gaps remain explicitly recorded; this does not prove all historical features pass.`

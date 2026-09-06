@@ -1,0 +1,27 @@
+{
+  "action": "grant",
+  "mode": "request",
+  "workstreamId": "29c935b4-56bd-84a0-b887-e280d775f54d",
+  "featureIds": [
+    "turns",
+    "lattice",
+    "cli"
+  ],
+  "source": {
+    "kind": "agent-reported",
+    "reference": "User confirmed expandable result-first evidence cards, screenshot preview, compact Run again and collapsed source details, then explicitly said: fix that please."
+  },
+  "id": "058aee1c-62ab-8fa9-85e1-b79a85ca2523",
+  "schemaVersion": 1,
+  "createdAt": "2026-09-06T17:37:39.895Z",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/authority/AUTH-0c01cde4-b0d5-4d92-bc01-a1b602937a3a.json",
+        "id": "AUTH-0c01cde4-b0d5-4d92-bc01-a1b602937a3a",
+        "sha256": "f4a3a3d8e2240202e2345564dbe8fc905b07e76483a3047b0432b6d4d472f383"
+      }
+    },
+    "historical": true
+  }
+}

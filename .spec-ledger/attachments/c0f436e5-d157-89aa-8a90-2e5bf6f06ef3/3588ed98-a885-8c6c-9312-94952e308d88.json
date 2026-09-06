@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "turnId": "c0f436e5-d157-89aa-8a90-2e5bf6f06ef3",
+  "path": "docs/workstreams/ba7715db-e75e-84e6-9d91-f9cc61b037a9-choose-your-workflow/evidence/c0f436e5-d157-89aa-8a90-2e5bf6f06ef3/browser-check.md",
+  "kind": "log-excerpt",
+  "title": "Workflow page and CLI/MCP walkthrough",
+  "mediaType": "text/markdown",
+  "id": "3588ed98-a885-8c6c-9312-94952e308d88",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/attachments/T-041/A-01.json",
+        "id": "T-041/A-01",
+        "sha256": "c35c1dcce68f6e2381e748d9718ec4c0b9056b488f111d5df8e8d694335c7fc1"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/attachments/T-041/A-01.json",
+        "id": "T-041/A-01",
+        "sha256": "c35c1dcce68f6e2381e748d9718ec4c0b9056b488f111d5df8e8d694335c7fc1"
+      }
+    },
+    "historical": true
+  }
+}

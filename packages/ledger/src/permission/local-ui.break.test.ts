@@ -11,11 +11,11 @@ import {planRevision,permissionStatus,recordAuthority,listAuthorities} from "./a
 const endpoint="http://127.0.0.1:3737/api/approval"
 function fixture(){
  const root=mkdtempSync(join(tmpdir(),"sl-ui-approval-break-"));initLedger(root,"local approval breaker")
- writeJson(join(root,".spec-ledger/workstreams/W-001.json"),{schemaVersion:1,id:"W-001",status:"shaped",title:"Review this plan",featureIds:["alpha"],policy:{requireSpecBreak:false},suggestedSlices:[{id:"SLC-01",title:"Build",kind:"vertical",acceptance:["Works"]}]})
+ writeJson(join(root,".spec-ledger/workstreams/2b74bc14-227a-5c05-b2ed-1c32d9703cad.json"),{schemaVersion:1,id:"2b74bc14-227a-5c05-b2ed-1c32d9703cad",status:"shaped",title:"Review this plan",featureIds:["alpha"],policy:{requireSpecBreak:false},suggestedSlices:[{id:"886b091f-57f9-5f69-9e74-f0b50275d693",title:"Build",kind:"vertical",acceptance:["Works"]}]})
  return {root,bridge:createLocalApprovalBridge(root)}
 }
 function state(root:string){return Object.fromEntries(readdirSync(root,{recursive:true,withFileTypes:true}).filter(e=>e.isFile()).map(e=>[join(e.parentPath,e.name),readFileSync(join(e.parentPath,e.name)).toString("base64")]))}
-function payload(root:string,requestId="request-0123456789"){return {action:"approve",workstreamId:"W-001",revisionDigest:planRevision(root,loadWorkstream(root,"W-001")),authorityDigest:authorityStateDigest(root),requestId}}
+function payload(root:string,requestId="request-0123456789"){return {action:"approve",workstreamId:"2b74bc14-227a-5c05-b2ed-1c32d9703cad",revisionDigest:planRevision(root,loadWorkstream(root,"2b74bc14-227a-5c05-b2ed-1c32d9703cad")),authorityDigest:authorityStateDigest(root),requestId}}
 function post(token:string,body:unknown,headers:Record<string,string>={},url=endpoint){return new Request(url,{method:"POST",headers:{origin:"http://127.0.0.1:3737","content-type":"application/json","x-spec-ledger-token":token,...headers},body:JSON.stringify(body)})}
 async function token(bridge:ReturnType<typeof createLocalApprovalBridge>){const res=await bridge(new Request(endpoint));assert.equal(res.status,200);assert.equal(res.headers.get("cache-control"),"no-store");return (await res.json()).token as string}
 
@@ -71,8 +71,8 @@ describe("local UI approval boundary adversarial",()=>{
   const {root,bridge}=fixture()
   try{
    const t=await token(bridge),body=payload(root)
-   const ws=loadWorkstream(root,"W-001");ws.title="A changed plan"
-   writeJson(join(root,".spec-ledger/workstreams/W-001.json"),ws)
+   const ws=loadWorkstream(root,"2b74bc14-227a-5c05-b2ed-1c32d9703cad");ws.title="A changed plan"
+   writeJson(join(root,".spec-ledger/workstreams/2b74bc14-227a-5c05-b2ed-1c32d9703cad.json"),ws)
    assert.equal((await bridge(post(t,body))).status,409)
    const current=payload(root)
    recordAuthority(root,{action:"grant",mode:"standing",featureIds:["alpha"],source:{kind:"agent-reported",reference:"fixture changes authority"}})
@@ -91,7 +91,7 @@ describe("local UI approval boundary adversarial",()=>{
    assert.equal((await bridge(post(t,body))).status,200)
    assert.equal(listAuthorities(root).length,count)
    assert.equal((await bridge(post(t,{...body,action:"deny"}))).status,409)
-   recordAuthority(root,{action:"revoke",targetId:`AUTH-UI-${body.requestId}`,source:{kind:"agent-reported",reference:"fixture revocation"}})
+   recordAuthority(root,{action:"revoke",targetId:permissionStatus(root,"2b74bc14-227a-5c05-b2ed-1c32d9703cad").authorityId,source:{kind:"agent-reported",reference:"fixture revocation"}})
    const retry=await bridge(post(t,body));assert.equal(retry.status,200)
    const result=await retry.json();assert.equal(result.saved,true);assert.equal(result.permission.allowed,false)
   }finally{rmSync(root,{recursive:true,force:true})}
@@ -101,7 +101,7 @@ describe("local UI approval boundary adversarial",()=>{
   try{
    const t=await token(bridge)
    const denied=await bridge(post(t,{...payload(root),action:"deny"}));assert.equal(denied.status,200)
-   assert.equal(permissionStatus(root,"W-001").allowed,false)
+   assert.equal(permissionStatus(root,"2b74bc14-227a-5c05-b2ed-1c32d9703cad").allowed,false)
    const approved=await bridge(post(t,payload(root,"request-replacement-012345")));assert.equal(approved.status,200)
    const p=(await approved.json()).permission;assert.equal(p.allowed,true);assert.equal(p.provenance,"agent-reported")
    assert.match(listAuthorities(root).at(-1)!.source.reference,/not authenticated/)

@@ -1,0 +1,33 @@
+{
+  "id": "b9215e80-1cbf-8bbf-83dc-63ceab15c182",
+  "claimId": "93abee59-3e8d-809f-a140-d86105b0d865",
+  "kind": "test",
+  "locator": {
+    "type": "command",
+    "command": "node --test packages/ui/lib/navigation*.test.mjs"
+  },
+  "test": {
+    "level": "integration",
+    "description": "Navigate between spec sections and keep approval and evidence problems visible on the overview.",
+    "source": {
+      "path": "packages/ui/lib/navigation.break.test.mjs"
+    },
+    "inputs": "Existing process and evidence deep links, browser history changes, denied permission and failing evidence.",
+    "expected": "The matching section becomes visible, links remain reachable, and approvals or failures are not hidden by the shorter overview."
+  },
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/bindings/B-SL-029.json",
+        "id": "b-sl-029",
+        "sha256": "289064db55f9b78c0961349a88c5a552c4863beaec227801bb226dbfb5dc5d81"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/bindings/B-SL-029.json",
+        "id": "b-sl-029",
+        "sha256": "289064db55f9b78c0961349a88c5a552c4863beaec227801bb226dbfb5dc5d81"
+      }
+    },
+    "historical": true
+  }
+}

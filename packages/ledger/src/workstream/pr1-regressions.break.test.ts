@@ -24,7 +24,7 @@ function fixture() {
   writeFileSync(doc, "v1\n")
   writeWorkstream(dir, {
     schemaVersion: 1,
-    id: "W-100",
+    id: "20bbe6cd-087f-52e1-b8a5-d812cb329ce6",
     status: "shaped",
     createdAt: new Date().toISOString(),
     featureIds: [],
@@ -35,29 +35,29 @@ function fixture() {
     acceptanceCriteria: ["Document matches current seal and amendments"],
     suggestedSlices: [],
   })
-  const firstSeal = sealWorkstream(dir, "W-100", "human")
+  const firstSeal = sealWorkstream(dir, "20bbe6cd-087f-52e1-b8a5-d812cb329ce6", "human")
   const snapshot = join(dir, ".spec-ledger", firstSeal.seal!.snapshotPath)
   return { dir, doc, snapshot }
 }
 
 function resealAfterAmendment(dir: string, doc: string) {
   writeFileSync(doc, "v2\n")
-  const { amend } = amendWorkstream(dir, "W-100", {
+  const { amend } = amendWorkstream(dir, "20bbe6cd-087f-52e1-b8a5-d812cb329ce6", {
     by: "human",
     summary: "Approve v2",
   })
   writeFileSync(doc, "v3\n")
-  const resealed = sealWorkstream(dir, "W-100", "human")
+  const resealed = sealWorkstream(dir, "20bbe6cd-087f-52e1-b8a5-d812cb329ce6", "human")
   assert.equal(resealed.seal!.revision, 2)
   assert.deepEqual(resealed.postSealAmends, [amend], "Resealing preserves amendment history")
 }
 
-describe("PR #1 seal integrity regressions (T-025)", () => {
+describe("PR #1 seal integrity regressions (85d09524-267b-5946-86ed-83eb7cd2e51e)", () => {
   it("resealing an amended document accepts the newly sealed bytes", (t) => {
     const { dir, doc } = fixture()
     t.after(() => rmSync(dir, { recursive: true, force: true }))
     resealAfterAmendment(dir, doc)
-    assert.equal(checkSeal(dir, "W-100").ok, true, "The new seal must supersede prior-revision amendments")
+    assert.equal(checkSeal(dir, "20bbe6cd-087f-52e1-b8a5-d812cb329ce6").ok, true, "The new seal must supersede prior-revision amendments")
     assert.equal(auditLedger(dir).ok, true)
   })
 
@@ -67,7 +67,7 @@ describe("PR #1 seal integrity regressions (T-025)", () => {
     resealAfterAmendment(dir, doc)
     writeFileSync(doc, "v2\n")
     const outcomes = {
-      seal: checkSeal(dir, "W-100").ok,
+      seal: checkSeal(dir, "20bbe6cd-087f-52e1-b8a5-d812cb329ce6").ok,
       audit: auditLedger(dir).ok,
     }
     assert.deepEqual(outcomes, { seal: false, audit: false }, "An obsolete amendment cannot authorize reverting the newly sealed document")
@@ -78,17 +78,17 @@ describe("PR #1 seal integrity regressions (T-025)", () => {
     t.after(() => rmSync(dir, { recursive: true, force: true }))
     resealAfterAmendment(dir, doc)
     writeFileSync(doc, "v4\n")
-    const { amend } = amendWorkstream(dir, "W-100", {
+    const { amend } = amendWorkstream(dir, "20bbe6cd-087f-52e1-b8a5-d812cb329ce6", {
       by: "human",
       summary: "Approve v4 after the second seal",
     })
     assert.equal(amend.sealedRevision, 2)
-    assert.equal(checkSeal(dir, "W-100").ok, true)
+    assert.equal(checkSeal(dir, "20bbe6cd-087f-52e1-b8a5-d812cb329ce6").ok, true)
     assert.equal(auditLedger(dir).ok, true)
-    const ws = loadWorkstream(dir, "W-100")
+    const ws = loadWorkstream(dir, "20bbe6cd-087f-52e1-b8a5-d812cb329ce6")
     ws.seal!.specDocDigest = sha256FileBytes(doc)
     writeWorkstream(dir, ws)
-    assert.equal(checkSeal(dir, "W-100").ok, false, "An amendment must not mask mutation of its underlying seal digest")
+    assert.equal(checkSeal(dir, "20bbe6cd-087f-52e1-b8a5-d812cb329ce6").ok, false, "An amendment must not mask mutation of its underlying seal digest")
     assert.equal(auditLedger(dir).ok, false)
   })
 
@@ -98,11 +98,11 @@ describe("PR #1 seal integrity regressions (T-025)", () => {
       t.after(() => rmSync(dir, { recursive: true, force: true }))
       const originalSnapshot = readFileSync(snapshot)
       writeFileSync(doc, "Unrecorded obligations\n")
-      const ws = loadWorkstream(dir, "W-100")
+      const ws = loadWorkstream(dir, "20bbe6cd-087f-52e1-b8a5-d812cb329ce6")
       ws.seal!.specDocDigest = sha256FileBytes(doc)
       writeWorkstream(dir, ws)
       assert.deepEqual(readFileSync(snapshot), originalSnapshot, "The immutable seal snapshot is untouched")
-      const result = check === "check-seal" ? checkSeal(dir, "W-100") : auditLedger(dir)
+      const result = check === "check-seal" ? checkSeal(dir, "20bbe6cd-087f-52e1-b8a5-d812cb329ce6") : auditLedger(dir)
       assert.equal(result.ok, false, "A changed live digest cannot replace the immutable seal without an amendment or reseal")
     })
   }

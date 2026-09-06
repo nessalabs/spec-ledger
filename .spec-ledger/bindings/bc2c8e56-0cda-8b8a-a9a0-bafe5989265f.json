@@ -1,0 +1,34 @@
+{
+  "id": "bc2c8e56-0cda-8b8a-a9a0-bafe5989265f",
+  "claimId": "a3c38839-cf13-837c-8866-ce46af309e15",
+  "kind": "test",
+  "locator": {
+    "type": "command",
+    "command": "node --test packages/ledger/dist/execution/*.test.js packages/mcp/dist/execution.lifecycle.test.js"
+  },
+  "test": {
+    "level": "integration",
+    "description": "Check that tool activity stays separate from evidence and cannot authorize automatic recovery.",
+    "source": {
+      "path": "packages/mcp/src/execution.lifecycle.test.ts",
+      "name": "CLI/MCP activity lifecycle and persistent collector cases"
+    },
+    "inputs": "Owned temporary repositories receive registration, tool-start, duplicate, waiting-user and resumed events; policies request continuation and timeouts without a host adapter. Collector input also includes malformed and oversized frames.",
+    "expected": "Duplicate or missing signals do not create passing evidence. Stop remains sticky; host capabilities and automatic continuation remain disabled. Collector recovers after malformed frames and retains bounded later activity."
+  },
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/bindings/B-SL-025.json",
+        "id": "b-sl-025",
+        "sha256": "4ca9e9a8f1a71c463b96dba223bcfff1a622cf24eb9797e5f42334eef5e14812"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/bindings/B-SL-025.json",
+        "id": "b-sl-025",
+        "sha256": "4ca9e9a8f1a71c463b96dba223bcfff1a622cf24eb9797e5f42334eef5e14812"
+      }
+    },
+    "historical": true
+  }
+}

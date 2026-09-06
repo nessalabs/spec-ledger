@@ -24,7 +24,7 @@ test("automation wait timeout resolves on resume", () => {
       schemaVersion: 1,
       id,
       kind: "alert",
-      workstreamId: "W-001",
+      workstreamId: "3317ada5-b347-894e-8c88-110b7b42d58b",
       mode: "wait",
       policySnapshot: { onAlertTimeout: "move" },
       state: "waiting",
@@ -32,7 +32,7 @@ test("automation wait timeout resolves on resume", () => {
       waitUntil: "2020-01-01T00:10:00.000Z",
     })
     const { recent, open } = resumeAutomationEvents(dir, {
-      workstreamId: "W-001",
+      workstreamId: "3317ada5-b347-894e-8c88-110b7b42d58b",
       now: new Date("2020-01-01T01:00:00.000Z"),
     })
     assert.equal(recent.length, 1)
@@ -45,7 +45,7 @@ test("automation wait timeout resolves on resume", () => {
 })
 
 test("related pack + compass + audit load for dogfood repo", () => {
-  const pack = getRelatedPack(REPO, "W-001")
+  const pack = getRelatedPack(REPO, "3317ada5-b347-894e-8c88-110b7b42d58b")
   assert.ok(pack.claims.length >= 1)
   assert.ok(pack.docs.length >= 1)
   const compass = getCompass(REPO)

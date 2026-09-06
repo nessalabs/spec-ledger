@@ -26,10 +26,7 @@ export default async function TurnsPage() {
   return (
     <div className="mx-auto flex max-w-5xl flex-col gap-8">
       <header className="flex flex-col gap-2">
-        <p className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
-          Changes
-        </p>
-        <h1 className="text-2xl font-semibold tracking-tight">What changed</h1>
+        <h1 className="text-2xl font-semibold tracking-tight">Changes</h1>
         <p className="max-w-2xl text-sm leading-relaxed text-muted-foreground">
           Browse what changed and open a change to inspect its evidence.
         </p>

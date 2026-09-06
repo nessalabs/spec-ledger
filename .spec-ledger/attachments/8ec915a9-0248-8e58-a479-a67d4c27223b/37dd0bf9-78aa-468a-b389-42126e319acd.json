@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "37dd0bf9-78aa-468a-b389-42126e319acd",
+  "turnId": "8ec915a9-0248-8e58-a479-a67d4c27223b",
+  "kind": "image",
+  "title": "UUID work list — desktop",
+  "path": ".spec-ledger/evidence/screenshots/uuid-work-desktop.png",
+  "mediaType": "image/jpeg",
+  "byteLength": 76281,
+  "contentDigest": "d86e6256de8b8965df5e7547d10502594aaa9391302f5cb9d35daaee52b3fc21",
+  "visualEvidence": {
+    "sliceId": "596b8830-61c6-887a-b6c3-9ae0561f2761",
+    "surface": "UUID work list — desktop",
+    "sourceDigest": "33c0154adae867718148d5db7540f8a190ee585ee7db06737d5c78c2a1e92e28",
+    "revisionDigest": "8e73475305d4952bb9e2aa6318ae4742b205dd92e1a86f81e32751928ff7bdc2",
+    "recordedAt": "2026-09-06T19:30:33.558Z"
+  },
+  "note": "Recorded visual coverage; image adequacy is assessed in review."
+}

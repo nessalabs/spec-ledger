@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "a9097278-3a9d-81fa-8a5b-720babfaf1e0",
+  "reason": "da84f6c1-3d94-8d66-8f41-dd67dfc07df0 product is UI Release pack script, publish.yml UI asset steps, README client/server one-liner; scripts/pack-ui-release.mjs and publish.yml sit outside sealed 4a65c48e-eaf5-8e43-b1b6-4c7bc8c793ca expectedPaths; residual dirty skills/lockfile/docs from prior d1be55a6-11bb-8460-8650-ddf0ecac8185 slices waived for this turn.",
+  "actor": "human",
+  "treeDigest": "3e6411676a1964a6a66af9dc6cf567478222965d85438710b68f154f71d1b775",
+  "createdAt": "2026-09-04T20:52:32.242Z",
+  "workstreamId": "d1be55a6-11bb-8460-8650-ddf0ecac8185",
+  "turnId": "da84f6c1-3d94-8d66-8f41-dd67dfc07df0",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/align-waivers/AW-07.json",
+        "id": "T-024/AW-07",
+        "sha256": "35b75c30a89bf6aa721ff2b753bcf6e7dee083b24ac7626d647ac9fdcd4ff4a8"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/align-waivers/AW-07.json",
+        "id": "T-024/AW-07",
+        "sha256": "35b75c30a89bf6aa721ff2b753bcf6e7dee083b24ac7626d647ac9fdcd4ff4a8"
+      }
+    },
+    "historical": true
+  }
+}

@@ -10,12 +10,12 @@
     "reviewer": "agent:sl-dev-break",
     "verdict": "approve",
     "blocking": false,
-    "resolvesReviewId": "T-045/R-01",
+    "resolvesReviewId": "e5869657-5c9f-8acb-b287-9befc67a9816",
     "resolvesFindingIds": [
-      "T-045/R-01#F-01"
+      "e5869657-5c9f-8acb-b287-9befc67a9816#5a1c9d04-d7ea-84b2-8156-4e1819adbc26"
     ],
     "plainSummary": "Current screenshots cover the changed screens, valid coverage no longer gets rejected, and all three slices pass their regression checks.",
-    "summary": "Current-source review covers W-014 SLC-01, SLC-02 and SLC-03. Reran node --test packages/ledger/dist/evidence/visual.break.test.js packages/ledger/dist/evidence/visual.test.js packages/ledger/dist/optimization/*.test.js packages/mcp/dist/optimization.lifecycle.test.js packages/ui/lib/experiment-chart.test.mjs packages/ledger/dist/session/visual-evidence.break.test.js packages/ledger/dist/session/evidence.break.test.js packages/ui/lib/simplicity.break.test.mjs packages/ui/lib/check-evidence.test.mjs; exit 0, 45 passed. Unchanged alternate-allocation killer now passes after augmenting-path matching fix. Independently inspected T-045-desktop.png: passing metadata collapsed, description/actions and actual output clear. T-045-mobile.png: readable full-width description above actions, wrapped output, no horizontal clipping. T-045-missing.png: three exact missing surfaces and instruction to attach current screenshots prominently visible; supporting demo clearly historical. Shared evaluator confirms all three current T-045 surfaces satisfied. Prior additive experiment behavior, image limits, passive reads, failure/history honesty and retry identity remain green.",
+    "summary": "Current-source review covers 29c935b4-56bd-84a0-b887-e280d775f54d 04932de5-9225-81d4-b42c-c13f79e6c5be, b21da6cf-af77-8a39-bf8e-bfdc0d5b3a95 and d67e07f2-7343-88d2-afeb-0fe6f3c8c377. Reran node --test packages/ledger/dist/evidence/visual.break.test.js packages/ledger/dist/evidence/visual.test.js packages/ledger/dist/optimization/*.test.js packages/mcp/dist/optimization.lifecycle.test.js packages/ui/lib/experiment-chart.test.mjs packages/ledger/dist/session/visual-evidence.break.test.js packages/ledger/dist/session/evidence.break.test.js packages/ui/lib/simplicity.break.test.mjs packages/ui/lib/check-evidence.test.mjs; exit 0, 45 passed. Unchanged alternate-allocation killer now passes after augmenting-path matching fix. Independently inspected da66d16d-d4e0-837e-a34b-fb7cec0d855d-desktop.png: passing metadata collapsed, description/actions and actual output clear. da66d16d-d4e0-837e-a34b-fb7cec0d855d-mobile.png: readable full-width description above actions, wrapped output, no horizontal clipping. da66d16d-d4e0-837e-a34b-fb7cec0d855d-missing.png: three exact missing surfaces and instruction to attach current screenshots prominently visible; supporting demo clearly historical. Shared evaluator confirms all three current da66d16d-d4e0-837e-a34b-fb7cec0d855d surfaces satisfied. Prior additive experiment behavior, image limits, passive reads, failure/history honesty and retry identity remain green.",
     "killersCited": [
       "packages/ledger/src/evidence/visual.break.test.ts::visual breaker: closed turns and revoked permission cannot publish new screenshots",
       "packages/ledger/src/evidence/visual.break.test.ts::visual breaker: wrong turn, stale guards and invalid declarations fail closed",
@@ -41,13 +41,13 @@
     "findings": [],
     "alertOnSeverity": "high",
     "residualRisks": [
-      "One out-of-intent SLC-03 killer: alternate capture matching across surfaces.",
+      "One out-of-intent d67e07f2-7343-88d2-afeb-0fe6f3c8c377 killer: alternate capture matching across surfaces.",
       "Screenshot adequacy was visually reviewed for the three declared changed surfaces; machine coverage validates provenance and unique images, not semantic image content.",
       "No production edits by breaker."
     ],
     "schemaVersion": 1,
-    "id": "T-045/R-02",
-    "turnId": "T-045",
+    "id": "5f73944e-2229-8cdb-a215-21cd45bb3463",
+    "turnId": "da66d16d-d4e0-837e-a34b-fb7cec0d855d",
     "target": "code",
     "treeDigest": "e1b00fc86c55eea046dfadb4e8e1cc3cceb2d916543549c9542441569460e6fd"
   }

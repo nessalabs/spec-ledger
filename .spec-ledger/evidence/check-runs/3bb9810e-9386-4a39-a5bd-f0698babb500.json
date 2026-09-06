@@ -1,7 +1,7 @@
 {
   "runId": "3bb9810e-9386-4a39-a5bd-f0698babb500",
   "requestId": "batch-3bb9810e-9386-4a39-a5bd-f0698babb500",
-  "bindingId": "b-sl-025",
+  "bindingId": "bc2c8e56-0cda-8b8a-a9a0-bafe5989265f",
   "state": "finished",
   "command": "node --test packages/ledger/dist/execution/*.test.js packages/mcp/dist/execution.lifecycle.test.js",
   "cwd": "/Users/nessa/Documents/NessaLabs/spec-ledger",

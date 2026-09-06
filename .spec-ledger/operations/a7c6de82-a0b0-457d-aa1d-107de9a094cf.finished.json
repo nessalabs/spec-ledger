@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "requestId": "a7c6de82-a0b0-457d-aa1d-107de9a094cf",
+  "operation": "record_decision",
+  "inputDigest": "e15d65901525aed70fdf09345ef95f48bf70973c0cb3d2ab8c7e6de4b39531e0",
+  "finishedAt": "2026-09-06T08:06:41.748Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "turnId": "ee4292d1-b9ee-8e3e-8a5a-57cf6155baf3",
+    "decision": "Launch the installed server bin directly in the packaging test and assert its process is gone after timeout.",
+    "rationale": "CI run 34020621784 preserved the 4478b980-87e5-8f31-a57e-8c06246e0798 failure: the second server startup gets EADDRINUSE on 127.0.0.1:8799 after the first full test run passed. The npx wrapper does not reliably own and terminate the server child on Linux. Directly launching the manifest-declared installed bin gives spawnSync ownership while preserving the real packaged-server startup assertion and adding process termination assertions.",
+    "basis": {
+      "at": "2026-09-06T08:06:41.746Z",
+      "contextDigest": "059b739f8553561d8a20a00557d2f371fc9a8f6b5315928702b84b98c8620e82",
+      "sealRevision": 1
+    },
+    "alternativesRejected": [
+      "Changing the port alone would hide the leaked process without fixing cleanup.",
+      "Skipping the second packaging check or weakening the startup assertion would hide the CI failure."
+    ],
+    "id": "616c0399-16a9-8ce4-9614-e7cba439f42b"
+  }
+}

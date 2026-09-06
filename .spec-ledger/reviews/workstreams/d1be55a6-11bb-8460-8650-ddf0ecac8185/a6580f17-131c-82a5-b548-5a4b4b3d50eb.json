@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "id": "a6580f17-131c-82a5-b548-5a4b4b3d50eb",
+  "workstreamId": "d1be55a6-11bb-8460-8650-ddf0ecac8185",
+  "kind": "adversarial",
+  "target": "spec",
+  "reviewer": "agent:sl-plan-break-spec",
+  "verdict": "approve",
+  "blocking": false,
+  "alertOnSeverity": "high",
+  "summary": "Re-break after SR-01 amends. Related pack: features cli/verify/client/server/lattice (cli entryPoints now include package.jsons + publish.yml); claims 67609c19-de05-862c-8db7-e5dc95f38cee..004/007/008; 628207d3-7b88-880b-abe1-acd523f8572f..018; worktree caution-only. Highs cleared: normative init table + negatives + verify oracle (F1); Lattice path B Release asset only (F2); pack oracles no workspace/file (F3); claim split 628207d3-7b88-880b-abe1-acd523f8572f..018 (F4); expectedPaths on all slices (F5); publish.yml Release-only + dry-run + tag match + NPM_TOKEN docs with securitySensitive false but acceptance-bound negatives (F6). Version pinned 0.1.0-alpha.0; bet done = workflow+docs+dry-run. Soft residuals only — not alert-threshold.",
+  "plainSummary": "The amended plan is seal-ready: init, pack, Lattice Release asset, and publish rules are clear enough to build.",
+  "resolvesReviewId": "cee6b88e-a62f-8821-9319-babc533e5522",
+  "resolvesFindingIds": [
+    "cee6b88e-a62f-8821-9319-babc533e5522#b7ec61d0-ced3-8fca-9a05-e8dcb67fc4aa",
+    "cee6b88e-a62f-8821-9319-babc533e5522#eef8044b-b21f-83d6-8616-47d99cf9a99a",
+    "cee6b88e-a62f-8821-9319-babc533e5522#a9a5f9ee-4613-8b0b-aef4-58fe8bdaeb2d",
+    "cee6b88e-a62f-8821-9319-babc533e5522#40e5ecae-4249-886d-9137-b902e3f5cc4a",
+    "cee6b88e-a62f-8821-9319-babc533e5522#7d139c8c-58af-88af-ab1b-dde8b33e081a",
+    "cee6b88e-a62f-8821-9319-babc533e5522#1785807a-b63d-80ad-af43-252dda0e494a",
+    "cee6b88e-a62f-8821-9319-babc533e5522#43b114fe-628b-85b1-b0f9-771217aa766d",
+    "cee6b88e-a62f-8821-9319-babc533e5522#61ef2860-469c-8a89-9974-1bc871599e64",
+    "cee6b88e-a62f-8821-9319-babc533e5522#df73eaf3-6023-8007-87ae-0254e94fe0ee",
+    "cee6b88e-a62f-8821-9319-babc533e5522#5368547c-e082-8ae3-b19a-095f8e3fa8ff",
+    "cee6b88e-a62f-8821-9319-babc533e5522#b28be955-1d28-8397-87c0-e5e6e5cc4020"
+  ],
+  "residualRisks": [
+    "Lattice asset acceptance bans file:../../../nessa specifically; shipped tree should also drop file:../client (and any file: protocol) when rewriting for the artifact — enforce in 4a65c48e-eaf5-8e43-b1b6-4c7bc8c793ca killers, not a new high gap",
+    "publish.yml publishes npm packages only; who builds/attaches the Lattice Release asset (workflow upload vs human attach on cut) is rabbit-hole — pick smallest at build time",
+    "Partial-failure rule covers dirs-before-ledger.json; also ensure vision/graph/policy exist before marking init success (ledger.json last already implies that if writers are ordered)",
+    "Graph feature cli.claimIds still empty until promote PC→SL",
+    "worktree scan caution-only — not a seal blocker",
+    "Proposed killers: K-init-table, K-init-reinit, K-init-no-pass, K-pack-ledger-bin, K-pack-no-workspace, K-lattice-asset-no-file-deps, K-publish-yml-triggers, K-version-tag-match"
+  ],
+  "findings": [
+    {
+      "id": "486d33e8-cfc7-8026-aa06-ee21341ccc13",
+      "severity": "low",
+      "gap": "Spec-break approve only — human must seal d1be55a6-11bb-8460-8650-ddf0ecac8185 (specDigest + sealedBy) before sl-dev-build. Agent must not seal.",
+      "plainImpact": "Until a human seals, builders must not treat this bet as approved to implement.",
+      "fixProposal": "Human reads pitch + 628207d3-7b88-880b-abe1-acd523f8572f..018 + SR-01/SR-02, then seals via workstream seal CLI.",
+      "evidencePath": ".spec-ledger/workstreams/d1be55a6-11bb-8460-8650-ddf0ecac8185.json"
+    },
+    {
+      "id": "27d40bf7-b63f-8e34-8214-4da33c5c0dc3",
+      "severity": "moderate",
+      "claimId": "29a5b902-b969-823e-86f5-89b23debe467",
+      "gap": "29a5b902-b969-823e-86f5-89b23debe467 / 4a65c48e-eaf5-8e43-b1b6-4c7bc8c793ca call out file:../../../nessa but packages/ui also uses file:../client. A Release asset that only rewrites the nessa path could still ship a broken file: client link. Intent of path B is clear; tighten killer/acceptance wording at build or treat as residual.",
+      "plainImpact": "A Lattice download could still fail outside this monorepo if local file links remain.",
+      "fixProposal": "At seal or first 4a65c48e-eaf5-8e43-b1b6-4c7bc8c793ca turn: acceptance/killer requires zero file: and workspace: protocols in the shipped asset tree (client/server resolved to npm 0.1.0-alpha.0 or bundled).",
+      "evidencePath": "packages/ui/package.json"
+    }
+  ],
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/reviews/workstreams/W-005/SR-02.json",
+        "id": "W-005/SR-02",
+        "sha256": "2c3e7b36acdf864ff90dbf097124cd9127fa609ba50b7cc227c22a5eac29840a"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/reviews/workstreams/W-005/SR-02.json",
+        "id": "W-005/SR-02",
+        "sha256": "2c3e7b36acdf864ff90dbf097124cd9127fa609ba50b7cc227c22a5eac29840a"
+      }
+    },
+    "historical": true
+  }
+}

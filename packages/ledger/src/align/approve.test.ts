@@ -5,7 +5,7 @@ import type { Review, Turn } from "../types.js"
 
 const turn: Turn = {
   schemaVersion: 1,
-  id: "T-100",
+  id: "1ede94b5-e79d-50f4-847f-4006b37afe48",
   status: "open",
   openedAt: "2026-01-01T00:00:00.000Z",
   opened: {
@@ -24,8 +24,8 @@ const turn: Turn = {
 function baseReview(over: Partial<Review> = {}): Review {
   return {
     schemaVersion: 1,
-    id: "T-100/R-01",
-    turnId: "T-100",
+    id: "a529efe2-a6c4-5bb5-9fb7-86674843a5f2",
+    turnId: "1ede94b5-e79d-50f4-847f-4006b37afe48",
     target: "code",
     kind: "human",
     reviewer: "agent:align",

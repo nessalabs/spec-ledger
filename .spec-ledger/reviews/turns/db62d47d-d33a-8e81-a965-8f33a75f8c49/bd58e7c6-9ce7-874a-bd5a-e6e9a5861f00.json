@@ -1,0 +1,193 @@
+{
+  "schemaVersion": 1,
+  "id": "bd58e7c6-9ce7-874a-bd5a-e6e9a5861f00",
+  "turnId": "db62d47d-d33a-8e81-a965-8f33a75f8c49",
+  "workstreamId": "76451749-a54f-8579-96f2-dcec19d79026",
+  "kind": "adversarial",
+  "target": "code",
+  "reviewer": "agent:sl-dev-break",
+  "verdict": "request-changes",
+  "blocking": true,
+  "treeDigest": "6f1387b65ddd046e07082e5a86944a1430b73390272b95d57cab980027faaa4b",
+  "summary": "Phase II align stack: 10/10 killers red. Closed-turn align check is blind to product changes after close (dirty or committed), post-close digest fallback accepts any waiver/review digest, treeDigest is path-only (content drift invisible), unresolvable baseCommit silently empties product paths and skips the close gate, approve waiverIds are never resolved, reviewer=producer is only enforced in the CLI, `..` segments smuggle exempt/covered, waiver CLI accepts closed/nonexistent turns with arbitrary digests, pre-push skips silently without dist.",
+  "findings": [
+    {
+      "id": "7c656ad3-f84e-879a-b37f-e512d970aefe",
+      "severity": "high",
+      "claimId": "82fa5163-847a-8bb4-9cf4-61c3fb607187",
+      "gap": "alignCheck for a closed target turn uses turn.facts.files only. With no open turn (post-close, CI, pre-push) any new dirty OR committed uncovered product path is never inspected — report says 'align OK — 1 product path(s) covered' while packages/rogue/evil.ts exists. pnpm ledger:align / pre-push / CI exit 0. 654cc896-be04-8523-bb8b-a64161d0e665 acceptance 'fail without approve/waiver for product diffs' is not met for the common post-close case.",
+      "plainImpact": "After a turn is closed, extra product files could still pass CI and git push without a new review.",
+      "fixProposal": "For a closed target turn, paths = facts.files ∪ changedPathsSince(facts.commit) ∪ dirtyPaths. Fail (or at least mark uncovered) when product paths exist beyond the closed turn's recorded files; consider refusing align OK when no open turn and product diff vs HEAD~/upstream is non-empty.",
+      "evidence": {
+        "kind": "test",
+        "citedTest": "packages/ledger/src/align/check.break.test.ts::new DIRTY uncovered product path after turn close must fail align check",
+        "ran": true,
+        "command": "pnpm --filter @nessa/spec-ledger test",
+        "observedOutput": "not ok 1 - new DIRTY uncovered product path after turn close must fail align check | dirty uncovered packages/rogue/evil.ts invisible; report=align OK — 1 product path(s) covered (mixed) | expected: false actual: true || not ok 2 - COMMITTED uncovered product path after turn close (clean tree, CI) must fail align check | committed uncovered packages/rogue/evil.ts invisible on clean tree; report=align OK — 1 product path(s) covered (mixed)"
+      }
+    },
+    {
+      "id": "0514fb05-70a5-827f-8e88-fc2e64f95098",
+      "severity": "high",
+      "claimId": "afbad76d-e486-8108-9e2c-231bfc254ab8",
+      "gap": "Post-commit digest fallback (check.ts L117-123) adds EVERY review.treeDigest and EVERY waiver.treeDigest of the closed turn to the accepted set, then asks alignApproveSatisfied(d) for each — which is tautologically true for the digest taken from that very waiver/review. A waiver with treeDigest 'ffff…' that never matched any tree satisfies the gate (satisfiedBy=waiver).",
+      "plainImpact": "A fake skip note could count as a real skip, so uncovered files would look approved.",
+      "fixProposal": "Fallback must accept only facts.verify.treeDigest (the digest the close gate actually verified) — never digests harvested from the reviews/waivers being checked. Require waiver/approve digest === close-time digest or current digest.",
+      "evidence": {
+        "kind": "test",
+        "citedTest": "packages/ledger/src/align/check.break.test.ts::post-close digest fallback must not accept a waiver whose treeDigest never matched any tree",
+        "ran": true,
+        "command": "pnpm --filter @nessa/spec-ledger test",
+        "observedOutput": "not ok 3 - post-close digest fallback must not accept a waiver whose treeDigest never matched any tree | garbage-digest waiver accepted via fallback; satisfiedBy=waiver | expected: false actual: true"
+      }
+    },
+    {
+      "id": "5f0149bc-a05a-8309-9fe8-3ed3e19c25e7",
+      "severity": "high",
+      "claimId": "afbad76d-e486-8108-9e2c-231bfc254ab8",
+      "gap": "computeTreeDigest hashes HEAD sha + tracked path list + dirty path list only. Editing the CONTENT of an already-dirty product file after align approve yields the identical digest, so the approve/waiver stays valid for code the reviewer never saw. 'Bound to treeDigest' is bound to a path set, not a tree.",
+      "plainImpact": "Editing a file after approve would still look like the same tree — the old approve would cover different code.",
+      "fixProposal": "Include blob hashes: e.g. `git write-tree` after `git add -A --intent-to-add` into a temp index, or hash `git hash-object` per dirty path (and untracked). Keep .spec-ledger/** excluded.",
+      "evidence": {
+        "kind": "test",
+        "citedTest": "packages/ledger/src/git/tree.test.ts::treeDigest must change when a dirty file's CONTENT changes (same path set)",
+        "ran": true,
+        "command": "pnpm --filter @nessa/spec-ledger test",
+        "observedOutput": "not ok 1 - treeDigest must change when a dirty file's CONTENT changes (same path set) | expected: 'd8456e07f269819eb534ea5cb9a491c868155b38a6da6001efb8dd9a95fe0bf6' actual: 'd8456e07f269819eb534ea5cb9a491c868155b38a6da6001efb8dd9a95fe0bf6'"
+      }
+    },
+    {
+      "id": "b088d5fa-3174-8e3e-a802-143d317896a9",
+      "severity": "high",
+      "claimId": "82fa5163-847a-8bb4-9cf4-61c3fb607187",
+      "gap": "changedPathsSince swallows git failure (names.ok=false → committed=[]) and returns dirty-only. With an unresolvable baseCommit (shallow CI clone — actions/checkout@v4 defaults to fetch-depth 1 — or gc'd/rebased base) and a clean tree, productPaths=0 so assertAlignCloseAllowed returns early and turn close passes with an uncovered committed product file; alignCheck likewise reports 0 product paths.",
+      "plainImpact": "If git cannot see the start commit, close and CI might skip the coverage check and let uncovered files through.",
+      "fixProposal": "Fail closed: throw when baseCommit is set but `git diff base...HEAD` fails (or when `git cat-file -e base` fails); CI docs/workflow must use fetch-depth: 0 for ledger:align.",
+      "evidence": {
+        "kind": "test",
+        "citedTest": "packages/ledger/src/align/check.break.test.ts::close must refuse when baseCommit is unresolvable and committed product paths are uncovered",
+        "ran": true,
+        "command": "pnpm --filter @nessa/spec-ledger test",
+        "observedOutput": "not ok 1 - close must refuse when baseCommit is unresolvable and committed product paths are uncovered | Missing expected exception: close gate skipped align because changedPathsSince fell back to dirty-only || packages/ledger/src/git/tree.test.ts: not ok 2 - changedPathsSince must fail closed when baseCommit cannot be resolved | unresolvable base silently dropped committed product paths: []"
+      }
+    },
+    {
+      "id": "7e07986f-b386-82c1-91eb-467ad2867875",
+      "severity": "high",
+      "claimId": "afbad76d-e486-8108-9e2c-231bfc254ab8",
+      "gap": "isAlignApproveReview / alignApproveSatisfied only check waiverIds.length > 0. An approve with non-empty uncoveredPaths and waiverIds ['T-100/AW-99'] satisfies the gate with zero waivers on disk. waiverIds are never resolved to real waivers for the same turn/treeDigest, so 'approve without covering waiver' is one string away.",
+      "plainImpact": "Naming a skip that does not exist would still count — uncovered files could ship.",
+      "fixProposal": "Resolve each waiverId against listAlignWaiversForTurn; require every id to exist, belong to the same turn, and have treeDigest === review.treeDigest. Same check in assertAlignApproveValid (CLI) using repoRoot.",
+      "evidence": {
+        "kind": "test",
+        "citedTest": "packages/ledger/src/align/break.test.ts::approve with uncoveredPaths + waiverIds pointing at NO existing waiver must not satisfy",
+        "ran": true,
+        "command": "pnpm --filter @nessa/spec-ledger test",
+        "observedOutput": "not ok 1 - approve with uncoveredPaths + waiverIds pointing at NO existing waiver must not satisfy | bogus waiverIds satisfied the align gate | expected: false actual: true"
+      }
+    },
+    {
+      "id": "961eedd6-6a46-8fe1-9c2c-4c44f57fcb46",
+      "severity": "moderate",
+      "claimId": "afbad76d-e486-8108-9e2c-231bfc254ab8",
+      "gap": "Wrong principal: reviewer !== producer is enforced only in assertAlignApproveValid (CLI path). The close gate / alignCheck use isAlignApproveReview, which never sees the turn, so a hand-written review JSON with reviewer === turn.opened.producedBy passes turn close. Additionally producedBy is the tool string '@nessa/spec-ledger@0.1.0', so even the CLI check is vacuous — no agent identity is ever recorded on the turn.",
+      "plainImpact": "The person who made the change could approve their own coverage check.",
+      "fixProposal": "Pass turn into alignApproveSatisfied/assertAlignCloseAllowed and reject reviewer === producedBy (and === any recorded actor). Record the acting agent (e.g. opened.actor) at turn open so the producer check has a real principal.",
+      "evidence": {
+        "kind": "test",
+        "citedTest": "packages/ledger/src/align/break.test.ts::close gate must refuse hand-written approve whose reviewer equals turn producer",
+        "ran": true,
+        "command": "pnpm --filter @nessa/spec-ledger test",
+        "observedOutput": "not ok 2 - close gate must refuse hand-written approve whose reviewer equals turn producer | Missing expected exception."
+      }
+    },
+    {
+      "id": "9b08041f-6dbc-8bf3-9291-4e61c22c98b1",
+      "severity": "moderate",
+      "claimId": "82fa5163-847a-8bb4-9cf4-61c3fb607187",
+      "gap": "Out-of-intent (poison input): normalizeRepoPath does not collapse `..`. '.spec-ledger/../packages/rogue/evil.ts' is treated as EXEMPT (prefix .spec-ledger/) and disappears from productPaths; 'packages/ledger/../../secret.ts' is COVERED by locator packages/ledger. Any caller feeding non-canonical paths (facts, user paths, future --paths flag) can smuggle.",
+      "plainImpact": "Crafted file paths could hide from the coverage check.",
+      "fixProposal": "Use path.posix.normalize and reject/flag paths that start with '../', are absolute, or still contain '..' after normalization; treat them as uncovered (never exempt).",
+      "evidence": {
+        "kind": "test",
+        "citedTest": "packages/ledger/src/align/break.test.ts::dot-dot segments must not smuggle paths into exempt or covered sets",
+        "ran": true,
+        "command": "pnpm --filter @nessa/spec-ledger test",
+        "observedOutput": "not ok 1 - dot-dot segments must not smuggle paths into exempt or covered sets | traversal under a covered locator must not count as covered | + actual - expected | + [ 'packages/ledger/../../secret.ts' ] | - []"
+      }
+    },
+    {
+      "id": "ac36704b-0334-8204-a4c9-fb636b888912",
+      "severity": "low",
+      "claimId": "afbad76d-e486-8108-9e2c-231bfc254ab8",
+      "gap": "Out-of-intent (poison policy): alignReviewerPrefix '' (empty string) is not replaced by the default (`??` only catches null/undefined) and ''.startsWith is always true, so any reviewer passes the prefix check.",
+      "plainImpact": "A blank reviewer rule would accept anyone as the coverage reviewer.",
+      "fixProposal": "Treat empty/whitespace prefix as invalid policy (throw) or fall back to 'agent:align' via `|| 'agent:align'` plus trim.",
+      "evidence": {
+        "kind": "test",
+        "citedTest": "packages/ledger/src/align/break.test.ts::empty alignReviewerPrefix must not accept any reviewer",
+        "ran": true,
+        "command": "pnpm --filter @nessa/spec-ledger test",
+        "observedOutput": "not ok 3 - empty alignReviewerPrefix must not accept any reviewer | Missing expected exception."
+      }
+    },
+    {
+      "id": "b9480feb-3dfd-8575-91c4-cc1058cf65ed",
+      "severity": "moderate",
+      "claimId": "afbad76d-e486-8108-9e2c-231bfc254ab8",
+      "gap": "CLI `align waiver`: (a) accepts --turn for a CLOSED turn (no status check) — combined with 0514fb05-70a5-827f-8e88-fc2e64f95098 this retro-waives a closed turn; (b) --tree-digest is operator-supplied and unvalidated against the tree (32-char garbage accepted); (c) --turn T-999 (nonexistent) does not error — it silently writes an orphan repo-level waiver AW-02 with no turnId, which is exempt from alignSkipMaxPerTurn.",
+      "plainImpact": "You could write a skip for a finished or fake turn, or stamp any tree id.",
+      "fixProposal": "Refuse waiver when --turn is not found or turn.status !== 'open'; drop --tree-digest or require it to equal computeTreeDigest(root); count repo-level waivers against a policy max or forbid them when any workstream turn exists.",
+      "evidence": {
+        "kind": "command",
+        "command": "node packages/ledger/dist/cli/main.js align waiver --root $D --turn d8837bac-91f8-8262-82e3-0a000a74639a --tree-digest ffffffffffffffffffffffffffffffff --reason '…40+ chars…' --actor agent:anyone; node … align waiver --root $D --turn T-999 --reason '…' --actor agent:anyone",
+        "observedOutput": "wrote waiver d8837bac-91f8-8262-82e3-0a000a74639a/AW-01\nEXIT=0\n{ \"id\": \"d8837bac-91f8-8262-82e3-0a000a74639a/AW-01\", \"treeDigest\": \"ffffffffffffffffffffffffffffffff\", \"turnId\": \"d8837bac-91f8-8262-82e3-0a000a74639a\" } (d8837bac-91f8-8262-82e3-0a000a74639a status=closed)\nwrote waiver AW-02\nEXIT=0\nAW-01.json AW-02.json",
+        "exitCode": 0
+      }
+    },
+    {
+      "id": "e8b57761-3eed-88ab-b5d4-c48b4fec4f9c",
+      "severity": "moderate",
+      "claimId": "82fa5163-847a-8bb4-9cf4-61c3fb607187",
+      "gap": "scripts/git-hooks/pre-push exits 0 with 'CLI not built — skip align' when packages/ledger/dist is absent. Sealed acceptance says 'silence is not skip'; a fresh clone / `git clean` pushes product diffs with no align gate and no waiver record.",
+      "plainImpact": "If the tool is not built, git push would skip the coverage check with no record.",
+      "fixProposal": "Exit 1 with instructions when dist is missing (or attempt `pnpm --filter @nessa/spec-ledger build` first). Never exit 0 without running the check.",
+      "evidence": {
+        "kind": "command",
+        "command": "cd $(mktemp -d) && git init -q && … && cp scripts/git-hooks/pre-push ./hook.sh && bash ./hook.sh; echo EXIT=$?",
+        "observedOutput": "spec-ledger pre-push: CLI not built — skip align (run pnpm -r build)\nEXIT=0",
+        "exitCode": 0
+      }
+    }
+  ],
+  "killersCited": [
+    "packages/ledger/src/align/break.test.ts::dot-dot segments must not smuggle paths into exempt or covered sets",
+    "packages/ledger/src/align/break.test.ts::approve with uncoveredPaths + waiverIds pointing at NO existing waiver must not satisfy",
+    "packages/ledger/src/align/break.test.ts::close gate must refuse hand-written approve whose reviewer equals turn producer",
+    "packages/ledger/src/align/break.test.ts::empty alignReviewerPrefix must not accept any reviewer",
+    "packages/ledger/src/git/tree.test.ts::treeDigest must change when a dirty file's CONTENT changes (same path set)",
+    "packages/ledger/src/git/tree.test.ts::changedPathsSince must fail closed when baseCommit cannot be resolved",
+    "packages/ledger/src/align/check.break.test.ts::new DIRTY uncovered product path after turn close must fail align check",
+    "packages/ledger/src/align/check.break.test.ts::COMMITTED uncovered product path after turn close (clean tree, CI) must fail align check",
+    "packages/ledger/src/align/check.break.test.ts::post-close digest fallback must not accept a waiver whose treeDigest never matched any tree",
+    "packages/ledger/src/align/check.break.test.ts::close must refuse when baseCommit is unresolvable and committed product paths are uncovered",
+    "cmd: align waiver on closed/nonexistent turn with arbitrary --tree-digest",
+    "cmd: pre-push hook without dist exits 0"
+  ],
+  "plainSummary": "If this shipped, coverage checks could still pass after files changed that no one reviewed.",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/reviews/turns/T-019/R-01.json",
+        "id": "T-019/R-01",
+        "sha256": "c70f2bfe4375ab0393f926c3fb0eb103e20c36e347f72d1ba436af615d5a7121"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/reviews/turns/T-019/R-01.json",
+        "id": "T-019/R-01",
+        "sha256": "c70f2bfe4375ab0393f926c3fb0eb103e20c36e347f72d1ba436af615d5a7121"
+      }
+    },
+    "historical": true
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "requestId": "6a47f202-ba97-4eec-9bad-7503e34cd958",
+  "operation": "record_permission",
+  "inputDigest": "71b01a146a4452467a9a30e7f2330ed174b6071d9318a2aa7355e433ae17399a",
+  "finishedAt": "2026-09-06T05:33:42.082Z",
+  "outcome": "succeeded",
+  "result": {
+    "action": "grant",
+    "mode": "request",
+    "workstreamId": "ef172105-4f40-8bbb-8abe-d1cd11ae618a",
+    "featureIds": [
+      "client",
+      "cli",
+      "lattice"
+    ],
+    "source": {
+      "kind": "agent-reported",
+      "reference": "User asked to continue building the saved workflow library and in-spec picker from ef172105-4f40-8bbb-8abe-d1cd11ae618a in this conversation."
+    },
+    "id": "2d312788-2407-8787-8582-f3dd38b8c3a9",
+    "schemaVersion": 1,
+    "createdAt": "2026-09-06T05:33:42.080Z"
+  }
+}

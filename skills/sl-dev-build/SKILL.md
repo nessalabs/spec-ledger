@@ -85,13 +85,13 @@ ask cohesive, **do not change meaning**, redact secrets/PII, strip abusive
 language. Never write raw chat dumps or credentials into the turn.
 
 ```bash
-pnpm exec spec-ledger context --workstream W-001 --slice SLC-01 --json
+pnpm exec spec-ledger context --workstream <workstream-uuid> --slice <slice-uuid> --json
 pnpm exec spec-ledger turn open \
-  --workstream W-001 \
+  --workstream <workstream-uuid> \
   --feature <id> \
   --goal "…" \
   --prompt "…" \
-  [--slice SLC-01]
+  [--slice <slice-uuid>]
 ```
 
 Until flags exist, set `intent.workstreamId`, `featureIds`, `sliceId`,
@@ -124,12 +124,12 @@ Commits during the turn should carry `SL-Turn:` trailers (see
 [provenance chain](../../docs/architecture/episodes.md)).
 
 ```bash
-pnpm exec spec-ledger turn close [--id T-00N] [--slice SLC-01]
+pnpm exec spec-ledger turn close [--id <turn-uuid>] [--slice <slice-uuid>]
 ```
 
 ### Finish the workstream
 
-When acceptance is met, run `spec-ledger complete --workstream W-NNN`.
+When acceptance is met, run `spec-ledger complete --workstream <workstream-uuid>`.
 Do not set `status` directly: completion also checks current evidence, permission,
 required reviews, and affected deferred commitments.
 

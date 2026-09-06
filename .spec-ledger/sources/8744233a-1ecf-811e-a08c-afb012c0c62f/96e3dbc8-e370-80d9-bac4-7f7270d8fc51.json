@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "turnId": "8744233a-1ecf-811e-a08c-afb012c0c62f",
+  "kind": "user-report",
+  "ref": "/var/folders/1w/wp9n0wwd22qgrf0zkhb2fk6r0000gn/T/codex-clipboard-b6aee8c1-925e-416f-bced-bf8a4a32add5.png",
+  "note": "User reported incomplete fixture graph crash while testing.",
+  "id": "96e3dbc8-e370-80d9-bac4-7f7270d8fc51",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/sources/T-031/S-01.json",
+        "id": "T-031/S-01",
+        "sha256": "07a21cfd763d6f65a44acd3b04e9332b11159e4ff7fafebc84069649a20e1adb"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/sources/T-031/S-01.json",
+        "id": "T-031/S-01",
+        "sha256": "07a21cfd763d6f65a44acd3b04e9332b11159e4ff7fafebc84069649a20e1adb"
+      }
+    },
+    "historical": true
+  }
+}

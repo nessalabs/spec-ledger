@@ -1,0 +1,29 @@
+{
+  "runId": "ab45c94b-c55a-4484-8d2f-6b06d64f63d5",
+  "requestId": "batch-ab45c94b-c55a-4484-8d2f-6b06d64f63d5",
+  "bindingId": "823982ba-7fa8-8c9d-9721-f2b128d0db00",
+  "state": "finished",
+  "command": "node --test packages/ledger/dist/session/evidence.break.test.js",
+  "cwd": "/Users/nessa/Documents/NessaLabs/spec-ledger-workflow-library",
+  "sourceDigest": "ba844f3d36db65f90547ba661e8265b694f58d7536aa4e035c153b435b814854",
+  "checkDigest": "23812f5ad30fbb32bb2595e45246e7e6a0054e2b6ba503b0c56282629a940269",
+  "startedAt": "2026-09-06T05:44:45.387Z",
+  "finishedAt": "2026-09-06T05:44:47.038Z",
+  "outcome": "pass",
+  "exitCode": 0,
+  "signal": null,
+  "durationMs": 1556,
+  "stdout": {
+    "path": ".spec-ledger/evidence/check-runs/ab45c94b-c55a-4484-8d2f-6b06d64f63d5-stdout.txt",
+    "capturedBytes": 881,
+    "sha256": "9b8ea6b100a98ce070c051d17534bf8e74e079c57b2d1ac69a3fffa948ef0992",
+    "truncated": false
+  },
+  "stderr": {
+    "path": ".spec-ledger/evidence/check-runs/ab45c94b-c55a-4484-8d2f-6b06d64f63d5-stderr.txt",
+    "capturedBytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "truncated": false
+  },
+  "reason": "exit 0"
+}

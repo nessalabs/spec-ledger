@@ -1,7 +1,7 @@
 {
   "runId": "d9b99d57-4632-418d-a9ce-c48384277c0b",
   "requestId": "batch-d9b99d57-4632-418d-a9ce-c48384277c0b",
-  "bindingId": "b-sl-028",
+  "bindingId": "a69fc4b7-ac59-8d37-954c-2e53efd1bda6",
   "state": "finished",
   "command": "node scripts/verify-completed-audit.mjs && node --test packages/ui/lib/completed-audit*.test.mjs",
   "cwd": "/Users/nessa/.codex/worktrees/24db/spec-ledger",

@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "turnId": "9d65b345-19e2-8652-8af7-b7cf95acb7ca",
+  "path": "docs/workstreams/11788af6-4cbe-834d-9993-8ee534b22b94-simple-feature-view/evidence/9d65b345-19e2-8652-8af7-b7cf95acb7ca/audit.md",
+  "kind": "log-excerpt",
+  "title": "Sol usability findings",
+  "mediaType": "text/markdown",
+  "id": "9b2b0eba-4871-87ff-998c-a3ce2224cf63",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/attachments/T-042/A-01.json",
+        "id": "T-042/A-01",
+        "sha256": "51160ab676373b26ac900c2d060ad6ff6ee60d250f902937e11cfe5e9c762533"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/attachments/T-042/A-01.json",
+        "id": "T-042/A-01",
+        "sha256": "51160ab676373b26ac900c2d060ad6ff6ee60d250f902937e11cfe5e9c762533"
+      }
+    },
+    "historical": true
+  }
+}

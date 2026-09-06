@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "ee4b88b6-f54b-8011-82e1-e4d44b94aaab",
+  "status": "promoted",
+  "statement": "At version 0.1.0-alpha.0, packed @nessalabs/spec-ledger installs outside this monorepo and exposes bin spec-ledger that runs --help, init, and verify; packed @nessalabs/spec-ledger-client and @nessalabs/spec-ledger-server contain no workspace: or file: dependency protocols and install/resolve against that ledger version.",
+  "rationale": "Consumers need an installable CLI and read-path packages without cloning the workspace.",
+  "workstreamId": "d1be55a6-11bb-8460-8650-ddf0ecac8185",
+  "suggestedLiveId": "4478b980-87e5-8f31-a57e-8c06246e0798",
+  "requiredEvidence": [
+    "integration",
+    "e2e"
+  ],
+  "liveId": "4478b980-87e5-8f31-a57e-8c06246e0798",
+  "updatedAt": "2026-09-04T20:22:40.070Z",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/proposed-claims/PC-016.json",
+        "id": "PC-016",
+        "sha256": "a8321d337691d82d9cbe511186481f58adc0bdba45b1cb8a20228ce7b0c7fa51"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/proposed-claims/PC-016.json",
+        "id": "PC-016",
+        "sha256": "a8321d337691d82d9cbe511186481f58adc0bdba45b1cb8a20228ce7b0c7fa51"
+      }
+    },
+    "historical": true
+  }
+}

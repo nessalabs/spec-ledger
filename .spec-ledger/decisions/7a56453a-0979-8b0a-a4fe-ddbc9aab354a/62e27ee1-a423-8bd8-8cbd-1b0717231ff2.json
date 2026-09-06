@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "turnId": "7a56453a-0979-8b0a-a4fe-ddbc9aab354a",
+  "decision": "The local MCP executable exposes the same current workstream observation.",
+  "rationale": "A real stdio client listed the tools and read 815c7a44-59df-8102-9769-bf8a74e49c0c with 7a56453a-0979-8b0a-a4fe-ddbc9aab354a open and zero passing requirements. This confirms transport connectivity, not completion of the revamp.",
+  "basis": {
+    "at": "2026-09-05T00:23:39.587Z",
+    "contextDigest": "aaa63c9cd99afe977a474f8a17cb4aaafe7ae07e298330282fbd4f1a3a971304",
+    "sealRevision": 1
+  },
+  "id": "62e27ee1-a423-8bd8-8cbd-1b0717231ff2",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/decisions/T-034/D-02.json",
+        "id": "T-034/D-02",
+        "sha256": "560fd8632fa9ef978bc0ae2eb6e227e37db00e025c47b2802018c1a76aba727e"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/decisions/T-034/D-02.json",
+        "id": "T-034/D-02",
+        "sha256": "560fd8632fa9ef978bc0ae2eb6e227e37db00e025c47b2802018c1a76aba727e"
+      }
+    },
+    "historical": true
+  },
+  "sequence": 2
+}

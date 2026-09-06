@@ -210,14 +210,14 @@ export function TurnDetail({
               <span className="capitalize">{turn.intent.changeType}</span>
             </>
           ) : null}
-          <span className="font-mono text-xs text-muted-foreground/70">{turn.id}</span>
+          <details className="text-xs"><summary className="cursor-pointer">Reference</summary><span className="break-all font-mono">{turn.id}</span></details>
         </div>
         {freshness === "stale" ? (
-          <p className="rounded-md border border-amber-500/30 bg-amber-500/5 px-3 py-2 text-sm text-amber-200/90">
+          <p className="rounded-md border border-amber-500/30 bg-amber-500/5 px-3 py-2 text-sm text-amber-700 dark:text-amber-200/90">
             Recorded verify no longer matches the live ledger — treat pass/fail as
             unknown. See{" "}
-            <Link href="/verify" className="underline-offset-4 hover:underline">
-              live verify
+            <Link href="/claims" className="underline-offset-4 hover:underline">
+              current evidence
             </Link>
             .
           </p>
@@ -419,10 +419,7 @@ export function TurnDetail({
                   href={`/workstreams/${encodeURIComponent(workstream.id)}`}
                   className="text-sm hover:underline"
                 >
-                  {presentationCopy(workstream.title)}{" "}
-                  <span className="font-mono text-[11px] text-muted-foreground">
-                    {workstream.id}
-                  </span>
+                  {presentationCopy(workstream.title)}
                 </Link>
               </div>
             ) : null}

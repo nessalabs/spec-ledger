@@ -7,7 +7,7 @@
   "outcome": "succeeded",
   "result": {
     "schemaVersion": 1,
-    "id": "T-040",
+    "id": "d720cc6b-3fe9-89dd-8ef4-0c0416e1e35d",
     "status": "open",
     "openedAt": "2026-09-05T03:25:20.635Z",
     "opened": {
@@ -15,15 +15,15 @@
       "baseCommit": "0d403e92c35186ae6507181fba4902a00b55a6c0",
       "treeDigest": "55e42d5f4adb32ab023b25bfeab5d30e00ba41b243cde48b457b7ecf56068706",
       "dirtyAtOpen": [
-        ".spec-ledger/authority/AUTH-W011-REQUEST.json",
-        ".spec-ledger/reviews/workstreams/W-011/SR-01.json",
-        ".spec-ledger/workstreams/W-011.json",
-        ".spec-ledger/workstreams/W-011.seals/1.json",
-        "docs/workstreams/W-011-simple-navigation/spec.md"
+        ".spec-ledger/authority/ba52f9d6-c484-898d-9dc3-034af46da76c.json",
+        ".spec-ledger/reviews/workstreams/0f65234d-cf94-8f8d-a7c9-0ce6ef01e073/d2b34ecb-cb0a-8aa0-955e-221e99d37751.json",
+        ".spec-ledger/workstreams/0f65234d-cf94-8f8d-a7c9-0ce6ef01e073.json",
+        ".spec-ledger/workstreams/0f65234d-cf94-8f8d-a7c9-0ce6ef01e073.seals/1.json",
+        "docs/workstreams/0f65234d-cf94-8f8d-a7c9-0ce6ef01e073-simple-navigation/spec.md"
       ],
       "contextDigest": "b5b08d13ec949cd8892203ab6e44be6593e015b7f69a4f2e4ce205ddac1b2029",
-      "contextWorkstreamId": "W-011",
-      "contextSliceId": "SLC-01",
+      "contextWorkstreamId": "0f65234d-cf94-8f8d-a7c9-0ce6ef01e073",
+      "contextSliceId": "67f295ed-b0ec-8e83-aa58-1c11d7cb8f4c",
       "contextSealRevision": 1,
       "contextGeneratedAt": "2026-09-05T03:25:20.635Z"
     },
@@ -32,8 +32,8 @@
       "restatedGoal": "Find the spec, progress and proof easily",
       "changeType": "feature",
       "riskLevel": "moderate",
-      "workstreamId": "W-011",
-      "sliceId": "SLC-01",
+      "workstreamId": "0f65234d-cf94-8f8d-a7c9-0ce6ef01e073",
+      "sliceId": "67f295ed-b0ec-8e83-aa58-1c11d7cb8f4c",
       "featureIds": [
         "lattice"
       ]

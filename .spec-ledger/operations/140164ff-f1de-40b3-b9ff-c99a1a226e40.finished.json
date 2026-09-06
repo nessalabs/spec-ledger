@@ -8,7 +8,7 @@
   "result": {
     "runId": "3b619d58-42fa-4b77-9281-0888e8cb1d8a",
     "requestId": "140164ff-f1de-40b3-b9ff-c99a1a226e40",
-    "bindingId": "b-sl-023",
+    "bindingId": "240c8922-405a-824b-a2d4-e8ecbb5be6bd",
     "state": "queued",
     "command": "node --test packages/ledger/dist/application/*.break.test.js packages/mcp/dist/lifecycle.test.js",
     "cwd": "/Users/nessa/Documents/NessaLabs/spec-ledger",

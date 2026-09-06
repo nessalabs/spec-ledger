@@ -1,7 +1,7 @@
 {
   "runId": "b2498ed8-5cd7-4a3c-aa5a-ad4ee74c460f",
   "requestId": "batch-b2498ed8-5cd7-4a3c-aa5a-ad4ee74c460f",
-  "bindingId": "b-sl-015",
+  "bindingId": "e49ce4da-8d40-855e-9c96-2f6723794a23",
   "state": "finished",
   "command": "node --test packages/ledger/dist/workstream/doc-digest.test.js packages/ledger/dist/workstream/doc-digest.break.test.js packages/ledger/dist/workstream/pr1-regressions.break.test.js",
   "cwd": "/Users/nessa/.codex/worktrees/24db/spec-ledger",

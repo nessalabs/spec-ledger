@@ -1,0 +1,28 @@
+{
+  "id": "a3c38839-cf13-837c-8866-ce46af309e15",
+  "kind": "invariant",
+  "statement": "An agent activity signal cannot count as completed work or permission to restart it; uncertain activity stays uncertain.",
+  "required": true,
+  "area": "client",
+  "links": {
+    "docs": [
+      "docs/workstreams/815c7a44-59df-8102-9769-bf8a74e49c0c-shared-agent-workflows/spec.md",
+      "docs/architecture/claim-contracts.md"
+    ]
+  },
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/claims/SL-025.json",
+        "id": "SL-025",
+        "sha256": "068b1386219b24207799c2e7ed82aa7cd776588719d6359a24277c525a9155ee"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/claims/SL-025.json",
+        "id": "SL-025",
+        "sha256": "068b1386219b24207799c2e7ed82aa7cd776588719d6359a24277c525a9155ee"
+      }
+    },
+    "historical": true
+  }
+}

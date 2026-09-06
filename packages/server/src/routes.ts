@@ -60,7 +60,7 @@ export function buildRoutes(rootDir: string): Route[] {
       try { sendJson(res, 200, listOptimizationGoals(rootDir, { workstreamId: search.get("workstreamId") ?? undefined, turnId: search.get("turnId") ?? undefined })) }
       catch { sendJson(res, 500, { error: "Goal history is unreadable; inspect the ledger records" }) }
     } },
-    { method: "GET", pattern: /^\/v1\/goals\/(G-[A-Za-z0-9][A-Za-z0-9_-]{0,79})$/, paramNames: ["id"], handler: (_req, res, params) => {
+    { method: "GET", pattern: /^\/v1\/goals\/([0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12})$/, paramNames: ["id"], handler: (_req, res, params) => {
       try { sendJson(res, 200, getOptimizationGoal(rootDir, params.id)) }
       catch (error) { sendJson(res, 404, { error: error instanceof Error ? error.message : String(error) }) }
     } },

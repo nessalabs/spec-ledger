@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "dad1fdd7-83b8-86f4-a25e-c61cd34db848",
+  "reason": "AGENTS and DESIGN changes document the explicitly authorized a32f3451-1b3d-8abf-bf0e-607ebf6e1a88 permission workflow and carry over from 44061bcc-deb1-8eeb-a20e-69cc18756bf3. The current review covers the complete implementation and both user-reported UI fixes; this waiver records those two documentation paths only.",
+  "actor": "agent:user-request-scope",
+  "treeDigest": "b5d25e66897f1b13e2705e6899e139fd8ed88e49aa2dda65e3f9d1a49db0de88",
+  "createdAt": "2026-09-04T22:31:53.946Z",
+  "workstreamId": "a32f3451-1b3d-8abf-bf0e-607ebf6e1a88",
+  "turnId": "8744233a-1ecf-811e-a08c-afb012c0c62f",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/align-waivers/AW-12.json",
+        "id": "T-031/AW-12",
+        "sha256": "db4dd5aa3abfc30d1d507522d3bb9819a085e3775055c9eecba8855df5c03973"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/align-waivers/AW-12.json",
+        "id": "T-031/AW-12",
+        "sha256": "db4dd5aa3abfc30d1d507522d3bb9819a085e3775055c9eecba8855df5c03973"
+      }
+    },
+    "historical": true
+  }
+}

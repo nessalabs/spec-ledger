@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "turnId": "b73479b8-7a81-84e9-84e8-efcd9c23e531",
+  "title": "Review evidence at a glance",
+  "after": "flowchart LR; A[Requirement and status] --> B[Expand results]; B --> C[Captured output]; B --> D[Optional source details]; E[Saved UI screenshot] --> F[Enlarge image]",
+  "before": "flowchart LR; A[Requirement] --> B[View proof box] --> C[Test source] --> D[Run output]",
+  "id": "00bd95bf-168a-852a-adfd-9dcf6ca7d862",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/flows/T-044/F-01.json",
+        "id": "T-044/F-01",
+        "sha256": "1ac5b8151def739957a0cb2da43864573968868dc286e55d7f83fbb52805fdb0"
+      }
+    },
+    "historical": true
+  }
+}

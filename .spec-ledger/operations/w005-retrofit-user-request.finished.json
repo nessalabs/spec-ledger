@@ -6,10 +6,10 @@
   "finishedAt": "2026-09-05T01:51:14.392Z",
   "outcome": "succeeded",
   "result": {
-    "id": "AUTH-W005-RETROFIT",
+    "id": "3891ebea-8c2e-8474-8c85-4bf07587679b",
     "action": "grant",
     "mode": "request",
-    "workstreamId": "W-005",
+    "workstreamId": "d1be55a6-11bb-8460-8650-ddf0ecac8185",
     "featureIds": [
       "cli"
     ],

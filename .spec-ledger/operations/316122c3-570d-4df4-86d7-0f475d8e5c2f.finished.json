@@ -14,9 +14,9 @@
     "plainSummary": "A damaged image can be presented as an integrity-checked screenshot instead of being rejected.",
     "findings": [
       {
-        "id": "F-01",
+        "id": "c880586b-3177-8ebe-919a-f41084fa36d1",
         "severity": "medium",
-        "claimId": "SL-031",
+        "claimId": "d62365fc-02af-826c-b961-8942c540bddf",
         "gap": "attachmentEvidence accepts a 24-byte PNG prefix containing signature and IHDR dimensions, without complete image chunks; status verified and imageDataUrl are returned.",
         "plainImpact": "People can receive a broken screenshot preview even though the saved file was classified as a supported image.",
         "fixProposal": "Check bounded PNG/JPEG structure before returning a preview; reject truncated headers and missing image payload/end markers.",
@@ -34,8 +34,8 @@
       "One out-of-intent killer: exhausted image budget preserves independent text findings."
     ],
     "schemaVersion": 1,
-    "id": "T-044/R-01",
-    "turnId": "T-044",
+    "id": "a6ff95f0-d4a4-8723-a890-9b46eda52db3",
+    "turnId": "b73479b8-7a81-84e9-84e8-efcd9c23e531",
     "target": "code",
     "treeDigest": "92b5e77cf9c0b18ebd14a2f1d26b55de2a55d70e85e7882f9fd089f703c0cd82"
   }

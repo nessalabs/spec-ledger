@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "id": "6789f44d-a665-8589-a62e-68118ef4ea8b",
+  "turnId": "f5dfe9a8-ba0e-8b0c-ac75-8889d96457f5",
+  "workstreamId": "76451749-a54f-8579-96f2-dcec19d79026",
+  "kind": "human",
+  "target": "code",
+  "reviewer": "agent:align",
+  "verdict": "approve",
+  "summary": "Coverage intent: ship 76451749-a54f-8579-96f2-dcec19d79026 Phase II (align check+approve+gates/hooks/CI) under f5dfe9a8-ba0e-8b0c-ac75-8889d96457f5; waiver covers cd25a530-33a4-8e92-aad7-1f07c3e8fa79/04 path set outside 97bf91dc-b772-84fa-9a73-c4fe453839e9 expectedPaths.",
+  "plainSummary": "These files are treated as in-plan for this bet, including an explicit skip for extra paths.",
+  "treeDigest": "51bf73938c3f02c58d3ef935b7759d8c26c26934f445363079181eee3c6dd034",
+  "uncoveredPaths": [
+    ".github/workflows/ci.yml",
+    "AGENTS.md",
+    "docs/ci/align.md",
+    "docs/ci/github-actions.yml",
+    "package.json",
+    "schemas/align-waiver.json",
+    "scripts/git-hooks/README.md",
+    "scripts/git-hooks/pre-push",
+    "skills/README.md",
+    "skills/sl-dev-align/SKILL.md"
+  ],
+  "coverageSource": "mixed",
+  "waiverIds": [
+    "ffe69c37-b08a-8449-9f08-070232073a62"
+  ],
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/reviews/turns/T-016/R-01.json",
+        "id": "T-016/R-01",
+        "sha256": "4b5afdc8b2daf05a2c5c19de9c91f178a80dbcbf1cfdfce58850be6078526084"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/reviews/turns/T-016/R-01.json",
+        "id": "T-016/R-01",
+        "sha256": "4b5afdc8b2daf05a2c5c19de9c91f178a80dbcbf1cfdfce58850be6078526084"
+      }
+    },
+    "historical": true
+  }
+}

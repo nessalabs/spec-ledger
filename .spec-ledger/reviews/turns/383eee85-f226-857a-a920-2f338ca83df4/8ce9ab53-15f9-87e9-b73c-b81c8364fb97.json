@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "id": "8ce9ab53-15f9-87e9-b73c-b81c8364fb97",
+  "turnId": "383eee85-f226-857a-a920-2f338ca83df4",
+  "workstreamId": "d1be55a6-11bb-8460-8650-ddf0ecac8185",
+  "kind": "human",
+  "target": "code",
+  "reviewer": "agent:align:packaging",
+  "verdict": "approve",
+  "summary": "User intent explicitly covers all five PR 1 repairs, appropriate CI regression tests, and updating the existing PR. Inspected final diff and align check: seven product paths are covered by the active 520ff720-fc13-8275-b710-f677f8d2efb4 plan; seven necessary cross-slice paths are explicitly covered by 87876af5-6d2e-867e-bf07-290a8b734d76 for this tree: CI/publish workflows, .npmrc, client/server manifests, lockfile, and removed rewrite script. New tests and UI fixture support those repairs; document changes record seal semantics and the repair amendment. This approval is path coverage only; separate R-01, R-02, and R-03 provide bounded code reviews.",
+  "plainSummary": "The changed files cover the requested PR repairs and their regression checks.",
+  "treeDigest": "e223be9e5034139dbd5048dfcb3997089cf1cba6368dfab47124db669a8a01ed",
+  "uncoveredPaths": [
+    ".github/workflows/ci.yml",
+    ".github/workflows/publish.yml",
+    ".npmrc",
+    "packages/client/package.json",
+    "packages/server/package.json",
+    "pnpm-lock.yaml",
+    "scripts/rewrite-workspace-deps.mjs"
+  ],
+  "coverageSource": "mixed",
+  "waiverIds": [
+    "87876af5-6d2e-867e-bf07-290a8b734d76"
+  ],
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/reviews/turns/T-025/R-04.json",
+        "id": "T-025/R-04",
+        "sha256": "66d07f762641611e9e656eb60759c3c10ca1bd469c10be6c92131cf2d60fffe6"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/reviews/turns/T-025/R-04.json",
+        "id": "T-025/R-04",
+        "sha256": "66d07f762641611e9e656eb60759c3c10ca1bd469c10be6c92131cf2d60fffe6"
+      }
+    },
+    "historical": true
+  }
+}

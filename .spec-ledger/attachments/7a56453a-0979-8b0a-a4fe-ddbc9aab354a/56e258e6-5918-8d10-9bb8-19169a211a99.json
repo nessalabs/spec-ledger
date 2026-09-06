@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "turnId": "7a56453a-0979-8b0a-a4fe-ddbc9aab354a",
+  "kind": "log-excerpt",
+  "title": "Live UI verification observations",
+  "path": "docs/workstreams/815c7a44-59df-8102-9769-bf8a74e49c0c-shared-agent-workflows/evidence/7a56453a-0979-8b0a-a4fe-ddbc9aab354a/browser-check.md",
+  "mediaType": "text/plain",
+  "contentDigest": "d67416438901ddb014ad62fcfbe62abf53e5f7efa83df52b04dc1d24d3aea703",
+  "byteLength": 1023,
+  "id": "56e258e6-5918-8d10-9bb8-19169a211a99",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/attachments/T-034/A-02.json",
+        "id": "T-034/A-02",
+        "sha256": "0d4b10a52f5a0d6a3114f8ce5bb80f14aef110ddb8d7b53dac133a0ecae5f0c8"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/attachments/T-034/A-02.json",
+        "id": "T-034/A-02",
+        "sha256": "0d4b10a52f5a0d6a3114f8ce5bb80f14aef110ddb8d7b53dac133a0ecae5f0c8"
+      }
+    },
+    "historical": true
+  }
+}

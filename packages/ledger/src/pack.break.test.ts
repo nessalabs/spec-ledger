@@ -1,4 +1,4 @@
-// sl-dev-break killers (T-022 / W-005 SLC-02) — falsify pack/install vs SL-012.
+// sl-dev-break killers (3cd59789-1875-5e42-8712-2f95eed1f581 / d80732c1-ab98-55d9-9a9d-cbf6befe3ed1 12323a0d-6c53-59fb-b18b-ecfac0936883) — falsify pack/install vs 6759ee4c-cf13-5f08-8554-999d1e06a48e.
 import { describe, it } from "node:test"
 import assert from "node:assert/strict"
 import {
@@ -11,7 +11,7 @@ import {
   existsSync,
 } from "node:fs"
 import { tmpdir } from "node:os"
-import { join } from "node:path"
+import { dirname, join } from "node:path"
 import { spawnSync } from "node:child_process"
 import { createRequire } from "node:module"
 import { pathToFileURL } from "node:url"
@@ -79,8 +79,8 @@ function depProtocols(
   return out
 }
 
-describe("pack break (T-022 SLC-02)", () => {
-  it("npm pack client/server must not ship workspace: or file: deps (SL-012)", () => {
+describe("pack break (3cd59789-1875-5e42-8712-2f95eed1f581 12323a0d-6c53-59fb-b18b-ecfac0936883)", () => {
+  it("npm pack client/server must not ship workspace: or file: deps (6759ee4c-cf13-5f08-8554-999d1e06a48e)", () => {
     const root = mkdtempSync(join(tmpdir(), "sl-pack-break-npm-"))
     try {
       const clientTgz = packWith(
@@ -152,7 +152,7 @@ describe("pack break (T-022 SLC-02)", () => {
       )
       assert.equal(typeof serverMod.createLedgerServer, "function")
 
-      // Server bin must work outside the monorepo (SLC-02 acceptance covers bins).
+      // Server bin must work outside the monorepo (12323a0d-6c53-59fb-b18b-ecfac0936883 acceptance covers bins).
       spawnSync("git", ["init", "-q"], { cwd: stack })
       const init = spawnSync("npx", ["spec-ledger", "init", "--name", "stack"], {
         cwd: stack,
@@ -160,24 +160,35 @@ describe("pack break (T-022 SLC-02)", () => {
       })
       assert.equal(init.status, 0, init.stderr || init.stdout)
 
+      // Launch the installed manifest's real bin so the timeout owns the
+      // server, rather than an npx wrapper that can leave its child listening.
+      const installedRequire = createRequire(join(stack, "package.json"))
+      const serverManifest = installedRequire.resolve("@nessalabs/spec-ledger-server/package.json")
+      const serverPackage = JSON.parse(readFileSync(serverManifest, "utf8"))
+      const serverBin = join(dirname(serverManifest), serverPackage.bin["spec-ledger-serve"])
       const serve = spawnSync(
-        "npx",
-        ["spec-ledger-serve", stack],
+        process.execPath,
+        [serverBin, stack],
         {
           cwd: stack,
           encoding: "utf8",
-          env: { ...process.env, PORT: "8799" },
+          // Let the kernel choose a port so parallel checkouts do not collide.
+          env: { ...process.env, PORT: "0" },
           timeout: 2500,
           killSignal: "SIGTERM",
         },
       )
-      // Process is killed by timeout after listen — treat start log as success.
+      // Preserve the real startup check and prove cleanup owns the process.
       const out = (serve.stdout || "") + (serve.stderr || "")
       assert.match(
         out,
-        /spec-ledger-serve \(read-only\) on http:\/\/127\.0\.0\.1:8799/,
+        /spec-ledger-serve \(read-only\) on http:\/\/127\.0\.0\.1:0/,
         `server bin did not start outside monorepo: ${out}`,
       )
+      assert.equal((serve.error as NodeJS.ErrnoException | undefined)?.code, "ETIMEDOUT", "server should remain running until the test timeout")
+      assert.equal(serve.signal, "SIGTERM", "timeout must terminate the actual server")
+      assert.ok(serve.pid > 0, "server process must have started")
+      assert.throws(() => process.kill(serve.pid, 0), { code: "ESRCH" }, "server must not survive the test timeout")
     } finally {
       rmSync(root, { recursive: true, force: true })
     }

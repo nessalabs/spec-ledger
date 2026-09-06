@@ -1,0 +1,39 @@
+{
+  "kind": "adversarial",
+  "reviewer": "agent:feature-view-breaker",
+  "verdict": "approve",
+  "blocking": false,
+  "plainSummary": "The feature view is simpler, while missing proof, failed checks and unfinished reviews remain visible.",
+  "summary": "Bounded independent presentation review. All38 UI tests passed; final independent rerun covered simplicity, navigation and turn evidence. New tests inspect default-visible failure/missing/attested/unmapped states, 100 percent evidence with outstanding review, historical rechecking, direct proof links and actual proof component GET-only opening. Existing exact turn attribution and stale-history distinctions remain. Revised navigation expectation requires standalone workflow href; completed label only allowed for done plus current eligibility. Inspected Sol browser-check.md and builder interactive follow-up: objectives/navigation and proof reachability improved, actual View proof opened source/output/Run again without running it. Sol could not perform client interaction in its browser session, explicitly documented. No confirmed correctness blocker in this UI-only slice; residual wording suggestions retained below.",
+  "killersCited": [
+    "packages/ui/lib/simplicity.break.test.mjs",
+    "packages/ui/lib/navigation.break.test.mjs",
+    "packages/ui/lib/navigation.test.mjs",
+    "packages/ui/lib/turn-evidence.break.test.mjs"
+  ],
+  "findings": [],
+  "residualRisks": [
+    "Sol reports remaining jargon in older acceptance text and expanded workflow details, and recommends clearer historical status and proof-result summaries; this pass improves presentation but does not rewrite every legacy criterion.",
+    "Independent browser interaction was unavailable to Sol; the builder separately verified opening proof and captured the observation. Rendered regressions do not establish a complete accessibility audit."
+  ],
+  "schemaVersion": 1,
+  "id": "dcd79264-1acd-80ca-a27f-a2c62fb42435",
+  "turnId": "9d65b345-19e2-8652-8af7-b7cf95acb7ca",
+  "target": "code",
+  "treeDigest": "9881b7b494b232b8822f6737e35b563d44277a21b5056966ec794a7e2c882adf",
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/reviews/turns/T-042/R-01.json",
+        "id": "T-042/R-01",
+        "sha256": "6c5f2d9f3be64ecdfac1963b803d3362824d6ae603549054ea46181763f53494"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/reviews/turns/T-042/R-01.json",
+        "id": "T-042/R-01",
+        "sha256": "6c5f2d9f3be64ecdfac1963b803d3362824d6ae603549054ea46181763f53494"
+      }
+    },
+    "historical": true
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "a642f738-2313-853e-a94d-d9936dcbc596",
+  "statement": "A project audit stops with a failure when it finds a problem your project rules do not allow.",
+  "severity": "medium",
+  "required": true,
+  "kind": "invariant",
+  "links": {
+    "docs": [
+      "docs/architecture/claim-contracts.md"
+    ]
+  },
+  "migration": {
+    "origins": {
+      "e55f1c9afd4f97d11e764eb0afafb544d4eedda1": {
+        "path": ".spec-ledger/claims/SL-008.json",
+        "id": "SL-008",
+        "sha256": "25bee93d0999cfaac5ddae289c41a0d514193313aa9f58b5e79339e9ef2b39ab"
+      },
+      "77e6ea9e209ed85611befed63e413aff34e56d46": {
+        "path": ".spec-ledger/claims/SL-008.json",
+        "id": "SL-008",
+        "sha256": "25bee93d0999cfaac5ddae289c41a0d514193313aa9f58b5e79339e9ef2b39ab"
+      }
+    },
+    "historical": true
+  }
+}
