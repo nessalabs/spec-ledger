@@ -139,3 +139,7 @@ required reviews, and affected deferred commitments.
 - Workstreams / proposals / compass never affect `verify.ok`
 - Do not treat Spec Ledger UI or Flow as proof
 - Server stays read-only; git is the write path
+
+## Visual work evidence
+
+For visual UI changes, follow [required screenshot evidence](../references/visual-evidence.md): declare all relevant UI surfaces in the preserved plan, capture current screenshots, and inspect their coverage. Passing tests alone do not satisfy visual evidence; `evidence check`, turn close and completion enforce the declared screenshots.

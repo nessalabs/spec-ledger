@@ -7,6 +7,40 @@
   "additionalProperties": false,
   "required": ["schemaVersion", "id", "turnId", "path"],
   "properties": {
+    "visualEvidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sliceId",
+        "surface",
+        "sourceDigest",
+        "revisionDigest",
+        "recordedAt"
+      ],
+      "properties": {
+        "sliceId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "surface": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "sourceDigest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "revisionDigest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "recordedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
     "schemaVersion": { "const": 1 },
     "id": { "type": "string", "minLength": 1 },
     "turnId": { "type": "string", "pattern": "^T-" },

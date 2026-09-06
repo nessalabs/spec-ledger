@@ -56,7 +56,26 @@
       "type": "string",
       "enum": ["low", "moderate", "elevated", "high"]
     },
-    "trust": { "type": "object" },
+    "trust": {
+      "type": "object",
+      "properties": {
+        "visualEvidence": {
+          "type": "object",
+          "description": "Required screenshots by slice ID for visual work; enumerate all relevant UI screens, states and viewports.",
+          "additionalProperties": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 30,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            }
+          }
+        }
+      }
+    },
     "policy": { "type": "object" },
     "acceptanceCriteria": {
       "type": "array",

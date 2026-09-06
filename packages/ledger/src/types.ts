@@ -518,6 +518,7 @@ export interface EpisodeSource {
 }
 
 export interface EpisodeAttachment {
+  visualEvidence?: { sliceId: string; surface: string; sourceDigest: string; revisionDigest: string; recordedAt: string }
   schemaVersion: 1
   id: string
   turnId: string

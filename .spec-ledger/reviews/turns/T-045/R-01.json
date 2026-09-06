@@ -1,0 +1,34 @@
+{
+  "kind": "adversarial",
+  "reviewer": "agent:sl-dev-break",
+  "verdict": "request-changes",
+  "blocking": false,
+  "plainSummary": "Valid screenshot coverage can still be reported as missing when a surface has multiple saved captures.",
+  "summary": "Bounded hunt ran pnpm --filter @nessalabs/spec-ledger build && node --test packages/ledger/dist/evidence/visual.break.test.js; 4 pass, 1 fails. Greedy digest consumption rejects Desktop[A,B], Mobile[A] despite valid assignment Desktop=B, Mobile=A.",
+  "findings": [
+    {
+      "id": "F-01",
+      "severity": "medium",
+      "claimId": "SL-033",
+      "gap": "checkVisualEvidence assigns the first eligible digest to each surface without reassigning earlier choices, so a full unique matching can be rejected.",
+      "plainImpact": "An agent can be prevented from finishing even after it supplies valid distinct screenshots for every required surface.",
+      "fixProposal": "Find a matching between required surfaces and valid image digests; allow alternate captures to free a digest needed by a later surface.",
+      "evidence": {
+        "kind": "test",
+        "ran": true,
+        "citedTest": "packages/ledger/src/evidence/visual.break.test.ts::visual breaker: alternative screenshots satisfy distinct surfaces regardless of attachment order",
+        "command": "pnpm --filter @nessalabs/spec-ledger build && node --test packages/ledger/dist/evidence/visual.break.test.js",
+        "observedOutput": "AssertionError: Desktop can use B while Mobile uses A; unique valid coverage exists. false !== true"
+      }
+    }
+  ],
+  "alertOnSeverity": "high",
+  "residualRisks": [
+    "One out-of-intent killer: alternate image allocation across surfaces. Final screenshot visual review still pending."
+  ],
+  "schemaVersion": 1,
+  "id": "T-045/R-01",
+  "turnId": "T-045",
+  "target": "code",
+  "treeDigest": "e5819268ea555bbab6817a14b2e5fac26955cc12b50388a01686f14e4a433595"
+}

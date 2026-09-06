@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "requestId": "888325b2-114e-41eb-b2f0-b56ae75de793",
+  "operation": "record_screenshot",
+  "inputDigest": "0ebb46c84b7548520ded08f2e7b3319a0976ed7af807b6e05e607c47f45b9886",
+  "finishedAt": "2026-09-06T18:18:34.601Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "id": "T-045/A-888325b2-114e-41eb-b2f0-b56ae75de793",
+    "turnId": "T-045",
+    "kind": "image",
+    "title": "Expanded evidence — desktop",
+    "path": ".spec-ledger/evidence/screenshots/T-045-desktop.png",
+    "mediaType": "image/png",
+    "byteLength": 153084,
+    "contentDigest": "fda58b7aa62acfcdc0457a2c4a4be6bfe06a8c0aa73f68608b61ee0a4656f14f",
+    "visualEvidence": {
+      "sliceId": "SLC-03",
+      "surface": "Expanded evidence — desktop",
+      "sourceDigest": "e1b00fc86c55eea046dfadb4e8e1cc3cceb2d916543549c9542441569460e6fd",
+      "revisionDigest": "9ff6ab20b5d25d4e3ccd43c812ae08cca5615aff5686d7dc3fb4128c33b44f65",
+      "recordedAt": "2026-09-06T18:18:34.600Z"
+    },
+    "note": "Recorded visual coverage; image adequacy is assessed in review."
+  }
+}

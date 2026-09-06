@@ -1,0 +1,8 @@
+{
+  "schemaVersion": 1,
+  "turnId": "T-045",
+  "title": "Finish visual work with complete screenshot evidence",
+  "after": "flowchart LR; A[Passing tests] --> B[Check UI coverage]; B --> C[Capture missing screens]; C --> D[Record current screenshots]; D --> E[Close visual work]",
+  "before": "flowchart LR; A[Passing tests] --> B[Close without screenshots]",
+  "id": "T-045/F-01"
+}

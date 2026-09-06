@@ -1,3 +1,4 @@
+import { checkVisualEvidence, recordScreenshot } from "../evidence/visual.js"
 import { assertOptimizationReceiptStorage } from "../optimization/store.js"
 import { listOptimizationGoals, getOptimizationGoal, createOptimizationGoal, startOptimizationExperiment, recordOptimizationResult, concludeOptimizationGoal } from "../optimization/index.js"
 import { workflowOptions } from "../workflows/options.js"
@@ -450,7 +451,9 @@ export function runChecks(root: string, raw: unknown) {
   const input = mutationInput(root, "run_checks", raw)
   return runMutation({ root, requestId: input.requestId, operation: "run_checks", input, effect: () => {
     assertSource(root, stringField(input, "expectedSourceDigest")!)
-    return checkLedger(root, true)
+    const report = checkLedger(root, true)
+    const turns = loadLedger(root).turns.filter(t => t.status === "open" && t.intent.workstreamId).map(t => ({ turnId: t.id, ...checkVisualEvidence(root, t.intent.workstreamId!, t.id) }))
+    return { ...report, visualEvidence: { ok: turns.every(t => t.ok), turns } }
   } })
 }
 
@@ -605,6 +608,20 @@ export function executeOperation(root: string, operation: OperationName, input: 
       case "begin_work": return beginWork(root, input)
       case "record_progress": return submitProgress(root, input)
       case "record_decision": return submitDecision(root, input)
+      case "check_visual_evidence": {
+        const args = validated(root, "check_visual_evidence", input)
+        return checkVisualEvidence(root, args.workstreamId as string, args.turnId as string | undefined)
+      }
+      case "record_screenshot": {
+        const args = mutationInput(root, "record_screenshot", input)
+        return runMutation({ root, requestId: args.requestId, operation: "record_screenshot", input: args, effect: () => {
+          const ws = workstreamForTurn(root, args.turnId as string)
+          assertPermission(root, ws)
+          assertRevision(root, ws, args.expectedRevisionDigest as string)
+          assertSource(root, args.expectedSourceDigest as string)
+          return recordScreenshot(root, args as unknown as Parameters<typeof recordScreenshot>[1])
+        } })
+      }
       case "record_evidence": return submitEvidence(root, input)
       case "record_review": return submitReview(root, input)
       case "approve_alignment": return approveAlignment(root, input)

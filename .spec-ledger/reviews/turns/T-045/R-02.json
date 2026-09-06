@@ -1,0 +1,46 @@
+{
+  "kind": "adversarial",
+  "reviewer": "agent:sl-dev-break",
+  "verdict": "approve",
+  "blocking": false,
+  "resolvesReviewId": "T-045/R-01",
+  "resolvesFindingIds": [
+    "T-045/R-01#F-01"
+  ],
+  "plainSummary": "Current screenshots cover the changed screens, valid coverage no longer gets rejected, and all three slices pass their regression checks.",
+  "summary": "Current-source review covers W-014 SLC-01, SLC-02 and SLC-03. Reran node --test packages/ledger/dist/evidence/visual.break.test.js packages/ledger/dist/evidence/visual.test.js packages/ledger/dist/optimization/*.test.js packages/mcp/dist/optimization.lifecycle.test.js packages/ui/lib/experiment-chart.test.mjs packages/ledger/dist/session/visual-evidence.break.test.js packages/ledger/dist/session/evidence.break.test.js packages/ui/lib/simplicity.break.test.mjs packages/ui/lib/check-evidence.test.mjs; exit 0, 45 passed. Unchanged alternate-allocation killer now passes after augmenting-path matching fix. Independently inspected T-045-desktop.png: passing metadata collapsed, description/actions and actual output clear. T-045-mobile.png: readable full-width description above actions, wrapped output, no horizontal clipping. T-045-missing.png: three exact missing surfaces and instruction to attach current screenshots prominently visible; supporting demo clearly historical. Shared evaluator confirms all three current T-045 surfaces satisfied. Prior additive experiment behavior, image limits, passive reads, failure/history honesty and retry identity remain green.",
+  "killersCited": [
+    "packages/ledger/src/evidence/visual.break.test.ts::visual breaker: closed turns and revoked permission cannot publish new screenshots",
+    "packages/ledger/src/evidence/visual.break.test.ts::visual breaker: wrong turn, stale guards and invalid declarations fail closed",
+    "packages/ledger/src/evidence/visual.break.test.ts::visual breaker: malformed images, remote files and escaping attachment paths never publish evidence",
+    "packages/ledger/src/evidence/visual.break.test.ts::visual breaker: completion cannot use missing screenshots or another turn",
+    "packages/ledger/src/evidence/visual.break.test.ts::visual breaker: alternative screenshots satisfy distinct surfaces regardless of attachment order",
+    "packages/ledger/src/optimization/optimization.break.test.ts::breaker: a rejected stale-source write leaves no experiment and can retry with fresh guards",
+    "packages/ledger/src/optimization/optimization.break.test.ts::breaker: pending parents and cross-workstream references cannot consume an attempt",
+    "packages/ledger/src/optimization/optimization.break.test.ts::breaker: corrupt identity and orphan result history fail closed on reads and new writes",
+    "packages/ledger/src/optimization/optimization.break.test.ts::breaker: a result-file symlink is rejected without modifying its target",
+    "packages/ledger/src/optimization/optimization.break.test.ts::breaker: clock rollback never reorders attempts or changes latest attempt measurement",
+    "packages/ledger/src/session/visual-evidence.break.test.ts::visual breaker: digest mismatch, remote paths, type mismatch and escaping symlinks never expose image bytes",
+    "packages/ledger/src/session/visual-evidence.break.test.ts::visual breaker: per-image and shared image budgets are enforced across attachments",
+    "packages/ledger/src/session/visual-evidence.break.test.ts::visual breaker: truncated image headers cannot be offered as valid previews",
+    "packages/ledger/src/session/visual-evidence.break.test.ts::visual breaker: exhausted image budget still preserves bounded text findings",
+    "packages/ui/lib/simplicity.break.test.mjs::simpler progress keeps incomplete and historical limits visible even when all checks pass",
+    "packages/ui/lib/simplicity.break.test.mjs::failed missing attested and unmapped requirements keep honest statuses on expandable requirements",
+    "packages/ui/lib/simplicity.break.test.mjs::simplified feature observation still exposes disconnection without replacing the requested spec",
+    "packages/ui/lib/simplicity.break.test.mjs::opening proof reads evidence without posting a command",
+    "packages/ui/lib/simplicity.break.test.mjs::requirement expansion mounts proof only on demand and screenshot labels never imply current pass",
+    "packages/ui/lib/simplicity.break.test.mjs::passing run metadata stays collapsed while output failures and historical warnings remain visible"
+  ],
+  "findings": [],
+  "alertOnSeverity": "high",
+  "residualRisks": [
+    "One out-of-intent SLC-03 killer: alternate capture matching across surfaces.",
+    "Screenshot adequacy was visually reviewed for the three declared changed surfaces; machine coverage validates provenance and unique images, not semantic image content.",
+    "No production edits by breaker."
+  ],
+  "schemaVersion": 1,
+  "id": "T-045/R-02",
+  "turnId": "T-045",
+  "target": "code",
+  "treeDigest": "e1b00fc86c55eea046dfadb4e8e1cc3cceb2d916543549c9542441569460e6fd"
+}

@@ -127,3 +127,7 @@ next: revision approval | applicable delegation | shape amend | sl-work
 - No silent post-seal edits
 - No inventing foreign-worktree conflicts without pack `worktree-caution` entries
 - No skipping `related` when the command exists for this workstream
+
+## Visual work evidence
+
+For visual UI changes, follow [required screenshot evidence](../references/visual-evidence.md): declare all relevant UI surfaces in the preserved plan, capture current screenshots, and inspect their coverage. Passing tests alone do not satisfy visual evidence; `evidence check`, turn close and completion enforce the declared screenshots.

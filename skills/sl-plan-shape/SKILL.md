@@ -150,3 +150,7 @@ next: sl-plan-break-spec → revision approval or applicable delegation → sl-w
 - Builder: [`skills/sl-dev-build`](../sl-dev-build/SKILL.md)
 - Code breaker: [`skills/sl-dev-break`](../sl-dev-break/SKILL.md)
 - Close gate: [`skills/sl-dev-verify`](../sl-dev-verify/SKILL.md)
+
+## Visual work evidence
+
+For visual UI changes, follow [required screenshot evidence](../references/visual-evidence.md): declare all relevant UI surfaces in the preserved plan, capture current screenshots, and inspect their coverage. Passing tests alone do not satisfy visual evidence; `evidence check`, turn close and completion enforce the declared screenshots.

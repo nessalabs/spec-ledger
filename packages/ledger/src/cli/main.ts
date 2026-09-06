@@ -83,6 +83,7 @@ Usage:
   spec-ledger plan --workstream W-…
   spec-ledger work --workstream W-… --slice SLC-… --goal "…"
   spec-ledger check | fingerprint | evidence record --file <json>
+  spec-ledger evidence check --workstream W-… | evidence screenshot --turn T-… --surface <name> --path <file>
   spec-ledger permission status|approve|deny|delegate|revoke|record …
   spec-ledger learning list|record --file <json>
   spec-ledger review add|list …
@@ -288,6 +289,24 @@ async function main(): Promise<void> {
       checks:ledger.bindings.map(binding=>({bindingId:binding.id,checkDigest:ledger.claims.find(c=>c.id===binding.claimId) ? checkFingerprint(ledger.claims.find(c=>c.id===binding.claimId)!,binding) : null}))},null,2))
     return
   }
+  if (cmd === "evidence" && argv[1] === "check") {
+    const workstreamId = argValue(argv, "--workstream")
+    if (!workstreamId) throw new Error("evidence check requires --workstream")
+    const result = executeOperation(root, "check_visual_evidence", { workstreamId, turnId: argValue(argv, "--turn") }) as { ok: boolean }
+    console.log(JSON.stringify(result, null, 2)); process.exitCode = result.ok ? 0 : 1; return
+  }
+  if (cmd === "evidence" && argv[1] === "screenshot") {
+    const turnId = argValue(argv, "--turn"), surface = argValue(argv, "--surface"), path = argValue(argv, "--path")
+    if (!turnId || !surface || !path) throw new Error("Attach screenshots of all relevant UI: evidence screenshot --turn <open-turn> --surface <declared-surface> --path <repo-relative-file> [--slice <slice>]")
+    const ledger = loadLedger(root), turn = ledger.turns.find(t => t.id === turnId)
+    if (!turn?.intent.workstreamId) throw new Error("Screenshot requires an open workstream turn")
+    console.log(JSON.stringify(executeOperation(root, "record_screenshot", {
+      requestId: argValue(argv, "--request-id") ?? newRequestId(), turnId, surface, path, sliceId: argValue(argv, "--slice"), title: argValue(argv, "--title"),
+      expectedSourceDigest: sourceFingerprint(ledger.repoRoot, ledger.config.generatedArtifactPaths),
+      expectedRevisionDigest: planRevision(root, loadWorkstream(root, turn.intent.workstreamId)),
+    }), null, 2)); return
+  }
+
   if (cmd === "evidence" && argv[1] === "record") {
     const file = argValue(argv,"--file")
     if (!file) throw new Error("usage: spec-ledger evidence record --file <runner-evidence.json>")
@@ -317,7 +336,10 @@ async function main(): Promise<void> {
       console.log("problems:")
       for (const p of report.problems) console.log(`  - ${p}`)
     }
-    process.exit(report.ok ? 0 : 1)
+    if (cmd === "check" && !report.visualEvidence.ok) {
+      for (const turn of report.visualEvidence.turns) for (const reason of turn.reasons) console.error(reason)
+    }
+    process.exit(report.ok && (cmd !== "check" || report.visualEvidence.ok) ? 0 : 1)
   }
 
   if (cmd === "audit") {

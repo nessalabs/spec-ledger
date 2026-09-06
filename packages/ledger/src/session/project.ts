@@ -1,3 +1,4 @@
+import { checkVisualEvidence } from "../evidence/visual.js"
 import { claimEvidence, attachmentEvidence } from "./evidence.js"
 import { listAttachmentsForTurn } from "../episodes/load.js"
 import { loadLedger } from "../fs/load.js"
@@ -105,7 +106,8 @@ export function getSession(root: string, workstreamId?: string) {
   for (const criterion of criteria.filter(c => c.evidence === "fail")) attention.push(`A required check failed: ${criterion.text}`)
   if (unresolvedBlockingReviews(reviews).length) attention.push("Blocking review findings remain unresolved.")
   if (ws.policy?.requireCodeBreak !== false && !codeBreakSatisfied(reviews, sourceDigest)) attention.push("A code review of the current source is required.")
-  const completionReasons = [...attention]
+  const visualEvidence = checkVisualEvidence(root, selected)
+  const completionReasons = [...attention, ...visualEvidence.reasons]
   if (!checkSeal(root, selected).ok) completionReasons.push("The spec snapshot is missing or has changed.")
   if (!criteria.length || criteria.some(c => !c.implemented || c.evidence !== "pass")) completionReasons.push("Every acceptance criterion needs current implementation and passing evidence.")
   if (turns.some(t => t.status === "open")) completionReasons.push("Close the open turn before completing the workstream.")
@@ -140,7 +142,7 @@ export function getSession(root: string, workstreamId?: string) {
         summary: r.plainSummary ?? r.summary, findings: r.findings ?? [], residualRisks: r.residualRisks ?? [],
         current: r.target === "spec" ? r.revisionDigest === revisionDigest : Boolean(sourceDigest && r.treeDigest === sourceDigest) })),
       artifacts: (() => { const budget = { remaining: 2 * 1024 * 1024 }; return turns.flatMap(t => listAttachmentsForTurn(root, t.id)).map(a => attachmentEvidence(root, a, budget)) })(),
-      permission, authorityDigest: authorityStateDigest(root), attention, criteria, activity, obligations, workflow, executionActivity,
+      visualEvidence, permission, authorityDigest: authorityStateDigest(root), attention, criteria, activity, obligations, workflow, executionActivity,
       completion: { eligible: permission.allowed && completionReasons.length === 0, reasons: completionReasons },
       openTurnIds: turns.filter(t => t.status === "open").map(t => t.id),
       evidenceCount: criteria.filter(c => c.evidence === "pass").length,

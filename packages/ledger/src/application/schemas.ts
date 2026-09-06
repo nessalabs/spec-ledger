@@ -24,6 +24,8 @@ const opaqueId = z.string().regex(/^[A-Za-z0-9][A-Za-z0-9._:@-]{0,159}$/)
 const optimizationGuard = { requestId, expectedRevisionDigest: digest, expectedSourceDigest: digest }
 
 export const OPERATION_SCHEMAS = {
+  check_visual_evidence: z.object({ workstreamId: id, turnId: id.optional() }).strict(),
+  record_screenshot: z.object({ requestId, turnId: id, sliceId: id.optional(), surface: z.string().trim().min(1).max(200), path: z.string().min(1).max(1000), title: z.string().min(1).max(200).optional(), expectedSourceDigest: digest, expectedRevisionDigest: digest }).strict(),
   list_goals: z.object({ workstreamId: id.optional(), turnId: id.optional() }).strict(),
   get_goal: z.object({ goalId: goalIdSchema }).strict(),
   create_goal: z.object({ ...optimizationGuard, goal: goalInputSchema }).strict(),

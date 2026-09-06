@@ -244,3 +244,7 @@ next: builder prod-fix | breaker re-run | human | wait-timeout | close
 - No approve without `killersCited`
 - No finding without `evidence` run proof
 - No builder edits to breaker killers; no breaker edits to prod to “help”
+
+## Visual work evidence
+
+For visual UI changes, follow [required screenshot evidence](../references/visual-evidence.md): declare all relevant UI surfaces in the preserved plan, capture current screenshots, and inspect their coverage. Passing tests alone do not satisfy visual evidence; `evidence check`, turn close and completion enforce the declared screenshots.

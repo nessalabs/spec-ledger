@@ -78,3 +78,22 @@ test('requirement expansion mounts proof only on demand and screenshot labels ne
  assert.equal(nodes(screenshot,n=>n.type==='dialog').length,1)
  assert.equal(nodes(screenshot,n=>n.type==='button'&&n.props['aria-label']==='Enlarge Historical demo').length,1)
 })
+
+test('passing run metadata stays collapsed while output failures and historical warnings remain visible',()=>{
+ const evidence={bindingId:'b',command:'saved-command',cwd:'/fixture',sourceDigest:'current',checkDigest:'check',currentOutcome:'pass',source:{status:'not-recorded'},test:{level:'integration',description:'Verifies behavior'},runs:[]}
+ const base={runId:'run',state:'finished',outcome:'pass',reason:'Command exited successfully',startedAt:'2026-09-06',finishedAt:'2026-09-06',exitCode:0,sourceDigest:'current',checkDigest:'check',command:'saved-command',stdout:{status:'intact',text:'Meaningful test output'},stderr:{status:'intact',text:''}}
+ const render=run=>{let index=0;const Panel=load('../components/check-evidence.tsx',{'react':{...React,useState:v=>[index++===2?run:v,()=>{}],useRef:v=>({current:v}),useEffect:()=>{}},'next/navigation':{useRouter:()=>({refresh(){}})},'@nessalabs/ui':{Button:props=>React.createElement('button',props,props.children),Badge:props=>React.createElement('span',props,props.children),CodeBlock:()=>null}}).CheckEvidencePanel;return Panel({bindingId:'b',initial:evidence,defaultOpen:true,embedded:true})}
+ const passing=render(base),visible=text(passing,true)
+ assert.match(visible,/Meaningful test output/)
+ assert.doesNotMatch(visible,/Current evidence: pass|Command exited successfully|Actual run result|finished|exit 0|Started/)
+ assert.match(text(passing),/finished/)
+ const failure=text(render({...base,outcome:'fail',exitCode:1,reason:'Assertion failed',sourceDigest:'old'}),true)
+ assert.match(failure,/Historical run/)
+ assert.match(failure,/Actual run result/)
+ assert.match(failure,/fail.*exit 1/)
+ assert.match(failure,/Assertion failed/)
+ const missing=text(render({...base,stdout:{status:'unavailable',text:'FORGED'},sourceDigest:'old'}),true)
+ assert.match(missing,/Historical run/)
+ assert.match(missing,/integrity could not be verified/)
+ assert.doesNotMatch(missing,/FORGED/)
+})

@@ -1,3 +1,4 @@
+import { checkVisualEvidence } from "../evidence/visual.js"
 import { permissionStatus } from "../permission/authority.js"
 import {
   codeBreakSatisfied,
@@ -22,6 +23,8 @@ export function assertTurnCloseAllowed(repoRoot: string, turn: Turn): void {
 
   const eligibility = permissionStatus(repoRoot,workstreamId)
   if (!eligibility.allowed) throw new Error(`turn close refused: ${eligibility.reasons.join("; ")}`)
+  const visual = checkVisualEvidence(repoRoot, workstreamId, turn.id)
+  if (!visual.ok) throw new Error(`turn close refused: ${visual.reasons.join("; ")}`)
   const ws = loadWorkstream(repoRoot, workstreamId)
   const policy = (ws.policy ?? {}) as { requireCodeBreak?: boolean }
   const requireCodeBreak = policy.requireCodeBreak !== false

@@ -1,25 +1,9 @@
-import { supportedRaster } from "./image-preview.js"
-import { closeSync, fstatSync, openSync, readSync } from "node:fs"
+import { supportedRaster } from "../evidence/image-preview.js"
+import { readBounded } from "../evidence/artifact.js"
 import { join, relative } from "node:path"
 import { sha256Stable } from "../fs/load.js"
-import { contentHash, localArtifactPath } from "../evidence/fingerprint.js"
+import { contentHash } from "../evidence/fingerprint.js"
 import type { LoadedLedger, VerifyReport, ResultsRow, EpisodeAttachment } from "../types.js"
-
-/** Bounded reads of regular files after realpath confinement; never follows a remote URL. */
-function readBounded(root: string, path: string, limit: number): Buffer {
-  const fd = openSync(localArtifactPath(root, path), "r")
-  try {
-    if (fstatSync(fd).size > limit) throw new Error("Artifact exceeds display limit")
-    const bytes = Buffer.alloc(limit + 1)
-    let size = 0
-    while (size <= limit) {
-      const n = readSync(fd, bytes, size, bytes.length - size, null)
-      if (!n) return bytes.subarray(0, size)
-      size += n
-    }
-    throw new Error("Artifact exceeds display limit")
-  } finally { closeSync(fd) }
-}
 
 export function attachmentEvidence(root: string, attachment: EpisodeAttachment, budget = { remaining: 2 * 1024 * 1024 }) {
   const base = { id: attachment.id, turnId: attachment.turnId, title: attachment.title ?? attachment.path,

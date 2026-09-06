@@ -62,6 +62,9 @@
     "docs/workstreams/W-014-follow-agent-experiments/evidence/T-044/evidence-cards.png",
     "docs/workstreams/W-014-follow-agent-experiments/evidence/T-044/evidence-mobile.png",
     "docs/workstreams/W-014-follow-agent-experiments/evidence/T-044/regression-tests.txt",
-    "docs/workstreams/W-014-follow-agent-experiments/evidence/T-044/validation.md"
+    "docs/workstreams/W-014-follow-agent-experiments/evidence/T-044/validation.md",
+    "docs/workstreams/W-014-follow-agent-experiments/evidence/T-045/browser-check.md",
+    "docs/workstreams/W-014-follow-agent-experiments/evidence/T-045/validation.md",
+    "docs/workstreams/W-014-follow-agent-experiments/evidence/T-045/regression-tests.txt"
   ]
 }

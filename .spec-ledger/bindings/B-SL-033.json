@@ -1,0 +1,18 @@
+{
+  "id": "b-sl-033",
+  "claimId": "SL-033",
+  "kind": "test",
+  "locator": {
+    "type": "command",
+    "command": "node --test packages/ledger/dist/evidence/visual.test.js packages/ledger/dist/evidence/visual.break.test.js packages/mcp/dist/visual.lifecycle.test.js"
+  },
+  "test": {
+    "level": "integration",
+    "description": "Require current screenshot coverage for visual work through CLI, MCP and completion gates.",
+    "source": {
+      "path": "packages/ledger/src/evidence/visual.test.ts"
+    },
+    "inputs": "Missing, stale, changed, duplicate and current screenshots for declared UI surfaces; nonvisual work.",
+    "expected": "Visual work cannot finish without all required current screenshots; other tasks remain compatible."
+  }
+}
