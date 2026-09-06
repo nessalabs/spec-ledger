@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "requestId": "d89d3779-607b-4afb-89a3-210272a7bd85",
+  "operation": "record_review",
+  "inputDigest": "726e608bd53cd5b3505939e31d5142b367e38fb4ccae81e9b186811e11e6041b",
+  "finishedAt": "2026-09-06T18:35:35.854Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "id": "W-015/SR-01",
+    "workstreamId": "W-015",
+    "kind": "adversarial",
+    "target": "spec",
+    "reviewer": "agent:sl-plan-break-spec",
+    "verdict": "request-changes",
+    "blocking": true,
+    "plainSummary": "Publishing could be marked complete using evidence that only checks changes to an agreed spec.",
+    "summary": "Independent W-015 spec review grounded in related pack (4 features, 22 claims, 1 proposed claim, 50 docs). UUID creation, origin-aware migration, immutable original provenance, staged retryable migration, passive projections and fresh current validation are coherent. The publishing acceptance mapping points to unrelated SL-015; correct it before snapshot preparation. Clarify correlation token and ancestor conflict handling within the existing migration scope.",
+    "alertOnSeverity": "high",
+    "findings": [
+      {
+        "id": "F-1",
+        "severity": "high",
+        "claimId": "SL-015",
+        "gap": "W-015 acceptanceClaimIds SLC-01/AC-4 maps only SL-015, whose live statement checks recorded changes to agreed specs, not organization NPM_TOKEN wiring or dry-run publishing. Existing pass evidence could therefore satisfy unrelated publishing acceptance.",
+        "plainImpact": "The work could be called complete without evidence that publishing uses the requested organization credential.",
+        "fixProposal": "Map AC-4 to a dedicated relevant publishing claim with dry-run and workflow evidence; represent account reauthentication as an explicit separate outstanding outcome rather than infer success from code tests.",
+        "evidencePath": ".spec-ledger/claims/SL-015.json"
+      },
+      {
+        "id": "F-2",
+        "severity": "moderate",
+        "gap": "The universal ban on caller-chosen persistent IDs does not distinguish stable requestId correlation tokens required by docs/architecture/agent-tools.md from operation-allocated entity identities.",
+        "plainImpact": "Agents could lose safe retry behavior if each retry has to request a new identity.",
+        "fixProposal": "Explicitly retain caller-stable operation request tokens while generating resulting entity UUIDs once per creation outcome.",
+        "evidencePath": "docs/architecture/agent-tools.md"
+      }
+    ],
+    "residualRisks": [
+      "Migration should reject conflicting edits of the same ancestor record unless a documented reconciliation resolves them; a shared identity alone does not reconcile divergent contents.",
+      "Freeze and reuse origin mappings across retries, including interrupted live publication; regenerated random mappings must not remap already transformed references.",
+      "The tool-built related pack has only generic worktree caution text and no actual sibling-path scan; branch integration must validate both explicit origin histories."
+    ],
+    "revisionDigest": "98e843335dfe152e6545bbef3dfa0de2078a136eefa84f0f268742bb7e83c850"
+  }
+}
