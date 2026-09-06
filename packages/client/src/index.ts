@@ -275,4 +275,4 @@ export { createLocalApprovalBridge } from "@nessalabs/spec-ledger"
 
 export { createLocalCheckBridge, type CheckEvidence, type CheckRun } from "@nessalabs/spec-ledger"
 
-export { createLocalWorkflowBridge, type WorkflowOptions, type WorkflowProfile, type WorkflowProfileStage, type WorkflowProfileStep, type WorkflowOutputKind, type WorkflowStageRole, type WorkflowSnapshot } from "@nessalabs/spec-ledger"
+export { createLocalWorkflowBridge, type LibraryOptions, type SavedWorkflowProfile, type WorkflowLibraryEntry, type WorkflowOptions, type WorkflowProfile, type WorkflowProfileStage, type WorkflowProfileStep, type WorkflowOutputKind, type WorkflowStageRole, type WorkflowSnapshot } from "@nessalabs/spec-ledger"

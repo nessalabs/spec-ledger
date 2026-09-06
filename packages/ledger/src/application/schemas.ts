@@ -11,7 +11,7 @@ const workflowProfile = z.object({
   id, title: z.string().min(1).max(200), extends: z.literal("spec-ledger/default").optional(),
   skills: z.record(z.string().min(1).max(80), skillRef).optional(),
   stages: z.array(z.object({
-    id, title: z.string().min(1).max(200), role: z.enum(["plan", "spec-review", "implement", "verify", "code-review"]),
+    id, title: z.string().min(1).max(200), role: z.enum(["plan", "spec-review", "implement", "verify", "code-review"]), required: z.boolean().optional(),
     steps: z.array(z.object({ id, title: z.string().min(1).max(200), skill: z.union([z.string().min(1).max(80), skillRef]),
       outputs: z.array(z.object({ kind: outputKind, criterionIds: stringList.optional() }).strict()).min(1).max(6),
     }).strict()).min(1).max(20),
@@ -21,10 +21,18 @@ const provenance = z.object({ kind: z.literal("agent-reported"), reference: z.st
 const opaqueId = z.string().regex(/^[A-Za-z0-9][A-Za-z0-9._:@-]{0,159}$/)
 
 export const OPERATION_SCHEMAS = {
+  get_workflow_library_options: z.object({}).strict(),
+  preview_workflow_profile: z.object({ profile: workflowProfile }).strict(),
+  list_workflow_profiles: z.object({ workstreamId: id.optional() }).strict(),
+  get_workflow_profile: z.object({ profileId: id }).strict(),
+  save_workflow_profile: z.object({ requestId, profile: workflowProfile, actor: id, reason: z.string().trim().min(1).max(1000) }).strict(),
+  update_workflow_profile: z.object({ requestId, profile: workflowProfile, expectedDigest: digest, actor: id, reason: z.string().trim().min(1).max(1000) }).strict(),
+  delete_workflow_profile: z.object({ requestId, profileId: id, expectedDigest: digest, actor: id, reason: z.string().trim().min(1).max(1000) }).strict(),
+  set_default_workflow_profile: z.object({ requestId, profileId: id.nullable(), expectedDigest: digest, actor: id, reason: z.string().trim().min(1).max(1000) }).strict(),
   plan_work: z.object({ workstreamId: id }).strict(),
   get_context: z.object({ workstreamId: id, sliceId: id }).strict(),
   get_session: z.object({ workstreamId: id.optional() }).strict(),
-  preview_workflow: z.object({ workstreamId: id, profile: workflowProfile.optional() }).strict(),
+  preview_workflow: z.object({ workstreamId: id, profile: workflowProfile.optional(), profileId: id.optional() }).strict(),
   get_workflow_options: z.object({ workstreamId: id }).strict(),
   get_workflow: z.object({ workstreamId: id }).strict(),
   get_execution: z.object({ registrationId: z.string().min(1).max(200).optional(), workstreamId: id.optional() }).strict(),
@@ -70,7 +78,7 @@ export const OPERATION_SCHEMAS = {
   finish_turn: z.object({ requestId, turnId: id, action: z.enum(["close", "abandon"]), expectedSourceDigest: digest }).strict(),
   complete_work: z.object({ requestId, workstreamId: id, expectedRevisionDigest: digest, expectedSourceDigest: digest }).strict(),
   set_workflow: z.object({ requestId, workstreamId: id, expectedRevisionDigest: digest, expectedSourceDigest: digest,
-    expectedConfigurationDigest: digest.optional(), profile: workflowProfile.optional(), reason: z.string().min(1).max(1000).optional(), expectedSnapshotDigest: digest.optional() }).strict(),
+    expectedConfigurationDigest: digest.optional(), profile: workflowProfile.optional(), profileId: id.optional(), reason: z.string().min(1).max(1000).optional(), expectedSnapshotDigest: digest.optional() }).strict(),
   begin_workflow_step: z.object({ requestId, workstreamId: id, stageId: id, stepId: id, attemptId: id.optional(),
     reason: z.string().min(1).max(1000).optional(), expectedRevisionDigest: digest, expectedSourceDigest: digest, expectedSnapshotDigest: digest }).strict(),
   report_workflow_attempt: z.object({ requestId, workstreamId: id, attemptId: id, status: z.enum(["reported-complete", "blocked"]),

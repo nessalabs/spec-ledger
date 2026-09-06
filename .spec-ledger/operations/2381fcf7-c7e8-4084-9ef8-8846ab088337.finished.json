@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "requestId": "2381fcf7-c7e8-4084-9ef8-8846ab088337",
+  "operation": "approve_alignment",
+  "inputDigest": "27f9092d588a5aedbe288c87f24147bf3d831ddc80726d55c5f1b0800bf1d0ea",
+  "finishedAt": "2026-09-06T05:48:34.872Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "id": "T-043/R-03",
+    "turnId": "T-043",
+    "workstreamId": "W-014",
+    "kind": "human",
+    "target": "code",
+    "reviewer": "agent:align",
+    "verdict": "approve",
+    "summary": "User requested continued W-014 library management and picker work; all changed paths are covered by SLC-02.",
+    "plainSummary": "The saved workflow changes are covered by the approved library scope.",
+    "treeDigest": "ba844f3d36db65f90547ba661e8265b694f58d7536aa4e035c153b435b814854",
+    "uncoveredPaths": [],
+    "coverageSource": "mixed"
+  }
+}

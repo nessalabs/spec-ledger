@@ -22,6 +22,9 @@ export function createLocalWorkflowBridge(root: string) {
         try {
             if (request.method === "GET") {
                 const workstreamId = url.searchParams.get("workstreamId");
+                if (url.searchParams.has("libraryOptions")) return json(200, { token, options: executeOperation(root, "get_workflow_library_options", {}) })
+                if (url.searchParams.get("library") === "true") return json(200, { token, library: executeOperation(root, "list_workflow_profiles", workstreamId ? { workstreamId } : {}) })
+                if (url.searchParams.has("profileId")) return json(200, { token, profile: executeOperation(root, "get_workflow_profile", { profileId: url.searchParams.get("profileId") }) })
                 return json(200, { token, options: executeOperation(root, "get_workflow_options", { workstreamId }) });
             }
             if (request.method !== "POST")
@@ -53,6 +56,9 @@ export function createLocalWorkflowBridge(root: string) {
             }
             const body = input as { action?: string; input?: Record<string, unknown> };
             if (!body || Object.keys(body).some(key => !["action", "input"].includes(key)) || !body.input) return json(400, { error: "Workflow action and input required" });
+            if (body.action === "validate") return json(200, { preview: executeOperation(root, "preview_workflow_profile", body.input) })
+            const libraryActions = { save: "save_workflow_profile", update: "update_workflow_profile", delete: "delete_workflow_profile", default: "set_default_workflow_profile" } as const
+            if (body.action && Object.hasOwn(libraryActions, body.action)) return json(200, executeOperation(root, libraryActions[body.action as keyof typeof libraryActions], body.input))
             if (body.action === "preview") {
                 const preview = executeOperation(root, "preview_workflow", body.input);
                 const options = executeOperation(root, "get_workflow_options", { workstreamId: body.input.workstreamId });

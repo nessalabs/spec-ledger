@@ -106,4 +106,4 @@ export { getCheckEvidence, getCheckRun, type CheckEvidence, type CheckRun } from
 export { createLocalCheckBridge } from "./verify/local-check.js"
 
 export { createLocalWorkflowBridge } from "./workflows/local-ui.js"
-export type { WorkflowOptions } from "./workflows/options.js"
+export type { LibraryOptions, WorkflowOptions } from "./workflows/options.js"

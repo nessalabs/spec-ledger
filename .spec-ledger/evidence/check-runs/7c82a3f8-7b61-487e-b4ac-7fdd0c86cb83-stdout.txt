@@ -1,0 +1,24 @@
+▶ workflow editor boundary regressions
+  ✔ roundtrips bundled choices and hides symlinked discovery roots (163.408542ms)
+  ✔ rejects attestation substitutes for every mandatory stage output (152.820584ms)
+  ✔ rejects changed skill content and stale amendment identity without replacing the selection (358.444417ms)
+  ✔ rejects oversized and malformed browser actions without writes or execution (127.64975ms)
+  ✔ browser preview and apply share core state, deny foreign requests, and retry once (204.175916ms)
+✔ workflow editor boundary regressions (1007.518542ms)
+✔ section history returns from execution to exact acceptance without hiding the evidence (19.613667ms)
+✔ unknown or obsolete fragments do not strand readers in an invisible section (0.121125ms)
+✔ mobile navigation closes on same-page selection and route change but preserves modified clicks (22.032ms)
+✔ change history is isolated from the live child list and renders without key warnings (23.6165ms)
+✔ the dedicated workflow page retains editor and process state when live data changes workstream (4.233584ms)
+✔ overview keeps permission and problems visible with direct spec, evidence and history links (70.20175ms)
+✔ approved work does not request approval again and disconnected approval stays disabled (36.983209ms)
+✔ import rejects malformed nested configuration before rendering but retains valid output scopes (1.08325ms)
+✔ workflow editor starts collapsed and does not read or execute anything while rendering (50.854417ms)
+ℹ tests 14
+ℹ suites 1
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1117.234833

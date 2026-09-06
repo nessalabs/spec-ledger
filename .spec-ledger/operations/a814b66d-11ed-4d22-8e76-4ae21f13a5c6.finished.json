@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "requestId": "a814b66d-11ed-4d22-8e76-4ae21f13a5c6",
+  "operation": "record_review",
+  "inputDigest": "88992ded93fd11f5f814f826d160386005d4e2336d90f1ce238906f9e44992d4",
+  "finishedAt": "2026-09-06T05:45:14.551Z",
+  "outcome": "failed",
+  "error": {
+    "code": "source_conflict",
+    "message": "source content has changed",
+    "retryable": false,
+    "details": {
+      "expected": "a59704423c8823313109606582881e5b18ab2811b404840340f2d7a79dec834b",
+      "current": "ba844f3d36db65f90547ba661e8265b694f58d7536aa4e035c153b435b814854"
+    }
+  }
+}

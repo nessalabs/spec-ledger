@@ -3,7 +3,7 @@ import { join } from 'node:path'
 import { loadLedger } from '../fs/load.js'
 import { sourceFingerprint } from '../evidence/fingerprint.js'
 import { permissionStatus } from '../permission/authority.js'
-import { resolveWorkflow, selectedWorkflow } from './index.js'
+import { resolveWorkflow, selectedWorkflow, libraryTemplate } from './index.js'
 import type { WorkflowProfile, WorkflowSnapshot } from './types.js'
 
 function editable(snapshot: Pick<WorkflowSnapshot, 'stages' | 'profile'>): WorkflowProfile {
@@ -12,7 +12,7 @@ function editable(snapshot: Pick<WorkflowSnapshot, 'stages' | 'profile'>): Workf
 }
 
 /** Path inventory only. Never follow symlinks or read arbitrary skill contents during discovery. */
-export function workflowOptions(root: string, workstreamId: string) {
+function skillInventory(root: string) {
   const checkout = realpathSync(root), skills: string[] = []
   let visited = 0, truncated = false
   function walk(relative: string, depth: number) {
@@ -31,8 +31,18 @@ export function workflowOptions(root: string, workstreamId: string) {
     if (dir.split('/').some((_, i, parts) => { const p = join(checkout, ...parts.slice(0, i + 1)); return existsSync(p) && lstatSync(p).isSymbolicLink() })) continue
     walk(dir, 0)
   }
+  return { localSkills: skills, truncated }
+}
+
+export function libraryOptions(root: string) {
+  return { defaultProfile: libraryTemplate(root), ...skillInventory(root) }
+}
+export type LibraryOptions = ReturnType<typeof libraryOptions>
+
+export function workflowOptions(root: string, workstreamId: string) {
+  const checkout = realpathSync(root)
   const defaults = resolveWorkflow(root, workstreamId), selected = selectedWorkflow(root, workstreamId), permission = permissionStatus(root, workstreamId)
-  return { workstreamId, profile: editable(selected ?? defaults), defaultProfile: editable(defaults), localSkills: skills, truncated,
+  return { workstreamId, profile: editable(selected ?? defaults), defaultProfile: editable(defaults), ...skillInventory(root),
     expectedRevisionDigest: permission.revisionDigest, expectedSourceDigest: sourceFingerprint(checkout, loadLedger(root).config.generatedArtifactPaths),
     expectedSnapshotDigest: selected?.snapshotDigest, permission }
 }

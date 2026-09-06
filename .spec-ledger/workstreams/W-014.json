@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "W-014",
-  "status": "shaped",
+  "status": "sealed",
   "createdAt": "2026-09-05T22:40:00.000Z",
   "featureIds": [
     "client",
@@ -122,9 +122,11 @@
         "packages/client/**",
         "packages/mcp/**",
         "schemas/**",
-        "docs/**"
+        "docs/**",
+        "packages/ui/**"
       ],
-      "notes": "Default pointer lives in the workflows store, not schemas/ledger-root.json, which is additionalProperties:false. Reserve the pointer path so a profile whose id is 'default' cannot collide with it. N-5: .spec-ledger/** is in DEFAULT_ALIGN_IGNORE and excluded from sourceFingerprint, so align check will not surface library edits."
+      "notes": "Default pointer lives in the workflows store, not schemas/ledger-root.json, which is additionalProperties:false. Reserve the pointer path so a profile whose id is 'default' cannot collide with it. N-5: .spec-ledger/** is in DEFAULT_ALIGN_IGNORE and excluded from sourceFingerprint, so align check will not surface library edits.",
+      "codeBreakReviewId": "T-043/R-02"
     },
     {
       "id": "SLC-03",
@@ -206,9 +208,18 @@
       "SL-033"
     ]
   },
-  "updatedAt": "2026-09-05T23:30:00.000Z",
+  "updatedAt": "2026-09-06T05:45:55.079Z",
   "residualRisks": [
     "Library edits live under .spec-ledger/, which align check ignores and the source fingerprint excludes, so they never appear in turn path coverage.",
     "trust.requiredEvidence is advisory; no code enforces the e2e requirement."
-  ]
+  ],
+  "specBreakReviewId": "W-014/SR-01",
+  "seal": {
+    "sealedAt": "2026-09-06T05:34:58.907Z",
+    "sealedBy": "agent:permission:AUTH-4e179164-47e5-4ea9-88b2-0858b32fec25",
+    "specDigest": "52c99d6542e20d41fc948b4c067f8d7b61ee9174ed15aca63881dc5a9fbc4512",
+    "snapshotPath": "workstreams/W-014.seals/1.json",
+    "revision": 1,
+    "specDocDigest": "26a3a61bc6f7f971e65f650884d1ac3c290629dbc49e00c7ce40a3d461f7ca15"
+  }
 }

@@ -95,7 +95,11 @@ export function resolveWorkflow(
   profile?: WorkflowProfile,
   origin?: ResolveWorkflowOrigin,
 ): Omit<WorkflowSnapshot, "snapshotId" | "createdAt" | "reason" | "supersedesSnapshotDigest"> {
-  const ws = loadWorkstream(root, workstreamId)
+  return resolveForSpec(root, loadWorkstream(root, workstreamId), profile, origin)
+}
+
+function resolveForSpec(root: string, ws: Workstream, profile?: WorkflowProfile, origin?: ResolveWorkflowOrigin): Omit<WorkflowSnapshot, "snapshotId" | "createdAt" | "reason" | "supersedesSnapshotDigest"> {
+  const workstreamId = ws.id
   const revisionDigest = planRevision(root, ws)
   let stages = defaultStages(ws)
   let source: WorkflowProfileSource = "default"
@@ -262,9 +266,20 @@ const LIBRARY_DIR = "library"
 const DEFAULT_POINTER = "default-profile.json"
 const MAX_PROFILES = 200
 
-function libraryDir(root: string) { return join(base(root), LIBRARY_DIR) }
-function profilePath(root: string, id: string) { return join(libraryDir(root), `${id}.json`) }
-function defaultPointerPath(root: string) { return join(base(root), DEFAULT_POINTER) }
+function safeLibraryPath(root: string, ...parts: string[]) {
+  const directory = base(root), target = join(directory, ...parts)
+  let current = directory
+  for (const part of parts) {
+    current = join(current, part)
+    // Refuse even an internal symlink: records must be ordinary checkout files.
+    try { if (lstatSync(current).isSymbolicLink()) throw new Error("workflow library storage must not contain symlinks") }
+    catch (error) { if ((error as NodeJS.ErrnoException).code !== "ENOENT") throw error }
+  }
+  return target
+}
+function libraryDir(root: string) { return safeLibraryPath(root, LIBRARY_DIR) }
+function profilePath(root: string, id: string) { return safeLibraryPath(root, LIBRARY_DIR, `${id}.json`) }
+function defaultPointerPath(root: string) { return safeLibraryPath(root, DEFAULT_POINTER) }
 
 function profileDigest(record: Omit<SavedWorkflowProfile, "digest">): string { return sha256Stable(record) }
 
@@ -280,7 +295,7 @@ export function readWorkflowProfile(root: string, id: string): SavedWorkflowProf
 }
 
 export function listWorkflowProfiles(root: string): SavedWorkflowProfile[] {
-  return listJson<SavedWorkflowProfile>(libraryDir(root)).sort((a, b) => a.id.localeCompare(b.id))
+  return existsSync(libraryDir(root)) ? readdirSync(libraryDir(root)).filter(name => name.endsWith(".json")).sort().map(name => readWorkflowProfile(root, name.slice(0, -5))) : []
 }
 
 export function defaultWorkflowProfileId(root: string): string | null {
@@ -292,10 +307,27 @@ export function defaultWorkflowProfileId(root: string): string | null {
   return id && existsSync(profilePath(root, id)) ? id : null
 }
 
+/** Version the pointer itself, including dangling/deleted values. */
+export function workflowDefault(root: string) {
+  const path = defaultPointerPath(root)
+  const pointer = existsSync(path) ? JSON.parse(readFileSync(path, "utf8")) : null
+  return { profileId: defaultWorkflowProfileId(root), digest: sha256Stable(pointer) }
+}
+
 export function setDefaultWorkflowProfile(root: string, id: string | null): void {
   if (id === null) { const path = defaultPointerPath(root); if (existsSync(path)) replace(path, { schemaVersion: 1 }); return }
   readWorkflowProfile(root, id)
   replace(defaultPointerPath(root), { schemaVersion: 1, profileId: id })
+}
+
+export function validateLibraryProfile(root: string, profile: WorkflowProfile) {
+  assertProfileShape(profile)
+  return resolveForSpec(root, { schemaVersion: 1, id: "library", status: "shaped", title: "Workflow library", createdAt: "2026-01-01T00:00:00.000Z", problem: "Reusable workflows", objective: "Validate reusable steps", featureIds: [], policy: { requireSpecBreak: false, requireCodeBreak: false } }, profile, { source: "library" })
+}
+
+export function libraryTemplate(root: string): WorkflowProfile {
+  const snapshot = resolveForSpec(root, { schemaVersion: 1, id: "library", status: "shaped", title: "Workflow library", createdAt: "2026-01-01T00:00:00.000Z", problem: "Reusable workflows", objective: "Validate reusable steps", featureIds: [] })
+  return { id: "my-workflow", title: "My workflow", stages: portableStages(snapshot.stages) }
 }
 
 function assertProfileShape(profile: WorkflowProfile): void {
@@ -314,7 +346,7 @@ function assertProfileShape(profile: WorkflowProfile): void {
 
 /** Save a new named workflow. Create-only: an existing id is refused. */
 export function saveWorkflowProfile(root: string, profile: WorkflowProfile): SavedWorkflowProfile {
-  assertProfileShape(profile)
+  validateLibraryProfile(root, profile)
   if (listWorkflowProfiles(root).length >= MAX_PROFILES) throw new Error("saved workflow limit reached")
   const now = new Date().toISOString()
   const body = {
@@ -329,7 +361,7 @@ export function saveWorkflowProfile(root: string, profile: WorkflowProfile): Sav
 
 /** Replace a saved workflow. The caller must pin the version it read. */
 export function updateWorkflowProfile(root: string, profile: WorkflowProfile, expectedDigest: string): SavedWorkflowProfile {
-  assertProfileShape(profile)
+  validateLibraryProfile(root, profile)
   const current = readWorkflowProfile(root, profile.id)
   if (current.digest !== expectedDigest) throw new Error("saved workflow has changed")
   const body = {
@@ -345,6 +377,7 @@ export function updateWorkflowProfile(root: string, profile: WorkflowProfile, ex
 export function deleteWorkflowProfile(root: string, id: string, expectedDigest: string): void {
   const current = readWorkflowProfile(root, id)
   if (current.digest !== expectedDigest) throw new Error("saved workflow has changed")
+  workflowDefault(root) // Validate the pointer before deleting any profile.
   rmSync(profilePath(root, id))
   if (defaultWorkflowProfileId(root) === null && existsSync(defaultPointerPath(root))) setDefaultWorkflowProfile(root, null)
 }

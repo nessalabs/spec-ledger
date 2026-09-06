@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "requestId": "0f3d6fb5-aab3-4a3a-a05e-6841ac62c684",
+  "operation": "record_review",
+  "inputDigest": "0820446b8342b2f7cf8ecd643a7cbf1302a756eb18bbe560b9121e29d6f2626b",
+  "finishedAt": "2026-09-06T05:34:50.043Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "id": "W-014/SR-01",
+    "workstreamId": "W-014",
+    "target": "spec",
+    "kind": "adversarial",
+    "reviewer": "agent:sl-plan-break-spec-independent",
+    "verdict": "approve",
+    "blocking": false,
+    "plainSummary": "The plan lets people manage reusable workflows while preserving the steps and evidence of specs that already adopted them.",
+    "summary": "Independently reviewed W-014 with the CLI related pack, its client/cli/lattice features, SL-003 read-only boundary, SL-023 operation parity, SL-024/030 workflow requirements, SL-029 navigation, proposed PC-023/024/025, related architecture/workflows.md and prior W-012/W-013 context. Reviewed portability, immutable adoption, required-stage semantics, create-only saves, expected-version conflicts, default fallback, editor validation ownership and navigation relocation. The initial SLC-02 expectedPaths omission of packages/ui/** was corrected before this review, covering its explicitly planned local write route. SL-032/033/034 are now live before snapshot creation. The written bet has independently fail-able verticals and preserves client-only UI imports and read-only server boundaries; no blocking spec contradiction remains. Builder must obtain real UI/operation evidence rather than treating source inspection as e2e proof.",
+    "alertOnSeverity": "high",
+    "findings": [],
+    "residualRisks": [
+      "The related CLI returned only: worktree scan is caution-only; authority is this checkout — use git worktree list yourself if needed. No structured sibling scan or skippedReason was supplied, so sibling checkout state was not established.",
+      "Security verification must exercise malformed, oversized, cross-site and wrong-token local UI requests and assert unchanged library state and no successful operation side effect on denial, with an allowed control.",
+      "The e2e requirement remains advisory in trust metadata; builder and independent code breaker must run browser and adapter checks explicitly.",
+      "Library data is outside source freshness and align coverage; operation trail and immutable-adoption behavior require dedicated checks."
+    ],
+    "revisionDigest": "988ba36d5486e1d70ecaff49daa7cc176ddef7323a539dc28f39ea49b52f081b"
+  }
+}
