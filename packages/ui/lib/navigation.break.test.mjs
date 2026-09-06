@@ -8,7 +8,7 @@ const React=require('react')
 function compile(path,overrides={}) {
  const output=ts.transpileModule(readFileSync(new URL(path,import.meta.url),'utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022,jsx:ts.JsxEmit.ReactJSX}}).outputText
  const mod={exports:{}}
- new Function('require','module','exports',output)(id=>overrides[id]??require(id),mod,mod.exports)
+ new Function('require','module','exports',output)(id=>overrides[id]??(id==='@/components/task-updates'?compile('../components/task-updates.tsx',overrides):id==='@/components/readable-text'?compile('../components/readable-text.tsx'):id==='@/lib/record-labels'?compile('./record-labels.ts'):require(id)),mod,mod.exports)
  return mod.exports
 }
 const mapping=compile('./spec-sections.ts')
@@ -54,6 +54,7 @@ test('mobile navigation closes on same-page selection and route change but prese
  const Shell=compile('../components/spec-ledger-shell.tsx',{'react':{...React,useState:()=>[open,setOpen],useEffect:fn=>effects.push(fn)},'next/link':{default:Link},'next/navigation':{usePathname:()=>pathname},'@nessalabs/ui':ui,'lucide-react':new Proxy({},{get:()=>()=>null}),'@/lib/cn':{cn:(...values)=>values.join(' ')},'@/components/doc-reader':{DocReaderProvider:({children})=>children},'@/components/theme-toggle':{ThemeToggle:()=>null}}).SpecLedgerShell
  const expand=node=>{
   if(!node||typeof node!=='object')return node
+  if(typeof node.type==='function'&&node.type.name==='ReadableText')return require('react-dom/server').renderToStaticMarkup(node)
   if(typeof node.type==='function')return expand(node.type(node.props))
   return {...node,props:{...node.props,children:[node.props?.children].flat(Infinity).map(expand)}}
  }
@@ -68,13 +69,13 @@ test('mobile navigation closes on same-page selection and route change but prese
   mobile=false;open=true;link.props.onClick({});assert.equal(open,true,'desktop navigation stays visible')
  } finally {globalThis.window=oldWindow}
 })
-test('change history is isolated from the live child list and renders without key warnings',()=>{
+test('live Updates remain separate from server change history without key warnings',()=>{
  const originalError=console.error,warnings=[]
- const initial={session:{workstreamId:'c6e720a0-1f36-5f81-926e-675e70c01b63',title:'History',criteria:[],evidenceCount:0,completion:{reasons:[]},activity:[{id:'a0c351bd-f316-5227-87ff-f3f5b7bb5edc',summary:'Update',reason:'Changed'}],executionActivity:{association:null}}}
+ const initial={session:{workstreamId:'c6e720a0-1f36-5f81-926e-675e70c01b63',title:'History',criteria:[],evidenceCount:0,completion:{reasons:[]},activity:[{id:'a0c351bd-f316-5227-87ff-f3f5b7bb5edc',turnId:'5296560c-99e4-4a3c-8d27-fa446b6090b2',recordedAt:null,summary:'Update',reason:'Changed'}],executionActivity:{association:null}}}
  const Empty=()=>null
  const Live=compile('../components/live-workstream-evidence.tsx',{
   'next/link':{default:({children,href})=>React.createElement('a',{href},children)},
-  '@/components/spec-sections':{SpecSections:({changes})=>changes},
+  '@/components/spec-sections':{SpecSections:({changes,updates})=>React.createElement('div',null,React.createElement('section',{'data-area':'updates'},updates),React.createElement('section',{'data-area':'changes'},changes))},
   '@/components/acceptance-progress':{AcceptanceProgress:Empty},
   '@/components/workstream-evidence':{WorkstreamEvidence:Empty},
   '@/components/use-session-observation':{useSessionObservation:()=>({data:initial,state:'connected'})},
@@ -87,8 +88,11 @@ test('change history is isolated from the live child list and renders without ke
   const history=React.createElement('section',null,'Recorded history')
   const tree=Live({initial,workstreamId:'c6e720a0-1f36-5f81-926e-675e70c01b63',history})
   const holder=nodes(tree,n=>n.props?.changes)[0].props.changes
-  assert.equal(holder.props.children[0].type,'div','server history has a stable wrapper in the sibling list')
-  assert.equal(holder.props.children[0].props.children,history)
+  assert.equal(holder,history,'Changes contains only the server change history')
+  const updateTree=nodes(tree,n=>n.props?.updates)[0].props.updates
+  const updateHtml=require('react-dom/server').renderToStaticMarkup(updateTree)
+  assert.match(updateHtml,/Update/);assert.doesNotMatch(updateHtml,/Recorded history/)
+  assert.doesNotMatch(require('react-dom/server').renderToStaticMarkup(holder),/View change|Changed/)
   const html=require('react-dom/server').renderToStaticMarkup(tree)
   assert.match(html,/Recorded history/);assert.match(html,/Update/)
   assert.equal(warnings.filter(w=>w.includes('unique')&&w.includes('key')).length,0)
@@ -129,4 +133,40 @@ test('workflow definition has one library route and the old per-spec route no lo
  assert.match(page,/WorkflowLibrary/);assert.doesNotMatch(page,/LiveWorkflow|WorkflowPicker/)
  const live=readFileSync(new URL('../components/live-workflow.tsx',import.meta.url),'utf8')
  assert.match(live,/WorkflowPicker/);assert.doesNotMatch(live,/WorkflowEditor/)
+})
+
+test('Updates has a distinct deep link and browser history restores the isolated selected tab',()=>{
+ const oldWindow=globalThis.window,oldDocument=globalThis.document,listeners=new Map(),history=[];let selected='evidence',effects=[]
+ globalThis.window={location:{hash:'#changes'},history:{pushState:(_state,_title,hash)=>{history.push(hash);globalThis.window.location.hash=hash}},addEventListener:(name,fn)=>listeners.set(name,fn),removeEventListener:name=>listeners.delete(name)}
+ globalThis.document={getElementById:()=>null,querySelector:()=>null}
+ const Component=compile('../components/spec-sections.tsx',{'@/lib/spec-sections':mapping,react:{...React,useState:()=>[selected,value=>{selected=value}],useEffect:fn=>effects.push(fn)}}).SpecSections
+ const render=()=>{effects=[];return Component({evidence:'Proof only',updates:'Agent progress only',changes:'Committed history only',process:'Workflow only'})}
+ try{
+  assert.equal(mapping.specSectionForHash('#updates'),'updates')
+  render();const cleanup=effects[0]();let tree=render()
+  assert.equal(nodes(tree,n=>n.props.id==='changes')[0].props.hidden,false)
+  const link=nodes(tree,n=>n.type==='a'&&n.props.href==='#updates')[0];assert.ok(link)
+  let prevented=false;link.props.onClick({preventDefault:()=>{prevented=true}})
+  tree=render();assert.equal(prevented,true);assert.deepEqual(history,['#updates'])
+  for(const id of ['evidence','updates','changes','workflow'])assert.equal(nodes(tree,n=>n.props.id===id)[0].props.hidden,id!=='updates',id)
+  assert.equal(nodes(tree,n=>n.props['aria-current']==='location')[0].props.href,'#updates')
+  globalThis.window.location.hash='#changes';listeners.get('popstate')();tree=render()
+  assert.equal(nodes(tree,n=>n.props.id==='changes')[0].props.hidden,false);assert.equal(nodes(tree,n=>n.props.id==='updates')[0].props.hidden,true)
+  for(const key of ['metaKey','ctrlKey','altKey','shiftKey'])link.props.onClick({[key]:true,preventDefault:()=>assert.fail('modified click must keep native behavior')})
+  assert.deepEqual(history,['#updates']);cleanup();assert.equal(listeners.size,0)
+ }finally{globalThis.window=oldWindow;globalThis.document=oldDocument}
+})
+
+test('Updates shows recorded dates or an honest absence and links to the real turn instead of the decision',()=>{
+ const {TaskUpdates}=compile('../components/task-updates.tsx',{'next/link':{default:props=>React.createElement('a',props,props.children)}})
+ const decision='65a05f92-413c-4ad1-ae23-69ca46a1ecdd',turn='0dd140ef-ac69-4b5b-98bf-bcd7ecb90e82'
+ const activity=[{id:decision,turnId:turn,recordedAt:'2026-09-06T12:34:00Z',summary:`Follow ${decision}`,reason:'Keep the underlying reason',discovery:{observation:'Observed a useful result'}},{id:'ff7fb2f9-48a5-43eb-bfad-11250cd3c62c',turnId:turn,recordedAt:null,summary:'Earlier note',reason:''}],original=structuredClone(activity)
+ const html=require('react-dom/server').renderToStaticMarkup(React.createElement(TaskUpdates,{activity}))
+ assert.match(html,/<time dateTime="2026-09-06T12:34:00Z">Sep 6, 2026, 12:34 PM UTC<\/time>/)
+ assert.match(html,/Date not recorded/);assert.match(html,/Keep the underlying reason/);assert.match(html,/Observed a useful result/)
+ assert.equal((html.match(new RegExp(`href="/turns/${turn}"`,'g'))??[]).length,2)
+ assert.ok(!html.includes(`/turns/${decision}`));assert.doesNotMatch(html.replace(/<[^>]*>/g,''),/[0-9a-f]{8}-[0-9a-f-]{27,}/i)
+ assert.deepEqual(activity,original)
+ const empty=require('react-dom/server').renderToStaticMarkup(React.createElement(TaskUpdates,{activity:[]}))
+ assert.match(empty,/No updates yet/);assert.doesNotMatch(empty,/<time|href=|View change/)
 })

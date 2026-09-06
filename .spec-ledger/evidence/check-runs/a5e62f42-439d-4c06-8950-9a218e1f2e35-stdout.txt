@@ -1,0 +1,26 @@
+▶ sl-dev-break init (749cd8fa-88c5-587d-a7a3-bbb309fb467d / 886b091f-57f9-5f69-9e74-f0b50275d693)
+  ✔ exact normative top-level set — no extras, no missing (19.109834ms)
+  ✔ re-init refuse must not clobber existing skeleton (17.044291ms)
+  ✔ partial failure before ledger.json must leave re-init gate unset (16.535042ms)
+  ✔ verify after init: no invented pass; no binding status/pass fields (34.692167ms)
+  ✔ git prefer: init from subdirectory lands at repo-root .spec-ledger (15.026083ms)
+  ✔ poison: nested empty .spec-ledger must not win over parent .git (14.105916ms)
+  ✔ CLI re-init exits non-zero and prints already initialized (134.503958ms)
+  ✔ CLI no-.git prints one-line warning then initializes at cwd (60.524875ms)
+  ✔ out-of-intent: vision write failure must not leave ledger.json (14.486541ms)
+✔ sl-dev-break init (749cd8fa-88c5-587d-a7a3-bbb309fb467d / 886b091f-57f9-5f69-9e74-f0b50275d693) (326.732417ms)
+▶ spec-ledger init (0d0038da-bb13-561e-ac49-570f6ed0f334)
+  ✔ creates the normative skeleton and writes ledger.json last-safe (17.930667ms)
+  ✔ refuses re-init when ledger.json exists (17.250125ms)
+  ✔ warns when no .git is present (0.903333ms)
+  ✔ verify after init invents no claim pass and bindings stay empty (36.833667ms)
+  ✔ does not leave ledger.json if only dirs were created (gate file last) (13.632208ms)
+✔ spec-ledger init (0d0038da-bb13-561e-ac49-570f6ed0f334) (87.085042ms)
+ℹ tests 14
+ℹ suites 2
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 363.832291

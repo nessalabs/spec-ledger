@@ -1,3 +1,5 @@
+
+import { ReadableText } from "@/components/readable-text"
 import Link from "next/link"
 import {
   Badge,
@@ -41,7 +43,7 @@ export default async function TurnsPage() {
             <Card key={e.id}>
               <CardHeader className="gap-2">
                 <div className="flex flex-wrap items-center gap-2">
-                  <Badge className="font-mono">{e.id}</Badge>
+                  <Badge>Automation update</Badge>
                   <Badge variant="outline">{e.state}</Badge>
                   <Badge variant="secondary">{e.kind}</Badge>
                 </div>
@@ -51,7 +53,7 @@ export default async function TurnsPage() {
                       href={`/workstreams/${encodeURIComponent(e.workstreamId)}`}
                       className="hover:underline"
                     >
-                      {e.workstreamId}
+                      <ReadableText>{e.workstreamId}</ReadableText>
                     </Link>
                   ) : (
                     "—"
@@ -63,7 +65,7 @@ export default async function TurnsPage() {
                         href={`/turns/${encodeURIComponent(e.turnId)}`}
                         className="hover:underline"
                       >
-                        {e.turnId}
+                        <ReadableText>{e.turnId}</ReadableText>
                       </Link>
                     </>
                   ) : null}

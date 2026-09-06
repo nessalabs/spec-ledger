@@ -1,0 +1,420 @@
+{
+  "schemaVersion": 1,
+  "requestId": "bd0f9561-8f37-46c0-9289-5500226e7c86",
+  "operation": "finish_turn",
+  "inputDigest": "0117597976e6516c468a600d39bf3b0ec2ce9a57e4a6020dea4a38ec1a71264a",
+  "finishedAt": "2026-09-06T20:19:00.871Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "id": "718a2712-fb21-4c1b-9d10-101995c19cf6",
+    "status": "abandoned",
+    "openedAt": "2026-09-06T20:08:00.604Z",
+    "opened": {
+      "producedBy": "@nessalabs/spec-ledger@0.1.0",
+      "baseCommit": "23c531254b7275d04c1efa86c86ff42b5286f882",
+      "treeDigest": "8330ae214ad62599880db3003efc477f2f751762a859eedf37e6e9a31fc8a3ec",
+      "dirtyAtOpen": [
+        ".spec-ledger/learnings/11603941-5698-4ef1-801c-c7537da4b815.json",
+        ".spec-ledger/reviews/workstreams/eab32d2d-6c3c-84df-b831-9bcc13fd0152/47cc4425-655a-4c92-8663-4f3d8733ce1c.json",
+        ".spec-ledger/workstreams/eab32d2d-6c3c-84df-b831-9bcc13fd0152.json",
+        "docs/workstreams/eab32d2d-6c3c-84df-b831-9bcc13fd0152-concurrent-identities/spec.md"
+      ],
+      "contextDigest": "d23d83f85337d516c602b066d4f3cb61174129c04236155638cd9559b9c7693a",
+      "contextWorkstreamId": "eab32d2d-6c3c-84df-b831-9bcc13fd0152",
+      "contextSliceId": "596b8830-61c6-887a-b6c3-9ae0561f2761",
+      "contextSealRevision": 2,
+      "contextGeneratedAt": "2026-09-06T20:08:00.604Z"
+    },
+    "intent": {
+      "userPrompt": "Complete the data presentation retrofit, restore the populated app on port 3844, and show readable titles throughout the UI without visible UUIDs.",
+      "restatedGoal": "Read every screen by title",
+      "changeType": "feature",
+      "riskLevel": "moderate",
+      "workstreamId": "eab32d2d-6c3c-84df-b831-9bcc13fd0152",
+      "sliceId": "596b8830-61c6-887a-b6c3-9ae0561f2761",
+      "featureIds": [
+        "turns",
+        "lattice",
+        "cli",
+        "verify"
+      ]
+    },
+    "closedAt": "2026-09-06T20:19:00.870Z",
+    "facts": {
+      "producedBy": "@nessalabs/spec-ledger@0.1.0",
+      "commit": "23c531254b7275d04c1efa86c86ff42b5286f882",
+      "files": [
+        {
+          "path": ".spec-ledger/learnings/11603941-5698-4ef1-801c-c7537da4b815.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/reviews/workstreams/eab32d2d-6c3c-84df-b831-9bcc13fd0152/47cc4425-655a-4c92-8663-4f3d8733ce1c.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/reviews/workstreams/eab32d2d-6c3c-84df-b831-9bcc13fd0152/5ab16e1d-5768-4fa1-a2ce-99d3aee8209c.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/turns/718a2712-fb21-4c1b-9d10-101995c19cf6.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/workstreams/eab32d2d-6c3c-84df-b831-9bcc13fd0152.json",
+          "kind": "modified",
+          "additions": 38,
+          "deletions": 9
+        },
+        {
+          "path": ".spec-ledger/workstreams/eab32d2d-6c3c-84df-b831-9bcc13fd0152.seals/2.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": "docs/architecture/identities.md",
+          "kind": "modified",
+          "additions": 1,
+          "deletions": 1
+        },
+        {
+          "path": "docs/workstreams/eab32d2d-6c3c-84df-b831-9bcc13fd0152-concurrent-identities/spec.md",
+          "kind": "modified",
+          "additions": 8,
+          "deletions": 2
+        },
+        {
+          "path": "packages/ui/app/claims/[id]/page.tsx",
+          "kind": "modified",
+          "additions": 7,
+          "deletions": 7
+        },
+        {
+          "path": "packages/ui/app/claims/page.tsx",
+          "kind": "modified",
+          "additions": 3,
+          "deletions": 1
+        },
+        {
+          "path": "packages/ui/app/compass/page.tsx",
+          "kind": "modified",
+          "additions": 10,
+          "deletions": 8
+        },
+        {
+          "path": "packages/ui/app/contracts/page.tsx",
+          "kind": "modified",
+          "additions": 3,
+          "deletions": 1
+        },
+        {
+          "path": "packages/ui/app/experiments/page.tsx",
+          "kind": "modified",
+          "additions": 3,
+          "deletions": 1
+        },
+        {
+          "path": "packages/ui/app/features/[id]/page.tsx",
+          "kind": "modified",
+          "additions": 5,
+          "deletions": 3
+        },
+        {
+          "path": "packages/ui/app/features/page.tsx",
+          "kind": "modified",
+          "additions": 3,
+          "deletions": 1
+        },
+        {
+          "path": "packages/ui/app/layout.tsx",
+          "kind": "modified",
+          "additions": 8,
+          "deletions": 2
+        },
+        {
+          "path": "packages/ui/app/nodes/[id]/page.tsx",
+          "kind": "modified",
+          "additions": 5,
+          "deletions": 3
+        },
+        {
+          "path": "packages/ui/app/page.tsx",
+          "kind": "modified",
+          "additions": 6,
+          "deletions": 3
+        },
+        {
+          "path": "packages/ui/app/turns/[id]/page.tsx",
+          "kind": "modified",
+          "additions": 1,
+          "deletions": 1
+        },
+        {
+          "path": "packages/ui/app/turns/page.tsx",
+          "kind": "modified",
+          "additions": 5,
+          "deletions": 3
+        },
+        {
+          "path": "packages/ui/app/workstreams/[id]/page.tsx",
+          "kind": "modified",
+          "additions": 7,
+          "deletions": 5
+        },
+        {
+          "path": "packages/ui/components/acceptance-progress.tsx",
+          "kind": "modified",
+          "additions": 3,
+          "deletions": 1
+        },
+        {
+          "path": "packages/ui/components/check-evidence.tsx",
+          "kind": "modified",
+          "additions": 6,
+          "deletions": 4
+        },
+        {
+          "path": "packages/ui/components/claims-list.tsx",
+          "kind": "modified",
+          "additions": 8,
+          "deletions": 5
+        },
+        {
+          "path": "packages/ui/components/compact-turn-row.tsx",
+          "kind": "modified",
+          "additions": 11,
+          "deletions": 8
+        },
+        {
+          "path": "packages/ui/components/doc-reader-layout.tsx",
+          "kind": "modified",
+          "additions": 5,
+          "deletions": 3
+        },
+        {
+          "path": "packages/ui/components/execution-activity.tsx",
+          "kind": "modified",
+          "additions": 12,
+          "deletions": 10
+        },
+        {
+          "path": "packages/ui/components/experiment-chart.tsx",
+          "kind": "modified",
+          "additions": 1,
+          "deletions": 1
+        },
+        {
+          "path": "packages/ui/components/experiment-inspect.tsx",
+          "kind": "modified",
+          "additions": 9,
+          "deletions": 7
+        },
+        {
+          "path": "packages/ui/components/goal-links.tsx",
+          "kind": "modified",
+          "additions": 3,
+          "deletions": 1
+        },
+        {
+          "path": "packages/ui/components/graph-workspace.tsx",
+          "kind": "modified",
+          "additions": 9,
+          "deletions": 7
+        },
+        {
+          "path": "packages/ui/components/live-session.tsx",
+          "kind": "modified",
+          "additions": 11,
+          "deletions": 9
+        },
+        {
+          "path": "packages/ui/components/live-workstream-evidence.tsx",
+          "kind": "modified",
+          "additions": 3,
+          "deletions": 1
+        },
+        {
+          "path": "packages/ui/components/peek-link.tsx",
+          "kind": "modified",
+          "additions": 21,
+          "deletions": 16
+        },
+        {
+          "path": "packages/ui/components/readable-text.tsx",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": "packages/ui/components/spec-ledger-shell.tsx",
+          "kind": "modified",
+          "additions": 6,
+          "deletions": 4
+        },
+        {
+          "path": "packages/ui/components/spec-sections.tsx",
+          "kind": "modified",
+          "additions": 4,
+          "deletions": 2
+        },
+        {
+          "path": "packages/ui/components/turn-detail.tsx",
+          "kind": "modified",
+          "additions": 23,
+          "deletions": 21
+        },
+        {
+          "path": "packages/ui/components/turn-doc-split.tsx",
+          "kind": "modified",
+          "additions": 3,
+          "deletions": 4
+        },
+        {
+          "path": "packages/ui/components/turn-evidence.tsx",
+          "kind": "modified",
+          "additions": 3,
+          "deletions": 1
+        },
+        {
+          "path": "packages/ui/components/turn-plan-section.tsx",
+          "kind": "modified",
+          "additions": 6,
+          "deletions": 4
+        },
+        {
+          "path": "packages/ui/components/visual-evidence.tsx",
+          "kind": "modified",
+          "additions": 3,
+          "deletions": 1
+        },
+        {
+          "path": "packages/ui/components/workflow-editor.tsx",
+          "kind": "modified",
+          "additions": 7,
+          "deletions": 5
+        },
+        {
+          "path": "packages/ui/components/workflow-library.tsx",
+          "kind": "modified",
+          "additions": 5,
+          "deletions": 3
+        },
+        {
+          "path": "packages/ui/components/workflow-picker.tsx",
+          "kind": "modified",
+          "additions": 6,
+          "deletions": 4
+        },
+        {
+          "path": "packages/ui/components/workflow-view.tsx",
+          "kind": "modified",
+          "additions": 27,
+          "deletions": 26
+        },
+        {
+          "path": "packages/ui/components/workstream-evidence.tsx",
+          "kind": "modified",
+          "additions": 16,
+          "deletions": 14
+        },
+        {
+          "path": "packages/ui/components/workstreams-list.tsx",
+          "kind": "modified",
+          "additions": 6,
+          "deletions": 2
+        },
+        {
+          "path": "packages/ui/lib/check-evidence.test.mjs",
+          "kind": "modified",
+          "additions": 3,
+          "deletions": 2
+        },
+        {
+          "path": "packages/ui/lib/identity-presentation.break.test.mjs",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": "packages/ui/lib/navigation.break.test.mjs",
+          "kind": "modified",
+          "additions": 2,
+          "deletions": 1
+        },
+        {
+          "path": "packages/ui/lib/navigation.test.mjs",
+          "kind": "modified",
+          "additions": 2,
+          "deletions": 1
+        },
+        {
+          "path": "packages/ui/lib/presentation-test-support.mjs",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": "packages/ui/lib/record-labels.ts",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": "packages/ui/lib/simplicity.break.test.mjs",
+          "kind": "modified",
+          "additions": 2,
+          "deletions": 2
+        },
+        {
+          "path": "packages/ui/lib/turn-evidence.break.test.mjs",
+          "kind": "modified",
+          "additions": 1,
+          "deletions": 1
+        },
+        {
+          "path": "packages/ui/lib/workflow-editor.test.mjs",
+          "kind": "modified",
+          "additions": 2,
+          "deletions": 1
+        }
+      ],
+      "touchedNodeIds": [
+        "ledger-ui"
+      ],
+      "touchedFeatureIds": [
+        "lattice"
+      ],
+      "touchedClaimIds": [
+        "1ea8304f-a051-8234-b7a7-ce31b25eccf2",
+        "3cb6214c-8605-80e6-b73b-d20b9025023f",
+        "77fb26cd-bc46-8037-a8f2-7573f7d6d33d",
+        "93abee59-3e8d-809f-a140-d86105b0d865",
+        "9767b1da-9568-8e2f-ad2a-c2c3eb3e424c",
+        "d62365fc-02af-826c-b961-8942c540bddf",
+        "dd5caaee-dace-8f53-bff5-65b6a7646b6d"
+      ],
+      "blastRadius": {
+        "direct": [],
+        "transitive": []
+      },
+      "verify": {
+        "ok": false,
+        "ledgerDigest": "d2ff5bbc48bf5ade6042bf4e15b2905c9ecf44baff7012f0661fcd4ac5b0771e",
+        "resultsDigest": "0232bf45e21d4440ab8d7e5d0184d60aa1b63863cdec7f08e715e72161c29878",
+        "treeDigest": "f78f0061f29cca1deccbc33b314883c31135bb134d47bd8d84b775e72a7169e3",
+        "producedAt": "2026-09-06T20:19:00.831Z"
+      },
+      "schemaSurfaceChanged": false
+    }
+  }
+}

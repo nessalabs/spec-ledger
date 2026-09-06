@@ -1,5 +1,7 @@
 "use client"
 
+import { ReadableText } from "@/components/readable-text"
+
 import { useCallback, useEffect, useRef, useState } from "react"
 import Link from "next/link"
 import { Badge, Button, Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@nessalabs/ui"
@@ -10,7 +12,7 @@ import { formatMeasurement } from "@/lib/experiment-chart.mjs"
 
 const stateLabel = { active: "In progress", "budget-reached": "Experiment budget reached", concluded: "Concluded" }
 function observedLabel(observation: Observation | null) {
-  return !observation ? "No measurement" : observation.experimentId ? `${observation.experimentId} · ${observation.decision}` : "Starting baseline"
+  return !observation ? "No measurement" : observation.experimentId ? `Measured experiment · ${observation.decision}` : "Starting baseline"
 }
 export function ExperimentInspect({ initial, capturedAt }: { initial: GoalProjection; capturedAt: string }) {
   const [projection, setProjection] = useState(initial)
@@ -56,32 +58,32 @@ export function ExperimentInspect({ initial, capturedAt }: { initial: GoalProjec
         <Link href="/experiments" className="inline-flex items-center gap-1.5 no-underline hover:text-foreground"><ArrowLeft className="size-3.5" /> Experiments</Link>
         <div className="flex items-center gap-3"><span>Snapshot {new Date(readAt).toISOString().replace("T", " ").slice(0,19)} UTC</span><Button variant="outline" size="sm" onClick={() => void refresh()} disabled={refreshing}><RefreshCw className={`mr-1 size-3.5 ${refreshing ? "animate-spin" : ""}`} />Refresh</Button></div>
       </div>
-      {error && <p role="alert" className="rounded-lg border border-amber-500/40 bg-amber-500/10 p-3 text-sm">{error}</p>}
-      <div className="flex flex-wrap items-center gap-3"><Badge variant="outline">Iterative improvement</Badge><Badge variant="outline">{stateLabel[projection.status]}</Badge><span className="text-xs text-muted-foreground">{goal.id} · <Link href={`/workstreams/${goal.workstreamId}`}>{goal.workstreamId}</Link> · started in <Link href={`/turns/${goal.turnId}`}>{goal.turnId}</Link></span></div>
-      <h1 className="text-3xl font-semibold tracking-tight">{goal.title}</h1>
-      <p className="max-w-3xl text-sm leading-relaxed text-muted-foreground">{goal.objective}</p>
+      {error && <p role="alert" className="rounded-lg border border-amber-500/40 bg-amber-500/10 p-3 text-sm"><ReadableText>{error}</ReadableText></p>}
+      <div className="flex flex-wrap items-center gap-3"><Badge variant="outline">Iterative improvement</Badge><Badge variant="outline">{stateLabel[projection.status]}</Badge><span className="text-xs text-muted-foreground"><Link href={`/workstreams/${goal.workstreamId}`}><ReadableText>{goal.workstreamId}</ReadableText></Link> · started in <Link href={`/turns/${goal.turnId}`}><ReadableText>{goal.turnId}</ReadableText></Link></span></div>
+      <h1 className="text-3xl font-semibold tracking-tight"><ReadableText>{goal.title}</ReadableText></h1>
+      <p className="max-w-3xl text-sm leading-relaxed text-muted-foreground"><ReadableText>{goal.objective}</ReadableText></p>
     </header>
     <section className="grid gap-4 rounded-xl border border-border bg-muted/25 p-4 text-sm md:grid-cols-[1fr_auto]">
-      <div><p className="mb-1 text-xs font-medium text-muted-foreground">Stop when</p><p>{goal.stopWhen}</p></div>
+      <div><p className="mb-1 text-xs font-medium text-muted-foreground">Stop when</p><p><ReadableText>{goal.stopWhen}</ReadableText></p></div>
       <div className="md:border-l md:border-border md:pl-6"><p className="font-semibold">{experiments.length}{goal.maxExperiments ? ` / ${goal.maxExperiments}` : ""} experiments</p><p className="mt-1 text-xs text-muted-foreground">{pending} pending · {experiments.filter(e => e.result?.status === "failed").length} failed{projection.remainingExperiments !== null ? ` · ${projection.remainingExperiments} remaining` : ""}</p></div>
     </section>
-    {metric && <div className="grid gap-3" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))" }}>{cards.map(card => <div key={card.label} className="rounded-xl border border-border p-4"><p className="text-xs text-muted-foreground">{card.label}</p><p className="mt-2 text-2xl font-semibold tabular-nums tracking-tight">{formatMeasurement(card.value)} <span className="text-sm font-normal text-muted-foreground">{card.value !== undefined && card.value !== null ? metric.unit : ""}</span></p><p className="mt-1 break-words text-xs text-muted-foreground">{card.detail}</p></div>)}</div>}
+    {metric && <div className="grid gap-3" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))" }}>{cards.map(card => <div key={card.label} className="rounded-xl border border-border p-4"><p className="text-xs text-muted-foreground"><ReadableText>{card.label}</ReadableText></p><p className="mt-2 text-2xl font-semibold tabular-nums tracking-tight">{formatMeasurement(card.value)} <span className="text-sm font-normal text-muted-foreground">{card.value !== undefined && card.value !== null ? metric.unit : ""}</span></p><p className="mt-1 break-words text-xs text-muted-foreground"><ReadableText>{card.detail}</ReadableText></p></div>)}</div>}
     <section className="rounded-xl border border-border p-5">
       <div className="mb-4 flex flex-wrap items-center justify-between gap-2"><h2 className="text-sm font-semibold">{metric ? `${metric.name} over experiments` : "Experiment findings"}</h2><span className="text-xs text-muted-foreground">{metric ? `${metric.direction === "minimize" ? "Lower" : "Higher"} is better` : "Qualitative goal"}{projection.targetObserved !== null ? projection.targetObserved ? " · Target observed" : " · Target not yet observed" : ""}</span></div>
       <ExperimentChart projection={projection} />
-      {metric && <details className="mt-4 text-xs text-muted-foreground"><summary className="cursor-pointer">Evaluation protocol</summary><p className="mt-2 whitespace-pre-wrap leading-relaxed">{metric.protocol}</p></details>}
+      {metric && <details className="mt-4 text-xs text-muted-foreground"><summary className="cursor-pointer">Evaluation protocol</summary><p className="mt-2 whitespace-pre-wrap leading-relaxed"><ReadableText>{metric.protocol}</ReadableText></p></details>}
     </section>
-    {(projection.conclusion || latestFinding) && <section className="rounded-xl border border-indigo-500/20 bg-indigo-500/5 p-4"><h2 className="text-xs font-semibold">{projection.conclusion ? `Conclusion · ${projection.conclusion.reason}` : "Latest finding"}</h2><p className="mt-2 whitespace-pre-wrap text-sm leading-relaxed">{projection.conclusion?.summary ?? latestFinding?.findings}</p></section>}
+    {(projection.conclusion || latestFinding) && <section className="rounded-xl border border-indigo-500/20 bg-indigo-500/5 p-4"><h2 className="text-xs font-semibold">{projection.conclusion ? `Conclusion · ${projection.conclusion.reason}` : "Latest finding"}</h2><p className="mt-2 whitespace-pre-wrap text-sm leading-relaxed"><ReadableText>{projection.conclusion?.summary ?? latestFinding?.findings}</ReadableText></p></section>}
     <section className="space-y-3">
       <div className="flex items-baseline justify-between"><h2 className="text-sm font-semibold">Experiment results</h2><p className="text-xs text-muted-foreground">Newest attempts first</p></div>
       {!experiments.length ? <div className="rounded-xl border border-dashed border-border p-8 text-center text-sm text-muted-foreground">No experiments started. The agent can record a hypothesis and change when ready.</div> : <div className="overflow-x-auto rounded-xl border border-border"><Table>
         <TableHeader><TableRow><TableHead className="w-16">Attempt</TableHead><TableHead>Hypothesis & change</TableHead><TableHead>Result</TableHead><TableHead>Decision</TableHead><TableHead className="min-w-64">Findings</TableHead></TableRow></TableHeader>
         <TableBody>{[...experiments].reverse().slice(0,limit).map(({ experiment, result }) => <TableRow key={experiment.id}>
-          <TableCell className="align-top"><p className="font-medium">#{experiment.sequence}</p><Link className="mt-1 block text-xs text-muted-foreground" href={`/turns/${experiment.turnId}`}>{experiment.turnId}</Link></TableCell>
-          <TableCell className="min-w-64 max-w-96 whitespace-normal align-top"><p className="text-sm font-medium">{experiment.hypothesis}</p><p className="mt-1 text-xs leading-relaxed text-muted-foreground">{experiment.change}</p><p className="mt-2 break-all text-[10px] text-muted-foreground">{experiment.id}{experiment.parentExperimentId ? ` · builds on ${experiment.parentExperimentId}` : ""}</p></TableCell>
+          <TableCell className="align-top"><p className="font-medium">#{experiment.sequence}</p><Link className="mt-1 block text-xs text-muted-foreground" href={`/turns/${experiment.turnId}`}><ReadableText>{experiment.turnId}</ReadableText></Link></TableCell>
+          <TableCell className="min-w-64 max-w-96 whitespace-normal align-top"><p className="text-sm font-medium"><ReadableText>{experiment.hypothesis}</ReadableText></p><p className="mt-1 text-xs leading-relaxed text-muted-foreground"><ReadableText>{experiment.change}</ReadableText></p><p className="mt-2 break-all text-[10px] text-muted-foreground">{experiment.parentExperimentId ? `Builds on experiment ${experiments.find(item => item.experiment.id === experiment.parentExperimentId)?.experiment.sequence ?? "not available"}` : ""}</p></TableCell>
           <TableCell className="whitespace-nowrap align-top text-sm tabular-nums">{!result ? <Badge variant="outline">Pending</Badge> : result.status === "failed" ? <Badge variant="outline">Failed</Badge> : result.measurement === undefined ? "No measurement" : `${formatMeasurement(result.measurement)} ${metric?.unit ?? ""}`}</TableCell>
           <TableCell className="align-top"><span className={`text-xs ${result?.decision === "kept" ? "font-medium text-indigo-700 dark:text-indigo-300" : "text-muted-foreground"}`}>{result?.decision ?? "Undecided"}</span></TableCell>
-          <TableCell className="max-w-md whitespace-normal align-top text-xs leading-relaxed"><p>{result?.findings ?? "Awaiting a reported result."}</p>{result?.evidenceRefs?.length ? <details className="mt-2 text-muted-foreground"><summary className="cursor-pointer">Evidence references ({result.evidenceRefs.length})</summary><ul className="mt-2 space-y-1">{result.evidenceRefs.map((ref,i) => <li key={i} className="break-all">{ref}</li>)}</ul></details> : null}</TableCell>
+          <TableCell className="max-w-md whitespace-normal align-top text-xs leading-relaxed"><p><ReadableText>{result?.findings ?? "Awaiting a reported result."}</ReadableText></p>{result?.evidenceRefs?.length ? <details className="mt-2 text-muted-foreground"><summary className="cursor-pointer">Evidence references ({result.evidenceRefs.length})</summary><ul className="mt-2 space-y-1">{result.evidenceRefs.map((ref,i) => <li key={i} className="break-all"><ReadableText>{ref}</ReadableText></li>)}</ul></details> : null}</TableCell>
         </TableRow>)}</TableBody>
       </Table></div>}
       {experiments.length > limit && <Button variant="outline" size="sm" onClick={() => setLimit(n => n + 20)}>Show more experiments ({experiments.length - limit} remaining)</Button>}

@@ -1,3 +1,5 @@
+
+import { ReadableText } from "@/components/readable-text"
 import nextDynamic from "next/dynamic"
 import {
   Badge,
@@ -71,7 +73,7 @@ export default async function ContractsPage() {
                       <Badge variant="outline">{row.method}</Badge>
                     </td>
                     <td className="py-2 pr-4 font-mono text-xs">{row.path}</td>
-                    <td className="py-2 text-muted-foreground">{row.description}</td>
+                    <td className="py-2 text-muted-foreground"><ReadableText>{row.description}</ReadableText></td>
                   </tr>
                 ))}
               </tbody>

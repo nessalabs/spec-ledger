@@ -1,5 +1,9 @@
 "use client"
 
+import { ReadableText, useRecordLabels } from "@/components/readable-text"
+
+import { readableText, readableMarkdown } from "@/lib/record-labels"
+
 import * as React from "react"
 import { X } from "lucide-react"
 import {
@@ -40,6 +44,7 @@ export function DocReaderLayout({
   onOpenDoc: OpenDoc
   children: React.ReactNode
 }) {
+  const labels = useRecordLabels()
   const active = tabs.find((t) => t.path === activePath) ?? tabs[0]!
 
   const components = React.useMemo(
@@ -55,7 +60,7 @@ export function DocReaderLayout({
             <button
               type="button"
               className="cursor-pointer border-0 bg-transparent p-0 text-primary underline underline-offset-4"
-              title={`Open ${repoPath} in reader`}
+              title="Open document in reader"
               onClick={(e) => {
                 e.preventDefault()
                 onOpenDoc({
@@ -112,7 +117,7 @@ export function DocReaderLayout({
                       <button
                         type="button"
                         onClick={() => onSelect(t.path)}
-                        title={t.path}
+                        title="Read document"
                         className={cn(
                           "min-w-0 flex-1 truncate text-left text-xs",
                           selected
@@ -120,12 +125,12 @@ export function DocReaderLayout({
                             : "text-muted-foreground",
                         )}
                       >
-                        {t.label}
+                        <ReadableText>{t.label}</ReadableText>
                       </button>
                       <button
                         type="button"
                         onClick={() => onCloseTab(t.path)}
-                        aria-label={`Close ${t.label}`}
+                        aria-label={`Close ${readableText(t.label, labels)}`}
                         className="inline-flex size-5 shrink-0 items-center justify-center rounded text-muted-foreground opacity-60 hover:bg-accent hover:opacity-100 group-hover/tab:opacity-100"
                       >
                         <X className="size-3" aria-hidden />
@@ -145,7 +150,7 @@ export function DocReaderLayout({
             </div>
             <div className="border-b border-border px-3 py-1.5">
               <p className="truncate font-mono text-[11px] text-muted-foreground">
-                {active.path}
+                <ReadableText>{active.label}</ReadableText>
               </p>
             </div>
             <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain p-4">
@@ -154,7 +159,7 @@ export function DocReaderLayout({
                   className="text-sm leading-relaxed"
                   components={components}
                 >
-                  {active.content}
+                  {readableMarkdown(active.content ?? "", labels)}
                 </MessageMarkdown>
               </CodeBlockProvider>
             </div>

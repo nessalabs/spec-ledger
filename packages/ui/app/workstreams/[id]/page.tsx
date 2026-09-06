@@ -1,3 +1,5 @@
+
+import { ReadableText } from "@/components/readable-text"
 import { GoalLinks } from "@/components/goal-links"
 import { LiveWorkstreamEvidence } from "@/components/live-workstream-evidence"
 import { presentationCopy } from "@/lib/features"
@@ -58,20 +60,20 @@ export default async function WorkstreamPage({
             Specs
           </Link>
           {" / "}
-          {presentationCopy(ws.title)}
+          <ReadableText>{presentationCopy(ws.title)}</ReadableText>
         </p>
         <div className="flex flex-wrap items-center gap-2">
-          <h1 className="text-2xl font-semibold tracking-tight">{presentationCopy(ws.title)}</h1>
+          <h1 className="text-2xl font-semibold tracking-tight"><ReadableText>{presentationCopy(ws.title)}</ReadableText></h1>
           <Badge variant="outline">{statusLabel}</Badge>
         </div>
-        {ws.objective && <p className="max-w-2xl text-sm text-muted-foreground">{presentationCopy(ws.objective)}</p>}
+        {ws.objective && <p className="max-w-2xl text-sm text-muted-foreground"><ReadableText>{presentationCopy(ws.objective)}</ReadableText></p>}
         <details className="max-w-2xl text-xs text-muted-foreground">
           <summary className="cursor-pointer select-none hover:text-foreground">
             Version details
             {ws.seal ? ` · sealed rev ${ws.seal.revision}` : " · unsealed"}
           </summary>
           <div className="mt-2 space-y-1 break-all rounded-md border border-border/60 px-3 py-2 font-mono">
-            <p>Reference: {ws.id}</p>
+
             {ws.seal ? (
               <>
                 <p>sealed by {ws.seal.sealedBy}</p>
@@ -89,7 +91,7 @@ export default async function WorkstreamPage({
         <PitchDocLink path={specPath} title="Read the spec" />
       ) : (
         <p className="max-w-2xl text-sm leading-relaxed text-muted-foreground">
-          {presentationCopy(ws.objective)}
+          <ReadableText>{presentationCopy(ws.objective)}</ReadableText>
         </p>
       )}
 

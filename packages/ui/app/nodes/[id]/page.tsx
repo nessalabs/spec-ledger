@@ -1,3 +1,5 @@
+
+import { ReadableText } from "@/components/readable-text"
 import { featureHref, featureLabel } from "@/lib/features"
 import Link from "next/link"
 import { notFound } from "next/navigation"
@@ -47,14 +49,14 @@ export default async function NodePage({
             Graph
           </Link>
           {" / "}
-          {node.id}
+          <ReadableText>{node.id}</ReadableText>
         </p>
         <div className="flex flex-wrap items-center gap-2">
           <h1 className="text-2xl font-semibold tracking-tight">
             {node.name ?? node.id}
           </h1>
           <Badge variant="outline" className="font-mono">
-            {node.id}
+            <ReadableText>{node.id}</ReadableText>
           </Badge>
           <Badge variant="secondary">{node.layer}</Badge>
           <Badge variant="outline">{node.kind}</Badge>
@@ -173,7 +175,7 @@ export default async function NodePage({
             {linkedClaims.map((c) => (
               <Link key={c.id} href={`/claims/${encodeURIComponent(c.id)}`}>
                 <Badge variant="secondary" className="font-mono">
-                  {c.id}
+                  <ReadableText>{c.statement}</ReadableText>
                 </Badge>
               </Link>
             ))}

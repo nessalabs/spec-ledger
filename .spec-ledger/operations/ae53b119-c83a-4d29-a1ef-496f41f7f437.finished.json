@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "requestId": "ae53b119-c83a-4d29-a1ef-496f41f7f437",
+  "operation": "record_review",
+  "inputDigest": "73d8ee8473f56263fecb843c4136ac7897a84203b86dd39c7bfc706a38343b48",
+  "finishedAt": "2026-09-06T20:07:09.603Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "workstreamId": "eab32d2d-6c3c-84df-b831-9bcc13fd0152",
+    "kind": "adversarial",
+    "target": "spec",
+    "reviewer": "agent:sl-plan-break-spec",
+    "verdict": "approve",
+    "blocking": false,
+    "plainSummary": "The revised plan removes visible UUIDs throughout the app and verifies populated migrated work on the server the user actually opens.",
+    "summary": "Independent review of the explicit user correction, using the current related pack (4 features, 22 claims, 1 proposed claim, 50 docs). The updated behavior removes the earlier visible-reference allowance and covers normal labels, tooltips, breadcrumbs, reference details and prose while preserving internal link targets and original artifact bytes. Validation now targets the user-facing running app with populated migrated data, distinguishes stale readers from empty data, and preserves all four existing screenshot surfaces while adding six covering the remaining pages. Existing authority and migration/provenance boundaries remain intact; no new approval gate is needed. No blocking spec gaps found.",
+    "alertOnSeverity": "high",
+    "findings": [],
+    "supersedesReviewId": "e5ecaf1b-a06d-8cd1-8148-e06aa69fecf6",
+    "residualRisks": [
+      "Code review should test unresolved references and duplicate titles: use honest descriptive fallback text while retaining distinct link destinations, without silently hiding missing records.",
+      "Presentation substitutions must not rewrite historical artifacts, captured test output or saved digests; retain the explicit raw-artifact boundary.",
+      "Browser evidence must cover expanded details, tooltip/accessibility text and narrow navigation using actual migrated data, not only title-only fixtures or a different server port.",
+      "The related pack returns generic worktree caution text without actual sibling-path scan evidence."
+    ],
+    "id": "47cc4425-655a-4c92-8663-4f3d8733ce1c",
+    "revisionDigest": "1b70be50d9cd9830ecd4e6485dd0859ebca04680fd01fd28c16b01bb99aa6031"
+  }
+}

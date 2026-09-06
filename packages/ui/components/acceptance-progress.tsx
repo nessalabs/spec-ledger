@@ -1,3 +1,5 @@
+
+import { ReadableText } from "@/components/readable-text"
 import { acceptanceProgress } from "@/lib/acceptance-progress"
 import { Check, CircleDashed, Loader } from "lucide-react"
 import type { CompletionChecklistItem } from "@nessalabs/spec-ledger-client"
@@ -106,7 +108,7 @@ export function AcceptanceProgress({
       {checklist.length === 0 && remaining.length > 0 && (
         <div className="space-y-1 text-sm">
           <p className="font-medium">{historical ? "Needs rechecking" : "Still needed"}</p>
-          <ul className="list-disc space-y-1 pl-5">{remaining.map(reason => <li key={reason}>{reason}</li>)}</ul>
+          <ul className="list-disc space-y-1 pl-5">{remaining.map(reason => <li key={reason}><ReadableText>{reason}</ReadableText></li>)}</ul>
         </div>
       )}
       <details className="text-xs text-muted-foreground"><summary className="cursor-pointer">About this progress</summary><div className="mt-2 space-y-2"><p>Current implementation reports: {progress.implemented}/{progress.total} · agent reported</p><p>The percentage counts requirements with current passing evidence. Reviews and other completion requirements are checked separately.</p>{historical && <p>This work was completed earlier. These counts describe evidence on the current code.</p>}</div></details>

@@ -1,3 +1,5 @@
+
+import { ReadableText } from "@/components/readable-text"
 import Link from "next/link"
 import { LiveSession } from "@/components/live-session"
 import { liveReport, serverClient } from "@/lib/ledger"
@@ -14,11 +16,12 @@ export default async function OverviewPage({
 }) {
   const { workstream } = await searchParams
   const client = serverClient()
-  const [session, report, workstreams, turns] = await Promise.all([
+  const [session, report, workstreams, turns, claims] = await Promise.all([
     client.getSession(workstream),
     liveReport(),
     client.listWorkstreams(),
     client.getTurns(),
+    client.getClaims(),
   ])
 
   const unproven = report.claims.filter(c => UNPROVEN.includes(c.outcome))
@@ -54,7 +57,7 @@ export default async function OverviewPage({
                 href={stat.href}
                 className="block rounded-lg border border-border px-3 py-2 no-underline transition-colors hover:bg-muted/40"
               >
-                <span className="block text-[11px] text-muted-foreground">{stat.label}</span>
+                <span className="block text-[11px] text-muted-foreground"><ReadableText>{stat.label}</ReadableText></span>
                 <span className="block text-sm font-medium">{stat.value}</span>
               </Link>
             </li>
@@ -72,7 +75,7 @@ export default async function OverviewPage({
                   href={`/claims/${encodeURIComponent(c.claimId)}`}
                   className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-0.5 px-3 py-2 text-sm no-underline transition-colors hover:bg-muted/40"
                 >
-                  <span className="font-mono text-xs">{c.claimId}</span>
+                  <span className="text-sm"><ReadableText>{claims.find(claim => claim.id === c.claimId)?.statement ?? "Unavailable requirement"}</ReadableText></span>
                   <span className="capitalize text-amber-600 dark:text-amber-400">
                     {c.outcome}
                   </span>

@@ -1,3 +1,5 @@
+
+import { ReadableText } from "@/components/readable-text"
 import { resolveFeatureId, featureHref, featureSlug, featureLabel, featureSummary } from "@/lib/features"
 import Link from "next/link"
 import { notFound, redirect } from "next/navigation"
@@ -54,7 +56,7 @@ export default async function FeaturePage({
             {featureSlug(feature.id)}
           </Badge>
         </div>
-        <p className="max-w-2xl text-sm text-muted-foreground">{featureSummary(feature.id, feature.summary)}</p>
+        <p className="max-w-2xl text-sm text-muted-foreground"><ReadableText>{featureSummary(feature.id, feature.summary)}</ReadableText></p>
       </header>
 
       {feature.keywords?.length ? (
@@ -88,7 +90,7 @@ export default async function FeaturePage({
                     href={`/claims/${encodeURIComponent(c.id)}`}
                     className="min-w-0 flex-1 leading-snug text-foreground no-underline hover:underline"
                   >
-                    {c.statement}
+                    <ReadableText>{c.statement}</ReadableText>
                   </Link>
                   <span className="shrink-0 text-xs capitalize text-muted-foreground">
                     {outcomeById.get(c.id) ?? ""}
@@ -115,7 +117,7 @@ export default async function FeaturePage({
                 href={`/nodes/${encodeURIComponent(n.id)}`}
                 className="flex items-center gap-2 text-sm no-underline hover:underline"
               >
-                <span className="font-mono font-medium">{n.id}</span>
+                <span className="font-mono font-medium"><ReadableText>{n.id}</ReadableText></span>
                 <span className="text-muted-foreground">{n.name ?? n.purpose}</span>
                 <Badge variant="outline">{n.layer}</Badge>
               </Link>

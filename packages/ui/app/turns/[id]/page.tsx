@@ -69,7 +69,7 @@ export default async function TurnPage({
     if (!claimIds.has(c.id)) continue
     for (const path of c.links?.docs ?? []) {
       if (!docPaths.has(path)) {
-        docPaths.set(path, { path, label: `${c.id} · ${path.split("/").pop()}` })
+        docPaths.set(path, { path, label: `Requirement documentation · ${path.split("/").pop()}` })
       }
     }
   }

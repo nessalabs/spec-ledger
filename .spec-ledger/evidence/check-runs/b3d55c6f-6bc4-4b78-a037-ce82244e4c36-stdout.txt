@@ -1,0 +1,32 @@
+▶ sl-dev-break sealed plan digests (dd50018c-1c86-59c5-a9d8-0fc5d464d622 / bd653cf7-90df-5d56-b698-f7a75bd59fce)
+  ✔ missing specPath file refuses seal (21.226958ms)
+  ✔ seal stamps digest on live seal AND snapshot; amend never mutates seal.specDocDigest (19.980084ms)
+  ✔ latest amend.afterDocDigest wins over seal.specDocDigest and prior amends (21.005875ms)
+  ✔ backfill does not mutate prior seals/N.json bytes (20.854333ms)
+  ✔ audit seal-digest-drift: live≠snapshot body even if seal.specDigest forged to match live (17.505875ms)
+  ✔ deleted spec file after seal fails check-seal and audit (15.912291ms)
+  ✔ CLI amend + check-seal round-trip (integration) (253.567791ms)
+  ✔ out-of-intent: empty afterDocDigest on latest amend must not fall back past prior amend (14.784917ms)
+  ✔ out-of-intent: hostile specPath with .. refuses seal/read (13.841917ms)
+✔ sl-dev-break sealed plan digests (dd50018c-1c86-59c5-a9d8-0fc5d464d622 / bd653cf7-90df-5d56-b698-f7a75bd59fce) (399.352875ms)
+▶ sealed plan digests (7c0eb1c1-f6d3-5b70-941d-b485ee6a075d)
+  ✔ seal stamps specDocDigest; check-seal fails on silent edit; amend restores (23.862208ms)
+  ✔ missing expected digest fails until backfill (17.426625ms)
+  ✔ amend refuses no-op and requires backfill first (20.3095ms)
+  ✔ seal-digest-drift when live payload diverges (21.410125ms)
+✔ sealed plan digests (7c0eb1c1-f6d3-5b70-941d-b485ee6a075d) (83.490292ms)
+▶ PR #1 seal integrity regressions (85d09524-267b-5946-86ed-83eb7cd2e51e)
+  ✔ resealing an amended document accepts the newly sealed bytes (26.904667ms)
+  ✔ reverting to a prior revision amendment fails both seal check and audit (20.155417ms)
+  ✔ a current amendment works after resealing but cannot hide a corrupted seal pointer (21.256375ms)
+  ✔ check-seal rejects rewriting only the live document digest (19.328958ms)
+  ✔ audit rejects rewriting only the live document digest (18.018ms)
+✔ PR #1 seal integrity regressions (85d09524-267b-5946-86ed-83eb7cd2e51e) (106.265834ms)
+ℹ tests 18
+ℹ suites 3
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 439.326625

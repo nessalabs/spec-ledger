@@ -1,5 +1,7 @@
 "use client"
 
+import { ReadableText, useRecordLabels } from "@/components/readable-text"
+
 import type { Claim, EvidenceBinding } from "@nessalabs/spec-ledger-client"
 import { cn } from "@/lib/cn"
 import { PeekLink, claimPeekMarkdown } from "@/components/peek-link"
@@ -23,6 +25,7 @@ export function ClaimsList({
   bindings: EvidenceBinding[]
   verdicts: Array<{ claimId: string; outcome: Outcome; detail?: string }>
 }) {
+  const labels = useRecordLabels()
   const verdict = new Map(verdicts.map((c) => [c.claimId, c]))
   const bindingCount = new Map<string, number>()
   for (const b of bindings) {
@@ -36,6 +39,7 @@ export function ClaimsList({
         const n = bindingCount.get(claim.id) ?? 0
         const docs = claim.links?.docs?.[0]
         const peek = claimPeekMarkdown({
+          labels,
           id: claim.id,
           statement: claim.statement,
           kind: claim.kind,
@@ -49,25 +53,24 @@ export function ClaimsList({
             <PeekLink
               href={`/claims/${encodeURIComponent(claim.id)}`}
               peekPath={`peek:claim/${claim.id}`}
-              peekLabel={claim.id}
+              peekLabel={claim.statement}
               peekContent={peek}
               title="⌘/Ctrl-click to peek beside the list"
               className="grid gap-1 px-3 py-2.5 no-underline transition-colors hover:bg-muted/40 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-baseline sm:gap-3"
             >
               <span className="min-w-0">
                 <span className="line-clamp-2 text-sm leading-snug text-foreground">
-                  {claim.statement}
+                  <ReadableText>{claim.statement}</ReadableText>
                 </span>
                 <span className="mt-0.5 flex flex-wrap items-center gap-x-2 gap-y-0.5 text-[11px] text-muted-foreground">
-                  <span className="font-mono">{claim.id}</span>
                   <span>{claim.kind}</span>
                   {claim.required ? <span>required</span> : <span>optional</span>}
                   <span>
                     {n} binding{n === 1 ? "" : "s"}
                   </span>
                   {docs ? (
-                    <span className="font-mono truncate" title={docs}>
-                      {docs}
+                    <span className="truncate">
+                      Documentation
                     </span>
                   ) : null}
                 </span>

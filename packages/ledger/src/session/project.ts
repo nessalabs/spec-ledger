@@ -157,7 +157,7 @@ export function getSession(root: string, workstreamId?: string) {
     if (seen.has(d.decision)) return false
     seen.add(d.decision); return true
   }).slice(0, 12)
-    .map(d => ({ id: d.id, summary: d.decision, reason: d.rationale, discovery: d.discovery }))
+    .map(d => ({ id: d.id, turnId: d.turnId, recordedAt: d.recordedAt ?? d.basis?.at ?? null, summary: d.decision, reason: d.rationale, discovery: d.discovery }))
   const handoff = (action: "approve" | "deny") =>
     `spec-ledger permission ${action} --workstream ${selected} --revision ${revisionDigest} --source 'user:cli-handoff'`
   return {

@@ -1,3 +1,5 @@
+
+import { ReadableText } from "@/components/readable-text"
 import Link from "next/link"
 import { Badge } from "@nessalabs/ui"
 import type { SessionProjection } from "@nessalabs/spec-ledger-client"
@@ -21,7 +23,7 @@ function StateBadge({ state }: { state: Execution["state"] }) {
 function Capability({ label, available }: { label: string; available: boolean }) {
   return (
     <li className="flex items-center justify-between gap-3 border-t border-border/60 py-2 first:border-0">
-      <span>{label}</span>
+      <span><ReadableText>{label}</ReadableText></span>
       <Badge variant="outline">{available ? "Available" : "Unavailable"}</Badge>
     </li>
   )
@@ -48,7 +50,7 @@ export function ExecutionActivitySummary({
       {execution.association ? (
         <p className="text-sm">
           <Link className="underline" href={`/turns/${encodeURIComponent(execution.association.turnId)}`}>
-            {execution.association.turnId}
+            <ReadableText>{execution.association.turnId}</ReadableText>
           </Link>
           {execution.inflightInvocations.length
             ? ` · ${execution.inflightInvocations.length} invocation${execution.inflightInvocations.length === 1 ? "" : "s"} unresolved`
@@ -93,10 +95,10 @@ export function ExecutionActivityDetails({ execution }: { execution: Execution }
         <h3 className="font-medium">Session association</h3>
         {execution.association ? (
           <div className="space-y-1 text-xs text-muted-foreground">
-            <p>{execution.association.registrationId} · {execution.association.provenance}</p>
-            <p>Host session {execution.association.hostSessionRef}</p>
-            <p>Turn <Link className="underline" href={`/turns/${encodeURIComponent(execution.association.turnId)}`}>{execution.association.turnId}</Link></p>
-            <p>Workflow attempt {execution.association.workflowAttemptId ?? "not linked"}</p>
+            <p>Registered · {execution.association.provenance}</p>
+            <p>Host session connected</p>
+            <p>Turn <Link className="underline" href={`/turns/${encodeURIComponent(execution.association.turnId)}`}><ReadableText>{execution.association.turnId}</ReadableText></Link></p>
+            <p>Workflow attempt {execution.association.workflowAttemptId ? "linked" : "not linked"}</p>
             <p>Registered {execution.association.registeredAt}</p>
             <p className="break-all">Revision {execution.association.revisionDigest}</p>
             <p className="break-all">Source {execution.association.sourceDigest}</p>
@@ -121,7 +123,7 @@ export function ExecutionActivityDetails({ execution }: { execution: Execution }
             {execution.inflightInvocations.map((invocation) => (
               <div key={invocation.invocationId} className="rounded-lg border border-border/60 p-3 text-xs">
                 <p>{invocation.toolName ?? "Unnamed tool"} · {invocation.status === "finish-missing" ? "finish signal missing" : "reported in flight"}</p>
-                <p className="text-muted-foreground">{invocation.invocationId} · started {invocation.startedAt} · sequence {invocation.lastSequence}</p>
+                <p className="text-muted-foreground">Started {invocation.startedAt} · sequence {invocation.lastSequence}</p>
               </div>
             ))}
           </div>
@@ -148,7 +150,7 @@ export function ExecutionActivityDetails({ execution }: { execution: Execution }
                   <p>{event.kind} · sequence {event.sequence} · {event.observedAt}</p>
                   <p>{event.eventId} · session {event.sessionId}</p>
                   {event.invocationId ? <p>Invocation {event.invocationId}{event.toolName ? ` · ${event.toolName}` : ""}</p> : null}
-                  {event.reason ? <p>{event.reason}</p> : null}
+                  {event.reason ? <p><ReadableText>{event.reason}</ReadableText></p> : null}
                 </li>
               ))}
             </ul>
@@ -199,10 +201,10 @@ export function ExecutionActivityDetails({ execution }: { execution: Execution }
         </p>
         {execution.timeout.warnings.map((warning) => (
           <p key={`${warning.invocationId}/${warning.thresholdMs}`} className="text-sm text-amber-600 dark:text-amber-400">
-            {warning.invocationId} has run {durationLabel(warning.elapsedMs)} · warning threshold {durationLabel(warning.thresholdMs)}
+            This tool call has run {durationLabel(warning.elapsedMs)} · warning threshold {durationLabel(warning.thresholdMs)}
           </p>
         ))}
-        {execution.timeout.reasons.map((reason) => <p key={reason} className="text-sm">{reason}</p>)}
+        {execution.timeout.reasons.map((reason) => <p key={reason} className="text-sm"><ReadableText>{reason}</ReadableText></p>)}
       </section>
 
       <section className="space-y-2 rounded-xl border border-border p-4">

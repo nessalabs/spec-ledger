@@ -28,7 +28,15 @@
         "UUID work list — desktop",
         "UUID work details — mobile",
         "Integrated experiments",
-        "Integrated workflow library"
+        "Integrated workflow library",
+        "Overview with migrated work",
+        "Capabilities and recent changes",
+        "Code map with named requirements",
+        "Requirement details and preview",
+        "Change details and evidence",
+        "Workflow details",
+        "Task updates — desktop",
+        "Task updates — mobile"
       ]
     }
   },
@@ -71,7 +79,7 @@
         "pnpm-lock.yaml",
         ".npmrc"
       ],
-      "codeBreakReviewId": "fc43897c-41bb-4a8b-90e5-be13fe53a7a6"
+      "codeBreakReviewId": "a7dff9d4-95c9-484d-849c-1a7af6109f7b"
     }
   ],
   "acceptanceClaimIds": {
@@ -91,15 +99,15 @@
   "proposedClaimIds": [
     "efc1f0a4-7911-8163-b194-906c6ae5f62a"
   ],
-  "specBreakReviewId": "e5ecaf1b-a06d-8cd1-8148-e06aa69fecf6",
-  "updatedAt": "2026-09-06T19:44:02.079Z",
+  "specBreakReviewId": "5ab16e1d-5768-4fa1-a2ce-99d3aee8209c",
+  "updatedAt": "2026-09-06T20:42:24.764Z",
   "seal": {
-    "sealedAt": "2026-09-06T18:36:28.382Z",
+    "sealedAt": "2026-09-06T20:19:01.005Z",
     "sealedBy": "agent:permission:4e6cc9b2-c4e1-8671-9676-99a44a454eac",
-    "specDigest": "2ccffd0296e952184e3f980cce9e94a396acc997c5a17feaceb46879a522cb0f",
-    "snapshotPath": "workstreams/eab32d2d-6c3c-84df-b831-9bcc13fd0152.seals/1.json",
-    "revision": 1,
-    "specDocDigest": "455a563aabf26bf1444ad06d52dc2749708f5247ddd5da45058bd1dc197afd00"
+    "specDigest": "baa39ef881188030e3fea251de155b5499978829a40f80d4606d3639e4a8cc17",
+    "snapshotPath": "workstreams/eab32d2d-6c3c-84df-b831-9bcc13fd0152.seals/3.json",
+    "revision": 3,
+    "specDocDigest": "f883a20a37139a3e63a6220d406c47e8d17f27ccfa66afcb8b6f69c86798c3ac"
   },
   "migration": {
     "origins": {
@@ -110,5 +118,26 @@
       }
     },
     "historical": true
-  }
+  },
+  "postSealAmends": [
+    {
+      "at": "2026-09-06T20:06:01.780Z",
+      "summary": "User requests titles throughout the UI and verification of populated migrated data on the active server.",
+      "humanConfirmed": true,
+      "sealedRevision": 1,
+      "beforeDocDigest": "455a563aabf26bf1444ad06d52dc2749708f5247ddd5da45058bd1dc197afd00",
+      "afterDocDigest": "37cd378eec5c1ffdcb99c6903288a4f5e75edd8b3ae5f0dd2a8d93013fdf7b8d",
+      "actor": "user-request"
+    },
+    {
+      "at": "2026-09-06T20:17:33.051Z",
+      "summary": "Give recorded task updates their own dated feed tab, preserving Changes for implementation history.",
+      "humanConfirmed": true,
+      "sealedRevision": 2,
+      "beforeDocDigest": "37cd378eec5c1ffdcb99c6903288a4f5e75edd8b3ae5f0dd2a8d93013fdf7b8d",
+      "afterDocDigest": "f883a20a37139a3e63a6220d406c47e8d17f27ccfa66afcb8b6f69c86798c3ac",
+      "actor": "user-request",
+      "turnId": "718a2712-fb21-4c1b-9d10-101995c19cf6"
+    }
+  ]
 }

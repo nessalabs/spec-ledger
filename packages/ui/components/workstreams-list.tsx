@@ -1,5 +1,7 @@
 "use client"
 
+import { ReadableText, useRecordLabels } from "@/components/readable-text"
+
 import { presentationCopy } from "@/lib/features"
 
 
@@ -10,6 +12,7 @@ import {
 } from "@/components/peek-link"
 
 export function WorkstreamsList({ workstreams }: { workstreams: Workstream[] }) {
+  const labels = useRecordLabels()
   const ordered = [...workstreams].sort((a, b) => (b.createdAt ?? "").localeCompare(a.createdAt ?? "") || a.title.localeCompare(b.title))
 
   if (ordered.length === 0) {
@@ -21,6 +24,7 @@ export function WorkstreamsList({ workstreams }: { workstreams: Workstream[] }) 
       {ordered.map((w) => {
         const blurb = w.objective?.trim() || w.problem
         const peek = workstreamPeekMarkdown({
+          labels,
           id: w.id,
           title: w.title,
           objective: blurb,
@@ -39,10 +43,10 @@ export function WorkstreamsList({ workstreams }: { workstreams: Workstream[] }) 
             >
               <span className="min-w-0">
                 <span className="line-clamp-1 text-sm font-medium text-foreground">
-                  {presentationCopy(w.title)}
+                  <ReadableText>{presentationCopy(w.title)}</ReadableText>
                 </span>
                 <span className="mt-0.5 line-clamp-2 block text-[11px] text-muted-foreground">
-                  {presentationCopy(blurb)}
+                  <ReadableText>{presentationCopy(blurb)}</ReadableText>
                 </span>
               </span>
               <span className="shrink-0 text-[11px] capitalize text-muted-foreground">

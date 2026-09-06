@@ -10,7 +10,7 @@ const ts = createRequire(new URL('../../ledger/package.json', import.meta.url))(
 function load(path, overrides={}) {
   const compiled=ts.transpileModule(readFileSync(new URL(path,import.meta.url),'utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022,jsx:ts.JsxEmit.ReactJSX,esModuleInterop:true}}).outputText
   const module={exports:{}}
-  new Function('require','module','exports',compiled)(id=>id in overrides?overrides[id]:require(id),module,module.exports)
+  new Function('require','module','exports',compiled)(id=>id in overrides?overrides[id]:(id==='@/components/readable-text'?load('../components/readable-text.tsx'):id==='@/lib/record-labels'?load('./record-labels.ts'):require(id)),module,module.exports)
   return module.exports
 }
 const {evidenceForTurn,completionLabel}=load('./turn-evidence.ts')

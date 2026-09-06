@@ -1,5 +1,7 @@
 "use client"
 
+import { ReadableText } from "@/components/readable-text"
+
 import { useRef, useState } from "react"
 import Link from "next/link"
 import {
@@ -147,7 +149,7 @@ export function LiveSession({ initial }: { initial: SessionProjection }) {
             <DropdownMenuRadioGroup value={selected} onValueChange={choose}>
               {data.choices.map(w => (
                 <DropdownMenuRadioItem key={w.id} value={w.id}>
-                  {w.title}
+                  <ReadableText>{w.title}</ReadableText>
                 </DropdownMenuRadioItem>
               ))}
             </DropdownMenuRadioGroup>
@@ -168,9 +170,9 @@ export function LiveSession({ initial }: { initial: SessionProjection }) {
               className="text-xl font-semibold hover:underline"
               href={`/workstreams/${session.workstreamId}`}
             >
-              {presentationCopy(session.title)}
+              <ReadableText>{presentationCopy(session.title)}</ReadableText>
             </Link>
-            <p>{presentationCopy(session.goal)}</p>
+            <p><ReadableText>{presentationCopy(session.goal)}</ReadableText></p>
             <p className="text-sm text-muted-foreground">
               {completionLabel(session.status, session.completion.eligible) ??
                 (session.permission.allowed
@@ -210,7 +212,7 @@ export function LiveSession({ initial }: { initial: SessionProjection }) {
                 {session.permission.provenance}
               </p>
               {session.permission.reasons.map(reason => (
-                <p key={reason}>{reason}</p>
+                <p key={reason}><ReadableText>{reason}</ReadableText></p>
               ))}
             </details>
 
@@ -269,21 +271,21 @@ export function LiveSession({ initial }: { initial: SessionProjection }) {
             <h3 className="font-semibold">Recent updates</h3>
             <Link
               className="text-sm underline"
-              href={`/workstreams/${session.workstreamId}#changes`}
+              href={`/workstreams/${session.workstreamId}#updates`}
             >
-              All updates and changes
+              All updates
             </Link>
             {session.activity.length ? (
               <ul className="space-y-3">
                 {session.activity.slice(0, 3).map(item => (
                   <li key={item.id} className="rounded-lg border border-border p-3 text-sm">
-                    <p>{item.summary}</p>
+                    <p><ReadableText>{item.summary}</ReadableText></p>
                     <details className="mt-2 text-xs text-muted-foreground">
-                      <summary>Why · {item.id}</summary>
-                      <p>{item.reason}</p>
+                      <summary>Context</summary>
+                      <p><ReadableText>{item.reason}</ReadableText></p>
                       {item.discovery ? (
                         <p>
-                          {item.discovery.kind}: {item.discovery.observation}
+                          {item.discovery.kind}: <ReadableText>{item.discovery.observation}</ReadableText>
                         </p>
                       ) : null}
                     </details>
@@ -304,7 +306,7 @@ export function LiveSession({ initial }: { initial: SessionProjection }) {
                 rel="noopener noreferrer"
                 className="underline"
               >
-                {session.preview.label}
+                <ReadableText>{session.preview.label}</ReadableText>
               </a>
               <p className="text-xs text-muted-foreground">
                 Reported for this source revision. Availability has not been checked.

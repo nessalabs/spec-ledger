@@ -1,3 +1,5 @@
+
+import { ReadableText } from "@/components/readable-text"
 import { EvidenceCard } from "@/components/evidence-card"
 import { VisualEvidence } from "@/components/visual-evidence"
 import { CheckEvidencePanel } from "@/components/check-evidence"
@@ -16,7 +18,7 @@ export function WorkstreamEvidence({ session, observedAt, expandChecks = false }
     {!session.criteria.length && <p className="text-sm">No acceptance criteria are available in this evidence view.</p>}
     {session.artifacts.some(a => a.imageDataUrl) && <section aria-label="Visual evidence" className="space-y-3"><h3 className="text-sm font-medium">Visual evidence</h3><div className="grid gap-3 sm:grid-cols-2">{session.artifacts.filter(a => a.imageDataUrl).map(a => <VisualEvidence key={a.id} src={a.imageDataUrl!} title={a.title} note={a.note} />)}</div></section>}
     {session.criteria.map(criterion => <EvidenceCard id={`acceptance-${encodeURIComponent(criterion.id)}`} key={criterion.id} defaultOpen={expandChecks} heading={<span className="inline-flex w-[calc(100%-1.5rem)] flex-wrap items-start justify-between gap-2">
-        <span className="min-w-0 flex-1 text-sm font-medium">{presentationCopy(criterion.text)}</span>
+        <span className="min-w-0 flex-1 text-sm font-medium"><ReadableText>{presentationCopy(criterion.text)}</ReadableText></span>
         <span className={`shrink-0 rounded-full px-2 py-0.5 text-xs font-medium ${criterion.evidence === "pass" ? "bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-200" : criterion.evidence === "fail" ? "bg-red-100 text-red-800 dark:bg-red-950 dark:text-red-200" : "bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-200"}`}>{criterion.evidence === "pass" ? "✓ " : criterion.evidence === "fail" ? "✕ " : ""}{label(criterion.evidence)}</span>
       </span>}>
       {criterion.evidence === "fail" && <p className="text-sm text-destructive">A check failed. Inspect the proof below.</p>}
@@ -25,13 +27,13 @@ export function WorkstreamEvidence({ session, observedAt, expandChecks = false }
       {criterion.claims.flatMap(claim => claim.checks).map((check, index, checks) => <CheckEvidencePanel key={check.id} bindingId={check.id} defaultOpen embedded label={checks.length === 1 ? "Test results" : `Test results ${index + 1} · ${label(check.outcome)}`} />)}
       <details><summary className="cursor-pointer text-xs text-muted-foreground">Evidence details and history</summary><div className="mt-3 space-y-3">
       <p className="text-xs text-muted-foreground">{criterion.implemented ? "Implementation recorded · agent reported" : "Implementation not confirmed for this version"}</p>
-      {criterion.reason && <p className="text-sm">{criterion.reason}</p>}
+      {criterion.reason && <p className="text-sm"><ReadableText>{criterion.reason}</ReadableText></p>}
       {criterion.claims.map(claim => <div key={claim.id} className="space-y-2 border-t border-border pt-3">
-        <p className="text-sm"><Link className="underline" href={`/claims/${encodeURIComponent(claim.id)}`}>{claim.id}</Link> · {presentationCopy(claim.statement)}</p>
-        {claim.reason && <p className="text-sm text-muted-foreground">{claim.reason}</p>}
+        <p className="text-sm"><Link className="underline" href={`/claims/${encodeURIComponent(claim.id)}`}><ReadableText>{presentationCopy(claim.statement)}</ReadableText></Link></p>
+        {claim.reason && <p className="text-sm text-muted-foreground"><ReadableText>{claim.reason}</ReadableText></p>}
         {!claim.checks.length && <p className="text-xs">No check definitions found.</p>}
         {claim.checks.map(check => <details open={expandChecks} key={check.id} className="rounded-lg bg-muted/30 p-3">
-          <summary className="cursor-pointer text-sm">{label(check.outcome)} · {check.kind} check · {check.id}</summary>
+          <summary className="cursor-pointer text-sm">{label(check.outcome)} · {check.kind} check</summary>
           <div className="mt-3 space-y-3 text-xs">
             <p>{check.reason ?? (check.outcome === "pass" ? "Current verifier accepts this check." : "No current evidence available.")}</p>
             <div><p className="mb-1 font-medium">What was checked</p><pre className="whitespace-pre-wrap break-words rounded border border-border p-2">{check.definition.command ?? check.definition.path ?? check.definition.resultsKey ?? check.definition.note ?? check.definition.type}</pre></div>
@@ -39,7 +41,7 @@ export function WorkstreamEvidence({ session, observedAt, expandChecks = false }
             {!check.recorded.length && <p>No recorded execution result. A check definition is not a test run.</p>}
             {check.recorded.map((row, index) => <div key={index} className="space-y-1 border-t border-border pt-2">
               <p className="font-medium">Recorded outcome: {row.outcome} · historical observation</p>
-              <p>Run: {row.runId ?? "Not recorded"}</p>
+              <p>{row.runId ? "Recorded run" : "Run not recorded"}</p>
               <p>Run time: {row.receipt?.producedAt ?? "Not attributable to a saved receipt"}</p>
               <p>Producer: {row.receipt?.producer ?? "Unknown"}</p>
               <p className="break-all">Source: {row.sourceDigest ?? "Unknown"}</p>
@@ -57,12 +59,12 @@ export function WorkstreamEvidence({ session, observedAt, expandChecks = false }
       {!session.reviews.length && <p className="text-sm text-muted-foreground">No reviews recorded.</p>}
       <details><summary className="cursor-pointer text-sm">{session.reviews.filter(r => r.current).length} current · {session.reviews.filter(r => !r.current).length} historical reviews — read findings and risks</summary><div className="mt-3 space-y-2">
       {[...session.reviews].reverse().map(review => <details key={review.id} className="rounded-lg border border-border p-3">
-        <summary className="cursor-pointer text-sm">{review.current ? "Current" : "Historical"} · {review.target ?? "code"} review · {review.verdict} · {presentationCopy(review.summary)}</summary>
+        <summary className="cursor-pointer text-sm">{review.current ? "Current" : "Historical"} · {review.target ?? "code"} review · {review.verdict} · <ReadableText>{presentationCopy(review.summary)}</ReadableText></summary>
         <div className="mt-3 space-y-2 text-xs">
-          {review.turnId ? <Link className="underline" href={`/turns/${review.turnId}`}>{review.id}</Link> : <p>{review.id}</p>}
+          {review.turnId ? <Link className="underline" href={`/turns/${review.turnId}`}>Open reviewed change</Link> : <p>Spec review</p>}
           {!review.current && <p>This review is not bound to the current version.</p>}
-          {review.findings.map(f => <p key={f.id}>{presentationCopy(f.plainImpact ?? f.gap)}{f.severity ? ` (${f.severity})` : ""}</p>)}
-          {review.residualRisks.map((risk, i) => <p key={i}>{presentationCopy(risk)}</p>)}
+          {review.findings.map(f => <p key={f.id}><ReadableText>{presentationCopy(f.plainImpact ?? f.gap)}</ReadableText>{f.severity ? ` (${f.severity})` : ""}</p>)}
+          {review.residualRisks.map((risk, i) => <p key={i}><ReadableText>{presentationCopy(risk)}</ReadableText></p>)}
           {!review.findings.length && !review.residualRisks.length && <p>No findings or residual risks recorded.</p>}
         </div>
       </details>)}
@@ -72,11 +74,11 @@ export function WorkstreamEvidence({ session, observedAt, expandChecks = false }
       <p className="text-xs text-muted-foreground">These support the workstream history. Matching a file digest does not make a manual observation a current passing test.</p>
       {!session.artifacts.length && <p className="text-sm text-muted-foreground">No artifacts attached yet.</p>}
       {session.artifacts.map(artifact => <details key={artifact.id} className="rounded-lg border border-border p-3">
-        <summary className="cursor-pointer text-sm">{artifact.title} · {artifact.status === "verified" ? "Integrity checked" : artifact.status}</summary>
+        <summary className="cursor-pointer text-sm"><ReadableText>{artifact.title}</ReadableText> · {artifact.status === "verified" ? "Integrity checked" : artifact.status}</summary>
         <div className="mt-3 space-y-2 text-xs">
-          <p className="break-all">{artifact.path}</p><p>{artifact.reason}</p>
-          <Link className="underline" href={`/turns/${artifact.turnId}`}>Recorded in {artifact.turnId}</Link>
-          {artifact.note && <p>{artifact.note}</p>}
+          <p className="break-all">{artifact.path}</p><p><ReadableText>{artifact.reason}</ReadableText></p>
+          <Link className="underline" href={`/turns/${artifact.turnId}`}>Open recording change</Link>
+          {artifact.note && <p><ReadableText>{artifact.note}</ReadableText></p>}
           {artifact.text !== null && <pre className="max-h-96 overflow-auto whitespace-pre-wrap break-words rounded border border-border p-3">{artifact.text}</pre>}
         </div>
       </details>)}

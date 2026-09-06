@@ -6,7 +6,7 @@ Create a draft through `spec-ledger workstream create --file draft.json`, or the
 
 The same rule applies to `claim create`, `claim propose`, `binding create`, `tenet create`, `theme create`, `learning record`, `goal create`, `experiment start`, review recording and workflow saving. Live claims and bindings require an authorized open turn; proposing work does not grant permission to build. Public operations reject chosen record IDs where an identity would otherwise be supplied, and generate nested identities. A caller-stable `requestId` correlates a retry; a new request creates a new record even when its title is identical.
 
-UUID filenames and atomic publication prevent one newly created entity from replacing another. Revision numbers and attempt sequences still represent order. Graph feature/node keys and local skill keys remain authored vocabulary. UI headings use titles; reference details expose UUIDs.
+UUID filenames and atomic publication prevent one newly created entity from replacing another. Revision numbers and attempt sequences still represent order. Graph feature/node keys and local skill keys remain authored vocabulary. The UI uses titles and readable reference names in headings, details, previews and tooltips. UUIDs remain in stored records and link destinations.
 
 ## Migrating existing histories
 

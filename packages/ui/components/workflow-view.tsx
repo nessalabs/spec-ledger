@@ -1,3 +1,4 @@
+import { ReadableText } from "@/components/readable-text"
 import Link from "next/link"
 import { AlertTriangle, ChevronDown, MinusCircle } from "lucide-react"
 import { Badge, TaskList, TaskListItem } from "@nessalabs/ui"
@@ -14,7 +15,7 @@ function StatusBadge({ status }: { status: Stage["status"] | Workflow["status"] 
   const view = workflowStatusView(status)
   return (
     <Badge variant={status === "blocked" ? "destructive" : "outline"}>
-      {view.label}
+      <ReadableText>{view.label}</ReadableText>
     </Badge>
   )
 }
@@ -34,7 +35,7 @@ function StageTask({ stage, waiting = false }: { stage: Stage; waiting?: boolean
       icon={view.taskStatus ? undefined : indicator}
       meta={waiting ? <Badge variant="outline">Waiting for previous step</Badge> : <StatusBadge status={stage.status} />}
     >
-      {stage.title}
+      <ReadableText>{stage.title}</ReadableText>
     </TaskListItem>
   )
 }
@@ -43,30 +44,30 @@ function OutputReference({ reference, criterionIds }: { reference: OutputRef; cr
   return (
     <li className="space-y-1 rounded-md border border-border/60 p-2">
       <div className="flex flex-wrap items-center gap-2">
-        <span className="font-mono">{reference.id}</span>
+        <span>Recorded output</span>
         <Badge variant="outline">{reference.recordType}</Badge>
         <Badge variant={reference.current ? "outline" : "destructive"}>
           {reference.current ? "Current" : "Outdated"}
         </Badge>
         {reference.attested ? <Badge variant="outline">Attested</Badge> : null}
       </div>
-      <p>Attempt {reference.attemptId} · recorded {reference.recordedAt}</p>
+      <p>Recorded {reference.recordedAt}</p>
       <p className="break-all">Method {reference.snapshotDigest}</p>
       <p className="break-all">Revision {reference.revisionDigest}</p>
       <p className="break-all">Source {reference.sourceDigest}</p>
-      {reference.recordIds.length ? <p>Records: {reference.recordIds.join(", ")}</p> : null}
+      {reference.recordIds.length ? <p>{reference.recordIds.length} linked records</p> : null}
       {reference.criterionIds.length ? (
         <p>
           Criteria:{" "}
           {reference.criterionIds.map((id, index) => (
             <span key={id}>
               {index ? ", " : ""}
-              {criterionIds.has(id) ? <a className="underline" href={`#acceptance-${encodeURIComponent(id)}`}>{id}</a> : id}
+              {criterionIds.has(id) ? <a className="underline" href={`#acceptance-${encodeURIComponent(id)}`}><ReadableText fallback="Requirement">{id}</ReadableText></a> : <ReadableText fallback="Unavailable requirement">{id}</ReadableText>}
             </span>
           ))}
         </p>
       ) : null}
-      {reference.reason ? <p>{reference.reason}</p> : null}
+      {reference.reason ? <p><ReadableText>{reference.reason}</ReadableText></p> : null}
     </li>
   )
 }
@@ -82,9 +83,9 @@ function RequiredOutput({ output, criterionIds }: { output: Output; criterionIds
       </summary>
       <div className="mt-3 space-y-2 text-xs text-muted-foreground">
         <p>Contract <code>{output.kind}</code></p>
-        <p>Step {output.stepTitle} · <code>{output.stepId}</code></p>
-        {output.criterionIds.length ? <p>Criteria: {output.criterionIds.join(", ")}</p> : null}
-        {output.reason ? <p>{output.reason}</p> : null}
+        <p>Step <ReadableText>{output.stepTitle}</ReadableText></p>
+        {output.criterionIds.length ? <p>Requirements: <ReadableText>{output.criterionIds.join(", ")}</ReadableText></p> : null}
+        {output.reason ? <p><ReadableText>{output.reason}</ReadableText></p> : null}
         {output.refs.length ? (
           <ul className="space-y-2">
             {output.refs.map((reference) => <OutputReference key={reference.id} reference={reference} criterionIds={criterionIds} />)}
@@ -106,8 +107,8 @@ function WorkflowStage({ stage, current, criterionIds }: { stage: Stage; current
       <summary className="cursor-pointer list-none">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div>
-            <p className="font-medium">{stage.title}</p>
-            <p className="text-xs text-muted-foreground">{stage.role} · {stage.id}</p>
+            <p className="font-medium"><ReadableText>{stage.title}</ReadableText></p>
+            <p className="text-xs text-muted-foreground">{stage.role}</p>
           </div>
           <span className="flex items-center gap-2">
             <StatusBadge status={stage.status} />
@@ -120,7 +121,7 @@ function WorkflowStage({ stage, current, criterionIds }: { stage: Stage; current
           <div className="space-y-1 text-sm text-destructive">
             <p className="font-medium">Blocking this stage</p>
             <ul className="list-disc space-y-1 pl-5">
-              {stage.blockers.map((blocker) => <li key={blocker}>{blocker}</li>)}
+              {stage.blockers.map((blocker) => <li key={blocker}><ReadableText>{blocker}</ReadableText></li>)}
             </ul>
           </div>
         ) : null}
@@ -137,12 +138,12 @@ function WorkflowStage({ stage, current, criterionIds }: { stage: Stage; current
           {stage.steps.map((step) => (
             <details key={step.id} className="rounded-lg bg-muted/30 p-3">
               <summary className="cursor-pointer text-sm">
-                <span className="mr-2 font-medium">{step.title}</span>
+                <span className="mr-2 font-medium"><ReadableText>{step.title}</ReadableText></span>
                 <StatusBadge status={step.status} />
               </summary>
               <div className="mt-3 space-y-3 text-xs text-muted-foreground">
                 <div>
-                  <p className="font-medium text-foreground">{step.skill.id}</p>
+                  <p className="font-medium text-foreground"><ReadableText>{step.skill.id}</ReadableText></p>
                   <p>{step.skill.source} skill · capability {step.skill.capability}</p>
                   <p>Declared outputs: {step.skill.capabilities.length ? step.skill.capabilities.join(", ") : "none"}</p>
                   {step.skill.capability === "uncertain" ? (
@@ -157,17 +158,17 @@ function WorkflowStage({ stage, current, criterionIds }: { stage: Stage; current
                 </details>
                 <div className="space-y-2">
                   <p className="font-medium text-foreground">Attempts</p>
-                  {step.attempts.length ? step.attempts.map((attempt) => (
+                  {step.attempts.length ? step.attempts.map((attempt, index) => (
                     <details key={attempt.id} className="rounded-md border border-border/60 p-2">
                       <summary className="cursor-pointer">
-                        {attempt.id} · {attempt.reportedStatus}
+                        Attempt {index + 1} · {attempt.reportedStatus}
                       </summary>
                       <div className="mt-2 space-y-1">
                         <p>Started {attempt.startedAt}</p>
                         <p className="break-all">Method {attempt.snapshotDigest}</p>
                         <p className="break-all">Revision {attempt.revisionDigest}</p>
                         <p className="break-all">Source {attempt.sourceDigest}</p>
-                        {attempt.reason ? <p>{attempt.reason}</p> : null}
+                        {attempt.reason ? <p><ReadableText>{attempt.reason}</ReadableText></p> : null}
                         {attempt.outputRefs.length ? (
                           <ul className="mt-2 space-y-2">
                             {attempt.outputRefs.map((reference) => (
@@ -194,7 +195,7 @@ export function WorkflowSummary({ workflow, workstreamId }: { workflow: Workflow
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
           <h2 className="font-semibold">Workflow steps</h2>
-          <p className="text-sm">{workflow.profile.title}</p>
+          <p className="text-sm"><ReadableText>{workflow.profile.title}</ReadableText></p>
           <p className="text-xs text-muted-foreground">
             {workflow.profile.source === "default" ? "Bundled" : workflow.profile.source === "library" ? "Saved workflow" : "Custom"} · method {digestLabel(workflow.profile.snapshotDigest)}
           </p>
@@ -224,18 +225,18 @@ export function WorkflowDetails({ workflow, criteria }: { workflow: Workflow; cr
           <Badge variant="outline">{workflow.profile.source === "default" ? "Bundled" : workflow.profile.source === "library" ? "Saved workflow" : "Custom"}</Badge>
           <StatusBadge status={workflow.status} />
         </div>
-        <p className="text-sm">{workflow.profile.title}</p>
+        <p className="text-sm"><ReadableText>{workflow.profile.title}</ReadableText></p>
         <p className="text-xs text-muted-foreground">
           {workflow.profile.snapshotId ? "Your selected workflow." : "Standard workflow · progress inferred from records, not tracked agent activity."}
         </p>
         <details className="rounded-lg border border-border/60 p-3 text-xs">
           <summary className="cursor-pointer font-medium">Technical details and history</summary>
           <div className="mt-3 space-y-3 text-muted-foreground">
-            <p>Profile {workflow.profile.id}</p>
+            <p><ReadableText>{workflow.profile.title}</ReadableText></p>
             <p className="break-all">Method digest {workflow.profile.snapshotDigest}</p>
             <p className="break-all">Revision {workflow.profile.revisionDigest}</p>
-            {workflow.profile.snapshotId ? <p>Snapshot {workflow.profile.snapshotId}</p> : <p>Default method · not explicitly preserved yet.</p>}
-            {workflow.profile.reason ? <p>Selection reason: {workflow.profile.reason}</p> : null}
+            {workflow.profile.snapshotId ? <p>Preserved selection</p> : <p>Default method · not explicitly preserved yet.</p>}
+            {workflow.profile.reason ? <p>Selection reason: <ReadableText>{workflow.profile.reason}</ReadableText></p> : null}
             <div className="space-y-1">
               <p className="font-medium text-foreground">Preview</p>
               <code className="block overflow-x-auto rounded bg-muted p-2">spec-ledger operation preview_workflow --file workflow.json --root /checkout</code>
@@ -252,10 +253,10 @@ export function WorkflowDetails({ workflow, criteria }: { workflow: Workflow; cr
                 <ul className="mt-2 space-y-2">
                   {workflow.historicalSnapshots.map((snapshot) => (
                     <li key={`${snapshot.snapshotId ?? "default"}/${snapshot.digest}`} className="rounded border border-border/60 p-2">
-                      <p>{snapshot.snapshotId ?? "Default method"} · {snapshot.createdAt}</p>
+                      <p>{snapshot.snapshotId ? "Saved selection" : "Default method"} · {snapshot.createdAt}</p>
                       <p className="break-all">{snapshot.digest}</p>
                       <p className="break-all">Revision {snapshot.revisionDigest}</p>
-                      {snapshot.reason ? <p>{snapshot.reason}</p> : null}
+                      {snapshot.reason ? <p><ReadableText>{snapshot.reason}</ReadableText></p> : null}
                     </li>
                   ))}
                 </ul>
@@ -269,7 +270,7 @@ export function WorkflowDetails({ workflow, criteria }: { workflow: Workflow; cr
         <div className="space-y-1 rounded-lg border border-destructive/40 p-3 text-sm">
           <p className="font-medium">Method blockers</p>
           <ul className="list-disc space-y-1 pl-5 text-destructive">
-            {workflow.blockers.map((blocker) => <li key={blocker}>{blocker}</li>)}
+            {workflow.blockers.map((blocker) => <li key={blocker}><ReadableText>{blocker}</ReadableText></li>)}
           </ul>
         </div>
       ) : null}

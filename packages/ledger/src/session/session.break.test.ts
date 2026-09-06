@@ -1,4 +1,5 @@
 import {describe,it} from "node:test"
+import {randomUUID} from "node:crypto"
 import assert from "node:assert/strict"
 import {mkdtempSync,rmSync,writeFileSync,readFileSync,readdirSync} from "node:fs"
 import {tmpdir} from "node:os"
@@ -27,6 +28,19 @@ function evidence(root:string){
  writeJson(join(root,".spec-ledger/results/last.json"),{schemaVersion:1,producedAt:"2026-09-04T00:00:00Z",producer:{name:"fixture",version:"1"},rows:[{key:"r",outcome:"pass",sourceDigest:sourceFingerprint(root),checkDigest:checkFingerprint(ledger.claims[0],ledger.bindings[0])}]})
 }
 describe("session projection adversarial",()=>{
+ it("activity preserves the originating turn and recorded dates without inventing missing historical dates",()=>{
+  const root=fixture(),turnId="1c5a8e44-dd09-543a-97d5-bfe173becbaa"
+  try {
+   const cases=[{sequence:1,decision:"Explicit timestamp",recordedAt:"2026-09-06T12:00:00Z",basis:{at:"2026-09-05T12:00:00Z"}},{sequence:2,decision:"Historical basis timestamp",basis:{at:"2026-09-04T12:00:00Z"}},{sequence:3,decision:"No timestamp",basis:{}}].map(value=>({...value,id:randomUUID(),turnId,rationale:"Recorded context"}))
+   for(const value of cases)writeJson(join(root,".spec-ledger/decisions",turnId,`${value.id}.json`),value)
+   const before=cases.map(value=>readFileSync(join(root,".spec-ledger/decisions",turnId,`${value.id}.json`),"utf8"))
+   const activity=getSession(root,"2b74bc14-227a-5c05-b2ed-1c32d9703cad").session!.activity
+   assert.deepEqual(activity.map(item=>item.id),cases.map(value=>value.id).reverse())
+   assert.ok(activity.every(item=>item.turnId===turnId&&item.id!==turnId))
+   assert.deepEqual(activity.map(item=>item.recordedAt),[null,"2026-09-04T12:00:00Z","2026-09-06T12:00:00Z"])
+   assert.deepEqual(cases.map(value=>readFileSync(join(root,".spec-ledger/decisions",turnId,`${value.id}.json`),"utf8")),before)
+  } finally {rmSync(root,{recursive:true,force:true})}
+ })
  it("serves identical session state through both clients without writes",async()=>{
   const root=fixture()
   const {createSpecLedgerClient}=await import(new URL("../../../client/dist/index.js",import.meta.url).href)

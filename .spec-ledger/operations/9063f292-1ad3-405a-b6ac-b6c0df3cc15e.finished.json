@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "requestId": "9063f292-1ad3-405a-b6ac-b6c0df3cc15e",
+  "operation": "record_screenshot",
+  "inputDigest": "b39739e208fc7c58112fb78dcd6ba1065f28ed8ba945784fba79495984dcea5e",
+  "finishedAt": "2026-09-06T20:41:26.868Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "id": "01cdd7fc-9b6a-4414-82e0-5fb91d23cdb7",
+    "turnId": "e05efbb1-6f8f-4c55-9bca-f6698478b753",
+    "kind": "image",
+    "title": "Requirement details and preview",
+    "path": ".spec-ledger/evidence/screenshots/titles-requirement-final.png",
+    "mediaType": "image/png",
+    "byteLength": 165681,
+    "contentDigest": "3aa1f40395fd4a9ddc905f0a227a0aac653852dd4bb25be174ffe766bef88be1",
+    "visualEvidence": {
+      "sliceId": "596b8830-61c6-887a-b6c3-9ae0561f2761",
+      "surface": "Requirement details and preview",
+      "sourceDigest": "9cb69fbe142bdc23c828db8c97033f676cb8135735bc1b2fe4d4e01ac0812e05",
+      "revisionDigest": "4cc7f69286eb0f9161f84f0f1945fb6adbbad39ef04f13ac00f2b7c8e8f48937",
+      "recordedAt": "2026-09-06T20:41:26.867Z"
+    },
+    "note": "Recorded visual coverage; image adequacy is assessed in review."
+  }
+}

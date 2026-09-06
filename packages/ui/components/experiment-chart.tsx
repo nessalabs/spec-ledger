@@ -17,7 +17,7 @@ export function ExperimentChart({ projection }: { projection: GoalProjection }) 
       {chart.baselineY !== null && <line x1={margin.left} x2={width - margin.right} y1={chart.baselineY} y2={chart.baselineY} stroke="currentColor" strokeDasharray="2 5" className="text-muted-foreground" />}
       {chart.segments.map((segment, i) => <polyline key={i} points={segment.map(p => p.join(",")).join(" ")} fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinejoin="round" className="text-indigo-600 dark:text-indigo-400" />)}
       {chart.points.filter(point => point.y !== null).map(point => <g key={point.id}>
-        <circle cx={point.x} cy={point.y!} r={5} fill={point.decision === "kept" ? "currentColor" : "var(--background)"} stroke="currentColor" strokeWidth="2" className="text-indigo-600 dark:text-indigo-400"><title>{`#${point.number} · ${point.id}: ${formatMeasurement(point.value)} ${metric.unit} · ${point.decision}`}</title></circle>
+        <circle cx={point.x} cy={point.y!} r={5} fill={point.decision === "kept" ? "currentColor" : "var(--background)"} stroke="currentColor" strokeWidth="2" className="text-indigo-600 dark:text-indigo-400"><title>{`#${point.number}: ${formatMeasurement(point.value)} ${metric.unit} · ${point.decision}`}</title></circle>
       </g>)}
       <text x={margin.left} y={height - 12} fill="currentColor" className="text-muted-foreground" fontSize="11">{metric.baseline === undefined ? "Start" : "Baseline"}</text>
       {chart.points.filter((_, i, a) => a.length <= 12 || i === a.length - 1 || i % Math.ceil(a.length / 10) === 0).map(point => <text key={point.id} x={point.x} y={height - 12} textAnchor="middle" fill="currentColor" className="text-muted-foreground" fontSize="11">#{point.number}</text>)}
