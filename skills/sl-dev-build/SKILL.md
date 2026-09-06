@@ -43,6 +43,10 @@ Corrections: [`sl-learn`](../sl-learn/SKILL.md).
 After [`sl-dev-break`](../sl-dev-break/SKILL.md): breaker owns killers until they
 fail for the intended reason; you own prod only. Do not “fix” the failing test.
 
+## Optional iterative work
+
+When the user asks for optimization or recursive improvement, or the agent identifies work that benefits from repeated experiments, compose [sl-dev-experiment](../sl-dev-experiment/SKILL.md) onto this workflow. Attach a goal to the existing open turn; ordinary tasks need no goal. This choice does not replace the plan, permission, reviews, checks or close gates.
+
 ## Before / while implementing
 
 Honor sealed acceptance and

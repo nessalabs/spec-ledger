@@ -7,6 +7,12 @@ import {
 } from "@nessalabs/spec-ledger"
 
 const descriptions: Record<OperationName, string> = {
+  list_goals: "List optional iterative goals attached to existing work; normal task workflow is unchanged.",
+  get_goal: "Inspect a goal, experiment attempts, reported results and measured progress without running checks.",
+  create_goal: "Mark an open task as iterative improvement by attaching an optional goal and fixed metric; retains all existing plan and verification gates.",
+  start_experiment: "Record a hypothesis and change for a new attempt under an active goal, within its experiment budget.",
+  record_experiment_result: "Record an immutable experiment result, findings and retention decision; reported measurements never imply verify pass.",
+  conclude_goal: "Conclude an iterative goal after all attempts have results; does not complete the workstream.",
   plan_work: "Read the plan, permission, related context, and missing prerequisites without changing files.",
   get_context: "Read sealed context for one workstream slice without executing checks.",
   get_session: "Read current progress, evidence, reviews, and completion blockers.",

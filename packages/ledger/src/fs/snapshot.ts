@@ -49,6 +49,8 @@ export function readSchemaFile(repoRoot: string, name: string): unknown {
 
 /** Documented HTTP surface (read-only). Kept in sync with server routes. */
 export const HTTP_CONTRACT = [
+  {method:"GET",path:"/v1/goals",description:"Iterative goals; optional ?workstreamId=&turnId=. Reported history only."},
+  {method:"GET",path:"/v1/goals/:id",description:"Goal, attempts, results and measured progress; never executes or verifies work."},
   {method:"GET",path:"/v1/session",description:"Read-only session projection; optional ?workstream=. Never runs checks or saves approvals."},
   {method:"GET",path:"/v1/permission",description:"Current permission ?workstream="},
   {method:"GET",path:"/v1/learnings",description:"Attributed correction history"},

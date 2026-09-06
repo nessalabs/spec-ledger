@@ -1,3 +1,4 @@
+import { GoalLinks } from "@/components/goal-links"
 import { LiveWorkstreamEvidence } from "@/components/live-workstream-evidence"
 import { presentationCopy } from "@/lib/features"
 import Link from "next/link"
@@ -25,6 +26,7 @@ export default async function WorkstreamPage({
     notFound()
   }
   const [turns, report, projection] = await Promise.all([client.getTurns(), liveReport(), client.getSession(id)])
+  const goals = await client.listGoals({ workstreamId: id })
   const linked = turns
     .filter((t) => t.intent.workstreamId === id)
     .sort((a, b) =>
@@ -81,6 +83,7 @@ export default async function WorkstreamPage({
         </details>
       </header>
 
+      <GoalLinks goals={goals} />
       {specPath && planMarkdown ? (
         <PitchDocLink path={specPath} title="Read the spec" />
       ) : (

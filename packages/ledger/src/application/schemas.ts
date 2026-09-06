@@ -1,3 +1,4 @@
+import { goalInputSchema, experimentInputSchema, resultInputSchema, conclusionInputSchema, goalIdSchema } from "../optimization/model.js"
 import * as z from "zod/v4"
 
 const id = z.string().min(1).max(160)
@@ -20,7 +21,15 @@ const workflowProfile = z.object({
 const provenance = z.object({ kind: z.literal("agent-reported"), reference: z.string().min(1).max(1000) }).strict()
 const opaqueId = z.string().regex(/^[A-Za-z0-9][A-Za-z0-9._:@-]{0,159}$/)
 
+const optimizationGuard = { requestId, expectedRevisionDigest: digest, expectedSourceDigest: digest }
+
 export const OPERATION_SCHEMAS = {
+  list_goals: z.object({ workstreamId: id.optional(), turnId: id.optional() }).strict(),
+  get_goal: z.object({ goalId: goalIdSchema }).strict(),
+  create_goal: z.object({ ...optimizationGuard, goal: goalInputSchema }).strict(),
+  start_experiment: z.object({ ...optimizationGuard, experiment: experimentInputSchema }).strict(),
+  record_experiment_result: z.object({ ...optimizationGuard, result: resultInputSchema }).strict(),
+  conclude_goal: z.object({ ...optimizationGuard, conclusion: conclusionInputSchema }).strict(),
   plan_work: z.object({ workstreamId: id }).strict(),
   get_context: z.object({ workstreamId: id, sliceId: id }).strict(),
   get_session: z.object({ workstreamId: id.optional() }).strict(),

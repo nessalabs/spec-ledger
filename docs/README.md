@@ -33,3 +33,5 @@ On conflict, **architecture + DESIGN** win.
 
 - [Engineering methods](architecture/workflows.md): chosen skills, preserved snapshots, stage attempts and typed output gates.
 - [Execution activity](architecture/execution-activity.md): bounded hook signals, task association and honest continuation readiness.
+
+- [Optional goals and experiments](architecture/experiments.md): iterative work, agent operations and inspect views.

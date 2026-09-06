@@ -40,3 +40,5 @@ docs/workstreams/
 - New work uses this layout. W-001–W-005 retain their existing sealed paths. Move sealed documents only through an explicit recorded migration; never silently rewrite snapshots or facts.
 
 This layout supersedes the earlier flat title-slug naming convention for new workstreams. It does not retroactively amend older sealed specs.
+
+- [Follow agent experiments](W-014-follow-agent-experiments/spec.md)

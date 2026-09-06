@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "requestId": "d305ece5-8f24-4329-b870-12c643695e66",
+  "operation": "begin_work",
+  "inputDigest": "926e17b238de30ad0b7d9e74aa89feb8853401bb820dc1fc8a9dd3e5d4dd4f45",
+  "finishedAt": "2026-09-06T07:35:15.146Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "id": "T-043",
+    "status": "open",
+    "openedAt": "2026-09-06T07:35:15.146Z",
+    "opened": {
+      "producedBy": "@nessalabs/spec-ledger@0.1.0",
+      "baseCommit": "16bee63c4828ea06576936cfab8be5b2b5f1c21f",
+      "treeDigest": "92ec78b31c234e9bdd47fe70b15d6bee32fffe3f67a5b10ee3cc7d2bd1cfbc83",
+      "dirtyAtOpen": [
+        ".spec-ledger/authority/AUTH-21ac919a-880c-411d-a3b0-3534b8634dc3.json",
+        ".spec-ledger/reviews/workstreams/W-014/SR-01.json",
+        ".spec-ledger/workstreams/W-014.json",
+        "docs/workstreams/README.md",
+        "docs/workstreams/W-014-follow-agent-experiments/spec.md"
+      ],
+      "contextDigest": "e054598d1579c93450196a553a0b057e6213b74964977e8eaa5d685fcb01cb25",
+      "contextWorkstreamId": "W-014",
+      "contextSliceId": "SLC-01",
+      "contextSealRevision": 1,
+      "contextGeneratedAt": "2026-09-06T07:35:15.146Z"
+    },
+    "intent": {
+      "userPrompt": "Implement durable goals, experiment attempts and results with a screenshot-readable progress chart and results table. Use the existing client boundary and Git write path.",
+      "restatedGoal": "Follow an agent’s experiments and findings",
+      "changeType": "feature",
+      "riskLevel": "moderate",
+      "workstreamId": "W-014",
+      "sliceId": "SLC-01",
+      "featureIds": [
+        "turns",
+        "lattice",
+        "cli"
+      ]
+    }
+  }
+}

@@ -17,6 +17,7 @@ import {
   useSidebar,
 } from "@nessalabs/ui"
 import {
+  FlaskConical,
   Boxes,
   Compass,
   FileJson2,
@@ -42,6 +43,7 @@ const WORK: NavItem[] = [
 
   { href: "/", label: "Follow work", hint: "Progress and what needs your attention", icon: LayoutDashboard },
   { href: "/workstreams", label: "Specs", hint: "Read the plans and their requirements", icon: Workflow },
+  { href: "/experiments", label: "Experiments", hint: "Follow iterative goals and experiment findings", icon: FlaskConical },
   { href: "/verify", label: "Evidence", hint: "Inspect checks and their results", icon: ShieldCheck },
   { href: "/workflows", label: "Workflows", hint: "Choose skills and steps and follow the process", icon: Workflow },
 ]

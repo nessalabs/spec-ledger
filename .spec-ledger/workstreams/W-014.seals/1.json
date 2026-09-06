@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "workstreamId": "W-014",
+  "revision": 1,
+  "sealedAt": "2026-09-06T07:35:14.982Z",
+  "sealedBy": "agent:permission:AUTH-21ac919a-880c-411d-a3b0-3534b8634dc3",
+  "specDigest": "f2ce267d4433fc40a4f0f0bb58fa66790e07d2b97ef7d09872e7d483d6c75cc4",
+  "specDocDigest": "e94f99159c92232d20dd21d3f3690c6fda0c31ab749e7d514bb4e61316bb5c0c",
+  "body": {
+    "id": "W-014",
+    "featureIds": [
+      "turns",
+      "lattice",
+      "cli"
+    ],
+    "primaryFeatureId": null,
+    "title": "Follow agent experiments",
+    "problem": "Iterative agent work lacks a durable goal and experiment history that people can inspect.",
+    "objective": "See what an agent is improving, its experiment results, and what it learned.",
+    "specPath": "docs/workstreams/W-014-follow-agent-experiments/spec.md",
+    "appetite": null,
+    "changeType": "feature",
+    "riskLevel": "moderate",
+    "trust": {
+      "deployTarget": "library-consumer",
+      "userFacing": true,
+      "requiredEvidence": [
+        "unit",
+        "integration",
+        "e2e"
+      ]
+    },
+    "policy": {
+      "alertOnSeverity": "high",
+      "onAlert": "wait",
+      "alertWaitMinutes": 10,
+      "onAlertTimeout": "move",
+      "onSealedSpecDeviation": "wait",
+      "sealedDeviationWaitMinutes": 10,
+      "onSealedDeviationTimeout": "move",
+      "requireSpecBreak": true,
+      "requireCodeBreak": true
+    },
+    "acceptanceCriteria": [],
+    "outOfScope": [],
+    "proposedClaimIds": [],
+    "suggestedSlices": [
+      {
+        "id": "SLC-01",
+        "title": "Record and inspect an agent’s experiments",
+        "kind": "vertical",
+        "acceptance": [
+          "Agents record durable goals and attempts with safe retries and validated references.",
+          "People inspect honest results and progress in a screenshot-readable view.",
+          "Experiment reports never change verification or permission semantics."
+        ],
+        "evidence": [
+          "unit",
+          "integration",
+          "e2e"
+        ],
+        "expectedClaimIds": [],
+        "expectedPaths": [
+          "packages/ledger/**",
+          "packages/client/**",
+          "packages/server/**",
+          "packages/mcp/**",
+          "packages/ui/**",
+          "schemas/**",
+          "docs/**",
+          "skills/**"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "requestId": "d61c0aff-3167-4e53-8ccd-8b4d592248f6",
+  "operation": "complete_work",
+  "inputDigest": "7ce6ee69096ef533a24b5a1e82e83fa695f728e3d74edc70027498db42d306dc",
+  "finishedAt": "2026-09-06T08:10:42.845Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "id": "W-014",
+    "status": "done",
+    "createdAt": "2026-09-06T07:33:40.672522+00:00",
+    "featureIds": [
+      "turns",
+      "lattice",
+      "cli"
+    ],
+    "title": "Follow agent experiments",
+    "problem": "Iterative agent work lacks a durable goal and experiment history that people can inspect.",
+    "objective": "See what an agent is improving, its experiment results, and what it learned.",
+    "specPath": "docs/workstreams/W-014-follow-agent-experiments/spec.md",
+    "changeType": "feature",
+    "riskLevel": "moderate",
+    "trust": {
+      "deployTarget": "library-consumer",
+      "userFacing": true,
+      "requiredEvidence": [
+        "unit",
+        "integration",
+        "e2e"
+      ]
+    },
+    "policy": {
+      "alertOnSeverity": "high",
+      "onAlert": "wait",
+      "alertWaitMinutes": 10,
+      "onAlertTimeout": "move",
+      "onSealedSpecDeviation": "wait",
+      "sealedDeviationWaitMinutes": 10,
+      "onSealedDeviationTimeout": "move",
+      "requireSpecBreak": true,
+      "requireCodeBreak": true
+    },
+    "suggestedSlices": [
+      {
+        "id": "SLC-01",
+        "title": "Record and inspect an agent’s experiments",
+        "kind": "vertical",
+        "acceptance": [
+          "Agents record durable goals and attempts with safe retries and validated references.",
+          "People inspect honest results and progress in a screenshot-readable view.",
+          "Experiment reports never change verification or permission semantics."
+        ],
+        "evidence": [
+          "unit",
+          "integration",
+          "e2e"
+        ],
+        "expectedPaths": [
+          "packages/ledger/**",
+          "packages/client/**",
+          "packages/server/**",
+          "packages/mcp/**",
+          "packages/ui/**",
+          "schemas/**",
+          "docs/**",
+          "skills/**"
+        ],
+        "codeBreakReviewId": "T-043/R-02"
+      }
+    ],
+    "specBreakReviewId": "W-014/SR-02",
+    "updatedAt": "2026-09-06T08:10:42.845Z",
+    "seal": {
+      "sealedAt": "2026-09-06T07:51:25.216Z",
+      "sealedBy": "agent:permission:AUTH-21ac919a-880c-411d-a3b0-3534b8634dc3",
+      "specDigest": "3f5503739b08f6b62be9b4d503bbcbc02b5f3fc26928af93eedd1626e93c4d47",
+      "snapshotPath": "workstreams/W-014.seals/2.json",
+      "revision": 2,
+      "specDocDigest": "e94f99159c92232d20dd21d3f3690c6fda0c31ab749e7d514bb4e61316bb5c0c"
+    },
+    "acceptanceClaimIds": {
+      "SLC-01/AC-1": [
+        "SL-032"
+      ],
+      "SLC-01/AC-2": [
+        "SL-032"
+      ],
+      "SLC-01/AC-3": [
+        "SL-032"
+      ]
+    }
+  }
+}

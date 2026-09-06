@@ -77,11 +77,13 @@
         "SL-022",
         "SL-029",
         "SL-030",
-        "SL-031"
+        "SL-031",
+        "SL-032"
       ],
       "entryPoints": [
         "packages/ledger/src/graph/impact.ts",
-        "packages/ui"
+        "packages/ui",
+        "packages/ui/app/experiments/page.tsx"
       ],
       "keywords": [
         "graph",
@@ -99,10 +101,12 @@
         "SL-001",
         "SL-003",
         "SL-006",
-        "SL-020"
+        "SL-020",
+        "SL-032"
       ],
       "entryPoints": [
-        "packages/ledger/src/turns/close.ts"
+        "packages/ledger/src/turns/close.ts",
+        "packages/ledger/src/optimization/index.ts"
       ],
       "keywords": [
         "turn",
@@ -239,6 +243,17 @@
         "cli"
       ],
       "purpose": "Local stdio transport for shared work and evidence operations"
+    },
+    {
+      "id": "optimization-history",
+      "name": "Optional goals and experiments",
+      "layer": "core",
+      "kind": "module",
+      "locator": "packages/ledger/src/optimization",
+      "featureIds": [
+        "turns"
+      ],
+      "purpose": "Immutable iterative work history and measured progress; does not change verify."
     }
   ],
   "edges": [
@@ -270,6 +285,11 @@
     {
       "from": "ledger-mcp",
       "to": "ledger-core",
+      "kind": "depends_on"
+    },
+    {
+      "from": "ledger-core",
+      "to": "optimization-history",
       "kind": "depends_on"
     }
   ]

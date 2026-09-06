@@ -5,6 +5,7 @@
  * v1: in-process transport (no daemon). HTTP transport talks to read-only server.
  */
 import {
+  listOptimizationGoals, getOptimizationGoal, type GoalProjection,
   getSession,
   getCheckEvidence, getCheckRun, type CheckEvidence, type CheckRun,
   type SessionProjection,
@@ -57,6 +58,8 @@ export type LedgerTransport =
   | { kind: "http"; baseUrl: string }
 
 export interface SpecLedgerClient {
+  listGoals(filter?: { workstreamId?: string; turnId?: string }): Promise<GoalProjection[]>
+  getGoal(goalId: string): Promise<GoalProjection>
   getCheckEvidence(bindingId: string): Promise<CheckEvidence>
   getCheckRun(runId: string): Promise<CheckRun>
   getSession(workstreamId?: string): Promise<SessionProjection>
@@ -100,6 +103,8 @@ async function httpGet<T>(baseUrl: string, path: string): Promise<T> {
 function inProcess(rootDir: string): SpecLedgerClient {
   const load = (): LoadedLedger => loadLedger(rootDir)
   return {
+    async listGoals(filter = {}) { return listOptimizationGoals(rootDir, filter) },
+    async getGoal(id) { return getOptimizationGoal(rootDir, id) },
     async getCheckEvidence(id) { return getCheckEvidence(rootDir,id) },
     async getCheckRun(id) { return getCheckRun(rootDir,id) },
     async getSession(id) { return getSession(rootDir, id) },
@@ -192,6 +197,8 @@ function inProcess(rootDir: string): SpecLedgerClient {
 function http(baseUrl: string): SpecLedgerClient {
   const base = baseUrl.endsWith("/") ? baseUrl : `${baseUrl}/`
   return {
+    listGoals: (filter = {}) => httpGet(base, `v1/goals?${new URLSearchParams(filter)}`),
+    getGoal: (id) => httpGet(base, `v1/goals/${encodeURIComponent(id)}`),
     getCheckEvidence: (id) => httpGet(base, `v1/check-evidence?bindingId=${encodeURIComponent(id)}`),
     getCheckRun: (id) => httpGet(base, `v1/check-run?runId=${encodeURIComponent(id)}`),
     getSession: (id) => httpGet(base, `v1/session${id ? `?workstream=${encodeURIComponent(id)}` : ""}`),
@@ -274,3 +281,5 @@ export { createLocalApprovalBridge } from "@nessalabs/spec-ledger"
 export { createLocalCheckBridge, type CheckEvidence, type CheckRun } from "@nessalabs/spec-ledger"
 
 export { createLocalWorkflowBridge, type WorkflowOptions, type WorkflowProfile, type WorkflowProfileStage, type WorkflowProfileStep, type WorkflowOutputKind, type WorkflowStageRole, type WorkflowSnapshot } from "@nessalabs/spec-ledger"
+
+export type { OptimizationGoal, Experiment, ExperimentResult, GoalConclusion, GoalProjection, Observation } from "@nessalabs/spec-ledger"

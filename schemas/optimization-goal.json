@@ -1,0 +1,109 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^G-[A-Za-z0-9][A-Za-z0-9_-]{0,79}$"
+    },
+    "workstreamId": {
+      "type": "string",
+      "pattern": "^W-[0-9]{3,}$"
+    },
+    "turnId": {
+      "type": "string",
+      "pattern": "^T-[0-9]{3,}$"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "objective": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4000
+    },
+    "stopWhen": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4000
+    },
+    "maxExperiments": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 10000
+    },
+    "metric": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "unit": {
+          "type": "string",
+          "maxLength": 40
+        },
+        "direction": {
+          "type": "string",
+          "enum": [
+            "minimize",
+            "maximize"
+          ]
+        },
+        "protocol": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4000
+        },
+        "baseline": {
+          "type": "number"
+        },
+        "target": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "name",
+        "unit",
+        "direction",
+        "protocol"
+      ],
+      "additionalProperties": false
+    },
+    "schemaVersion": {
+      "type": "number",
+      "const": 1
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+    },
+    "sourceDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "revisionDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    }
+  },
+  "required": [
+    "id",
+    "workstreamId",
+    "turnId",
+    "title",
+    "objective",
+    "stopWhen",
+    "schemaVersion",
+    "createdAt",
+    "sourceDigest",
+    "revisionDigest"
+  ],
+  "additionalProperties": false,
+  "$id": "https://nessalabs.ai/spec-ledger/schemas/optimization-goal.json",
+  "description": "Optional iterative work history. Agent-reported observations never affect verification. Runtime validates cross-record references and current task permission."
+}

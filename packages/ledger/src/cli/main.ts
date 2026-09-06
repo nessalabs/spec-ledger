@@ -70,6 +70,7 @@ function usage(): never {
   console.log(`spec-ledger — claim adherence ledger
 
 Usage:
+  spec-ledger goal list|show|create|conclude … | experiment start|result --file <json>
   spec-ledger init [--name <name>] [--root <dir>]
   spec-ledger verify [--root <dir>]
   spec-ledger audit [--root <dir>]
@@ -152,6 +153,34 @@ async function main(): Promise<void> {
       console.log(JSON.stringify({ ok: false, operation, error: normalized.toJSON() }, null, 2))
       process.exit(1)
     }
+  }
+
+  if (cmd === "goal" || cmd === "experiment") {
+    const sub = argv[1]
+    if (cmd === "goal" && sub === "list") {
+      console.log(JSON.stringify(executeOperation(root, "list_goals", {
+        ...(argValue(argv, "--workstream") ? {workstreamId: argValue(argv, "--workstream")} : {}),
+        ...(argValue(argv, "--turn") ? {turnId: argValue(argv, "--turn")} : {}),
+      }), null, 2)); return
+    }
+    if (cmd === "goal" && sub === "show") {
+      console.log(JSON.stringify(executeOperation(root, "get_goal", {goalId: argValue(argv, "--id")}), null, 2)); return
+    }
+    const mapping = { "goal:create": ["create_goal", "goal"], "goal:conclude": ["conclude_goal", "conclusion"],
+      "experiment:start": ["start_experiment", "experiment"], "experiment:result": ["record_experiment_result", "result"] } as const
+    const pair = mapping[`${cmd}:${sub}` as keyof typeof mapping]
+    const file = argValue(argv, "--file")
+    if (!pair || !file) throw new Error("goal/experiment mutation requires create|conclude|start|result and --file <json>")
+    const record = JSON.parse(readFileSync(resolve(file), "utf8"))
+    const turn = loadLedger(root).turns.find(t => t.id === record.turnId)
+    if (!turn?.intent.workstreamId) throw new Error("goal/experiment requires a workstream turn")
+    const revision = planRevision(root, loadWorkstream(root, turn.intent.workstreamId))
+    const source = sourceFingerprint(root, loadLedger(root).config.generatedArtifactPaths)
+    console.log(JSON.stringify(executeOperation(root, pair[0], {
+      requestId: argValue(argv, "--request-id") ?? newRequestId(), [pair[1]]: record,
+      expectedRevisionDigest: argValue(argv, "--revision") ?? revision,
+      expectedSourceDigest: argValue(argv, "--source-digest") ?? source,
+    }), null, 2)); return
   }
 
   if (cmd === "init") {

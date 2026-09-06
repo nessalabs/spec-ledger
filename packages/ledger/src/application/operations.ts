@@ -1,3 +1,5 @@
+import { assertOptimizationReceiptStorage } from "../optimization/store.js"
+import { listOptimizationGoals, getOptimizationGoal, createOptimizationGoal, startOptimizationExperiment, recordOptimizationResult, concludeOptimizationGoal } from "../optimization/index.js"
 import { workflowOptions } from "../workflows/options.js"
 import { startSavedCheck, getCheckRun, getCheckEvidence, validateCheckStorage } from "../verify/saved-check.js"
 import { randomUUID } from "node:crypto"
@@ -570,9 +572,28 @@ export function recordExecutionActivity(root: string, raw: unknown) {
   catch (error) { if (error instanceof Error && /activity collector is busy/.test(error.message)) throw operationError("operation_busy", error.message, true); throw error }
 }
 
+function writeOptimization(root: string, operation: "create_goal" | "start_experiment" | "record_experiment_result" | "conclude_goal", raw: unknown) {
+  const input = mutationInput(root, operation, raw)
+  assertOptimizationReceiptStorage(root, input.requestId)
+  return runMutation({ root, requestId: input.requestId, operation, input, effect: () => {
+    const sourceDigest = assertSource(root, stringField(input, "expectedSourceDigest")!)
+    const revisionDigest = stringField(input, "expectedRevisionDigest")!
+    const stamp = { sourceDigest, revisionDigest }
+    switch (operation) {
+      case "create_goal": return createOptimizationGoal(root, input.goal, stamp)
+      case "start_experiment": return startOptimizationExperiment(root, input.experiment, stamp)
+      case "record_experiment_result": return recordOptimizationResult(root, input.result, stamp)
+      case "conclude_goal": return concludeOptimizationGoal(root, input.conclusion, stamp)
+    }
+  } })
+}
+
 export function executeOperation(root: string, operation: OperationName, input: unknown): unknown {
   try {
     switch (operation) {
+      case "list_goals": return listOptimizationGoals(root, validated(root, operation, input))
+      case "get_goal": return getOptimizationGoal(root, stringField(validated(root, operation, input), "goalId")!)
+      case "create_goal": case "start_experiment": case "record_experiment_result": case "conclude_goal": return writeOptimization(root, operation, input)
       case "plan_work": return planWork(root, input)
       case "get_context": return getContext(root, input)
       case "get_session": return observeSession(root, input)

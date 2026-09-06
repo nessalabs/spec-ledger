@@ -4,6 +4,7 @@
  */
 import { createServer, type IncomingMessage, type ServerResponse } from "node:http"
 import {
+  listOptimizationGoals, getOptimizationGoal,
   getSession,
   getCheckEvidence, getCheckRun,
   permissionStatus,
@@ -54,6 +55,15 @@ function sendJson(res: ServerResponse, status: number, body: unknown): void {
 
 export function buildRoutes(rootDir: string): Route[] {
   return [
+    { method: "GET", pattern: /^\/v1\/goals$/, paramNames: [], handler: (req, res) => {
+      const search = new URL(req.url ?? "/", "http://localhost").searchParams
+      try { sendJson(res, 200, listOptimizationGoals(rootDir, { workstreamId: search.get("workstreamId") ?? undefined, turnId: search.get("turnId") ?? undefined })) }
+      catch { sendJson(res, 500, { error: "Goal history is unreadable; inspect the ledger records" }) }
+    } },
+    { method: "GET", pattern: /^\/v1\/goals\/(G-[A-Za-z0-9][A-Za-z0-9_-]{0,79})$/, paramNames: ["id"], handler: (_req, res, params) => {
+      try { sendJson(res, 200, getOptimizationGoal(rootDir, params.id)) }
+      catch (error) { sendJson(res, 404, { error: error instanceof Error ? error.message : String(error) }) }
+    } },
     { method: "GET", pattern: /^\/v1\/check-evidence$/, paramNames: [], handler: (req,res) => sendJson(res,200,getCheckEvidence(rootDir,new URL(req.url??"/","http://localhost").searchParams.get("bindingId")??"")) },
     { method: "GET", pattern: /^\/v1\/check-run$/, paramNames: [], handler: (req,res) => sendJson(res,200,getCheckRun(rootDir,new URL(req.url??"/","http://localhost").searchParams.get("runId")??"")) },
     { method: "GET", pattern: /^\/v1\/session$/, paramNames: [], handler: (req, res) => {

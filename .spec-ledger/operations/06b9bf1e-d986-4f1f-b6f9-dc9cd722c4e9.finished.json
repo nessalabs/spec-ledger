@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "requestId": "06b9bf1e-d986-4f1f-b6f9-dc9cd722c4e9",
+  "operation": "record_review",
+  "inputDigest": "c6f425013caec0fc1d5b6b17681b171fca8b8ff5a9e23e55310a70b880465449",
+  "finishedAt": "2026-09-06T07:35:03.936Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "id": "W-014/SR-01",
+    "workstreamId": "W-014",
+    "kind": "adversarial",
+    "target": "spec",
+    "reviewer": "agent:sl-plan-break-spec",
+    "verdict": "approve",
+    "blocking": false,
+    "plainSummary": "The plan supports honest experiment tracking across authorized turns without changing verification or completion rules.",
+    "summary": "Reviewed W-014 against the CLI related pack (3 features, 14 live claims, 0 proposed claims, 20 prior turns, 50 docs). Checked SL-001/003/019/021/023, agent-tools shared application and retry contracts, execution-activity separation, and W-011 navigation. Clarified current-open-turn authorization across goal lifetime and failed-result exclusion before stamping this revision. No alert-threshold gaps remain.",
+    "alertOnSeverity": "high",
+    "findings": [],
+    "residualRisks": [
+      "The current related CLI returns only a generic worktreeCautions message, not scanned entries or actual sibling paths; sibling conflict coverage is unavailable from this pack.",
+      "Implementation must test continuation after the originating turn closes and reject failed measurements or kept failures; these clarified semantics are part of the reviewed spec.",
+      "Shared navigation must preserve existing URLs and keyboard access, consistent with W-011; record retention decisions as agent reports without implying automatic Git changes."
+    ],
+    "revisionDigest": "00765fcd0aec078c40a541b807e947ff932cf21d8bb7b694dc8b94501fdda83c"
+  }
+}

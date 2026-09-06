@@ -1,0 +1,11 @@
+{
+  "id": "SL-032",
+  "statement": "Follow optional iterative goals and experiment results while ordinary tasks and their verification rules continue unchanged.",
+  "required": true,
+  "kind": "invariant",
+  "links": {
+    "docs": [
+      "docs/architecture/experiments.md"
+    ]
+  }
+}

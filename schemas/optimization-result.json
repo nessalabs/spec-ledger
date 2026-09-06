@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "goalId": {
+      "type": "string",
+      "pattern": "^G-[A-Za-z0-9][A-Za-z0-9_-]{0,79}$"
+    },
+    "experimentId": {
+      "type": "string",
+      "pattern": "^X-[A-Za-z0-9][A-Za-z0-9_-]{0,79}$"
+    },
+    "turnId": {
+      "type": "string",
+      "pattern": "^T-[0-9]{3,}$"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "completed",
+        "failed"
+      ]
+    },
+    "decision": {
+      "type": "string",
+      "enum": [
+        "kept",
+        "discarded",
+        "inconclusive"
+      ]
+    },
+    "measurement": {
+      "type": "number"
+    },
+    "findings": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4000
+    },
+    "evidenceRefs": {
+      "maxItems": 30,
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 1000
+      }
+    },
+    "schemaVersion": {
+      "type": "number",
+      "const": 1
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+    },
+    "sourceDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "revisionDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    }
+  },
+  "required": [
+    "goalId",
+    "experimentId",
+    "turnId",
+    "status",
+    "decision",
+    "findings",
+    "schemaVersion",
+    "createdAt",
+    "sourceDigest",
+    "revisionDigest"
+  ],
+  "additionalProperties": false,
+  "$id": "https://nessalabs.ai/spec-ledger/schemas/optimization-result.json",
+  "description": "Optional iterative work history. Agent-reported observations never affect verification. Runtime validates cross-record references and current task permission.",
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "failed"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {
+        "properties": {
+          "decision": {
+            "const": "inconclusive"
+          }
+        },
+        "not": {
+          "required": [
+            "measurement"
+          ]
+        }
+      }
+    }
+  ]
+}
