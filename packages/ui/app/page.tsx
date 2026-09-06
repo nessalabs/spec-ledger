@@ -4,6 +4,7 @@ import Link from "next/link"
 import { LiveSession } from "@/components/live-session"
 import { liveReport, serverClient } from "@/lib/ledger"
 import { turnFreshness } from "@/lib/turns"
+import { isActiveSpec } from "@/lib/workstream-list"
 
 export const dynamic = "force-dynamic"
 
@@ -25,7 +26,7 @@ export default async function OverviewPage({
   ])
 
   const unproven = report.claims.filter(c => UNPROVEN.includes(c.outcome))
-  const active = workstreams.filter(w => !["done", "cancelled"].includes(w.status))
+  const active = workstreams.filter(isActiveSpec)
   const stale = turns.filter(t => turnFreshness(t, report) === "stale")
 
   const stats: Array<{ label: string; value: string; href: string }> = [
@@ -37,7 +38,7 @@ export default async function OverviewPage({
     {
       label: "Specs",
       value: `${active.length} active · ${workstreams.length} total`,
-      href: "/workstreams",
+      href: "/workstreams?view=active",
     },
     {
       label: "Changes",

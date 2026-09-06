@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "requestId": "6fa42157-b907-450f-a1c1-1fe519bb741d",
+  "operation": "approve_alignment",
+  "inputDigest": "2f1af7f9e1827eb63dbc04a8739608e8dddd0b68ff7e0a2c0ec78d3f62ef3969",
+  "finishedAt": "2026-09-06T22:01:04.671Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "id": "69b89683-0664-473e-bdbe-1a7d61ad37e7",
+    "turnId": "f649c404-7ab0-436a-8691-8662cd4a139d",
+    "workstreamId": "815c7a44-59df-8102-9769-bf8a74e49c0c",
+    "kind": "human",
+    "target": "code",
+    "reviewer": "agent:align",
+    "verdict": "approve",
+    "summary": "User requested list progress and fixup discoverability, then explicitly included consistent Overview active counts. All 12 changed product paths implement or verify that scoped UI correction; zero uncovered paths.",
+    "plainSummary": "The requested Specs progress, active filters and fixup details are covered by the preserved UI plan.",
+    "treeDigest": "7bd5f5b2dd8a1b5c3e7f20a70632596b99441887b4892e8617c871fbfa8cea98",
+    "uncoveredPaths": [],
+    "coverageSource": "mixed"
+  }
+}

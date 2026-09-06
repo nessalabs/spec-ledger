@@ -1,0 +1,22 @@
+▶ pack break (3cd59789-1875-5e42-8712-2f95eed1f581 12323a0d-6c53-59fb-b18b-ecfac0936883)
+  ✔ npm pack client/server must not ship workspace: or file: deps (6759ee4c-cf13-5f08-8554-999d1e06a48e) (1327.546792ms)
+  ✔ after pnpm pack install, client and server modules import and run (not package.json-only) (6499.623208ms)
+  ✔ pnpm-packed package.json: all dep fields free of workspace:/file:/link:/portal: (1179.388917ms)
+  ✔ out-of-intent: packed ledger bin shebang survives and is directly executable via node path (1863.199791ms)
+✔ pack break (3cd59789-1875-5e42-8712-2f95eed1f581 12323a0d-6c53-59fb-b18b-ecfac0936883) (10870.321583ms)
+▶ pack concurrency and failure isolation
+  ✔ overlapping npm packs preserve manifests and produce installable tarballs (2961.863458ms)
+  ✔ a failed prepack build does not rewrite the source manifest (754.813542ms)
+  ✔ client and server resolve this checkout's ledger during development (0.667542ms)
+✔ pack concurrency and failure isolation (3718.045875ms)
+▶ pack installable packages (92b26f1a-e5c0-5115-a2c0-6e80715259cd)
+  ✔ packs ledger/client/server without workspace: or file: and bin runs outside monorepo (4922.335709ms)
+✔ pack installable packages (92b26f1a-e5c0-5115-a2c0-6e80715259cd) (4922.699292ms)
+ℹ tests 8
+ℹ suites 3
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 10906.079875

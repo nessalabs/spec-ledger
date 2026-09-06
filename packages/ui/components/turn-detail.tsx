@@ -38,6 +38,7 @@ import {
 } from "@/lib/impact"
 import type { CommitInfo } from "@/lib/git"
 import { turnFreshness } from "@/lib/turns"
+import { isFixup } from "@/lib/workstream-list"
 
 export type RelatedDoc = {
   path: string
@@ -91,6 +92,7 @@ export function TurnSummaryCard({
     <div className="rounded-lg border border-border/80 px-3 py-2.5">
       <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
         <div className="flex min-w-0 flex-1 flex-wrap items-center gap-2">
+          {isFixup(turn) && <Badge variant="outline" className="text-[10px]">Fixup</Badge>}
           {wsId ? (
             <Link
               href={`/workstreams/${encodeURIComponent(wsId)}`}
@@ -116,7 +118,7 @@ export function TurnSummaryCard({
       </div>
       <p className="mt-1 text-[11px] text-muted-foreground">
         {humanStatus(turn.status)}
-        {turn.intent.changeType ? ` · ${turn.intent.changeType}` : ""}
+        {turn.intent.changeType ? ` · ${isFixup(turn) ? "Fixup" : turn.intent.changeType}` : ""}
         {` · ${fileBit}`}
         {areas ? ` · ${areas}` : ""}
         {freshness === "stale" ? " · verify outdated" : ""}
@@ -209,7 +211,7 @@ export function TurnDetail({
           {turn.intent.changeType ? (
             <>
               <span aria-hidden>·</span>
-              <span className="capitalize">{turn.intent.changeType}</span>
+              <span className="capitalize">{isFixup(turn) ? "Fixup" : turn.intent.changeType}</span>
             </>
           ) : null}
 
@@ -225,6 +227,19 @@ export function TurnDetail({
           </p>
         ) : null}
       </header>
+
+      {isFixup(turn) && <section aria-label="Fixup request" className="space-y-3 rounded-xl border border-border p-4 sm:p-5">
+        <div className="flex flex-wrap items-center gap-2">
+          <Badge variant="outline">Fixup</Badge>
+          <p className="text-sm">Correction to <Link href={`/workstreams/${turn.intent.workstreamId}`} className="underline underline-offset-4"><ReadableText>{workstream?.title ?? "the owning spec"}</ReadableText></Link></p>
+        </div>
+        <h2 className="text-sm font-semibold">Requested correction</h2>
+        <p className="whitespace-pre-wrap text-sm leading-relaxed"><ReadableText>{turn.intent.userPrompt}</ReadableText></p>
+        {episode?.decisions.filter(decision => decision.discovery).map(decision => <div key={decision.id} className="space-y-1 text-sm text-muted-foreground">
+          <p><ReadableText>{decision.discovery!.observation}</ReadableText></p>
+          {decision.discovery?.cause && <p><ReadableText>{decision.discovery.cause}</ReadableText></p>}
+        </div>)}
+      </section>}
 
       {evidence ? <TurnEvidence initial={evidence} turn={turn} /> : <p>No evidence is linked to this change yet.</p>}
 

@@ -15,6 +15,7 @@ import {
 } from "@/lib/impact"
 import type { VerifyReport } from "@nessalabs/spec-ledger-client"
 import { turnFreshness } from "@/lib/turns"
+import { isFixup } from "@/lib/workstream-list"
 
 export function CompactTurnRow({
   turn,
@@ -60,6 +61,7 @@ export function CompactTurnRow({
     <div className="grid gap-0.5 rounded-lg border border-border/80 px-3 py-2 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-baseline sm:gap-3">
       <div className="min-w-0">
         <div className="flex flex-col items-start gap-x-2 gap-y-1 sm:flex-row sm:flex-wrap sm:items-center">
+          {isFixup(turn) && <Badge variant="outline" className="text-[10px] font-medium">Fixup</Badge>}
           {wsId ? (
             <PeekLink
               href={`/workstreams/${encodeURIComponent(wsId)}`}

@@ -1,0 +1,176 @@
+{
+  "schemaVersion": 1,
+  "workstreamId": "815c7a44-59df-8102-9769-bf8a74e49c0c",
+  "revision": 3,
+  "sealedAt": "2026-09-06T21:45:20.128Z",
+  "sealedBy": "agent:permission:67b02df0-446e-4d15-87ab-ea805baa6ced",
+  "specDigest": "fe5fce2d11722962b67c32c11aa244aeb22b4b4096fba56209a23aa56841ce46",
+  "specDocDigest": "343882fca572c80929edc2d47587782ab4c0dd7333a06172ea0e4ceac98b1c9d",
+  "body": {
+    "id": "815c7a44-59df-8102-9769-bf8a74e49c0c",
+    "featureIds": [
+      "cli",
+      "client",
+      "turns",
+      "verify",
+      "lattice"
+    ],
+    "primaryFeatureId": "client",
+    "title": "Guide agents and follow verified work",
+    "problem": "Agents need interchangeable tools and configurable methods; users need current progress and evidence together.",
+    "objective": "Use CLI or MCP to follow a chosen engineering method and inspect its progress and evidence in one place.",
+    "specPath": "docs/workstreams/815c7a44-59df-8102-9769-bf8a74e49c0c-shared-agent-workflows/spec.md",
+    "appetite": null,
+    "changeType": "feature",
+    "riskLevel": "high",
+    "trust": {
+      "deployTarget": "library-consumer",
+      "userFacing": true,
+      "securitySensitive": true,
+      "correctnessCritical": true,
+      "performanceCritical": false,
+      "requiredEvidence": [
+        "unit",
+        "integration",
+        "e2e"
+      ],
+      "visualEvidence": {
+        "25eac677-2871-816d-956d-770bdcb61798": [
+          "Overall progress with unfinished work — desktop",
+          "Overall progress with unfinished work — mobile",
+          "Overview completion progress",
+          "Historical work with current rechecks",
+          "Active Specs with progress and fixup links — desktop",
+          "Active Specs with progress and fixup links — mobile",
+          "Fixup detail with requested correction",
+          "Spec Changes with identified fixups"
+        ]
+      }
+    },
+    "policy": {
+      "requireSpecBreak": true,
+      "requireCodeBreak": true,
+      "requireAlignApprove": true,
+      "allowExplicitAlignSkip": true,
+      "onAlert": "block",
+      "onSealedSpecDeviation": "block",
+      "alertOnSeverity": "high"
+    },
+    "acceptanceCriteria": [],
+    "acceptanceClaimIds": {
+      "26c9bf2f-a090-8415-bd2b-f46dff6af4f7/AC-1": [
+        "2f8cf085-d7a5-83b9-89f8-9d0754cb16a0"
+      ],
+      "25eac677-2871-816d-956d-770bdcb61798/AC-1": [
+        "4d4f7c20-b7e0-86d8-9b17-f45053bbf43b"
+      ],
+      "87ce7ed9-a607-8425-a475-173f8953ffaf/AC-1": [
+        "a3c38839-cf13-837c-8866-ce46af309e15"
+      ],
+      "25eac677-2871-816d-956d-770bdcb61798/AC-2": [
+        "9767b1da-9568-8e2f-ad2a-c2c3eb3e424c",
+        "93abee59-3e8d-809f-a140-d86105b0d865"
+      ],
+      "25eac677-2871-816d-956d-770bdcb61798/AC-3": [
+        "9767b1da-9568-8e2f-ad2a-c2c3eb3e424c",
+        "93abee59-3e8d-809f-a140-d86105b0d865"
+      ],
+      "25eac677-2871-816d-956d-770bdcb61798/AC-4": [
+        "9767b1da-9568-8e2f-ad2a-c2c3eb3e424c",
+        "93abee59-3e8d-809f-a140-d86105b0d865"
+      ],
+      "25eac677-2871-816d-956d-770bdcb61798/AC-5": [
+        "93abee59-3e8d-809f-a140-d86105b0d865",
+        "9767b1da-9568-8e2f-ad2a-c2c3eb3e424c"
+      ],
+      "25eac677-2871-816d-956d-770bdcb61798/AC-6": [
+        "93abee59-3e8d-809f-a140-d86105b0d865",
+        "9767b1da-9568-8e2f-ad2a-c2c3eb3e424c"
+      ],
+      "25eac677-2871-816d-956d-770bdcb61798/AC-7": [
+        "93abee59-3e8d-809f-a140-d86105b0d865",
+        "9767b1da-9568-8e2f-ad2a-c2c3eb3e424c"
+      ]
+    },
+    "outOfScope": [],
+    "proposedClaimIds": [
+      "aae49e39-2b5e-8e27-9378-2a136cce5c93",
+      "0a8d514c-2350-8cb8-a34a-89e1b6e01084",
+      "6fe07f4c-eb28-89a9-8097-a148a477ada3"
+    ],
+    "suggestedSlices": [
+      {
+        "id": "26c9bf2f-a090-8415-bd2b-f46dff6af4f7",
+        "title": "Use CLI and MCP for the same work",
+        "kind": "vertical",
+        "acceptance": [
+          "A real CLI and MCP work loop has equivalent validation, effects and evidence gates and appears in the existing session view."
+        ],
+        "evidence": [
+          "unit",
+          "integration"
+        ],
+        "expectedClaimIds": [],
+        "expectedPaths": [
+          "packages/**",
+          "schemas/**",
+          "scripts/**",
+          ".github/**",
+          "docs/**",
+          "skills/**",
+          "package.json",
+          "pnpm-workspace.yaml",
+          "pnpm-lock.yaml"
+        ]
+      },
+      {
+        "id": "25eac677-2871-816d-956d-770bdcb61798",
+        "title": "Follow a chosen method and inspect its evidence",
+        "kind": "vertical",
+        "acceptance": [
+          "Default and custom local methods preserve snapshots, enforce typed output gates and show live progress and inspectable evidence in the UI.",
+          "Passing checks cannot produce 100% while any required implementation, review, permission, deferred obligation, screenshot, workflow output, or turn-closure task remains incomplete.",
+          "The progress count covers the applicable completion checklist, counts grouped tasks consistently, avoids counting the same diagnostic twice, and reaches 100% only when the shared completion gate allows completion.",
+          "Overview and spec details show consistent completion progress; evidence counts stay separate, missing scope is indeterminate, and historical completion stays distinct from current rechecking.",
+          "The Specs list shows current completion progress using the same calculation as the spec detail, keeps unavailable scope indeterminate and historical completion separate, and provides direct links to the latest recorded fixups.",
+          "Fixup changes are visibly labeled in spec history, change lists and their detail pages, link to the owning spec, and show the requested correction without hiding it in technical details. Classification uses recorded work type, not guesses from titles.",
+          "Overview and the Specs list use the same definition of active work: specs not completed or cancelled. Clicking the active count opens the matching Active view; All, Completed and Cancelled remain accessible, with accurate counts and clear empty states on keyboard and mobile."
+        ],
+        "evidence": [
+          "unit",
+          "integration",
+          "e2e",
+          "screenshot"
+        ],
+        "expectedClaimIds": [],
+        "expectedPaths": [
+          "packages/**",
+          "schemas/**",
+          "docs/**",
+          "skills/**"
+        ]
+      },
+      {
+        "id": "87ce7ed9-a607-8425-a475-173f8953ffaf",
+        "title": "Track activity without inventing completion",
+        "kind": "vertical",
+        "acceptance": [
+          "Execution associations and bounded activity handle missing and duplicated signals honestly; optional recovery readiness honors policy and available host capabilities."
+        ],
+        "evidence": [
+          "unit",
+          "integration",
+          "e2e"
+        ],
+        "expectedClaimIds": [],
+        "expectedPaths": [
+          "packages/**",
+          "schemas/**",
+          "docs/**",
+          "skills/**",
+          ".gitignore"
+        ]
+      }
+    ]
+  }
+}

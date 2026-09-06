@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "turnId": "f649c404-7ab0-436a-8691-8662cd4a139d",
+  "decision": "Make active work, progress and fixups visible in the existing spec views.",
+  "rationale": "The user requested fixing missing progress and fixup discoverability, then reported that Overview counts two active specs but the list labels them sealed. Reuse the current spec and client APIs. Active means not done or cancelled; use one shared UI predicate and URL-selected views. Preserve unknown evidence and historical completion. Fixup labels use recorded changeType, never title guessing. Correct only the known prior progress turn's mislabeled intent.changeType from feature to fix; its opened record, tool-written facts, evidence and receipts remain unchanged.",
+  "basis": {
+    "at": "2026-09-06T21:45:46.277Z",
+    "contextDigest": "1d997982cc9ce1d4bbb426ad417ccdb60341e13efa3ab39ed5e0381599ec48e2",
+    "sealRevision": 3
+  },
+  "discovery": {
+    "kind": "spec-gap",
+    "reportedVia": "user",
+    "observation": "Specs lacked progress and identifiable fixups; Overview active count did not lead to clearly identifiable active records.",
+    "cause": "The list displayed raw saved status only, while Overview grouped all unfinished specs as active. The previous fixup used generic feature metadata.",
+    "specRef": "docs/workstreams/815c7a44-59df-8102-9769-bf8a74e49c0c-shared-agent-workflows/spec.md",
+    "regression": "Test matching active buckets and links, unknown and historical progress, typed fixup ownership and abandoned exclusions, detail reasons, keyboard navigation and desktop/mobile views."
+  },
+  "id": "d444c602-2c54-4768-b140-d7ba0ce9bed0",
+  "recordedAt": "2026-09-06T21:45:46.277Z",
+  "sequence": 1
+}

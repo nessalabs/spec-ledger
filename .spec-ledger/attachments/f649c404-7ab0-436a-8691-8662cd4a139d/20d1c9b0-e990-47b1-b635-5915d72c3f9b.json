@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "20d1c9b0-e990-47b1-b635-5915d72c3f9b",
+  "turnId": "f649c404-7ab0-436a-8691-8662cd4a139d",
+  "kind": "image",
+  "title": "Overview completion progress",
+  "path": ".spec-ledger/evidence/screenshots/discovery-fix/overview.png",
+  "mediaType": "image/png",
+  "byteLength": 145317,
+  "contentDigest": "134c4451a3a4baa0bbd42bca51851639a778352d2d6f7740da68442c6d14010d",
+  "visualEvidence": {
+    "sliceId": "25eac677-2871-816d-956d-770bdcb61798",
+    "surface": "Overview completion progress",
+    "sourceDigest": "7bd5f5b2dd8a1b5c3e7f20a70632596b99441887b4892e8617c871fbfa8cea98",
+    "revisionDigest": "a584acc3319d6700424703bddc1a76f38453c55b9f38d5926321a48842b476c1",
+    "recordedAt": "2026-09-06T21:58:03.888Z"
+  },
+  "note": "Recorded visual coverage; image adequacy is assessed in review."
+}

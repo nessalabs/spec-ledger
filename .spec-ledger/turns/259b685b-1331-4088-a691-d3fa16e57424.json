@@ -37,7 +37,7 @@
   "intent": {
     "userPrompt": "Fix the progress display to count all unfinished completion tasks. Amend the existing progress spec as a fixup, preserving prior history, and verify the UI and completion regressions.",
     "restatedGoal": "Show progress across all completion tasks",
-    "changeType": "feature",
+    "changeType": "fix",
     "riskLevel": "moderate",
     "workstreamId": "815c7a44-59df-8102-9769-bf8a74e49c0c",
     "sliceId": "25eac677-2871-816d-956d-770bdcb61798",

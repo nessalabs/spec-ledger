@@ -1,0 +1,38 @@
+▶ workflow editor boundary regressions
+  ✔ roundtrips bundled choices and hides symlinked discovery roots (166.509125ms)
+  ✔ rejects attestation substitutes for every mandatory stage output (91.210333ms)
+  ✔ rejects changed skill content and stale amendment identity without replacing the selection (383.8705ms)
+  ✔ rejects oversized and malformed browser actions without writes or execution (89.444333ms)
+  ✔ browser preview and apply share core state, deny foreign requests, and retry once (148.749958ms)
+✔ workflow editor boundary regressions (880.51675ms)
+✔ discovery breaker: every workflow status partitions into the same active overview count and URL views (81.745291ms)
+✔ discovery breaker: pagination is bounded deterministic and invalid values cannot drop the selected view (5.409167ms)
+✔ discovery breaker: actual server page observes only selected rows and isolates failed or mismatched sessions (8.623292ms)
+✔ discovery breaker: typed fixups require exact ownership and exclude abandoned or keyword-only changes (5.347792ms)
+✔ discovery breaker: list rows preserve filter and paging links, unknown readiness and exact fixup targets (19.951875ms)
+✔ discovery breaker: fixup context precedes evidence and badges follow typed intent on both change rows (32.395ms)
+✔ discovery breaker: refresh is explicit and preserves current filter while native links retain browser navigation (9.810125ms)
+✔ section history returns from execution to exact acceptance without hiding the evidence (21.228083ms)
+✔ unknown or obsolete fragments do not strand readers in an invisible section (0.066541ms)
+✔ mobile navigation closes on same-page selection and route change but preserves modified clicks (49.44325ms)
+✔ live Updates remain separate from server change history without key warnings (9.154209ms)
+✔ the in-page workflow retains its picker and process state when live data changes workstream (1.963834ms)
+✔ a deleted library name stays visible with its preserved version while switching is pending (10.1495ms)
+✔ workflow definition has one library route and the old per-spec route no longer resolves (0.195125ms)
+✔ Updates has a distinct deep link and browser history restores the isolated selected tab (5.891291ms)
+✔ Updates shows recorded dates or an honest absence and links to the real turn instead of the decision (12.356041ms)
+✔ overview keeps permission and problems visible with direct spec, evidence and history links (59.24425ms)
+✔ approved work does not request approval again and disconnected approval stays disabled (22.733833ms)
+✔ lost reply survives reload and retry preserves the exact operation instead of accepting another edit (44.265917ms)
+✔ unknown and busy outcomes retain recovery but a definitive stale-version conflict releases the form (22.915334ms)
+✔ unreadable mutation response keeps the original request for recovery (2.829291ms)
+✔ a browser unable to persist recovery must not send an unrecoverable write (1.958625ms)
+✔ canvas opens only the selected stage drawer and closing restores the full canvas without mutating or executing (79.847458ms)
+ℹ tests 28
+ℹ suites 1
+ℹ pass 28
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 983.92725

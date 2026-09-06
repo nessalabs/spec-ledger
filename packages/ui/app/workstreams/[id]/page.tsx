@@ -11,6 +11,7 @@ import { readRepoMarkdown } from "@/lib/spec-md"
 import { PitchDocLink } from "@/components/pitch-doc-link"
 import { TurnDocSplit } from "@/components/turn-doc-split"
 import { TurnSummaryCard } from "@/components/turn-detail"
+import { workstreamFixups } from "@/lib/workstream-list"
 
 export const dynamic = "force-dynamic"
 
@@ -34,6 +35,7 @@ export default async function WorkstreamPage({
     .sort((a, b) =>
       (b.closedAt ?? b.openedAt).localeCompare(a.closedAt ?? a.openedAt),
     )
+  const fixups = workstreamFixups(linked, id)
 
   const specPath =
     "specPath" in ws ? (ws as { specPath?: string }).specPath : undefined
@@ -94,6 +96,19 @@ export default async function WorkstreamPage({
           <ReadableText>{presentationCopy(ws.objective)}</ReadableText>
         </p>
       )}
+
+      {fixups.length > 0 && <section aria-label="Spec fixups" className="space-y-2 rounded-xl border border-border p-4">
+        <div className="flex flex-wrap items-baseline justify-between gap-2">
+          <h2 className="text-sm font-semibold">Fixups <span className="text-muted-foreground">· {fixups.length}</span></h2>
+          <Link href="#changes" className="text-xs underline underline-offset-4">View change history</Link>
+        </div>
+        <ul className="space-y-2">
+          {fixups.slice(0, 3).map(fixup => <li key={fixup.id} className="flex flex-wrap items-baseline justify-between gap-2 text-sm">
+            <Link href={`/turns/${fixup.id}`} className="min-w-0 break-words underline underline-offset-4"><ReadableText>{fixup.intent.restatedGoal}</ReadableText></Link>
+            <span className="text-xs text-muted-foreground">{fixup.status === "open" ? "In progress" : "Recorded"}</span>
+          </li>)}
+        </ul>
+      </section>}
 
       {projection.session ? <LiveWorkstreamEvidence initial={projection} workstreamId={id} history={
       <section className="space-y-3">

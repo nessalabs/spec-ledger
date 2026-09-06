@@ -1381,6 +1381,60 @@
           ],
           "nextAction": "Inspect the fresh saved check run and the four progress screenshots for the fixup turn.",
           "addedByTurn": "259b685b-1331-4088-a691-d3fa16e57424"
+        },
+        {
+          "id": "25eac677-2871-816d-956d-770bdcb61798/AC-5",
+          "text": "The Specs list shows current completion progress using the same calculation as the spec detail, keeps unavailable scope indeterminate and historical completion separate, and provides direct links to the latest recorded fixups.",
+          "mappedClaimIds": [
+            "93abee59-3e8d-809f-a140-d86105b0d865",
+            "9767b1da-9568-8e2f-ad2a-c2c3eb3e424c"
+          ],
+          "assessment": "mapped",
+          "rationale": "Added in the user-requested discoverability fixup: consistent active views, current progress and recorded fixup links use the current client and UI. The mapped navigation check must exercise the new list and fixup regressions; this inventory row does not claim historical completion.",
+          "evidenceSources": [
+            "packages/ui/lib/workstream-list.ts",
+            "packages/ui/components/workstreams-list.tsx",
+            "packages/ui/components/turn-detail.tsx",
+            "packages/ui/app/page.tsx"
+          ],
+          "nextAction": "Run the mapped navigation and progress checks and inspect the eight declared UI screenshots.",
+          "addedByTurn": "f649c404-7ab0-436a-8691-8662cd4a139d"
+        },
+        {
+          "id": "25eac677-2871-816d-956d-770bdcb61798/AC-6",
+          "text": "Fixup changes are visibly labeled in spec history, change lists and their detail pages, link to the owning spec, and show the requested correction without hiding it in technical details. Classification uses recorded work type, not guesses from titles.",
+          "mappedClaimIds": [
+            "93abee59-3e8d-809f-a140-d86105b0d865",
+            "9767b1da-9568-8e2f-ad2a-c2c3eb3e424c"
+          ],
+          "assessment": "mapped",
+          "rationale": "Added in the user-requested discoverability fixup: consistent active views, current progress and recorded fixup links use the current client and UI. The mapped navigation check must exercise the new list and fixup regressions; this inventory row does not claim historical completion.",
+          "evidenceSources": [
+            "packages/ui/lib/workstream-list.ts",
+            "packages/ui/components/workstreams-list.tsx",
+            "packages/ui/components/turn-detail.tsx",
+            "packages/ui/app/page.tsx"
+          ],
+          "nextAction": "Run the mapped navigation and progress checks and inspect the eight declared UI screenshots.",
+          "addedByTurn": "f649c404-7ab0-436a-8691-8662cd4a139d"
+        },
+        {
+          "id": "25eac677-2871-816d-956d-770bdcb61798/AC-7",
+          "text": "Overview and the Specs list use the same definition of active work: specs not completed or cancelled. Clicking the active count opens the matching Active view; All, Completed and Cancelled remain accessible, with accurate counts and clear empty states on keyboard and mobile.",
+          "mappedClaimIds": [
+            "93abee59-3e8d-809f-a140-d86105b0d865",
+            "9767b1da-9568-8e2f-ad2a-c2c3eb3e424c"
+          ],
+          "assessment": "mapped",
+          "rationale": "Added in the user-requested discoverability fixup: consistent active views, current progress and recorded fixup links use the current client and UI. The mapped navigation check must exercise the new list and fixup regressions; this inventory row does not claim historical completion.",
+          "evidenceSources": [
+            "packages/ui/lib/workstream-list.ts",
+            "packages/ui/components/workstreams-list.tsx",
+            "packages/ui/components/turn-detail.tsx",
+            "packages/ui/app/page.tsx"
+          ],
+          "nextAction": "Run the mapped navigation and progress checks and inspect the eight declared UI screenshots.",
+          "addedByTurn": "f649c404-7ab0-436a-8691-8662cd4a139d"
         }
       ]
     }
@@ -1397,8 +1451,8 @@
       "1652e353-e3dc-8960-985b-35fbe40c1edb",
       "815c7a44-59df-8102-9769-bf8a74e49c0c"
     ],
-    "criterionCount": 54,
-    "mappedCriteria": 20,
+    "criterionCount": 57,
+    "mappedCriteria": 23,
     "supersededCriteria": 5,
     "gapCriteria": 29
   },
@@ -1446,6 +1500,11 @@
       "at": "2026-09-06T21:05:58.672329+00:00",
       "turnId": "259b685b-1331-4088-a691-d3fa16e57424",
       "summary": "Add three progress criteria introduced by amendment to the existing Guide agents and follow verified work spec. Earlier judgments, observations and provenance remain unchanged; scope totals include the new inventory."
+    },
+    {
+      "at": "2026-09-06T21:51:01.456290+00:00",
+      "turnId": "f649c404-7ab0-436a-8691-8662cd4a139d",
+      "summary": "Add three discoverability criteria to the current inventory after the user requested visible list progress, identified fixups, and consistent active counts. Earlier observations and judgments remain unchanged."
     }
   ]
 }

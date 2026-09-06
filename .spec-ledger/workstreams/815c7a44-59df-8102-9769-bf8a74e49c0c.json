@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "815c7a44-59df-8102-9769-bf8a74e49c0c",
-  "status": "sealed",
+  "status": "active",
   "createdAt": "2026-09-05T00:05:59.832Z",
   "title": "Guide agents and follow verified work",
   "featureIds": [
@@ -59,7 +59,10 @@
         "Default and custom local methods preserve snapshots, enforce typed output gates and show live progress and inspectable evidence in the UI.",
         "Passing checks cannot produce 100% while any required implementation, review, permission, deferred obligation, screenshot, workflow output, or turn-closure task remains incomplete.",
         "The progress count covers the applicable completion checklist, counts grouped tasks consistently, avoids counting the same diagnostic twice, and reaches 100% only when the shared completion gate allows completion.",
-        "Overview and spec details show consistent completion progress; evidence counts stay separate, missing scope is indeterminate, and historical completion stays distinct from current rechecking."
+        "Overview and spec details show consistent completion progress; evidence counts stay separate, missing scope is indeterminate, and historical completion stays distinct from current rechecking.",
+        "The Specs list shows current completion progress using the same calculation as the spec detail, keeps unavailable scope indeterminate and historical completion separate, and provides direct links to the latest recorded fixups.",
+        "Fixup changes are visibly labeled in spec history, change lists and their detail pages, link to the owning spec, and show the requested correction without hiding it in technical details. Classification uses recorded work type, not guesses from titles.",
+        "Overview and the Specs list use the same definition of active work: specs not completed or cancelled. Clicking the active count opens the matching Active view; All, Completed and Cancelled remain accessible, with accurate counts and clear empty states on keyboard and mobile."
       ],
       "expectedPaths": [
         "packages/**",
@@ -73,7 +76,7 @@
         "e2e",
         "screenshot"
       ],
-      "codeBreakReviewId": "b2307aae-74e4-4f06-a043-90005a52bfca"
+      "codeBreakReviewId": "cf384dfb-c9d6-4a88-b1d1-be6dd61e29df"
     },
     {
       "id": "87ce7ed9-a607-8425-a475-173f8953ffaf",
@@ -114,7 +117,11 @@
         "Overall progress with unfinished work — desktop",
         "Overall progress with unfinished work — mobile",
         "Overview completion progress",
-        "Historical work with current rechecks"
+        "Historical work with current rechecks",
+        "Active Specs with progress and fixup links — desktop",
+        "Active Specs with progress and fixup links — mobile",
+        "Fixup detail with requested correction",
+        "Spec Changes with identified fixups"
       ]
     }
   },
@@ -144,17 +151,29 @@
     "25eac677-2871-816d-956d-770bdcb61798/AC-4": [
       "9767b1da-9568-8e2f-ad2a-c2c3eb3e424c",
       "93abee59-3e8d-809f-a140-d86105b0d865"
+    ],
+    "25eac677-2871-816d-956d-770bdcb61798/AC-5": [
+      "93abee59-3e8d-809f-a140-d86105b0d865",
+      "9767b1da-9568-8e2f-ad2a-c2c3eb3e424c"
+    ],
+    "25eac677-2871-816d-956d-770bdcb61798/AC-6": [
+      "93abee59-3e8d-809f-a140-d86105b0d865",
+      "9767b1da-9568-8e2f-ad2a-c2c3eb3e424c"
+    ],
+    "25eac677-2871-816d-956d-770bdcb61798/AC-7": [
+      "93abee59-3e8d-809f-a140-d86105b0d865",
+      "9767b1da-9568-8e2f-ad2a-c2c3eb3e424c"
     ]
   },
-  "specBreakReviewId": "124458d6-6ef7-4709-ae53-78105bb9e76c",
-  "updatedAt": "2026-09-06T21:11:17.533Z",
+  "specBreakReviewId": "0de6ad6a-52a0-4600-bc73-a0494ae506e9",
+  "updatedAt": "2026-09-06T22:00:28.682Z",
   "seal": {
-    "sealedAt": "2026-09-06T20:58:59.978Z",
+    "sealedAt": "2026-09-06T21:45:20.128Z",
     "sealedBy": "agent:permission:67b02df0-446e-4d15-87ab-ea805baa6ced",
-    "specDigest": "7aca228cbbd97bca85d50c18ac4b24348ff8847b6fc11fbc4173f832bcc2ce9e",
-    "snapshotPath": "workstreams/815c7a44-59df-8102-9769-bf8a74e49c0c.seals/2.json",
-    "revision": 2,
-    "specDocDigest": "5ded4e10caf11a3c19ee05fa897b8ac703884036f98af6b93d29a4bda298bbba"
+    "specDigest": "fe5fce2d11722962b67c32c11aa244aeb22b4b4096fba56209a23aa56841ce46",
+    "snapshotPath": "workstreams/815c7a44-59df-8102-9769-bf8a74e49c0c.seals/3.json",
+    "revision": 3,
+    "specDocDigest": "343882fca572c80929edc2d47587782ab4c0dd7333a06172ea0e4ceac98b1c9d"
   },
   "migration": {
     "origins": {
@@ -182,6 +201,17 @@
       "actor": "agent:user-requested-progress-fixup",
       "turnId": "5dd1e1ca-a98f-4d5a-a82d-82035dc40943",
       "decisionId": "3ec7feb5-ac54-4aa3-9575-2a10f0a582e4"
+    },
+    {
+      "at": "2026-09-06T21:42:58.583Z",
+      "summary": "Show progress and fixup links in Specs, identify corrections in Changes, and align the active count with a directly reachable Active view.",
+      "humanConfirmed": true,
+      "sealedRevision": 2,
+      "beforeDocDigest": "5ded4e10caf11a3c19ee05fa897b8ac703884036f98af6b93d29a4bda298bbba",
+      "afterDocDigest": "343882fca572c80929edc2d47587782ab4c0dd7333a06172ea0e4ceac98b1c9d",
+      "actor": "agent:user-requested-discoverability-fixup",
+      "turnId": "f649c404-7ab0-436a-8691-8662cd4a139d",
+      "decisionId": "d444c602-2c54-4768-b140-d7ba0ce9bed0"
     }
   ]
 }
