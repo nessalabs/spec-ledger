@@ -26,7 +26,6 @@ const nextConfig = {
   redirects: async () => [
     { source: "/timeline", destination: "/turns", permanent: false },
     { source: "/verify", destination: "/claims", permanent: false },
-    { source: "/workflows", destination: "/workstreams", permanent: false },
   ],
   // `dev` and `build` both run webpack on purpose: this loader is the only
   // thing that makes @nessalabs/ui importable, and Turbopack would skip it.

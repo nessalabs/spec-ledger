@@ -88,10 +88,13 @@ The service other tools read project information from can only answer questions;
 it can never change anything. Saving a workflow happens from the terminal, from
 an agent's tools, or from the website running on your own machine.
 
-**The editor is a list of steps, not a diagram of boxes and arrows.**
-The system runs workflows as one stage after another, in order. A diagram would
-let you draw branches and loops nothing can run, so the editor shows the real
-shape: an ordered list with a panel for whatever you select.
+**New workflow opens a dedicated Nessa UI workflow builder.**
+The library links to a separate builder for creating and editing saved workflows.
+The Nessa UI workflow canvas shows stages connected in execution order, filling the builder view. Clicking a stage opens its details and step settings
+in a Nessa UI drawer; settings do not remain in the page below the canvas. The system still runs
+one stage after another: the canvas does not offer branches or loops. Preview and
+save use the shared validator. This follows the user's correction recorded in
+T-044/D-01 and T-044/D-02.
 
 **The editor does not keep its own copy of the rules.**
 What counts as a valid workflow is decided in one place and the editor asks it,

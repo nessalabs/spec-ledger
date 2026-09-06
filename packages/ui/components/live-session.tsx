@@ -197,7 +197,7 @@ export function LiveSession({ initial }: { initial: SessionProjection }) {
               >
                 Changes
               </Link>
-              <Link className="underline" href={`/workflows/${session.workstreamId}`}>
+              <Link className="underline" href={`/workstreams/${session.workstreamId}#workflow`}>
                 Workflow
               </Link>
             </nav>

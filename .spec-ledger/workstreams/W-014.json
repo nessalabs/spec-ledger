@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "W-014",
-  "status": "sealed",
+  "status": "done",
   "createdAt": "2026-09-05T22:40:00.000Z",
   "featureIds": [
     "client",
@@ -95,7 +95,8 @@
         "schemas/**",
         "docs/**"
       ],
-      "notes": "Stage applicability becomes stage.required ?? policy(role); profile.source stops feeding roleApplicable and becomes provenance only. packages/ledger/src/workflows/workflow.break.test.ts:372 (bound to required claim SL-024) changes with SL-024's statement intact. N-3: saving strips output.criterionIds at the editable() boundary; adoption attaches the adopting spec's criterionIds to every implementation-report and check-results output by kind, mirroring defaultStages, and never overwrites criteria an author wrote by hand."
+      "notes": "Stage applicability becomes stage.required ?? policy(role); profile.source stops feeding roleApplicable and becomes provenance only. packages/ledger/src/workflows/workflow.break.test.ts:372 (bound to required claim SL-024) changes with SL-024's statement intact. N-3: saving strips output.criterionIds at the editable() boundary; adoption attaches the adopting spec's criterionIds to every implementation-report and check-results output by kind, mirroring defaultStages, and never overwrites criteria an author wrote by hand.",
+      "codeBreakReviewId": "T-044/R-01"
     },
     {
       "id": "SLC-02",
@@ -126,7 +127,7 @@
         "packages/ui/**"
       ],
       "notes": "Default pointer lives in the workflows store, not schemas/ledger-root.json, which is additionalProperties:false. Reserve the pointer path so a profile whose id is 'default' cannot collide with it. N-5: .spec-ledger/** is in DEFAULT_ALIGN_IGNORE and excluded from sourceFingerprint, so align check will not surface library edits.",
-      "codeBreakReviewId": "T-043/R-02"
+      "codeBreakReviewId": "T-044/R-01"
     },
     {
       "id": "SLC-03",
@@ -152,7 +153,8 @@
         "packages/client/**",
         "docs/**"
       ],
-      "notes": "Editor guard rails come from the client's exported validation or preview round-trip, never a second copy of the rules in packages/ui. N-9: the route change touches packages/ui/lib/navigation.test.mjs:27, which is inside BOTH b-sl-029 and b-sl-030; the rewritten test must assert the new in-page workflow join and that /workflows/<W-id> no longer resolves. N-7: packages/ui/components/workflow-view.tsx:199,224 render a two-value default|custom badge."
+      "notes": "Editor guard rails come from the client's exported validation or preview round-trip, never a second copy of the rules in packages/ui. N-9: the route change touches packages/ui/lib/navigation.test.mjs:27, which is inside BOTH b-sl-029 and b-sl-030; the rewritten test must assert the new in-page workflow join and that /workflows/<W-id> no longer resolves. N-7: packages/ui/components/workflow-view.tsx:199,224 render a two-value default|custom badge.",
+      "codeBreakReviewId": "T-044/R-01"
     }
   ],
   "acceptanceClaimIds": {
@@ -208,12 +210,12 @@
       "SL-033"
     ]
   },
-  "updatedAt": "2026-09-06T05:45:55.079Z",
+  "updatedAt": "2026-09-06T06:29:26.536Z",
   "residualRisks": [
     "Library edits live under .spec-ledger/, which align check ignores and the source fingerprint excludes, so they never appear in turn path coverage.",
     "trust.requiredEvidence is advisory; no code enforces the e2e requirement."
   ],
-  "specBreakReviewId": "W-014/SR-01",
+  "specBreakReviewId": "W-014/SR-03",
   "seal": {
     "sealedAt": "2026-09-06T05:34:58.907Z",
     "sealedBy": "agent:permission:AUTH-4e179164-47e5-4ea9-88b2-0858b32fec25",
@@ -221,5 +223,29 @@
     "snapshotPath": "workstreams/W-014.seals/1.json",
     "revision": 1,
     "specDocDigest": "26a3a61bc6f7f971e65f650884d1ac3c290629dbc49e00c7ce40a3d461f7ca15"
-  }
+  },
+  "postSealAmends": [
+    {
+      "at": "2026-09-06T06:11:06.443Z",
+      "summary": "User requested a dedicated Nessa UI workflow canvas builder for New workflow and Edit; execution stays linear.",
+      "humanConfirmed": true,
+      "sealedRevision": 1,
+      "beforeDocDigest": "26a3a61bc6f7f971e65f650884d1ac3c290629dbc49e00c7ce40a3d461f7ca15",
+      "afterDocDigest": "c4223e8b319f15c7a1f9eec0aea10043845a463c6107839ac757c0a8e69b7d9e",
+      "actor": "agent:user-request",
+      "turnId": "T-044",
+      "decisionId": "T-044/D-01"
+    },
+    {
+      "at": "2026-09-06T06:14:15.887Z",
+      "summary": "User clarified full-view canvas with stage details opened in a Nessa UI drawer.",
+      "humanConfirmed": true,
+      "sealedRevision": 1,
+      "beforeDocDigest": "c4223e8b319f15c7a1f9eec0aea10043845a463c6107839ac757c0a8e69b7d9e",
+      "afterDocDigest": "ef4d9e376dbb85f984a37951dc90becef462506f8e10a12b3b4d8411c7a1b5a6",
+      "actor": "agent:user-request",
+      "turnId": "T-044",
+      "decisionId": "T-044/D-02"
+    }
+  ]
 }

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "requestId": "48f0f0d1-d8de-4bb3-a8d2-256253a7175c",
+  "operation": "begin_work",
+  "inputDigest": "35fc6f0b5ade25a94891663faa187e8f69979d4b1ef005b3548095fae1f6e93c",
+  "finishedAt": "2026-09-06T05:51:18.037Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "id": "T-044",
+    "status": "open",
+    "openedAt": "2026-09-06T05:51:18.037Z",
+    "opened": {
+      "producedBy": "@nessalabs/spec-ledger@0.1.0",
+      "baseCommit": "9d63d03b9a2207170049968d5af19c3ca85e6a00",
+      "treeDigest": "ba844f3d36db65f90547ba661e8265b694f58d7536aa4e035c153b435b814854",
+      "dirtyAtOpen": [],
+      "contextDigest": "a557f0b19c339a49718ef31120a2e5415ae03b9897014d355044949722b38562",
+      "contextWorkstreamId": "W-014",
+      "contextSliceId": "SLC-03",
+      "contextSealRevision": 1,
+      "contextGeneratedAt": "2026-09-06T05:51:18.037Z"
+    },
+    "intent": {
+      "userPrompt": "Continue W-014 by building the workflow library screen and placing the named workflow picker beside each spec’s evidence and changes.",
+      "restatedGoal": "Choose a saved workflow beside the spec evidence and changes",
+      "changeType": "feature",
+      "riskLevel": "moderate",
+      "workstreamId": "W-014",
+      "sliceId": "SLC-03",
+      "featureIds": [
+        "client",
+        "cli",
+        "lattice"
+      ]
+    }
+  }
+}

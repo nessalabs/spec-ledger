@@ -2,6 +2,16 @@ import { acceptanceProgress } from "@/lib/acceptance-progress"
 import { Check, CircleDashed, Loader } from "lucide-react"
 import type { CompletionChecklistItem } from "@nessalabs/spec-ledger-client"
 
+// Keep completed and pending gates in the same workflow order.
+const checklistOrder: Record<string, number> = {
+  seal: 0,
+  'spec-review': 1,
+  criteria: 2,
+  'code-review': 3,
+  workflow: 4,
+  turn: 5,
+}
+
 /** Done, actively moving, or not started — never a stand-in for a passing check. */
 function ChecklistMark({ state }: { state: CompletionChecklistItem["state"] }) {
   if (state === "done") {
@@ -81,7 +91,7 @@ export function AcceptanceProgress({
         <div className="space-y-1.5 text-sm">
           <p className="font-medium">{historical ? "Needs rechecking" : "Completion checklist"}</p>
           <ul className="space-y-1">
-            {checklist.map(item => (
+            {[...checklist].sort((a, b) => (checklistOrder[a.id] ?? 6) - (checklistOrder[b.id] ?? 6)).map(item => (
               <li key={item.id} className="flex items-baseline gap-2">
                 <ChecklistMark state={item.state} />
                 <span className={item.state === "done" ? "text-muted-foreground" : undefined}>

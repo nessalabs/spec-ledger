@@ -47,6 +47,7 @@ const WORKSPACE: NavItem[] = [
 ]
 
 const EXPLORE: NavItem[] = [
+  { href: "/workflows", label: "Workflows", hint: "Define reusable steps and choose the normal workflow", icon: Workflow },
   { href: "/features", label: "Features", hint: "Capability map", icon: Layers },
   { href: "/graph", label: "Code map", hint: "Packages and dependencies", icon: GitBranch },
   { href: "/compass", label: "Direction", hint: "Vision and guiding principles", icon: Compass },
