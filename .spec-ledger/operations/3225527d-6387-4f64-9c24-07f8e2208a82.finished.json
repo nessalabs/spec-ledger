@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "requestId": "3225527d-6387-4f64-9c24-07f8e2208a82",
+  "operation": "begin_work",
+  "inputDigest": "174c64ea31e47f5634cce4ea1f6abab8910a6eeca555ad842d22450706da99e5",
+  "finishedAt": "2026-09-07T06:00:40.602Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "id": "c3450c71-217d-4327-bdfd-689b9de008f9",
+    "status": "open",
+    "openedAt": "2026-09-07T06:00:40.599Z",
+    "opened": {
+      "producedBy": "@nessalabs/spec-ledger@0.1.0",
+      "baseCommit": "f1b5c8378de7b20d81108abc82e02e30dd1b516a",
+      "treeDigest": "bcc0a651ecc16888d55132f26b9dd2896949fcd57c3160946c574b822e25b0eb",
+      "dirtyAtOpen": [],
+      "contextDigest": "e169cf3d5a35661f052078e0437796de1af67d6dbf42458f6b652168cca5fd55",
+      "contextWorkstreamId": "815c7a44-59df-8102-9769-bf8a74e49c0c",
+      "contextSliceId": "26c9bf2f-a090-8415-bd2b-f46dff6af4f7",
+      "contextSealRevision": 3,
+      "contextGeneratedAt": "2026-09-07T06:00:40.599Z"
+    },
+    "intent": {
+      "userPrompt": "Finish Guide agents and follow verified work through the CLI, including its workflow outputs and completion checklist.",
+      "restatedGoal": "Record the completed workflow outcome",
+      "changeType": "feature",
+      "riskLevel": "moderate",
+      "workstreamId": "815c7a44-59df-8102-9769-bf8a74e49c0c",
+      "sliceId": "26c9bf2f-a090-8415-bd2b-f46dff6af4f7",
+      "featureIds": [
+        "turns"
+      ]
+    }
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 1,
+  "requestId": "29f9dcec-90ad-41c1-900a-5dc23c309b90",
+  "operation": "finish_turn",
+  "inputDigest": "37fcd81a4ddb5eb2a965eb98104ec74257bea9bb924d44c6e4c5174ca1ad71af",
+  "finishedAt": "2026-09-07T06:43:20.287Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "id": "c3450c71-217d-4327-bdfd-689b9de008f9",
+    "status": "closed",
+    "openedAt": "2026-09-07T06:00:40.599Z",
+    "opened": {
+      "producedBy": "@nessalabs/spec-ledger@0.1.0",
+      "baseCommit": "f1b5c8378de7b20d81108abc82e02e30dd1b516a",
+      "treeDigest": "bcc0a651ecc16888d55132f26b9dd2896949fcd57c3160946c574b822e25b0eb",
+      "dirtyAtOpen": [],
+      "contextDigest": "e169cf3d5a35661f052078e0437796de1af67d6dbf42458f6b652168cca5fd55",
+      "contextWorkstreamId": "815c7a44-59df-8102-9769-bf8a74e49c0c",
+      "contextSliceId": "26c9bf2f-a090-8415-bd2b-f46dff6af4f7",
+      "contextSealRevision": 3,
+      "contextGeneratedAt": "2026-09-07T06:00:40.599Z"
+    },
+    "intent": {
+      "userPrompt": "Finish Guide agents and follow verified work through the CLI, including its workflow outputs and completion checklist.",
+      "restatedGoal": "Record the completed workflow outcome",
+      "changeType": "feature",
+      "riskLevel": "moderate",
+      "workstreamId": "815c7a44-59df-8102-9769-bf8a74e49c0c",
+      "sliceId": "26c9bf2f-a090-8415-bd2b-f46dff6af4f7",
+      "featureIds": [
+        "turns"
+      ]
+    },
+    "closedAt": "2026-09-07T06:43:20.286Z",
+    "facts": {
+      "producedBy": "@nessalabs/spec-ledger@0.1.0",
+      "commit": "f1b5c8378de7b20d81108abc82e02e30dd1b516a",
+      "files": [
+        {
+          "path": ".spec-ledger/decisions/c3450c71-217d-4327-bdfd-689b9de008f9/b8934403-27d4-4915-81a3-5db052f60344.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/reviews/turns/c3450c71-217d-4327-bdfd-689b9de008f9/bf2a1229-dfa4-4cd7-9167-53a752b7c838.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/reviews/turns/c3450c71-217d-4327-bdfd-689b9de008f9/cff608e0-8109-4f5c-91c1-3688cfe6b917.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/turns/c3450c71-217d-4327-bdfd-689b9de008f9.json",
+          "kind": "added",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "path": ".spec-ledger/workstreams/815c7a44-59df-8102-9769-bf8a74e49c0c.json",
+          "kind": "modified",
+          "additions": 2,
+          "deletions": 2
+        }
+      ],
+      "touchedNodeIds": [],
+      "touchedFeatureIds": [],
+      "touchedClaimIds": [],
+      "blastRadius": {
+        "direct": [],
+        "transitive": []
+      },
+      "verify": {
+        "ok": true,
+        "ledgerDigest": "d2ff5bbc48bf5ade6042bf4e15b2905c9ecf44baff7012f0661fcd4ac5b0771e",
+        "resultsDigest": "3ff8b3296bcf594b3fcdc8f337fd76a570290b837c02cd91c0e44a7f0e927f41",
+        "treeDigest": "bcc0a651ecc16888d55132f26b9dd2896949fcd57c3160946c574b822e25b0eb",
+        "producedAt": "2026-09-07T06:43:20.247Z"
+      },
+      "schemaSurfaceChanged": false,
+      "decisionIds": [
+        "b8934403-27d4-4915-81a3-5db052f60344"
+      ],
+      "decisionsDigest": "2017b4705ab6b139f326e0cc1a1eae8f15d82d45ca7a5d61a7f8ec4f9982efc7",
+      "reviewsDigest": "01729683b6e554aff1490cb9262c520ee2a07e7417f08e75f4670718e41a40ae"
+    }
+  }
+}

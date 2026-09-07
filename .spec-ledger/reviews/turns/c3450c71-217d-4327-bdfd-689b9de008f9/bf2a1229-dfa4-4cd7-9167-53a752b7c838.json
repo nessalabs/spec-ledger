@@ -1,0 +1,26 @@
+{
+  "workstreamId": "815c7a44-59df-8102-9769-bf8a74e49c0c",
+  "kind": "adversarial",
+  "target": "code",
+  "reviewer": "agent:sl-dev-break",
+  "verdict": "approve",
+  "blocking": false,
+  "plainSummary": "All nine requirements have current implementation and passing evidence, and the complete default workflow is satisfied.",
+  "summary": "Integration closure review on unchanged source, supported by fresh independent slice reviews 1462f95a-fde2-4854-8edb-bbf0bcf386be, 550c8de3-6aa9-4de4-9d5f-80151549fb8c and 29d54a03-949e-4b41-8fe2-c7ce2dcf63f4. Their actual test runs passed 24 CLI/MCP boundary and lifecycle tests, 124 workflow/session/UI tests and 18 execution/activity tests. Independently read the persisted aggregate implementation decision and checked that its nine criterion IDs exactly match current acceptance, with current revision and source fingerprints. A fresh CLI session observation reports all nine criteria implemented with passing evidence, all five default workflow stages satisfied, no workflow blockers, all three current slice reviews and all eight current screenshots. The sole remaining completion condition is closing this open integration turn. The aggregate report truthfully summarizes already inspected implementation; it does not substitute for check evidence or invent a host resume/cancellation adapter.",
+  "killersCited": [
+    "node --test packages/ledger/dist/application/operations.break.test.js packages/ledger/dist/application/receipts.break.test.js packages/mcp/dist/lifecycle.test.js packages/mcp/dist/saved-check.test.js",
+    "node --test packages/mcp/dist/library.boundary.break.test.js",
+    "node --test packages/ledger/dist/workflows/*break.test.js packages/ledger/dist/session/*break.test.js packages/mcp/dist/workflow.lifecycle.test.js packages/mcp/dist/visual.lifecycle.test.js packages/ui/lib/*test.mjs",
+    "node --test packages/ledger/dist/execution/execution.break.test.js packages/mcp/dist/execution.lifecycle.test.js packages/ui/lib/execution-presentation.test.mjs"
+  ],
+  "findings": [],
+  "alertOnSeverity": "high",
+  "residualRisks": [
+    "The open integration turn must close before workstream completion is eligible.",
+    "Recovery remains guidance only; actual resume and cancellation are unavailable by design."
+  ],
+  "schemaVersion": 1,
+  "id": "bf2a1229-dfa4-4cd7-9167-53a752b7c838",
+  "turnId": "c3450c71-217d-4327-bdfd-689b9de008f9",
+  "treeDigest": "bcc0a651ecc16888d55132f26b9dd2896949fcd57c3160946c574b822e25b0eb"
+}
