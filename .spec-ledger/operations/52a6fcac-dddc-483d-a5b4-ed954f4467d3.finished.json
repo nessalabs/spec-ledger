@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "requestId": "52a6fcac-dddc-483d-a5b4-ed954f4467d3",
+  "operation": "record_review",
+  "inputDigest": "c85b7492f3694afdac17a62cdbd2315e38bf20c3469475cec2be6bc3c9b38636",
+  "finishedAt": "2026-09-07T09:00:29.734Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "workstreamId": "eab32d2d-6c3c-84df-b831-9bcc13fd0152",
+    "kind": "adversarial",
+    "target": "spec",
+    "reviewer": "agent:sl-plan-break-spec",
+    "verdict": "approve",
+    "blocking": false,
+    "plainSummary": "The evidence viewer will keep each screenshot paired with its details and distinguish current coverage from earlier captures.",
+    "summary": "Independent review of the recorded document amendment and linked correction under existing acceptance, grounded in refreshed related pack. Verified correction/original-spec/change-record links. The specified controlled Window Deck interaction is supported by the inspected Nessa UI API (local component byte-identical to GitHub main), and the plan requires selected-image/detail pairing, controls, keyboard use, enlargement and mobile coverage. Current coverage drives ordering and preview budget priority; intact historical files do not imply current coverage, and unavailable previews retain metadata. Existing twelve declared surfaces remain, with supplemental desktop/mobile viewer inspection explicitly required. Existing provenance, completion gates and separate organization-credential obligation remain unchanged. No blocking spec gaps found.",
+    "alertOnSeverity": "high",
+    "findings": [],
+    "supersedesReviewId": "5ab16e1d-5768-4fa1-a2ce-99d3aee8209c",
+    "residualRisks": [
+      "Code review should distinguish actual current coverage eligibility from mere file integrity when ordering images and spending the bounded preview allowance.",
+      "Keep selection and metadata joined by stable recording identity through refresh, unavailable images and duplicate surface labels; image position alone is not an identity.",
+      "Test an old image consuming the budget before a current image, no-current-coverage explanations, keyboard/mobile navigation and enlargement focus behavior.",
+      "This spec approval does not establish screenshot adequacy, code correctness or organization credential availability.",
+      "The related tool provides generic worktree caution text rather than actual sibling-path scan evidence."
+    ],
+    "id": "debaeacf-07cb-4c2a-8bf9-3c6feb4dcd52",
+    "revisionDigest": "8bea9484e97440a9fca0e95c179687be3ea577c0839a3ee39c24d2e39d35a363"
+  }
+}

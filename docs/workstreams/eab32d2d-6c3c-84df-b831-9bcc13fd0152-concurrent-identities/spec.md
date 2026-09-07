@@ -1,5 +1,9 @@
 # Give concurrent work distinct identities
 
+## Fixups and amendments
+
+- 2026-09-07 — [Browse current visual evidence](fixups/2026-09-07-browse-current-visual-evidence.md)
+
 Agents working in separate checkouts currently allocate the same numbered workstream, turn and claim IDs. Integrating the experiment and workflow-library branches has produced real collisions. People should name work with a short title; Spec Ledger must generate its identity.
 
 The user explicitly requests UUID identities, migration of existing data, no numbered-ID compatibility, reconciliation of both branches, and an organization-wide npm publishing credential. This is scoped implementation and migration authorization. Retain the existing library/staging quality bar and correctness-critical provenance guarantees.

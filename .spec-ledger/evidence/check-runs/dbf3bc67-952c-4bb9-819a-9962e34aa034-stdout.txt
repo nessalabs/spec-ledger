@@ -1,0 +1,44 @@
+▶ workflow editor boundary regressions
+  ✔ roundtrips bundled choices and hides symlinked discovery roots (212.949333ms)
+  ✔ rejects attestation substitutes for every mandatory stage output (104.153333ms)
+  ✔ rejects changed skill content and stale amendment identity without replacing the selection (368.752209ms)
+  ✔ rejects oversized and malformed browser actions without writes or execution (104.957583ms)
+  ✔ browser preview and apply share core state, deny foreign requests, and retry once (168.471875ms)
+✔ workflow editor boundary regressions (959.937ms)
+✔ discovery breaker: every workflow status partitions into the same active overview count and URL views (89.24525ms)
+✔ discovery breaker: pagination is bounded deterministic and invalid values cannot drop the selected view (15.606916ms)
+✔ discovery breaker: actual server page returns selected rows without waiting for full session projections (11.8225ms)
+✔ discovery breaker: typed fixups require exact ownership and exclude abandoned or keyword-only changes (7.793875ms)
+✔ discovery breaker: list rows preserve filter and paging links, unknown readiness and exact fixup targets (34.022666ms)
+✔ discovery breaker: fixup context precedes evidence and badges follow typed intent on both change rows (33.69325ms)
+✔ discovery breaker: refresh is explicit and preserves current filter while native links retain browser navigation (16.248375ms)
+✔ discovery breaker: background progress distinguishes loading from unavailable and explains historical counts (15.238083ms)
+✔ progress queue breaker: compact route isolates requested scope and never returns full session evidence (89.428708ms)
+✔ progress queue breaker: one request runs at a time and a failed or wrong-scope row cannot poison later progress (15.16175ms)
+✔ progress queue breaker: cancellation aborts in-flight work and excludes late results and remaining rows (3.049417ms)
+✔ progress queue breaker: each deadline aborts that request and continues with the next visible row (12.33875ms)
+✔ progress queue breaker: a new snapshot hides old progress immediately and late old replies cannot replace refreshed results (5.576833ms)
+✔ section history returns from execution to exact acceptance without hiding the evidence (36.146666ms)
+✔ unknown or obsolete fragments do not strand readers in an invisible section (0.074083ms)
+✔ mobile navigation closes on same-page selection and route change but preserves modified clicks (50.504375ms)
+✔ live Updates remain separate from server change history without key warnings (15.142625ms)
+✔ the in-page workflow retains its picker and process state when live data changes workstream (2.797ms)
+✔ a deleted library name stays visible with its preserved version while switching is pending (12.2955ms)
+✔ workflow definition has one library route and the old per-spec route no longer resolves (0.183041ms)
+✔ Updates has a distinct deep link and browser history restores the isolated selected tab (5.184333ms)
+✔ Updates shows recorded dates or an honest absence and links to the real turn instead of the decision (12.983167ms)
+✔ overview keeps permission and problems visible with direct spec, evidence and history links (85.565541ms)
+✔ approved work does not request approval again and disconnected approval stays disabled (30.679125ms)
+✔ lost reply survives reload and retry preserves the exact operation instead of accepting another edit (53.99475ms)
+✔ unknown and busy outcomes retain recovery but a definitive stale-version conflict releases the form (33.5715ms)
+✔ unreadable mutation response keeps the original request for recovery (7.328541ms)
+✔ a browser unable to persist recovery must not send an unrecoverable write (3.604333ms)
+✔ canvas opens only the selected stage drawer and closing restores the full canvas without mutating or executing (100.705125ms)
+ℹ tests 34
+ℹ suites 1
+ℹ pass 34
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1066.492708

@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "requestId": "b6935c32-cd0e-4ca2-be7e-f1a11929c445",
+  "operation": "record_screenshot",
+  "inputDigest": "681611c73530693e8038a9e0126eb1cb4fb7c15efe9c42b16bee3ecc6ad70f09",
+  "finishedAt": "2026-09-07T09:16:10.835Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "id": "e312fa6b-eeb6-47c0-91c1-810283efed02",
+    "turnId": "8a552125-4b23-4b80-b13e-1ac1b1dc9fd9",
+    "kind": "image",
+    "title": "Overview with migrated work",
+    "path": ".spec-ledger/evidence/screenshots/concurrent-evidence/overview.jpg",
+    "mediaType": "image/jpeg",
+    "byteLength": 80768,
+    "contentDigest": "10b5147f164a223efca3f3d631cd8a3f79439958cbd2f5bafb376ce83082b3aa",
+    "visualEvidence": {
+      "sliceId": "596b8830-61c6-887a-b6c3-9ae0561f2761",
+      "surface": "Overview with migrated work",
+      "sourceDigest": "749e9073f21c968c8f819325407e89213f3e7de1abe677303500366dbf52df7f",
+      "revisionDigest": "8bea9484e97440a9fca0e95c179687be3ea577c0839a3ee39c24d2e39d35a363",
+      "recordedAt": "2026-09-07T09:16:10.835Z"
+    },
+    "note": "Recorded visual coverage; image adequacy is assessed in review."
+  }
+}

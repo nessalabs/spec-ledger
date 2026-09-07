@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "fdf9604a-0293-4f8e-9e4d-e9686cf0f4af",
+  "turnId": "8a552125-4b23-4b80-b13e-1ac1b1dc9fd9",
+  "kind": "image",
+  "title": "UUID work details — mobile",
+  "path": ".spec-ledger/evidence/screenshots/concurrent-evidence/work-mobile.jpg",
+  "mediaType": "image/jpeg",
+  "byteLength": 33123,
+  "contentDigest": "146c7a06fc7d7513f4f197dd86318287ef4ffb73b2d75add1b9bd787fbad4712",
+  "visualEvidence": {
+    "sliceId": "596b8830-61c6-887a-b6c3-9ae0561f2761",
+    "surface": "UUID work details — mobile",
+    "sourceDigest": "749e9073f21c968c8f819325407e89213f3e7de1abe677303500366dbf52df7f",
+    "revisionDigest": "8bea9484e97440a9fca0e95c179687be3ea577c0839a3ee39c24d2e39d35a363",
+    "recordedAt": "2026-09-07T09:16:10.391Z"
+  },
+  "note": "Recorded visual coverage; image adequacy is assessed in review."
+}

@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "requestId": "eb3e44af-509c-476b-ab5c-8ee9bb1a3851",
+  "operation": "begin_work",
+  "inputDigest": "e89ea736d171d753992be51b00d5116b5df3520e610775ed49decc8702c26d36",
+  "finishedAt": "2026-09-07T08:54:48.787Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "id": "8a552125-4b23-4b80-b13e-1ac1b1dc9fd9",
+    "status": "open",
+    "openedAt": "2026-09-07T08:54:48.787Z",
+    "opened": {
+      "producedBy": "@nessalabs/spec-ledger@0.1.0",
+      "baseCommit": "b961d53c9dcfc31a3f871358fca7b829ab7cd476",
+      "treeDigest": "bcc0a651ecc16888d55132f26b9dd2896949fcd57c3160946c574b822e25b0eb",
+      "dirtyAtOpen": [],
+      "contextDigest": "12bece0c0327e322eb664aab2370a21d0b2f2bfa8716e690c52c0a68e4f89e60",
+      "contextWorkstreamId": "eab32d2d-6c3c-84df-b831-9bcc13fd0152",
+      "contextSliceId": "596b8830-61c6-887a-b6c3-9ae0561f2761",
+      "contextSealRevision": 3,
+      "contextGeneratedAt": "2026-09-07T08:54:48.786Z"
+    },
+    "intent": {
+      "userPrompt": "Check what remains for Give concurrent work distinct identities and complete the approved implementation, visual evidence and publishing validation through Spec Ledger.",
+      "restatedGoal": "Finish concurrent work identity verification",
+      "changeType": "feature",
+      "riskLevel": "moderate",
+      "workstreamId": "eab32d2d-6c3c-84df-b831-9bcc13fd0152",
+      "sliceId": "596b8830-61c6-887a-b6c3-9ae0561f2761",
+      "featureIds": [
+        "turns"
+      ]
+    }
+  }
+}

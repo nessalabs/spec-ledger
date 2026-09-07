@@ -71,14 +71,17 @@ test('requirement expansion mounts proof only on demand and screenshot labels ne
  assert.equal(opened,true)
  const expanded=Card({id:'AC-1',heading:'Evidence needed',defaultOpen:true,children:React.createElement('p',null,'EVIDENCE BODY')})
  assert.match(text(expanded),/EVIDENCE BODY/)
- const Visual=load('../components/visual-evidence.tsx',{'react':{useRef:()=>({current:null}),useState:v=>[v,()=>{}]}}).VisualEvidence
+ const primitive=props=>React.createElement('div',null,props.children)
+ const Visual=load('../components/visual-evidence.tsx',{'react':{useRef:()=>({current:null}),useState:v=>[v,()=>{}]},'next/link':{default:primitive},'@nessalabs/ui':{Button:primitive,WindowDeck:primitive,WindowDeckPane:primitive}}).VisualEvidence
  let screenshot
- require('react-dom/server').renderToStaticMarkup(React.createElement(function CaptureVisual(){screenshot=Visual({src:'data:image/png;base64,fixture',title:'Historical demo',note:'Captured on an earlier revision'});return screenshot}))
- assert.match(text(screenshot),/Saved visual observation/)
+ require('react-dom/server').renderToStaticMarkup(React.createElement(function CaptureVisual(){screenshot=Visual({artifacts:[{id:'image',turnId:'record',mediaType:'image/png',status:'verified',imageDataUrl:'data:image/png;base64,fixture',title:'Historical demo',note:'Captured on an earlier revision'}],coverage:{surfaces:[]}});return null}))
+ assert.match(text(screenshot),/Earlier capture.*not counted toward current coverage/)
  assert.match(text(screenshot),/Captured on an earlier revision/)
  assert.doesNotMatch(text(screenshot),/Current passing|Verified requirement/)
- assert.equal(nodes(screenshot,n=>n.type==='dialog').length,1)
- assert.equal(nodes(screenshot,n=>n.type==='button'&&n.props['aria-label']==='Enlarge Historical demo').length,1)
+ const preview=nodes(screenshot,n=>n.type?.name==='Screenshot')[0]
+ const imageTree=preview.type(preview.props)
+ assert.equal(nodes(imageTree,n=>n.type==='dialog').length,1)
+ assert.equal(nodes(imageTree,n=>n.type==='button'&&n.props['aria-label']==='Enlarge Historical demo').length,1)
 })
 
 test('passing run metadata stays collapsed while output failures and historical warnings remain visible',()=>{
@@ -150,4 +153,53 @@ test('contradictory grouped done counts cannot report completion',()=>{
  const tree=Progress({total:4,verified:4,implemented:4,completionEligible:true,checklist:[{id:'criteria',label:'Requirements',state:'done',done:0,total:4}]})
  assert.equal(nodes(tree,n=>n.props?.role==='progressbar')[0].props['aria-valuenow'],undefined)
  assert.doesNotMatch(text(tree,true),/100%/)
+})
+
+
+function deckHarness(){
+ let cursor=0,states=[]
+ const primitive=props=>React.createElement('div',null,props.children)
+ const Visual=load('../components/visual-evidence.tsx',{'react':{useRef:()=>({current:null}),useState:initial=>{const i=cursor++;if(!(i in states))states[i]=initial;return [states[i],value=>{states[i]=value}]}},'next/link':{default:primitive},'@/components/readable-text':{ReadableText:primitive,useRecordLabels:()=>({})},'@nessalabs/ui':{Button:primitive,WindowDeck:primitive,WindowDeckPane:primitive}}).VisualEvidence
+ return {render:props=>{cursor=0;return Visual(props)},deck:tree=>nodes(tree,n=>n.props?.mode==='carousel')[0],metadata:tree=>nodes(tree,n=>n.props?.['aria-label']==='Selected screenshot evidence')[0]}
+}
+const deckImage=(id,extra={})=>({id,turnId:`turn-${id}`,title:'Identical image title',note:`Note ${id}`,mediaType:'image/png',status:'verified',imageDataUrl:`data:image/png;base64,${id}`,recordedAt:'2026-09-07T00:00:00Z',...extra})
+const deckCoverage=ids=>({surfaces:ids.map(id=>({satisfied:true,attachmentId:id}))})
+
+test('screenshot deck breaker: authoritative IDs choose current images and selection keeps duplicate-title metadata together',()=>{
+ const h=deckHarness(),artifacts=[deckImage('old'),deckImage('first'),deckImage('second')],before=structuredClone(artifacts),props={artifacts,coverage:deckCoverage(['first','second'])}
+ let tree=h.render(props)
+ assert.equal(h.deck(tree).props.activePane,'first');assert.deepEqual(h.deck(tree).props.children.map(x=>x.props.id),['first','second'])
+ assert.match(text(h.metadata(tree)),/Note first/);assert.match(text(h.metadata(tree)),/Current screenshot coverage/)
+ h.deck(tree).props.onActivePaneChange('second');tree=h.render(props)
+ assert.equal(h.deck(tree).props.activePane,'second');assert.match(text(h.metadata(tree)),/Note second/)
+ assert.equal(nodes(h.metadata(tree),n=>n.props?.href)[0].props.href,'/turns/turn-second')
+ const earlier=nodes(tree,n=>text(n.props?.children).startsWith('Earlier screenshots')&&n.props?.onClick)[0]
+ earlier.props.onClick();tree=h.render(props)
+ assert.equal(h.deck(tree).props.activePane,'old');assert.match(text(h.metadata(tree)),/Earlier capture.*not counted/);assert.match(text(h.metadata(tree)),/Note old/)
+ assert.deepEqual(artifacts,before)
+})
+
+test('screenshot deck breaker: refresh replaces removed selection and unavailable previews retain exact recording links',()=>{
+ const h=deckHarness(),props={artifacts:[deckImage('first'),deckImage('second')],coverage:deckCoverage(['first','second'])}
+ let tree=h.render(props);h.deck(tree).props.onActivePaneChange('second')
+ const updated={artifacts:[deckImage('second'),deckImage('new',{status:'unavailable',imageDataUrl:null,recordedAt:null,reason:'Budget unavailable'})],coverage:deckCoverage(['new'])}
+ tree=h.render(updated);assert.equal(h.deck(tree).props.activePane,'new');assert.match(text(h.metadata(tree)),/Capture date not recorded.*Preview unavailable/s)
+ assert.equal(nodes(h.metadata(tree),n=>n.props?.href)[0].props.href,'/turns/turn-new')
+ const pane=h.deck(tree).props.children[0],preview=pane.props.children
+ assert.match(text(preview.type(preview.props)),/Preview unavailable.*recording details/s)
+ const onlyOld=h.render({artifacts:[deckImage('old')],coverage:{surfaces:[{satisfied:false,attachmentId:'old'}]}})
+ assert.match(text(h.metadata(onlyOld)),/Earlier capture.*not counted/)
+})
+
+test('screenshot deck breaker: previous next and arrow keys change selected evidence without intercepting dialog input',()=>{
+ const h=deckHarness(),props={artifacts:[deckImage('first'),deckImage('second')],coverage:deckCoverage(['first','second'])}
+ let tree=h.render(props);assert.equal(nodes(tree,n=>n.props?.['aria-label']==='Previous screenshot')[0].props.disabled,true)
+ nodes(tree,n=>n.props?.['aria-label']==='Next screenshot')[0].props.onClick();tree=h.render(props);assert.equal(h.deck(tree).props.activePane,'second')
+ assert.equal(nodes(tree,n=>n.props?.['aria-label']==='Next screenshot')[0].props.disabled,true)
+ const original=globalThis.HTMLElement;globalThis.HTMLElement=class {constructor(inside){this.inside=inside}closest(){return this.inside}}
+ try{
+  let prevented=false;tree.props.onKeyDown({key:'ArrowLeft',target:new HTMLElement(true),preventDefault(){prevented=true}});assert.equal(prevented,false)
+  tree=h.render(props);assert.equal(h.deck(tree).props.activePane,'second')
+  tree.props.onKeyDown({key:'ArrowLeft',target:new HTMLElement(false),preventDefault(){prevented=true}});tree=h.render(props);assert.equal(prevented,true);assert.equal(h.deck(tree).props.activePane,'first')
+ }finally{globalThis.HTMLElement=original}
 })

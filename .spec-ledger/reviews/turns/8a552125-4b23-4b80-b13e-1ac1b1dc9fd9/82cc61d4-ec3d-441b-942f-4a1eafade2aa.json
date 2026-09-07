@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "82cc61d4-ec3d-441b-942f-4a1eafade2aa",
+  "turnId": "8a552125-4b23-4b80-b13e-1ac1b1dc9fd9",
+  "workstreamId": "eab32d2d-6c3c-84df-b831-9bcc13fd0152",
+  "kind": "human",
+  "target": "code",
+  "reviewer": "agent:align",
+  "verdict": "approve",
+  "summary": "User requested fixing missing visual evidence and using Nessa UI WindowDeck with matching evidence below each image; all eight changed product paths are within this scope.",
+  "plainSummary": "The evidence viewer and screenshot loading changes are covered by the requested UI fix.",
+  "treeDigest": "749e9073f21c968c8f819325407e89213f3e7de1abe677303500366dbf52df7f",
+  "uncoveredPaths": [],
+  "coverageSource": "mixed"
+}

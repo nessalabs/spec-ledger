@@ -170,7 +170,15 @@ export function getSession(root: string, workstreamId?: string) {
       reviews: reviews.map(r => ({ id: r.id, turnId: r.turnId, target: r.target, verdict: r.verdict,
         summary: r.plainSummary ?? r.summary, findings: r.findings ?? [], residualRisks: r.residualRisks ?? [],
         current: r.target === "spec" ? r.revisionDigest === revisionDigest : Boolean(sourceDigest && r.treeDigest === sourceDigest) })),
-      artifacts: (() => { const budget = { remaining: 2 * 1024 * 1024 }; return turns.flatMap(t => listAttachmentsForTurn(root, t.id)).map(a => attachmentEvidence(root, a, budget)) })(),
+      artifacts: (() => {
+        const budget = { remaining: 2 * 1024 * 1024 }
+        const currentScreenshots = new Set(visualEvidence.surfaces.filter(surface => surface.satisfied).map(surface => surface.attachmentId))
+        // Reserve the bounded preview allowance for required current evidence first.
+        // Historical records remain inspectable even when their images do not fit.
+        return turns.flatMap(t => listAttachmentsForTurn(root, t.id))
+          .sort((a, b) => Number(currentScreenshots.has(b.id)) - Number(currentScreenshots.has(a.id)))
+          .map(a => attachmentEvidence(root, a, budget))
+      })(),
       visualEvidence, permission, authorityDigest: authorityStateDigest(root), attention, criteria, activity, obligations, workflow, executionActivity,
       completion: { eligible: permission.allowed && completionReasons.length === 0, reasons: completionReasons, checklist },
       openTurnIds: turns.filter(t => t.status === "open").map(t => t.id),

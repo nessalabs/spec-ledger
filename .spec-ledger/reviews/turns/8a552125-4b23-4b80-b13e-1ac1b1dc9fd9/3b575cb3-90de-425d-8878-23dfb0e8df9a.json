@@ -1,0 +1,29 @@
+{
+  "workstreamId": "eab32d2d-6c3c-84df-b831-9bcc13fd0152",
+  "kind": "adversarial",
+  "target": "code",
+  "reviewer": "agent:sl-dev-break",
+  "verdict": "approve",
+  "blocking": false,
+  "plainSummary": "Concurrent identities and migrated evidence remain distinct, and the screenshot gallery shows current proof before earlier captures.",
+  "summary": "Independent scoped review of AC1–3, the current-evidence amendment, and static publishing wiring. Ran 54 passing identity, migration, publishing, presentation and navigation tests; validated 5,522 migrated files and checked all 1,161 original entity hashes against the three pinned Git origins. The additional real getSession killer first failed because four historical 512 KiB images exhausted the preview budget before the required current screenshot; it passes after the builder prioritizes authoritative current attachments. Ran 58 passing session and UI breaker tests after the fix, including three new deck selection, refresh, unavailable-image and navigation cases. Independently inspected all twelve declared screenshot surfaces plus supplemental current WindowDeck desktop/mobile images: current and earlier evidence remain distinct, metadata and recording links stay associated with the selected image, and the current evidence check passes 12/12 at the guarded source digest. No remaining code finding within this scope. AC4 organization-secret availability and authenticated npm dry-run observations are excluded: static workflow tests do not establish operational credential readiness.",
+  "killersCited": [
+    "/tmp/sl-uuid-completion-break.txt: 54 tests passed",
+    "live migration validation: 5522 files valid and 1161 original entity SHA-256 hashes match pinned Git origins",
+    "packages/ledger/src/session/visual-evidence.break.test.ts::visual breaker: historical screenshots cannot exhaust the preview budget before required current screenshots",
+    "packages/ui/lib/simplicity.break.test.mjs::screenshot deck breaker: refresh replaces removed selection and unavailable previews retain exact recording links",
+    "/tmp/sl-deck-break-final.txt: 58 tests passed",
+    "checkVisualEvidence(eab32d2d-6c3c-84df-b831-9bcc13fd0152, 8a552125-4b23-4b80-b13e-1ac1b1dc9fd9): ok true, 12/12 surfaces satisfied",
+    "Visual inspection: .spec-ledger/evidence/screenshots/concurrent-evidence/*.jpg, twelve required surfaces plus newdeck-desktop.jpg and newdeck-mobile.jpg"
+  ],
+  "findings": [],
+  "alertOnSeverity": "high",
+  "residualRisks": [
+    "AC4 operational completion remains pending until nessalabs organization NPM_TOKEN availability and authenticated dry-run observations are separately recorded. No npm publication or GitHub Release was performed.",
+    "Earlier screenshots intentionally remain historical evidence and never count as current coverage. Image preview memory remains bounded, so some earlier previews may be unavailable."
+  ],
+  "schemaVersion": 1,
+  "id": "3b575cb3-90de-425d-8878-23dfb0e8df9a",
+  "turnId": "8a552125-4b23-4b80-b13e-1ac1b1dc9fd9",
+  "treeDigest": "749e9073f21c968c8f819325407e89213f3e7de1abe677303500366dbf52df7f"
+}

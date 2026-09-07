@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "requestId": "f75a9117-926e-46ee-9ee1-bb8f4a243bb3",
+  "operation": "record_screenshot",
+  "inputDigest": "fd679c55a2ad6146742f96636c658d015f649a742fd2dd8d227459f4d3cc419f",
+  "finishedAt": "2026-09-07T09:16:10.984Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "id": "3791763b-d8ee-4d52-846b-9faaac379307",
+    "turnId": "8a552125-4b23-4b80-b13e-1ac1b1dc9fd9",
+    "kind": "image",
+    "title": "Capabilities and recent changes",
+    "path": ".spec-ledger/evidence/screenshots/concurrent-evidence/features.jpg",
+    "mediaType": "image/jpeg",
+    "byteLength": 100025,
+    "contentDigest": "c1d695a5a143b1b0eebf5d4c0141bd2e9be9a16e09f5bbde0f6b50cbc8baf852",
+    "visualEvidence": {
+      "sliceId": "596b8830-61c6-887a-b6c3-9ae0561f2761",
+      "surface": "Capabilities and recent changes",
+      "sourceDigest": "749e9073f21c968c8f819325407e89213f3e7de1abe677303500366dbf52df7f",
+      "revisionDigest": "8bea9484e97440a9fca0e95c179687be3ea577c0839a3ee39c24d2e39d35a363",
+      "recordedAt": "2026-09-07T09:16:10.984Z"
+    },
+    "note": "Recorded visual coverage; image adequacy is assessed in review."
+  }
+}
