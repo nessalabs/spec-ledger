@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "requestId": "14251d8f-0905-4117-937f-d7a0f56eaf11",
+  "operation": "record_screenshot",
+  "inputDigest": "f3e2d8beaadda697946ef28ff76ef53f873189e52f916004364d0efb0e819b54",
+  "finishedAt": "2026-09-07T05:37:37.389Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "id": "7b5c2b9a-0337-4cc0-ade7-397247b47a72",
+    "turnId": "8ee59111-da04-458a-b6ac-d869526b8013",
+    "kind": "image",
+    "title": "Overview completion progress",
+    "path": ".spec-ledger/evidence/screenshots/speed-fix/overview.png",
+    "mediaType": "image/jpeg",
+    "byteLength": 45710,
+    "contentDigest": "5e298d7fdffc501183370bb9a2acbeb281bf3c64bf6f553559f31171c6ee77c1",
+    "visualEvidence": {
+      "sliceId": "25eac677-2871-816d-956d-770bdcb61798",
+      "surface": "Overview completion progress",
+      "sourceDigest": "bcc0a651ecc16888d55132f26b9dd2896949fcd57c3160946c574b822e25b0eb",
+      "revisionDigest": "30b8d0a6507724e6d861b943aa4aba336a5c59ff04725989882a8fd702afbd0e",
+      "recordedAt": "2026-09-07T05:37:37.388Z"
+    },
+    "note": "Recorded visual coverage; image adequacy is assessed in review."
+  }
+}

@@ -49,14 +49,14 @@ test('discovery breaker: pagination is bounded deterministic and invalid values 
  assert.deepEqual(lib.specListPage([],[],'active'),{workstreams:[],page:1,pages:1,total:0});assert.deepEqual(many,original)
 })
 
-test('discovery breaker: actual server page observes only selected rows and isolates failed or mismatched sessions',async()=>{
+test('discovery breaker: actual server page returns selected rows without waiting for full session projections',async()=>{
  const calls=[],many=Array.from({length:43},(_,i)=>({id:`spec-${String(i).padStart(2,'0')}`,title:'Same title',status:'active'}))
  const h=harness({'@/lib/ledger':{serverClient:()=>({listWorkstreams:async()=>many,getTurns:async()=>[],getSession:async id=>{calls.push(id);if(id==='spec-20')throw new Error('offline');return projection(id==='spec-21'?'other':id)}})},'@/components/workstreams-list':{WorkstreamsList:()=>null}})
  const tree=await h.load('../app/workstreams/page.tsx').default({searchParams:Promise.resolve({view:'all',page:'2'})}),props=nodes(tree,n=>n.props?.rows)[0].props
  assert.equal(props.view,'all');assert.equal(props.page,2);assert.equal(props.rows.length,20)
- assert.deepEqual(calls,Array.from({length:20},(_,i)=>`spec-${i+20}`))
+ assert.deepEqual(calls,[], 'filter navigation must not wait for any full session projection')
  assert.equal(props.rows[0].progress,null);assert.equal(props.rows[1].progress,null)
- assert.equal(props.rows[2].progress.percent,50)
+ assert.ok(props.rows.every(r=>r.progress===null), 'background observations start after the list is available')
  assert.ok(props.rows.every(r=>Object.keys(r).sort().join(',')==='latestFixup,progress,workstream'))
  calls.length=0
  await h.load('../app/workstreams/page.tsx').default({searchParams:Promise.resolve({view:'cancelled'})});assert.deepEqual(calls,[])
@@ -120,6 +120,19 @@ test('discovery breaker: refresh is explicit and preserves current filter while 
  assert.equal(refreshes,1);assert.equal(transitions,1)
  const links=nodes(tree,n=>n.props?.href?.startsWith('/workstreams?view='))
  assert.equal(links.length,4)
- assert.ok(links.every(n=>n.props.onClick===undefined&&n.props.tabIndex===undefined),'ordinary links support keyboard, modified click and browser history without intercepted events')
+ assert.ok(links.every(n=>n.props.tabIndex===undefined),'ordinary links retain keyboard navigation')
+ for(const link of links) for(const event of [{button:0},{button:0,ctrlKey:true},{button:0,metaKey:true},{button:1}]) { let prevented=false;link.props.onClick?.({...event,preventDefault(){prevented=true}});assert.equal(prevented,false,'navigation feedback must not prevent native or modified-click navigation') }
  assert.equal(links.find(n=>n.props['aria-current']==='page').props.href,'/workstreams?view=completed')
+})
+
+test('discovery breaker: background progress distinguishes loading from unavailable and explains historical counts',()=>{
+ let values={}
+ const h=harness({'@/components/use-spec-list-progress':{useSpecListProgress:()=>values}}),List=h.load('../components/workstreams-list.tsx').WorkstreamsList
+ const props={rows:[{workstream:{id:a,title:'Earlier work',status:'done'},progress:null,latestFixup:null}],view:'completed',counts:{active:0,all:1,completed:1,cancelled:0},page:1,pages:1,observedAt:'2026-09-06'}
+ const render=()=>h.render(React.createElement(List,props))
+ let html=render();assert.match(html,/Loading progress/);assert.doesNotMatch(html,/Progress unavailable|aria-valuenow=/)
+ assert.match(html,/These specs were completed earlier/);assert.match(html,/Current readiness/)
+ values={[a]:null};html=render();assert.match(html,/Progress unavailable/);assert.doesNotMatch(html,/Loading progress|aria-valuenow=/)
+ values={[a]:{percent:50,done:1,total:2}};html=render();assert.match(html,/1\/2 complete · 50%/);assert.match(html,/aria-valuenow="50"/);assert.match(html,/Completed earlier; current work needs rechecking/)
+ values={[a]:{percent:100,done:2,total:2}};html=render();assert.match(html,/aria-valuenow="100"/);assert.doesNotMatch(html,/current work needs rechecking/)
 })

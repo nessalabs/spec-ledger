@@ -1,0 +1,13 @@
+{
+  "statement": "Spec filters must respond promptly without waiting for all progress observations, and original specs must link to their correction documents for readers outside the UI.",
+  "featureIds": [
+    "lattice"
+  ],
+  "source": {
+    "kind": "user-reported",
+    "reference": "User corrections on 2026-09-07: filters seem unclickable until delayed data appears; original spec should link fixup docs for GitHub/editor readers outside Nessa UI."
+  },
+  "id": "ee4a25ec-dd2d-4c11-9d98-27fdf2bc0c4f",
+  "schemaVersion": 1,
+  "createdAt": "2026-09-07T05:31:32.305Z"
+}

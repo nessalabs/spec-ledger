@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "requestId": "cf0b4036-7061-4d94-8a14-ef67aa7cb4c7",
+  "operation": "record_screenshot",
+  "inputDigest": "2a5c027b254c7ae5fd1e035276afdeef9f81e0ced57c8be1403bb8af3cca473b",
+  "finishedAt": "2026-09-07T05:37:37.061Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "id": "708203e0-6a1b-4c30-82a8-6fc2caf1364f",
+    "turnId": "8ee59111-da04-458a-b6ac-d869526b8013",
+    "kind": "image",
+    "title": "Overall progress with unfinished work — desktop",
+    "path": ".spec-ledger/evidence/screenshots/speed-fix/progress-desktop.png",
+    "mediaType": "image/jpeg",
+    "byteLength": 42234,
+    "contentDigest": "674395dad5f51786bf0cf206127d06462001673401667fb2647b8e33b2cf79d9",
+    "visualEvidence": {
+      "sliceId": "25eac677-2871-816d-956d-770bdcb61798",
+      "surface": "Overall progress with unfinished work — desktop",
+      "sourceDigest": "bcc0a651ecc16888d55132f26b9dd2896949fcd57c3160946c574b822e25b0eb",
+      "revisionDigest": "30b8d0a6507724e6d861b943aa4aba336a5c59ff04725989882a8fd702afbd0e",
+      "recordedAt": "2026-09-07T05:37:37.060Z"
+    },
+    "note": "Recorded visual coverage; image adequacy is assessed in review."
+  }
+}

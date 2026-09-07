@@ -1,0 +1,19 @@
+▶ UI release break (8eef8af2-e23a-5dc7-8d35-91712f4afcb0 d569e07e-a576-5c74-bb39-67cd628fc5e9 / 297bf2fd-ed87-509e-a670-8b0f77215bae)
+  ✔ shipped tree incl node_modules has zero file:/workspace: protocols (23692.370333ms)
+  ✔ README documents published client/server + Release UI asset (d569e07e-a576-5c74-bb39-67cd628fc5e9 acceptance) (0.263334ms)
+  ✔ publish.yml packs UI Release asset with NESSA_UI_ROOT, dist build, no --skip-build, contents:write upload (0.226917ms)
+  ✔ pack-ui-release fails closed when NESSA_UI_ROOT / agent-stream missing (57.154334ms)
+  ✔ packaged UI name/deps stay @nessalabs/* and tarball version matches ledger (23932.418583ms)
+✔ UI release break (8eef8af2-e23a-5dc7-8d35-91712f4afcb0 d569e07e-a576-5c74-bb39-67cd628fc5e9 / 297bf2fd-ed87-509e-a670-8b0f77215bae) (47683.050916ms)
+▶ UI release asset (ebc0a8ca-0244-527c-917b-c578e2cc854e)
+  ✔ built release boots outside the checkout and reads the consumer ledger (39407.614083ms)
+  ✔ README documents consumer one-liner for Release UI asset (0.307125ms)
+✔ UI release asset (ebc0a8ca-0244-527c-917b-c578e2cc854e) (39408.431791ms)
+ℹ tests 7
+ℹ suites 2
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 47717.153667

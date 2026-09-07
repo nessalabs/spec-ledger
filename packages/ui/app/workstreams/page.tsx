@@ -1,6 +1,6 @@
 import { serverClient } from "@/lib/ledger"
 import { WorkstreamsList } from "@/components/workstreams-list"
-import { fixupLink, specListPage, specListProgress, specView, specViewCounts, workstreamFixups } from "@/lib/workstream-list"
+import { fixupLink, specListPage, specView, specViewCounts, workstreamFixups } from "@/lib/workstream-list"
 
 export const dynamic = "force-dynamic"
 
@@ -9,11 +9,10 @@ export default async function WorkstreamsPage({ searchParams }: { searchParams: 
   const [query, workstreams, turns] = await Promise.all([searchParams, client.listWorkstreams(), client.getTurns()])
   const view = specView(query.view)
   const selection = specListPage(workstreams, turns, view, query.page)
-  const rows = await Promise.all(selection.workstreams.map(async workstream => {
-    const projection = workstream.status === "cancelled" ? null : await client.getSession(workstream.id).catch(() => null)
+  const rows = selection.workstreams.map(workstream => {
     const latest = workstreamFixups(turns, workstream.id)[0]
-    return { workstream, progress: specListProgress(workstream.id, projection), latestFixup: latest ? fixupLink(latest) : null }
-  }))
+    return { workstream, progress: null, latestFixup: latest ? fixupLink(latest) : null }
+  })
 
   return (
     <div className="mx-auto flex max-w-5xl flex-col gap-6">

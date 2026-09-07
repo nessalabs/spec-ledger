@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "requestId": "bf0e0b87-c433-4576-8f8e-7633ba0be8f5",
+  "operation": "record_review",
+  "inputDigest": "dc37e456a9bad8bf5c5fd5145f16a677ddb558d100dea1c7d2164dc29f7a5408",
+  "finishedAt": "2026-09-07T05:35:43.235Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "workstreamId": "815c7a44-59df-8102-9769-bf8a74e49c0c",
+    "kind": "adversarial",
+    "target": "spec",
+    "reviewer": "agent:sl-plan-break-spec",
+    "verdict": "approve",
+    "blocking": false,
+    "plainSummary": "Readers can now find dated correction documents directly from the original spec without opening the app.",
+    "summary": "Independent documentation-amendment review grounded in the refreshed related pack. Verified all three index links, each original-spec backlink and each change-record link resolve in the repository. Both historical changes are closed and belong to this workstream, with four and eight attachments respectively; the current change is open and its document does not assert passing checks. Later-written historical explanations carry their actual added date. The recorded document amendment cites decision 33004752-6f05-4938-bcc6-40f4d6cd8d01 and preserves acceptance. The issue-intake/sl-learn guidance scopes this discoverability rule to corrections of existing specs, retains original records, requires relative-link checks and uses existing amendment operations without creating a new approval gate or task history. No blocking spec gaps found.",
+    "alertOnSeverity": "high",
+    "findings": [],
+    "supersedesReviewId": "0de6ad6a-52a0-4600-bc73-a0494ae506e9",
+    "residualRisks": [
+      "The current responsive-browsing correction remains open; this documentation approval does not establish its implementation, code review or verification outcome.",
+      "Future correction documents should link to recorded evidence and preserve added-date labeling rather than retroactively imply contemporaneous documentation.",
+      "The related tool still supplies only generic worktree caution text, not actual sibling-path scan evidence."
+    ],
+    "id": "7606ec82-2ef3-4f1a-95a8-ce5a220467b3",
+    "revisionDigest": "30b8d0a6507724e6d861b943aa4aba336a5c59ff04725989882a8fd702afbd0e"
+  }
+}

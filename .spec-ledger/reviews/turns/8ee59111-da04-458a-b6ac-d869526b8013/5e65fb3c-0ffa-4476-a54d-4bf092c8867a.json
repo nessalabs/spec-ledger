@@ -1,0 +1,30 @@
+{
+  "workstreamId": "815c7a44-59df-8102-9769-bf8a74e49c0c",
+  "kind": "adversarial",
+  "target": "code",
+  "reviewer": "agent:sl-dev-break",
+  "verdict": "approve",
+  "blocking": false,
+  "plainSummary": "Spec filters show their lists before progress checks finish, and the original spec links directly to its correction documents.",
+  "summary": "Independent bounded review of responsive spec browsing and repository correction links. All 50 UI adversarial tests pass. The actual server-page killer now requires zero full session calls before selected rows are returned. Compact-route tests preserve exact scope, bounded response shape and unavailable errors. Background observation tests cover one request at a time, partial failure, wrong-scope responses, cancellation with late replies, per-request deadline continuation, refreshed snapshot isolation, changed rows and unmount cleanup. Rendering distinguishes loading, unavailable and historical readiness; adapted native-link assertions still forbid preventing ordinary or modified-click navigation. Inspected all ten final screenshots, including eight required surfaces, the Completed view explanation and the original spec correction index; final visual evidence gate passes. Independently validated all 14 relative Markdown links and anchors plus exact ownership of all three linked change records. Retrospective explanations are explicitly dated as later additions; the current correction document does not invent a passing result. No actionable findings remain.",
+  "killersCited": [
+    "packages/ui/lib/navigation-discovery.break.test.mjs::discovery breaker: actual server page returns selected rows without waiting for full session projections",
+    "packages/ui/lib/navigation-discovery.break.test.mjs::discovery breaker: refresh is explicit and preserves current filter while native links retain browser navigation",
+    "packages/ui/lib/navigation-discovery.break.test.mjs::discovery breaker: background progress distinguishes loading from unavailable and explains historical counts",
+    "packages/ui/lib/navigation-progress-queue.break.test.mjs::progress queue breaker: compact route isolates requested scope and never returns full session evidence",
+    "packages/ui/lib/navigation-progress-queue.break.test.mjs::progress queue breaker: one request runs at a time and a failed or wrong-scope row cannot poison later progress",
+    "packages/ui/lib/navigation-progress-queue.break.test.mjs::progress queue breaker: cancellation aborts in-flight work and excludes late results and remaining rows",
+    "packages/ui/lib/navigation-progress-queue.break.test.mjs::progress queue breaker: each deadline aborts that request and continues with the next visible row",
+    "packages/ui/lib/navigation-progress-queue.break.test.mjs::progress queue breaker: a new snapshot hides old progress immediately and late old replies cannot replace refreshed results"
+  ],
+  "findings": [],
+  "alertOnSeverity": "high",
+  "residualRisks": [
+    "Progress is loaded sequentially after navigation; unavailable observations remain indeterminate rather than asserting completion.",
+    "The builder measured local response-time improvement; this review establishes removal of synchronous session observation from the list render, not a universal latency guarantee."
+  ],
+  "schemaVersion": 1,
+  "id": "5e65fb3c-0ffa-4476-a54d-4bf092c8867a",
+  "turnId": "8ee59111-da04-458a-b6ac-d869526b8013",
+  "treeDigest": "bcc0a651ecc16888d55132f26b9dd2896949fcd57c3160946c574b822e25b0eb"
+}

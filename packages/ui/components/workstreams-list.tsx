@@ -2,7 +2,8 @@
 
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-import { useTransition } from "react"
+import { useEffect, useState, useTransition } from "react"
+import { useSpecListProgress } from "@/components/use-spec-list-progress"
 import { ReadableText, useRecordLabels } from "@/components/readable-text"
 import { presentationCopy } from "@/lib/features"
 import { readableText } from "@/lib/record-labels"
@@ -23,11 +24,15 @@ export function WorkstreamsList({ rows, view, counts, page, pages, observedAt }:
   const labels = useRecordLabels()
   const router = useRouter()
   const [refreshing, startRefresh] = useTransition()
+  const [pendingView, setPendingView] = useState<SpecView | null>(null)
+  const observations = useSpecListProgress(rows, observedAt)
+  useEffect(() => setPendingView(null), [view, observedAt])
 
-  return <section className="space-y-4" aria-label="Specs and progress" aria-busy={refreshing}>
+  return <section className="space-y-4" aria-label="Specs and progress" aria-busy={refreshing || pendingView !== null}>
     <div className="flex flex-wrap items-center justify-between gap-3">
       <nav aria-label="Spec filters" className="flex flex-wrap gap-1 rounded-lg bg-muted p-1">
         {SPEC_VIEWS.map(item => <Link key={item} href={`/workstreams?view=${item}`} aria-current={view === item ? "page" : undefined}
+          onClick={event => { if (item !== view && event.button === 0 && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey) setPendingView(item) }}
           className={`rounded-md px-3 py-1.5 text-sm no-underline ${view === item ? "bg-background font-medium text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"}`}>
           {viewNames[item]} <span className="tabular-nums">({counts[item]})</span>
         </Link>)}
@@ -39,12 +44,15 @@ export function WorkstreamsList({ rows, view, counts, page, pages, observedAt }:
     </div>
     <div className="flex flex-wrap items-baseline justify-between gap-2">
       <h2 className="text-base font-semibold">{viewNames[view]} specs <span className="text-muted-foreground">· {counts[view]}</span></h2>
-      <p role="status" className="text-xs text-muted-foreground">{refreshing ? "Refreshing the displayed snapshot…" : <><time dateTime={observedAt}>{new Date(observedAt).toLocaleTimeString("en-US", { timeZone: "UTC", hour: "2-digit", minute: "2-digit" })} UTC</time> · snapshot</>}</p>
+      <p role="status" className="text-xs text-muted-foreground">{pendingView ? `Opening ${viewNames[pendingView]}…` : refreshing ? "Refreshing the displayed snapshot…" : <><time dateTime={observedAt}>{new Date(observedAt).toLocaleTimeString("en-US", { timeZone: "UTC", hour: "2-digit", minute: "2-digit" })} UTC</time> · snapshot</>}</p>
     </div>
     {view === "active" && <p className="text-xs text-muted-foreground">Unfinished specs, including planned and ready work.</p>}
+    {view === "completed" && <p className="text-xs text-muted-foreground">These specs were completed earlier. Current readiness shows which checks still hold against today’s code and evidence.</p>}
     {!rows.length ? <p className="rounded-lg border border-dashed border-border p-6 text-sm text-muted-foreground">{emptyMessages[view]}</p> :
       <ul className="divide-y divide-border rounded-lg border border-border">
-        {rows.map(({ workstream: w, progress, latestFixup }) => {
+        {rows.map(({ workstream: w, progress: initialProgress, latestFixup }) => {
+          const progress = observations[w.id] === undefined ? initialProgress : observations[w.id]
+          const loading = observations[w.id] === undefined && initialProgress === null
           const blurb = w.objective?.trim() || w.problem
           const historical = w.status === "done"
           const percent = progress?.percent ?? null
@@ -60,7 +68,7 @@ export function WorkstreamsList({ rows, view, counts, page, pages, observedAt }:
             {!cancelled && <div className="mt-3 space-y-1.5">
               <div className="flex flex-wrap justify-between gap-1 text-xs">
                 <span>{historical ? "Current readiness" : "Work progress"}</span>
-                <span className="tabular-nums">{percent === null ? "Progress unavailable" : `${progress!.done}/${progress!.total} complete · ${percent}%`}</span>
+                <span className="tabular-nums">{loading ? "Loading progress…" : percent === null ? "Progress unavailable" : `${progress!.done}/${progress!.total} complete · ${percent}%`}</span>
               </div>
               <div role="progressbar" aria-label={`${readableText(w.title, labels)} ${historical ? "current readiness" : "work progress"}`} aria-valuemin={0} aria-valuemax={100}
                 aria-valuenow={percent ?? undefined} aria-valuetext={percent === null ? "Progress is indeterminate" : `${progress!.done} of ${progress!.total} completion tasks complete`}
