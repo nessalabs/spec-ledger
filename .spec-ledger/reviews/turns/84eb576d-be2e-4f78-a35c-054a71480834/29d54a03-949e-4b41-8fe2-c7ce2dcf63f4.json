@@ -1,0 +1,28 @@
+{
+  "workstreamId": "815c7a44-59df-8102-9769-bf8a74e49c0c",
+  "kind": "adversarial",
+  "target": "code",
+  "reviewer": "agent:sl-dev-break",
+  "verdict": "approve",
+  "blocking": false,
+  "plainSummary": "Recorded activity preserves uncertainty and evidence, and recovery guidance never claims unsupported resume or cancellation controls.",
+  "summary": "Scoped independent review of Track activity without inventing completion. Inspected session and invocation ownership, sequence-based waiting and finish handling, bounded retained state, ignored local activity storage, persistent collector framing, emitter failure containment and explicit false host capabilities. Independently ran 18 passing tests: twelve execution adversarial cases, real CLI and MCP activity lifecycles, persistent collector recovery after oversized framing, and three UI presentation cases. Tests prove delayed signals cannot replace newer invocation state, overflow and lost delivery remain uncertain, explicit stops remain sticky, forged sessions and private payloads are rejected, escaped storage is confined and source/evidence stay unchanged. Continuation and timeout requests remain ineffective without verified host capability; no actual resume, process cancellation or host dispatch is implemented or claimed. No implementation gap or source change was required for this scoped readiness contract.",
+  "killersCited": [
+    "node --test packages/ledger/dist/execution/execution.break.test.js packages/mcp/dist/execution.lifecycle.test.js packages/ui/lib/execution-presentation.test.mjs",
+    "packages/ledger/src/execution/execution.break.test.ts::does not let a delayed finish close a newer start for the same invocation",
+    "packages/ledger/src/execution/execution.break.test.ts::bounds retained invocation state as well as event history and surfaces overflow as uncertainty",
+    "packages/ledger/src/execution/execution.break.test.ts::reads the requested registration exactly and keeps a stop sticky across later activity and registrations",
+    "packages/ledger/src/execution/execution.break.test.ts::never turns agent-requested continuation or timeout settings into verified host capability",
+    "packages/mcp/src/execution.lifecycle.test.ts::persistent activity collector recovers after oversized framing and records later signals"
+  ],
+  "findings": [],
+  "alertOnSeverity": "high",
+  "residualRisks": [
+    "Activity remains best effort and does not establish host liveness or completion.",
+    "Resume and tool cancellation remain unavailable; this approval covers honest readiness and guidance only."
+  ],
+  "schemaVersion": 1,
+  "id": "29d54a03-949e-4b41-8fe2-c7ce2dcf63f4",
+  "turnId": "84eb576d-be2e-4f78-a35c-054a71480834",
+  "treeDigest": "bcc0a651ecc16888d55132f26b9dd2896949fcd57c3160946c574b822e25b0eb"
+}

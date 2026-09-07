@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "turnId": "84eb576d-be2e-4f78-a35c-054a71480834",
+  "decision": "Confirmed execution registration requires an existing open workstream turn and a current workflow attempt when supplied. Activity uses bounded retained events and storage, recognizes duplicate/out-of-order/missing signals conservatively, and stays separate from source evidence. Recovery projection preserves stop, expiry, permission and retry blockers; unsupported host liveness, resume and cancellation remain unavailable, with remaining-work guidance instead of dispatch. Current source already implements the accepted scope; the missing current implementation report is recorded here.",
+  "rationale": "Agent-reported progress; evidence is evaluated separately.",
+  "progress": {
+    "criterionIds": [
+      "87ce7ed9-a607-8425-a475-173f8953ffaf/AC-1"
+    ],
+    "implemented": true,
+    "revisionDigest": "30b8d0a6507724e6d861b943aa4aba336a5c59ff04725989882a8fd702afbd0e",
+    "sourceDigest": "bcc0a651ecc16888d55132f26b9dd2896949fcd57c3160946c574b822e25b0eb"
+  },
+  "id": "fc14b848-779a-429d-9a4b-6cfaf1bc5f5c",
+  "recordedAt": "2026-09-07T05:56:11.160Z",
+  "sequence": 1
+}
