@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "requestId": "12a40a60-f3b3-4cfc-a786-6e97725446ed",
+  "operation": "record_screenshot",
+  "inputDigest": "03838714c9d99bb7090206ba21f917d21d9d850012cbd986de11efe0e77498e0",
+  "finishedAt": "2026-09-07T05:54:54.953Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "id": "f51ecd89-b987-4de1-9083-31beedfe09eb",
+    "turnId": "aabef9e2-b003-4a75-ad35-3352f1865224",
+    "kind": "image",
+    "title": "Historical work with current rechecks",
+    "path": ".spec-ledger/evidence/screenshots/speed-fix/historical.png",
+    "mediaType": "image/jpeg",
+    "byteLength": 40721,
+    "contentDigest": "ab74d90c0849d153072c87d1b1e45bc9cda99500f2be85a3f37395b22d8c8426",
+    "visualEvidence": {
+      "sliceId": "25eac677-2871-816d-956d-770bdcb61798",
+      "surface": "Historical work with current rechecks",
+      "sourceDigest": "bcc0a651ecc16888d55132f26b9dd2896949fcd57c3160946c574b822e25b0eb",
+      "revisionDigest": "30b8d0a6507724e6d861b943aa4aba336a5c59ff04725989882a8fd702afbd0e",
+      "recordedAt": "2026-09-07T05:54:54.953Z"
+    },
+    "note": "Recorded visual coverage; image adequacy is assessed in review."
+  }
+}

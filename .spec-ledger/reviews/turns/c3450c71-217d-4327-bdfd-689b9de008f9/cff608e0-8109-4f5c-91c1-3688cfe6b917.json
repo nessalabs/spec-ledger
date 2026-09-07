@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "cff608e0-8109-4f5c-91c1-3688cfe6b917",
+  "turnId": "c3450c71-217d-4327-bdfd-689b9de008f9",
+  "workstreamId": "815c7a44-59df-8102-9769-bf8a74e49c0c",
+  "kind": "human",
+  "target": "code",
+  "reviewer": "agent:align",
+  "verdict": "approve",
+  "summary": "User requested full completion of Guide agents and follow verified work. Aggregate report covers the nine independently inspected requirements under the existing default workflow contract.",
+  "plainSummary": "The overall workflow report summarizes the requested verified scope; no product paths changed.",
+  "treeDigest": "bcc0a651ecc16888d55132f26b9dd2896949fcd57c3160946c574b822e25b0eb",
+  "uncoveredPaths": [],
+  "coverageSource": "mixed"
+}

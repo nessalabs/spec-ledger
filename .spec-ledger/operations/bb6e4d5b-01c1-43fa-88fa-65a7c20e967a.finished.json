@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "requestId": "bb6e4d5b-01c1-43fa-88fa-65a7c20e967a",
+  "operation": "approve_alignment",
+  "inputDigest": "3a73d09b40378c971a2b6619f7e74bd74ae5f218020b073efebe0afb021dfe95",
+  "finishedAt": "2026-09-07T05:52:58.140Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "id": "308659af-37cb-4fab-afa8-7bd21c6055a4",
+    "turnId": "d2628907-666d-4c30-86e9-e173347406c2",
+    "workstreamId": "815c7a44-59df-8102-9769-bf8a74e49c0c",
+    "kind": "human",
+    "target": "code",
+    "reviewer": "agent:align",
+    "verdict": "approve",
+    "summary": "User requested completion of remaining Guide agents and follow verified work scope; current CLI and MCP implementation was independently verified.",
+    "plainSummary": "The requested CLI and MCP verification changes only ledger evidence; no product paths changed.",
+    "treeDigest": "bcc0a651ecc16888d55132f26b9dd2896949fcd57c3160946c574b822e25b0eb",
+    "uncoveredPaths": [],
+    "coverageSource": "mixed"
+  }
+}

@@ -1,0 +1,48 @@
+▶ workflow editor boundary regressions
+  ✔ roundtrips bundled choices and hides symlinked discovery roots (287.072208ms)
+  ✔ rejects attestation substitutes for every mandatory stage output (178.180541ms)
+  ✔ rejects changed skill content and stale amendment identity without replacing the selection (424.573417ms)
+  ✔ rejects oversized and malformed browser actions without writes or execution (157.433542ms)
+  ✔ browser preview and apply share core state, deny foreign requests, and retry once (239.073958ms)
+✔ workflow editor boundary regressions (1287.340292ms)
+✔ library operations preserve actor/reason, retry identity and independent pointer conflicts (200.859334ms)
+✔ local library route denies unsafe requests before mutation and accepts a valid save (36.142458ms)
+✔ library refuses symlinked profile storage without touching external files (112.634916ms)
+✔ a refused delete with an unsafe default pointer preserves the saved workflow (58.324792ms)
+✔ local library poison and cross-site requests cannot create profiles (56.856791ms)
+✔ a saved workflow applies to a spec whose requirements are numbered differently (17.206042ms)
+✔ saving is create-only and refuses a workflow carrying another spec's requirement numbers (8.353708ms)
+✔ adoption is refused when the workflow lacks a review stage the spec requires (150.913958ms)
+✔ editing or deleting a saved workflow leaves an adopted spec running unchanged (35.650958ms)
+✔ editing and deleting require the version the caller read (29.513834ms)
+✔ the normal workflow falls back to the bundled one when it is deleted (20.378833ms)
+✔ a corrupt saved workflow is refused rather than silently adopted (6.964875ms)
+✔ adopting a saved copy of the bundled workflow gates exactly like the bundled workflow (61.429209ms)
+✔ a review stage somebody deliberately added still counts when policy is lax (5.931541ms)
+✔ switching an adopted workflow needs a reason and the snapshot the caller saw (13.326916ms)
+✔ a saved workflow whose skill file is gone is refused with its path, and listed as unusable (7.134167ms)
+✔ a hand-written workflow is untouched by library coverage binding (7.214042ms)
+▶ custom workflow adversarial contracts
+  ✔ rejects unknown or empty output contracts and policy-breaking stage order before persistence (279.858584ms)
+  ✔ confines workflow persistence when the workflow directory is an escaping symlink (232.34725ms)
+  ✔ preserves selected skill bytes and rejects escaping or oversized replacements (205.083333ms)
+  ✔ gives every amendment a new execution identity and excludes prior attempts (344.020708ms)
+  ✔ rejects a current code review that belongs to another workstream (369.791125ms)
+  ✔ does not relabel a review created before the current method attempt as that attempt's output (286.97075ms)
+  ✔ does not satisfy a code-review output while a later blocking review remains unresolved (393.2715ms)
+  ✔ requires behavioral result rows for every scoped criterion and never accepts attestation instead (294.5605ms)
+  ✔ keeps an explicitly configured review stage applicable when project policy does not require one (175.077667ms)
+  ✔ does not make later steps in one ordered stage ready before earlier steps are satisfied (163.650708ms)
+✔ custom workflow adversarial contracts (2745.612708ms)
+✔ default workflow needs no configuration and preserves substantive bundled guidance (8.121041ms)
+✔ custom workflow preserves exact local skill text and rejects unsafe or incompatible skills (5.844083ms)
+✔ cli: follows a custom method through real records and preserves current evidence (5995.5085ms)
+✔ mcp: follows a custom method through real records and preserves current evidence (3587.13475ms)
+ℹ tests 36
+ℹ suites 2
+ℹ pass 36
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 9734.132

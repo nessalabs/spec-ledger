@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "requestId": "bd3d92b2-2fd7-4a4a-87b1-4ad4757c2ba3",
+  "operation": "approve_alignment",
+  "inputDigest": "c6e2a47f0ce513dd4b81970db62a379351b18e42e60acb4076831df156eb5062",
+  "finishedAt": "2026-09-07T05:59:38.986Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "id": "4c951515-83cc-4b77-b3f1-3cd4a01bb725",
+    "turnId": "84eb576d-be2e-4f78-a35c-054a71480834",
+    "workstreamId": "815c7a44-59df-8102-9769-bf8a74e49c0c",
+    "kind": "human",
+    "target": "code",
+    "reviewer": "agent:align",
+    "verdict": "approve",
+    "summary": "User requested remaining work for Guide agents and follow verified work. Current activity and recovery-readiness behavior was inspected and independently checked.",
+    "plainSummary": "Activity verification and completion records are within the requested spec; no product paths changed.",
+    "treeDigest": "bcc0a651ecc16888d55132f26b9dd2896949fcd57c3160946c574b822e25b0eb",
+    "uncoveredPaths": [],
+    "coverageSource": "mixed"
+  }
+}

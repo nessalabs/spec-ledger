@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "turnId": "d2628907-666d-4c30-86e9-e173347406c2",
+  "decision": "Confirm existing CLI and MCP implementation against the current source",
+  "rationale": "The completion checklist reports a stale implementation record, while the mapped real-process lifecycle evidence is current and passing. Source inspection confirms both adapters execute the same validated application operations, fixed MCP checkout, receipt conflict checks and shared completion projection. Preserve old records and submit a fresh criterion report; change production code only if independent review finds a real gap.",
+  "basis": {
+    "at": "2026-09-07T05:50:32.218Z",
+    "contextDigest": "bffc48cab43a16a827b9fbe8ef7203f4d68e08d2535819199ad66ed874e07ac9",
+    "sealRevision": 3
+  },
+  "id": "8ef9117b-426e-4725-bf54-ed5fa3afa555",
+  "recordedAt": "2026-09-07T05:50:32.218Z",
+  "sequence": 1
+}

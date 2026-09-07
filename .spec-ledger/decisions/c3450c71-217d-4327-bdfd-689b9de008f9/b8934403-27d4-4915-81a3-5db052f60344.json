@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "turnId": "c3450c71-217d-4327-bdfd-689b9de008f9",
+  "decision": "All nine requirements are implemented in the current source: equivalent CLI/MCP work loops; preserved configurable methods with typed evidence gates; consistent complete-task progress and inspectable current/historical evidence; active spec navigation and linked fixups; bounded activity with honest unsupported recovery controls. This overall implementation report fulfills the default workflow step scope and summarizes the separately inspected slice reports. Independent reviews and check results remain separate evidence records.",
+  "rationale": "Agent-reported progress; evidence is evaluated separately.",
+  "progress": {
+    "criterionIds": [
+      "26c9bf2f-a090-8415-bd2b-f46dff6af4f7/AC-1",
+      "25eac677-2871-816d-956d-770bdcb61798/AC-1",
+      "25eac677-2871-816d-956d-770bdcb61798/AC-2",
+      "25eac677-2871-816d-956d-770bdcb61798/AC-3",
+      "25eac677-2871-816d-956d-770bdcb61798/AC-4",
+      "25eac677-2871-816d-956d-770bdcb61798/AC-5",
+      "25eac677-2871-816d-956d-770bdcb61798/AC-6",
+      "25eac677-2871-816d-956d-770bdcb61798/AC-7",
+      "87ce7ed9-a607-8425-a475-173f8953ffaf/AC-1"
+    ],
+    "implemented": true,
+    "revisionDigest": "30b8d0a6507724e6d861b943aa4aba336a5c59ff04725989882a8fd702afbd0e",
+    "sourceDigest": "bcc0a651ecc16888d55132f26b9dd2896949fcd57c3160946c574b822e25b0eb"
+  },
+  "id": "b8934403-27d4-4915-81a3-5db052f60344",
+  "recordedAt": "2026-09-07T06:02:57.434Z",
+  "sequence": 1
+}

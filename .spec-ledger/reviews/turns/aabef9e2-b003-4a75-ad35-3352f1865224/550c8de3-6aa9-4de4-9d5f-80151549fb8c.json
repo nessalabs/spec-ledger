@@ -1,0 +1,28 @@
+{
+  "workstreamId": "815c7a44-59df-8102-9769-bf8a74e49c0c",
+  "kind": "adversarial",
+  "target": "code",
+  "reviewer": "agent:sl-dev-break",
+  "verdict": "approve",
+  "blocking": false,
+  "plainSummary": "Chosen methods retain their recorded steps and evidence, while progress and fixup views distinguish unfinished work from earlier completion.",
+  "summary": "Scoped independent review of all seven acceptance criteria in Follow a chosen method and inspect its evidence. Inspected immutable workflow selection and typed current output evaluation, shared completion checklist and list summaries, and live observation boundaries. Independently ran 124 passing tests spanning workflow storage/library/editor adversaries, session and visual evidence adversaries, actual CLI and MCP custom-method lifecycles, MCP screenshot gates and all UI tests. Coverage includes preserved skill bytes and adopted snapshots, ordered mandatory outputs, foreign/stale reviews, attestation refusal, source-bound evidence, completion counts and every pending gate, typed fixup ownership, active counts, bounded background loading, refresh races and readable correction links. All ten existing final screenshots were already inspected on this unchanged source, and workstream-level current coverage remains valid for all eight declared surfaces. No implementation gap or production change was required; this is a fresh behavioral review of the entire slice.",
+  "killersCited": [
+    "node --test packages/ledger/dist/workflows/*break.test.js packages/ledger/dist/session/*break.test.js packages/mcp/dist/workflow.lifecycle.test.js packages/mcp/dist/visual.lifecycle.test.js packages/ui/lib/*test.mjs",
+    "packages/ledger/src/workflows/workflow.break.test.ts::preserves selected skill bytes and rejects escaping or oversized replacements",
+    "packages/ledger/src/workflows/workflow.break.test.ts::requires behavioral result rows for every scoped criterion and never accepts attestation instead",
+    "packages/ui/lib/simplicity.break.test.mjs::each applicable completion gate prevents full progress independently of passing checks",
+    "packages/ui/lib/navigation-discovery.break.test.mjs::discovery breaker: typed fixups require exact ownership and exclude abandoned or keyword-only changes",
+    "packages/ui/lib/navigation-progress-queue.break.test.mjs::progress queue breaker: a new snapshot hides old progress immediately and late old replies cannot replace refreshed results"
+  ],
+  "findings": [],
+  "alertOnSeverity": "high",
+  "residualRisks": [
+    "Current screenshots are reused because source and declared surfaces are unchanged; this review does not represent a new capture.",
+    "Completion task counts describe applicable requirements and gates rather than estimated effort."
+  ],
+  "schemaVersion": 1,
+  "id": "550c8de3-6aa9-4de4-9d5f-80151549fb8c",
+  "turnId": "aabef9e2-b003-4a75-ad35-3352f1865224",
+  "treeDigest": "bcc0a651ecc16888d55132f26b9dd2896949fcd57c3160946c574b822e25b0eb"
+}

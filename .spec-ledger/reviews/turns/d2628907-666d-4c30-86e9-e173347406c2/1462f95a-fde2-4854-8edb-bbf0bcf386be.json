@@ -1,0 +1,26 @@
+{
+  "workstreamId": "815c7a44-59df-8102-9769-bf8a74e49c0c",
+  "kind": "adversarial",
+  "target": "code",
+  "reviewer": "agent:sl-dev-break",
+  "verdict": "approve",
+  "blocking": false,
+  "plainSummary": "CLI and MCP perform the same verified work loop and reject unauthorized or stale changes without repeating uncertain operations.",
+  "summary": "Scoped independent review of Use CLI and MCP for the same work. Inspected the actual fixed-root stdio executable, shared schema and operation dispatch, source and permission guards, immutable request receipts and CLI review path. Independently ran 24 passing tests: ten application boundary killers, six receipt crash/concurrency/retry killers, three actual CLI/MCP lifecycle and negative-parity cases, packed MCP installation/execution, two real saved-check output cases, and two CLI/MCP library retry boundaries. The real executable lifecycle reaches verified completion in disposable repositories; negative cases preserve domain state and share structured errors. No production changes were needed, and this approval is based on freshly run behavior rather than a prior review pointer.",
+  "killersCited": [
+    "node --test packages/ledger/dist/application/operations.break.test.js packages/ledger/dist/application/receipts.break.test.js packages/mcp/dist/lifecycle.test.js packages/mcp/dist/saved-check.test.js",
+    "packages/mcp/src/lifecycle.test.ts::completes the same verified lifecycle through both executables",
+    "packages/ledger/src/application/receipts.break.test.ts::reports unknown when completion publication fails after the effect and never reruns it",
+    "node --test packages/mcp/dist/library.boundary.break.test.js"
+  ],
+  "findings": [],
+  "alertOnSeverity": "high",
+  "residualRisks": [
+    "This slice approval covers CLI/MCP parity; custom workflow UI and activity recovery have separate slice reviews.",
+    "Portable permission remains explicitly agent reported and does not authenticate a human."
+  ],
+  "schemaVersion": 1,
+  "id": "1462f95a-fde2-4854-8edb-bbf0bcf386be",
+  "turnId": "d2628907-666d-4c30-86e9-e173347406c2",
+  "treeDigest": "bcc0a651ecc16888d55132f26b9dd2896949fcd57c3160946c574b822e25b0eb"
+}

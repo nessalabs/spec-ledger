@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "requestId": "472704e4-fc82-4e29-a0b8-956791a8ab36",
+  "operation": "approve_alignment",
+  "inputDigest": "8eacd190a53669d7d3388360b1f5c062e0bafc9a3b0154c0b8ef6a0d4cf1085b",
+  "finishedAt": "2026-09-07T05:55:35.709Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "id": "bdab2538-4ee9-4288-9384-cd665c17d2b0",
+    "turnId": "aabef9e2-b003-4a75-ad35-3352f1865224",
+    "workstreamId": "815c7a44-59df-8102-9769-bf8a74e49c0c",
+    "kind": "human",
+    "target": "code",
+    "reviewer": "agent:align",
+    "verdict": "approve",
+    "summary": "User requested remaining work for Guide agents and follow verified work. Changes record inspected implementation, independent verification, and existing screenshot coverage.",
+    "plainSummary": "Workflow and progress completion records are within the requested spec; no product paths changed.",
+    "treeDigest": "bcc0a651ecc16888d55132f26b9dd2896949fcd57c3160946c574b822e25b0eb",
+    "uncoveredPaths": [],
+    "coverageSource": "mixed"
+  }
+}

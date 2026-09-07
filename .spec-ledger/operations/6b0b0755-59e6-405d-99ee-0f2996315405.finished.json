@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "requestId": "6b0b0755-59e6-405d-99ee-0f2996315405",
+  "operation": "record_screenshot",
+  "inputDigest": "d6cb2d56fbfed4bedccc0608e2c7aa0c521b6b36cde8975abd6ee30445efd2dd",
+  "finishedAt": "2026-09-07T05:54:55.670Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "id": "1e0cf33b-46d7-442e-9ea8-c21e16a8d7ce",
+    "turnId": "aabef9e2-b003-4a75-ad35-3352f1865224",
+    "kind": "image",
+    "title": "Active Specs with progress and fixup links — mobile",
+    "path": ".spec-ledger/evidence/screenshots/speed-fix/active-mobile.png",
+    "mediaType": "image/jpeg",
+    "byteLength": 18586,
+    "contentDigest": "bf597b2b2765f058fca4c690453254438b364f3df95cfbcd0007eade70fab5d3",
+    "visualEvidence": {
+      "sliceId": "25eac677-2871-816d-956d-770bdcb61798",
+      "surface": "Active Specs with progress and fixup links — mobile",
+      "sourceDigest": "bcc0a651ecc16888d55132f26b9dd2896949fcd57c3160946c574b822e25b0eb",
+      "revisionDigest": "30b8d0a6507724e6d861b943aa4aba336a5c59ff04725989882a8fd702afbd0e",
+      "recordedAt": "2026-09-07T05:54:55.670Z"
+    },
+    "note": "Recorded visual coverage; image adequacy is assessed in review."
+  }
+}

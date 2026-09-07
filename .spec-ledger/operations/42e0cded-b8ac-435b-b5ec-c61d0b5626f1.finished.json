@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "requestId": "42e0cded-b8ac-435b-b5ec-c61d0b5626f1",
+  "operation": "record_progress",
+  "inputDigest": "a54e436b14cc42f1d54d6ac38c3da387f73791fb1661456b013ce83261dd73de",
+  "finishedAt": "2026-09-07T05:54:22.758Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "turnId": "aabef9e2-b003-4a75-ad35-3352f1865224",
+    "decision": "Confirmed existing default/custom workflow resolution, immutable skill snapshots, ordered typed output requirements, and current source/revision checks. The UI projects workflow status separately from agent reports, links requirements to evidence and reviews, and calculates completion from the full grouped checklist with unavailable scope indeterminate and historical completion distinct. Current implementation was missing reports after the amended revision; source behavior and recorded behavioral evidence already satisfy these criteria.",
+    "rationale": "Agent-reported progress; evidence is evaluated separately.",
+    "progress": {
+      "criterionIds": [
+        "25eac677-2871-816d-956d-770bdcb61798/AC-1",
+        "25eac677-2871-816d-956d-770bdcb61798/AC-2",
+        "25eac677-2871-816d-956d-770bdcb61798/AC-3",
+        "25eac677-2871-816d-956d-770bdcb61798/AC-4"
+      ],
+      "implemented": true,
+      "revisionDigest": "30b8d0a6507724e6d861b943aa4aba336a5c59ff04725989882a8fd702afbd0e",
+      "sourceDigest": "bcc0a651ecc16888d55132f26b9dd2896949fcd57c3160946c574b822e25b0eb"
+    },
+    "id": "6fd5591a-47b6-4392-88af-13e8113a4048",
+    "recordedAt": "2026-09-07T05:54:22.757Z",
+    "sequence": 1
+  }
+}

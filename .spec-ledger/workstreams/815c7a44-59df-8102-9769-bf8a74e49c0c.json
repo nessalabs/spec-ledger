@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "815c7a44-59df-8102-9769-bf8a74e49c0c",
-  "status": "active",
+  "status": "done",
   "createdAt": "2026-09-05T00:05:59.832Z",
   "title": "Guide agents and follow verified work",
   "featureIds": [
@@ -49,7 +49,7 @@
         "unit",
         "integration"
       ],
-      "codeBreakReviewId": "9d79e552-50e2-8cfc-aaa2-d5d6f1e80ba0"
+      "codeBreakReviewId": "bf2a1229-dfa4-4cd7-9167-53a752b7c838"
     },
     {
       "id": "25eac677-2871-816d-956d-770bdcb61798",
@@ -76,7 +76,7 @@
         "e2e",
         "screenshot"
       ],
-      "codeBreakReviewId": "5e65fb3c-0ffa-4476-a54d-4bf092c8867a"
+      "codeBreakReviewId": "550c8de3-6aa9-4de4-9d5f-80151549fb8c"
     },
     {
       "id": "87ce7ed9-a607-8425-a475-173f8953ffaf",
@@ -97,7 +97,7 @@
         "integration",
         "e2e"
       ],
-      "codeBreakReviewId": "9d79e552-50e2-8cfc-aaa2-d5d6f1e80ba0"
+      "codeBreakReviewId": "29d54a03-949e-4b41-8fe2-c7ce2dcf63f4"
     }
   ],
   "riskLevel": "high",
@@ -166,7 +166,7 @@
     ]
   },
   "specBreakReviewId": "7606ec82-2ef3-4f1a-95a8-ce5a220467b3",
-  "updatedAt": "2026-09-07T05:38:35.234Z",
+  "updatedAt": "2026-09-07T06:43:20.968Z",
   "seal": {
     "sealedAt": "2026-09-06T21:45:20.128Z",
     "sealedBy": "agent:permission:67b02df0-446e-4d15-87ab-ea805baa6ced",

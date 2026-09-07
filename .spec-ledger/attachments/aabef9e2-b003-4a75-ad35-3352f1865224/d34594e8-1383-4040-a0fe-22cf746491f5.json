@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "d34594e8-1383-4040-a0fe-22cf746491f5",
+  "turnId": "aabef9e2-b003-4a75-ad35-3352f1865224",
+  "kind": "image",
+  "title": "Overview completion progress",
+  "path": ".spec-ledger/evidence/screenshots/speed-fix/overview.png",
+  "mediaType": "image/jpeg",
+  "byteLength": 45710,
+  "contentDigest": "5e298d7fdffc501183370bb9a2acbeb281bf3c64bf6f553559f31171c6ee77c1",
+  "visualEvidence": {
+    "sliceId": "25eac677-2871-816d-956d-770bdcb61798",
+    "surface": "Overview completion progress",
+    "sourceDigest": "bcc0a651ecc16888d55132f26b9dd2896949fcd57c3160946c574b822e25b0eb",
+    "revisionDigest": "30b8d0a6507724e6d861b943aa4aba336a5c59ff04725989882a8fd702afbd0e",
+    "recordedAt": "2026-09-07T05:54:55.096Z"
+  },
+  "note": "Recorded visual coverage; image adequacy is assessed in review."
+}
