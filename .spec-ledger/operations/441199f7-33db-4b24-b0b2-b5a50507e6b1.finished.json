@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "requestId": "441199f7-33db-4b24-b0b2-b5a50507e6b1",
+  "operation": "record_screenshot",
+  "inputDigest": "5d5459c38f251fde5ac30ca8e2b51beebd799e3e5e6f577dea5999b4f960268a",
+  "finishedAt": "2026-09-07T09:16:11.879Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "id": "db0a3c1e-f710-4334-8369-de9f69fca714",
+    "turnId": "8a552125-4b23-4b80-b13e-1ac1b1dc9fd9",
+    "kind": "image",
+    "title": "Task updates — mobile",
+    "path": ".spec-ledger/evidence/screenshots/concurrent-evidence/updates-mobile.jpg",
+    "mediaType": "image/jpeg",
+    "byteLength": 35016,
+    "contentDigest": "01e271c8f8c6c372a01c61b4793e311ff43d41dc91c094b3d87610d0775c1adc",
+    "visualEvidence": {
+      "sliceId": "596b8830-61c6-887a-b6c3-9ae0561f2761",
+      "surface": "Task updates — mobile",
+      "sourceDigest": "749e9073f21c968c8f819325407e89213f3e7de1abe677303500366dbf52df7f",
+      "revisionDigest": "8bea9484e97440a9fca0e95c179687be3ea577c0839a3ee39c24d2e39d35a363",
+      "recordedAt": "2026-09-07T09:16:11.879Z"
+    },
+    "note": "Recorded visual coverage; image adequacy is assessed in review."
+  }
+}

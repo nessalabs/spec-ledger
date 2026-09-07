@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "requestId": "b30e5f05-68e4-4d8c-88d7-0ea3ebb976eb",
+  "operation": "record_screenshot",
+  "inputDigest": "d6ca13cfabf399497286d41609fde9879e10b5fa3a6ca334744a728e61b5e6a2",
+  "finishedAt": "2026-09-07T09:16:11.725Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "id": "805757c4-b1ca-4803-97f2-2cbc623f2625",
+    "turnId": "8a552125-4b23-4b80-b13e-1ac1b1dc9fd9",
+    "kind": "image",
+    "title": "Task updates — desktop",
+    "path": ".spec-ledger/evidence/screenshots/concurrent-evidence/updates-desktop.jpg",
+    "mediaType": "image/jpeg",
+    "byteLength": 112059,
+    "contentDigest": "021fd6a28eee15b2a17353ad921745eceadae8c16d91df70fff7acb01af1f36c",
+    "visualEvidence": {
+      "sliceId": "596b8830-61c6-887a-b6c3-9ae0561f2761",
+      "surface": "Task updates — desktop",
+      "sourceDigest": "749e9073f21c968c8f819325407e89213f3e7de1abe677303500366dbf52df7f",
+      "revisionDigest": "8bea9484e97440a9fca0e95c179687be3ea577c0839a3ee39c24d2e39d35a363",
+      "recordedAt": "2026-09-07T09:16:11.725Z"
+    },
+    "note": "Recorded visual coverage; image adequacy is assessed in review."
+  }
+}

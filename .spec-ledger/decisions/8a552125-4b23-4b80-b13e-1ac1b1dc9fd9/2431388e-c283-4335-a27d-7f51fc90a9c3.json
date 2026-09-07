@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "turnId": "8a552125-4b23-4b80-b13e-1ac1b1dc9fd9",
+  "decision": "Show current screenshots in a browsable deck with their evidence, and keep earlier captures clearly separate.",
+  "rationale": "The user saw missing screenshot requirements beside older gallery images and requested Nessa UI Window Deck. Images exist but have stale source identities; prior attachments can exhaust the image budget before current ones. Preserve historical records, prioritize authoritative current coverage, and expose recording details below the selected image.",
+  "basis": {
+    "at": "2026-09-07T08:58:50.052Z",
+    "contextDigest": "12bece0c0327e322eb664aab2370a21d0b2f2bfa8716e690c52c0a68e4f89e60",
+    "sealRevision": 3
+  },
+  "id": "2431388e-c283-4335-a27d-7f51fc90a9c3",
+  "recordedAt": "2026-09-07T08:58:50.052Z",
+  "sequence": 1
+}

@@ -79,7 +79,7 @@
         "pnpm-lock.yaml",
         ".npmrc"
       ],
-      "codeBreakReviewId": "a7dff9d4-95c9-484d-849c-1a7af6109f7b"
+      "codeBreakReviewId": "3b575cb3-90de-425d-8878-23dfb0e8df9a"
     }
   ],
   "acceptanceClaimIds": {
@@ -99,8 +99,8 @@
   "proposedClaimIds": [
     "efc1f0a4-7911-8163-b194-906c6ae5f62a"
   ],
-  "specBreakReviewId": "5ab16e1d-5768-4fa1-a2ce-99d3aee8209c",
-  "updatedAt": "2026-09-06T20:42:24.764Z",
+  "specBreakReviewId": "debaeacf-07cb-4c2a-8bf9-3c6feb4dcd52",
+  "updatedAt": "2026-09-07T09:19:02.715Z",
   "seal": {
     "sealedAt": "2026-09-06T20:19:01.005Z",
     "sealedBy": "agent:permission:4e6cc9b2-c4e1-8671-9676-99a44a454eac",
@@ -138,6 +138,17 @@
       "afterDocDigest": "f883a20a37139a3e63a6220d406c47e8d17f27ccfa66afcb8b6f69c86798c3ac",
       "actor": "user-request",
       "turnId": "718a2712-fb21-4c1b-9d10-101995c19cf6"
+    },
+    {
+      "at": "2026-09-07T08:59:37.103Z",
+      "summary": "User requests a Window Deck evidence viewer with image details and clear current versus earlier screenshot coverage.",
+      "humanConfirmed": true,
+      "sealedRevision": 3,
+      "beforeDocDigest": "f883a20a37139a3e63a6220d406c47e8d17f27ccfa66afcb8b6f69c86798c3ac",
+      "afterDocDigest": "1ca48453ff0476e2b8096b99a18ab5317710ea96e8ff4c14cd69f56cc7441b34",
+      "actor": "agent:user-requested-evidence-viewer",
+      "turnId": "8a552125-4b23-4b80-b13e-1ac1b1dc9fd9",
+      "decisionId": "2431388e-c283-4335-a27d-7f51fc90a9c3"
     }
   ]
 }

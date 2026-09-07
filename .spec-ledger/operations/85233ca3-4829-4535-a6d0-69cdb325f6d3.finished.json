@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "requestId": "85233ca3-4829-4535-a6d0-69cdb325f6d3",
+  "operation": "record_screenshot",
+  "inputDigest": "c9e3f795cc5e5b5e5d578b5a6a82ac0c745577eae0ba064458580618d1369c13",
+  "finishedAt": "2026-09-07T09:16:11.576Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "id": "d8dfa52d-963f-401f-a446-8b0fc304c7fb",
+    "turnId": "8a552125-4b23-4b80-b13e-1ac1b1dc9fd9",
+    "kind": "image",
+    "title": "Workflow details",
+    "path": ".spec-ledger/evidence/screenshots/concurrent-evidence/workflow-detail.jpg",
+    "mediaType": "image/jpeg",
+    "byteLength": 64002,
+    "contentDigest": "9c57d91b0f8abb82e1a4722e2ca78a905909b1c4c410bd577f5dd6d0caaca950",
+    "visualEvidence": {
+      "sliceId": "596b8830-61c6-887a-b6c3-9ae0561f2761",
+      "surface": "Workflow details",
+      "sourceDigest": "749e9073f21c968c8f819325407e89213f3e7de1abe677303500366dbf52df7f",
+      "revisionDigest": "8bea9484e97440a9fca0e95c179687be3ea577c0839a3ee39c24d2e39d35a363",
+      "recordedAt": "2026-09-07T09:16:11.575Z"
+    },
+    "note": "Recorded visual coverage; image adequacy is assessed in review."
+  }
+}

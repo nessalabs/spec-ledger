@@ -1,0 +1,21 @@
+▶ publish workflow break (ea6c52db-e95b-5c00-86b4-ac72769a331a / ac16dc5d-fd64-5a20-9d3d-1f21dd1206c7)
+  ✔ live publish only on release: workflow_dispatch must always dry-run (cannot live via dry_run=false) (1.1785ms)
+  ✔ release types are exclusively [published] (no created/edited/prereleased) (0.562917ms)
+  ✔ on: triggers are only release + workflow_dispatch (no push/pull_request siblings) (0.133333ms)
+  ✔ dry_run input defaults to true (0.136209ms)
+  ✔ version mismatch fails closed before publish (0.091209ms)
+  ✔ NPM_TOKEN required for live publish; ci.yml never publishes (0.159875ms)
+  ✔ published package names are @nessalabs/* and UI is not in the publish loop (0.317542ms)
+✔ publish workflow break (ea6c52db-e95b-5c00-86b4-ac72769a331a / ac16dc5d-fd64-5a20-9d3d-1f21dd1206c7) (3.104458ms)
+▶ publish workflow (4d4a1476-aa94-5d68-aa73-54c5531aded7)
+  ✔ publish.yml exists with release-only live publish and dry-run dispatch (0.645375ms)
+  ✔ ci.yml does not publish to npm (0.690416ms)
+✔ publish workflow (4d4a1476-aa94-5d68-aa73-54c5531aded7) (2.041041ms)
+ℹ tests 9
+ℹ suites 2
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 50.840333

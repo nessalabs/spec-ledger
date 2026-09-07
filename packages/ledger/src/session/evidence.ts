@@ -7,7 +7,7 @@ import type { LoadedLedger, VerifyReport, ResultsRow, EpisodeAttachment } from "
 
 export function attachmentEvidence(root: string, attachment: EpisodeAttachment, budget = { remaining: 2 * 1024 * 1024 }) {
   const base = { id: attachment.id, turnId: attachment.turnId, title: attachment.title ?? attachment.path,
-    imageDataUrl: null as string | null, path: attachment.path, note: attachment.note, mediaType: attachment.mediaType, contentDigest: attachment.contentDigest }
+    recordedAt: attachment.visualEvidence?.recordedAt ?? null, imageDataUrl: null as string | null, path: attachment.path, note: attachment.note, mediaType: attachment.mediaType, contentDigest: attachment.contentDigest }
   if (!attachment.contentDigest) return { ...base, status: "unverified", text: null, reason: "No recorded integrity digest; content is not displayed." }
   const image = attachment.mediaType === "image/png" || attachment.mediaType === "image/jpeg"
   if (!image && !attachment.mediaType?.startsWith("text/") && attachment.mediaType !== "application/json") {

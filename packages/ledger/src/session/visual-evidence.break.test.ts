@@ -3,6 +3,12 @@ import assert from "node:assert/strict"
 import { mkdtempSync, rmSync, writeFileSync, symlinkSync } from "node:fs"
 import { tmpdir } from "node:os"
 import { join } from "node:path"
+import { initLedger } from "../cli/init.js"
+import { writeJson } from "../fs/load.js"
+import { sealWorkstream, loadWorkstream } from "../workstream/load.js"
+import { planRevision } from "../permission/authority.js"
+import { computeTreeDigest } from "../git/tree.js"
+import { getSession } from "./project.js"
 import { attachmentEvidence } from "./evidence.js"
 import { contentHash } from "../evidence/fingerprint.js"
 import type { EpisodeAttachment } from "../types.js"
@@ -51,4 +57,31 @@ test("visual breaker: exhausted image budget still preserves bounded text findin
   const p=attachmentEvidence(f.root,a,{remaining:0})
   assert.equal(p.text,"Measured result was inconclusive");assert.equal(p.imageDataUrl,null)
  }finally{f.cleanup()}
+})
+
+
+test("visual breaker: historical screenshots cannot exhaust the preview budget before required current screenshots",()=>{
+ const root=mkdtempSync(join(tmpdir(),"sl-current-visual-break-")),ws="a61c3d8a-3c03-49ab-a230-bf4d3e876d30",slice="ca05b5cc-6a81-45cd-9c04-c3047e3f95f4",turn="1c5a8e44-dd09-543a-97d5-bfe173becbaa"
+ try{
+  initLedger(root,"current screenshot priority")
+  writeJson(join(root,`.spec-ledger/workstreams/${ws}.json`),{schemaVersion:1,id:ws,status:"shaped",title:"Current images",featureIds:[],acceptanceCriteria:["Current images are visible"],policy:{requireSpecBreak:false,requireCodeBreak:false},trust:{visualEvidence:{[slice]:["Current desktop"]}},suggestedSlices:[{id:slice,title:"Visual",kind:"vertical",acceptance:["Works"]}]})
+  sealWorkstream(root,ws,"fixture")
+  writeJson(join(root,`.spec-ledger/turns/${turn}.json`),{id:turn,status:"closed",intent:{workstreamId:ws,sliceId:slice},openedAt:"2026-09-01T00:00:00Z"})
+  const oldBytes=Buffer.concat([png,Buffer.alloc(512*1024-png.length)])
+  writeFileSync(join(root,".spec-ledger/old.png"),oldBytes);writeFileSync(join(root,".spec-ledger/current.png"),png)
+  const currentId="ffffffff-ffff-4fff-8fff-ffffffffffff",sourceDigest=computeTreeDigest(root),revisionDigest=planRevision(root,loadWorkstream(root,ws))
+  const ids=Array.from({length:4},(_,i)=>`00000000-0000-4000-8000-00000000000${i}`)
+  for(const id of [...ids,currentId]){
+   const current=id===currentId,bytes=current?png:oldBytes
+   writeJson(join(root,`.spec-ledger/attachments/${turn}/${id}.json`),{schemaVersion:1,id,turnId:turn,kind:"image",title:current?"Current desktop":"Earlier screenshot",path:current?".spec-ledger/current.png":".spec-ledger/old.png",mediaType:"image/png",contentDigest:contentHash(bytes),visualEvidence:{sliceId:slice,surface:"Current desktop",sourceDigest:current?sourceDigest:"0".repeat(64),revisionDigest,recordedAt:current?"2026-09-07T00:00:00Z":"2026-09-01T00:00:00Z"}})
+  }
+  const session=getSession(root,ws).session!
+  assert.equal(session.visualEvidence.ok,true)
+  assert.equal(session.visualEvidence.surfaces[0].attachmentId,currentId)
+  const selected=session.artifacts.find(a=>a.id===currentId)!
+  assert.equal(selected.status,"verified","the authoritative current screenshot must receive preview budget before historical gallery images")
+  assert.ok(selected.imageDataUrl?.startsWith("data:image/png;base64,"))
+  assert.equal(session.artifacts.length,5,"historical records remain inspectable")
+  assert.ok(session.artifacts.some(a=>ids.includes(a.id)&&a.imageDataUrl===null),"budget remains bounded after current images are prioritized")
+ }finally{rmSync(root,{recursive:true,force:true})}
 })
