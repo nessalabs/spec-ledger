@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "requestId": "236ec9a6-cacc-4277-86a6-acae7e2981f7",
+  "operation": "begin_work",
+  "inputDigest": "f8719ceff9cc371d48bce575f7ce37bc2c3c3763d5c43991e469ad5cef5842ad",
+  "finishedAt": "2026-09-07T05:53:38.183Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "id": "aabef9e2-b003-4a75-ad35-3352f1865224",
+    "status": "open",
+    "openedAt": "2026-09-07T05:53:38.182Z",
+    "opened": {
+      "producedBy": "@nessalabs/spec-ledger@0.1.0",
+      "baseCommit": "d8e8d001887e12e97a9208135eca5ac900226b74",
+      "treeDigest": "bcc0a651ecc16888d55132f26b9dd2896949fcd57c3160946c574b822e25b0eb",
+      "dirtyAtOpen": [],
+      "contextDigest": "d6d50192e4c2fbbd2427fa20e2e3e6e75e5ca1ed0660292ea94a13e8f60e3c0f",
+      "contextWorkstreamId": "815c7a44-59df-8102-9769-bf8a74e49c0c",
+      "contextSliceId": "25eac677-2871-816d-956d-770bdcb61798",
+      "contextSealRevision": 3,
+      "contextGeneratedAt": "2026-09-07T05:53:38.182Z"
+    },
+    "intent": {
+      "userPrompt": "Check what remains for Guide agents and follow verified work, implement any missing behavior, and use the Spec Ledger CLI to record verified completion.",
+      "restatedGoal": "Confirm workflow and completion progress",
+      "changeType": "feature",
+      "riskLevel": "moderate",
+      "workstreamId": "815c7a44-59df-8102-9769-bf8a74e49c0c",
+      "sliceId": "25eac677-2871-816d-956d-770bdcb61798",
+      "featureIds": [
+        "lattice"
+      ]
+    }
+  }
+}

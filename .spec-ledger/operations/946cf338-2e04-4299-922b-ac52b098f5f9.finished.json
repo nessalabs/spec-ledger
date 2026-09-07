@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "requestId": "946cf338-2e04-4299-922b-ac52b098f5f9",
+  "operation": "record_screenshot",
+  "inputDigest": "467521889a48a448410ca74aa203629addf65098a684cd0d2563896358060be3",
+  "finishedAt": "2026-09-07T05:54:55.813Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "id": "6056e5f5-a822-4764-ac3c-a1928561a274",
+    "turnId": "aabef9e2-b003-4a75-ad35-3352f1865224",
+    "kind": "image",
+    "title": "Spec Changes with identified fixups",
+    "path": ".spec-ledger/evidence/screenshots/speed-fix/changes.png",
+    "mediaType": "image/jpeg",
+    "byteLength": 57346,
+    "contentDigest": "edb707f0fb7cc0074d31a4b84edf4412878d08e3f2ff13795f46911aaf976605",
+    "visualEvidence": {
+      "sliceId": "25eac677-2871-816d-956d-770bdcb61798",
+      "surface": "Spec Changes with identified fixups",
+      "sourceDigest": "bcc0a651ecc16888d55132f26b9dd2896949fcd57c3160946c574b822e25b0eb",
+      "revisionDigest": "30b8d0a6507724e6d861b943aa4aba336a5c59ff04725989882a8fd702afbd0e",
+      "recordedAt": "2026-09-07T05:54:55.812Z"
+    },
+    "note": "Recorded visual coverage; image adequacy is assessed in review."
+  }
+}

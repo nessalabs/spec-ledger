@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "b5b75232-f19f-45bb-8fd6-d0f3444a6467",
+  "turnId": "aabef9e2-b003-4a75-ad35-3352f1865224",
+  "kind": "image",
+  "title": "Overall progress with unfinished work — mobile",
+  "path": ".spec-ledger/evidence/screenshots/speed-fix/progress-mobile.png",
+  "mediaType": "image/jpeg",
+  "byteLength": 22938,
+  "contentDigest": "6c61b55185275353d23d664c2eeb51403d17cce864138cfd6a0f7d6a44b7709e",
+  "visualEvidence": {
+    "sliceId": "25eac677-2871-816d-956d-770bdcb61798",
+    "surface": "Overall progress with unfinished work — mobile",
+    "sourceDigest": "bcc0a651ecc16888d55132f26b9dd2896949fcd57c3160946c574b822e25b0eb",
+    "revisionDigest": "30b8d0a6507724e6d861b943aa4aba336a5c59ff04725989882a8fd702afbd0e",
+    "recordedAt": "2026-09-07T05:54:55.527Z"
+  },
+  "note": "Recorded visual coverage; image adequacy is assessed in review."
+}
