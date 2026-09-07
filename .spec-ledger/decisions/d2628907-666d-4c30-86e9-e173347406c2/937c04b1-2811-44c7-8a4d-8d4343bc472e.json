@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "turnId": "d2628907-666d-4c30-86e9-e173347406c2",
+  "decision": "Inspected the existing CLI and MCP adapters and shared application operations: both enforce the same schemas, permission, revision/source guards, retry receipts and completion gates. The real executable lifecycle and negative-path evidence is current for this source. The missing item was a current implementation report, not missing adapter code.",
+  "rationale": "Agent-reported progress; evidence is evaluated separately.",
+  "progress": {
+    "criterionIds": [
+      "26c9bf2f-a090-8415-bd2b-f46dff6af4f7/AC-1"
+    ],
+    "implemented": true,
+    "revisionDigest": "30b8d0a6507724e6d861b943aa4aba336a5c59ff04725989882a8fd702afbd0e",
+    "sourceDigest": "bcc0a651ecc16888d55132f26b9dd2896949fcd57c3160946c574b822e25b0eb"
+  },
+  "id": "937c04b1-2811-44c7-8a4d-8d4343bc472e",
+  "recordedAt": "2026-09-07T05:50:32.632Z",
+  "sequence": 2
+}

@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "requestId": "361d3c11-dc19-4743-b5c0-6c7f1e5bef22",
+  "operation": "begin_work",
+  "inputDigest": "238a3e192e89c7b252efe7177b9912e4bbaf5096b734b396d6a01b2d75e379a2",
+  "finishedAt": "2026-09-07T05:49:26.157Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "id": "d2628907-666d-4c30-86e9-e173347406c2",
+    "status": "open",
+    "openedAt": "2026-09-07T05:49:26.154Z",
+    "opened": {
+      "producedBy": "@nessalabs/spec-ledger@0.1.0",
+      "baseCommit": "b0b4914333f9d534a52779dc7b19071d0efc8227",
+      "treeDigest": "bcc0a651ecc16888d55132f26b9dd2896949fcd57c3160946c574b822e25b0eb",
+      "dirtyAtOpen": [],
+      "contextDigest": "bffc48cab43a16a827b9fbe8ef7203f4d68e08d2535819199ad66ed874e07ac9",
+      "contextWorkstreamId": "815c7a44-59df-8102-9769-bf8a74e49c0c",
+      "contextSliceId": "26c9bf2f-a090-8415-bd2b-f46dff6af4f7",
+      "contextSealRevision": 3,
+      "contextGeneratedAt": "2026-09-07T05:49:26.154Z"
+    },
+    "intent": {
+      "userPrompt": "Inspect and implement all remaining requirements of Guide agents and follow verified work using the Spec Ledger CLI. Start with the shared CLI and MCP work loop; record implementation only after inspecting the code and evidence.",
+      "restatedGoal": "Verify the CLI and MCP work loop",
+      "changeType": "feature",
+      "riskLevel": "moderate",
+      "workstreamId": "815c7a44-59df-8102-9769-bf8a74e49c0c",
+      "sliceId": "26c9bf2f-a090-8415-bd2b-f46dff6af4f7",
+      "featureIds": [
+        "client",
+        "cli",
+        "turns",
+        "verify"
+      ]
+    }
+  }
+}
