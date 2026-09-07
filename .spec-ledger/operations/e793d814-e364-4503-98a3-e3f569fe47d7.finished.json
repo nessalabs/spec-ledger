@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "requestId": "e793d814-e364-4503-98a3-e3f569fe47d7",
+  "operation": "begin_work",
+  "inputDigest": "a72ee4c89a4850c1b3638d21ed22357b13c9b17e90c3e87fbdd24768cee54ca7",
+  "finishedAt": "2026-09-07T05:27:01.830Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "id": "8ee59111-da04-458a-b6ac-d869526b8013",
+    "status": "open",
+    "openedAt": "2026-09-07T05:27:01.830Z",
+    "opened": {
+      "producedBy": "@nessalabs/spec-ledger@0.1.0",
+      "baseCommit": "9e6241f49379a63bd15a174c17fd709781eb90dc",
+      "treeDigest": "7bd5f5b2dd8a1b5c3e7f20a70632596b99441887b4892e8617c871fbfa8cea98",
+      "dirtyAtOpen": [],
+      "contextDigest": "b16cccd383c64d0bcd0eb4b5fac933800b9de3685e2f17fd439f283d7a33513c",
+      "contextWorkstreamId": "815c7a44-59df-8102-9769-bf8a74e49c0c",
+      "contextSliceId": "25eac677-2871-816d-956d-770bdcb61798",
+      "contextSealRevision": 3,
+      "contextGeneratedAt": "2026-09-07T05:27:01.830Z"
+    },
+    "intent": {
+      "userPrompt": "Fix the slow Specs filters: All, Completed and Cancelled seem unresponsive before eventually appearing. Explain why completed specs show partial current progress.",
+      "restatedGoal": "Browse specs without waiting for progress checks",
+      "changeType": "fix",
+      "riskLevel": "high",
+      "workstreamId": "815c7a44-59df-8102-9769-bf8a74e49c0c",
+      "sliceId": "25eac677-2871-816d-956d-770bdcb61798",
+      "featureIds": [
+        "lattice"
+      ]
+    }
+  }
+}

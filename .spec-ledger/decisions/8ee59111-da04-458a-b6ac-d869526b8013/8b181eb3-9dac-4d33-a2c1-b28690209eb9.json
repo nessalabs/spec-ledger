@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "turnId": "8ee59111-da04-458a-b6ac-d869526b8013",
+  "decision": "Specs filters now render the list before progress observations, with loading feedback, bounded requests and cancellation. Completed work explains current readiness. Original Markdown links to three dated corrections with backlinks and preserved history. Tests, browser navigation, eight required screenshots and all saved checks pass.",
+  "rationale": "Agent-reported progress; evidence is evaluated separately.",
+  "progress": {
+    "criterionIds": [
+      "25eac677-2871-816d-956d-770bdcb61798/AC-5",
+      "25eac677-2871-816d-956d-770bdcb61798/AC-6",
+      "25eac677-2871-816d-956d-770bdcb61798/AC-7"
+    ],
+    "implemented": true,
+    "revisionDigest": "30b8d0a6507724e6d861b943aa4aba336a5c59ff04725989882a8fd702afbd0e",
+    "sourceDigest": "bcc0a651ecc16888d55132f26b9dd2896949fcd57c3160946c574b822e25b0eb"
+  },
+  "id": "8b181eb3-9dac-4d33-a2c1-b28690209eb9",
+  "recordedAt": "2026-09-07T05:39:06.726Z",
+  "sequence": 3
+}

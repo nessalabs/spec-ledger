@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "requestId": "1e30c232-cc57-4f31-a085-801eaf2b085a",
+  "operation": "record_decision",
+  "inputDigest": "000a8d7aecd3a628af750fd4898ea95059c3c82d5008447b8a47cbf56b698f5c",
+  "finishedAt": "2026-09-07T05:30:10.311Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "turnId": "8ee59111-da04-458a-b6ac-d869526b8013",
+    "decision": "Link fixup documents from the original Markdown spec",
+    "rationale": "The user explicitly requests finding corrections outside Nessa UI. Add a dated fixup index near the top of the original spec, relative Markdown links, and back-links in each correction document. Document the same authoring rule in issue intake and sl-learn. These explanatory links preserve existing acceptance and immutable review history. Record the document amendment against the current seal.",
+    "basis": {
+      "at": "2026-09-07T05:30:10.311Z",
+      "contextDigest": "b16cccd383c64d0bcd0eb4b5fac933800b9de3685e2f17fd439f283d7a33513c",
+      "sealRevision": 3
+    },
+    "discovery": {
+      "kind": "workflow-gap",
+      "reportedVia": "user",
+      "observation": "Fixups are visible in Nessa UI but the original spec does not link to correction documents for readers on GitHub or in an editor.",
+      "cause": "Prior corrections were described inline and linked only through ledger/UI records."
+    },
+    "id": "33004752-6f05-4938-bcc6-40f4d6cd8d01",
+    "recordedAt": "2026-09-07T05:30:10.311Z",
+    "sequence": 2
+  }
+}

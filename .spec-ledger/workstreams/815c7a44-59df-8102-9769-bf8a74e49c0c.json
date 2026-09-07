@@ -76,7 +76,7 @@
         "e2e",
         "screenshot"
       ],
-      "codeBreakReviewId": "cf384dfb-c9d6-4a88-b1d1-be6dd61e29df"
+      "codeBreakReviewId": "5e65fb3c-0ffa-4476-a54d-4bf092c8867a"
     },
     {
       "id": "87ce7ed9-a607-8425-a475-173f8953ffaf",
@@ -165,8 +165,8 @@
       "9767b1da-9568-8e2f-ad2a-c2c3eb3e424c"
     ]
   },
-  "specBreakReviewId": "0de6ad6a-52a0-4600-bc73-a0494ae506e9",
-  "updatedAt": "2026-09-06T22:00:28.682Z",
+  "specBreakReviewId": "7606ec82-2ef3-4f1a-95a8-ce5a220467b3",
+  "updatedAt": "2026-09-07T05:38:35.234Z",
   "seal": {
     "sealedAt": "2026-09-06T21:45:20.128Z",
     "sealedBy": "agent:permission:67b02df0-446e-4d15-87ab-ea805baa6ced",
@@ -212,6 +212,17 @@
       "actor": "agent:user-requested-discoverability-fixup",
       "turnId": "f649c404-7ab0-436a-8691-8662cd4a139d",
       "decisionId": "d444c602-2c54-4768-b140-d7ba0ce9bed0"
+    },
+    {
+      "at": "2026-09-07T05:30:52.695Z",
+      "summary": "Link dated correction documents from the original spec for repository and GitHub readers, preserving existing acceptance and history.",
+      "humanConfirmed": true,
+      "sealedRevision": 3,
+      "beforeDocDigest": "343882fca572c80929edc2d47587782ab4c0dd7333a06172ea0e4ceac98b1c9d",
+      "afterDocDigest": "4ad65c71e08a5be7ac60c6a031a3d8e27e9da6a64878d300b629c32f1a0aeae4",
+      "actor": "agent:user-requested-fixup-docs",
+      "turnId": "8ee59111-da04-458a-b6ac-d869526b8013",
+      "decisionId": "33004752-6f05-4938-bcc6-40f4d6cd8d01"
     }
   ]
 }

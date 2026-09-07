@@ -1,5 +1,13 @@
 # Guide agents and follow verified work
 
+## Fixups and amendments
+
+These correction documents explain changes to this spec. Links work in the repository and on GitHub without opening the website. Original completion and evidence remain recorded with each change.
+
+- 2026-09-06 — [Show progress across all completion tasks](fixups/2026-09-06-overall-progress.md)
+- 2026-09-06 — [Find active specs, progress and fixup details](fixups/2026-09-06-find-progress-and-fixups.md)
+- 2026-09-07 — [Browse specs without waiting for progress checks](fixups/2026-09-07-responsive-spec-browsing.md)
+
 ## Intent and authority
 
 Implement the agreed customizable engineering workflow proposal through the existing CLI and a new MCP surface. Both call the same application logic. Users can follow ongoing work and inspect verification in the website without reading agent transcripts. This request authorizes implementation and local verification; it does not authorize deployment, automatic host cancellation, or enabling continuation for the user.
