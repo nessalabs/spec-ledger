@@ -1,0 +1,29 @@
+{
+  "runId": "4eda8fd8-5a84-4863-8f2b-891b7259aa26",
+  "requestId": "batch-4eda8fd8-5a84-4863-8f2b-891b7259aa26",
+  "bindingId": "35c8eb44-8d25-8185-82c2-bf645f8f0710",
+  "state": "finished",
+  "command": "node --test packages/ledger/dist/workflows/*.test.js packages/mcp/dist/workflow.lifecycle.test.js",
+  "cwd": "/Users/nessa/Documents/Codex/2026-11-02/hey-can-you-update-the-nessa/work/org-docs/spec-ledger",
+  "sourceDigest": "e6dd6ec1f8221bbff72c8d62d96c7333204fb2ea644f391fc336d261dfe3bb97",
+  "checkDigest": "f898d895744d1b0b308ae8e4e9fa2d7f5121ccc34877ba162d464f8712730166",
+  "startedAt": "2026-11-03T09:36:20.055Z",
+  "finishedAt": "2026-11-03T09:36:27.435Z",
+  "outcome": "pass",
+  "exitCode": 0,
+  "signal": null,
+  "durationMs": 7296,
+  "stdout": {
+    "path": ".spec-ledger/evidence/check-runs/4eda8fd8-5a84-4863-8f2b-891b7259aa26-stdout.txt",
+    "capturedBytes": 3865,
+    "sha256": "bb2447275bf8b236c86e7f76eacd667677bfb1923d98e5e8a863e84cccd414ae",
+    "truncated": false
+  },
+  "stderr": {
+    "path": ".spec-ledger/evidence/check-runs/4eda8fd8-5a84-4863-8f2b-891b7259aa26-stderr.txt",
+    "capturedBytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "truncated": false
+  },
+  "reason": "exit 0"
+}

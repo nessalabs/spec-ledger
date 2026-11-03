@@ -1,0 +1,32 @@
+✔ discovery breaker: every workflow status partitions into the same active overview count and URL views (429.991416ms)
+✔ discovery breaker: pagination is bounded deterministic and invalid values cannot drop the selected view (133.193833ms)
+✔ discovery breaker: actual server page returns selected rows without waiting for full session projections (37.207042ms)
+✔ discovery breaker: typed fixups require exact ownership and exclude abandoned or keyword-only changes (7.757375ms)
+✔ discovery breaker: list rows preserve filter and paging links, unknown readiness and exact fixup targets (47.488041ms)
+✔ discovery breaker: fixup context precedes evidence and badges follow typed intent on both change rows (53.446083ms)
+✔ discovery breaker: refresh is explicit and preserves current filter while native links retain browser navigation (51.360167ms)
+✔ discovery breaker: background progress distinguishes loading from unavailable and explains historical counts (70.008208ms)
+✔ progress queue breaker: compact route isolates requested scope and never returns full session evidence (305.443ms)
+✔ progress queue breaker: one request runs at a time and a failed or wrong-scope row cannot poison later progress (49.326292ms)
+✔ progress queue breaker: cancellation aborts in-flight work and excludes late results and remaining rows (31.1315ms)
+✔ progress queue breaker: each deadline aborts that request and continues with the next visible row (52.562709ms)
+✔ progress queue breaker: a new snapshot hides old progress immediately and late old replies cannot replace refreshed results (82.522541ms)
+✔ section history returns from execution to exact acceptance without hiding the evidence (174.234958ms)
+✔ unknown or obsolete fragments do not strand readers in an invisible section (0.226ms)
+✔ mobile navigation closes on same-page selection and route change but preserves modified clicks (162.01125ms)
+✔ live Updates remain separate from server change history without key warnings (210.372167ms)
+✔ the in-page workflow retains its picker and process state when live data changes workstream (8.318042ms)
+✔ a deleted library name stays visible with its preserved version while switching is pending (25.749167ms)
+✔ workflow definition has one library route and the old per-spec route no longer resolves (0.374416ms)
+✔ Updates has a distinct deep link and browser history restores the isolated selected tab (16.666ms)
+✔ Updates shows recorded dates or an honest absence and links to the real turn instead of the decision (24.467416ms)
+✔ overview keeps permission and problems visible with direct spec, evidence and history links (299.466584ms)
+✔ approved work does not request approval again and disconnected approval stays disabled (282.0185ms)
+ℹ tests 24
+ℹ suites 0
+ℹ pass 24
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1506.550042

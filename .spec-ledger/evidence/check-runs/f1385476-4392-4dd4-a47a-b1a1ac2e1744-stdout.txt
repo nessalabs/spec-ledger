@@ -1,0 +1,36 @@
+▶ shared operation boundary adversarial cases
+  ✔ rejects an invalid slice through the actual CLI before sealing, opening, activating, or resuming (173.379875ms)
+  ✔ rejects a caller-supplied root field and cannot touch that checkout (158.299541ms)
+  ✔ denies record_progress without current permission and creates no domain record (133.410083ms)
+  ✔ denies record_decision without current permission and creates no domain record (131.245042ms)
+  ✔ denies record_review without current permission and creates no domain record (122.840625ms)
+  ✔ stale revision and source inputs leave decisions and reviews unchanged (192.04725ms)
+  ✔ does not accept portable review fields that claim human provenance (95.151584ms)
+  ✔ does not let a code review claim a workstream other than its turn (121.589875ms)
+  ✔ replaces a caller-supplied review tree digest with the current source digest (139.958459ms)
+  ✔ rejects a different request that reuses an existing review ID and preserves the first review (137.651583ms)
+✔ shared operation boundary adversarial cases (1406.430541ms)
+▶ operation receipt adversarial cases
+  ✔ runs one effect for concurrent identical requests and replays its result (82.628542ms)
+  ✔ serializes different request IDs and rejects reuse with changed input (86.635792ms)
+  ✔ never treats a corrupt finished receipt as a successful replay (12.318708ms)
+  ✔ does not repeat an effect when only its started receipt remains (13.937208ms)
+  ✔ reports unknown when completion publication fails after the effect and never reruns it (13.518625ms)
+  ✔ reports an unknown lock as busy without stealing it or running effects (2.606334ms)
+✔ operation receipt adversarial cases (212.311125ms)
+▶ actual CLI and MCP lifecycle parity
+  ✔ completes the same verified lifecycle through both executables (3440.13275ms)
+  ✔ returns the same structured denial and leaves domain state unchanged (334.97725ms)
+  ✔ rejects retries, stale inputs, malformed inputs, and missing evidence with the same contracts (1362.088166ms)
+✔ actual CLI and MCP lifecycle parity (5137.89ms)
+▶ MCP package
+  ✔ installs and invokes the packed executable (3428.314583ms)
+✔ MCP package (3428.509959ms)
+ℹ tests 20
+ℹ suites 4
+ℹ pass 20
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 8670.467458

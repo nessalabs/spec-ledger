@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "requestId": "f3fde154-c079-49b0-a65a-603d7c35e8a8",
+  "operation": "record_permission",
+  "inputDigest": "e1530c106779d101d1902ddf217e125da4a5ad31acebf89a35b109f3a582f9e9",
+  "finishedAt": "2026-11-03T09:14:25.689Z",
+  "outcome": "succeeded",
+  "result": {
+    "action": "grant",
+    "mode": "request",
+    "workstreamId": "9600cac2-6b7e-4b59-b944-e4d9022b3371",
+    "featureIds": [
+      "verify",
+      "lattice",
+      "turns",
+      "client",
+      "server",
+      "cli"
+    ],
+    "source": {
+      "kind": "agent-reported",
+      "reference": "User delegated detailed Nessa Docs with tests and reviews across nessalabs repositories in this conversation; scoped to documentation and verification helpers, no product changes or merge."
+    },
+    "id": "a74d8561-764e-4a5a-87cf-d5490dcb6b5c",
+    "schemaVersion": 1,
+    "createdAt": "2026-11-03T09:14:25.675Z"
+  }
+}

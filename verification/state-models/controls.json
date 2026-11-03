@@ -1,0 +1,51 @@
+[
+  {
+    "owner": "sl-claims",
+    "name": "accept-stale-source",
+    "rule": "CurrentSource",
+    "from": "source = 1 /\\ check = 1",
+    "to": "TRUE /\\ check = 1"
+  },
+  {
+    "owner": "sl-claims",
+    "name": "accept-stale-check",
+    "rule": "CurrentCheck",
+    "from": "check = 1 /\\ artifact",
+    "to": "TRUE /\\ artifact"
+  },
+  {
+    "owner": "sl-claims",
+    "name": "accept-missing-artifact",
+    "rule": "ArtifactIntact",
+    "from": "check = 1 /\\ artifact",
+    "to": "check = 1 /\\ TRUE"
+  },
+  {
+    "owner": "sl-operations",
+    "name": "repeat-unfinished-request",
+    "rule": "NoRepeatedEffect",
+    "from": "Next == Execute \\/ Finish \\/ Replay",
+    "to": "Next == Execute \\/ Finish \\/ Replay \\/ (/\\ started /\\ ~finished /\\ runs < 2 /\\ runs' = runs + 1 /\\ UNCHANGED <<started,finished,offered,accepted>>)"
+  },
+  {
+    "owner": "sl-operations",
+    "name": "replay-different-input",
+    "rule": "MatchingReplay",
+    "from": "/\\ offered = 1",
+    "to": "/\\ TRUE"
+  },
+  {
+    "owner": "sl-library",
+    "name": "edit-adopted-copy",
+    "rule": "AdoptedCopyStable",
+    "from": "OtherEdit == /\\ version = 1 /\\ version' = 2\n             /\\ UNCHANGED <<expected,adopted,snapshot,captured,edited,acceptedExpected,acceptedCurrent>>",
+    "to": "OtherEdit == /\\ version = 1 /\\ version' = 2 /\\ snapshot' = 2\n             /\\ UNCHANGED <<expected,adopted,captured,edited,acceptedExpected,acceptedCurrent>>"
+  },
+  {
+    "owner": "sl-library",
+    "name": "edit-stale-version",
+    "rule": "VersionChecked",
+    "from": "/\\ expected = version",
+    "to": "/\\ TRUE"
+  }
+]

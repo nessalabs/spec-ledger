@@ -1,0 +1,17 @@
+▶ workstream evidence adversarial
+  ✔ keeps stale pass historical and unmapped criteria missing (552.516291ms)
+  ✔ exposes duplicate rows without choosing a winning pass and shows each missing check (293.171834ms)
+  ✔ does not execute a command or write records while showing evidence (251.257333ms)
+  ✔ displays only bounded digest-matching confined text and never outside symlink contents (259.390542ms)
+  ✔ keeps review findings and distinguishes current spec review from stale code review (488.4895ms)
+  ✔ explains why file-presence checks do not prove a behavioral requirement (180.992125ms)
+  ✔ attributes a timestamp only when the immutable receipt contains that exact row (609.879417ms)
+✔ workstream evidence adversarial (2636.923041ms)
+ℹ tests 7
+ℹ suites 1
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2703.670625

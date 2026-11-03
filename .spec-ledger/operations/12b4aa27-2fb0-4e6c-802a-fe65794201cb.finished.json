@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "requestId": "12b4aa27-2fb0-4e6c-802a-fe65794201cb",
+  "operation": "record_review",
+  "inputDigest": "3c0f0b8aa551c1321b44367fd74fe522ec8080e0edab6c2dfe9bf9d2ed2ea504",
+  "finishedAt": "2026-11-03T09:38:16.375Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "turnId": "bd26ddb1-2d34-4aa9-af97-2103f58ea692",
+    "kind": "adversarial",
+    "target": "code",
+    "reviewer": "agent:runtime-repo-docs",
+    "verdict": "approve",
+    "summary": "# Spec Ledger independent adversarial/source review\n\n2026-11-03, agent:runtime-repo-docs. Reviewed source checkpoint 651b9a59a83ffd4d83e4f18767e240d120c155fa. First reader task answers are separately recorded in spec-reader-round1.md. No product edits or formal ledger review yet; parent owns final tree and turn.\n\nSampled CLI main/client verifier, application receipts/operations, read verifier, execution policies and workflow snapshots/version updates. Claims match these owners: CLI verify invokes a command-running operation; request start receipts precede effects and uncertain requests refuse rerun; stale source/check/artifacts prevent current pass; adopted methods are immutable snapshots; continuation and timeout enforcement do not manufacture host capabilities.\n\nAll three finite models and seven mutation definitions inspected. EvidenceFreshness intentionally checks evaluation-time matching, not asynchronous hash/storage integrity. MutationRetry treats one serialized request and abstracts filesystem locks, with no atomic-effect or general repair guarantee. WorkflowCopy checks adopted snapshot stability and expected-version admission, without filesystem race coverage. Separate expected/current/captured state avoids defining invariants solely as their admission condition. Every listed invariant has a meaningful guard-bypass or effect mutation. No unresolved material model/source finding in this scope.\n\nIndependent execution used a copied docs/scripts/control fixture, preserving author receipts and production code. Command: NESSA_DOCS_ROOT=/absolute/path/to/work/nessa-docs node work/doc-quality/spec-breaker-fixture/scripts/state-docs/verify.mjs. Actual Node runtime and absolute root are recorded in local command receipts. Output spec-breaker-models.log: three baselines passed, seven controls failed their intended semantic rules; final {\"ok\":true,\"documents\":20,\"models\":3,\"controls\":7}. Independent states 39 aggregate.\n\nOne out-of-intent killer: malformed catalog with duplicate root/claim identity, using only a temporary fixture. Actual runner exited 1 with duplicate-id and missing-parent errors before producing baseline output; existing results.json SHA-256 unchanged. Evidence spec-breaker-invalid-catalog.json records exact command/exit/output and checks. It fails for the intended rejected-input reason, not because the checker was unavailable. This tests a runner boundary beyond the six task journeys; no source fix needed. Hunt stops here.\n\nFinal review must await frozen tree and finished verification prose. Existing build/tests/browser and ledger completeness are author-owned evidence, not independently rerun by this reviewer. Passing these finite models does not execute TypeScript or establish production security.\n\nFinal frozen verification page re-read: separates existing353tests and historical35claim run from current model/browser evidence; no new material finding. Review scopes atlas/docsrunner only. Retained control identities: verification/state-models/controls.json; author baseline/control receipts: results.json. Independent execution: NESSA_DOCS_ROOT=/Users/nessa/Documents/Codex/2026-11-02/hey-can-you-update-the-nessa/work/nessa-docs /Users/nessa/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node work/doc-quality/spec-breaker-fixture/scripts/state-docs/verify.mjs. Extra duplicate-root fixture: exit1 duplicate-id(sl-claims twice), missing-parent; existing results SHA-256 unchanged; no baseline output. Breaker modified only isolated fixtures and review. No product fix, no sealed deviation. No whole-product correctness claim.",
+    "plainSummary": "The atlas explains the tested boundaries accurately, and deliberate model faults and malformed documentation are rejected.",
+    "killersCited": [
+      "accept-stale-source",
+      "accept-stale-check",
+      "accept-missing-artifact",
+      "repeat-unfinished-request",
+      "replay-different-input",
+      "edit-adopted-copy",
+      "edit-stale-version",
+      "invalid-catalog-before-models"
+    ],
+    "id": "dc2bd724-b7dd-4147-8a71-b07c1b17d4e4",
+    "treeDigest": "e6dd6ec1f8221bbff72c8d62d96c7333204fb2ea644f391fc336d261dfe3bb97"
+  }
+}

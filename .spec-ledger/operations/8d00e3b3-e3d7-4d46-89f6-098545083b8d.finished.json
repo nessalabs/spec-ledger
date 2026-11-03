@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "requestId": "8d00e3b3-e3d7-4d46-89f6-098545083b8d",
+  "operation": "create_workstream",
+  "inputDigest": "95a3d1ade6d45fc27d1fd83acb758febaf3be41bb63a1b6615679ab9444063fd",
+  "finishedAt": "2026-11-03T09:11:48.049Z",
+  "outcome": "succeeded",
+  "result": {
+    "title": "Readable system and verification map",
+    "problem": "Readers need a source-grounded map of product tasks and the limits of evidence.",
+    "objective": "Find each feature owner, follow failure outcomes, and reproduce scoped checks.",
+    "featureIds": [
+      "verify",
+      "lattice",
+      "turns",
+      "client",
+      "server",
+      "cli"
+    ],
+    "specPath": "docs/workstreams/readable-state-atlas/spec.md",
+    "changeType": "docs",
+    "riskLevel": "low",
+    "policy": {
+      "requireSpecBreak": true,
+      "requireCodeBreak": true,
+      "requireAlignApprove": false
+    },
+    "suggestedSlices": [
+      {
+        "title": "Understand the current system and its checks",
+        "kind": "vertical",
+        "acceptance": [
+          "Map all implemented feature families with current source links and explicit external boundaries.",
+          "Use independent reader and source review; fix and retest material findings.",
+          "Check selected bounded models and meaningful negative controls; distinguish implementation tests and report gaps."
+        ],
+        "evidence": [
+          "source-review",
+          "reader-review",
+          "model-check",
+          "negative-controls",
+          "tests",
+          "browser"
+        ],
+        "expectedPaths": [
+          "docs/state/**",
+          "scripts/state-docs/**",
+          "verification/state-models/**",
+          "docs/workstreams/readable-state-atlas/**",
+          "README.md"
+        ],
+        "id": "bf7c0be4-61a8-4d59-9678-ca7dce72b134"
+      }
+    ],
+    "schemaVersion": 1,
+    "id": "9600cac2-6b7e-4b59-b944-e4d9022b3371",
+    "status": "draft",
+    "createdAt": "2026-11-03T09:11:48.047Z"
+  }
+}

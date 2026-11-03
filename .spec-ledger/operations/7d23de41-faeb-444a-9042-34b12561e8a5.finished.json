@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "requestId": "7d23de41-faeb-444a-9042-34b12561e8a5",
+  "operation": "begin_work",
+  "inputDigest": "45c132db4dbd70c51a69d0ef8d5f822c14024294c0163080fc60964c1a41b365",
+  "finishedAt": "2026-11-03T09:14:26.743Z",
+  "outcome": "succeeded",
+  "result": {
+    "schemaVersion": 1,
+    "id": "bd26ddb1-2d34-4aa9-af97-2103f58ea692",
+    "status": "open",
+    "openedAt": "2026-11-03T09:14:26.742Z",
+    "opened": {
+      "producedBy": "@nessalabs/spec-ledger@0.1.0",
+      "baseCommit": "651b9a59a83ffd4d83e4f18767e240d120c155fa",
+      "treeDigest": "a1ea4ce6c3aa87184c7ef433882f99473533a9368959bed0efddae8e93d3c18b",
+      "dirtyAtOpen": [
+        ".spec-ledger/authority/a74d8561-764e-4a5a-87cf-d5490dcb6b5c.json",
+        ".spec-ledger/reviews/workstreams/9600cac2-6b7e-4b59-b944-e4d9022b3371/f9fdd7e1-31fd-4bcd-a1e5-adc0a4839102.json",
+        ".spec-ledger/workstreams/9600cac2-6b7e-4b59-b944-e4d9022b3371.json",
+        "docs/workstreams/readable-state-atlas/spec.md"
+      ],
+      "contextDigest": "487471cd6ae5197a37946df9e8535de2788104732acdd6cabf34c4840258c0e8",
+      "contextWorkstreamId": "9600cac2-6b7e-4b59-b944-e4d9022b3371",
+      "contextSliceId": "bf7c0be4-61a8-4d59-9678-ca7dce72b134",
+      "contextSealRevision": 1,
+      "contextGeneratedAt": "2026-11-03T09:14:26.742Z"
+    },
+    "intent": {
+      "userPrompt": "Understand Spec Ledger tasks and the limits of their evidence",
+      "restatedGoal": "Understand Spec Ledger tasks and the limits of their evidence",
+      "changeType": "feature",
+      "riskLevel": "moderate",
+      "workstreamId": "9600cac2-6b7e-4b59-b944-e4d9022b3371",
+      "sliceId": "bf7c0be4-61a8-4d59-9678-ca7dce72b134",
+      "featureIds": [
+        "verify",
+        "lattice",
+        "turns",
+        "client",
+        "server",
+        "cli"
+      ]
+    }
+  }
+}
