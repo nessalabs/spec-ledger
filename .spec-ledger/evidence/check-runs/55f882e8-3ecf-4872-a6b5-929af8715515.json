@@ -1,0 +1,29 @@
+{
+  "runId": "55f882e8-3ecf-4872-a6b5-929af8715515",
+  "requestId": "batch-55f882e8-3ecf-4872-a6b5-929af8715515",
+  "bindingId": "e49ce4da-8d40-855e-9c96-2f6723794a23",
+  "state": "finished",
+  "command": "node --test packages/ledger/dist/workstream/doc-digest.test.js packages/ledger/dist/workstream/doc-digest.break.test.js packages/ledger/dist/workstream/pr1-regressions.break.test.js",
+  "cwd": "/Users/nessa/Documents/Codex/2026-11-02/hey-can-you-update-the-nessa/work/org-docs/spec-ledger",
+  "sourceDigest": "a1ea4ce6c3aa87184c7ef433882f99473533a9368959bed0efddae8e93d3c18b",
+  "checkDigest": "b966573ce488df6c965b0b146c8981e829ad35ffa39c65233418a69fc291b3a0",
+  "startedAt": "2026-11-03T09:20:21.182Z",
+  "finishedAt": "2026-11-03T09:20:23.094Z",
+  "outcome": "pass",
+  "exitCode": 0,
+  "signal": null,
+  "durationMs": 1570,
+  "stdout": {
+    "path": ".spec-ledger/evidence/check-runs/55f882e8-3ecf-4872-a6b5-929af8715515-stdout.txt",
+    "capturedBytes": 2157,
+    "sha256": "baaa9bfddedcbc009078abe011f5af04cc0930c7bc61a304542ec34a1645d086",
+    "truncated": false
+  },
+  "stderr": {
+    "path": ".spec-ledger/evidence/check-runs/55f882e8-3ecf-4872-a6b5-929af8715515-stderr.txt",
+    "capturedBytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "truncated": false
+  },
+  "reason": "exit 0"
+}

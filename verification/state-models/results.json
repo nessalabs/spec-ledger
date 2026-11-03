@@ -1,0 +1,294 @@
+{
+  "date": "2026-11-03T09:25:32.975Z",
+  "documents": 20,
+  "baselines": [
+    {
+      "owner": "sl-claims",
+      "id": "fff4794a-d21f-4b13-a2d5-14cc4f94cfd1",
+      "state": "passed",
+      "message": "Every rule held. This checks the design, not the code.",
+      "result": {
+        "sourceRevision": "651b9a59a83ffd4d83e4f18767e240d120c155fa",
+        "checker": "tlc-1.7.4",
+        "date": "2026-11-03T09:25:33.617Z",
+        "config": "tla/EvidenceFreshness.cfg",
+        "modelDigest": "1202abbe51e263f0b1f98a77b239b775f26cf9dc4047f6ff10bace896bd5761b",
+        "states": 16,
+        "held": [
+          "CurrentSource",
+          "CurrentCheck",
+          "ArtifactIntact"
+        ],
+        "broke": [],
+        "unchecked": []
+      }
+    },
+    {
+      "owner": "sl-library",
+      "id": "66bc6f3c-0c51-48ae-af46-3c34eb8190e6",
+      "state": "passed",
+      "message": "Every rule held. This checks the design, not the code.",
+      "result": {
+        "sourceRevision": "651b9a59a83ffd4d83e4f18767e240d120c155fa",
+        "checker": "tlc-1.7.4",
+        "date": "2026-11-03T09:25:38.278Z",
+        "config": "tla/WorkflowCopy.cfg",
+        "modelDigest": "24ee377c8d8c7ca9e71c0c0e7afce3d9e831da5ac6782a0b71dbfc7b8dd227f9",
+        "states": 16,
+        "held": [
+          "AdoptedCopyStable",
+          "VersionChecked"
+        ],
+        "broke": [],
+        "unchecked": []
+      }
+    },
+    {
+      "owner": "sl-operations",
+      "id": "239e6820-ed81-408f-a9fb-97d6107238d2",
+      "state": "passed",
+      "message": "Every rule held. This checks the design, not the code.",
+      "result": {
+        "sourceRevision": "651b9a59a83ffd4d83e4f18767e240d120c155fa",
+        "checker": "tlc-1.7.4",
+        "date": "2026-11-03T09:25:41.788Z",
+        "config": "tla/MutationRetry.cfg",
+        "modelDigest": "c89bcb993c8a7da8ebb62e43a8a504fa87137f77aca2a07dab86f7e4786cc50d",
+        "states": 7,
+        "held": [
+          "NoRepeatedEffect",
+          "MatchingReplay"
+        ],
+        "broke": [],
+        "unchecked": []
+      }
+    }
+  ],
+  "controls": [
+    {
+      "name": "accept-stale-source",
+      "owner": "sl-claims",
+      "expected": "CurrentSource",
+      "passed": true,
+      "id": "9c74945b-2a20-4078-8533-374a98c553d2",
+      "state": "broke",
+      "message": "A rule broke. This checks the design, not the code.",
+      "result": {
+        "sourceRevision": "651b9a59a83ffd4d83e4f18767e240d120c155fa",
+        "checker": "tlc-1.7.4",
+        "date": "2026-11-03T09:25:34.880Z",
+        "config": "tla/EvidenceFreshness.cfg",
+        "modelDigest": "8cfe231cb5ca01a73ce187fac4f061df99ecb6096ef43d19744e90daf68ec5c7",
+        "states": 16,
+        "held": [
+          "CurrentCheck",
+          "ArtifactIntact"
+        ],
+        "broke": [
+          {
+            "rule": "CurrentSource",
+            "path": [
+              "Start with atArtifact is FALSE, source is 2, evaluated is FALSE, passed is FALSE, atSource is 0, check is 1, artifact is TRUE, atCheck is 0.",
+              "Evaluate: atArtifact is TRUE, source is 2, evaluated is TRUE, passed is TRUE, atSource is 2, check is 1, artifact is TRUE, atCheck is 1."
+            ],
+            "states": []
+          }
+        ],
+        "unchecked": []
+      }
+    },
+    {
+      "name": "accept-stale-check",
+      "owner": "sl-claims",
+      "expected": "CurrentCheck",
+      "passed": true,
+      "id": "b75b6820-6e32-44da-8466-39d3481fea0f",
+      "state": "broke",
+      "message": "A rule broke. This checks the design, not the code.",
+      "result": {
+        "sourceRevision": "651b9a59a83ffd4d83e4f18767e240d120c155fa",
+        "checker": "tlc-1.7.4",
+        "date": "2026-11-03T09:25:36.155Z",
+        "config": "tla/EvidenceFreshness.cfg",
+        "modelDigest": "1bc27c9c4b48f888de11c87ab00210624d821ab0214853a6da2ed244c85a3334",
+        "states": 16,
+        "held": [
+          "CurrentSource",
+          "ArtifactIntact"
+        ],
+        "broke": [
+          {
+            "rule": "CurrentCheck",
+            "path": [
+              "Start with atArtifact is FALSE, source is 1, evaluated is FALSE, passed is FALSE, atSource is 0, check is 2, artifact is TRUE, atCheck is 0.",
+              "Evaluate: atArtifact is TRUE, source is 1, evaluated is TRUE, passed is TRUE, atSource is 1, check is 2, artifact is TRUE, atCheck is 2."
+            ],
+            "states": []
+          }
+        ],
+        "unchecked": []
+      }
+    },
+    {
+      "name": "accept-missing-artifact",
+      "owner": "sl-claims",
+      "expected": "ArtifactIntact",
+      "passed": true,
+      "id": "cd6c53c5-6b75-4f1c-abae-16e1b411bcd9",
+      "state": "broke",
+      "message": "A rule broke. This checks the design, not the code.",
+      "result": {
+        "sourceRevision": "651b9a59a83ffd4d83e4f18767e240d120c155fa",
+        "checker": "tlc-1.7.4",
+        "date": "2026-11-03T09:25:37.551Z",
+        "config": "tla/EvidenceFreshness.cfg",
+        "modelDigest": "5015910156d4b47fdeac796ca49adf1136e3ebd6dea62d7615f412bfe125d0c1",
+        "states": 16,
+        "held": [
+          "CurrentSource",
+          "CurrentCheck"
+        ],
+        "broke": [
+          {
+            "rule": "ArtifactIntact",
+            "path": [
+              "Start with atArtifact is FALSE, source is 1, evaluated is FALSE, passed is FALSE, atSource is 0, check is 1, artifact is FALSE, atCheck is 0.",
+              "Evaluate: atArtifact is FALSE, source is 1, evaluated is TRUE, passed is TRUE, atSource is 1, check is 1, artifact is FALSE, atCheck is 1."
+            ],
+            "states": []
+          }
+        ],
+        "unchecked": []
+      }
+    },
+    {
+      "name": "edit-adopted-copy",
+      "owner": "sl-library",
+      "expected": "AdoptedCopyStable",
+      "passed": true,
+      "id": "a4539eaa-344d-4727-9809-9b46a690e78f",
+      "state": "broke",
+      "message": "A rule broke. This checks the design, not the code.",
+      "result": {
+        "sourceRevision": "651b9a59a83ffd4d83e4f18767e240d120c155fa",
+        "checker": "tlc-1.7.4",
+        "date": "2026-11-03T09:25:39.729Z",
+        "config": "tla/WorkflowCopy.cfg",
+        "modelDigest": "b2115619c563becfa3df2485f054b9336d3d44ca3589ba4a10a12b008adb3f44",
+        "states": 16,
+        "held": [
+          "VersionChecked"
+        ],
+        "broke": [
+          {
+            "rule": "AdoptedCopyStable",
+            "path": [
+              "Start with acceptedCurrent is 0, acceptedExpected is 0, adopted is FALSE, version is 1, snapshot is 0, expected is 1, captured is 0, edited is FALSE.",
+              "Adopt: acceptedCurrent is 0, acceptedExpected is 0, adopted is TRUE, version is 1, snapshot is 1, expected is 1, captured is 1, edited is FALSE.",
+              "OtherEdit: acceptedCurrent is 0, acceptedExpected is 0, adopted is TRUE, version is 2, snapshot is 2, expected is 1, captured is 1, edited is FALSE."
+            ],
+            "states": []
+          }
+        ],
+        "unchecked": []
+      }
+    },
+    {
+      "name": "edit-stale-version",
+      "owner": "sl-library",
+      "expected": "VersionChecked",
+      "passed": true,
+      "id": "90f6c619-b4b0-46c4-b2fc-2567b7d9c074",
+      "state": "broke",
+      "message": "A rule broke. This checks the design, not the code.",
+      "result": {
+        "sourceRevision": "651b9a59a83ffd4d83e4f18767e240d120c155fa",
+        "checker": "tlc-1.7.4",
+        "date": "2026-11-03T09:25:41.132Z",
+        "config": "tla/WorkflowCopy.cfg",
+        "modelDigest": "f2ee2eb26e56fe8b449ede0a506b66edbe8682561dd15fd701355b527c9741a1",
+        "states": 22,
+        "held": [
+          "AdoptedCopyStable"
+        ],
+        "broke": [
+          {
+            "rule": "VersionChecked",
+            "path": [
+              "Start with acceptedCurrent is 0, acceptedExpected is 0, adopted is FALSE, version is 1, snapshot is 0, expected is 2, captured is 0, edited is FALSE.",
+              "Update: acceptedCurrent is 1, acceptedExpected is 2, adopted is FALSE, version is 2, snapshot is 0, expected is 2, captured is 0, edited is TRUE."
+            ],
+            "states": []
+          }
+        ],
+        "unchecked": []
+      }
+    },
+    {
+      "name": "repeat-unfinished-request",
+      "owner": "sl-operations",
+      "expected": "NoRepeatedEffect",
+      "passed": true,
+      "id": "0322c4b0-7f0f-413a-98a6-f5abcbd3a521",
+      "state": "broke",
+      "message": "A rule broke. This checks the design, not the code.",
+      "result": {
+        "sourceRevision": "651b9a59a83ffd4d83e4f18767e240d120c155fa",
+        "checker": "tlc-1.7.4",
+        "date": "2026-11-03T09:25:43.146Z",
+        "config": "tla/MutationRetry.cfg",
+        "modelDigest": "d35408c2c48fc761e85350ba3aab16810d4751f1d7bd9cb98e3ce422f67e1d38",
+        "states": 12,
+        "held": [
+          "MatchingReplay"
+        ],
+        "broke": [
+          {
+            "rule": "NoRepeatedEffect",
+            "path": [
+              "Start with offered is 1, runs is 0, started is FALSE, accepted is 0, finished is FALSE.",
+              "Execute: offered is 1, runs is 1, started is TRUE, accepted is 0, finished is FALSE.",
+              "Next: offered is 1, runs is 2, started is TRUE, accepted is 0, finished is FALSE."
+            ],
+            "states": []
+          }
+        ],
+        "unchecked": []
+      }
+    },
+    {
+      "name": "replay-different-input",
+      "owner": "sl-operations",
+      "expected": "MatchingReplay",
+      "passed": true,
+      "id": "a0aefd94-96aa-4b87-9e12-9525c1f62b62",
+      "state": "broke",
+      "message": "A rule broke. This checks the design, not the code.",
+      "result": {
+        "sourceRevision": "651b9a59a83ffd4d83e4f18767e240d120c155fa",
+        "checker": "tlc-1.7.4",
+        "date": "2026-11-03T09:25:44.520Z",
+        "config": "tla/MutationRetry.cfg",
+        "modelDigest": "5d3085b69a743c24c5c205ea71a4f3d11472eec29302222993d45aa2d2b21a11",
+        "states": 8,
+        "held": [
+          "NoRepeatedEffect"
+        ],
+        "broke": [
+          {
+            "rule": "MatchingReplay",
+            "path": [
+              "Start with offered is 2, runs is 0, started is FALSE, accepted is 0, finished is FALSE.",
+              "Execute: offered is 2, runs is 1, started is TRUE, accepted is 0, finished is FALSE.",
+              "Finish: offered is 2, runs is 1, started is TRUE, accepted is 0, finished is TRUE.",
+              "Replay: offered is 2, runs is 1, started is TRUE, accepted is 2, finished is TRUE."
+            ],
+            "states": []
+          }
+        ],
+        "unchecked": []
+      }
+    }
+  ],
+  "ok": true
+}

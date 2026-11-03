@@ -1,0 +1,18 @@
+▶ delegated authority adversarial
+  ✔ enforces explicit feature exclusions and immutable authority retries (10.348834ms)
+  ✔ requires a real current spec review before snapshotting a revised delegated plan (8.02525ms)
+  ✔ raw denial records prevent the same standing delegation from restarting renamed work (4.116167ms)
+  ✔ refuses denied work through CLI even when context collection is explicitly skipped (89.097041ms)
+  ✔ distinguishes revision/request/standing authority and revocation without broader fallback (8.817709ms)
+  ✔ requires revision reapproval after acceptance changes and never invents host consent (3.598125ms)
+  ✔ does not accept a fabricated spec-review reference when a delegated plan requires review (3.511292ms)
+  ✔ applies corrections only in scope, excludes inferred preferences, and hashes same-ID content (68.536834ms)
+✔ delegated authority adversarial (196.727375ms)
+ℹ tests 8
+ℹ suites 1
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 243.989083

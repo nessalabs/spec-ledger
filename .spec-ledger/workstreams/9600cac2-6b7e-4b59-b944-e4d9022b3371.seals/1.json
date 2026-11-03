@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "workstreamId": "9600cac2-6b7e-4b59-b944-e4d9022b3371",
+  "revision": 1,
+  "sealedAt": "2026-11-03T09:14:26.260Z",
+  "sealedBy": "agent:permission:a74d8561-764e-4a5a-87cf-d5490dcb6b5c",
+  "specDigest": "49b65d3c8527e909bcb537b23a563aea1f6d0948c416f78ab10ac73badcc64fa",
+  "specDocDigest": "d4f8ca5ef6f7a8ae0bb54e913e016b1adf325426e0e924a8e07827e3a2bef97a",
+  "body": {
+    "id": "9600cac2-6b7e-4b59-b944-e4d9022b3371",
+    "featureIds": [
+      "verify",
+      "lattice",
+      "turns",
+      "client",
+      "server",
+      "cli"
+    ],
+    "primaryFeatureId": null,
+    "title": "Readable system and verification map",
+    "problem": "Readers need a source-grounded map of product tasks and the limits of evidence.",
+    "objective": "Find each feature owner, follow failure outcomes, and reproduce scoped checks.",
+    "specPath": "docs/workstreams/readable-state-atlas/spec.md",
+    "appetite": null,
+    "changeType": "docs",
+    "riskLevel": "low",
+    "trust": null,
+    "policy": {
+      "requireSpecBreak": true,
+      "requireCodeBreak": true,
+      "requireAlignApprove": false
+    },
+    "acceptanceCriteria": [],
+    "outOfScope": [],
+    "proposedClaimIds": [],
+    "suggestedSlices": [
+      {
+        "id": "bf7c0be4-61a8-4d59-9678-ca7dce72b134",
+        "title": "Understand the current system and its checks",
+        "kind": "vertical",
+        "acceptance": [
+          "Map all implemented feature families with current source links and explicit external boundaries.",
+          "Use independent reader and source review; fix and retest material findings.",
+          "Check selected bounded models and meaningful negative controls; distinguish implementation tests and report gaps."
+        ],
+        "evidence": [
+          "source-review",
+          "reader-review",
+          "model-check",
+          "negative-controls",
+          "tests",
+          "browser"
+        ],
+        "expectedClaimIds": [],
+        "expectedPaths": [
+          "docs/state/**",
+          "scripts/state-docs/**",
+          "verification/state-models/**",
+          "docs/workstreams/readable-state-atlas/**",
+          "README.md"
+        ]
+      }
+    ]
+  }
+}

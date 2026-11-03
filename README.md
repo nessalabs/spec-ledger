@@ -161,3 +161,7 @@ Enforcement is CI + CLI, not prompting alone.
 Seed `nessa-app/.spec-ledger/` from ADR ids (`KER-001`, …) and wire existing
 `check-*.mjs` scripts as `command` bindings; add vitest/cargo reporters that
 emit `results.json` keyed by claim id.
+
+## System and state map
+
+Open [the Nessa Docs atlas](docs/state/README.md) for task-oriented source maps, failure boundaries and scoped verification evidence.
